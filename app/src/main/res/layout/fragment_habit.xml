@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/spark_white"
+        tools:context=".ui.habit.HabitFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_habit_team_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/spark_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_habit_container"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_habit_team" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_habit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_habit_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_habit_sparkflake1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_habit_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/ic_back_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_habit_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_more_vertical_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_habit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/habit_title"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_habit_d_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/futura_bold"
+                android:includeFontPadding="false"
+                android:text="@string/habit_d_day"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="31sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_habit_back" />
+
+            <ImageView
+                android:id="@+id/iv_habit_teamlife_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/ic_habit_teamlife_white"
+                app:layout_constraintEnd_toStartOf="@id/iv_habit_teamlife_second"
+                app:layout_constraintTop_toBottomOf="@+id/btn_habit_more" />
+
+            <ImageView
+                android:id="@+id/iv_habit_teamlife_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/ic_habit_teamlife_white"
+                app:layout_constraintEnd_toStartOf="@id/iv_habit_teamlife_third"
+                app:layout_constraintTop_toBottomOf="@+id/btn_habit_more" />
+
+            <ImageView
+                android:id="@+id/iv_habit_teamlife_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_habit_teamlife_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_habit_more" />
+
+            <ProgressBar
+                android:id="@+id/progressbar_habit_progress_bar_bg"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:max="66"
+                android:progress="3"
+                android:progressDrawable="@drawable/layer_list_habit_progressbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_habit_teamlife_first" />
+
+            <TextView
+                android:id="@+id/tv_habit_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/futura_medium"
+                android:text="@string/habit_start_date"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressbar_habit_progress_bar_bg" />
+
+            <TextView
+                android:id="@+id/tv_habit_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/futura_medium"
+                android:text="@string/habit_end_date"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressbar_habit_progress_bar_bg" />
+
+            <ImageView
+                android:id="@+id/iv_habit_text_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/shape_habit_text_box"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_habit_start_date" />
+
+            <TextView
+                android:id="@+id/tv_habit_time_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"
+                android:text="@string/habit_time_title"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
+                app:layout_constraintTop_toTopOf="@id/iv_habit_text_container" />
+
+            <TextView
+                android:id="@+id/tv_habit_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/habit_time"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_habit_time_title"
+                app:layout_constraintStart_toEndOf="@id/tv_habit_time_title"
+                app:layout_constraintTop_toTopOf="@id/tv_habit_time_title" />
+
+            <TextView
+                android:id="@+id/tv_habit_goal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"
+                android:text="@string/habit_goal_title"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_habit_text_container"
+                app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
+                app:layout_constraintTop_toBottomOf="@id/tv_habit_time_title" />
+
+            <TextView
+                android:id="@+id/tv_habit_goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/habit_goal"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_habit_goal_title"
+                app:layout_constraintStart_toEndOf="@id/tv_habit_goal_title"
+                app:layout_constraintTop_toTopOf="@id/tv_habit_goal_title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_habit_cut_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_habit_cut_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_habit_container" />
+
+        <ImageView
+            android:id="@+id/iv_habit_gradation_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_habit_box_scroll_gradation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_habit_today_certification_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_today_active"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_habit_today_certification"
+            app:layout_constraintEnd_toEndOf="@+id/btn_habit_today_certification"
+            app:layout_constraintStart_toStartOf="@+id/btn_habit_today_certification"
+            app:layout_constraintTop_toTopOf="@+id/btn_habit_today_certification" />
+
+        <Button
+            android:id="@+id/btn_habit_today_certification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bg_habit_today_active"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/habit_today_certification_btn"
+            android:textColor="@color/spark_white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
