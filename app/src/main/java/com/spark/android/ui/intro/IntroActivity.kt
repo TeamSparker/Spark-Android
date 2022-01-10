@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.spark.android.MainActivity
 import com.spark.android.R
 import com.spark.android.databinding.ActivityIntroBinding
+import com.spark.android.ui.MainActivity
 import com.spark.android.ui.base.BaseActivity
 
 class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro) {
