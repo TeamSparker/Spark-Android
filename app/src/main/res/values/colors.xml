@@ -7,4 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="spark_dark_pinkred">#ff003d</color>
+    <color name="spark_dark_gray">#737376</color>
+    <color name="spark_pinkred">#ff2257</color>
+    <color name="spark_bright_pinkred">#ff517b</color>
+    <color name="spark_light_pinkred">#ff89a5</color>
+    <color name="spark_more_light_pinkred">#ffb8c9</color>
+    <color name="spark_most_light_pinkred">#ffd5df</color>
+    <color name="spark_black">#000000</color>
+    <color name="spark_deep_gray">#2b2b2b</color>
+    <color name="spark_gray">#b1b2b4</color>
+    <color name="spark_light_gray">#ededee</color>
+    <color name="spark_white">#ffffff</color>
 </resources>
