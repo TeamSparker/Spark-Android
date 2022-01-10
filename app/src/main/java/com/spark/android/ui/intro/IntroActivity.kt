@@ -12,7 +12,7 @@ import com.spark.android.ui.base.BaseActivity
 class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = getColor(R.color.spark_black)
+        setStatusBarColor()
         moveToMain()
     }
 
