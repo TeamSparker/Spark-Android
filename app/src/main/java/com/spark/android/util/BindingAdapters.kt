@@ -1,8 +1,7 @@
-package com.spark.android.utill
+package com.spark.android.util
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 
 object BindingAdapters {
