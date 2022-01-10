@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="white"
+        tools:context=".ui.profile.ProfileFragment">
+
+        <ImageButton
+            android:id="@+id/btn_profile_quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/profile_desc_quit"
+            android:src="@drawable/ic_profile_quit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_profile_info_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/profile_info_1"
+            android:textColor="@color/spark_black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_profile_quit" />
+
+        <TextView
+            android:id="@+id/tv_profile_info_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/profile_info_2"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile_info_1" />
+
+        <TextView
+            android:id="@+id/tv_profile_info_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/profile_info_3"
+            android:textColor="@color/spark_black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/tv_profile_info_2"
+            app:layout_constraintTop_toTopOf="@id/tv_profile_info_2" />
+
+        <ImageView
+            android:id="@+id/iv_profile_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@string/profile_desc_photo"
+            android:src="@drawable/ic_profile_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile_info_3" />
+
+        <ImageButton
+            android:id="@+id/btn_profile_get_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/profile_desc_photo"
+            android:src="@drawable/ic_profile_black_filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile_info_3" />
+
+        <EditText
+            android:id="@+id/et_profile_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/bg_edit_text_gray"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:hint="@string/profile_nickname_hint"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:paddingStart="6dp"
+            android:paddingEnd="40dp"
+            android:textColor="@color/spark_black"
+            android:textColorHint="@color/spark_gray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_profile_get_photo" />
+
+        <TextView
+            android:id="@+id/tv_profile_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:text="2"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_profile_count_sum"
+            app:layout_constraintEnd_toStartOf="@id/tv_profile_count_sum"
+            app:layout_constraintTop_toTopOf="@id/tv_profile_count_sum" />
+
+        <TextView
+            android:id="@+id/tv_profile_count_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/futura_medium"
+            android:text="@string/profile_nickname_count_sum"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/et_profile_nickname"
+            app:layout_constraintEnd_toEndOf="@id/et_profile_nickname" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/spark_gray"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="14dp"
+            android:stateListAnimator="@null"
+            android:text="@string/profile_start_spark"
+            android:textColor="@color/spark_white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
