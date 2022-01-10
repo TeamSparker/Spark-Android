@@ -13,18 +13,118 @@
         android:layout_height="match_parent"
         tools:context=".ui.storage.StorageFragment">
 
-       <TextView
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           app:layout_constraintTop_toTopOf="parent"
-           android:layout_marginTop="33dp"
-           app:layout_constraintStart_toStartOf="parent"
-           android:layout_marginStart="24dp"
-           android:text="나는야쿵짝지혜 님의지 \ㅜ 19가"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_linegrid_for_white" />
 
-           />
+        <TextView
+            android:id="@+id/tv_storage_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="나는야쿵짝지혜 님의\n19가지 스파크"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_storage_progressing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="진행중"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_storage_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_storage_title" />
 
+        <TextView
+            android:id="@+id/tv_storage_number_progressing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="6"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_storage_progressing"
+            app:layout_constraintStart_toEndOf="@id/tv_storage_progressing" />
+
+        <TextView
+            android:id="@+id/tv_storage_complete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="완료"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tv_storage_number_progressing"
+            app:layout_constraintTop_toTopOf="@id/tv_storage_progressing" />
+
+        <TextView
+            android:id="@+id/tv_storage_number_complete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="12"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_storage_complete"
+            app:layout_constraintStart_toEndOf="@+id/tv_storage_complete" />
+
+        <TextView
+            android:id="@+id/tv_storage_incomplete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="미완료"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tv_storage_number_complete"
+            app:layout_constraintTop_toTopOf="@id/tv_storage_progressing" />
+
+        <TextView
+            android:id="@+id/tv_storage_number_incomplete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_storage_incomplete"
+            app:layout_constraintStart_toEndOf="@+id/tv_storage_incomplete" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="21dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_storage_progressing"
+
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
