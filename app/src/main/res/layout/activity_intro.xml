@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_intro"
-        tools:context=".ui.splash.IntroActivity">
+        tools:context=".ui.intro.IntroActivity">
 
         <ImageView
             android:layout_width="wrap_content"
