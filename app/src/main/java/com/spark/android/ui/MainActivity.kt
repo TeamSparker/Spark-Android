@@ -11,9 +11,9 @@ import com.spark.android.ui.home.StorageFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    private val feedFragment = FeedFragment()
-    private val homeMainFragment = HomeMainFragment()
-    private val storageFragment = StorageFragment()
+    private lateinit var feedFragment: FeedFragment
+    private lateinit var homeMainFragment: HomeMainFragment
+    private lateinit var storageFragment: StorageFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,25 +23,30 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     }
 
-    private fun initTransactionEvent(){
-        supportFragmentManager.beginTransaction().add(R.id.container_main,homeMainFragment)
+    private fun initTransactionEvent() {
+        feedFragment = FeedFragment()
+        homeMainFragment = HomeMainFragment()
+        storageFragment = StorageFragment()
+        supportFragmentManager.beginTransaction().add(R.id.container_main, homeMainFragment).commit()
     }
 
     private fun initBottomNavigation() {
+        binding.bottomNavMain.selectedItemId = R.id.menu_home
+
         binding.bottomNavMain.setOnItemSelectedListener {
             val transaction = supportFragmentManager.beginTransaction()
 
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.menu_feed -> {
-                    transaction.replace(R.id.container_main,feedFragment)
+                    transaction.replace(R.id.container_main, feedFragment).commit()
                     return@setOnItemSelectedListener true
                 }
                 R.id.menu_home -> {
-                    transaction.replace(R.id.container_main,homeMainFragment)
+                    transaction.replace(R.id.container_main, homeMainFragment).commit()
                     return@setOnItemSelectedListener true
                 }
                 else -> {
-                    transaction.replace(R.id.container_main,storageFragment)
+                    transaction.replace(R.id.container_main, storageFragment).commit()
                     return@setOnItemSelectedListener true
                 }
             }
