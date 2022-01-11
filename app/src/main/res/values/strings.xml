@@ -20,5 +20,19 @@
     <string name="profile_nickname_hint">닉네임 입력</string>
     <string name="profile_start_spark">스파크 시작하기</string>
     <string name="profile_nickname_count_sum">/10</string>
+
+    <string name="item_habit_team_send_count">0</string>
+    <string name="item_habit_team_name">name</string>
+    <string name="item_habit_team_status">status</string>
+    <string name="habit_d_day">D-00</string>
+    <string name="habit_start_date">0000.00.00.</string>
+    <string name="habit_end_date">9999.99.99.</string>
+    <string name="habit_time_title">시간</string>
+    <string name="habit_time">time</string>
+    <string name="habit_goal_title">목표</string>
+    <string name="habit_goal">goal</string>
+    <string name="habit_today_certification_btn">오늘의 인증</string>
+    <string name="habit_title">title</string>
+
 </resources>
 
