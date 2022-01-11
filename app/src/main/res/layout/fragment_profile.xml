@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="white"
+        android:background="@color/spark_white"
         tools:context=".ui.profile.ProfileFragment">
 
         <ImageButton
@@ -133,7 +133,7 @@
             app:layout_constraintBottom_toBottomOf="@id/et_profile_nickname"
             app:layout_constraintEnd_toEndOf="@id/et_profile_nickname" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
