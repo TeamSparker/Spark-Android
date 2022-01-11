@@ -1,6 +1,5 @@
 package com.spark.android.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.spark.android.R
 import com.spark.android.databinding.ActivityMainBinding

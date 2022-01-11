@@ -10,13 +10,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_intro"
-        tools:context=".ui.intro.IntroActivity">
+        android:background="@drawable/bg_signin"
+        tools:context=".ui.signin.SignInFragment">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/intro_desc_title"
+            android:contentDescription="@string/sign_in_desc_title"
             android:src="@drawable/ic_intro_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,15 +25,28 @@
             app:layout_constraintVertical_bias="0.38" />
 
         <TextView
+            android:id="@+id/tv_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="40dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="@string/intro_content"
+            android:text="@string/sign_in_info"
             android:textColor="@color/spark_white"
-            android:textSize="18sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_in_kakao_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/sign_in_desc_kakao_login"
+            android:src="@drawable/ic_kakao_login"
+            app:layout_constraintBottom_toTopOf="@id/tv_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
