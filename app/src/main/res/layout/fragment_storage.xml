@@ -5,13 +5,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="storageViewModel"
             type="com.spark.android.ui.storage.viewmodel.StorageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/constraintLayout_out"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.storage.StorageFragment">
@@ -20,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/bg_linegrid_for_white" />
+
 
         <TextView
             android:id="@+id/tv_storage_title"
@@ -65,6 +68,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_storage_progressing"
             app:layout_constraintStart_toEndOf="@id/tv_storage_progressing" />
 
+        <View
+            android:id="@+id/view_storage_progressing"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/spark_dark_pinkred"
+            android:visibility="@{storageViewModel.sparkMode == 0 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_storage_progressing"
+            app:layout_constraintStart_toStartOf="@+id/tv_storage_progressing" />
+
+
         <TextView
             android:id="@+id/tv_storage_complete"
             android:layout_width="0dp"
@@ -94,6 +108,16 @@
             app:layout_constraintBottom_toBottomOf="@id/tv_storage_complete"
             app:layout_constraintStart_toEndOf="@+id/tv_storage_complete" />
 
+        <View
+            android:id="@+id/view_storage_complete"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/spark_dark_pinkred"
+            android:visibility="@{storageViewModel.sparkMode == 1 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_storage_complete"
+            app:layout_constraintStart_toStartOf="@+id/tv_storage_complete" />
+
         <TextView
             android:id="@+id/tv_storage_incomplete"
             android:layout_width="0dp"
@@ -122,6 +146,16 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_storage_incomplete"
             app:layout_constraintStart_toEndOf="@+id/tv_storage_incomplete" />
+
+        <View
+            android:id="@+id/view_storage_incomplete"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/spark_dark_pinkred"
+            android:visibility="@{storageViewModel.sparkMode == 2 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_storage_incomplete"
+            app:layout_constraintStart_toStartOf="@+id/tv_storage_incomplete" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_storage_out"
