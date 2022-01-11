@@ -17,15 +17,14 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.storageViewModel = storageViewModel
         initStorageOutAdapter()
+        initModeObserver()
+        binding.vpStorageOut.isUserInputEnabled = false;
 
-        storageViewModel.sparkMode.observe(viewLifecycleOwner) { mode ->
-            binding.vpStorageOut.currentItem = mode
-        }
 
     }
-
 
     private fun initStorageOutAdapter() {
         val fragmentList = listOf(
@@ -38,5 +37,13 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
 
         binding.vpStorageOut.adapter = viewPagerOutAdapter
     }
+
+    private fun initModeObserver() {
+        storageViewModel.sparkMode.observe(viewLifecycleOwner) { mode ->
+            binding.vpStorageOut.currentItem = mode
+        }
+    }
+
+
 
 }
