@@ -7,5 +7,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_habit_team_send_count">0</string>
+    <string name="item_habit_team_name">name</string>
+    <string name="item_habit_team_status">status</string>
+    <string name="habit_d_day">D-00</string>
+    <string name="habit_start_date">0000.00.00.</string>
+    <string name="habit_end_date">9999.99.99.</string>
+    <string name="habit_time_title">시간</string>
+    <string name="habit_time">time</string>
+    <string name="habit_goal_title">목표</string>
+    <string name="habit_goal">goal</string>
+    <string name="habit_today_certification_btn">오늘의 인증</string>
+    <string name="habit_title">title</string>
 </resources>
 
