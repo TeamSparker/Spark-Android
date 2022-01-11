@@ -11,6 +11,8 @@ import com.spark.android.util.initStatusBarTextColorToWhite
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.profileViewModel = ProfileViewModel()
         requireActivity().initStatusBarColor(R.color.spark_white)
         requireActivity().initStatusBarTextColorToWhite()
     }
