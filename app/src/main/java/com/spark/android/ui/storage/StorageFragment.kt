@@ -14,7 +14,9 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initStorageOutAdapter()
+
     }
 
     private fun initStorageOutAdapter() {
