@@ -34,5 +34,10 @@
     <string name="habit_today_certification_btn">오늘의 인증</string>
     <string name="habit_title">title</string>
 
+    <!-- FeedFragment -->
+    <string name="feed_desc_certificate_photo">피드 인증 사진</string>
+    <string name="feed_desc_profile_photo">피드 프로필 사진</string>
+    <string name="feed_desc_spark_fire">스파크 아이콘</string>
+    <string name="feed_desc_heart">피드 하트 버튼</string>
 </resources>
 
