@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="TicketData"
             type="com.spark.android.ui.home.data.TicketData" />
@@ -27,6 +29,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket"
+                setLeftBackground="@{TicketData.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,15 +38,18 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket"
+                setRightBackground="@{TicketData.isDone}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_home_right_ticket_fold" />
+                tools:src="@drawable/img_home_right_ticket_fold" />
 
             <TextView
                 android:id="@+id/tv_home_left_ticket_d_day"
+                setLeftTicketColor="@{TicketData.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -59,6 +65,7 @@
 
             <TextView
                 android:id="@+id/tv_home_left_ticket_intro"
+                setLeftTicketColor="@{TicketData.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -79,11 +86,12 @@
                 android:layout_marginTop="21dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:includeFontPadding="false"
-                android:text="아침 독서"
+                android:text="@{TicketData.roomName}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="아침 독서" />
 
             <TextView
                 android:id="@+id/tv_home_right_ticket_complete_people_title"
@@ -121,11 +129,12 @@
                 android:layout_marginBottom="23dp"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="/7명"
+                android:text="@{`/`+String.valueOf(TicketData.memberNum)+`명`}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
-                app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_colored_people_number" />
+                app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_colored_people_number"
+                tools:text="/7명" />
 
             <TextView
                 android:id="@+id/tv_home_right_ticket_life"
@@ -143,6 +152,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_life_one"
+                setRightTicketLife="@{TicketData.life}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
@@ -153,6 +163,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_life_two"
+                setRightTicketLife="@{TicketData.life}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
@@ -163,6 +174,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_life_three"
+                setRightTicketLife="@{TicketData.life}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="23dp"
@@ -177,12 +189,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
+                android:visibility="@{TicketData.isDone ? View.VISIBLE : View.GONE }"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
                 app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title"
                 app:srcCompat="@drawable/ic_home_ticket_tag_done" />
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket_profile_one"
+                setCircleImage="@{TicketData.memberNum > 0 ? TicketData.profileImg[0] : null}"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="14dp"
@@ -194,23 +208,27 @@
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket_profile_two"
+                setCircleImage="@{TicketData.memberNum > 1 ? TicketData.profileImg[1] : null}"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="-8dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/shape_white_line_circle"
                 android:padding="2dp"
+                android:visibility="@{TicketData.memberNum > 1 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_one" />
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket_profile_three"
+                setCircleImage="@{TicketData.memberNum > 2 ? TicketData.profileImg[2] : null}"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="-8dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/shape_white_line_circle"
                 android:padding="2dp"
+                android:visibility="@{TicketData.memberNum > 2 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_two" />
 
@@ -222,6 +240,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/shape_fill_grey_line_white_circle"
                 android:padding="2dp"
+                android:visibility="@{TicketData.memberNum > 3 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_three" />
 
@@ -231,13 +250,15 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="+3"
+                android:text="@{`+` + String.valueOf(TicketData.memberNum-3)}"
                 android:textColor="@color/spark_white"
                 android:textSize="10sp"
+                android:visibility="@{TicketData.memberNum > 3 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket_profile_extra"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket_profile_extra"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket_profile_extra"
-                app:layout_constraintTop_toTopOf="@+id/iv_home_left_ticket_profile_extra" />
+                app:layout_constraintTop_toTopOf="@+id/iv_home_left_ticket_profile_extra"
+                tools:text="+3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
