@@ -143,4 +143,13 @@ object BindingAdapters {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("setImage")
+    fun setImage(imageview: ImageView, url: String) {
+        Glide.with(imageview.context)
+            .load(url)
+            .circleCrop()
+            .into(imageview)
+    }
 }
+
