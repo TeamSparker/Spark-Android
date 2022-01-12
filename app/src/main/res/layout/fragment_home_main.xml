@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,14 +10,56 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeMainFragment" >
+        android:background="@drawable/bg_home_for_white"
+        tools:context=".ui.home.HomeMainFragment">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="home"
-            tools:layout_editor_absoluteX="216dp"
-            tools:layout_editor_absoluteY="171dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <ImageButton
+                android:id="@+id/btn_home_tool_bar_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_tool_bar_profile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_home_tool_bar_notice"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_home_tool_bar_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_tool_bar_notice"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home_ticket"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_home_toolbar"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="5"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/item_home_recyclerview" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

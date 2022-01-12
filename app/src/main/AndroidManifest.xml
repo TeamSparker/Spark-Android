@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.spark.android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".SparkApplication"
         android:allowBackup="true"
@@ -10,6 +12,9 @@
         android:roundIcon="@mipmap/ic_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
+        <activity
+            android:name=".ui.habit.HabitActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="true" />
