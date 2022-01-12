@@ -151,5 +151,29 @@ object BindingAdapters {
             .circleCrop()
             .into(imageview)
     }
+
+    @JvmStatic
+    @BindingAdapter("setLeftTicketComment")
+    fun setLeftTicketComment(textview: TextView, leftDay: String) {
+        val number = if (leftDay == "D-day") {
+            1
+        } else {
+            leftDay.replace("[^0-9]".toRegex(), "").toInt()
+        }
+        val context = textview.context
+        if (number == 1) {
+            textview.text = context.getString(R.string.home_ticket_left_comment_6)
+        } else if (number <= 7) {
+            textview.text = context.getString(R.string.home_ticket_left_comment_5)
+        } else if (number <= 33) {
+            textview.text = context.getString(R.string.home_ticket_left_comment_4)
+        } else if (number <= 59) {
+            textview.text = context.getString(R.string.home_ticket_left_comment_3)
+        } else if (number <= 63) {
+            textview.text = context.getString(R.string.home_ticket_left_comment_2)
+        } else if (number == 66) {
+            textview.text = context.getString(R.string.home_ticket_left_comment_1)
+        }
+    }
 }
 
