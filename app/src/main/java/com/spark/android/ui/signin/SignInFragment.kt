@@ -12,9 +12,13 @@ import com.spark.android.util.navigate
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initStatusBarStyle()
+        initKakaoLoginBtnClickListener()
+    }
+
+    private fun initStatusBarStyle(){
         requireActivity().initStatusBarColor(R.color.spark_pinkred)
         requireActivity().initStatusBarTextColorToWhite()
-        initKakaoLoginBtnClickListener()
     }
 
     private fun initKakaoLoginBtnClickListener() {
