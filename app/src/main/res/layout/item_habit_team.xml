@@ -55,7 +55,7 @@
             android:includeFontPadding="false"
             android:text="@string/item_habit_team_name"
             android:textColor="@color/spark_black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@id/iv_item_habit_team_sticker_complete"
             app:layout_constraintTop_toTopOf="@id/iv_item_habit_team_profile"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -69,7 +69,7 @@
             android:includeFontPadding="false"
             android:text="@string/item_habit_team_status"
             android:textColor="@color/spark_dark_gray"
-            android:textSize="14sp"
+            android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@id/iv_item_habit_team_profile"
             app:layout_constraintStart_toStartOf="@id/tv_item_habit_team_name" />
 
@@ -104,7 +104,7 @@
             android:includeFontPadding="false"
             android:text="@string/item_habit_team_send_count"
             android:textColor="@color/spark_white"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/btn_item_habit_team_send"
             app:layout_constraintStart_toStartOf="@id/btn_item_habit_team_send"
