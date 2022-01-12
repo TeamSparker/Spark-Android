@@ -21,6 +21,7 @@
     <string name="profile_start_spark">스파크 시작하기</string>
     <string name="profile_nickname_count_sum">/10</string>
 
+    <!-- HabitActivity -->
     <string name="item_habit_team_send_count">0</string>
     <string name="item_habit_team_name">name</string>
     <string name="item_habit_team_status">status</string>
