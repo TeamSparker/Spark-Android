@@ -85,7 +85,7 @@
                     android:text="@string/habit_title"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -101,7 +101,7 @@
                     android:text="@string/habit_d_day"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="31sp"
+                    android:textSize="31dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/btn_habit_back" />
 
@@ -161,7 +161,7 @@
                     android:text="@string/habit_start_date"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/progressbar_habit_progress_bar_bg" />
 
@@ -175,7 +175,7 @@
                     android:text="@string/habit_end_date"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/progressbar_habit_progress_bar_bg" />
 
@@ -204,7 +204,7 @@
                     android:text="@string/habit_time_title"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
                     app:layout_constraintTop_toTopOf="@id/iv_habit_text_container" />
 
@@ -218,7 +218,7 @@
                     android:text="@string/habit_time"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_habit_time_title"
                     app:layout_constraintStart_toEndOf="@id/tv_habit_time_title"
                     app:layout_constraintTop_toTopOf="@id/tv_habit_time_title" />
@@ -235,7 +235,7 @@
                     android:text="@string/habit_goal_title"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_habit_text_container"
                     app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
                     app:layout_constraintTop_toBottomOf="@id/tv_habit_time_title" />
@@ -250,7 +250,7 @@
                     android:text="@string/habit_goal"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_habit_goal_title"
                     app:layout_constraintStart_toEndOf="@id/tv_habit_goal_title"
                     app:layout_constraintTop_toTopOf="@id/tv_habit_goal_title" />
@@ -298,7 +298,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/habit_today_certification_btn"
                 android:textColor="@color/spark_white"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
