@@ -259,8 +259,9 @@
 
             <ImageView
                 android:id="@+id/iv_habit_cut_line"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:src="@drawable/bg_habit_cut_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -268,8 +269,9 @@
 
             <ImageView
                 android:id="@+id/iv_habit_gradation"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:src="@drawable/bg_habit_box_scroll_gradation"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -13,6 +13,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         super.onCreate(savedInstanceState)
 
         initRVAdapter()
+        setSwipeRefreshLayout()
     }
 
     private fun initRVAdapter() {
@@ -26,5 +27,15 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         list.add("f")
         habitRecyclerViewAdapter = HabitRecyclerViewAdapter(list)
         binding.rvHabitTeamList.adapter = habitRecyclerViewAdapter
+    }
+
+    private fun setSwipeRefreshLayout() {
+        with(binding.swipeHabitRefresh) {
+            setColorSchemeColors(context.getColor(R.color.spark_pinkred))
+            setOnRefreshListener {
+                // 함수 추가
+                isRefreshing = false
+            }
+        }
     }
 }
