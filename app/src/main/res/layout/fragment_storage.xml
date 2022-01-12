@@ -18,11 +18,13 @@
         android:layout_height="match_parent"
         tools:context=".ui.storage.StorageFragment">
 
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/bg_linegrid_for_white" />
-
+            android:src="@drawable/bg_linegrid_for_white"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/tv_storage_title"
@@ -35,127 +37,159 @@
             android:text="나는야쿵짝지혜 님의\n19가지 스파크"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_storage_progressing"
-            android:layout_width="0dp"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_progressing"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="37dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
             android:onClick="@{()->storageViewModel.initProgressMode()}"
-            android:text="진행중"
-            android:textAlignment="center"
-            android:textColor="@{storageViewModel.sparkMode == 0 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_storage_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_storage_title" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_storage_title">
 
-        <TextView
-            android:id="@+id/tv_storage_number_progressing"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/futura_medium"
-            android:includeFontPadding="false"
-            android:text="6"
-            android:textAlignment="viewStart"
-            android:textColor="@{storageViewModel.sparkMode == 0 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_storage_progressing"
-            app:layout_constraintStart_toEndOf="@id/tv_storage_progressing" />
+            <View
+                android:id="@+id/view_storage_progressing"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/spark_dark_pinkred"
+                android:visibility="@{storageViewModel.sparkMode == 0 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_progressing"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_progressing" />
 
-        <View
-            android:id="@+id/view_storage_progressing"
-            android:layout_width="16dp"
-            android:layout_height="2dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/spark_dark_pinkred"
-            android:visibility="@{storageViewModel.sparkMode == 0 ? View.VISIBLE : View.INVISIBLE}"
-            app:layout_constraintBottom_toTopOf="@+id/tv_storage_progressing"
-            app:layout_constraintStart_toStartOf="@+id/tv_storage_progressing" />
+            <TextView
+                android:id="@+id/tv_storage_progressing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="진행중"
+                android:textAlignment="center"
+                android:textColor="@{storageViewModel.sparkMode == 0 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout_progressing"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_progressing" />
 
+            <TextView
+                android:id="@+id/tv_storage_number_progressing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="6"
+                android:textAlignment="viewStart"
+                android:textColor="@{storageViewModel.sparkMode == 0 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_storage_progressing"
+                app:layout_constraintStart_toEndOf="@id/tv_storage_progressing" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_storage_complete"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_complete"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
             android:onClick="@{()->storageViewModel.initCompleteMode()}"
-            android:text="완료"
-            android:textAlignment="center"
-            android:textColor="@{storageViewModel.sparkMode == 1 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/tv_storage_number_progressing"
-            app:layout_constraintTop_toTopOf="@id/tv_storage_progressing" />
+            app:layout_constraintStart_toEndOf="@id/constraintLayout_progressing"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing">
 
-        <TextView
-            android:id="@+id/tv_storage_number_complete"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/futura_medium"
-            android:includeFontPadding="false"
-            android:text="12"
-            android:textAlignment="viewStart"
-            android:textColor="@{storageViewModel.sparkMode == 1 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_storage_complete"
-            app:layout_constraintStart_toEndOf="@+id/tv_storage_complete" />
+            <View
+                android:id="@+id/view_storage_complete"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/spark_dark_pinkred"
+                android:visibility="@{storageViewModel.sparkMode == 1 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout_complete" />
 
-        <View
-            android:id="@+id/view_storage_complete"
-            android:layout_width="16dp"
-            android:layout_height="2dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/spark_dark_pinkred"
-            android:visibility="@{storageViewModel.sparkMode == 1 ? View.VISIBLE : View.INVISIBLE}"
-            app:layout_constraintBottom_toTopOf="@+id/tv_storage_complete"
-            app:layout_constraintStart_toStartOf="@+id/tv_storage_complete" />
+            <TextView
+                android:id="@+id/tv_storage_complete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="완료"
+                android:textAlignment="center"
+                android:textColor="@{storageViewModel.sparkMode == 1 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_complete" />
 
-        <TextView
-            android:id="@+id/tv_storage_incomplete"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_storage_number_complete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="12"
+                android:textAlignment="viewStart"
+                android:textColor="@{storageViewModel.sparkMode == 1 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_storage_complete"
+                app:layout_constraintStart_toEndOf="@+id/tv_storage_complete" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_incomplete"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:onClick="@{()->storageViewModel.initIncompleteMode()}"
-            android:text="미완료"
-            android:textAlignment="center"
-            android:textColor="@{storageViewModel.sparkMode == 2 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/tv_storage_number_complete"
-            app:layout_constraintTop_toTopOf="@id/tv_storage_progressing" />
+            app:layout_constraintStart_toEndOf="@id/constraintLayout_complete"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing">
 
-        <TextView
-            android:id="@+id/tv_storage_number_incomplete"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/futura_medium"
-            android:includeFontPadding="false"
-            android:text="1"
-            android:textAlignment="viewStart"
-            android:textColor="@{storageViewModel.sparkMode == 2 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_storage_incomplete"
-            app:layout_constraintStart_toEndOf="@+id/tv_storage_incomplete" />
+            <View
+                android:id="@+id/view_storage_incomplete"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/spark_dark_pinkred"
+                android:onClick="@{()->storageViewModel.initIncompleteMode()}"
+                android:visibility="@{storageViewModel.sparkMode == 2 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout_incomplete"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout_incomplete" />
 
-        <View
-            android:id="@+id/view_storage_incomplete"
-            android:layout_width="16dp"
-            android:layout_height="2dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/spark_dark_pinkred"
-            android:visibility="@{storageViewModel.sparkMode == 2 ? View.VISIBLE : View.INVISIBLE}"
-            app:layout_constraintBottom_toTopOf="@+id/tv_storage_incomplete"
-            app:layout_constraintStart_toStartOf="@+id/tv_storage_incomplete" />
+
+            <TextView
+                android:id="@+id/tv_storage_incomplete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="미완료"
+                android:textAlignment="center"
+                android:textColor="@{storageViewModel.sparkMode == 2 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_incomplete"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_incomplete" />
+
+            <TextView
+                android:id="@+id/tv_storage_number_incomplete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="1"
+                android:textAlignment="viewStart"
+                android:textColor="@{storageViewModel.sparkMode == 2 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_storage_incomplete"
+                app:layout_constraintStart_toEndOf="@+id/tv_storage_incomplete" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_storage_out"
