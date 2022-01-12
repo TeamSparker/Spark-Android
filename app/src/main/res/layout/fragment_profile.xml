@@ -39,7 +39,7 @@
             android:includeFontPadding="false"
             android:text="@string/profile_info_1"
             android:textColor="@color/spark_black"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_profile_quit" />
 
@@ -53,7 +53,7 @@
             android:includeFontPadding="false"
             android:text="@string/profile_info_2"
             android:textColor="@color/spark_pinkred"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_profile_info_1" />
 
@@ -65,7 +65,7 @@
             android:includeFontPadding="false"
             android:text="@string/profile_info_3"
             android:textColor="@color/spark_black"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintStart_toEndOf="@id/tv_profile_info_2"
             app:layout_constraintTop_toTopOf="@id/tv_profile_info_2" />
 
@@ -111,7 +111,7 @@
             android:text="@={profileViewModel.nickname}"
             android:textColor="@color/spark_black"
             android:textColorHint="@color/spark_gray"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@id/view_profile"
             app:layout_constraintStart_toStartOf="@id/view_profile"
             app:layout_constraintTop_toBottomOf="@id/btn_profile_get_photo" />
@@ -134,7 +134,7 @@
             android:fontFamily="@font/futura_medium"
             android:text="@{String.valueOf(profileViewModel.nickname.length())}"
             android:textColor="@{profileViewModel.nickname.length() == 0 ? @color/spark_dark_gray : @color/spark_pinkred}"
-            android:textSize="12sp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_profile_count_sum"
             app:layout_constraintEnd_toStartOf="@id/tv_profile_count_sum"
             app:layout_constraintTop_toTopOf="@id/tv_profile_count_sum" />
@@ -148,7 +148,7 @@
             android:fontFamily="@font/futura_medium"
             android:text="@string/profile_nickname_count_sum"
             android:textColor="@color/spark_dark_gray"
-            android:textSize="12sp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/view_profile"
             app:layout_constraintEnd_toEndOf="@id/et_profile_nickname" />
 
@@ -165,7 +165,7 @@
             android:stateListAnimator="@null"
             android:text="@string/profile_start_spark"
             android:textColor="@color/spark_white"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
