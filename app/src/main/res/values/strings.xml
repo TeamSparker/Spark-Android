@@ -52,5 +52,6 @@
     <string name="feed_desc_profile_photo">피드 프로필 사진</string>
     <string name="feed_desc_spark_fire">스파크 아이콘</string>
     <string name="feed_desc_heart">피드 하트 버튼</string>
+    <string name="feed_desc_done_tag">done 태그</string>
 </resources>
 

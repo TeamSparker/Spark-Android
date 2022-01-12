@@ -16,6 +16,7 @@
     <color name="spark_most_light_pinkred">#ffd5df</color>
     <color name="spark_white_pinkred">#FAD1DB</color>
     <color name="spark_black">#000000</color>
+    <color name="spark_black_opacity_15">#26000000</color>
     <color name="spark_deep_gray">#2b2b2b</color>
     <color name="spark_gray">#b1b2b4</color>
     <color name="spark_light_gray">#ededee</color>

@@ -1,122 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/iv_feed_certificate"
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:contentDescription="@string/feed_desc_certificate_photo"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/spark_dark_gray" />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/iv_feed_profile"
-        android:layout_width="64dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="-32dp"
-        android:contentDescription="@string/feed_desc_profile_photo"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate"
-        tools:background="@color/black" />
+        <ImageView
+            android:id="@+id/iv_feed_certificate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="@string/feed_desc_certificate_photo"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/spark_white" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/spark_black_opacity_15"
+            app:layout_constraintBottom_toBottomOf="@id/iv_feed_certificate"
+            app:layout_constraintEnd_toEndOf="@id/iv_feed_certificate"
+            app:layout_constraintStart_toStartOf="@id/iv_feed_certificate"
+            app:layout_constraintTop_toTopOf="@id/iv_feed_certificate" />
 
-    <TextView
-        android:id="@+id/tv_feed_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:includeFontPadding="false"
-        android:textColor="@color/spark_deep_gray"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="@id/iv_feed_profile"
-        app:layout_constraintStart_toStartOf="@id/iv_feed_profile"
-        app:layout_constraintTop_toBottomOf="@id/iv_feed_profile"
-        tools:text="이름" />
+        <TextView
+            android:id="@+id/tv_feed_time_stamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_bold"
+            android:textColor="@color/spark_white"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_feed_certificate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_feed_certificate"
+            app:layout_constraintVertical_bias="0.48"
+            tools:text="00:30:18" />
 
-    <TextView
-        android:id="@+id/tv_feed_room_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/noto_sans_kr_bold"
-        android:includeFontPadding="false"
-        android:textColor="@color/spark_deep_gray"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@id/iv_feed_profile"
-        app:layout_constraintTop_toBottomOf="@id/tv_feed_name"
-        tools:text="방 이름" />
+        <ImageView
+            android:id="@+id/iv_feed_profile"
+            setCircleImage="@{`https://picsum.photos/id/1001/5616/3744`}"
+            android:layout_width="64dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="-32dp"
+            android:background="@drawable/shape_white_line_circle"
+            android:contentDescription="@string/feed_desc_profile_photo"
+            android:padding="2dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate" />
 
-    <TextView
-        android:id="@+id/tv_feed_spark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="33dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:includeFontPadding="false"
-        android:textColor="@color/spark_dark_gray"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/iv_feed_spark_fire"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_feed_room_name"
-        tools:text="받은 스파크" />
+        <TextView
+            android:id="@+id/tv_feed_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@id/iv_feed_profile"
+            app:layout_constraintStart_toStartOf="@id/iv_feed_profile"
+            app:layout_constraintTop_toBottomOf="@id/iv_feed_profile"
+            tools:text="이름" />
 
-    <ImageView
-        android:id="@+id/iv_feed_spark_fire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:contentDescription="@string/feed_desc_spark_fire"
-        android:src="@drawable/ic_feed_fire_gray"
-        app:layout_constraintBottom_toBottomOf="@id/tv_feed_spark"
-        app:layout_constraintEnd_toStartOf="@id/tv_feed_spark_count"
-        app:layout_constraintStart_toEndOf="@id/tv_feed_spark"
-        app:layout_constraintTop_toTopOf="@id/tv_feed_spark" />
+        <TextView
+            android:id="@+id/tv_feed_room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toStartOf="@id/iv_feed_done"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_name"
+            tools:text="방 이름" />
 
-    <TextView
-        android:id="@+id/tv_feed_spark_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_feed_spark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_feed_spark_fire"
-        app:layout_constraintTop_toTopOf="@id/tv_feed_spark"
-        tools:text="3" />
+        <ImageView
+            android:id="@+id/iv_feed_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/feed_desc_done_tag"
+            android:src="@drawable/ic_home_ticket_tag_done"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_room_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_feed_room_name"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_room_name" />
 
-    <ImageButton
-        android:id="@+id/btn_feed_heart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="57dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/feed_desc_heart"
-        android:src="@drawable/ic_feed_heart_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate" />
+        <TextView
+            android:id="@+id/tv_feed_spark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="33dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_feed_spark_fire"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_room_name"
+            tools:text="받은 스파크" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/futura_bold"
-        android:includeFontPadding="false"
-        android:textColor="@color/spark_pinkred"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/btn_feed_heart"
-        app:layout_constraintStart_toEndOf="@id/btn_feed_heart"
-        app:layout_constraintTop_toTopOf="@id/btn_feed_heart"
-        tools:text="10" />
+        <ImageView
+            android:id="@+id/iv_feed_spark_fire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:contentDescription="@string/feed_desc_spark_fire"
+            android:src="@drawable/ic_feed_fire_gray"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_spark"
+            app:layout_constraintEnd_toStartOf="@id/tv_feed_spark_count"
+            app:layout_constraintStart_toEndOf="@id/tv_feed_spark"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_spark" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_feed_spark_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_spark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_feed_spark_fire"
+            app:layout_constraintTop_toTopOf="@id/tv_feed_spark"
+            tools:text="3" />
+
+        <ImageButton
+            android:id="@+id/btn_feed_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="2dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/feed_desc_heart"
+            android:src="@drawable/ic_feed_heart_pink"
+            app:layout_constraintEnd_toStartOf="@id/tv_feed_heart_count"
+            app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate" />
+
+        <TextView
+            android:id="@+id/tv_feed_heart_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/futura_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate"
+            tools:text="10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
