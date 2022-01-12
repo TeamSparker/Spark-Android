@@ -2,4 +2,10 @@
     <string name="app_name">SparkAndroid</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- HomeMainFragment -->
+    <string name="home_waiting_ticket_left">Waiting\nRoom</string>
+    <string name="home_waiting_ticket_right_intro">다른 스파커를 기다리는 중...</string>
+    <string name="home_ticket_done_user">완료한 사람</string>
+    <string name="home_ticket_life">우리 팀의 생명</string>
 </resources>

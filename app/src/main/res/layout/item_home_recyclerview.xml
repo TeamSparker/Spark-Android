@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="TicketData"
+            type="com.spark.android.ui.home.data.TicketData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_home_main_whole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_home_main_whole"
+            app:layout_constraintEnd_toEndOf="@+id/layout_home_main_whole"
+            app:layout_constraintStart_toStartOf="@+id/layout_home_main_whole"
+            app:layout_constraintTop_toTopOf="@+id/layout_home_main_whole">
+
+
+            <ImageView
+                android:id="@+id/iv_home_left_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_home_left_ticket_1" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_home_right_ticket_fold" />
+
+            <TextView
+                android:id="@+id/tv_home_left_ticket_d_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/futura_bold"
+                android:includeFontPadding="false"
+                android:text="@{TicketData.leftDay}"
+                android:textColor="@color/spark_most_light_pinkred"
+                android:textSize="31sp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket"
+                app:layout_constraintTop_toTopOf="@+id/iv_home_left_ticket"
+                tools:text="D-63" />
+
+            <TextView
+                android:id="@+id/tv_home_left_ticket_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="작심삼일 돌파!"
+                android:textColor="@color/spark_most_light_pinkred"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket"
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_left_ticket_d_day" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="아침 독서"
+                android:textColor="@color/spark_deep_gray"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_complete_people_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/home_ticket_done_user"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_home_right_ticket_complete_people_number"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_complete_colored_people_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="23dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(TicketData.doneMemberNum)}"
+                android:textColor="@color/spark_most_light_pinkred"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket"
+                tools:text="3" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_complete_people_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="23dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="/7명"
+                android:textColor="@color/spark_deep_gray"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
+                app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_colored_people_number" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_life"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="51dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/home_ticket_life"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/iv_home_right_ticket" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket_life_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="23dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_home_right_ticket_life_two"
+                app:srcCompat="@drawable/ic_home_ticket_life_full" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket_life_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="23dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_home_right_ticket_life_three"
+                app:srcCompat="@drawable/ic_home_ticket_life_full" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket_life_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="23dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/iv_home_right_ticket"
+                app:srcCompat="@drawable/ic_home_ticket_life_full" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket_tag_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title"
+                app:srcCompat="@drawable/ic_home_ticket_tag_done" />
+
+            <ImageView
+                android:id="@+id/iv_home_left_ticket_profile_one"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_white_line_circle"
+                android:padding="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket" />
+
+            <ImageView
+                android:id="@+id/iv_home_left_ticket_profile_two"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="-8dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_white_line_circle"
+                android:padding="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
+                app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_one" />
+
+            <ImageView
+                android:id="@+id/iv_home_left_ticket_profile_three"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="-8dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_white_line_circle"
+                android:padding="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
+                app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_two" />
+
+            <ImageView
+                android:id="@+id/iv_home_left_ticket_profile_extra"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="-8dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_fill_grey_line_white_circle"
+                android:padding="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
+                app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_three" />
+
+            <TextView
+                android:id="@+id/tv_home_left_ticket_profile_extra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="+3"
+                android:textColor="@color/spark_white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket_profile_extra"
+                app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket_profile_extra"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket_profile_extra"
+                app:layout_constraintTop_toTopOf="@+id/iv_home_left_ticket_profile_extra" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
