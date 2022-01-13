@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetProfileBinding
 
-class ProfileBottomSheet : BottomSheetDialogFragment() {
+class ProfileBottomSheet(private val imageUploaded: Boolean) : BottomSheetDialogFragment() {
     private var _binding: BottomSheetProfileBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
@@ -24,7 +24,7 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.imageUploaded = imageUploaded
         val bottomSheet =
             dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         val behavior = BottomSheetBehavior.from<View>(bottomSheet!!)

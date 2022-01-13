@@ -31,7 +31,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private fun initPictureBtnClickListener() {
         binding.btnProfileGetPhoto.setOnClickListener {
-            ProfileBottomSheet().show(parentFragmentManager, this.javaClass.name)
+            ProfileBottomSheet(true).show(parentFragmentManager, this.javaClass.name)
         }
     }
 }
