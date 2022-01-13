@@ -15,9 +15,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         binding.profileViewModel = ProfileViewModel()
         initStatusBarStyle()
         hideKeyBoard()
+        initPictureBtnClickListener()
     }
 
-    private fun initStatusBarStyle(){
+    private fun initStatusBarStyle() {
         requireActivity().initStatusBarColor(R.color.spark_white)
         requireActivity().initStatusBarTextColorToWhite()
     }
@@ -25,6 +26,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun hideKeyBoard() {
         binding.layoutProfile.setOnClickListener {
             KeyBoardUtil.hide(requireActivity())
+        }
+    }
+
+    private fun initPictureBtnClickListener() {
+        binding.btnProfileGetPhoto.setOnClickListener {
+            ProfileBottomSheet().show(parentFragmentManager, this.javaClass.name)
         }
     }
 }
