@@ -55,9 +55,9 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/futura_bold"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay}"
+                android:text="@{TicketData.leftDay == 0 ? `D-Day` :`D-`+String.valueOf(TicketData.leftDay)}"
                 android:textColor="@color/spark_most_light_pinkred"
-                android:textSize="31sp"
+                android:textSize="31dp"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket"
                 app:layout_constraintTop_toTopOf="@+id/iv_home_left_ticket"
@@ -66,18 +66,18 @@
             <TextView
                 android:id="@+id/tv_home_left_ticket_intro"
                 setLeftTicketColor="@{TicketData.leftDay}"
+                setLeftTicketComment="@{TicketData.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:includeFontPadding="false"
-                tools:text="작심삼일 돌파!"
-                setLeftTicketComment="@{TicketData.leftDay}"
                 android:textColor="@color/spark_most_light_pinkred"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_left_ticket_d_day" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_left_ticket_d_day"
+                tools:text="작심삼일 돌파!" />
 
             <TextView
                 android:id="@+id/tv_home_right_ticket_title"
@@ -89,7 +89,7 @@
                 android:includeFontPadding="false"
                 android:text="@{TicketData.roomName}"
                 android:textColor="@color/spark_deep_gray"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="아침 독서" />
@@ -102,11 +102,12 @@
                 android:layout_marginBottom="7dp"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay == `D-66` ? @string/home_ticket_user_with : @string/home_ticket_done_user}"
+                android:text="@{TicketData.leftDay == 66 ? @string/home_ticket_user_with : @string/home_ticket_done_user}"
                 android:textColor="@color/spark_dark_gray"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_home_right_ticket_complete_people_number"
-                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket" />
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
+                tools:text="@string/home_ticket_done_user" />
 
             <TextView
                 android:id="@+id/tv_home_right_ticket_complete_colored_people_number"
@@ -116,9 +117,9 @@
                 android:layout_marginBottom="23dp"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay == `D-66` ? `` : String.valueOf(TicketData.doneMemberNum)}"
+                android:text="@{TicketData.leftDay == 66 ? `` : String.valueOf(TicketData.doneMemberNum)}"
                 android:textColor="@color/spark_most_light_pinkred"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket"
                 tools:text="3" />
@@ -130,9 +131,9 @@
                 android:layout_marginBottom="23dp"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay == `D-66` ? String.valueOf(TicketData.memberNum)+`명` : `/`+String.valueOf(TicketData.memberNum)+`명`}"
+                android:text="@{TicketData.leftDay == 66 ? String.valueOf(TicketData.memberNum)+`명` : `/`+String.valueOf(TicketData.memberNum)+`명`}"
                 android:textColor="@color/spark_deep_gray"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
                 app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_colored_people_number"
                 tools:text="/7명" />
@@ -147,7 +148,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/home_ticket_life"
                 android:textColor="@color/spark_dark_gray"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_right_ticket" />
 
@@ -253,7 +254,7 @@
                 android:includeFontPadding="false"
                 android:text="@{`+` + String.valueOf(TicketData.memberNum-3)}"
                 android:textColor="@color/spark_white"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 android:visibility="@{TicketData.memberNum > 3 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket_profile_extra"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket_profile_extra"
