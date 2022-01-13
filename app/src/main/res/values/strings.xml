@@ -39,6 +39,9 @@
     <string name="profile_from_camera">사진 촬영하기</string>
     <string name="profile_from_album">앨범에서 선택하기</string>
     <string name="profile_delete_profile_picture">사진 삭제하기</string>
+    <string name="profile_dialog_content">회원가입을 그만둘까요?\n초기 가입 화면으로 되돌아갑니다.</string>
+    <string name="profile_dialog_stop_signup">그만두기</string>
+    <string name="profile_dialog_cancel">취소</string>
 
     <!-- HabitActivity -->
     <string name="item_habit_team_send_count">0</string>

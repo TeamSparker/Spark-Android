@@ -30,4 +30,9 @@ class ProfileBottomSheet(private val imageUploaded: Boolean) : BottomSheetDialog
         val behavior = BottomSheetBehavior.from<View>(bottomSheet!!)
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
