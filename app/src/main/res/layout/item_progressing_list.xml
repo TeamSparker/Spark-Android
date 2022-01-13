@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="str"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_spark_light_pinkred_fill_line_2_rect">
+
+        <View
+            android:id="@+id/view_progressing_layout_out"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_spark_light_pinkred_fill_line_2_rect"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-25dp" />
+
+        <ImageView
+            android:id="@+id/iv_progressing_item_photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginHorizontal="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_storage_progressing_certification_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/bg_storage_black_filter"
+            app:layout_constraintBottom_toBottomOf="@id/iv_progressing_item_photo"
+            app:layout_constraintEnd_toEndOf="@id/iv_progressing_item_photo"
+            app:layout_constraintStart_toStartOf="@id/iv_progressing_item_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_progressing_item_photo" />
+
+        <View
+            android:id="@+id/view_progressing_layout_in"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/shape_spark_light_pinkred_line_2_rect_bottomless"
+            app:layout_constraintBottom_toTopOf="@id/iv_progressing_item_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_progressing_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_progressing_item_sparkflake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_storage_progressing_item_sparkflake"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_progressing_item_total_spark_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout_progressing_item_title"></androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_progressing_item_roomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@{str}"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout_progressing_item_total_spark_number"
+            tools:text="아침마다 요거트 먹기" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:text="2021.12.26 - 2022.02.26"
+            android:textAlignment="center"
+            android:textColor="@color/spark_gray"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_progressing_item_roomName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
