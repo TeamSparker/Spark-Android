@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.spark.android.R
 import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.home.FeedFragment
+import com.spark.android.ui.feed.FeedFragment
 import com.spark.android.ui.home.HomeMainFragment
 import com.spark.android.ui.home.StorageFragment
 
