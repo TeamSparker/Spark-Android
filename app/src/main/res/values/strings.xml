@@ -53,5 +53,6 @@
     <string name="feed_desc_spark_fire">스파크 아이콘</string>
     <string name="feed_desc_heart">피드 하트 버튼</string>
     <string name="feed_desc_done_tag">done 태그</string>
+    <string name="feed_received_spark">받은 스파크</string>
 </resources>
 
