@@ -103,6 +103,7 @@
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="textPersonName"
+            android:maxLength="10"
             android:paddingStart="6dp"
             android:paddingTop="2dp"
             android:paddingEnd="40dp"
