@@ -7,6 +7,8 @@ import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.home.FeedFragment
 import com.spark.android.ui.home.HomeMainFragment
 import com.spark.android.ui.home.StorageFragment
+import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -17,9 +19,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initStatusBarStyle()
         initTransactionEvent()
         initBottomNavigation()
+    }
 
+    private fun initStatusBarStyle(){
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
     }
 
     private fun initTransactionEvent() {
