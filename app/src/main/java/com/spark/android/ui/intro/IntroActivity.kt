@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import com.spark.android.R
 import com.spark.android.databinding.ActivityIntroBinding
-import com.spark.android.ui.MainActivity
+import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.util.initStatusBarColor
 
