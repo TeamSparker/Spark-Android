@@ -13,12 +13,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect_bottomless">
+        android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect">
+
+        <View
+            android:id="@+id/view_complete_item_layout_out"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect" />
+
 
         <ImageView
             android:id="@+id/iv_complete_item_photo"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginBottom="2dp"
             android:scaleType="centerCrop"
             android:src="@drawable/img_storage_complete_certification_photo"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,19 +45,13 @@
             app:layout_constraintTop_toTopOf="@id/iv_complete_item_photo" />
 
         <View
-            android:id="@+id/view_complete_item_layout_out"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/shape_spark_dark_pinkred_line_2_rect" />
-
-        <View
             android:id="@+id/view_complete_item_layout_in"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
-            android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect_bottomless"
+            android:background="@drawable/shape_spark_dark_pinkred_line_2_rect_bottomless"
             app:layout_constraintBottom_toTopOf="@id/iv_complete_item_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,14 +121,14 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
-            tools:text="매일매일 약 챙겨먹기"
             android:text="@{str}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraintLayout_complete_item_total_spark_number" />
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout_complete_item_total_spark_number"
+            tools:text="매일매일 약 챙겨먹기" />
 
         <TextView
             android:id="@+id/tv_complete_item_total_duration"
