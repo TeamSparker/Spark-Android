@@ -3,7 +3,10 @@ package com.spark.android.util
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.DialogUtilBinding
@@ -13,18 +16,23 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
     private var _binding: DialogUtilBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        _binding = DialogUtilBinding.inflate(requireActivity().layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = DataBindingUtil.inflate(inflater, R.layout.dialog_util, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setLayout()
         setCancelBtnVisibility()
         setMessage()
         setConfirmText()
         setConfirmTextClickListener()
         setCancelTextClickListener()
-        return activity?.let {
-            val dialog = AlertDialog.Builder(it).create()
-            dialog.setView(binding.root)
-            dialog
-        } ?: throw IllegalStateException()
     }
 
     override fun onStart() {
