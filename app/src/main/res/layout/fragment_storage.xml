@@ -13,7 +13,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_out"
+        android:id="@+id/constraintLayout_storage_out"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.storage.StorageFragment">
@@ -26,41 +26,65 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <TextView
-            android:id="@+id/tv_storage_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="33dp"
-            android:fontFamily="@font/futura_medium"
-            android:includeFontPadding="false"
-            android:text="나는야쿵짝지혜 님의\n19가지 스파크"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_progressing"
+            android:id="@+id/constraintLayout_storage_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_storage_title_nickname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="나는야쿵짝지혜 님의"
+                android:textAlignment="viewStart"
+                android:textColor="@color/spark_black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_storage_title_sparkNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="19가지 스파크"
+                app:layout_constraintStart_toStartOf="@+id/tv_storage_title_nickname"
+                app:layout_constraintTop_toBottomOf="@id/tv_storage_title_nickname"
+                android:textSize="20dp"
+                android:textColor="@color/spark_black"
+
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_progressing_touchArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="30dp"
             android:onClick="@{()->storageViewModel.initProgressMode()}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_storage_title">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_storage_title">
 
             <View
-                android:id="@+id/view_storage_progressing"
+                android:id="@+id/view_storage_progressing_indicator"
                 android:layout_width="16dp"
                 android:layout_height="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="@color/spark_dark_pinkred"
                 android:visibility="@{storageViewModel.sparkMode == 0 ? View.VISIBLE : View.INVISIBLE}"
-                app:layout_constraintStart_toStartOf="@id/constraintLayout_progressing"
-                app:layout_constraintTop_toTopOf="@+id/constraintLayout_progressing" />
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_progressing_touchArea"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_progressing_touchArea" />
 
             <TextView
                 android:id="@+id/tv_storage_progressing"
@@ -73,8 +97,8 @@
                 android:textAlignment="center"
                 android:textColor="@{storageViewModel.sparkMode == 0 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
                 android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout_progressing"
-                app:layout_constraintTop_toBottomOf="@id/view_storage_progressing" />
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout_progressing_touchArea"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_progressing_indicator" />
 
             <TextView
                 android:id="@+id/tv_storage_number_progressing"
@@ -92,23 +116,23 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_complete"
+            android:id="@+id/constraintLayout_complete_touchArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:onClick="@{()->storageViewModel.initCompleteMode()}"
-            app:layout_constraintStart_toEndOf="@id/constraintLayout_progressing"
-            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing">
+            app:layout_constraintStart_toEndOf="@id/constraintLayout_progressing_touchArea"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing_touchArea">
 
             <View
-                android:id="@+id/view_storage_complete"
+                android:id="@+id/view_storage_complete_indicator"
                 android:layout_width="16dp"
                 android:layout_height="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="@color/spark_dark_pinkred"
                 android:visibility="@{storageViewModel.sparkMode == 1 ? View.VISIBLE : View.INVISIBLE}"
-                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete"
-                app:layout_constraintTop_toTopOf="@id/constraintLayout_complete" />
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete_touchArea"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout_complete_touchArea" />
 
             <TextView
                 android:id="@+id/tv_storage_complete"
@@ -121,8 +145,8 @@
                 android:textAlignment="center"
                 android:textColor="@{storageViewModel.sparkMode == 1 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
                 android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete"
-                app:layout_constraintTop_toBottomOf="@id/view_storage_complete" />
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete_touchArea"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_complete_indicator" />
 
             <TextView
                 android:id="@+id/tv_storage_number_complete"
@@ -141,23 +165,24 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_incomplete"
+            android:id="@+id/constraintLayout_incomplete_touchArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            app:layout_constraintStart_toEndOf="@id/constraintLayout_complete"
-            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing">
+            app:layout_constraintStart_toEndOf="@id/constraintLayout_complete_touchArea"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing_touchArea"
+            android:onClick="@{()->storageViewModel.initIncompleteMode()}"
+            >
 
             <View
-                android:id="@+id/view_storage_incomplete"
+                android:id="@+id/view_storage_incomplete_indicator"
                 android:layout_width="16dp"
                 android:layout_height="2dp"
                 android:layout_marginBottom="5dp"
                 android:background="@color/spark_dark_pinkred"
-                android:onClick="@{()->storageViewModel.initIncompleteMode()}"
                 android:visibility="@{storageViewModel.sparkMode == 2 ? View.VISIBLE : View.INVISIBLE}"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout_incomplete"
-                app:layout_constraintTop_toTopOf="@id/constraintLayout_incomplete" />
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout_incomplete_touchArea"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout_incomplete_touchArea" />
 
 
             <TextView
@@ -171,8 +196,8 @@
                 android:textAlignment="center"
                 android:textColor="@{storageViewModel.sparkMode == 2 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
                 android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@id/constraintLayout_incomplete"
-                app:layout_constraintTop_toBottomOf="@id/view_storage_incomplete" />
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_incomplete_touchArea"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_incomplete_indicator" />
 
             <TextView
                 android:id="@+id/tv_storage_number_incomplete"
@@ -195,14 +220,11 @@
             android:id="@+id/vp_storage_out"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="21dp"
             android:layout_marginTop="22dp"
-            android:layout_marginEnd="21dp"
-            android:layout_marginBottom="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_storage_progressing" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_progressing_touchArea" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
