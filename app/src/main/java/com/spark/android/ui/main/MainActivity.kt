@@ -1,16 +1,13 @@
 package com.spark.android.ui.main
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import com.spark.android.R
-import com.spark.android.SparkApplication
 import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.home.FeedFragment
+import com.spark.android.ui.feed.FeedFragment
 import com.spark.android.ui.home.HomeMainFragment
-import com.spark.android.ui.home.StorageFragment
+import com.spark.android.ui.storage.StorageFragment
 import com.spark.android.ui.main.viewmodel.MainViewModel
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_FEED
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_HOME
