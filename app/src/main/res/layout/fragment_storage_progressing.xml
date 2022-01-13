@@ -13,14 +13,14 @@
         android:layout_height="match_parent"
         tools:context=".ui.storage.StorageProgressingFragment">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#B900BCD4"
-            android:text="진행중"
-            android:textSize="100sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_storage_progressing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingHorizontal="25dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="7dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

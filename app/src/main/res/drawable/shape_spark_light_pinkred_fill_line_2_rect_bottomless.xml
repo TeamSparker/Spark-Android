@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:bottom="-2dp">
+    <item android:bottom="-3dp">
         <shape android:shape="rectangle">
+            <solid android:color="@color/spark_black" />
             <stroke
                 android:width="2dp"
-                android:color="@color/spark_dark_pinkred" />
-            <corners android:radius="2dp"/>
+                android:color="@color/spark_light_pinkred" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
 </layer-list>
