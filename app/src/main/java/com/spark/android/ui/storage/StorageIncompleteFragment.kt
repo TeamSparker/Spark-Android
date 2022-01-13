@@ -1,10 +1,7 @@
 package com.spark.android.ui.storage
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageIncompleteBinding
 import com.spark.android.ui.base.BaseFragment
@@ -12,12 +9,25 @@ import com.spark.android.ui.base.BaseFragment
 
 class StorageIncompleteFragment :
     BaseFragment<FragmentStorageIncompleteBinding>(R.layout.fragment_storage_incomplete) {
+    private val incompleteVpAdapter = IncompleteVpAdapter()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_storage_incomplete, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initIncompleteVpAdapter()
+    }
+
+    private fun initIncompleteVpAdapter() {
+        incompleteVpAdapter.setList(listOf("미완료 1", "미완료 2", "미완료 3", "미완료 4"))
+        binding.vpStorageIncomplete.adapter = incompleteVpAdapter
+        binding.vpStorageIncomplete.offscreenPageLimit = 3
+        binding.vpStorageIncomplete.post {
+            val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)
+            val pagerWidth = binding.vpStorageIncomplete.width
+            val screenWidth = resources.displayMetrics.widthPixels
+            val offsetPx = screenWidth - pageMarginPx - pagerWidth
+            binding.vpStorageIncomplete.setPageTransformer { page, position ->
+                page.translationX = position * -offsetPx
+            }
+        }
     }
 }

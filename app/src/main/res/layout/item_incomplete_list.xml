@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/spark_black">
+        android:background="@drawable/shape_spark_gray_line_2_rect">
 
         <ImageView
             android:id="@+id/iv_incomplete_item_photo"

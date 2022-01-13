@@ -1,14 +1,12 @@
 package com.spark.android.ui.storage
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.storage.viewmodel.StorageViewModel
-import java.util.Observer
 
 
 class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
@@ -17,13 +15,10 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = viewLifecycleOwner
         binding.storageViewModel = storageViewModel
         initStorageOutAdapter()
         initModeObserver()
         binding.vpStorageOut.isUserInputEnabled = false;
-
-
     }
 
     private fun initStorageOutAdapter() {
@@ -34,7 +29,6 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
         )
         viewPagerOutAdapter = StorageViewPagerOutAdapter(requireActivity())
         viewPagerOutAdapter.fragments.addAll(fragmentList)
-
         binding.vpStorageOut.adapter = viewPagerOutAdapter
     }
 
@@ -43,7 +37,4 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
             binding.vpStorageOut.currentItem = mode
         }
     }
-
-
-
 }
