@@ -7,6 +7,10 @@
         <variable
             name="activity"
             type="com.spark.android.ui.MainActivity" />
+
+        <variable
+            name="fabState"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,12 +111,54 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_main_fab_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/spark_black_opacity_80"
             android:visibility="gone"/>
 
-        
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_home_join_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/spark_dark_pinkred"
+            android:src="@drawable/ic_fab_join_code"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
+            app:layout_constraintStart_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_home_make_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/spark_dark_pinkred"
+            android:src="@drawable/ic_fab_make_room"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
+            app:layout_constraintStart_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_home_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint="@{fabState ? @color/spark_white : @color/spark_dark_pinkred}"
+            android:src="@drawable/ic_fab_plus"
+            app:borderWidth="0dp"
+            app:fabCustomSize="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_main_bottom_nav"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:backgroundTint="@color/spark_dark_pinkred" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

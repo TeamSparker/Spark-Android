@@ -13,13 +13,13 @@ import com.spark.android.util.FloatingAnimationUtil
 class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment_home_main) {
 
     private lateinit var homeRecyclerViewAdapter: HomeRecyclerViewAdapter
-    private var fabState = false
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBindingVariable()
+
         initHomeRecyclerViewAdapter()
-        initFloatingButtonClickListener()
+
     }
 
     private fun initHomeRecyclerViewAdapter() {
@@ -45,15 +45,4 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
 
     }
 
-    private fun initFloatingButtonClickListener() {
-        binding.fabHomeMain.setOnClickListener(){
-            FloatingAnimationUtil.toggleFab(binding.fabHomeMain,binding.fabHomeMakeRoom,binding.fabHomeJoinCode,fabState)
-            fabState = !fabState
-            initBindingVariable()
-        }
-    }
-
-    private fun initBindingVariable(){
-        binding.fabState = fabState
-    }
 }
