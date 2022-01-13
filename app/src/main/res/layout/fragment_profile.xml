@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="40dp"
-            android:background="@color/spark_gray"
+            android:background="@{profileViewModel.nickname.length() == 0 ? @color/spark_gray : @color/spark_pinkred}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
             android:paddingTop="12dp"
