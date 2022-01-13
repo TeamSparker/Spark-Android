@@ -1,16 +1,32 @@
 package com.spark.android.util
 
-import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.spark.android.R
 import com.spark.android.SparkApplication
 
 object BindingAdapters {
+    @JvmStatic
+    @BindingAdapter("setImage")
+    fun setImage(imageview: ImageView, url: String) {
+        Glide.with(imageview.context)
+            .load(url)
+            .into(imageview)
+    }
+
+    @JvmStatic
+    @BindingAdapter("setCircleImage")
+    fun setCircleImage(imageview: ImageView, url: String?) {
+        url?.let {
+            Glide.with(imageview.context)
+                .load(url)
+                .circleCrop()
+                .into(imageview)
+        }
+    }
 
     @JvmStatic
     @BindingAdapter("setLeftBackground")
@@ -93,17 +109,6 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("setCircleImage")
-    fun setCircleImage(imageview: ImageView, url: String?) {
-        url?.let {
-            Glide.with(imageview.context)
-                .load(url)
-                .circleCrop()
-                .into(imageview)
-        }
-    }
-
-    @JvmStatic
     @BindingAdapter("setRightBackground")
     fun setRightBackground(imageview: ImageView, isDone: Boolean) {
         if (isDone) {
@@ -141,15 +146,6 @@ object BindingAdapters {
                 imageview.setImageResource(R.drawable.ic_home_ticket_life_full)
             }
         }
-    }
-
-    @JvmStatic
-    @BindingAdapter("setImage")
-    fun setImage(imageview: ImageView, url: String) {
-        Glide.with(imageview.context)
-            .load(url)
-            .circleCrop()
-            .into(imageview)
     }
 
     @JvmStatic
