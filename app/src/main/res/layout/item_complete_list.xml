@@ -82,25 +82,25 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_complete_item_logo"
+        android:id="@+id/iv_complete_item_sparkflake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="83dp"
         android:layout_marginTop="38dp"
         android:layout_marginEnd="83dp"
-        android:src="@drawable/ic_storage_complete_sparkflake"
+        android:src="@drawable/ic_storage_complete_item_sparkflake"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_complete_item_spark_total_number"
+        android:id="@+id/constraintLayout_complete_item_total_spark_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_complete_item_logo"></androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/iv_complete_item_sparkflake"></androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_complete_item_roomName"
@@ -115,24 +115,32 @@
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout_complete_item_spark_total_number" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_complete_item_total_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_complete_item_roomName"></androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout_complete_item_total_spark_number" />
 
     <TextView
+        android:id="@+id/tv_complete_item_total_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/futura_medium"
+        android:includeFontPadding="false"
+        android:text="2021.07.01 - 2022.08.08"
+        android:textColor="@color/spark_gray"
+        android:textSize="14dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_complete_item_roomName" />
+
+    <TextView
+        android:id="@+id/tv_complete_item_completeReview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:ellipsize="end"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:includeFontPadding="false"
         android:maxLines="2"
         android:text="약 좀 챙겨!! 건강한 디자이너가 되자 ㅠㅠㅠ 친구들이랑 먹으니 할 만했다 ㅎㅎ"
         android:textAlignment="center"
@@ -140,6 +148,6 @@
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout_complete_item_total_duration" />
+        app:layout_constraintTop_toBottomOf="@id/tv_complete_item_total_duration" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
