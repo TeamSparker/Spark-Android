@@ -7,7 +7,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-  
+
     <!-- HomeMainFragment -->
     <string name="home_waiting_ticket_left">Waiting\nRoom</string>
     <string name="home_waiting_ticket_right_intro">다른 스파커를 기다리는 중...</string>
@@ -47,6 +47,13 @@
     <string name="habit_goal">goal</string>
     <string name="habit_today_certification_btn">오늘의 인증</string>
     <string name="habit_title">title</string>
-  
+
+    <!-- FeedFragment -->
+    <string name="feed_desc_certificate_photo">피드 인증 사진</string>
+    <string name="feed_desc_profile_photo">피드 프로필 사진</string>
+    <string name="feed_desc_spark_fire">스파크 아이콘</string>
+    <string name="feed_desc_heart">피드 하트 버튼</string>
+    <string name="feed_desc_done_tag">done 태그</string>
+    <string name="feed_received_spark">받은 스파크</string>
 </resources>
 

@@ -1,17 +1,33 @@
 package com.spark.android.util
 
-import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.spark.android.R
 import com.spark.android.SparkApplication
 import java.lang.IllegalStateException
 
 object BindingAdapters {
+    @JvmStatic
+    @BindingAdapter("setImage")
+    fun setImage(imageview: ImageView, url: String) {
+        Glide.with(imageview.context)
+            .load(url)
+            .into(imageview)
+    }
+
+    @JvmStatic
+    @BindingAdapter("setCircleImage")
+    fun setCircleImage(imageview: ImageView, url: String?) {
+        url?.let {
+            Glide.with(imageview.context)
+                .load(url)
+                .circleCrop()
+                .into(imageview)
+        }
+    }
 
     @JvmStatic
     @BindingAdapter("setLeftBackground")
@@ -44,17 +60,6 @@ object BindingAdapters {
             leftDay == 66 -> ContextCompat.getColor(SparkApplication.ApplicationContext(), R.color.spark_most_light_pinkred)
             else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketColor 오류")
         })
-    }
-
-    @JvmStatic
-    @BindingAdapter("setCircleImage")
-    fun setCircleImage(imageview: ImageView, url: String?) {
-        url?.let {
-            Glide.with(imageview.context)
-                .load(url)
-                .circleCrop()
-                .into(imageview)
-        }
     }
 
     @JvmStatic
@@ -96,15 +101,6 @@ object BindingAdapters {
                 })
             }
         }
-    }
-
-    @JvmStatic
-    @BindingAdapter("setImage")
-    fun setImage(imageview: ImageView, url: String) {
-        Glide.with(imageview.context)
-            .load(url)
-            .circleCrop()
-            .into(imageview)
     }
 
     @JvmStatic

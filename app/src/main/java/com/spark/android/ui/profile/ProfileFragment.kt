@@ -14,9 +14,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.profileViewModel = ProfileViewModel()
+        initStatusBarStyle()
+        hideKeyBoard()
+    }
+
+    private fun initStatusBarStyle(){
         requireActivity().initStatusBarColor(R.color.spark_white)
         requireActivity().initStatusBarTextColorToWhite()
-        hideKeyBoard()
     }
 
     private fun hideKeyBoard() {
