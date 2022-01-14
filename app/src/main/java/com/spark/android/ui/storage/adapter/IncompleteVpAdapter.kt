@@ -1,4 +1,4 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

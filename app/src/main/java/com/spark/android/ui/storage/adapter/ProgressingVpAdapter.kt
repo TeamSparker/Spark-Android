@@ -1,10 +1,9 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.databinding.ItemProgressingListBinding
-import okhttp3.internal.notify
 
 class ProgressingVpAdapter : RecyclerView.Adapter<ProgressingVpAdapter.ProgressingVpViewHolder>() {
 
