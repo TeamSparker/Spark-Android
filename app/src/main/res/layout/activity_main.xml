@@ -130,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/spark_black_opacity_80"
-            android:onClick="@{()->activity.initFabBackgroundClickListener()}"
+            android:clickable="true"
             android:visibility="gone" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -139,10 +139,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/spark_dark_pinkred"
+            android:onClick="@{()->activity.initMakeJoinCodeListener()}"
             android:src="@drawable/ic_fab_join_code"
             android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
             app:borderWidth="0dp"
-            android:onClick="@{()->activity.initMakeJoinCodeListener()}"
+            app:fabCustomSize="44dp"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
             app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
@@ -155,10 +156,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/spark_dark_pinkred"
+            android:onClick="@{()->activity.initMakeRoomClickListener()}"
             android:src="@drawable/ic_fab_make_room"
             android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
             app:borderWidth="0dp"
-            android:onClick="@{()->activity.initMakeRoomClickListener()}"
+            app:fabCustomSize="44dp"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
             app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
@@ -179,6 +181,36 @@
             app:layout_constraintBottom_toTopOf="@+id/layout_main_bottom_nav"
             app:layout_constraintEnd_toEndOf="parent"
             tools:backgroundTint="@color/spark_dark_pinkred" />
+
+        <TextView
+            android:id="@+id/tv_fab_join_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/main_fab_join_code"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+
+        <TextView
+            android:id="@+id/tv_fab_make_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/main_fab_make_room"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

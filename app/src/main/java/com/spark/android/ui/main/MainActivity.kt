@@ -72,6 +72,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 binding.fabHomeMakeRoom,
                 binding.fabHomeJoinCode,
                 binding.layoutMainFabBackground,
+                binding.tvFabMakeRoom,
+                binding.tvFabJoinCode,
                 fabState
             )
             fabState = !fabState
@@ -91,10 +93,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     fun initMakeJoinCodeListener(){
         val intent = Intent(this,JoinCodeActivity::class.java)
         startActivity(intent)
-    }
-
-  fun initFabBackgroundClickListener(){
-      
     }
 
 }
