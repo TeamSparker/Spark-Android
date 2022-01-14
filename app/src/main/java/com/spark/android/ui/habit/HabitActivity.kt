@@ -62,4 +62,9 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
             HabitTodayBottomSheet(0).show(supportFragmentManager, this.javaClass.name)
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(0, 0)
+    }
 }
