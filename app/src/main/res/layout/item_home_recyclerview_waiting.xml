@@ -14,16 +14,15 @@
         android:id="@+id/layout_home_main_whole_waiting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        >
+        android:paddingTop="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_home_main_whole_waiting"
             app:layout_constraintEnd_toEndOf="@+id/layout_home_main_whole_waiting"
             app:layout_constraintStart_toStartOf="@+id/layout_home_main_whole_waiting"
-            app:layout_constraintTop_toTopOf="@+id/layout_home_main_whole_waiting"
-            app:layout_constraintBottom_toBottomOf="@+id/layout_home_main_whole_waiting">
+            app:layout_constraintTop_toTopOf="@+id/layout_home_main_whole_waiting">
 
 
             <ImageView
@@ -48,11 +47,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_bold"
                 android:includeFontPadding="false"
-                android:lineHeight="28sp"
+                android:lineHeight="28dp"
                 android:text="@string/home_waiting_ticket_left"
                 android:textAlignment="center"
                 android:textColor="@color/spark_white"
-                android:textSize="22sp"
+                android:textSize="22dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket_waiting"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket_waiting"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket_waiting"
@@ -68,7 +67,7 @@
                 android:includeFontPadding="false"
                 android:text="@{TicketData.roomName}"
                 android:textColor="@color/spark_deep_gray"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket_waiting"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="아침 독서" />
@@ -83,7 +82,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/home_waiting_ticket_right_intro"
                 android:textColor="@color/spark_dark_gray"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket_waiting"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket_waiting" />
         </androidx.constraintlayout.widget.ConstraintLayout>
