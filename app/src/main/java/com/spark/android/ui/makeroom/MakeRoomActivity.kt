@@ -3,10 +3,18 @@ package com.spark.android.ui.makeroom
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.spark.android.R
+import com.spark.android.databinding.ActivityMakeRoomBinding
+import com.spark.android.ui.base.BaseActivity
+import com.spark.android.ui.makeroom.namesetting.NameSettingFragment
 
-class MakeRoomActivity : AppCompatActivity() {
+class MakeRoomActivity : BaseActivity<ActivityMakeRoomBinding>(R.layout.activity_make_room) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_make_room)
+
+
+        //프래그먼트 실험용 코드 (추후에 삭제할꺼임)
+        val nameSettingFragment = NameSettingFragment()
+        supportFragmentManager.beginTransaction().add(R.id.container_make_room, nameSettingFragment )
+            .commit()
     }
 }
