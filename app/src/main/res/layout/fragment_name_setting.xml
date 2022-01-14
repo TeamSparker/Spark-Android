@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="nameSettingViewModel"
+            type="com.spark.android.ui.makeroom.namesetting.viewmodel.NameSettingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.makeroom.namesetting.NameSettingFragment">
+
+        <ImageButton
+            android:id="@+id/btn_make_room_name_setting_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_make_room_name_setting_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_make_room_name_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/room_name_setting_title"
+            android:textColor="@color/spark_black"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_make_room_name_setting_back" />
+
+        <TextView
+            android:id="@+id/tv_make_room_name_setting_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:lineHeight="21dp"
+            android:text="@string/room_name_setting_content"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_make_room_name_setting_title" />
+
+        <EditText
+            android:id="@+id/et_make_room_name_setting_habit_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="116dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:hint="@string/room_name_setting_edit_text_hint"
+            android:text="@={nameSettingViewModel.habitName}"
+            android:includeFontPadding="false"
+            android:inputType="textPersonName"
+            android:maxLength="15"
+            android:textColorHint="@color/spark_gray"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_make_room_name_setting_content" />
+
+        <View
+            android:id="@+id/view_name_setting"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@{nameSettingViewModel.habitName.length() == 0 ? @color/spark_dark_gray : @color/spark_pinkred }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_make_room_name_setting_habit_name" />
+
+        <TextView
+            android:id="@+id/tv_make_room_name_setting_text_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:textColor="@{nameSettingViewModel.habitName.length() == 0 ? @color/spark_dark_gray : @color/spark_pinkred }"
+            android:textSize="14dp"
+            android:text="@{String.valueOf(nameSettingViewModel.habitName.length())}"
+            app:layout_constraintBottom_toBottomOf="@+id/et_make_room_name_setting_habit_name"
+            app:layout_constraintEnd_toStartOf="@+id/tv_make_room_name_setting_text_limit"
+            app:layout_constraintTop_toTopOf="@+id/et_make_room_name_setting_habit_name"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_make_room_name_setting_text_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@string/room_name_setting_text_limit"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_make_room_name_setting_habit_name"
+            app:layout_constraintEnd_toEndOf="@+id/et_make_room_name_setting_habit_name"
+            app:layout_constraintTop_toTopOf="@+id/et_make_room_name_setting_habit_name" />
+
+        <Button
+            android:id="@+id/btn_make_room_name_setting_next"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:background="@{nameSettingViewModel.habitName.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active }"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@string/room_name_setting_next_btn_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
