@@ -1,5 +1,6 @@
 package com.spark.android.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.spark.android.R
@@ -7,11 +8,13 @@ import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.feed.FeedFragment
 import com.spark.android.ui.home.HomeMainFragment
+import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.storage.StorageFragment
 import com.spark.android.ui.main.viewmodel.MainViewModel
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_FEED
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_HOME
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_STORAGE
+import com.spark.android.ui.makeroom.MakeRoomActivity
 import com.spark.android.util.FloatingAnimationUtil
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
@@ -26,6 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.activity = this
         binding.mainViewModel = mainViewModel
         initStatusBarStyle()
         initTransactionEvent()
@@ -77,6 +81,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun initBindingVariable() {
         binding.fabState = fabState
+    }
+
+    fun initMakeRoomClickListener(){
+        val intent = Intent(this,MakeRoomActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun initMakeJoinCodeListener(){
+        val intent = Intent(this,JoinCodeActivity::class.java)
+        startActivity(intent)
+    }
+
+  fun initFabBackgroundClickListener(){
+      FloatingAnimationUtil.closeFab(
+          binding.fabHomeMain,
+          binding.fabHomeMakeRoom,
+          binding.fabHomeJoinCode,
+          binding.layoutMainFabBackground
+      )
+      fabState = !fabState
+      initBindingVariable()
+
     }
 
 }

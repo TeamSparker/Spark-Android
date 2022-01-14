@@ -1,11 +1,14 @@
 package com.spark.android.ui.home.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.databinding.ItemHomeRecyclerviewBinding
 import com.spark.android.databinding.ItemHomeRecyclerviewWaitingBinding
+import com.spark.android.ui.habit.HabitActivity
 import com.spark.android.ui.home.adapter.multiview.TICKET_STARTED
 import com.spark.android.ui.home.adapter.multiview.TICKET_WAITING
 import com.spark.android.ui.home.data.TicketData
@@ -66,6 +69,15 @@ class HomeRecyclerViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: TicketData) {
             binding.ticketData = data
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context,HabitActivity::class.java).apply {
+                    this.putExtra("roomId",ticketList[adapterPosition].roomId)
+                }
+                startActivity(binding.root.context,intent,null)
+            }
         }
     }
 
