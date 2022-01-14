@@ -5,6 +5,7 @@ import android.view.View
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageCompleteBinding
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.ui.storage.adapter.CompleteVpAdapter
 
 
 class StorageCompleteFragment :

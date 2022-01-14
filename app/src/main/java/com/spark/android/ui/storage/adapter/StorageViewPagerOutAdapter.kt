@@ -1,4 +1,4 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
