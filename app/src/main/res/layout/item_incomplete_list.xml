@@ -81,7 +81,7 @@
             android:layout_marginStart="139dp"
             android:layout_marginTop="133dp"
             android:layout_marginEnd="153dp"
-            android:src="@drawable/ic_storage_item_fire_gray"
+            android:src="@drawable/ic_item_fire_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
