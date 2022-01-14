@@ -52,7 +52,8 @@
     <string name="main_bottom_nav_feed">피드</string>
     <string name="main_bottom_nav_home">홈</string>
     <string name="main_bottom_nav_storage">보관함</string>
-
+    <string name="main_fab_make_room">방 만들기</string>
+    <string name="main_fab_join_code">코드로 참여</string>
 
     <!-- FeedFragment -->
     <string name="feed_desc_certificate_photo">피드 인증 사진</string>
@@ -61,5 +62,6 @@
     <string name="feed_desc_heart">피드 하트 버튼</string>
     <string name="feed_desc_done_tag">done 태그</string>
     <string name="feed_received_spark">받은 스파크</string>
+
 </resources>
 
