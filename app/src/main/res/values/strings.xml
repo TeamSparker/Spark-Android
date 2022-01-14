@@ -7,7 +7,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-  
+
     <!-- HomeMainFragment -->
     <string name="home_waiting_ticket_left">Waiting\nRoom</string>
     <string name="home_waiting_ticket_right_intro">다른 스파커를 기다리는 중...</string>
@@ -47,6 +47,6 @@
     <string name="habit_goal">goal</string>
     <string name="habit_today_certification_btn">오늘의 인증</string>
     <string name="habit_title">title</string>
-  
+
 </resources>
 
