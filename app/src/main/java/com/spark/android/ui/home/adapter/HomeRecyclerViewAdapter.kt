@@ -75,6 +75,7 @@ class HomeRecyclerViewAdapter :
             binding.root.setOnClickListener {
                 val intent = Intent(binding.root.context,HabitActivity::class.java).apply {
                     this.putExtra("roomId",ticketList[adapterPosition].roomId)
+                    addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 startActivity(binding.root.context,intent,null)
             }
