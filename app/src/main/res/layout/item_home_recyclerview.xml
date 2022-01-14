@@ -99,13 +99,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginBottom="51dp"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:includeFontPadding="false"
                 android:text="@{TicketData.leftDay == 66 ? @string/home_ticket_user_with : @string/home_ticket_done_user}"
                 android:textColor="@color/spark_dark_gray"
                 android:textSize="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_home_right_ticket_complete_people_number"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
                 tools:text="@string/home_ticket_done_user" />
 
