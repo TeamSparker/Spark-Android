@@ -3,6 +3,9 @@
     <font
         android:font="@font/futura_medium"
         android:fontWeight="500" />
+    <font
+        android:font="@font/futura_medium_italic"
+        android:fontWeight="500" />
 
     <font
         android:font="@font/futura_bold"
