@@ -94,15 +94,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
   fun initFabBackgroundClickListener(){
-      FloatingAnimationUtil.closeFab(
-          binding.fabHomeMain,
-          binding.fabHomeMakeRoom,
-          binding.fabHomeJoinCode,
-          binding.layoutMainFabBackground
-      )
-      fabState = !fabState
-      initBindingVariable()
-
+      
     }
 
 }
