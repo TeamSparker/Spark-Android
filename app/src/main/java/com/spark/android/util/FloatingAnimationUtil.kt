@@ -31,16 +31,4 @@ object FloatingAnimationUtil {
             backgroundLayout.visibility = View.VISIBLE
         }
     }
-
-    fun closeFab(
-        buttonMain: FloatingActionButton,
-        buttonMakeRoom: FloatingActionButton,
-        buttonJoinCode: FloatingActionButton,
-        backgroundLayout: ConstraintLayout,
-    ) {
-        ObjectAnimator.ofFloat(buttonJoinCode, "translationY", 0f).apply { start() }
-        ObjectAnimator.ofFloat(buttonMakeRoom, "translationY", 0f).apply { start() }
-        buttonMain.setImageResource(R.drawable.ic_fab_plus)
-        backgroundLayout.visibility = View.GONE
-    }
 }
