@@ -25,20 +25,11 @@
             android:paddingBottom="7dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" 
+            />
 
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/textView2"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:background="#8DFFEB3B"-->
-        <!--            android:text="완료"-->
-        <!--            android:textSize="100sp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+        
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
