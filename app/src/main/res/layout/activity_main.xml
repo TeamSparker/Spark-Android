@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="activity"
+            type="com.spark.android.ui.main.MainActivity" />
+
+        <variable
             name="mainViewModel"
             type="com.spark.android.ui.main.viewmodel.MainViewModel" />
 
@@ -126,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/spark_black_opacity_80"
+            android:onClick="@{()->activity.initFabBackgroundClickListener()}"
             android:visibility="gone" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -137,6 +142,7 @@
             android:src="@drawable/ic_fab_join_code"
             android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
             app:borderWidth="0dp"
+            android:onClick="@{()->activity.initMakeJoinCodeListener()}"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
             app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
@@ -152,6 +158,7 @@
             android:src="@drawable/ic_fab_make_room"
             android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
             app:borderWidth="0dp"
+            android:onClick="@{()->activity.initMakeRoomClickListener()}"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
             app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
