@@ -2,6 +2,7 @@ package com.spark.android.ui.profile
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
 import com.spark.android.ui.base.BaseFragment
@@ -13,9 +14,11 @@ import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.popBackStack
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
+    private val profileViewModel by viewModels<ProfileViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.profileViewModel = ProfileViewModel()
+        binding.profileViewModel = profileViewModel
         initStatusBarStyle()
         hideKeyBoard()
         initPictureBtnClickListener()
