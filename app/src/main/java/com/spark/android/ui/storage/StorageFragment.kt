@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageBinding
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.ui.storage.adapter.StorageViewPagerOutAdapter
 import com.spark.android.ui.storage.viewmodel.StorageViewModel
 
 
