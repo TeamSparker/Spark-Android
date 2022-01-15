@@ -301,17 +301,8 @@ class FeedViewModel : ViewModel() {
     }
 
     fun addHeaderToFeedList() {
-        var date = LocalDate.now().toString()
+        var date = ""
         val feedListWithHeader = mutableListOf<FeedListItem>()
-        feedListWithHeader.add(
-            FeedListItem(
-                "0${date}",
-                FeedAdapter.FEED_HEADER_TYPE,
-                formatDate(date),
-                "${requireNotNull(feedList.value)[0].day}요일",
-                null
-            )
-        )
         requireNotNull(feedList.value).forEachIndexed { index, feed ->
             if (feed.date != date) {
                 date = feed.date
@@ -344,9 +335,9 @@ class FeedViewModel : ViewModel() {
 
     private fun formatDate(date: String): String {
         val dateArray = date.split("-")
-        val year = dateArray[0].toInt()
-        val month = dateArray[1].toInt()
-        val dayOfMonth = dateArray[2].toInt()
+        val year = dateArray[0]
+        val month = dateArray[1]
+        val dayOfMonth = dateArray[2]
         return "${year}년 ${month}월 ${dayOfMonth}일"
     }
 }
