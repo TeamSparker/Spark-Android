@@ -13,7 +13,7 @@ class SparkApplication : Application() {
         super.onCreate()
 
         // Kakao SDK 초기화
-        KakaoSdk.init(this, "{NATIVE_APP_KEY}")
+        KakaoSdk.init(this, getString(R.string.kakao_native_app_key))
 
         // Kakao 키 해시 호출하기
         Utility.getKeyHash(this)
