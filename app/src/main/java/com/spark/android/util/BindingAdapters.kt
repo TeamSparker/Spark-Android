@@ -30,17 +30,6 @@ object BindingAdapters {
         }
     }
 
-    @JvmStatic
-    @BindingAdapter(value=["imageView","imageUrl","radius"], requireAll = false)
-    fun setCornerRoundedImage(imageview: ImageView, url: String?, radius: Int) {
-        url?.let {
-            Glide.with(imageview.context)
-                .load(url)
-                .transform(RoundedCorners(radius))
-                .into(imageview)
-        }
-    }
-
 
     @JvmStatic
     @BindingAdapter("setLeftBackground")

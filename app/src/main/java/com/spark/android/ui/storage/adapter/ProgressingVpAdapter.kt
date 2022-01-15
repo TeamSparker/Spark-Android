@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.databinding.ItemProgressingListBinding
+import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 
 class ProgressingVpAdapter : RecyclerView.Adapter<ProgressingVpAdapter.ProgressingVpViewHolder>() {
 
@@ -17,6 +18,13 @@ class ProgressingVpAdapter : RecyclerView.Adapter<ProgressingVpAdapter.Progressi
 
     class ProgressingVpViewHolder(private val binding: ItemProgressingListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener {
+                val intent = Intent(it.context,StoragePhotoCollectionActivity::class.java)
+                it.context.startActivity(intent)
+            }
+        }
 
         fun onBind(str: String) {
             binding.str = str
