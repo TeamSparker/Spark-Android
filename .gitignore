@@ -143,4 +143,7 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+### KaKao Auth Key
+app/src/main/res/values/kakao_auth.xml
+
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio
