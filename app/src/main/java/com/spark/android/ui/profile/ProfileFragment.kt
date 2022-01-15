@@ -1,11 +1,13 @@
 package com.spark.android.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.ui.main.MainActivity
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_SIGNUP_MODE
 import com.spark.android.util.KeyBoardUtil
@@ -23,7 +25,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         hideKeyBoard()
         initPictureBtnClickListener()
         initQuitBtnClickListener()
-
+        initSignupBtnClickListener()
     }
 
     private fun initStatusBarStyle() {
@@ -48,6 +50,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             DialogUtil(STOP_SIGNUP_MODE) {
                 popBackStack()
             }.show(parentFragmentManager, this.javaClass.name)
+        }
+    }
+
+    private fun initSignupBtnClickListener() {
+        binding.btnProfileSignup.setOnClickListener {
+            requireContext().startActivity(Intent(requireContext(), MainActivity::class.java))
         }
     }
 }
