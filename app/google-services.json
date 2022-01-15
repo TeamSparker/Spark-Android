@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "249448930673",
-    "project_id": "spark-7d694",
-    "storage_bucket": "spark-7d694.appspot.com"
+    "project_number": "849294133156",
+    "project_id": "we-sopt-spark",
+    "storage_bucket": "we-sopt-spark.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:249448930673:android:4b16bedecf401a9974aad0",
+        "mobilesdk_app_id": "1:849294133156:android:ca8ee39c25722305b02331",
         "android_client_info": {
           "package_name": "com.spark.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "249448930673-hqjn550un5dl86dec9kvda2am91r2cj0.apps.googleusercontent.com",
+          "client_id": "849294133156-67966vjctudnvv134eqq4uil6tn9g8na.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDVJXoA74x48HW2cLQOdG2GF1Whal4Z5BU"
+          "current_key": "AIzaSyAtGTStU5B_Pm-ZVPRaL7XIhBonV0hmK_o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "249448930673-hqjn550un5dl86dec9kvda2am91r2cj0.apps.googleusercontent.com",
+              "client_id": "849294133156-67966vjctudnvv134eqq4uil6tn9g8na.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
