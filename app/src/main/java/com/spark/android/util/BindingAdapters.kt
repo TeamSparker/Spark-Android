@@ -1,13 +1,13 @@
 package com.spark.android.util
 
+import android.content.res.ColorStateList
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
-import com.spark.android.SparkApplication
 import java.lang.IllegalStateException
 
 object BindingAdapters {
@@ -54,15 +54,17 @@ object BindingAdapters {
     fun setLeftTicketColor(textView: TextView, leftDay: Int) {
         val context = textView.context
 
-        textView.setTextColor(when {
-            leftDay == 0 -> ContextCompat.getColor(context, R.color.spark_dark_pinkred)
-            leftDay <= 7 -> ContextCompat.getColor(context, R.color.spark_pinkred)
-            leftDay <= 33 -> ContextCompat.getColor(context, R.color.spark_bright_pinkred)
-            leftDay <= 59 -> ContextCompat.getColor(context, R.color.spark_light_pinkred)
-            leftDay <= 63 -> ContextCompat.getColor(context, R.color.spark_more_light_pinkred)
-            leftDay == 66 -> ContextCompat.getColor(context, R.color.spark_most_light_pinkred)
-            else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketColor 오류")
-        })
+        textView.setTextColor(
+            when {
+                leftDay == 0 -> ContextCompat.getColor(context, R.color.spark_dark_pinkred)
+                leftDay <= 7 -> ContextCompat.getColor(context, R.color.spark_pinkred)
+                leftDay <= 33 -> ContextCompat.getColor(context, R.color.spark_bright_pinkred)
+                leftDay <= 59 -> ContextCompat.getColor(context, R.color.spark_light_pinkred)
+                leftDay <= 63 -> ContextCompat.getColor(context, R.color.spark_more_light_pinkred)
+                leftDay == 66 -> ContextCompat.getColor(context, R.color.spark_most_light_pinkred)
+                else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketColor 오류")
+            }
+        )
     }
 
     @JvmStatic
@@ -139,5 +141,12 @@ object BindingAdapters {
             else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketComment 오류")
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("setFloatingIconTint")
+    fun setFloatingIconTint(floatingBtn: FloatingActionButton, color: Int) {
+        floatingBtn.imageTintList = ColorStateList.valueOf(color)
+    }
+
 }
 

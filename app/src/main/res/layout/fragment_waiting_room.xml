@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="30분독서" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_waiting_room_copy_code"
             android:layout_width="87dp"
             android:layout_height="36dp"
@@ -424,7 +424,7 @@
             app:layout_constraintStart_toStartOf="@+id/btn_waiting_room_start_habit"
             app:layout_constraintTop_toTopOf="@+id/btn_waiting_room_start_habit" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_waiting_room_start_habit"
             android:layout_width="match_parent"
             android:layout_height="48dp"

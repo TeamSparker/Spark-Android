@@ -9,6 +9,7 @@ import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.feed.FeedFragment
 import com.spark.android.ui.home.HomeMainFragment
 import com.spark.android.ui.joincode.JoinCodeActivity
+import com.spark.android.ui.joincode.inputcode.InputCodeFragmentDialog
 import com.spark.android.ui.storage.StorageFragment
 import com.spark.android.ui.main.viewmodel.MainViewModel
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_FEED
@@ -91,8 +92,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     fun initMakeJoinCodeListener(){
-        val intent = Intent(this,JoinCodeActivity::class.java)
-        startActivity(intent)
+        InputCodeFragmentDialog().show(
+            supportFragmentManager,"InputCodeDialog"
+        )
     }
 
 }

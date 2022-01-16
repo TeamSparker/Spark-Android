@@ -88,7 +88,6 @@
     <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
 
-
     <!-- WaitingRoomFragment -->
     <string name="waiting_room_copy_code">코드 복사</string>
     <string name="waiting_room_confirm_method">습관 인증 방식</string>
@@ -104,5 +103,12 @@
     <string name="waiting_room_copy_code_toast">코드를 복사했어요!</string>
     <string name="waiting_room_tooltip_picture">특정 순간을 담아 사진으로 인증해요</string>
     <string name="waiting_room_tooltip_timer">진행 시간을 측정한 후 사진과 함께 인증해요!</string>
+
+
+    <!--InputCodeFragmentDialog-->
+    <string name="input_code_dialog_explain">친구에게 받은 코드를 입력해주세요!</string>
+    <string name="input_code_dialog_done">확인</string>
+    <string name="input_code_dialog_error_message_cant">참여할 수 없는 코드예요.</string>
+    <string name="input_code_dialog_error_message_already">이미 참여 중인 코드예요</string>
 </resources>
 
