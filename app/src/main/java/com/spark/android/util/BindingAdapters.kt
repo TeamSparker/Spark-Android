@@ -52,36 +52,17 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setLeftTicketColor")
     fun setLeftTicketColor(textView: TextView, leftDay: Int) {
+        val context = textView.context
 
-        textView.setTextColor(
-            when {
-                leftDay == 0 -> ContextCompat.getColor(
-                    SparkApplication.ApplicationContext(),
-                    R.color.spark_dark_pinkred
-                )
-                leftDay <= 7 -> ContextCompat.getColor(
-                    SparkApplication.ApplicationContext(),
-                    R.color.spark_pinkred
-                )
-                leftDay <= 33 -> ContextCompat.getColor(
-                    SparkApplication.ApplicationContext(),
-                    R.color.spark_bright_pinkred
-                )
-                leftDay <= 59 -> ContextCompat.getColor(
-                    SparkApplication.ApplicationContext(),
-                    R.color.spark_light_pinkred
-                )
-                leftDay <= 63 -> ContextCompat.getColor(
-                    SparkApplication.ApplicationContext(),
-                    R.color.spark_more_light_pinkred
-                )
-                leftDay == 66 -> ContextCompat.getColor(
-                    SparkApplication.ApplicationContext(),
-                    R.color.spark_most_light_pinkred
-                )
-                else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketColor 오류")
-            }
-        )
+        textView.setTextColor(when {
+            leftDay == 0 -> ContextCompat.getColor(context, R.color.spark_dark_pinkred)
+            leftDay <= 7 -> ContextCompat.getColor(context, R.color.spark_pinkred)
+            leftDay <= 33 -> ContextCompat.getColor(context, R.color.spark_bright_pinkred)
+            leftDay <= 59 -> ContextCompat.getColor(context, R.color.spark_light_pinkred)
+            leftDay <= 63 -> ContextCompat.getColor(context, R.color.spark_more_light_pinkred)
+            leftDay == 66 -> ContextCompat.getColor(context, R.color.spark_most_light_pinkred)
+            else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketColor 오류")
+        })
     }
 
     @JvmStatic

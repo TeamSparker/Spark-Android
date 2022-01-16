@@ -1,12 +1,14 @@
 package com.spark.android.util
 
 import android.animation.ObjectAnimator
+import android.os.Looper
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
+import java.util.logging.Handler
 
 object FloatingAnimationUtil {
 
@@ -15,8 +17,8 @@ object FloatingAnimationUtil {
         buttonMakeRoom: FloatingActionButton,
         buttonJoinCode: FloatingActionButton,
         backgroundLayout: ConstraintLayout,
-        textViewMakeRoom : TextView,
-        textViewJoinCode : TextView,
+        textViewMakeRoom: TextView,
+        textViewJoinCode: TextView,
         fabState: Boolean
     ) {
         // 플로팅 액션 버튼 닫기 - 열려있는 플로팅 버튼 집어넣는 애니메이션 세팅
@@ -41,5 +43,13 @@ object FloatingAnimationUtil {
             buttonMain.setImageResource(R.drawable.ic_fab_plus_rotate_45)
             backgroundLayout.visibility = View.VISIBLE
         }
+    }
+
+    fun openToastAnimation(textview: TextView) {
+        ObjectAnimator.ofFloat(textview, "translationY", -150f).apply { start() }
+    }
+
+    fun closeToastAnimation (textview: TextView) {
+        ObjectAnimator.ofFloat(textview, "translationY", 0f).apply { start() }
     }
 }
