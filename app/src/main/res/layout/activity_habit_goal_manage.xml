@@ -259,7 +259,7 @@
             app:layout_constraintEnd_toEndOf="@+id/et_habit_goal_goal"
             app:layout_constraintTop_toTopOf="@+id/et_habit_goal_goal" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_habit_goal_complete"
             android:layout_width="0dp"
             android:layout_height="48dp"
