@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kakao.sdk.auth.model.OAuthToken
-import com.spark.android.data.repository.SignInRepository
+import com.spark.android.data.remote.repository.SignInRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

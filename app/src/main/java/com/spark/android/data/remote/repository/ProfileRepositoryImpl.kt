@@ -1,4 +1,4 @@
-package com.spark.android.data.repository
+package com.spark.android.data.remote.repository
 
 import android.util.Log
 import com.kakao.sdk.user.UserApiClient

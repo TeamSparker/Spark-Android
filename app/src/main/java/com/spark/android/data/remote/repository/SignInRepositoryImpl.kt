@@ -1,4 +1,4 @@
-package com.spark.android.data.repository
+package com.spark.android.data.remote.repository
 
 import android.content.Context
 import com.kakao.sdk.auth.model.OAuthToken
