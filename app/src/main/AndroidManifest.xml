@@ -14,7 +14,7 @@
         android:theme="@style/Theme.SparkAndroid">
         <activity
             android:name=".ui.timer.TimerStartActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.joincode.JoinCodeActivity"
             android:exported="true" />
