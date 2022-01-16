@@ -100,4 +100,7 @@ dependencies {
 
     // KaoKao Login
     implementation "com.kakao.sdk:v2-user:2.8.4"
+
+    //lottie
+    implementation "com.airbnb.android:lottie:4.2.2"
 }

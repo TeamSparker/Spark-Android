@@ -1,5 +1,6 @@
 package com.spark.android.ui.joincode.inputcode
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentInputCodeDialogBinding
+import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
 
 
@@ -41,8 +43,17 @@ class InputCodeFragmentDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
+        initButtonClickListener()
     }
 
+    private fun initButtonClickListener(){
+        binding.btnInputCodeCheck.setOnClickListener {
+            val intent = Intent(requireActivity(),JoinCodeActivity::class.java).apply {
+                this.putExtra("code",inputCodeFragmentDialogViewModel.roomCode.value)
+            }
+            startActivity(intent)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
