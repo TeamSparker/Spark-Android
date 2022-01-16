@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.spark.android">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".SparkApplication"
@@ -12,6 +12,10 @@
         android:roundIcon="@mipmap/ic_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
+       
+        <activity
+            android:name=".ui.timer.TimerStartActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.habit.HabitGoalManageActivity"
             android:exported="false" />
@@ -46,7 +50,6 @@
             android:name=".ui.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">

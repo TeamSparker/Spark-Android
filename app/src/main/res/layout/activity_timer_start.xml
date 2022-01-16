@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="timerStartViewModel"
+            type="com.spark.android.ui.timer.viewmodel.TimerStartViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.timer.TimerStartActivity">
+
+        <ImageButton
+            android:id="@+id/iv_timer_quit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_timer_quit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_timer_roomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="30분 독서"
+            android:textAlignment="center"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_timer_stepLine"
+            android:layout_width="60dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/spark_pinkred"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_timer_roomName" />
+
+        <TextView
+            android:id="@+id/tv_timer_stepOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/futura_medium"
+            android:text="1"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_timer_stepLine"
+            app:layout_constraintEnd_toStartOf="@id/view_timer_stepLine"
+            app:layout_constraintTop_toTopOf="@+id/view_timer_stepLine" />
+
+        <TextView
+            android:id="@+id/tv_timer_stepTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/futura_medium"
+            android:text="2"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_timer_stepLine"
+            app:layout_constraintStart_toEndOf="@id/view_timer_stepLine"
+            app:layout_constraintTop_toTopOf="@+id/view_timer_stepLine" />
+
+        <TextView
+            android:id="@+id/tv_timer_stopwatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/timer_step_stopwatch"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_timer_stepOne"
+            app:layout_constraintStart_toStartOf="@+id/tv_timer_stepOne"
+            app:layout_constraintTop_toBottomOf="@id/tv_timer_stepOne" />
+
+        <TextView
+            android:id="@+id/tv_timer_photoProof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/timer_step_photo"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_timer_stepTwo"
+            app:layout_constraintStart_toStartOf="@+id/tv_timer_stepTwo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_timer_stepTwo" />
+
+        <View
+            android:id="@+id/view_timer_division_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="87dp"
+            android:background="#c7c7c7"
+            app:layout_constraintTop_toBottomOf="@id/view_timer_stepLine" />
+
+        <Chronometer
+            android:id="@+id/chronometer_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:fontFamily="@font/futura_bold"
+            android:gravity="center_horizontal"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_timer_division_line" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/chronometer_timer"
+            app:layout_constraintStart_toStartOf="@id/chronometer_timer"
+            app:layout_constraintTop_toBottomOf="@id/chronometer_timer">
+
+            <ImageButton
+                android:id="@+id/btn_timer_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_timer_stopwatch_play"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_timer_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_timer_stopwatch_pause"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_timer_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_timer_stopwatch_stop"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@id/btn_timer_pause"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_timer_next_step_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@{timerStartViewModel.timerState == 1 ? @color/spark_gray : @color/spark_pinkred}"
+            android:enabled="@{timerStartViewModel.timerState == 1 ? false : true}"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:text="@string/timer_bottom_btn_mode_next"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_timer_start_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/spark_pinkred"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:text="@string/timer_bottom_btn_mode_start"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

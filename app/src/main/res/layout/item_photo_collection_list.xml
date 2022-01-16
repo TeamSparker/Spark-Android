@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="str"
             type="String" />
@@ -16,16 +15,27 @@
         android:layout_marginHorizontal="7dp"
         android:paddingBottom="16dp">
 
-        <ImageView
-            android:id="@+id/iv_photo_collection_item_photo"
-            android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_photo_collection_item_roundedCorner"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_photo_collection_yogurt"
-            app:layout_constraintDimensionRatio="1:1"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <ImageView
+                android:id="@+id/iv_photo_collection_item_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_photo_collection_yogurt"
+              />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_photo_collection_item_leftDays"
@@ -39,7 +49,7 @@
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/iv_photo_collection_item_fire_gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_photo"
+            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner"
             tools:text="D-day" />
 
         <ImageView
@@ -50,7 +60,7 @@
             android:layout_marginEnd="1dp"
             android:src="@drawable/ic_item_fire_gray"
             app:layout_constraintEnd_toStartOf="@id/tv_photo_collection_item_total_sparkNumber"
-            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_photo" />
+            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner" />
 
         <TextView
             android:id="@+id/tv_photo_collection_item_total_sparkNumber"
@@ -62,8 +72,8 @@
             android:textAlignment="viewEnd"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="@id/iv_photo_collection_item_photo"
-            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_photo" />
+            app:layout_constraintEnd_toEndOf="@id/cardview_photo_collection_item_roundedCorner"
+            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
