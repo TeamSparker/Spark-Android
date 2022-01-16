@@ -148,7 +148,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
             app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
             app:layout_constraintStart_toStartOf="@+id/fab_home_main"
-            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main"
+            app:tint="@color/spark_white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_home_make_room"
@@ -165,10 +166,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
             app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
             app:layout_constraintStart_toStartOf="@+id/fab_home_main"
-            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main"
+            app:tint="@color/spark_white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_home_main"
+            setFloatingIconTint="@{fabState ? @color/spark_dark_pinkred : @color/spark_white}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
@@ -180,7 +183,8 @@
             app:fabCustomSize="60dp"
             app:layout_constraintBottom_toTopOf="@+id/layout_main_bottom_nav"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:backgroundTint="@color/spark_dark_pinkred" />
+            tools:backgroundTint="@color/spark_dark_pinkred"
+            tools:tint="@color/spark_white" />
 
         <TextView
             android:id="@+id/tv_fab_join_code"

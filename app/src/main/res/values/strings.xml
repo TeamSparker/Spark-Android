@@ -114,6 +114,16 @@
     <string name="habit_send_spark_message_third">👉 너만 하면 돼!</string>
     <string name="habit_send_spark_message_fourth">🤞 얼마 안 남았어, 어서 하자!</string>
 
+    <!--InputCodeFragmentDialog-->
+    <string name="input_code_dialog_explain">친구에게 받은 코드를 입력해주세요!</string>
+    <string name="input_code_dialog_done">확인</string>
+    <string name="input_code_dialog_error_message_cant">참여할 수 없는 코드예요.</string>
+    <string name="input_code_dialog_error_message_already">이미 참여 중인 코드예요</string>
+
+    <!--JoinCodeActivity-->
+    <string name="join_code_title">잠깐!\n이 방이 맞나요?</string>
+    <string name="join_code_input_again">코드 다시 입력하기</string>
+    <string name="join_code_enter_waiting_room">대기방 입장하기</string>
 
 </resources>
 

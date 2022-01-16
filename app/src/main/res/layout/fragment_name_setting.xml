@@ -115,7 +115,7 @@
             app:layout_constraintEnd_toEndOf="@+id/et_make_room_name_setting_habit_name"
             app:layout_constraintTop_toTopOf="@+id/et_make_room_name_setting_habit_name" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_make_room_name_setting_next"
             android:layout_width="0dp"
             android:layout_height="48dp"

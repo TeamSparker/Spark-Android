@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.spark.android.R
+import com.spark.android.data.remote.service.KakaoLoginService
 import com.spark.android.databinding.FragmentSignInBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.util.EventObserver
@@ -12,14 +13,19 @@ import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.navigate
 import com.spark.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
     private val signInViewModel by viewModels<SignInViewModel>()
 
+    @Inject
+    lateinit var kakaoLoginService: KakaoLoginService
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signInViewModel = signInViewModel
+        initKakaoLoginBtnClickListener()
         initStatusBarStyle()
         initIsSuccessKakaoLoginObserver()
     }
@@ -27,6 +33,16 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     private fun initStatusBarStyle() {
         requireActivity().initStatusBarColor(R.color.spark_pinkred)
         requireActivity().initStatusBarTextColorToWhite()
+    }
+
+    private fun initKakaoLoginBtnClickListener() {
+        binding.btnSignInKakaoLogin.setOnClickListener {
+            startKakaoLogin()
+        }
+    }
+
+    private fun startKakaoLogin() {
+        kakaoLoginService.startKakaoLogin(signInViewModel.kakaoLoginCallback)
     }
 
     private fun initIsSuccessKakaoLoginObserver() {

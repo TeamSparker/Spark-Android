@@ -18,7 +18,8 @@ class MakeRoomActivity : BaseActivity<ActivityMakeRoomBinding>(R.layout.activity
 
         //프래그먼트 실험용 코드 (추후에 삭제할꺼임)
         val waitingRoomFragment = WaitingRoomFragment()
-        supportFragmentManager.beginTransaction().add(R.id.container_make_room, waitingRoomFragment )
+        val nameSettingFragment = NameSettingFragment()
+        supportFragmentManager.beginTransaction().add(R.id.container_make_room, nameSettingFragment)
             .commit()
     }
 }
