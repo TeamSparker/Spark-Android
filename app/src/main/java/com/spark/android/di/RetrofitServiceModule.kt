@@ -1,6 +1,6 @@
 package com.spark.android.di
 
-import com.spark.android.data.remote.api.FeedService
+import com.spark.android.data.remote.service.FeedService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

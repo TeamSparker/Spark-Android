@@ -1,7 +1,6 @@
 package com.spark.android
 
 import android.app.Application
-import android.content.Context
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.Utility
 import dagger.hilt.android.HiltAndroidApp
