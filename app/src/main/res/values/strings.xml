@@ -88,5 +88,11 @@
     <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 과정을\n인증하는 습관에 추천해요</string>
     <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
 
+    <!-- TimerStartActivity -->
+    <string name="timer_step_stopwatch">스톱워치</string>
+    <string name="timer_step_photo">사진</string>
+    <string name="timer_bottom_btn_mode_start">시작하기</string>
+    <string name="timer_bottom_btn_mode_next">다음 단계로</string>
+
 </resources>
 
