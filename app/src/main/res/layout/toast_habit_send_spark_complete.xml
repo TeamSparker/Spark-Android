@@ -9,6 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/shape_habit_send_spark_toast_box">
 
         <ImageView
@@ -28,6 +31,8 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
+            android:paddingHorizontal="32dp"
+            android:singleLine="true"
             android:text="사랑애사랑애사랑애에게 스파크를 보냈어요!"
             android:textColor="@color/spark_more_deep_gray"
             android:textSize="14dp"
