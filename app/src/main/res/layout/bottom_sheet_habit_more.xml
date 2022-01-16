@@ -40,7 +40,7 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             android:gravity="center"
             android:includeFontPadding="true"
-            android:text="나의 목표 관리"
+            android:text="@string/habit_more_goal"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
