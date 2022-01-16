@@ -1,6 +1,8 @@
 package com.spark.android.di
 
 import android.content.Context
+import com.spark.android.data.repository.ProfileRepository
+import com.spark.android.data.repository.ProfileRepositoryImpl
 import com.spark.android.data.repository.SignInRepository
 import com.spark.android.data.repository.SignInRepositoryImpl
 import dagger.Module
@@ -17,4 +19,8 @@ object RepositoryModule {
     @Singleton
     fun providesSignInRepository(@ApplicationContext context: Context): SignInRepository =
         SignInRepositoryImpl(context)
+
+    @Provides
+    @Singleton
+    fun providesProfileRepository(): ProfileRepository = ProfileRepositoryImpl()
 }

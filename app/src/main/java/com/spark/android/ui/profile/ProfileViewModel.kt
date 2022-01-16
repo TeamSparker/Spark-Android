@@ -1,11 +1,14 @@
 package com.spark.android.ui.profile
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.kakao.sdk.user.UserApiClient
+import com.spark.android.data.repository.ProfileRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    private val profileRepository: ProfileRepository
+) : ViewModel() {
     val nickname = MutableLiveData("")
 }

@@ -4,7 +4,7 @@ import android.util.Log
 import com.kakao.sdk.user.UserApiClient
 import kotlin.properties.Delegates
 
-class ProfileRepositoryImpl {
+class ProfileRepositoryImpl : ProfileRepository {
     private var kakaoUserId by Delegates.notNull<Long>()
 
     private fun initKakaoUserId() {
