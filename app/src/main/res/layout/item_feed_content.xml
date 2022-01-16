@@ -7,7 +7,7 @@
 
         <variable
             name="feed"
-            type="com.spark.android.data.response.Feed" />
+            type="com.spark.android.data.remote.response.Feed" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

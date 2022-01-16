@@ -26,6 +26,7 @@
     <string name="sign_in_desc_title">앱 이름</string>
     <string name="sign_in_info">로그인 시 <u>이용약관</u>과 <u>개인정보 처리 방침</u>에 동의하게 됩니다.</string>
     <string name="sign_in_desc_kakao_login">카카오 로그인 버튼</string>
+    <string name="sign_in_kakao_login_failure_msg">"카카오 로그인에 실패하였습니다.\n다시 시도해주세요."</string>
 
     <!-- ProfileFragment -->
     <string name="profile_desc_quit">종료 버튼</string>
