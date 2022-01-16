@@ -11,7 +11,7 @@
 
     <!-- HomeMainFragment -->
     <string name="home_waiting_ticket_left">Waiting\nRoom</string>
-    <string name="home_waiting_ticket_right_intro">다른 스파커를 기다리는 중...</string>
+    <string name="home_waiting_ticket_right_intro">다른 스파커 기다리는 중...</string>
     <string name="home_ticket_done_user">완료한 사람</string>
     <string name="home_ticket_user_with">함께하는 사람</string>
     <string name="home_ticket_life">우리 팀의 생명</string>
@@ -74,18 +74,18 @@
 
     <!-- NameSettingFragment -->
     <string name="room_name_setting_title">어떤 습관방을 만들 건가요?</string>
-    <string name="room_name_setting_content">진행할 습관을 담아 방 이름을\n설정해보세요!</string>
+    <string name="room_name_setting_content">진행할 습관을 담아 방 이름을\n설정해 보세요!</string>
     <string name="room_name_setting_edit_text_hint">ex . 30분 독서</string>
     <string name="room_name_setting_text_limit">/15</string>
-    <string name="room_name_setting_next_btn_text">다음</string>
+    <string name="room_name_setting_next_btn_text">다음으로</string>
 
     <!-- SelectConfirmMethod -->
     <string name="select_confirm_method_title">어떻게 습관을 인증할까요?</string>
-    <string name="select_confirm_method_content">66일간의 습관에 알맞은 인증 방식을\n선택해주세요.</string>
+    <string name="select_confirm_method_content">습관 유형에 알맞은 인증 방식을\n선택해 주세요</string>
     <string name="select_confirm_method_enter_waiting">대기방 입장하기</string>
     <string name="select_confirm_method_picture_title">사진으로 인증하기</string>
-    <string name="select_confirm_method_picture_content">미라클 모닝, 영양제 먹기처럼 결과를\n인증하는 습관에 추천해요</string>
-    <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 과정을\n인증하는 습관에 추천해요</string>
+    <string name="select_confirm_method_picture_content">미라클 모닝, 영양제 먹기와 같이 특정 순간을\n인증하는 습관에 추천해요.</string>
+    <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
 
 
@@ -98,9 +98,9 @@
     <string name="waiting_room_purpose">목표</string>
     <string name="waiting_room_we_sparker">함께하는 스파커들</string>
     <string name="waiting_room_we_sparker_explain">습관을 시작한 후에는 인원 추가가 불가능합니다.</string>
-    <string name="waiting_room_start_habit">습관 시작하기</string>
+    <string name="waiting_room_start_habit">습관방 만들기</string>
     <string name="waiting_room_no_purpose">습관을 시작하기 전에</string>
-    <string name="waiting_room_no_purpose_second_line">시간과 목표를 작성해주세요!</string>
+    <string name="waiting_room_no_purpose_second_line">시간과 목표를 작성해 주세요!</string>
     <string name="waiting_room_copy_code_toast">코드를 복사했어요!</string>
 </resources>
 
