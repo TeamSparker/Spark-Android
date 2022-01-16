@@ -1,10 +1,13 @@
 package com.spark.android.ui.storage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageCompleteBinding
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.ui.storage.adapter.CompleteVpAdapter
 
 
 class StorageCompleteFragment :

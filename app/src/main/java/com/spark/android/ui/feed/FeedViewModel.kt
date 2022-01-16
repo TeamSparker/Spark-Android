@@ -3,10 +3,9 @@ package com.spark.android.ui.feed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.spark.android.data.response.Feed
-import com.spark.android.data.response.FeedListItem
+import com.spark.android.data.remote.response.Feed
+import com.spark.android.data.remote.response.FeedListItem
 import com.spark.android.ui.feed.adapter.FeedAdapter
-import java.time.LocalDate
 
 class FeedViewModel : ViewModel() {
     private val _feedList = MutableLiveData(listOf<Feed>())
@@ -301,17 +300,8 @@ class FeedViewModel : ViewModel() {
     }
 
     fun addHeaderToFeedList() {
-        var date = LocalDate.now().toString()
+        var date = ""
         val feedListWithHeader = mutableListOf<FeedListItem>()
-        feedListWithHeader.add(
-            FeedListItem(
-                "0${date}",
-                FeedAdapter.FEED_HEADER_TYPE,
-                formatDate(date),
-                "${requireNotNull(feedList.value)[0].day}요일",
-                null
-            )
-        )
         requireNotNull(feedList.value).forEachIndexed { index, feed ->
             if (feed.date != date) {
                 date = feed.date
@@ -344,9 +334,9 @@ class FeedViewModel : ViewModel() {
 
     private fun formatDate(date: String): String {
         val dateArray = date.split("-")
-        val year = dateArray[0].toInt()
-        val month = dateArray[1].toInt()
-        val dayOfMonth = dateArray[2].toInt()
+        val year = dateArray[0]
+        val month = dateArray[1]
+        val dayOfMonth = dateArray[2]
         return "${year}년 ${month}월 ${dayOfMonth}일"
     }
 }

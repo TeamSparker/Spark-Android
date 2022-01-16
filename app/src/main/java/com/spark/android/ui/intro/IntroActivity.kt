@@ -6,10 +6,13 @@ import android.os.Handler
 import android.os.Looper
 import com.spark.android.R
 import com.spark.android.databinding.ActivityIntroBinding
+import com.spark.android.ui.auth.AuthActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.util.initStatusBarColor
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
 
     private fun moveToMain() {
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, AuthActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()

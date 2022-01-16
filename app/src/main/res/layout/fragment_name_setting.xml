@@ -21,7 +21,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="32dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_make_room_name_setting_back"
+            android:src="@drawable/ic_make_room_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,9 +1,11 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.databinding.ItemIncompleteListBinding
+import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 
 class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteVpViewHolder>() {
 
@@ -16,6 +18,14 @@ class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteV
 
     class IncompleteVpViewHolder(private val binding: ItemIncompleteListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener {
+                val intent = Intent(it.context, StoragePhotoCollectionActivity::class.java)
+                it.context.startActivity(intent)
+            }
+        }
+
         fun onBind(str: String) {
             binding.str = str
         }

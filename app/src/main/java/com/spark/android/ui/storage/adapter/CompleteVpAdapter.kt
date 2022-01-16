@@ -1,10 +1,12 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.databinding.ItemCompleteListBinding
+import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 
 class CompleteVpAdapter : RecyclerView.Adapter<CompleteVpAdapter.CompleteVpViewHolder>() {
 
@@ -17,6 +19,13 @@ class CompleteVpAdapter : RecyclerView.Adapter<CompleteVpAdapter.CompleteVpViewH
 
     class CompleteVpViewHolder(private val binding: ItemCompleteListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener {
+                val intent = Intent(it.context, StoragePhotoCollectionActivity::class.java)
+                it.context.startActivity(intent)
+            }
+        }
 
         fun onBind(str: String) {
             binding.str = str

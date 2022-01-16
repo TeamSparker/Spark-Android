@@ -18,6 +18,7 @@ class NameSettingFragment : BaseFragment<FragmentNameSettingBinding>(R.layout.fr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.nameSettingViewModel = nameSettingViewModel
     }
 }
