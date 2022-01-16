@@ -18,7 +18,7 @@
         android:focusableInTouchMode="true"
         tools:context=".ui.habit.HabitGoalManageActivity">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_habit_goal_manage_quit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -259,7 +259,7 @@
             app:layout_constraintEnd_toEndOf="@+id/et_habit_goal_goal"
             app:layout_constraintTop_toTopOf="@+id/et_habit_goal_goal" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_habit_goal_complete"
             android:layout_width="0dp"
             android:layout_height="48dp"
