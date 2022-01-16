@@ -24,4 +24,5 @@
     <color name="spark_black_opacity_80">#cc000000</color>
     <color name="spark_gray_opacity_30">#4db1b2b4</color>
     <color name="spark_most_light_pinkred_opacity_20">#33ffd5df</color>
+    <color name="spark_more_deep_gray">#121212</color>
 </resources>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="habitGoalManageViewModel"
+            type="com.spark.android.ui.habit.HabitGoalManageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_habit_goal_manage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".ui.habit.HabitGoalManageActivity">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_habit_goal_manage_quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_quit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_manage_title"
+            android:textColor="@color/spark_black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_habit_goal_manage_tip_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_tip_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_manage_tip_top"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_habit_goal_manage_tip_bottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_habit_goal_manage_title" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_tip_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_manage_tip_bottom"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_habit_goal_manage_time_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_habit_goal_manage_tip_top" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_manage_time_title"
+            android:textColor="@color/spark_black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_habit_goal_manage_time_example"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_habit_goal_manage_tip_bottom" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_time_example"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_manage_time_example"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_habit_goal_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_habit_goal_manage_time_title" />
+
+        <EditText
+            android:id="@+id/et_habit_goal_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:maxLength="15"
+            android:singleLine="true"
+            android:text="@={habitGoalManageViewModel.time}"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/view_habit_goal_time_under_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_habit_goal_manage_time_example" />
+
+        <View
+            android:id="@+id/view_habit_goal_time_under_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@{habitGoalManageViewModel.time.length() == 0 ? @color/spark_gray : @color/spark_pinkred }"
+            app:layout_constraintBottom_toTopOf="@+id/tv_habit_goal_manage_goal_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_habit_goal_time" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_time_text_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@{String.valueOf(habitGoalManageViewModel.time.length())}"
+            android:textColor="@{habitGoalManageViewModel.time.length() == 0 ? @color/spark_dark_gray : @color/spark_pinkred }"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_habit_goal_time"
+            app:layout_constraintEnd_toStartOf="@+id/tv_habit_goal_manage_time_text_limit"
+            app:layout_constraintTop_toTopOf="@+id/et_habit_goal_time"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_time_text_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@string/room_name_setting_text_limit"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_habit_goal_time"
+            app:layout_constraintEnd_toEndOf="@+id/et_habit_goal_time"
+            app:layout_constraintTop_toTopOf="@+id/et_habit_goal_time" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_goal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="64dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_manage_goal_title"
+            android:textColor="@color/spark_black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_habit_goal_manage_goal_example"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_habit_goal_time_under_bar" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_goal_example"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_manage_goal_example"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@id/et_habit_goal_goal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_habit_goal_manage_goal_title" />
+
+        <EditText
+            android:id="@+id/et_habit_goal_goal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:maxLength="15"
+            android:singleLine="true"
+            android:text="@={habitGoalManageViewModel.goal}"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/view_habit_goal_goal_under_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_habit_goal_manage_goal_example" />
+
+        <View
+            android:id="@+id/view_habit_goal_goal_under_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@{habitGoalManageViewModel.goal.length() == 0 ? @color/spark_gray : @color/spark_pinkred }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_habit_goal_goal" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_goal_text_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@{String.valueOf(habitGoalManageViewModel.goal.length())}"
+            android:textColor="@{habitGoalManageViewModel.goal.length() == 0 ? @color/spark_dark_gray : @color/spark_pinkred }"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_habit_goal_goal"
+            app:layout_constraintEnd_toStartOf="@+id/tv_habit_goal_manage_goal_text_limit"
+            app:layout_constraintTop_toTopOf="@+id/et_habit_goal_goal"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_habit_goal_manage_goal_text_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@string/room_name_setting_text_limit"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_habit_goal_goal"
+            app:layout_constraintEnd_toEndOf="@+id/et_habit_goal_goal"
+            app:layout_constraintTop_toTopOf="@+id/et_habit_goal_goal" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_habit_goal_complete"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@{(habitGoalManageViewModel.time.length() == 0 || habitGoalManageViewModel.goal.length() == 0) ? @drawable/shape_btn_inactive : @drawable/shape_btn_active }"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@string/habit_goal_complete"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

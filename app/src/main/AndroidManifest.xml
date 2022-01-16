@@ -12,12 +12,13 @@
         android:roundIcon="@mipmap/ic_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
-        <activity
-            android:name=".ui.timer.TimerPracticeActivity"
-            android:exported="false" />
+       
         <activity
             android:name=".ui.timer.TimerStartActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.habit.HabitGoalManageActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.joincode.JoinCodeActivity"
             android:exported="true" />

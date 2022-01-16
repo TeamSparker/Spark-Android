@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="members"
+            type="com.spark.android.ui.waitingroom.data.WaitingData.Members" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_waiting_room_recyclerview_picture"
+            setCircleImage="@{members.profileImg}"
+            android:layout_width="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_recyclerview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="솨"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{members.nickName}"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_waiting_room_recyclerview_picture"
+            app:layout_constraintStart_toStartOf="@+id/iv_waiting_room_recyclerview_picture"
+            app:layout_constraintTop_toBottomOf="@+id/iv_waiting_room_recyclerview_picture" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

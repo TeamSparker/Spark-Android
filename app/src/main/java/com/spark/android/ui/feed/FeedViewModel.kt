@@ -3,10 +3,9 @@ package com.spark.android.ui.feed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.spark.android.data.response.Feed
-import com.spark.android.data.response.FeedListItem
+import com.spark.android.data.remote.response.Feed
+import com.spark.android.data.remote.response.FeedListItem
 import com.spark.android.ui.feed.adapter.FeedAdapter
-import java.time.LocalDate
 
 class FeedViewModel : ViewModel() {
     private val _feedList = MutableLiveData(listOf<Feed>())

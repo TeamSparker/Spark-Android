@@ -3,31 +3,40 @@ package com.spark.android.ui.habit.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spark.android.R
 import com.spark.android.databinding.ItemHabitTeamBinding
+import com.spark.android.ui.habit.HabitSendSparkBottomSheet
 
-class HabitRecyclerViewAdapter(var list : MutableList<String>) : RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder>() {
-    class HabitViewHolder(private val binding: ItemHabitTeamBinding, private val size : Int) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(position: Int, data : String) {
-            if(position == 0) {
+class HabitRecyclerViewAdapter(var list: MutableList<String>) :
+    RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder>() {
+    class HabitViewHolder(private val binding: ItemHabitTeamBinding, private val size: Int) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun onBind(position: Int, data: String) {
+            if (position == 0) {
                 binding.ivItemHabitTeamMe.visibility = View.VISIBLE
                 binding.tvItemHabitTeamSendCount.visibility = View.VISIBLE
                 binding.btnItemHabitTeamSend.setImageResource(R.drawable.ic_habit_fire_darkgray)
+            } else {
+                binding.btnItemHabitTeamSend.setOnClickListener {
+                    HabitSendSparkBottomSheet().show((it.context as AppCompatActivity).supportFragmentManager,
+                        this.javaClass.name)
+                }
             }
 
-            if(position == size - 1) {
+            if (position == size - 1) {
                 binding.viewItemHabitTeamDivider.visibility = View.GONE
             }
 
             // test
-            if(position == 1) {
+            if (position == 1) {
                 binding.ivItemHabitTeamStickerComplete.visibility = View.VISIBLE
             }
 
             // test
-            if(position == 2) {
+            if (position == 2) {
                 binding.ivItemHabitTeamStickerRest.visibility = View.VISIBLE
             }
 
@@ -40,7 +49,8 @@ class HabitRecyclerViewAdapter(var list : MutableList<String>) : RecyclerView.Ad
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
-        val binding = ItemHabitTeamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemHabitTeamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HabitViewHolder(binding, list.size)
     }
 

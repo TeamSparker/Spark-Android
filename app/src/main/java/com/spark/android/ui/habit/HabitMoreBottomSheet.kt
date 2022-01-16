@@ -1,5 +1,6 @@
 package com.spark.android.ui.habit
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,16 @@ class HabitMoreBottomSheet() : BottomSheetDialogFragment() {
             dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         val behavior = BottomSheetBehavior.from<View>(bottomSheet!!)
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
+
+        initGoalBtnClickListener()
+    }
+
+    private fun initGoalBtnClickListener() {
+        binding.tvHabitMoreGoal.setOnClickListener {
+            val intent = Intent(context, HabitGoalManageActivity::class.java)
+            startActivity(intent)
+            dismiss()
+        }
     }
 
     override fun onDestroyView() {
