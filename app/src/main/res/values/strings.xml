@@ -105,5 +105,15 @@
     <string name="waiting_room_copy_code_toast">코드를 복사했어요!</string>
     <string name="waiting_room_tooltip_picture">특정 순간을 담아 사진으로 인증해요</string>
     <string name="waiting_room_tooltip_timer">진행 시간을 측정한 후 사진과 함께 인증해요!</string>
+
+    <!-- HabitSendSparkBottomSheet-->
+    <string name="habit_send_spark_title">친구에게 스파크 보내기</string>
+    <string name="habit_send_spark_content">메시지를 선택해 바로 보낼 수 있어요!</string>
+    <string name="habit_send_spark_message_first">👊 아자아자 파이팅!</string>
+    <string name="habit_send_spark_message_second">🔥 오늘 안 해? 같이 해!</string>
+    <string name="habit_send_spark_message_third">👉 너만 하면 돼!</string>
+    <string name="habit_send_spark_message_fourth">🤞 얼마 안 남았어, 어서 하자!</string>
+
+
 </resources>
 
