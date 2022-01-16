@@ -5,15 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kakao.sdk.auth.model.OAuthToken
-import com.spark.android.data.remote.repository.SignInRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@HiltViewModel
-class SignInViewModel @Inject constructor(
-    private val signInRepository: SignInRepository
-) : ViewModel() {
+class SignInViewModel : ViewModel() {
     private val _isSuccessKakaoLogin = MutableLiveData<Event<Boolean>>()
     val isSuccessKakaoLogin: LiveData<Event<Boolean>> = _isSuccessKakaoLogin
 
@@ -25,10 +21,6 @@ class SignInViewModel @Inject constructor(
             initIsSuccessLogin(true)
             Log.d("kakao", "로그인 성공 ${token.accessToken}")
         }
-    }
-
-    fun initKakaoLoginState() {
-        signInRepository.startKakaoLogin(kakaoLoginCallback)
     }
 
     private fun initIsSuccessLogin(isSuccess: Boolean) {

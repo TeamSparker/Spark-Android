@@ -1,6 +1,6 @@
 package com.spark.android.data.remote.datasource
 
-import com.spark.android.data.remote.api.FeedService
+import com.spark.android.data.remote.service.FeedService
 import javax.inject.Inject
 
 class FeedDataSourceImpl @Inject constructor(
