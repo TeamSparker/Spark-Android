@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="inputCodeFragmentDialogViewModel"
+            type="com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_spark_white_fill_2_rect"
+        tools:context=".ui.joincode.inputcode.InputCodeFragmentDialog">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="26dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/input_code_dialog_explain"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/futura_bold"
+            android:includeFontPadding="false"
+            android:inputType="textPersonName"
+            android:maxLength="7"
+            android:textAlignment="center"
+            android:textColor="@color/spark_black"
+            android:text="@={inputCodeFragmentDialogViewModel.roomCode}"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="7ED4ddO" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="158dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="6dp"
+            tools:background="@color/spark_dark_pinkred"
+            android:background="@{inputCodeFragmentDialogViewModel.roomCode.length() != 7 ? @color/spark_gray : @color/spark_dark_pinkred}"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_bright_pinkred"
+            android:textSize="14dp"
+            android:text="@{inputCodeFragmentDialogViewModel.errorMessage}"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:text="참여할 수 없는 코드에요." />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="158dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="28dp"
+            android:text="@string/input_code_dialog_done"
+            android:enabled="@{inputCodeFragmentDialogViewModel.roomCode.length() != 7 ? false : true}"
+            android:background="@{inputCodeFragmentDialogViewModel.roomCode.length() != 7 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

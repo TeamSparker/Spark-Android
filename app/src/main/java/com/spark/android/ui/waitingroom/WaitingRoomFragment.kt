@@ -120,6 +120,8 @@ class WaitingRoomFragment :
         waitingRoomRecyclerViewAdapter.members.addAll(
             waitingData.members
         )
+
+        waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
     }
 
     private fun initTootipButton(){
