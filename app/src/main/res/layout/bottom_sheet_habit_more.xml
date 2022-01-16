@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@id/view_habit_more_deco" />
 
         <TextView
-            android:id="@+id/tv_habit_more_manage"
+            android:id="@+id/tv_habit_more_goal"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:fontFamily="@font/noto_sans_kr_medium"
