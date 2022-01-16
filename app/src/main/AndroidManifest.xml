@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
         <activity
+            android:name=".ui.timer.TimerPracticeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.timer.TimerStartActivity"
             android:exported="true" />
         <activity
