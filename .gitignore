@@ -55,6 +55,7 @@ captures/
 
 # Google Services (e.g. APIs or Firebase)
 # google-services.json
+app/google-services.json
 
 # Android Patch
 gen-external-apklibs
@@ -141,5 +142,8 @@ fabric.properties
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+
+### KaKao Auth Key
+app/src/main/res/values/kakao_auth.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio

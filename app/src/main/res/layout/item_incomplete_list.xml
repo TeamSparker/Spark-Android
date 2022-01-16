@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="str"
             type="String" />
@@ -13,15 +13,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/shape_spark_gray_line_2_rect">
+        android:background="@drawable/shape_spark_gray_fill_line_2_rect">
 
         <ImageView
             android:id="@+id/iv_incomplete_item_photo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
             android:layout_marginHorizontal="2dp"
             android:layout_marginBottom="2dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_storage_incomplete_certification_photo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_storage_incomplete_item_sparkflake"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,16 +74,33 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_incomplete_item_total_spark_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+        <ImageView
+            android:id="@+id/iv_incomplete_item_fire_gray"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="133dp"
+            android:layout_marginEnd="153dp"
+            android:src="@drawable/ic_item_fire_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_incomplete_item_title">
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_incomplete_item_total_sparkNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:fontFamily="@font/futura_medium"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="1sp"
+            android:text="3"
+            android:textColor="@color/spark_gray"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@id/iv_incomplete_item_fire_gray"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
 
         <TextView
@@ -92,19 +110,20 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
-            tools:text="자기 전 명상하기"
             android:text="@{str}"
             android:textColor="@color/spark_white"
             android:textSize="24dp"
             app:flow_horizontalAlign="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraintLayout_incomplete_item_total_spark_number" />
+            app:layout_constraintTop_toBottomOf="@id/iv_incomplete_item_fire_gray"
+            tools:text="자기 전 명상하기" />
 
         <TextView
             android:id="@+id/tv_incomplete_item_total_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/futura_medium"
             android:includeFontPadding="false"
             android:text="2021.12.26 - 2022.02.26"

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_linegrid_for_black"
+        tools:context=".ui.storage.StoragePhotoCollectionActivity">
+
+        <View
+            android:id="@+id/view_storage_photoCollection_titleBar"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:background="@color/spark_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_storage_photoCollection_roomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="아침마다 요거트 먹기"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_storage_photoCollection_back_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_storage_photoCollection_roomName" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_storage_photoCollection"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="13dp"
+            android:paddingTop="24dp"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_storage_photoCollection_titleBar"
+            app:layout_constraintVertical_bias="0.0"
+            app:spanCount="2"
+            tools:listitem="@layout/item_photo_collection_list" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

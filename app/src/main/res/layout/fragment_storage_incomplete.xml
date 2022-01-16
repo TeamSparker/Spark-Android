@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:overScrollMode="never"
             android:paddingHorizontal="25dp"
             android:paddingTop="8dp"
             android:paddingBottom="7dp"

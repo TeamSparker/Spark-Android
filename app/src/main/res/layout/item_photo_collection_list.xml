@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="str"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/iv_photo_collection_item_photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_photo_collection_yogurt"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_photo_collection_item_leftDays"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/futura_bold"
+            android:text="@{str}"
+            android:textColor="@color/spark_gray"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toStartOf="@id/iv_photo_collection_item_fire_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_photo"
+            tools:text="D-day" />
+
+        <ImageView
+            android:id="@+id/iv_photo_collection_item_fire_gray"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="1dp"
+            android:src="@drawable/ic_item_fire_gray"
+            app:layout_constraintEnd_toStartOf="@id/tv_photo_collection_item_total_sparkNumber"
+            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_photo" />
+
+        <TextView
+            android:id="@+id/tv_photo_collection_item_total_sparkNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="12"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/spark_gray"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@id/iv_photo_collection_item_photo"
+            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_photo" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+    

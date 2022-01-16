@@ -155,6 +155,7 @@
             app:layout_constraintEnd_toEndOf="@id/et_profile_nickname" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_profile_signup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"

@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.spark.android.R
 import com.spark.android.SparkApplication
 import java.lang.IllegalStateException
@@ -28,6 +29,7 @@ object BindingAdapters {
                 .into(imageview)
         }
     }
+
 
     @JvmStatic
     @BindingAdapter("setLeftBackground")
@@ -78,28 +80,34 @@ object BindingAdapters {
     fun setRightTicketLife(imageview: ImageView, life: Int) {
         when (life) {
             1 -> {
-                imageview.setImageResource(when (imageview.id) {
-                    R.id.iv_home_right_ticket_life_one -> R.drawable.ic_home_ticket_life_full
-                    R.id.iv_home_right_ticket_life_two -> R.drawable.ic_home_ticket_life_empty
-                    R.id.iv_home_right_ticket_life_three -> R.drawable.ic_home_ticket_life_empty
-                    else -> throw IllegalStateException("바인딩 어댑터 setRightTicketLife 오류")
-                })
+                imageview.setImageResource(
+                    when (imageview.id) {
+                        R.id.iv_home_right_ticket_life_one -> R.drawable.ic_home_ticket_life_full
+                        R.id.iv_home_right_ticket_life_two -> R.drawable.ic_home_ticket_life_empty
+                        R.id.iv_home_right_ticket_life_three -> R.drawable.ic_home_ticket_life_empty
+                        else -> throw IllegalStateException("바인딩 어댑터 setRightTicketLife 오류")
+                    }
+                )
             }
             2 -> {
-                imageview.setImageResource(when (imageview.id) {
-                    R.id.iv_home_right_ticket_life_one -> R.drawable.ic_home_ticket_life_full
-                    R.id.iv_home_right_ticket_life_two -> R.drawable.ic_home_ticket_life_full
-                    R.id.iv_home_right_ticket_life_three -> R.drawable.ic_home_ticket_life_empty
-                    else -> throw IllegalStateException("바인딩 어댑터 setRightTicketLife 오류")
-                })
+                imageview.setImageResource(
+                    when (imageview.id) {
+                        R.id.iv_home_right_ticket_life_one -> R.drawable.ic_home_ticket_life_full
+                        R.id.iv_home_right_ticket_life_two -> R.drawable.ic_home_ticket_life_full
+                        R.id.iv_home_right_ticket_life_three -> R.drawable.ic_home_ticket_life_empty
+                        else -> throw IllegalStateException("바인딩 어댑터 setRightTicketLife 오류")
+                    }
+                )
             }
             3 -> {
-                imageview.setImageResource(when (imageview.id) {
-                    R.id.iv_home_right_ticket_life_one -> R.drawable.ic_home_ticket_life_full
-                    R.id.iv_home_right_ticket_life_two -> R.drawable.ic_home_ticket_life_full
-                    R.id.iv_home_right_ticket_life_three -> R.drawable.ic_home_ticket_life_full
-                    else -> throw IllegalStateException("바인딩 어댑터 setRightTicketLife 오류")
-                })
+                imageview.setImageResource(
+                    when (imageview.id) {
+                        R.id.iv_home_right_ticket_life_one -> R.drawable.ic_home_ticket_life_full
+                        R.id.iv_home_right_ticket_life_two -> R.drawable.ic_home_ticket_life_full
+                        R.id.iv_home_right_ticket_life_three -> R.drawable.ic_home_ticket_life_full
+                        else -> throw IllegalStateException("바인딩 어댑터 setRightTicketLife 오류")
+                    }
+                )
             }
         }
     }
