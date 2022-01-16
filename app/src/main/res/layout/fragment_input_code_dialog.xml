@@ -17,7 +17,7 @@
         tools:context=".ui.joincode.inputcode.InputCodeFragmentDialog">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_input_code_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/et_input_code_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
@@ -47,24 +47,24 @@
             android:textColor="@color/spark_black"
             android:text="@={inputCodeFragmentDialogViewModel.roomCode}"
             android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/tv_input_code_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_input_code_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_input_code_title"
             tools:text="7ED4ddO" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/view_input_code"
             android:layout_width="158dp"
             android:layout_height="2dp"
             android:layout_marginTop="6dp"
             tools:background="@color/spark_dark_pinkred"
             android:background="@{inputCodeFragmentDialogViewModel.roomCode.length() != 7 ? @color/spark_gray : @color/spark_dark_pinkred}"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintEnd_toEndOf="@+id/et_input_code_content"
+            app:layout_constraintStart_toStartOf="@+id/et_input_code_content"
+            app:layout_constraintTop_toBottomOf="@+id/et_input_code_content" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_input_code_explain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -73,13 +73,13 @@
             android:textColor="@color/spark_bright_pinkred"
             android:textSize="14dp"
             android:text="@{inputCodeFragmentDialogViewModel.errorMessage}"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="@+id/et_input_code_content"
+            app:layout_constraintStart_toStartOf="@+id/et_input_code_content"
+            app:layout_constraintTop_toBottomOf="@+id/view_input_code"
             tools:text="참여할 수 없는 코드에요." />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/btn_input_code_check"
             android:layout_width="158dp"
             android:layout_height="48dp"
             android:layout_marginTop="44dp"
@@ -88,8 +88,8 @@
             android:enabled="@{inputCodeFragmentDialogViewModel.roomCode.length() != 7 ? false : true}"
             android:background="@{inputCodeFragmentDialogViewModel.roomCode.length() != 7 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintEnd_toEndOf="@+id/et_input_code_content"
+            app:layout_constraintStart_toStartOf="@+id/et_input_code_content"
+            app:layout_constraintTop_toBottomOf="@+id/view_input_code" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
