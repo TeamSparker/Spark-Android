@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
         <activity
-            android:name=".ui.timer.TimerActivity"
+            android:name=".ui.timer.TimerStartActivity"
             android:exported="false" />
         <activity
             android:name=".ui.joincode.JoinCodeActivity"
