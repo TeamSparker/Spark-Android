@@ -1,4 +1,4 @@
-package com.spark.android.data.remote.repository
+package com.spark.android.data.remote.service
 
 import android.content.Context
 import com.kakao.sdk.auth.model.OAuthToken
@@ -6,10 +6,10 @@ import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
-class SignInRepositoryImpl @Inject constructor(
+class KakaoLoginService @Inject constructor(
     @ActivityContext private val context: Context
-) : SignInRepository {
-    override fun startKakaoLogin(kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit) {
+) {
+    fun startKakaoLogin(kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit) {
         val kakaoLoginState = if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
             KAKAO_TALK_LOGIN
         } else {
