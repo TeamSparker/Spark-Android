@@ -46,7 +46,7 @@ object FloatingAnimationUtil {
     }
 
     fun openToastAnimation(textview: TextView) {
-        ObjectAnimator.ofFloat(textview, "translationY", -200f).apply { start() }
+        ObjectAnimator.ofFloat(textview, "translationY", -150f).apply { start() }
     }
 
     fun closeToastAnimation (textview: TextView) {
