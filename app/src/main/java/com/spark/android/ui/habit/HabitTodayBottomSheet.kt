@@ -10,6 +10,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetHabitTodayBinding
 import com.spark.android.ui.certify.CertifyActivity
+import com.spark.android.ui.timer.TimerStartActivity
 
 class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitTodayBinding? = null
@@ -39,7 +40,7 @@ class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFra
     private fun initCertifyBtnClickListener() {
         binding.btnHabitTodayCertificationNow.setOnClickListener {
             // if 문으로 스톱워치 or 사진인증 이동
-            val intent = Intent(context, CertifyActivity::class.java)
+            val intent = Intent(context, TimerStartActivity::class.java)
             startActivity(intent)
             dismiss()
         }

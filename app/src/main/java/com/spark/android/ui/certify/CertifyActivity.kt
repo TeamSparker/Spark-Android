@@ -2,13 +2,14 @@ package com.spark.android.ui.certify
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityCertifyBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
 import com.spark.android.ui.timer.TimerStartActivity
+import com.spark.android.util.DialogUtil
+import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
 import com.spark.android.util.initStatusBarColor
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
@@ -37,7 +38,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     private fun initCertifyBackBtnClickListener() {
         binding.btnCertifyBack.setOnClickListener {
-            val intent = Intent(this, TimerStartActivity::class.java)
+            val intent = Intent(this, TimerStartActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            }
             // put extra
             startActivity(intent)
             finish()
@@ -46,7 +49,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     private fun initCertifyQuitBtnClickListener() {
         binding.btnCertifyQuit.setOnClickListener {
-            finish()
+            DialogUtil(STOP_CERTIFY_PHOTO) {
+                finish()
+            }.show(supportFragmentManager, this.javaClass.name)
         }
     }
 
@@ -54,5 +59,10 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         binding.btnCertifyPhoto.setOnClickListener {
             CertifyBottomSheet().show(supportFragmentManager, this.javaClass.name)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(0, 0)
     }
 }

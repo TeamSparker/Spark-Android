@@ -1,7 +1,5 @@
 package com.spark.android.util
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +17,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.dialog_util, container, false)
         return binding.root
@@ -61,6 +59,9 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
     private fun setMessage() {
         binding.tvDialogUtilContent.text = when (dialogMode) {
             STOP_SIGNUP_MODE -> getString(R.string.profile_dialog_content)
+            STOP_CERTIFY_PHOTO -> getString(R.string.certify_dialog_content)
+            STOP_CERTIFY_TIMER -> getString(R.string.timer_dialog_stop_content)
+            STOP_TIMER -> getString(R.string.timer_dialog_stop_timer_content)
             else -> throw IllegalStateException()
         }
     }
@@ -68,6 +69,8 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
     private fun setConfirmText() {
         binding.confirmText = when (dialogMode) {
             STOP_SIGNUP_MODE -> getString(R.string.profile_dialog_stop_signup)
+            STOP_CERTIFY_PHOTO, STOP_CERTIFY_TIMER -> getString(R.string.certify_dialog_stop_certify)
+            STOP_TIMER -> getString(R.string.timer_dialog_stop_timer)
             else -> throw IllegalStateException()
         }
     }
@@ -92,5 +95,8 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
 
     companion object {
         const val STOP_SIGNUP_MODE = 0
+        const val STOP_CERTIFY_PHOTO = 1
+        const val STOP_CERTIFY_TIMER = 2
+        const val STOP_TIMER = 3
     }
 }

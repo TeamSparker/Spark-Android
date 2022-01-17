@@ -64,7 +64,6 @@ class HomeRecyclerViewAdapter :
 
     override fun getItemCount(): Int = ticketList.size
 
-
     inner class HomeRecyclerViewHolder(val binding: ItemHomeRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: TicketData) {

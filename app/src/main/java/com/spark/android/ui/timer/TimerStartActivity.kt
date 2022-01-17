@@ -1,5 +1,6 @@
 package com.spark.android.ui.timer
 
+import android.content.Intent
 import android.os.Bundle
 import com.spark.android.ui.base.BaseActivity
 import android.widget.Chronometer
@@ -10,6 +11,7 @@ import android.widget.Toast
 import com.spark.android.R
 import androidx.activity.viewModels
 import com.spark.android.databinding.ActivityTimerStartBinding
+import com.spark.android.ui.certify.CertifyActivity
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_PAUSE
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RESET
@@ -97,6 +99,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
         binding.btnTimerQuit.setOnClickListener {
             // TimerStartActivity에서 x버튼을 누를 시 -> finish() -> HabitTodayBottomSheet로 돌아감
+            finish()
         }
 
         binding.btnTimerNextStepBottom.setOnClickListener{
@@ -104,6 +107,13 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
             // 1. 타이머 시간값 : binding.chronometerTimer.text
             // 2. 룸 아이디 값
             // 가지고 사진 인증 액티비티로 넘겨야 함
+
+            val intent = Intent(this, CertifyActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            }
+            // put extra
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -122,5 +132,10 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
                     (if (h < 10) "0$h" else h).toString() + ":" + (if (m < 10) "0$m" else m) + ":" + if (s < 10) "0$s" else s
                 chronometer.text = t
             }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(0, 0)
     }
 }
