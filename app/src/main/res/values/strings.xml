@@ -168,6 +168,10 @@
     <!-- HabitSendSparkCompleteToast -->
     <string name="habit_send_spark_toast_content">에게 스파크를 보냈어요!</string>
 
+    <!-- CertifyActivity -->
+    <string name="certify_step_one">1</string>
+    <string name="certify_step_two">2</string>
+
 
 </resources>
 

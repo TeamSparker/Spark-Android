@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="certifyViewModel"
+            type="com.spark.android.ui.certify.viewmodel.CertifyViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.certify.CertifyActivity">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_certify_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_make_room_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_certify_quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_quit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_certify_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="30분 독서"
+            android:textAlignment="center"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_certify_step_line"
+            android:layout_width="60dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/spark_pinkred"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_certify_title" />
+
+        <TextView
+            android:id="@+id/tv_certify_step_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@string/certify_step_one"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_certify_step_line"
+            app:layout_constraintEnd_toStartOf="@id/view_certify_step_line"
+            app:layout_constraintTop_toTopOf="@+id/view_certify_step_line" />
+
+        <TextView
+            android:id="@+id/tv_certify_step_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@string/certify_step_two"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_certify_step_line"
+            app:layout_constraintStart_toEndOf="@id/view_certify_step_line"
+            app:layout_constraintTop_toTopOf="@+id/view_certify_step_line" />
+
+        <TextView
+            android:id="@+id/tv_timer_stopwatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/timer_step_stopwatch"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_certify_step_one"
+            app:layout_constraintStart_toStartOf="@+id/tv_certify_step_one"
+            app:layout_constraintTop_toBottomOf="@id/tv_certify_step_one" />
+
+        <TextView
+            android:id="@+id/tv_timer_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/timer_step_photo"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_certify_step_two"
+            app:layout_constraintStart_toStartOf="@+id/tv_certify_step_two"
+            app:layout_constraintTop_toBottomOf="@+id/tv_certify_step_two" />
+
+        <View
+            android:id="@+id/view_certify_photo_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="84dp"
+            android:background="@drawable/shape_spark_light_gray_fill_rect"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/view_certify_step_line"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_certify_photo_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/view_certify_photo_bg"
+            app:layout_constraintEnd_toEndOf="@id/view_certify_photo_bg"
+            app:layout_constraintStart_toStartOf="@id/view_certify_photo_bg"
+            app:layout_constraintTop_toTopOf="@id/view_certify_photo_bg">
+
+            <ImageView
+                android:id="@+id/iv_certify_spark_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logo_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_certify_content_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="습관을 모두 마치셨군요!"
+                android:textColor="@color/spark_gray"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_certify_spark_logo" />
+
+            <TextView
+                android:id="@+id/tv_certify_content_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="시간 측정에 이어 사진도 함께 인증해 보세요."
+                android:textColor="@color/spark_gray"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_certify_content_top" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_certify_photo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_btn_active"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:text="사진 인증하기"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
