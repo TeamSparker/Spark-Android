@@ -146,4 +146,13 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         super.onPause()
         overridePendingTransition(0, 0)
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, TimerStartActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        }
+        // put extra
+        startActivity(intent)
+        finish()
+    }
 }
