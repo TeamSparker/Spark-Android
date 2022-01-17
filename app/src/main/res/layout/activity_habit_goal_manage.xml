@@ -18,7 +18,7 @@
         android:focusableInTouchMode="true"
         tools:context=".ui.habit.HabitGoalManageActivity">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_habit_goal_manage_quit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="나의 목표 관리"
+            android:text="@string/habit_goal_manage_title"
             android:textColor="@color/spark_black"
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@id/tv_habit_goal_manage_tip_top"
@@ -54,7 +54,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="'아침 독서' 습관방의"
+            android:text="@string/habit_goal_manage_tip_top"
             android:textColor="@color/spark_dark_gray"
             android:textSize="18dp"
             app:layout_constraintBottom_toTopOf="@id/tv_habit_goal_manage_tip_bottom"
@@ -69,7 +69,7 @@
             android:layout_marginTop="6dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="시간과 목표를 적어봐요."
+            android:text="@string/habit_goal_manage_tip_bottom"
             android:textColor="@color/spark_dark_gray"
             android:textSize="18dp"
             app:layout_constraintBottom_toTopOf="@id/tv_habit_goal_manage_time_title"
@@ -84,7 +84,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="언제 습관을 진행할 건가요?"
+            android:text="@string/habit_goal_manage_time_title"
             android:textColor="@color/spark_black"
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_habit_goal_manage_time_example"
@@ -99,7 +99,7 @@
             android:layout_marginTop="3dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="ex. 잠자기 전 / 오후 5시"
+            android:text="@string/habit_goal_manage_time_example"
             android:textColor="@color/spark_dark_gray"
             android:textSize="14dp"
             app:layout_constraintBottom_toTopOf="@+id/et_habit_goal_time"
@@ -176,7 +176,7 @@
             android:layout_marginTop="64dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="이방에서 나만의 목표는 무엇인가요?"
+            android:text="@string/habit_goal_manage_goal_title"
             android:textColor="@color/spark_black"
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_habit_goal_manage_goal_example"
@@ -191,7 +191,7 @@
             android:layout_marginTop="3dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="ex. 포기하지 말자 / 하루에 1페이지씩"
+            android:text="@string/habit_goal_manage_goal_example"
             android:textColor="@color/spark_dark_gray"
             android:textSize="14dp"
             app:layout_constraintBottom_toTopOf="@id/et_habit_goal_goal"
@@ -259,7 +259,7 @@
             app:layout_constraintEnd_toEndOf="@+id/et_habit_goal_goal"
             app:layout_constraintTop_toTopOf="@+id/et_habit_goal_goal" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_habit_goal_complete"
             android:layout_width="0dp"
             android:layout_height="48dp"
@@ -269,7 +269,7 @@
             android:background="@{(habitGoalManageViewModel.time.length() == 0 || habitGoalManageViewModel.goal.length() == 0) ? @drawable/shape_btn_inactive : @drawable/shape_btn_active }"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
-            android:text="수정 완료"
+            android:text="@string/habit_goal_complete"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"

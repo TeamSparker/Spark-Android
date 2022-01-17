@@ -64,7 +64,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="오늘도 꺼지지 않는 스파크,"
+            android:text="@string/habit_today_comment_top"
             android:textColor="@color/spark_deep_gray"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,14 +77,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_medium_italic"
             android:includeFontPadding="false"
-            android:text="Keep going!"
+            android:text="@string/habit_today_comment_bottom"
             android:textColor="@color/spark_deep_gray"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_habit_today_comment_top" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_habit_today_certification_now"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
             android:fontFamily="@font/noto_sans_kr_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="지금 습관 인증하기"
+            android:text="@string/habit_today_certification_now"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +128,7 @@
             android:layout_marginTop="22dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="할까 말까..."
+            android:text="@string/habit_today_consider"
             android:textColor="@color/spark_dark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/view_habit_today_divider3"
@@ -142,7 +142,7 @@
             android:layout_marginTop="22dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="남은 횟수 "
+            android:text="@string/habit_today_rest_head"
             android:textColor="@color/spark_dark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/tv_habit_today_rest_mid"
@@ -169,14 +169,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="회"
+            android:text="@string/habit_today_rest_tail"
             android:textColor="@color/spark_dark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_habit_today_rest_mid"
             app:layout_constraintTop_toTopOf="@id/tv_habit_today_rest_head" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_habit_today_consider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
             android:minHeight="0dp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
-            android:text="고민중"
+            android:text="@string/habit_today_consider_btn"
             android:textColor="@color/spark_light_pinkred"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -198,7 +198,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_habit_today_consider" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_habit_today_rest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
             android:minHeight="0dp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
-            android:text="쉴래요"
+            android:text="@string/habit_today_rest_btn"
             android:textColor="@{remainCount == 0 ? @color/spark_gray : @color/spark_light_pinkred}"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
