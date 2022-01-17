@@ -11,12 +11,15 @@ import com.spark.android.data.remote.repository.AuthRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
+    private var profileImageMultiPart: MultipartBody.Part? = null
+
     val nickname = MutableLiveData("")
 
     private val _nicknameFocused = MutableLiveData<Boolean>()
@@ -63,11 +66,15 @@ class ProfileViewModel @Inject constructor(
         initDeleteMode(false)
     }
 
+    fun initProfileImgMultiPart(profileImg: MultipartBody.Part?) {
+        profileImageMultiPart = profileImg
+    }
+
     private fun initKakaoUserId(id: String) {
         _kakaoUserId.value = id
     }
 
-    fun startSignUp() {
+    fun initKakaoUserId() {
         authRepository.initKakaoUserId { id -> initKakaoUserId(id) }
     }
 
@@ -76,7 +83,7 @@ class ProfileViewModel @Inject constructor(
             authRepository.postSignUp(
                 requireNotNull(nickname.value),
                 requireNotNull(kakaoUserId.value),
-                null
+                profileImageMultiPart
             ).onSuccess { signUpResponse ->
                 authRepository.saveAccessToken(signUpResponse.data.accessToken)
                 _successSignUp.postValue(Event(true))

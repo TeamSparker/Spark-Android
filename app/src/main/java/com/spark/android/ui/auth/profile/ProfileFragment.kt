@@ -23,14 +23,18 @@ import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.popBackStack
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
+    @Inject
+    lateinit var multiPartResolver: MultiPartResolver
     private val profileViewModel by viewModels<ProfileViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profileViewModel = profileViewModel
+        profileViewModel.initKakaoUserId()
         initStatusBarStyle()
         hideKeyBoard()
         initIsFocused()
@@ -53,7 +57,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     private fun initIsFocused() {
-        binding.etProfileNickname.setOnFocusChangeListener { v, hasFocus ->
+        binding.etProfileNickname.setOnFocusChangeListener { _, hasFocus ->
             profileViewModel.initNicknameFocused(hasFocus)
         }
     }
@@ -92,13 +96,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     private fun initFragmentResultListener() {
-        setFragmentResultListener(REQUEST_PROFILE_IMG_URI) { requestKey, bundle ->
-            profileViewModel.initProfileImgUri(bundle.get(PROFILE_IMG) as Uri)
+        setFragmentResultListener(REQUEST_PROFILE_IMG_URI) { _, bundle ->
+            val uri = bundle.get(PROFILE_IMG) as Uri
+            profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(uri))
+            profileViewModel.initProfileImgUri(uri)
         }
-        setFragmentResultListener(REQUEST_PROFILE_IMG_BITMAP) { requestKey, bundle ->
-            profileViewModel.initProfileImgBitmap(bundle.get(PROFILE_IMG) as Bitmap)
+        setFragmentResultListener(REQUEST_PROFILE_IMG_BITMAP) { _, bundle ->
+            val bitmap = bundle.get(PROFILE_IMG) as Bitmap
+            profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(bitmap))
+            profileViewModel.initProfileImgBitmap(bitmap)
         }
         setFragmentResultListener(REQUEST_PROFILE_DELETE) { _, _ ->
+            profileViewModel.initProfileImgMultiPart(null)
             profileViewModel.deleteProfileImg()
         }
     }
