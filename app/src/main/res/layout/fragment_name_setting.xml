@@ -10,6 +10,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_name_setting"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.makeroom.namesetting.NameSettingFragment">
@@ -70,6 +71,7 @@
             android:inputType="textPersonName"
             android:maxLength="15"
             android:textColorHint="@color/spark_gray"
+            android:textColor="@color/spark_black"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

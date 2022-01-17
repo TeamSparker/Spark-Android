@@ -123,6 +123,17 @@
     <string name="join_code_input_again">코드 다시 입력하기</string>
     <string name="join_code_enter_waiting_room">대기방 입장하기</string>
 
+    <!--SetPurposeFragment-->
+    <string name="set_purpose_title">나의 목표 작성</string>
+    <string name="set_purpose_explain_one">\'아침 독서\' 습관방에서의</string>
+    <string name="set_purpose_explain_two">시간과 목표를 적어보세요!</string>
+    <string name="set_purpose_when">언제 습관을 진행할 건가요?</string>
+    <string name="set_purpose_when_example">ex. 잠자기 전 / 오후 5시</string>
+    <string name="set_purpose_text_limit">/15</string>
+    <string name="set_purpose_my_purpose">나만의 목표는 무엇인가요?</string>
+    <string name="set_purpose_my_purpose_example">ex. 포기하지 말자 / 하루에 1페이지씩</string>
+    <string name="set_purpose_done_button">작성 완료</string>
+
     <!-- HabitGoalManageActivity -->
     <string name="habit_goal_manage_title">나의 목표 관리</string>
     <string name="habit_goal_manage_tip_top">\'아침 독서\' 습관방의</string>
@@ -156,7 +167,6 @@
 
     <!-- HabitSendSparkCompleteToast -->
     <string name="habit_send_spark_toast_content">에게 스파크를 보냈어요!</string>
-
 
 
 </resources>
