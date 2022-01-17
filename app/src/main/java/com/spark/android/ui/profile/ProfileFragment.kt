@@ -1,8 +1,14 @@
 package com.spark.android.ui.profile
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
