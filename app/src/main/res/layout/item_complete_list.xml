@@ -13,13 +13,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect">
+        android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect_black">
 
         <View
             android:id="@+id/view_complete_item_layout_out"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect" />
+            android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect_black" />
 
 
         <ImageView
