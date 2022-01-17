@@ -31,7 +31,7 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:paddingHorizontal="32dp"
+            android:paddingHorizontal="30dp"
             android:singleLine="true"
             android:text="@string/habit_send_spark_toast_content"
             android:textColor="@color/spark_more_deep_gray"
