@@ -18,7 +18,7 @@
         tools:context=".ui.timer.TimerStartActivity">
 
         <ImageButton
-            android:id="@+id/iv_timer_quit"
+            android:id="@+id/btn_timer_quit"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="20dp"
