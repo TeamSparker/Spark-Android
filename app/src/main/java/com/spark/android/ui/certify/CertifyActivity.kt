@@ -15,6 +15,7 @@ import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.RETURN_CERTIFY_TIMER
 import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
 import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
@@ -24,6 +25,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         binding.certifyViewModel = certifyViewModel
 
         initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
         initCertifyMode()
         initCertifyBackBtnClickListener()
         initCertifyQuitBtnClickListener()
