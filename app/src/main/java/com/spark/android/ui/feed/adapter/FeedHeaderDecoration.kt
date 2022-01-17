@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.spark.android.data.remote.response.FeedListItem
+import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.databinding.ItemFeedHeaderBinding
 
 class FeedHeaderDecoration(private val stickyHeaderResolver: StickyHeaderResolver) :

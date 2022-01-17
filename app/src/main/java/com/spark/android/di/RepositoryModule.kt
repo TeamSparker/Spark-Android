@@ -1,12 +1,12 @@
 package com.spark.android.di
 
-import android.content.Context
-import com.spark.android.data.remote.repository.ProfileRepository
-import com.spark.android.data.remote.repository.ProfileRepositoryImpl
+import com.spark.android.data.local.datasource.LocalPreferencesDataSource
+import com.spark.android.data.remote.datasource.AuthDataSource
+import com.spark.android.data.remote.repository.AuthRepository
+import com.spark.android.data.remote.repository.AuthRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -15,5 +15,9 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Provides
     @Singleton
-    fun providesProfileRepository(): ProfileRepository = ProfileRepositoryImpl()
+    fun providesAuthRepository(
+        authDataSource: AuthDataSource,
+        localPreferencesDataSource: LocalPreferencesDataSource
+    ): AuthRepository =
+        AuthRepositoryImpl(authDataSource, localPreferencesDataSource)
 }

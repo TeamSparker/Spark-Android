@@ -3,8 +3,8 @@ package com.spark.android.ui.feed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.spark.android.data.remote.response.Feed
-import com.spark.android.data.remote.response.FeedListItem
+import com.spark.android.data.remote.entity.response.Feed
+import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.ui.feed.adapter.FeedAdapter
 
 class FeedViewModel : ViewModel() {

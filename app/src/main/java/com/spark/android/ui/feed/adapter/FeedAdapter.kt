@@ -6,7 +6,7 @@ import com.spark.android.BR
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.spark.android.data.remote.response.FeedListItem
+import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.databinding.ItemFeedContentBinding
 import com.spark.android.databinding.ItemFeedHeaderBinding
 import java.lang.IllegalStateException
