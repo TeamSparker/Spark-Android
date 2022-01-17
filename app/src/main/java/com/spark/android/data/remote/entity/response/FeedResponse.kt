@@ -1,4 +1,4 @@
-package com.spark.android.data.remote.response
+package com.spark.android.data.remote.entity.response
 
 data class FeedResponse(
     val statusCode: Int,

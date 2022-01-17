@@ -94,6 +94,17 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
             binding.chronometerTimer.stop()
 
         }
+
+        binding.btnTimerQuit.setOnClickListener {
+            // TimerStartActivity에서 x버튼을 누를 시 -> finish() -> HabitTodayBottomSheet로 돌아감
+        }
+
+        binding.btnTimerNextStepBottom.setOnClickListener{
+            // TimerStartActivity에서 다음 단계로 버튼 누를시 ->
+            // 1. 타이머 시간값 : binding.chronometerTimer.text
+            // 2. 룸 아이디 값
+            // 가지고 사진 인증 액티비티로 넘겨야 함
+        }
     }
 
     private fun initFormatChange() {

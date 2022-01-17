@@ -10,14 +10,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.makeroom.MakeRoomActivity">
+        tools:context=".ui.waitingroom.WaitingRoomActivity">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/container_make_room"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            app:defaultNavHost="true"
+            android:id="@+id/container_waiting_room"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:navGraph="@navigation/make_room_nav_graph"/>
+            android:layout_height="match_parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

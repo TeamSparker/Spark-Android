@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.spark.android.R
 import com.spark.android.databinding.FragmentNameSettingBinding
 import com.spark.android.ui.base.BaseFragment
@@ -22,11 +23,26 @@ class NameSettingFragment : BaseFragment<FragmentNameSettingBinding>(R.layout.fr
 
         binding.nameSettingViewModel = nameSettingViewModel
         initEditTextClearFocus()
+        initNextButton()
+        initBackButton()
     }
 
     private fun initEditTextClearFocus() {
         binding.layoutNameSetting.setOnClickListener {
             KeyBoardUtil.hide(requireActivity())
+        }
+    }
+
+    private fun initNextButton(){
+        binding.btnMakeRoomNameSettingNext.setOnClickListener {
+            val action = NameSettingFragmentDirections.actionNameSettingFragmentToSelectConfirmMethodFragment(nameSettingViewModel.habitName.value)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun initBackButton(){
+        binding.btnMakeRoomNameSettingBack.setOnClickListener {
+            requireActivity().finish()
         }
     }
 }

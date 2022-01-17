@@ -167,6 +167,7 @@
 
     <!-- HabitSendSparkCompleteToast -->
     <string name="habit_send_spark_toast_content">에게 스파크를 보냈어요!</string>
+    <string name="home_no_room">아직 습관방이 없어요.\n+버튼을 눌러 습관을 시작해 보세요!</string>
 
     <!-- CertifyActivity -->
     <string name="certify_step_one">1</string>

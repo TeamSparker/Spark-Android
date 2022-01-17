@@ -47,7 +47,36 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_home_no_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="205dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_home_toolbar"
+            app:srcCompat="@drawable/img_home_no_room" />
+
+        <TextView
+            android:id="@+id/tv_home_no_room"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/home_no_room"
+            android:lineHeight="21dp"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_home_no_room" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home_ticket"
@@ -62,7 +91,9 @@
             app:layout_constraintVertical_bias="0.0"
             tools:itemCount="5"
             tools:layout_editor_absoluteX="0dp"
-            tools:listitem="@layout/item_home_recyclerview" />
+            tools:listitem="@layout/item_home_recyclerview" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

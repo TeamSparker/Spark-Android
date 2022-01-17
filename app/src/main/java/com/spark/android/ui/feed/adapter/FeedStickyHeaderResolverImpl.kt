@@ -1,7 +1,7 @@
 package com.spark.android.ui.feed.adapter
 
 import androidx.databinding.ViewDataBinding
-import com.spark.android.data.remote.response.FeedListItem
+import com.spark.android.data.remote.entity.response.FeedListItem
 
 class FeedStickyHeaderResolverImpl(
     private val items: List<FeedListItem>,
