@@ -23,6 +23,8 @@ class NameSettingFragment : BaseFragment<FragmentNameSettingBinding>(R.layout.fr
 
         binding.nameSettingViewModel = nameSettingViewModel
         initEditTextClearFocus()
+        initNextButton()
+        initBackButton()
     }
 
     private fun initEditTextClearFocus() {
@@ -33,7 +35,8 @@ class NameSettingFragment : BaseFragment<FragmentNameSettingBinding>(R.layout.fr
 
     private fun initNextButton(){
         binding.btnMakeRoomNameSettingNext.setOnClickListener {
-            findNavController().navigate((R.id.action_nameSettingFragment_to_selectConfirmMethodFragment))
+            val action = NameSettingFragmentDirections.actionNameSettingFragmentToSelectConfirmMethodFragment(nameSettingViewModel.habitName.value)
+            findNavController().navigate(action)
         }
     }
 

@@ -17,6 +17,7 @@ import android.content.Context
 
 import android.content.Context.CLIPBOARD_SERVICE
 import androidx.core.content.ContextCompat.getSystemService
+import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
 import com.spark.android.ui.waitingroom.data.WaitingData
 
@@ -35,6 +36,8 @@ class WaitingRoomFragment :
         binding.waitingRoomData = waitingData
         initClipBoard()
         initTootipButton()
+        initMakeRoomButtonListener()
+        initSetPurposeButtonListener()
     }
 
     private fun initClipBoard() {
@@ -149,6 +152,20 @@ class WaitingRoomFragment :
                     tooltipState = false
                 }
             }
+        }
+    }
+
+    private fun initMakeRoomButtonListener(){
+        binding.btnWaitingRoomStartHabit.setOnClickListener {
+            requireActivity().finish()
+        }
+    }
+
+    private fun initSetPurposeButtonListener(){
+        binding.btnWaitingRoomRefresh.setOnClickListener {
+            val setPurposeFragment = SetPurposeFragment()
+
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container_waiting_room,setPurposeFragment).commit()
         }
     }
 

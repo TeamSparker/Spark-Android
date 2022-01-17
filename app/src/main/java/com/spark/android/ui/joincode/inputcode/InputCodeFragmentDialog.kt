@@ -54,7 +54,7 @@ class InputCodeFragmentDialog : DialogFragment() {
             binding.etInputCodeContent.clearFocus()
 
             val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {
-                this.putExtra("code", inputCodeFragmentDialogViewModel.roomCode.value)
+                this.putExtra("roomCode", inputCodeFragmentDialogViewModel.roomCode.value)
             }
             startActivity(intent)
         }

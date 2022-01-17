@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
-       
+        <activity
+            android:name=".ui.waitingroom.WaitingRoomActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.timer.TimerStartActivity"
             android:exported="true" />
