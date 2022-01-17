@@ -5,7 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
 
+        <variable
+            name="homeViewModel"
+            type="com.spark.android.ui.home.viewmodel.HomeMainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="205dp"
-            android:visibility="gone"
+            android:visibility="@{homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_home_toolbar"
@@ -64,7 +68,7 @@
         <TextView
             android:id="@+id/tv_home_no_room"
             android:layout_width="wrap_content"
-            android:visibility="gone"
+            android:visibility="@{homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
