@@ -1,5 +1,6 @@
 package com.spark.android.ui.habit
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetHabitTodayBinding
+import com.spark.android.ui.certify.CertifyActivity
 
 class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitTodayBinding? = null
@@ -37,6 +39,9 @@ class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFra
     private fun initCertifyBtnClickListener() {
         binding.btnHabitTodayCertificationNow.setOnClickListener {
             // if 문으로 스톱워치 or 사진인증 이동
+            val intent = Intent(context, CertifyActivity::class.java)
+            startActivity(intent)
+            dismiss()
         }
     }
 

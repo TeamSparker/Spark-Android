@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="certifyViewModel"
             type="com.spark.android.ui.certify.viewmodel.CertifyViewModel" />
@@ -23,7 +25,7 @@
             android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
             android:padding="10dp"
-            android:src="@drawable/ic_make_room_back"
+            android:src="@{certifyViewModel.onlyCamera ? @drawable/ic_quit : @drawable/ic_make_room_back}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +37,7 @@
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:padding="10dp"
-            android:src="@drawable/ic_quit"
+            android:src="@{certifyViewModel.onlyCamera ? null : @drawable/ic_quit}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,12 +58,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/iv_certify_photo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="145dp"
+            android:src="@drawable/shape_spark_light_gray_fill_rect"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/tv_certify_title"
+            tools:layout_editor_absoluteX="0dp" />
+
         <View
             android:id="@+id/view_certify_step_line"
             android:layout_width="60dp"
             android:layout_height="2dp"
             android:layout_marginTop="56dp"
             android:background="@color/spark_pinkred"
+            android:visibility="@{certifyViewModel.isEditing ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_certify_title" />
@@ -76,6 +89,7 @@
             android:text="@string/certify_step_one"
             android:textColor="@color/spark_gray"
             android:textSize="18dp"
+            android:visibility="@{certifyViewModel.isEditing ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/view_certify_step_line"
             app:layout_constraintEnd_toStartOf="@id/view_certify_step_line"
             app:layout_constraintTop_toTopOf="@+id/view_certify_step_line" />
@@ -90,6 +104,7 @@
             android:text="@string/certify_step_two"
             android:textColor="@color/spark_pinkred"
             android:textSize="18dp"
+            android:visibility="@{certifyViewModel.isEditing ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/view_certify_step_line"
             app:layout_constraintStart_toEndOf="@id/view_certify_step_line"
             app:layout_constraintTop_toTopOf="@+id/view_certify_step_line" />
@@ -104,6 +119,7 @@
             android:text="@string/timer_step_stopwatch"
             android:textColor="@color/spark_gray"
             android:textSize="18dp"
+            android:visibility="@{certifyViewModel.isEditing ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="@+id/tv_certify_step_one"
             app:layout_constraintStart_toStartOf="@+id/tv_certify_step_one"
             app:layout_constraintTop_toBottomOf="@id/tv_certify_step_one" />
@@ -118,24 +134,16 @@
             android:text="@string/timer_step_photo"
             android:textColor="@color/spark_pinkred"
             android:textSize="18dp"
+            android:visibility="@{certifyViewModel.isEditing ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="@+id/tv_certify_step_two"
             app:layout_constraintStart_toStartOf="@+id/tv_certify_step_two"
             app:layout_constraintTop_toBottomOf="@+id/tv_certify_step_two" />
-
-        <ImageView
-            android:id="@+id/iv_certify_photo"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="84dp"
-            android:src="@drawable/shape_spark_light_gray_fill_rect"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintTop_toBottomOf="@id/view_certify_step_line"
-            tools:layout_editor_absoluteX="0dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_certify_photo_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{certifyViewModel.isEditing ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/iv_certify_photo"
             app:layout_constraintEnd_toEndOf="@id/iv_certify_photo"
             app:layout_constraintStart_toStartOf="@id/iv_certify_photo"
@@ -189,6 +197,7 @@
             android:text="00:30:12"
             android:textColor="@color/spark_white"
             android:textSize="40dp"
+            android:visibility="@{!(certifyViewModel.onlyCamera || !certifyViewModel.isEditing) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/iv_certify_photo"
             app:layout_constraintEnd_toEndOf="@id/iv_certify_photo"
             app:layout_constraintStart_toStartOf="@id/iv_certify_photo"
@@ -209,6 +218,7 @@
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
+            android:visibility="@{!(certifyViewModel.onlyCamera || certifyViewModel.isEditing) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -228,6 +238,7 @@
             android:textAlignment="center"
             android:textColor="@color/spark_dark_pinkred"
             android:textSize="18dp"
+            android:visibility="@{certifyViewModel.isEditing ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_certify_photo_upload"
             app:layout_constraintStart_toStartOf="parent" />
@@ -248,9 +259,11 @@
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
+            android:visibility="@{certifyViewModel.isEditing ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_certify_photo_again" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

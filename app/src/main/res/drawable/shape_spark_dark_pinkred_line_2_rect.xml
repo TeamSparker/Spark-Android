@@ -3,5 +3,6 @@
     <stroke
         android:width="2dp"
         android:color="@color/spark_dark_pinkred" />
+    <solid android:color="@color/spark_white" />
     <corners android:radius="2dp" />
 </shape>
