@@ -2,6 +2,7 @@ package com.spark.android.di
 
 import com.spark.android.data.remote.service.AuthService
 import com.spark.android.data.remote.service.FeedService
+import com.spark.android.data.remote.service.HomeService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +22,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideFeedService(retrofit: Retrofit): FeedService =
         retrofit.create(FeedService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideHomeService(retrofit: Retrofit): HomeService =
+        retrofit.create(HomeService::class.java)
 }
