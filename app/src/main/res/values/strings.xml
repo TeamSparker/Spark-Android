@@ -176,6 +176,7 @@
     <string name="certify_step_two">2</string>
     <string name="certify_content_top">습관을 모두 마치셨군요!</string>
     <string name="certify_content_bottom">시간 측정에 이어 사진도 함께 인증해 보세요.</string>
+    <string name="certify_photo">사진 인증하기</string>
     <string name="certify_photo_again">다시 찍기</string>
     <string name="certify_select_again">다시 선택</string>
     <string name="certify_photo_upload">업로드하기</string>

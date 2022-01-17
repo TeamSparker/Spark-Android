@@ -97,6 +97,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
         const val STOP_SIGNUP_MODE = 0
         const val STOP_CERTIFY_PHOTO = 1
         const val STOP_CERTIFY_TIMER = 2
-        const val STOP_TIMER = 3
+        const val RETURN_CERTIFY_TIMER = 3
+        const val STOP_TIMER = 4
     }
 }
