@@ -33,6 +33,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         binding.profileViewModel = profileViewModel
         initStatusBarStyle()
         hideKeyBoard()
+        initIsFocused()
         initPictureBtnClickListener()
         initQuitBtnClickListener()
         initKakaoUserIdObserver()
@@ -48,6 +49,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun hideKeyBoard() {
         binding.layoutProfile.setOnClickListener {
             KeyBoardUtil.hide(requireActivity())
+        }
+    }
+
+    private fun initIsFocused() {
+        binding.etProfileNickname.setOnFocusChangeListener { v, hasFocus ->
+            profileViewModel.initNicknameFocused(hasFocus)
         }
     }
 

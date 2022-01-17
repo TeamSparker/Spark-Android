@@ -127,7 +127,7 @@
             android:layout_height="2dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="6dp"
-            android:background="@{profileViewModel.nickname.length() == 0 ? @color/spark_gray : @color/spark_pinkred}"
+            android:background="@{profileViewModel.nicknameFocused ? @color/spark_pinkred : @color/spark_dark_gray}"
             app:layout_constraintBottom_toBottomOf="@id/et_profile_nickname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

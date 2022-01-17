@@ -19,6 +19,9 @@ class ProfileViewModel @Inject constructor(
 ) : ViewModel() {
     val nickname = MutableLiveData("")
 
+    private val _nicknameFocused = MutableLiveData<Boolean>()
+    val nicknameFocused: LiveData<Boolean> = _nicknameFocused
+
     private val _kakaoUserId = MutableLiveData<String>()
     val kakaoUserId: LiveData<String> = _kakaoUserId
 
@@ -33,6 +36,10 @@ class ProfileViewModel @Inject constructor(
 
     private val _profileImgBitmap = MutableLiveData<Bitmap?>()
     val profileImgBitmap: LiveData<Bitmap?> = _profileImgBitmap
+
+    fun initNicknameFocused(hasFocus: Boolean) {
+        _nicknameFocused.value = !(requireNotNull(nickname.value).isEmpty() && !hasFocus)
+    }
 
     private fun initDeleteMode(deleteMode: Boolean) {
         _deleteMode.value = Event(deleteMode)
