@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="TicketData"
-            type="com.spark.android.ui.home.data.TicketData" />
+            name="room"
+            type="com.spark.android.data.remote.entity.response.Room" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +65,7 @@
                 android:layout_marginTop="21dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.roomName}"
+                android:text="@{room.roomName}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket_waiting"

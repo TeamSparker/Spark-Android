@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="TicketData"
-            type="com.spark.android.ui.home.data.TicketData" />
+            name="room"
+            type="com.spark.android.data.remote.entity.response.Room" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket"
-                setLeftBackground="@{TicketData.leftDay}"
+                setLeftBackground="@{room.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket"
-                setRightBackground="@{TicketData.isDone}"
+                setRightBackground="@{room.isDone}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,13 +49,13 @@
 
             <TextView
                 android:id="@+id/tv_home_left_ticket_d_day"
-                setLeftTicketColor="@{TicketData.leftDay}"
+                setLeftTicketColor="@{room.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/futura_bold"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay == 0 ? `D-Day` :`D-`+String.valueOf(TicketData.leftDay)}"
+                android:text="@{room.leftDay == 0 ? `D-Day` :`D-`+String.valueOf(room.leftDay)}"
                 android:textColor="@color/spark_most_light_pinkred"
                 android:textSize="31dp"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket"
@@ -65,8 +65,8 @@
 
             <TextView
                 android:id="@+id/tv_home_left_ticket_intro"
-                setLeftTicketColor="@{TicketData.leftDay}"
-                setLeftTicketComment="@{TicketData.leftDay}"
+                setLeftTicketColor="@{room.leftDay}"
+                setLeftTicketComment="@{room.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -87,7 +87,7 @@
                 android:layout_marginTop="21dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.roomName}"
+                android:text="@{room.roomName}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
@@ -102,7 +102,7 @@
                 android:layout_marginBottom="51dp"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay == 66 ? @string/home_ticket_user_with : @string/home_ticket_done_user}"
+                android:text="@{room.leftDay == 66 ? @string/home_ticket_user_with : @string/home_ticket_done_user}"
                 android:textColor="@color/spark_dark_gray"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
@@ -117,7 +117,7 @@
                 android:layout_marginBottom="23dp"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay == 66 ? `` : String.valueOf(TicketData.doneMemberNum)}"
+                android:text="@{room.leftDay == 66 ? `` : String.valueOf(room.doneMemberNum)}"
                 android:textColor="@color/spark_most_light_pinkred"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +131,7 @@
                 android:layout_marginBottom="23dp"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="@{TicketData.leftDay == 66 ? String.valueOf(TicketData.memberNum)+`명` : `/`+String.valueOf(TicketData.memberNum)+`명`}"
+                android:text="@{room.leftDay == 66 ? String.valueOf(room.memberNum)+`명` : `/`+String.valueOf(room.memberNum)+`명`}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
@@ -154,7 +154,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_life_one"
-                setRightTicketLife="@{TicketData.life}"
+                setRightTicketLife="@{room.life}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
@@ -165,7 +165,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_life_two"
-                setRightTicketLife="@{TicketData.life}"
+                setRightTicketLife="@{room.life}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
@@ -176,7 +176,7 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_life_three"
-                setRightTicketLife="@{TicketData.life}"
+                setRightTicketLife="@{room.life}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="23dp"
@@ -191,14 +191,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:visibility="@{TicketData.isDone ? View.VISIBLE : View.GONE }"
+                android:visibility="@{room.isDone ? View.VISIBLE : View.GONE }"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
                 app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title"
                 app:srcCompat="@drawable/ic_home_ticket_tag_done" />
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket_profile_one"
-                setCircleImage="@{TicketData.memberNum > 0 ? TicketData.profileImg[0] : null}"
+                setCircleImage="@{room.memberNum > 0 ? room.profileImg[0] : null}"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="14dp"
@@ -210,27 +210,27 @@
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket_profile_two"
-                setCircleImage="@{TicketData.memberNum > 1 ? TicketData.profileImg[1] : null}"
+                setCircleImage="@{room.memberNum > 1 ? room.profileImg[1] : null}"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="-8dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/shape_white_line_circle"
                 android:padding="2dp"
-                android:visibility="@{TicketData.memberNum > 1 ? View.VISIBLE : View.GONE }"
+                android:visibility="@{room.memberNum > 1 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_one" />
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket_profile_three"
-                setCircleImage="@{TicketData.memberNum > 2 ? TicketData.profileImg[2] : null}"
+                setCircleImage="@{room.memberNum > 2 ? room.profileImg[2] : null}"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="-8dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/shape_white_line_circle"
                 android:padding="2dp"
-                android:visibility="@{TicketData.memberNum > 2 ? View.VISIBLE : View.GONE }"
+                android:visibility="@{room.memberNum > 2 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_two" />
 
@@ -242,7 +242,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/shape_fill_grey_line_white_circle"
                 android:padding="2dp"
-                android:visibility="@{TicketData.memberNum > 3 ? View.VISIBLE : View.GONE }"
+                android:visibility="@{room.memberNum > 3 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_profile_three" />
 
@@ -252,10 +252,10 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="@{`+` + String.valueOf(TicketData.memberNum-3)}"
+                android:text="@{`+` + String.valueOf(room.memberNum-3)}"
                 android:textColor="@color/spark_white"
                 android:textSize="10dp"
-                android:visibility="@{TicketData.memberNum > 3 ? View.VISIBLE : View.GONE }"
+                android:visibility="@{room.memberNum > 3 ? View.VISIBLE : View.GONE }"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket_profile_extra"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket_profile_extra"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket_profile_extra"

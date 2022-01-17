@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.spark.android.data.remote.entity.response.HomeResponse
+import com.spark.android.data.remote.entity.response.Room
 import com.spark.android.databinding.ItemHomeRecyclerviewBinding
 import com.spark.android.databinding.ItemHomeRecyclerviewWaitingBinding
 import com.spark.android.ui.habit.HabitActivity
@@ -20,7 +22,7 @@ class HomeRecyclerViewAdapter :
 
     private lateinit var itemHomeRecyclerviewBinding: ItemHomeRecyclerviewBinding
     private lateinit var itemHomeRecyclerviewWaitingBinding: ItemHomeRecyclerviewWaitingBinding
-    val ticketList = mutableListOf<TicketData>()
+    val ticketList = mutableListOf<Room>()
 
     override fun getItemViewType(position: Int): Int {
         return if (ticketList[position].isStarted) {
@@ -66,25 +68,25 @@ class HomeRecyclerViewAdapter :
 
     inner class HomeRecyclerViewHolder(val binding: ItemHomeRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: TicketData) {
-            binding.ticketData = data
+        fun onBind(data: Room) {
+            binding.room = data
         }
 
         init {
-            binding.root.setOnClickListener {
-                val intent = Intent(binding.root.context,HabitActivity::class.java).apply {
-                    this.putExtra("roomId",ticketList[adapterPosition].roomId)
+            itemView.setOnClickListener {
+                val intent = Intent(it.context, HabitActivity::class.java).apply {
+                    this.putExtra("roomId", ticketList[adapterPosition].roomId)
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
-                startActivity(binding.root.context,intent,null)
+                startActivity(it.context, intent, null)
             }
         }
     }
 
     inner class HomeRecyclerViewWaitingHolder(val binding: ItemHomeRecyclerviewWaitingBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: TicketData) {
-            binding.ticketData = data
+        fun onBind(data: Room) {
+            binding.room = data
         }
     }
 
