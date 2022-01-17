@@ -10,6 +10,7 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentNameSettingBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.makeroom.namesetting.viewmodel.NameSettingViewModel
+import com.spark.android.util.KeyBoardUtil
 
 
 class NameSettingFragment : BaseFragment<FragmentNameSettingBinding>(R.layout.fragment_name_setting) {
@@ -20,5 +21,12 @@ class NameSettingFragment : BaseFragment<FragmentNameSettingBinding>(R.layout.fr
         super.onViewCreated(view, savedInstanceState)
 
         binding.nameSettingViewModel = nameSettingViewModel
+        initEditTextClearFocus()
+    }
+
+    private fun initEditTextClearFocus() {
+        binding.layoutNameSetting.setOnClickListener {
+            KeyBoardUtil.hide(requireActivity())
+        }
     }
 }

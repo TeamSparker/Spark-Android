@@ -13,12 +13,12 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
-
+import com.spark.android.util.KeyBoardUtil
 
 
 class InputCodeFragmentDialog : DialogFragment() {
 
-    private var _binding : FragmentInputCodeDialogBinding? = null
+    private var _binding: FragmentInputCodeDialogBinding? = null
     private val binding get() = _binding!!
     private val inputCodeFragmentDialogViewModel by viewModels<InputCodeFragmentDialogViewModel>()
 
@@ -34,7 +34,8 @@ class InputCodeFragmentDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_input_code_dialog,container,false)
+        _binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_input_code_dialog, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -44,14 +45,29 @@ class InputCodeFragmentDialog : DialogFragment() {
 
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
         initButtonClickListener()
+        initEditTextClearFocus()
+        initClearErrorMessage()
     }
 
-    private fun initButtonClickListener(){
+    private fun initButtonClickListener() {
         binding.btnInputCodeCheck.setOnClickListener {
-            val intent = Intent(requireActivity(),JoinCodeActivity::class.java).apply {
-                this.putExtra("code",inputCodeFragmentDialogViewModel.roomCode.value)
+            val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {
+                this.putExtra("code", inputCodeFragmentDialogViewModel.roomCode.value)
             }
             startActivity(intent)
+        }
+    }
+
+    //안됨 일단 추후에수정
+    private fun initEditTextClearFocus() {
+        binding.layoutInputCodeDialog.setOnClickListener {
+            KeyBoardUtil.hide(requireActivity())
+        }
+    }
+
+    private fun initClearErrorMessage() {
+        binding.etInputCodeContent.setOnFocusChangeListener { view, focused ->
+            if(!focused){inputCodeFragmentDialogViewModel.clearErrorMessage()}
         }
     }
 
