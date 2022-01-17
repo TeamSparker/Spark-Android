@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="remainCount"
             type="int" />
@@ -39,8 +40,8 @@
             android:id="@+id/iv_habit_today_stopwatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/ic_habit_today_stopwatch"
             app:layout_constraintEnd_toStartOf="@id/iv_habit_today_photo"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -94,6 +95,7 @@
             android:fontFamily="@font/noto_sans_kr_bold"
             android:gravity="center"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/habit_today_certification_now"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
@@ -204,8 +206,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="54dp"
-            android:clickable="false"
             android:background="@{remainCount == 0 ? @drawable/shape_habit_today_inactive : @drawable/shape_habit_today_active}"
+            android:clickable="false"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:gravity="center"
             android:includeFontPadding="false"
