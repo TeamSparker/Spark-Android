@@ -5,9 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="profileViewModel"
-            type="com.spark.android.ui.profile.ProfileViewModel" />
+            type="com.spark.android.ui.auth.profile.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/spark_white"
-        tools:context=".ui.profile.ProfileFragment">
+        tools:context=".ui.auth.profile.ProfileFragment">
 
         <ImageButton
             android:id="@+id/btn_profile_quit"
@@ -72,14 +74,15 @@
 
         <ImageView
             android:id="@+id/iv_profile_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            profileImgBitmap="@{profileViewModel.profileImgBitmap}"
+            profileImgUri="@{profileViewModel.profileImgUri}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:contentDescription="@string/profile_desc_photo"
-            android:src="@drawable/ic_profile_photo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_profile_info_3" />
+            app:layout_constraintBottom_toBottomOf="@id/btn_profile_get_photo"
+            app:layout_constraintEnd_toEndOf="@id/btn_profile_get_photo"
+            app:layout_constraintStart_toStartOf="@id/btn_profile_get_photo"
+            app:layout_constraintTop_toTopOf="@id/btn_profile_get_photo" />
 
         <ImageButton
             android:id="@+id/btn_profile_get_photo"
@@ -124,7 +127,7 @@
             android:layout_height="2dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="6dp"
-            android:background="@{profileViewModel.nickname.length() == 0 ? @color/spark_gray : @color/spark_pinkred}"
+            android:background="@{profileViewModel.nicknameFocused ? @color/spark_pinkred : @color/spark_dark_gray}"
             app:layout_constraintBottom_toBottomOf="@id/et_profile_nickname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -164,7 +167,7 @@
             android:enabled="@{profileViewModel.nickname.length() == 0 ? false : true}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
-            android:onClick="@{()->profileViewModel.startSignUp()}"
+            android:onClick="@{()->profileViewModel.postSignUp()}"
             android:paddingTop="12dp"
             android:paddingBottom="14dp"
             android:stateListAnimator="@null"

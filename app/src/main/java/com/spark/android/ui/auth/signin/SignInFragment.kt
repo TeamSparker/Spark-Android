@@ -1,4 +1,4 @@
-package com.spark.android.ui.signin
+package com.spark.android.ui.auth.signin
 
 import android.os.Bundle
 import android.view.View
@@ -17,10 +17,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
-    private val signInViewModel by viewModels<SignInViewModel>()
-
     @Inject
     lateinit var kakaoLoginService: KakaoLoginService
+    private val signInViewModel by viewModels<SignInViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,6 +1,8 @@
 package com.spark.android.util
 
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -11,6 +13,30 @@ import com.spark.android.R
 import java.lang.IllegalStateException
 
 object BindingAdapters {
+    @JvmStatic
+    @BindingAdapter(value = ["profileImgUri", "profileImgBitmap"], requireAll = false)
+    fun setProfileImg(imageview: ImageView, imgUri: Uri?, imgBitmap: Bitmap?) {
+        if (imgUri == null && imgBitmap == null) {
+            Glide.with(imageview.context)
+                .load(R.drawable.ic_profile_photo)
+                .circleCrop()
+                .into(imageview)
+        } else {
+            imgUri?.let { uri ->
+                Glide.with(imageview.context)
+                    .load(uri)
+                    .circleCrop()
+                    .into(imageview)
+            }
+            imgBitmap?.let { bitmap ->
+                Glide.with(imageview.context)
+                    .load(bitmap)
+                    .circleCrop()
+                    .into(imageview)
+            }
+        }
+    }
+
     @JvmStatic
     @BindingAdapter("setImage")
     fun setImage(imageview: ImageView, url: String) {
