@@ -24,7 +24,7 @@
             android:background="@android:color/transparent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_timer_quit" />
+            app:srcCompat="@drawable/ic_quit" />
 
         <TextView
             android:id="@+id/tv_join_code_title"
