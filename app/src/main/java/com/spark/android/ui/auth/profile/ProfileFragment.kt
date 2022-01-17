@@ -1,4 +1,4 @@
-package com.spark.android.ui.profile
+package com.spark.android.ui.auth.profile
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -13,8 +13,8 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.main.MainActivity
-import com.spark.android.ui.profile.ProfileBottomSheet.Companion.DELETE_MODE
-import com.spark.android.ui.profile.ProfileBottomSheet.Companion.REQUEST_PROFILE_DIALOG
+import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.DELETE_MODE
+import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_PROFILE_DIALOG
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_SIGNUP_MODE
 import com.spark.android.util.EventObserver

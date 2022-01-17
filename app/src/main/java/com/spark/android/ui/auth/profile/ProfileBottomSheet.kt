@@ -1,4 +1,4 @@
-package com.spark.android.ui.profile
+package com.spark.android.ui.auth.profile
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -17,12 +17,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetProfileBinding
-import com.spark.android.ui.profile.ProfileFragment.Companion.PROFILE_IMG
+import com.spark.android.ui.auth.profile.ProfileFragment.Companion.PROFILE_IMG
 import android.graphics.Bitmap
 import androidx.fragment.app.setFragmentResultListener
-import com.spark.android.ui.profile.ProfileFragment.Companion.REQUEST_PROFILE_DELETE
-import com.spark.android.ui.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_BITMAP
-import com.spark.android.ui.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_URI
+import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_DELETE
+import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_BITMAP
+import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_URI
 
 class ProfileBottomSheet() : BottomSheetDialogFragment() {
     private var _binding: BottomSheetProfileBinding? = null

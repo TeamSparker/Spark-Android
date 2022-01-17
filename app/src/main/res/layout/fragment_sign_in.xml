@@ -7,14 +7,14 @@
 
         <variable
             name="signInViewModel"
-            type="com.spark.android.ui.signin.SignInViewModel" />
+            type="com.spark.android.ui.auth.signin.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_signin"
-        tools:context=".ui.signin.SignInFragment">
+        tools:context=".ui.auth.signin.SignInFragment">
 
         <ImageView
             android:layout_width="wrap_content"

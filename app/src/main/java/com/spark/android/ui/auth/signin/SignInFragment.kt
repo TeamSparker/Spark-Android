@@ -1,4 +1,4 @@
-package com.spark.android.ui.signin
+package com.spark.android.ui.auth.signin
 
 import android.os.Bundle
 import android.view.View

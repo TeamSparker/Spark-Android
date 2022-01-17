@@ -9,7 +9,7 @@
 
         <variable
             name="profileViewModel"
-            type="com.spark.android.ui.profile.ProfileViewModel" />
+            type="com.spark.android.ui.auth.profile.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/spark_white"
-        tools:context=".ui.profile.ProfileFragment">
+        tools:context=".ui.auth.profile.ProfileFragment">
 
         <ImageButton
             android:id="@+id/btn_profile_quit"
