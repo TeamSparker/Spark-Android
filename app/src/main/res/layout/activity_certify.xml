@@ -122,12 +122,12 @@
             app:layout_constraintStart_toStartOf="@+id/tv_certify_step_two"
             app:layout_constraintTop_toBottomOf="@+id/tv_certify_step_two" />
 
-        <View
-            android:id="@+id/view_certify_photo_bg"
+        <ImageView
+            android:id="@+id/iv_certify_photo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="84dp"
-            android:background="@drawable/shape_spark_light_gray_fill_rect"
+            android:src="@drawable/shape_spark_light_gray_fill_rect"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toBottomOf="@id/view_certify_step_line"
             tools:layout_editor_absoluteX="0dp" />
@@ -136,10 +136,10 @@
             android:id="@+id/layout_certify_photo_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/view_certify_photo_bg"
-            app:layout_constraintEnd_toEndOf="@id/view_certify_photo_bg"
-            app:layout_constraintStart_toStartOf="@id/view_certify_photo_bg"
-            app:layout_constraintTop_toTopOf="@id/view_certify_photo_bg">
+            app:layout_constraintBottom_toBottomOf="@id/iv_certify_photo"
+            app:layout_constraintEnd_toEndOf="@id/iv_certify_photo"
+            app:layout_constraintStart_toStartOf="@id/iv_certify_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_certify_photo">
 
             <ImageView
                 android:id="@+id/iv_certify_spark_logo"
@@ -157,7 +157,7 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:includeFontPadding="false"
-                android:text="습관을 모두 마치셨군요!"
+                android:text="@string/certify_content_top"
                 android:textColor="@color/spark_gray"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:includeFontPadding="false"
-                android:text="시간 측정에 이어 사진도 함께 인증해 보세요."
+                android:text="@string/certify_content_bottom"
                 android:textColor="@color/spark_gray"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -179,6 +179,20 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_certify_content_top" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_certify_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_bold"
+            android:includeFontPadding="false"
+            android:text="00:30:12"
+            android:textColor="@color/spark_white"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_certify_photo"
+            app:layout_constraintEnd_toEndOf="@id/iv_certify_photo"
+            app:layout_constraintStart_toStartOf="@id/iv_certify_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_certify_photo" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_certify_photo"
@@ -198,6 +212,45 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_certify_photo_again"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_spark_dark_pinkred_line_2_rect"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:text="@string/certify_photo_again"
+            android:textAlignment="center"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_certify_photo_upload"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_certify_photo_upload"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_btn_active"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:text="@string/certify_photo_upload"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_certify_photo_again" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
