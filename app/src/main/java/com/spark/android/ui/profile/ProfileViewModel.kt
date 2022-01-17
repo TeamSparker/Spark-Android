@@ -37,7 +37,8 @@ class ProfileViewModel @Inject constructor(
                 requireNotNull(nickname.value),
                 requireNotNull(kakaoUserId.value),
                 null
-            ).onSuccess {
+            ).onSuccess { signUpResponse ->
+                authRepository.saveAccessToken(signUpResponse.data.accessToken)
                 _successSignUp.postValue(Event(true))
             }.onFailure {
                 Log.d("Profile_SignUp", it.message.toString())
