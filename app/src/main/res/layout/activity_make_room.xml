@@ -14,7 +14,10 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/container_make_room"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:navGraph="@navigation/make_room_nav_graph"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -51,6 +51,8 @@ class InputCodeFragmentDialog : DialogFragment() {
 
     private fun initButtonClickListener() {
         binding.btnInputCodeCheck.setOnClickListener {
+            binding.etInputCodeContent.clearFocus()
+
             val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {
                 this.putExtra("code", inputCodeFragmentDialogViewModel.roomCode.value)
             }
@@ -58,10 +60,10 @@ class InputCodeFragmentDialog : DialogFragment() {
         }
     }
 
-    //안됨 일단 추후에수정
+
     private fun initEditTextClearFocus() {
         binding.layoutInputCodeDialog.setOnClickListener {
-            KeyBoardUtil.hide(requireActivity())
+            binding.etInputCodeContent.clearFocus()
         }
     }
 
