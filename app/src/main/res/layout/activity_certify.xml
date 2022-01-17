@@ -145,7 +145,7 @@
             android:id="@+id/layout_certify_photo_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{certifyViewModel.certifyMode != CertifyMode.NORMAL_READY_MODE ? View.VISIBLE : View.GONE}"
+            android:visibility="@{certifyViewModel.certifyMode == CertifyMode.NORMAL_READY_MODE ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/iv_certify_photo"
             app:layout_constraintEnd_toEndOf="@id/iv_certify_photo"
             app:layout_constraintStart_toStartOf="@id/iv_certify_photo"
