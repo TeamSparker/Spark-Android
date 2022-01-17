@@ -5,18 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CertifyViewModel : ViewModel() {
-    private val _onlyCamera = MutableLiveData<Boolean>()
-    private val _isEditing = MutableLiveData<Boolean>()
+    private val _certifyMode = MutableLiveData<Int>()
+    val certifyMode: LiveData<Int> = _certifyMode
 
-    val onlyCamera: LiveData<Boolean> = _onlyCamera
-    val isEditing: LiveData<Boolean> = _isEditing
-
-    fun initOnlyCamera(onlyCamera:Boolean){
-        _onlyCamera.value = onlyCamera
+    fun initCertifyMode(certifyMode: Int) {
+        _certifyMode.value = certifyMode
     }
-
-    fun initIsEditing(isEditing:Boolean){
-        _isEditing.value = isEditing
-    }
-
 }

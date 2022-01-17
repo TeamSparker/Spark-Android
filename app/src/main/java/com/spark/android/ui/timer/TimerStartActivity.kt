@@ -17,6 +17,8 @@ import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RESET
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RUN
 import com.spark.android.util.DialogUtil
+import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,6 +33,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         super.onCreate(savedInstanceState)
         binding.timerStartViewModel = timerStartViewModel
 
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
         initFormatChange()
         initClickEvent()
 
@@ -145,5 +149,11 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
     override fun onPause() {
         super.onPause()
         overridePendingTransition(0, 0)
+    }
+
+    override fun onBackPressed() {
+        DialogUtil(DialogUtil.STOP_CERTIFY_TIMER) {
+            finish()
+        }.show(supportFragmentManager, this.javaClass.name)
     }
 }
