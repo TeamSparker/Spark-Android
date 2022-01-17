@@ -26,7 +26,7 @@
             android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
             android:padding="10dp"
-            android:src="@drawable/ic_timer_quit"
+            android:src="@drawable/ic_quit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
