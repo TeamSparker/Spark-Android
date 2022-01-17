@@ -89,12 +89,14 @@
     <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
 
-
     <!-- TimerStartActivity -->
     <string name="timer_step_stopwatch">스톱워치</string>
     <string name="timer_step_photo">사진</string>
     <string name="timer_bottom_btn_mode_start">시작하기</string>
     <string name="timer_bottom_btn_mode_next">다음 단계로</string>
+    <string name="timer_dialog_stop_content">이미 측정한 시간 기록이 사라집니다.\n그래도 나가시겠습니까?</string>
+    <string name="timer_dialog_stop_timer_content">스톱워치를 초기화하시겠습니까?</string>
+    <string name="timer_dialog_stop_timer">초기화</string>
 
     <!-- WaitingRoomFragment -->
     <string name="waiting_room_copy_code">코드 복사</string>
@@ -177,6 +179,8 @@
     <string name="certify_photo_again">다시 찍기</string>
     <string name="certify_select_again">다시 선택</string>
     <string name="certify_photo_upload">업로드하기</string>
+    <string name="certify_dialog_content">인증이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
+    <string name="certify_dialog_stop_certify">나가기</string>
 
     <!-- CertifyBottomSheet -->
     <string name="certify_camera">카메라 촬영</string>
