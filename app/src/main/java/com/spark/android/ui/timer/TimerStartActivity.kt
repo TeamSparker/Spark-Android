@@ -16,6 +16,7 @@ import com.spark.android.ui.timer.viewmodel.TimerStartViewModel
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_PAUSE
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RESET
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RUN
+import com.spark.android.util.DialogUtil
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -65,16 +66,18 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         }
 
         binding.btnTimerStop.setOnClickListener {
-            timerStartViewModel.initTimerReset()
-            binding.btnTimerStop.visibility = View.INVISIBLE
-            binding.btnTimerPause.visibility = View.INVISIBLE
-            binding.btnTimerPlay.visibility = View.INVISIBLE
-            binding.btnTimerStartBottom.visibility = View.VISIBLE
 
-            pauseTime = 0L
-            binding.chronometerTimer.base = SystemClock.elapsedRealtime()
-            initFormatChange()
-            binding.chronometerTimer.stop()
+            DialogUtil(DialogUtil.STOP_TIMER) {
+                timerStartViewModel.initTimerReset()
+                binding.btnTimerStop.visibility = View.INVISIBLE
+                binding.btnTimerPause.visibility = View.INVISIBLE
+                binding.btnTimerPlay.visibility = View.INVISIBLE
+                binding.btnTimerStartBottom.visibility = View.VISIBLE
+                pauseTime = 0L
+                binding.chronometerTimer.base = SystemClock.elapsedRealtime()
+                initFormatChange()
+                binding.chronometerTimer.stop()
+            }.show(supportFragmentManager, this.javaClass.name)
 
         }
 
@@ -99,7 +102,12 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
         binding.btnTimerQuit.setOnClickListener {
             // TimerStartActivity에서 x버튼을 누를 시 -> finish() -> HabitTodayBottomSheet로 돌아감
-            finish()
+
+            binding.btnTimerQuit.setOnClickListener {
+                DialogUtil(DialogUtil.STOP_CERTIFY_TIMER) {
+                    finish()
+                }.show(supportFragmentManager, this.javaClass.name)
+            }
         }
 
         binding.btnTimerNextStepBottom.setOnClickListener{
