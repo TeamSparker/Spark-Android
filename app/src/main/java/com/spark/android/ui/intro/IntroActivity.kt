@@ -3,6 +3,7 @@ package com.spark.android.ui.intro
 import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityIntroBinding
 import com.spark.android.ui.auth.AuthActivity
@@ -13,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro) {
+    private val introViewModel by viewModels<IntroViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initStatusBarColor(R.color.spark_black)
@@ -26,14 +28,16 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
 
     private fun initLottieListener() {
         binding.lottieIntro.addAnimatorListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator?) {}
-
             override fun onAnimationEnd(animation: Animator?) {
-                moveToAuthActivity()
+                if (introViewModel.hasToken()) {
+                    moveToMainActivity()
+                } else {
+                    moveToAuthActivity()
+                }
             }
 
+            override fun onAnimationStart(animation: Animator?) {}
             override fun onAnimationCancel(animation: Animator?) {}
-
             override fun onAnimationRepeat(animation: Animator?) {}
         })
     }
@@ -49,5 +53,6 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
         startActivity(Intent(this, MainActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         })
+        finish()
     }
 }
