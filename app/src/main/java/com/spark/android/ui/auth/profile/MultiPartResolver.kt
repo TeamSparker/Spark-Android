@@ -20,7 +20,7 @@ class MultiPartResolver @Inject constructor(
         val inputStream = context.contentResolver.openInputStream(uri)
         val byteArrayOutputStream = ByteArrayOutputStream()
         BitmapFactory.decodeStream(inputStream, null, options)
-            ?.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
+            ?.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream)
         val file = File(uri.toString())
         val surveyBody =
             byteArrayOutputStream.toByteArray().toRequestBody("image/png".toMediaTypeOrNull())
