@@ -24,7 +24,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
         binding.homeViewModel = homeMainViewModel
 
-        homeMainViewModel.getHomeAllRoom()
+
         initHomeRecyclerViewAdapter()
         homeMainViewModel.roomList.observe(this) {
             homeRecyclerViewAdapter.ticketList.addAll(it)
@@ -33,6 +33,12 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         }
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        homeMainViewModel.getHomeAllRoom(-1,5)
+    }
+
     private fun initHomeRecyclerViewAdapter() {
         homeRecyclerViewAdapter = HomeRecyclerViewAdapter()
 

@@ -11,7 +11,9 @@ import com.spark.android.ui.makeroom.selectconfirmmethod.SelectConfirmMethodFrag
 import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MakeRoomActivity : BaseActivity<ActivityMakeRoomBinding>(R.layout.activity_make_room) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
