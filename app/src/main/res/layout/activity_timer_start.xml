@@ -141,35 +141,37 @@
                 android:id="@+id/btn_timer_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_timer_stopwatch_play"
                 android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_timer_stop"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/btn_timer_pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_timer_stopwatch_pause"
                 android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_timer_stop"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/btn_timer_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_timer_stopwatch_stop"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@id/btn_timer_pause"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
