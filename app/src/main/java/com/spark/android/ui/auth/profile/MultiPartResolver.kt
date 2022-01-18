@@ -20,21 +20,21 @@ class MultiPartResolver @Inject constructor(
         val inputStream = context.contentResolver.openInputStream(uri)
         val byteArrayOutputStream = ByteArrayOutputStream()
         BitmapFactory.decodeStream(inputStream, null, options)
-            ?.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream)
+            ?.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
         val file = File(replaceFileName(uri.toString()))
         val surveyBody =
-            byteArrayOutputStream.toByteArray().toRequestBody("image/png".toMediaTypeOrNull())
+            byteArrayOutputStream.toByteArray().toRequestBody("image/jpeg".toMediaTypeOrNull())
         return MultipartBody.Part.createFormData("image", file.name, surveyBody)
     }
 
     fun createImgMultiPart(bitmap: Bitmap): MultipartBody.Part {
         val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
         val file = File(replaceFileName(bitmap.toString()))
         val surveyBody =
-            byteArrayOutputStream.toByteArray().toRequestBody("image/png".toMediaTypeOrNull())
+            byteArrayOutputStream.toByteArray().toRequestBody("image/jpeg".toMediaTypeOrNull())
         return MultipartBody.Part.createFormData("file", file.name, surveyBody)
     }
 
-    private fun replaceFileName(fileName: String): String = "${fileName.replace(".", "_")}.png"
+    private fun replaceFileName(fileName: String): String = "${fileName.replace(".", "_")}.jpeg"
 }
