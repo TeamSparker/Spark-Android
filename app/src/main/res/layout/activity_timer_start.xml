@@ -115,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="87dp"
-            android:background="#c7c7c7"
+            android:background="@color/spark_light_gray"
             app:layout_constraintTop_toBottomOf="@id/view_timer_stepLine" />
 
         <Chronometer
