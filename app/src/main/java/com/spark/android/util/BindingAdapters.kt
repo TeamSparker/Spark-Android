@@ -90,9 +90,12 @@ object BindingAdapters {
                     leftDay <= 1 -> ContextCompat.getColor(context, R.color.spark_pinkred)
                     leftDay <= 7 -> ContextCompat.getColor(context, R.color.spark_bright_pinkred)
                     leftDay <= 33 -> ContextCompat.getColor(context, R.color.spark_light_pinkred)
-                    leftDay <= 59 -> ContextCompat.getColor(context, R.color.spark_more_light_pinkred)
-                    leftDay <= 63 -> ContextCompat.getColor(context, R.color.spark_most_light_pinkred)
-                    leftDay == 66 -> ContextCompat.getColor(context, R.color.spark_most_light_pinkred)
+                    leftDay <= 59 -> ContextCompat.getColor(context,
+                        R.color.spark_more_light_pinkred)
+                    leftDay <= 63 -> ContextCompat.getColor(context,
+                        R.color.spark_most_light_pinkred)
+                    leftDay == 66 -> ContextCompat.getColor(context,
+                        R.color.spark_most_light_pinkred)
                     else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketColor 오류")
                 }
             )
@@ -183,6 +186,22 @@ object BindingAdapters {
     @BindingAdapter("setFloatingIconTint")
     fun setFloatingIconTint(floatingBtn: FloatingActionButton, color: Int) {
         floatingBtn.imageTintList = ColorStateList.valueOf(color)
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["certifyImgUri", "certifyImgBitmap"], requireAll = false)
+    fun setCertifyImg(imageview: ImageView, imgUri: Uri?, imgBitmap: Bitmap?) {
+        if (imgUri == null && imgBitmap == null) {
+            imageview.setImageResource(R.drawable.shape_spark_light_gray_fill_rect)
+        } else {
+            imgUri?.let { uri ->
+                imageview.setImageURI(uri)
+            }
+            imgBitmap?.let { bitmap ->
+                imageview.setImageBitmap(bitmap)
+            }
+            imageview.clipToOutline = true
+        }
     }
 
 }

@@ -19,9 +19,9 @@ class HomeMainViewModel @Inject constructor(
     private val _roomList = MutableLiveData<List<Room>>()
     val roomList: LiveData<List<Room>> = _roomList
 
-    fun getHomeAllRoom() {
+    fun getHomeAllRoom(lastid: Int, size: Int) {
         viewModelScope.launch {
-            val response = homeRepository.getHomeAllRoom(-1, 5)
+            val response = homeRepository.getHomeAllRoom(lastid, size)
             _roomList.postValue(response.data?.rooms)
         }
     }

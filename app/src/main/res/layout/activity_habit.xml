@@ -298,6 +298,7 @@
                 android:fontFamily="@font/noto_sans_kr_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:stateListAnimator="@null"
                 android:text="@string/habit_today_certification_btn"
                 android:textColor="@color/spark_white"
                 android:textSize="18dp"
