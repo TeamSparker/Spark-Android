@@ -10,7 +10,9 @@ import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.feed.adapter.FeedAdapter
 import com.spark.android.ui.feed.adapter.FeedHeaderDecoration
 import com.spark.android.ui.feed.adapter.FeedStickyHeaderResolverImpl
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private val feedViewModel by viewModels<FeedViewModel>()
     private val feedAdapter = FeedAdapter()
