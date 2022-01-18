@@ -1,7 +1,6 @@
 package com.spark.android.data.remote.repository
 
 import com.spark.android.data.remote.entity.request.SetPurposeRequest
-import com.spark.android.data.remote.entity.response.SetPurposeResponse
 import com.spark.android.data.remote.service.SetPurposeService
 import javax.inject.Inject
 

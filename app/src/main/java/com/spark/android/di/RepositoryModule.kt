@@ -55,6 +55,13 @@ object RepositoryModule {
         refreshService: RefreshService
     ): RefreshRepository =
         RefreshRepositoryImpl(refreshService)
+
+    @Provides
+    @Singleton
+    fun providesStartHabittRepository(
+        startHabitService: StartHabitService
+    ): StartHabitRepository =
+        StartHabitRepositoryImpl(startHabitService)
 }
 
 

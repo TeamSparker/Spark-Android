@@ -4,9 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.spark.android.data.remote.entity.response.HomeResponse
 import com.spark.android.data.remote.entity.response.Room
 import com.spark.android.databinding.ItemHomeRecyclerviewBinding
 import com.spark.android.databinding.ItemHomeRecyclerviewWaitingBinding
