@@ -94,8 +94,8 @@ class ProfileViewModel @Inject constructor(
                 kakaoUserId,
                 fcmToken,
                 profileImageMultiPart
-            ).onSuccess { signUpResponse ->
-                authRepository.saveAccessToken(signUpResponse.data.accessToken)
+            ).onSuccess { response ->
+                authRepository.saveAccessToken(response.data.accessToken)
                 _successSignUp.postValue(Event(true))
             }.onFailure {
                 initIsLoading(false)

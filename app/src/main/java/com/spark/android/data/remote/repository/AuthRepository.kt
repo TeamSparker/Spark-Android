@@ -1,5 +1,6 @@
 package com.spark.android.data.remote.repository
 
+import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
 import okhttp3.Callback
 import okhttp3.MultipartBody
@@ -15,7 +16,7 @@ interface AuthRepository {
         kakaoUserId: String,
         fcmToken: String,
         profileImg: MultipartBody.Part?
-    ): Result<SignUpResponse>
+    ): Result<BaseResponse<SignUpResponse>>
 
     fun saveAccessToken(accessToken: String)
 }

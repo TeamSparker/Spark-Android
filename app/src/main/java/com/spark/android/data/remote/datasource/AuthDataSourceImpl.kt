@@ -1,5 +1,6 @@
 package com.spark.android.data.remote.datasource
 
+import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
 import com.spark.android.data.remote.service.AuthService
 import okhttp3.MultipartBody
@@ -12,7 +13,7 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun postSignUp(
         map: Map<String, RequestBody>,
         profileImg: MultipartBody.Part?
-    ): SignUpResponse {
+    ): BaseResponse<SignUpResponse> {
         return if (profileImg == null) {
             authService.postSignUp(map)
         } else {

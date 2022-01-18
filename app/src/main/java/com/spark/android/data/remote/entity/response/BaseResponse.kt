@@ -1,8 +1,14 @@
 package com.spark.android.data.remote.entity.response
 
+import com.google.gson.annotations.SerializedName
+
 data class BaseResponse<T>(
-    val status: Int,
-    val success: Boolean,
+    @SerializedName("data")
+    val `data`: T,
+    @SerializedName("message")
     val message: String,
-    val `data`: T?
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean
 )
