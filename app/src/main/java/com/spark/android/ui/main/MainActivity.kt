@@ -91,6 +91,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     fun initMakeRoomClickListener(){
         val intent = Intent(this,MakeRoomActivity::class.java)
         startActivity(intent)
+        FloatingAnimationUtil.closeFabAnimation(binding.fabHomeMain,
+            binding.fabHomeMakeRoom,
+            binding.fabHomeJoinCode,
+            binding.layoutMainFabBackground,
+            binding.tvFabMakeRoom,
+            binding.tvFabJoinCode)
+        fabState = !fabState
     }
 
     fun initMakeJoinCodeListener(){

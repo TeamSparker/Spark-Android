@@ -52,4 +52,22 @@ object FloatingAnimationUtil {
     fun closeToastAnimation (textview: TextView) {
         ObjectAnimator.ofFloat(textview, "translationY", 0f).apply { start() }
     }
+
+    fun closeFabAnimation(
+        buttonMain: FloatingActionButton,
+        buttonMakeRoom: FloatingActionButton,
+        buttonJoinCode: FloatingActionButton,
+        backgroundLayout: ConstraintLayout,
+        textViewMakeRoom: TextView,
+        textViewJoinCode: TextView,
+    ) {
+        ObjectAnimator.ofFloat(buttonJoinCode, "translationY", 0f).apply { start() }
+        ObjectAnimator.ofFloat(buttonMakeRoom, "translationY", 0f).apply { start() }
+        ObjectAnimator.ofFloat(textViewJoinCode, "translationY", 0f).apply { start() }
+        ObjectAnimator.ofFloat(textViewMakeRoom, "translationY", 0f).apply { start() }
+        textViewJoinCode.visibility = View.GONE
+        textViewMakeRoom.visibility = View.GONE
+        buttonMain.setImageResource(R.drawable.ic_fab_plus)
+        backgroundLayout.visibility = View.GONE
+    }
 }
