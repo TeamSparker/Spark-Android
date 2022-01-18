@@ -40,10 +40,12 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("setImage")
-    fun setImage(imageview: ImageView, url: String) {
-        Glide.with(imageview.context)
-            .load(url)
-            .into(imageview)
+    fun setImage(imageview: ImageView, url: String?) {
+        url?.let {
+            Glide.with(imageview.context)
+                .load(url)
+                .into(imageview)
+        }
     }
 
     @JvmStatic

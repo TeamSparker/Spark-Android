@@ -1,20 +1,39 @@
 package com.spark.android.ui.feed
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.entity.response.Feed
 import com.spark.android.data.remote.entity.response.FeedListItem
+import com.spark.android.data.remote.repository.FeedRepository
 import com.spark.android.ui.feed.adapter.FeedAdapter
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FeedViewModel : ViewModel() {
-    private val _feedList = MutableLiveData(listOf<Feed>())
+@HiltViewModel
+class FeedViewModel @Inject constructor(
+    private val feedRepository: FeedRepository
+) : ViewModel() {
+    private val _feedList = MutableLiveData<List<Feed>>()
     val feedList: LiveData<List<Feed>> = _feedList
 
-    private val _feedListWithHeader = MutableLiveData(listOf<FeedListItem>())
+    private val _feedListWithHeader = MutableLiveData<List<FeedListItem>>()
     val feedListWithHeader: LiveData<List<FeedListItem>> = _feedListWithHeader
 
-    fun initFeedList() {}
+    fun initFeedList() {
+        viewModelScope.launch {
+            feedRepository.getFeedList(-1, 10)
+                .onSuccess { response ->
+                    _feedList.postValue(response.data.feedList)
+                }
+                .onFailure {
+                    Log.d("Feed_GetFeedList", it.message.toString())
+                }
+        }
+    }
 
     fun addHeaderToFeedList() {
         var date = ""
@@ -27,7 +46,7 @@ class FeedViewModel : ViewModel() {
                         "$index$date",
                         FeedAdapter.FEED_HEADER_TYPE,
                         formatDate(date),
-                        "${feed.day}요일",
+                        feed.day,
                         null
                     )
                 )
@@ -37,7 +56,7 @@ class FeedViewModel : ViewModel() {
                     feed.recordId.toString(),
                     FeedAdapter.FEED_CONTENT_TYPE,
                     formatDate(date),
-                    "${feed.day}요일",
+                    feed.day,
                     feed
                 )
             )

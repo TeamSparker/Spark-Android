@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="feed"
             type="com.spark.android.data.remote.entity.response.Feed" />
@@ -42,6 +44,7 @@
             android:text="@{feed.timerRecord}"
             android:textColor="@color/spark_white"
             android:textSize="40dp"
+            android:visibility="@{feed.timerRecord == null ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/iv_feed_certificate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:fontFamily="@font/futura_medium"
-            android:text="@{String.valueOf(feed.sparkNum)}"
+            android:text="@{String.valueOf(feed.sparkCount)}"
             app:layout_constraintBottom_toBottomOf="@id/tv_feed_spark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_feed_spark_fire"
