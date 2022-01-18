@@ -40,4 +40,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideSetPurposeService(retrofit: Retrofit): SetPurposeService =
         retrofit.create(SetPurposeService::class.java )
+
+    @Provides
+    @Singleton
+    fun provideRefreshService(retrofit: Retrofit): RefreshService =
+        retrofit.create(RefreshService::class.java)
 }
