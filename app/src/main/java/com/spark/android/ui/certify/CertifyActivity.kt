@@ -90,6 +90,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
                     showStopCertifyPhotoDialog()
                 }
 
+                }
             }
         }
     }
