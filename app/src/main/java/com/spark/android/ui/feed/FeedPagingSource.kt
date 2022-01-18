@@ -4,30 +4,32 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.spark.android.data.remote.entity.response.Feed
+import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.data.remote.service.FeedService
+import com.spark.android.ui.feed.adapter.FeedAdapter
 import java.lang.Exception
-import java.lang.NullPointerException
 
 class FeedPagingSource(
     private val service: FeedService,
     private val limit: Int
-) : PagingSource<Int, Feed>() {
+) : PagingSource<Int, FeedListItem>() {
     private var currentIdKey: Int = 1
     private val lastIdMap = hashMapOf<Int, Int>()
+    private var shownDate = ""
 
     init {
         initFirstId()
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Feed>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, FeedListItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             when {
                 anchorPage?.prevKey != null -> {
-                    lastIdMap[currentIdKey + 1]
+                    lastIdMap[++currentIdKey]
                 }
                 anchorPage?.nextKey != null -> {
-                    lastIdMap[currentIdKey - 1]
+                    lastIdMap[--currentIdKey]
                 }
                 else -> {
                     null
@@ -36,16 +38,19 @@ class FeedPagingSource(
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Feed> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, FeedListItem> {
         return try {
-            currentIdKey = params.key ?: 1
-            val lastId = lastIdMap[currentIdKey] ?: throw NullPointerException("lastIdMap에 없는 키 접근")
-            lastIdMap[currentIdKey] = lastId
-            val response = service.getFeedList(lastId, limit).data.feedList
+            val idKey = currentIdKey
+            val lastId = params.key ?: -1
+            val feedList = service.getFeedList(lastId, limit).data.feedList
+            if (feedList.size == limit) {
+                lastIdMap[idKey + 1] = feedList.last().recordId
+            }
+            val response = addHeaderToFeedList(feedList)
             return LoadResult.Page(
                 data = response,
-                prevKey = if (currentIdKey == 1) null else lastIdMap[currentIdKey - 1],
-                nextKey = if (response.isEmpty()) null else response.last().recordId
+                prevKey = if (idKey <= 1) null else lastIdMap[idKey - 1],
+                nextKey = if (feedList.size < limit) null else lastIdMap[idKey + 1]
             )
         } catch (e: Exception) {
             Log.d(this.javaClass.toString(), e.message.toString())
@@ -53,9 +58,44 @@ class FeedPagingSource(
         }
     }
 
-
     private fun initFirstId() {
         lastIdMap[1] = FIRST_ID
+    }
+
+    private fun addHeaderToFeedList(feedList: List<Feed>): List<FeedListItem> {
+        val feedListWithHeader = mutableListOf<FeedListItem>()
+        feedList.forEachIndexed { index, feed ->
+            if (feed.date != shownDate) {
+                shownDate = feed.date
+                feedListWithHeader.add(
+                    FeedListItem(
+                        "$index$shownDate",
+                        FeedAdapter.FEED_HEADER_TYPE,
+                        formatDate(shownDate),
+                        feed.day,
+                        null
+                    )
+                )
+            }
+            feedListWithHeader.add(
+                FeedListItem(
+                    feed.recordId.toString(),
+                    FeedAdapter.FEED_CONTENT_TYPE,
+                    formatDate(shownDate),
+                    feed.day,
+                    feed
+                )
+            )
+        }
+        return feedListWithHeader
+    }
+
+    private fun formatDate(date: String): String {
+        val dateArray = date.split("-")
+        val year = dateArray[0]
+        val month = dateArray[1]
+        val dayOfMonth = dateArray[2]
+        return "${year}년 ${month}월 ${dayOfMonth}일"
     }
 
     companion object {
