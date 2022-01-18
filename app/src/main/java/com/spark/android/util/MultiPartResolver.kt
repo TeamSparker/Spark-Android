@@ -1,4 +1,4 @@
-package com.spark.android.ui.auth.profile
+package com.spark.android.util
 
 import android.content.Context
 import android.graphics.Bitmap

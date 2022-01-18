@@ -19,6 +19,7 @@ import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_SIGNUP_MODE
 import com.spark.android.util.EventObserver
 import com.spark.android.util.KeyBoardUtil
+import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.popBackStack
