@@ -30,16 +30,18 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
         initStatusBarColor(R.color.spark_white)
         initStatusBarTextColorToWhite()
-        initFormatChange()
+        val timerRecord = intent.getStringExtra("timerRecord")
+        initFormatChange(timerRecord)
         initClickEvent()
-
-        val extras = intent.extras ?: return
-        val myVisible = extras.getInt("myVisible")
-        val myInvisible = extras.getInt("myInvisible")
-
+        val myVisible = intent.getIntExtra("myVisible",View.INVISIBLE)
         binding.btnTimerStop.visibility = myVisible
         binding.btnTimerPlay.visibility = myVisible
+        val myInvisible = intent.getIntExtra("myInvisible",View.VISIBLE)
         binding.btnTimerStartBottom.visibility = myInvisible
+
+
+
+        //binding.chronometerTimer.base = SystemClock.elapsedRealtime() - (nr_of_min * 60000)
 
         //initTimerStateObserver()
     }
@@ -82,7 +84,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
                 binding.btnTimerStartBottom.visibility = View.VISIBLE
                 pauseTime = 0L
                 binding.chronometerTimer.base = SystemClock.elapsedRealtime()
-                initFormatChange()
+                initFormatChange(null)
                 binding.chronometerTimer.stop()
             }.show(supportFragmentManager, this.javaClass.name)
 
@@ -132,10 +134,24 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         }
     }
 
-    private fun initFormatChange() {
+    private fun initFormatChange(timerRecord:String?) {
         val chrono = binding.chronometerTimer
-        chrono.base = SystemClock.elapsedRealtime()
-        chrono.text = "00:00:00"
+//        chrono.base = SystemClock.elapsedRealtime()
+//        chrono.text = "00:00:00"
+
+        if(timerRecord.isNullOrBlank()){
+            chrono.base = SystemClock.elapsedRealtime()
+            chrono.text = "00:00:00"
+        } else{
+            val timeArray = requireNotNull(timerRecord).split(":")
+            val hour = timeArray[0].toLong()
+            val min = timeArray[1].toLong()
+            val sec = timeArray[2].toLong()
+            pauseTime = (hour * 3600L + min * 60L + sec) * (-1000L)
+            //chrono.base = SystemClock.elapsedRealtime() - pauseTime*1000L
+            chrono.text = timerRecord
+        }
+
 
         chrono.onChronometerTickListener =
             OnChronometerTickListener { chronometer ->
