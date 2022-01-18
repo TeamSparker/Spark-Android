@@ -244,18 +244,19 @@
             app:layout_constraintTop_toBottomOf="@+id/et_set_purpose_my_purpose" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/btn_set_purpose_finish"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:text="@string/set_purpose_done_button"
-            android:textSize="18dp"
-            android:textColor="@color/spark_white"
-            android:fontFamily="@font/noto_sans_kr_bold"
-            android:includeFontPadding="false"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="40dp"
             android:background="@{setPurposeViewModel.myPurpose.length() == 0 || setPurposeViewModel.habitWhen.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active}"
+            android:enabled="@{setPurposeViewModel.myPurpose.length() == 0 || setPurposeViewModel.habitWhen.length() == 0 ? false : true }"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@string/set_purpose_done_button"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

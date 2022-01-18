@@ -5,6 +5,7 @@ import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.repository.*
 import com.spark.android.data.remote.service.HomeService
 import com.spark.android.data.remote.service.MakeRoomService
+import com.spark.android.data.remote.service.SetPurposeService
 import com.spark.android.data.remote.service.WaitingRoomInfoService
 import dagger.Module
 import dagger.Provides
@@ -44,7 +45,12 @@ object RepositoryModule {
     ): WaitingRoomInfoRepository =
         WaitingRoomInfoRepositoryImpl(waitingRoomInfoService)
 
-
+    @Provides
+    @Singleton
+    fun providesSetPurposeRepository(
+        setPurposeService: SetPurposeService
+    ): SetPurposeRepository =
+        SetPurposeRepositoryImpl(setPurposeService)
 }
 
 

@@ -37,11 +37,11 @@ class SelectConfirmMethodFragment :
     private fun initOpenWaitingRoom() {
         binding.btnMakeRoomSelectConfirmMethodEnterWaiting.setOnClickListener {
 
-            val requestData = selectConfirmMethodViewModel.methodState.value?.let { it1 ->
-                args.roomName?.let { it2 ->
+            val requestData = selectConfirmMethodViewModel.methodState.value?.let { methodState ->
+                args.roomName?.let { roomName ->
                     MakeRoomRequest(
-                        it2,
-                        it1
+                        roomName,
+                        methodState
                     )
                 }
             }

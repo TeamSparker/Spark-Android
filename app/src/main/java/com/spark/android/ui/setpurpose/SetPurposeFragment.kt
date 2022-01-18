@@ -7,24 +7,39 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.spark.android.R
+import com.spark.android.data.remote.entity.request.SetPurposeRequest
 import com.spark.android.databinding.FragmentSetPurposeBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
+import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.util.KeyBoardUtil
+import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
-
+@AndroidEntryPoint
 class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.fragment_set_purpose) {
 
     private val setPurposeViewModel by viewModels<SetPurposeViewModel>()
+    private var roomId by Delegates.notNull<Int>()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRoomId()
         binding.setPurposeViewModel = setPurposeViewModel
         initEditTextClearFocus()
         initPurposeEditTextFocusListener()
         initWhenEditTextFocusListener()
+        initsettingPurposeBackButton()
+        initsettingPurposeFinish()
     }
+
+
+    private fun initRoomId() {
+        roomId = arguments?.getInt("roomId", -1) ?: -1
+    }
+
 
     private fun initEditTextClearFocus() {
         binding.layoutSetPurpose.setOnClickListener {
@@ -53,6 +68,41 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                 binding.tvSetPurposeExplainOne.visibility = View.VISIBLE
                 binding.tvSetPurposeExplainTwo.visibility = View.VISIBLE
             }
+        }
+    }
+
+    private fun initsettingPurposeFinish() {
+        binding.btnSetPurposeFinish.setOnClickListener {
+            setPurposeViewModel.setPurpose(
+                roomId,
+                SetPurposeRequest(
+                    setPurposeViewModel.habitWhen.value!!,
+                    setPurposeViewModel.myPurpose.value!!
+                )
+            )
+            setPurposeViewModel.networkState.observe(this) {
+                val waitingRoomFragment = WaitingRoomFragment()
+
+                var bundle = Bundle()
+                bundle.putInt("roomId", roomId)
+                waitingRoomFragment.arguments = bundle
+
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
+            }
+        }
+    }
+
+    private fun initsettingPurposeBackButton() {
+        binding.btnSetPurposeQuit.setOnClickListener {
+            val waitingRoomFragment = WaitingRoomFragment()
+
+            var bundle = Bundle()
+            bundle.putInt("roomId", roomId)
+            waitingRoomFragment.arguments = bundle
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
         }
     }
 }

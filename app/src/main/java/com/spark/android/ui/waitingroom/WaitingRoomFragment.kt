@@ -54,6 +54,7 @@ class WaitingRoomFragment :
 
         initMakeRoomButtonListener()
         initSetPurposeButtonListener()
+        initMoveHomeButtonListener()
     }
 
     private fun getRoomId() {
@@ -134,22 +135,32 @@ class WaitingRoomFragment :
 
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
+            requireActivity().finish()
+        }
+    }
+
+    private fun initSetPurposeButtonListener() {
+        binding.btnWaitingRoomEditPurpose.setOnClickListener {
             val setPurposeFragment = SetPurposeFragment()
+
+            var bundle = Bundle()
+            bundle.putInt("roomId",roomId)
+            setPurposeFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container_waiting_room, setPurposeFragment).commit()
         }
     }
 
-    private fun initSetPurposeButtonListener() {
-        binding.btnWaitingRoomRefresh.setOnClickListener {
+    private fun initMoveHomeButtonListener() {
+        binding.btnWaitingRoomMoveHome.setOnClickListener {
             requireActivity().finish()
         }
     }
 
-    private fun initMoveHomeButtonListener() {
-        binding.btnWaitingRoomMoveHome.setOnClickListener {
-            requireActivity().finish()
+    private fun initRefreshButtonListener(){
+        binding.btnWaitingRoomRefresh.setOnClickListener {
+
         }
     }
 }

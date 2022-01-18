@@ -35,4 +35,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideWaitingRoomInfoService(retrofit: Retrofit): WaitingRoomInfoService =
         retrofit.create(WaitingRoomInfoService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSetPurposeService(retrofit: Retrofit): SetPurposeService =
+        retrofit.create(SetPurposeService::class.java )
 }
