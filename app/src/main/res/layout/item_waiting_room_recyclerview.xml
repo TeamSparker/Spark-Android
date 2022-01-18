@@ -6,7 +6,7 @@
     <data>
         <variable
             name="members"
-            type="com.spark.android.ui.waitingroom.data.WaitingData.Members" />
+            type="com.spark.android.data.remote.entity.response.Member" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             android:textSize="16dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="@{members.nickName}"
+            android:text="@{members.nickname}"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_waiting_room_recyclerview_picture"
             app:layout_constraintStart_toStartOf="@+id/iv_waiting_room_recyclerview_picture"

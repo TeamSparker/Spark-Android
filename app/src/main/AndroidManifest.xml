@@ -20,25 +20,32 @@
         android:theme="@style/Theme.SparkAndroid">
         <activity
             android:name=".ui.waitingroom.WaitingRoomActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.certify.CertifyActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.timer.TimerStartActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.habit.HabitGoalManageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.joincode.JoinCodeActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.makeroom.MakeRoomActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.storage.StoragePhotoCollectionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.habit.HabitActivity"
             android:exported="false"
