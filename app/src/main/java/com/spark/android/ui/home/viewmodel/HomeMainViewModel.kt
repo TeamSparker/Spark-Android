@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.spark.android.data.remote.entity.response.HomeResponse
 import com.spark.android.data.remote.entity.response.Room
 import com.spark.android.data.remote.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

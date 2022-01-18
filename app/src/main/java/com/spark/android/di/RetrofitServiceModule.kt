@@ -45,4 +45,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideRefreshService(retrofit: Retrofit): RefreshService =
         retrofit.create(RefreshService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideStartHabitService(retrofit: Retrofit): StartHabitService =
+        retrofit.create(StartHabitService::class.java)
 }

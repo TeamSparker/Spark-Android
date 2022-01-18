@@ -136,6 +136,7 @@ class WaitingRoomFragment :
 
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
+            waitingRoomViewModel.startHabit(roomId)
             requireActivity().finish()
         }
     }
