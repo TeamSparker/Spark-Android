@@ -2,6 +2,7 @@ package com.spark.android.ui.certify
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityCertifyBinding
@@ -40,6 +41,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         binding.btnCertifyBack.setOnClickListener {
             val intent = Intent(this, TimerStartActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                putExtra("myVisible",View.VISIBLE)
             }
             // put extra
             startActivity(intent)

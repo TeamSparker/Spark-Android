@@ -2,30 +2,21 @@ package com.spark.android.ui.timer
 
 import android.content.Intent
 import android.os.Bundle
-import com.spark.android.ui.base.BaseActivity
-import android.widget.Chronometer
-import android.widget.Chronometer.OnChronometerTickListener
 import android.os.SystemClock
 import android.view.View
-import android.widget.Toast
-import com.spark.android.R
+import android.widget.Chronometer.OnChronometerTickListener
 import androidx.activity.viewModels
+import com.spark.android.R
 import com.spark.android.databinding.ActivityTimerStartBinding
+import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.CertifyActivity
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel
-import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_PAUSE
-import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RESET
-import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RUN
 import com.spark.android.util.DialogUtil
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.activity_timer_start) {
     private val timerStartViewModel by viewModels<TimerStartViewModel>()
     var pauseTime = 0L
-    //  private lateinit var timer: Chronometer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +24,11 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
         initFormatChange()
         initClickEvent()
+
+        val extras = intent.extras ?: return
+        val myVisible = extras.getInt("myVisible")
+        binding.btnTimerStop.visibility = myVisible
+        binding.btnTimerPlay.visibility = myVisible
 
         //initTimerStateObserver()
     }
@@ -110,7 +106,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
             }
         }
 
-        binding.btnTimerNextStepBottom.setOnClickListener{
+        binding.btnTimerNextStepBottom.setOnClickListener {
             // TimerStartActivity에서 다음 단계로 버튼 누를시 ->
             // 1. 타이머 시간값 : binding.chronometerTimer.text
             // 2. 룸 아이디 값
