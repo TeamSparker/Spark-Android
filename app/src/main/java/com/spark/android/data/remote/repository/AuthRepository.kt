@@ -8,9 +8,12 @@ import okhttp3.RequestBody
 interface AuthRepository {
     fun initKakaoUserId(initId: (String) -> Unit)
 
+    fun getFcmToken(getFcmToken: (String) -> Unit)
+
     suspend fun postSignUp(
         nickname: String,
-        kakaoUserId:String,
+        kakaoUserId: String,
+        fcmToken: String,
         profileImg: MultipartBody.Part?
     ): Result<SignUpResponse>
 
