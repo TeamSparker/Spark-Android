@@ -2,6 +2,7 @@ package com.spark.android.ui.certify
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityCertifyBinding
@@ -76,6 +77,11 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     private fun initCertifyBackBtnClickListener() {
         binding.btnCertifyBack.setOnClickListener {
+
+            val intent = Intent(this, TimerStartActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                putExtra("myVisible",View.VISIBLE)
+
             when (certifyViewModel.certifyMode.value) {
                 NORMAL_READY_MODE, NORMAL_MODE -> {
                     moveToTimerActivity()
@@ -83,6 +89,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
                 ONLY_CAMERA_MODE -> {
                     showStopCertifyPhotoDialog()
                 }
+
             }
         }
     }

@@ -19,7 +19,7 @@ class HabitGoalManageActivity :
 
         binding.habitGoalManageViewModel = habitGoalManageViewModel
 
-        initStatusBarColor(R.color.spark_black)
+        initStatusBarColor(R.color.spark_white)
         initStatusBarTextColorToWhite()
 
         initEditTextClearFocus()
