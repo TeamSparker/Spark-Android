@@ -81,6 +81,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
             val intent = Intent(this, TimerStartActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 putExtra("myVisible",View.VISIBLE)
+            }
 
             when (certifyViewModel.certifyMode.value) {
                 NORMAL_READY_MODE, NORMAL_MODE -> {
@@ -89,9 +90,10 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
                 ONLY_CAMERA_MODE -> {
                     showStopCertifyPhotoDialog()
                 }
-
-                }
             }
+
+            startActivity(intent)
+            finish()
         }
     }
 
