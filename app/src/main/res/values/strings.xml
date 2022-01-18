@@ -112,7 +112,7 @@
     <string name="waiting_room_no_purpose">습관을 시작하기 전에</string>
     <string name="waiting_room_no_purpose_second_line">시간과 목표를 작성해 주세요!</string>
     <string name="waiting_room_copy_code_toast">코드를 복사했어요!</string>
-    <string name="waiting_room_tooltip_picture">특정 순간을 담아 사진으로 인증해요</string>
+    <string name="waiting_room_tooltip_picture">특정 순간을 담아 사진으로 인증해요!</string>
     <string name="waiting_room_tooltip_timer">진행 시간을 측정한 후 사진과 함께 인증해요!</string>
 
     <!--InputCodeFragmentDialog-->
