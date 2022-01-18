@@ -36,6 +36,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
 
     override fun onResume() {
         super.onResume()
+        homeRecyclerViewAdapter.ticketList.clear()
         homeMainViewModel.getHomeAllRoom(-1,5)
     }
 

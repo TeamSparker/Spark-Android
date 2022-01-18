@@ -1,9 +1,6 @@
 package com.spark.android.di
 
-import com.spark.android.data.remote.service.AuthService
-import com.spark.android.data.remote.service.FeedService
-import com.spark.android.data.remote.service.HomeService
-import com.spark.android.data.remote.service.MakeRoomService
+import com.spark.android.data.remote.service.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,4 +30,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideMakeRoomService(retrofit: Retrofit): MakeRoomService =
         retrofit.create(MakeRoomService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideWaitingRoomInfoService(retrofit: Retrofit): WaitingRoomInfoService =
+        retrofit.create(WaitingRoomInfoService::class.java)
 }

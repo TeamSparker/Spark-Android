@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="waitingRoomData"
-            type="com.spark.android.ui.waitingroom.data.WaitingData" />
+            name="waitingRoomViewModel"
+            type="com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +36,7 @@
             android:layout_marginTop="33dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="@{waitingRoomData.roomName}"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.roomName}"
             android:textColor="@color/spark_black"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
             android:layout_height="1dp"
             android:layout_marginEnd="8dp"
             android:background="@color/spark_dark_gray"
-            android:visibility="@{waitingRoomData.fromStart ? View.VISIBLE : View.GONE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.fromStart == true ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_confirm_picture"
             app:layout_constraintEnd_toStartOf="@+id/tv_waiting_room_confirm_picture"
             app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_confirm_picture" />
@@ -119,7 +119,7 @@
             android:text="@string/waiting_room_confirn_timer"
             android:textColor="@color/spark_dark_gray"
             android:textSize="16dp"
-            android:visibility="@{waitingRoomData.fromStart ? View.VISIBLE : View.GONE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.fromStart == true ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_confirm_picture"
             app:layout_constraintEnd_toStartOf="@+id/view_waiting_room_hyphen"
             app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_confirm_picture"
@@ -194,7 +194,7 @@
             android:layout_marginTop="29dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="나의 목표"
+            android:text="@string/waiting_room_purpose_title"
             android:textColor="@color/spark_deep_gray"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -213,7 +213,7 @@
 
         <ImageView
             android:id="@+id/iv_waiting_room_profile_image"
-            setCircleImage="@{waitingRoomData.reqUser.profileImg}"
+            setCircleImage="@{waitingRoomViewModel.waitingRoomInfo.reqUser.profileImg}"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="20dp"
@@ -230,7 +230,7 @@
             android:layout_marginTop="-12dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="@{waitingRoomData.reqUser.nickName}"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.reqUser.nickname}"
             android:textColor="@color/spark_black"
             android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/iv_waiting_room_profile_image"
@@ -248,7 +248,7 @@
             android:text="@string/waiting_room_when"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
-            android:visibility="@{waitingRoomData.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toEndOf="@+id/iv_waiting_room_profile_image"
             app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_nick_name" />
 
@@ -262,7 +262,7 @@
             android:text="@string/waiting_room_purpose"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
-            android:visibility="@{waitingRoomData.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="@+id/tv_waiting_room_when"
             app:layout_constraintStart_toStartOf="@+id/tv_waiting_room_when"
             app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_when" />
@@ -274,10 +274,10 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="@{waitingRoomData.reqUser.moment}"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.reqUser.moment}"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
-            android:visibility="@{waitingRoomData.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_when"
             app:layout_constraintStart_toEndOf="@+id/tv_waiting_room_when"
             app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_when"
@@ -290,10 +290,10 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="@{waitingRoomData.reqUser.purpose}"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.reqUser.purpose}"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
-            android:visibility="@{waitingRoomData.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_purpose"
             app:layout_constraintStart_toEndOf="@+id/tv_waiting_room_purpose"
             app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_purpose"
@@ -311,7 +311,7 @@
             android:text="@string/waiting_room_no_purpose"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
-            android:visibility="@{waitingRoomData.reqUser.isPurposeSet ? View.GONE : View.VISIBLE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@+id/iv_waiting_room_profile_image"
             app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_nick_name" />
 
@@ -325,7 +325,7 @@
             android:text="@string/waiting_room_no_purpose_second_line"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
-            android:visibility="@{waitingRoomData.reqUser.isPurposeSet ? View.GONE : View.VISIBLE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="@+id/tv_waiting_room_no_purpose"
             app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_no_purpose" />
 
@@ -359,7 +359,7 @@
             android:layout_marginStart="4dp"
             android:fontFamily="@font/futura_medium"
             android:includeFontPadding="false"
-            android:text="@{String.valueOf(waitingRoomData.members.size())}"
+            android:text="@{String.valueOf(waitingRoomViewModel.waitingRoomInfo.members.size())}"
             android:textColor="@color/spark_deep_gray"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_we_sparker"
@@ -415,6 +415,7 @@
             android:background="@drawable/shape_spark_deep_gray_fill_rect"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="center"
+            android:visibility="gone"
             android:includeFontPadding="false"
             android:text="@string/waiting_room_copy_code_toast"
             android:textColor="@color/spark_white"
@@ -437,7 +438,7 @@
             android:text="@string/waiting_room_start_habit"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
-            android:visibility="@{waitingRoomData.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isHost ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

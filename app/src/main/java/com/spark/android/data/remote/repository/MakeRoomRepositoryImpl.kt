@@ -9,7 +9,6 @@ import javax.inject.Inject
 class MakeRoomRepositoryImpl @Inject constructor(
     private val makeRoomService: MakeRoomService
 ) : MakeRoomRepository {
-
     override suspend fun makeRoom(
         body: MakeRoomRequest
     ) = makeRoomService.makeRoom(body)

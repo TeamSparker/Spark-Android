@@ -62,7 +62,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
-            android:background="@{selectConfirmMethodViewModel.methodState ? @drawable/shape_spark_most_light_pinkred_fill_line_rect : @drawable/shape_spark_light_gray_line_rect }"
+            android:background="@{!selectConfirmMethodViewModel.methodState ? @drawable/shape_spark_most_light_pinkred_fill_line_rect : @drawable/shape_spark_light_gray_line_rect }"
             android:onClick="@{()->selectConfirmMethodViewModel.selectMethodPicture()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -79,7 +79,7 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
             android:text="@string/select_confirm_method_picture_title"
-            android:textColor="@{selectConfirmMethodViewModel.methodState ? @color/spark_pinkred : @color/spark_deep_gray}"
+            android:textColor="@{!selectConfirmMethodViewModel.methodState ? @color/spark_pinkred : @color/spark_deep_gray}"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/view_make_room_select_confirm_method_picture"
             app:layout_constraintTop_toTopOf="@+id/view_make_room_select_confirm_method_picture" />
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:src="@{selectConfirmMethodViewModel.methodState ? @drawable/img_select_confirm_method_active_photo_sticker : @drawable/img_select_confirm_method_inactive_photo_sticker }"
+            android:src="@{!selectConfirmMethodViewModel.methodState ? @drawable/img_select_confirm_method_active_photo_sticker : @drawable/img_select_confirm_method_inactive_photo_sticker }"
             app:layout_constraintBottom_toBottomOf="@+id/view_make_room_select_confirm_method_picture"
             app:layout_constraintEnd_toEndOf="@+id/view_make_room_select_confirm_method_picture"
             tools:src="@drawable/img_select_confirm_method_active_photo_sticker" />
@@ -116,7 +116,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
-            android:background="@{selectConfirmMethodViewModel.methodState ? @drawable/shape_spark_light_gray_line_rect : @drawable/shape_spark_most_light_pinkred_fill_line_rect  }"
+            android:background="@{selectConfirmMethodViewModel.methodState ? @drawable/shape_spark_most_light_pinkred_fill_line_rect :@drawable/shape_spark_light_gray_line_rect }"
             android:onClick="@{()->selectConfirmMethodViewModel.selectMethodTimer()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +132,7 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
             android:text="@string/select_confirm_method_add_timer_title"
-            android:textColor="@{selectConfirmMethodViewModel.methodState ? @color/spark_deep_gray : @color/spark_pinkred}"
+            android:textColor="@{selectConfirmMethodViewModel.methodState ? @color/spark_pinkred : @color/spark_deep_gray }"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/view_make_room_select_confirm_method_add_timer"
             app:layout_constraintTop_toTopOf="@+id/view_make_room_select_confirm_method_add_timer" />
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:src="@{selectConfirmMethodViewModel.methodState ? @drawable/img_select_confirm_method_inactive_photo_sticker : @drawable/img_select_confirm_method_active_photo_sticker }"
+            android:src="@{selectConfirmMethodViewModel.methodState ? @drawable/img_select_confirm_method_active_photo_sticker :@drawable/img_select_confirm_method_inactive_photo_sticker }"
             app:layout_constraintBottom_toBottomOf="@+id/view_make_room_select_confirm_method_add_timer"
             app:layout_constraintEnd_toEndOf="@+id/view_make_room_select_confirm_method_add_timer"
             tools:src="@drawable/img_select_confirm_method_inactive_photo_sticker" />
@@ -169,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
-            android:src="@{selectConfirmMethodViewModel.methodState ? @drawable/img_select_confirm_method_inactive_stop_watch_sticker : @drawable/img_select_confirm_method_active_stop_watch_sticker }"
+            android:src="@{selectConfirmMethodViewModel.methodState ? @drawable/img_select_confirm_method_active_stop_watch_sticker : @drawable/img_select_confirm_method_inactive_stop_watch_sticker }"
             app:layout_constraintBottom_toBottomOf="@+id/view_make_room_select_confirm_method_add_timer"
             app:layout_constraintEnd_toStartOf="@+id/iv_method_timer_photo_sticker"
             tools:src="@drawable/img_select_confirm_method_inactive_stop_watch_sticker" />

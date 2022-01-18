@@ -37,7 +37,7 @@ class SelectConfirmMethodViewModel @Inject constructor(
     }
 
     companion object{
-        const val METHOD_PICTURE = true
-        const val METHOD_TIMER = false
+        const val METHOD_PICTURE = false
+        const val METHOD_TIMER = true
     }
 }
