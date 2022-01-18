@@ -21,6 +21,7 @@ import com.spark.android.util.initStatusBarTextColorToWhite
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
     private val multiPartResolver = MultiPartResolver(this)
+    var timerRecord : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
         initStatusBarColor(R.color.spark_white)
         initStatusBarTextColorToWhite()
+        initIntentData()
         initImgUriObserver()
         initImgBitmapObserver()
         initCertifyMode()
@@ -36,6 +38,12 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         initCertifyPhotoBtnClickListener()
         initCertifyPhotoAgainBtnClickListener()
         initCertifyPhotoUploadBtnClickListener()
+    }
+
+    private fun initIntentData() {
+        timerRecord = intent.getStringExtra("timerRecord")
+        // get Room id
+        binding.tvCertifyTimer.text = timerRecord
     }
 
     private fun initImgUriObserver() {
@@ -63,8 +71,10 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     private fun moveToTimerActivity() {
         val intent = Intent(this, TimerStartActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            putExtra("myVisible",View.VISIBLE)
+            putExtra("myInvisible", View.INVISIBLE)
+            putExtra("timerRecord", timerRecord)
         }
-        // put extra
         startActivity(intent)
         finish()
     }
@@ -77,12 +87,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     private fun initCertifyBackBtnClickListener() {
         binding.btnCertifyBack.setOnClickListener {
-
-            val intent = Intent(this, TimerStartActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                putExtra("myVisible",View.VISIBLE)
-            }
-
             when (certifyViewModel.certifyMode.value) {
                 NORMAL_READY_MODE, NORMAL_MODE -> {
                     moveToTimerActivity()
@@ -91,9 +95,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
                     showStopCertifyPhotoDialog()
                 }
             }
-
-            startActivity(intent)
-            finish()
         }
     }
 
