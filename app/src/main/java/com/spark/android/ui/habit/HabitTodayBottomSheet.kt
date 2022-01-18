@@ -35,6 +35,7 @@ class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFra
 
         initCertifyBtnClickListener()
         initConsiderBtnClickListener()
+        initRestBtnClickListener()
     }
 
     private fun initCertifyBtnClickListener() {
