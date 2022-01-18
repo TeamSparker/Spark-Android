@@ -59,7 +59,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initHabitTodayBtnClickListener() {
         binding.btnHabitTodayCertification.setOnClickListener {
-            HabitTodayBottomSheet(0).show(supportFragmentManager, this.javaClass.name)
+            HabitTodayBottomSheet(1).show(supportFragmentManager, this.javaClass.name)
         }
     }
 
