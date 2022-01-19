@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -55,4 +56,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideJoinCodeRoomInfoService(retrofit: Retrofit): JoinCodeRoomInfoService =
         retrofit.create(JoinCodeRoomInfoService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideJoinCodeRoomDoneService(retrofit: Retrofit): JoinCodeRoomDoneService =
+        retrofit.create(JoinCodeRoomDoneService::class.java)
 }

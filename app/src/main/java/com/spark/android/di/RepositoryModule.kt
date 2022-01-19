@@ -77,6 +77,13 @@ object RepositoryModule {
         joinCodeRoomInfoService: JoinCodeRoomInfoService
     ): JoinCodeRoomInfoRepository =
         JoinCodeRoomInfoRepositoryImpl(joinCodeRoomInfoService)
+
+    @Provides
+    @Singleton
+    fun providesJoinCodeRoomDoneRepository(
+        joinCodeRoomDoneService: JoinCodeRoomDoneService
+    ): JoinCodeRoomDoneRepository =
+        JoinCodeRoomDoneRepositoryImpl(joinCodeRoomDoneService)
 }
 
 
