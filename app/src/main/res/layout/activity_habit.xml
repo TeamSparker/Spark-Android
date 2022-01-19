@@ -53,7 +53,7 @@
                     android:id="@+id/iv_habit_background"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bg_habit_sparkflake1"
+                    setHabitBackground="@{habitViewModel.habitInfo.leftDay}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -153,7 +153,7 @@
                     android:focusable="false"
                     android:max="66"
                     android:progress="@{66-habitViewModel.habitInfo.leftDay}"
-                    android:progressDrawable="@drawable/layer_list_habit_progressbar"
+                    setProgressBarBackground="@{habitViewModel.habitInfo.leftDay}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_habit_teamlife_first" />

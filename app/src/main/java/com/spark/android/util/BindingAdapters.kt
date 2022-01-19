@@ -1,15 +1,20 @@
 package com.spark.android.util
 
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
+import org.xmlpull.v1.XmlPullParser
 import java.lang.IllegalStateException
 
 object BindingAdapters {
@@ -201,6 +206,46 @@ object BindingAdapters {
                 imageview.setImageBitmap(bitmap)
             }
             imageview.clipToOutline = true
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setProgressBarBackground")
+    fun setProgressBarBackground(progressBar: ProgressBar, leftDay: Int?) {
+        val resources = progressBar.context.resources
+        if (leftDay != null) {
+            progressBar.progressDrawable =
+                (
+                when {
+                    leftDay == 0 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_6,null)
+                    leftDay <= 1 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_5,null)
+                    leftDay <= 7 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_4,null)
+                    leftDay <= 33 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_3,null)
+                    leftDay <= 59 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_2,null)
+                    leftDay <= 63 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_1,null)
+                    leftDay == 66 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_1,null)
+                    else -> throw IllegalStateException("bindingAdapter setProgressBarLeftBackground error")
+                }
+            )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setHabitBackground")
+    fun setHabitBackground(imageview: ImageView, leftDay: Int?) {
+        if (leftDay != null) {
+            imageview.setImageResource(
+                when {
+                    leftDay == 0 -> R.drawable.bg_habit_sparkflake6
+                    leftDay <= 1 -> R.drawable.bg_habit_sparkflake5
+                    leftDay <= 7 -> R.drawable.bg_habit_sparkflake4
+                    leftDay <= 33 -> R.drawable.bg_habit_sparkflake3
+                    leftDay <= 59 -> R.drawable.bg_habit_sparkflake2
+                    leftDay <= 63 -> R.drawable.bg_habit_sparkflake1
+                    leftDay == 66 -> R.drawable.bg_habit_sparkflake1
+                    else -> throw IllegalStateException("bindingAdapter setHabitBackground error")
+                }
+            )
         }
     }
 

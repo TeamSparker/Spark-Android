@@ -10,7 +10,7 @@
         <scale android:scaleWidth="100%">
             <shape>
                 <corners android:radius="2dp"/>
-                <solid android:color="@color/spark_white_pinkred"/>
+                <solid android:color="@color/spark_most_light_pinkred"/>
             </shape>
         </scale>
     </item>
