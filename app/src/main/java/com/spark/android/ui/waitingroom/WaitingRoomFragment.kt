@@ -165,6 +165,10 @@ class WaitingRoomFragment :
     private fun initRefreshButtonListener() {
         binding.btnWaitingRoomRefresh.setOnClickListener {
             FloatingAnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
+            binding.btnWaitingRoomRefresh.isEnabled = false
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.btnWaitingRoomRefresh.isEnabled = true
+            }, FloatingAnimationUtil.ROTATE_TIME)
             waitingRoomViewModel.getRefreshInfo(roomId)
             waitingRoomViewModel.refreshInfo.observe(this) {
                 waitingRoomRecyclerViewAdapter.members.clear()
