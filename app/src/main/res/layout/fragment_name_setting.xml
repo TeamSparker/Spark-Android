@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="nameSettingViewModel"
             type="com.spark.android.ui.makeroom.namesetting.viewmodel.NameSettingViewModel" />
@@ -19,9 +20,10 @@
             android:id="@+id/btn_make_room_name_setting_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
+            android:padding="10dp"
             android:src="@drawable/ic_make_room_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,12 +68,12 @@
             android:ems="10"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:hint="@string/room_name_setting_edit_text_hint"
-            android:text="@={nameSettingViewModel.habitName}"
             android:includeFontPadding="false"
             android:inputType="textPersonName"
             android:maxLength="15"
-            android:textColorHint="@color/spark_gray"
+            android:text="@={nameSettingViewModel.habitName}"
             android:textColor="@color/spark_black"
+            android:textColorHint="@color/spark_gray"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,9 +97,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_medium"
             android:includeFontPadding="false"
+            android:text="@{String.valueOf(nameSettingViewModel.habitName.length())}"
             android:textColor="@{nameSettingViewModel.habitName.length() == 0 ? @color/spark_dark_gray : @color/spark_pinkred }"
             android:textSize="14dp"
-            android:text="@{String.valueOf(nameSettingViewModel.habitName.length())}"
             app:layout_constraintBottom_toBottomOf="@+id/et_make_room_name_setting_habit_name"
             app:layout_constraintEnd_toStartOf="@+id/tv_make_room_name_setting_text_limit"
             app:layout_constraintTop_toTopOf="@+id/et_make_room_name_setting_habit_name"
@@ -124,12 +126,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="40dp"
-            android:textColor="@color/spark_white"
-            android:textSize="18dp"
             android:background="@{nameSettingViewModel.habitName.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active }"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
             android:text="@string/room_name_setting_next_btn_text"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

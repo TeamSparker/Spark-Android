@@ -26,18 +26,23 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
 
 
         initHomeRecyclerViewAdapter()
-        homeMainViewModel.roomList.observe(this) {
-            homeRecyclerViewAdapter.ticketList.addAll(it)
-            homeRecyclerViewAdapter.notifyDataSetChanged()
-
-        }
+//        homeMainViewModel.roomList.observe(this) {
+//            homeRecyclerViewAdapter.ticketList.addAll(it)
+//            homeRecyclerViewAdapter.notifyDataSetChanged()
+//
+//        }
 
     }
 
     override fun onResume() {
         super.onResume()
         homeRecyclerViewAdapter.ticketList.clear()
-        homeMainViewModel.getHomeAllRoom(-1,5)
+        homeMainViewModel.getHomeAllRoom(-1,20)
+        homeMainViewModel.roomList.observe(this) {
+            homeRecyclerViewAdapter.ticketList.addAll(it)
+            homeRecyclerViewAdapter.notifyDataSetChanged()
+
+        }
     }
 
     private fun initHomeRecyclerViewAdapter() {
