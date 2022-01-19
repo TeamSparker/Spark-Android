@@ -36,7 +36,10 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
     private fun initEnterWaitingRoomButtonListener(){
         binding.btnJoinCodeEnterWaitingRoom.setOnClickListener {
             val intent = Intent(this,WaitingRoomActivity::class.java).apply {
+
                 this.putExtra("roomId",roomInfo.roomId)
+                putExtra("startPoint",WaitingRoomActivity.START_FROM_JOIN_CODE)
+
             }
             startActivity(intent)
             finish()

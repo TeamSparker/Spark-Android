@@ -46,7 +46,7 @@ class InputCodeFragmentDialog : DialogFragment() {
 
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
         initButtonClickListener()
-        initEditTextClearFocus()
+
         initClearErrorMessage()
     }
 
@@ -65,16 +65,12 @@ class InputCodeFragmentDialog : DialogFragment() {
                     putExtra("roomInfo",inputCodeFragmentDialogViewModel.roomInfo.value)
                 }
                 startActivity(intent)
+                dismiss()
             }
         }
     }
 
 
-    private fun initEditTextClearFocus() {
-        binding.layoutInputCodeDialog.setOnClickListener {
-            binding.etInputCodeContent.clearFocus()
-        }
-    }
 
     private fun initClearErrorMessage() {
         binding.etInputCodeContent.setOnFocusChangeListener { view, focused ->
