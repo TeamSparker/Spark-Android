@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityHabitGoalManageBinding
 import com.spark.android.ui.base.BaseActivity
+import com.spark.android.ui.habit.viewmodel.HabitGoalManageViewModel
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 

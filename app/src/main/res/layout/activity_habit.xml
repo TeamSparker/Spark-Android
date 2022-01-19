@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="habitViewModel"
+            type="com.spark.android.ui.habit.viewmodel.HabitViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -46,9 +51,9 @@
 
                 <ImageView
                     android:id="@+id/iv_habit_background"
+                    setHabitBackground="@{habitViewModel.habitInfo.leftDay}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bg_habit_sparkflake1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +89,7 @@
                     android:layout_marginTop="32dp"
                     android:fontFamily="@font/noto_sans_kr_medium"
                     android:includeFontPadding="false"
-                    android:text="@string/habit_title"
+                    android:text="@{habitViewModel.habitInfo.roomName}"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="18dp"
@@ -100,7 +105,7 @@
                     android:layout_marginTop="32dp"
                     android:fontFamily="@font/futura_bold"
                     android:includeFontPadding="false"
-                    android:text="@string/habit_d_day"
+                    android:text="@{habitViewModel.habitInfo.leftDay == 0 ? `D-day` : `D-`+String.valueOf(habitViewModel.habitInfo.leftDay)}"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="31dp"
@@ -113,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="3dp"
-                    android:src="@drawable/ic_habit_teamlife_white"
+                    android:src="@{habitViewModel.habitInfo.life > 0 ? @drawable/ic_habit_teamlife_white : @drawable/ic_habit_teamlife_empty}"
                     app:layout_constraintEnd_toStartOf="@id/iv_habit_teamlife_second"
                     app:layout_constraintTop_toBottomOf="@+id/btn_habit_more" />
 
@@ -123,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="3dp"
-                    android:src="@drawable/ic_habit_teamlife_white"
+                    android:src="@{habitViewModel.habitInfo.life > 1 ? @drawable/ic_habit_teamlife_white : @drawable/ic_habit_teamlife_empty}"
                     app:layout_constraintEnd_toStartOf="@id/iv_habit_teamlife_third"
                     app:layout_constraintTop_toBottomOf="@+id/btn_habit_more" />
 
@@ -133,13 +138,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="20dp"
-                    android:src="@drawable/ic_habit_teamlife_empty"
+                    android:src="@{habitViewModel.habitInfo.life > 2 ? @drawable/ic_habit_teamlife_white : @drawable/ic_habit_teamlife_empty}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_habit_more" />
 
                 <ProgressBar
                     android:id="@+id/progressbar_habit_progress_bar_bg"
                     style="@android:style/Widget.ProgressBar.Horizontal"
+                    setProgressBarBackground="@{habitViewModel.habitInfo.leftDay}"
                     android:layout_width="0dp"
                     android:layout_height="4dp"
                     android:layout_marginStart="20dp"
@@ -147,8 +153,7 @@
                     android:layout_marginEnd="20dp"
                     android:focusable="false"
                     android:max="66"
-                    android:progress="3"
-                    android:progressDrawable="@drawable/layer_list_habit_progressbar"
+                    android:progress="@{66-habitViewModel.habitInfo.leftDay}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_habit_teamlife_first" />
@@ -160,7 +165,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/futura_medium"
-                    android:text="@string/habit_start_date"
+                    android:text="@{habitViewModel.habitInfo.startDate}"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="12dp"
@@ -174,7 +179,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/futura_medium"
-                    android:text="@string/habit_end_date"
+                    android:text="@{habitViewModel.habitInfo.endDate}"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="12dp"
@@ -196,6 +201,40 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_habit_start_date" />
 
                 <TextView
+                    android:id="@+id/tv_habit_no_purpose_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/habit_no_purpose_top"
+                    android:textColor="@color/spark_white"
+                    android:textSize="14dp"
+                    android:visibility="@{habitViewModel.habitInfo.moment == null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toTopOf="@id/tv_habit_no_purpose_bottom"
+                    app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
+                    app:layout_constraintTop_toTopOf="@id/iv_habit_text_container"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_habit_no_purpose_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/habit_no_purpose_bottom"
+                    android:textColor="@color/spark_white"
+                    android:textSize="14dp"
+                    android:visibility="@{habitViewModel.habitInfo.moment == null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_habit_text_container"
+                    app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_habit_no_purpose_top" />
+
+                <TextView
                     android:id="@+id/tv_habit_time_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -204,11 +243,13 @@
                     android:fontFamily="@font/noto_sans_kr_bold"
                     android:includeFontPadding="false"
                     android:text="@string/habit_time_title"
-                    android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="14dp"
+                    android:visibility="@{habitViewModel.habitInfo.moment != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toTopOf="@id/tv_habit_goal_title"
                     app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
-                    app:layout_constraintTop_toTopOf="@id/iv_habit_text_container" />
+                    app:layout_constraintTop_toTopOf="@id/iv_habit_text_container"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
                     android:id="@+id/tv_habit_time"
@@ -217,10 +258,11 @@
                     android:layout_marginStart="7dp"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/habit_time"
+                    android:text="@{habitViewModel.habitInfo.moment}"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="14dp"
+                    android:visibility="@{habitViewModel.habitInfo.moment != null ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_habit_time_title"
                     app:layout_constraintStart_toEndOf="@id/tv_habit_time_title"
                     app:layout_constraintTop_toTopOf="@id/tv_habit_time_title" />
@@ -235,9 +277,9 @@
                     android:fontFamily="@font/noto_sans_kr_bold"
                     android:includeFontPadding="false"
                     android:text="@string/habit_goal_title"
-                    android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="14dp"
+                    android:visibility="@{habitViewModel.habitInfo.purpose != null ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="@id/iv_habit_text_container"
                     app:layout_constraintStart_toStartOf="@id/iv_habit_text_container"
                     app:layout_constraintTop_toBottomOf="@id/tv_habit_time_title" />
@@ -249,10 +291,11 @@
                     android:layout_marginStart="7dp"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/habit_goal"
+                    android:text="@{habitViewModel.habitInfo.purpose}"
                     android:textAlignment="center"
                     android:textColor="@color/spark_white"
                     android:textSize="14dp"
+                    android:visibility="@{habitViewModel.habitInfo.purpose != null ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_habit_goal_title"
                     app:layout_constraintStart_toEndOf="@id/tv_habit_goal_title"
                     app:layout_constraintTop_toTopOf="@id/tv_habit_goal_title" />
@@ -281,6 +324,8 @@
 
             <ImageView
                 android:id="@+id/iv_habit_today_certification_bg"
+                setVisibilityLeftDay="@{habitViewModel.habitInfo.leftDay}"
+                setVisibilityStatus="@{habitViewModel.habitInfo.myRecord.status}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_today_active"
@@ -291,10 +336,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_habit_today_certification"
+                certificationLeftDay="@{habitViewModel.habitInfo.leftDay}"
+                certificationStatus="@{habitViewModel.habitInfo.myRecord.status}"
+                android:background="@drawable/bg_habit_today_active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
-                android:background="@drawable/bg_habit_today_active"
                 android:fontFamily="@font/noto_sans_kr_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"

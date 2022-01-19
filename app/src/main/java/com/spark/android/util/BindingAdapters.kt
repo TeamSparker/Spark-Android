@@ -3,8 +3,8 @@ package com.spark.android.util
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.net.Uri
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
@@ -220,6 +220,156 @@ object BindingAdapters {
             lottie.playAnimation()
         } else {
             lottie.cancelAnimation()
+        }
+    }
+    @JvmStatic
+    @BindingAdapter("setProgressBarBackground")
+    fun setProgressBarBackground(progressBar: ProgressBar, leftDay: Int?) {
+        val resources = progressBar.context.resources
+        if (leftDay != null) {
+            progressBar.progressDrawable =
+                (
+                        when {
+                            leftDay == 0 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_6,
+                                null)
+                            leftDay <= 6 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_5,
+                                null)
+                            leftDay <= 32 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_4,
+                                null)
+                            leftDay <= 58 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_3,
+                                null)
+                            leftDay <= 62 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_2,
+                                null)
+                            leftDay <= 66 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_1,
+                                null)
+                            else -> throw IllegalStateException("bindingAdapter setProgressBarLeftBackground error")
+                        }
+                        )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setHabitBackground")
+    fun setHabitBackground(imageview: ImageView, leftDay: Int?) {
+        if (leftDay != null) {
+            imageview.setImageResource(
+                when {
+                    leftDay == 0 -> R.drawable.bg_habit_sparkflake6
+                    leftDay <= 6 -> R.drawable.bg_habit_sparkflake5
+                    leftDay <= 32 -> R.drawable.bg_habit_sparkflake4
+                    leftDay <= 58 -> R.drawable.bg_habit_sparkflake3
+                    leftDay <= 62 -> R.drawable.bg_habit_sparkflake2
+                    leftDay <= 66 -> R.drawable.bg_habit_sparkflake1
+                    else -> throw IllegalStateException("bindingAdapter setHabitBackground error")
+                }
+            )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setStatusStickerImage")
+    fun setStatusStickerImage(imageview: ImageView, status: String?) {
+        if (status != null) {
+            imageview.setImageResource(
+                when (status) {
+                    "NONE" -> 0
+                    "CONSIDER" -> R.drawable.ic_habit_sticker_thinking
+                    "REST" -> R.drawable.ic_habit_sticker_rest
+                    "DONE" -> R.drawable.ic_habit_sticker_complete
+                    else -> throw IllegalStateException("bindingAdapter setStatusStickerImage error")
+                }
+            )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setUserStatus", "setUserLeftDay")
+    fun setStatusText(textview: TextView, status: String?, leftDay: Int?) {
+        if (status != null && leftDay != null) {
+            if (leftDay == 66) {
+                textview.setText(R.string.item_habit_team_status_ready)
+            } else {
+                textview.setText(
+                    when (status) {
+                        "NONE" -> R.string.item_habit_team_status_none
+                        "CONSIDER" -> R.string.item_habit_team_status_consider
+                        "REST" -> R.string.item_habit_team_status_rest
+                        "DONE" -> R.string.item_habit_team_status_complete
+                        else -> throw IllegalStateException("bindingAdapter setStatusText error")
+                    })
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["habitUserStatus", "habitRestCount"], requireAll = true)
+    fun setSendSparkImg(imageButton: ImageButton, status: String?, habitRestCount: Int?) {
+        if (status != null) {
+            if (habitRestCount != -1) {
+                imageButton.setImageResource(
+                    R.drawable.ic_habit_fire_darkgray
+                )
+                imageButton.isEnabled = false
+            } else {
+                imageButton.setImageResource(
+                    when (status) {
+                        "DONE", "REST" -> R.drawable.ic_habit_fire_inactive
+                        "NONE", "CONSIDER" -> R.drawable.ic_habit_fire_default
+                        else -> throw IllegalStateException("bindingAdapter setSendSparkImg error")
+                    }
+                )
+                imageButton.isEnabled = (
+                        when (status) {
+                            "DONE", "REST" -> false
+                            "NONE", "CONSIDER" -> true
+                            else -> throw IllegalStateException("bindingAdapter setSendSparkImg error")
+                        }
+                        )
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["certificationLeftDay", "certificationStatus"], requireAll = true)
+    fun setHabitCertificationButton(button: Button, leftDay: Int?, status: String?) {
+        if (status != null && leftDay != null) {
+            if (leftDay == 66) {
+                button.setBackgroundResource(R.drawable.bg_habit_today_inactive)
+                button.isEnabled = false
+            } else {
+                button.setBackgroundResource(
+                    when (status) {
+                        "DONE", "REST" -> R.drawable.bg_habit_today_inactive
+                        "NONE", "CONSIDER" -> R.drawable.bg_habit_today_active
+                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
+                    }
+                )
+                button.isEnabled = (
+                    when (status) {
+                        "DONE", "REST" -> false
+                        "NONE", "CONSIDER" -> true
+                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
+                    }
+                )
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["setVisibilityLeftDay", "setVisibilityStatus"], requireAll = true)
+    fun setHabitCertificationVisibility(imageview: ImageView, leftDay: Int?, status: String?) {
+        if (status != null && leftDay != null) {
+            if (leftDay == 66) {
+                imageview.visibility = View.GONE
+            } else {
+                imageview.visibility = (
+                    when (status) {
+                        "DONE", "REST" -> View.GONE
+                        "NONE", "CONSIDER" -> View.VISIBLE
+                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationVisibility error")
+                    }
+                )
+            }
         }
     }
 }

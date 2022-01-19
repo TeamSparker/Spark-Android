@@ -7,7 +7,7 @@
 
         <variable
             name="habitGoalManageViewModel"
-            type="com.spark.android.ui.habit.HabitGoalManageViewModel" />
+            type="com.spark.android.ui.habit.viewmodel.HabitGoalManageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

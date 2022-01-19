@@ -1,4 +1,4 @@
-package com.spark.android.ui.habit
+package com.spark.android.ui.habit.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
