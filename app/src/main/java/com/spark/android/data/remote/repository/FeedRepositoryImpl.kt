@@ -21,7 +21,7 @@ class FeedRepositoryImpl @Inject constructor(
             feedDataSource.getFeedList(lastId,size)
         }
 
-    override fun addHeaderToFeedList(feedList: List<Feed>): List<FeedListItem> {
+    override fun addHeaderToFeedList(feedList: List<Feed>): MutableList<FeedListItem> {
         val feedListWithHeader = mutableListOf<FeedListItem>()
         feedList.forEachIndexed { index, feed ->
             if (feed.date != shownDate) {

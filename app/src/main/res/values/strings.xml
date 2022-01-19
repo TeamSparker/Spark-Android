@@ -73,6 +73,7 @@
     <string name="feed_desc_heart">피드 하트 버튼</string>
     <string name="feed_desc_done_tag">done 태그</string>
     <string name="feed_received_spark">받은 스파크</string>
+    <string name="feed_bottom_msg">최근 일주일 간의 인증만 표시됩니다.</string>
 
     <!-- NameSettingFragment -->
     <string name="room_name_setting_title">어떤 습관방을 만들 건가요?</string>

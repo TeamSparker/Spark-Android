@@ -5,13 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.spark.android.data.remote.entity.response.Feed
 import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.data.remote.repository.FeedRepository
+import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_FOOTER_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,9 +28,15 @@ class FeedViewModel @Inject constructor(
         viewModelScope.launch {
             feedRepository.getFeedList(lastId, listLimit)
                 .onSuccess { response ->
-                    val feeds = response.data.feedList
-                    lastId = feeds.last().recordId
-                    _feedList.postValue(feedRepository.addHeaderToFeedList(feeds))
+                    val tempFeeds = response.data.feedList
+                    lastId = tempFeeds.last().recordId
+                    val feeds = feedRepository.addHeaderToFeedList(tempFeeds)
+                    if (tempFeeds.size < listLimit) {
+                        feeds.add(
+                            FeedListItem(id = "footer", viewType = FEED_FOOTER_TYPE, feed = null)
+                        )
+                    }
+                    _feedList.postValue(feeds)
                 }
                 .onFailure {
                     Log.d("Feed_GetFeedList", it.message.toString())
@@ -42,6 +45,6 @@ class FeedViewModel @Inject constructor(
     }
 
     companion object {
-        private const val listLimit = 4
+        private const val listLimit = 5
     }
 }

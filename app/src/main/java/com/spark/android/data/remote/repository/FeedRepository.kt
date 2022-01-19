@@ -9,6 +9,6 @@ interface FeedRepository {
 //    fun getFeedList(size: Int): Flow<PagingData<FeedListItem>>
 
     suspend fun getFeedList(lastId: Int, size: Int): Result<BaseResponse<FeedResponse>>
-    fun addHeaderToFeedList(feedList: List<Feed>): List<FeedListItem>
+    fun addHeaderToFeedList(feedList: List<Feed>): MutableList<FeedListItem>
     fun formatDate(date: String): String
 }
