@@ -13,6 +13,8 @@ import java.util.logging.Handler
 
 object FloatingAnimationUtil {
 
+    const val ROTATE_TIME :Long = 1500
+
     fun toggleFab(
         buttonMain: FloatingActionButton,
         buttonMakeRoom: FloatingActionButton,
@@ -87,8 +89,8 @@ object FloatingAnimationUtil {
     fun rotateAnimation(
         imageButton: ImageButton
     ) {
-        ObjectAnimator.ofFloat(imageButton, View.ROTATION, -360f, 0f).apply {
-            duration = 2000
+        ObjectAnimator.ofFloat(imageButton, View.ROTATION, 360f, 0f).apply {
+            duration = ROTATE_TIME
             start()
         }
     }
