@@ -1,342 +1,96 @@
 package com.spark.android.ui.feed
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.spark.android.data.remote.entity.response.Feed
+import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.entity.response.FeedListItem
-import com.spark.android.ui.feed.adapter.FeedAdapter
+import com.spark.android.data.remote.repository.FeedRepository
+import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_FOOTER_TYPE
+import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_LOADING_TYPE
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FeedViewModel : ViewModel() {
-    private val _feedList = MutableLiveData(listOf<Feed>())
-    val feedList: LiveData<List<Feed>> = _feedList
+@HiltViewModel
+class FeedViewModel @Inject constructor(
+    private val feedRepository: FeedRepository
+) : ViewModel() {
+//    fun getFeedPagingResource(): Flow<PagingData<FeedListItem>> =
+//        feedRepository.getFeedList(size = 4).cachedIn(viewModelScope)
 
-    private val _feedListWithHeader = MutableLiveData(listOf<FeedListItem>())
-    val feedListWithHeader: LiveData<List<FeedListItem>> = _feedListWithHeader
+    var lastId = -1
+        private set
+    var hasNextPage = true
+        private set
 
-    fun initFeedList() {
-        _feedList.value = listOf(
-            Feed(
-                date = "2022-01-14",
-                day = "화",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 쥬쥬",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1잔디",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:10:18"
-            ),
-            Feed(
-                date = "2022-01-14",
-                day = "화",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 창환",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1요리",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 0,
-                isLike = true,
-                timerRecord = "00:20:18"
-            ),
-            Feed(
-                date = "2022-01-14",
-                day = "화",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 재훈",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1운동",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 0,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:30:18"
-            ),
-            Feed(
-                date = "2022-01-14",
-                day = "화",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 호재",
-                profileImg = "https://picsum.photos/id/1001/5616/3744",
-                roomName = "1일 1성대모사",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 5,
-                receivedSpark = 9,
-                isLike = true,
-                timerRecord = "00:40:18"
-            ),
-            Feed(
-                date = "2022-01-13",
-                day = "월",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 쥬쥬",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1잔디",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:10:18"
-            ),
-            Feed(
-                date = "2022-01-13",
-                day = "월",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 창환",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1요리",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 0,
-                isLike = true,
-                timerRecord = "00:20:18"
-            ),
-            Feed(
-                date = "2022-01-13",
-                day = "월",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 재훈",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1운동",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 0,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:30:18"
-            ),
-            Feed(
-                date = "2022-01-13",
-                day = "월",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 호재",
-                profileImg = "https://picsum.photos/id/1001/5616/3744",
-                roomName = "1일 1성대모사",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 5,
-                receivedSpark = 9,
-                isLike = true,
-                timerRecord = "00:40:18"
-            ),
-            Feed(
-                date = "2022-01-12",
-                day = "일",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 쥬쥬",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1잔디",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:10:18"
-            ),
-            Feed(
-                date = "2022-01-12",
-                day = "일",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 창환",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1요리",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 0,
-                isLike = true,
-                timerRecord = "00:20:18"
-            ),
-            Feed(
-                date = "2022-01-12",
-                day = "일",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 재훈",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1운동",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 0,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:30:18"
-            ),
-            Feed(
-                date = "2022-01-12",
-                day = "일",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 호재",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1성대모사",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 5,
-                receivedSpark = 9,
-                isLike = true,
-                timerRecord = "00:40:18"
-            ),
-            Feed(
-                date = "2022-01-11",
-                day = "토",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 쥬쥬",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1잔디",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:10:18"
-            ),
-            Feed(
-                date = "2022-01-11",
-                day = "토",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 창환",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1요리",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 0,
-                isLike = true,
-                timerRecord = "00:20:18"
-            ),
-            Feed(
-                date = "2022-01-11",
-                day = "토",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 재훈",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1운동",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 0,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:30:18"
-            ),
-            Feed(
-                date = "2022-01-11",
-                day = "토",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 호재",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1성대모사",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 5,
-                receivedSpark = 9,
-                isLike = true,
-                timerRecord = "00:40:18"
-            ),
-            Feed(
-                date = "2022-01-10",
-                day = "금",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 쥬쥬",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1잔디",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:10:18"
-            ),
-            Feed(
-                date = "2022-01-10",
-                day = "금",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 창환",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1요리",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 9,
-                receivedSpark = 0,
-                isLike = true,
-                timerRecord = "00:20:18"
-            ),
-            Feed(
-                date = "2022-01-10",
-                day = "금",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 재훈",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1운동",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 0,
-                receivedSpark = 5,
-                isLike = false,
-                timerRecord = "00:30:18"
-            ),
-            Feed(
-                date = "2022-01-10",
-                day = "금",
-                recordId = 0,
-                userId = 0,
-                nickname = "안드 호재",
-                profileImg = "https://picsum.photos/id/0/5616/3744",
-                roomName = "1일 1성대모사",
-                certifyingImg = "https://picsum.photos/id/1001/5616/3744",
-                likeNum = 5,
-                receivedSpark = 9,
-                isLike = true,
-                timerRecord = "00:40:18"
-            ),
-        )
+    var isAddLoading = false
+        private set
+
+    private val _isFeedEmpty = MutableLiveData(false)
+    val isFeedEmpty: LiveData<Boolean> = _isFeedEmpty
+
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val loadingItem =
+        FeedListItem(id = "loading", viewType = FEED_LOADING_TYPE, feed = null)
+
+    private val _feedList = MutableLiveData(mutableListOf<FeedListItem>())
+    val feedList: LiveData<MutableList<FeedListItem>> = _feedList
+
+    private fun initIsFeedEmpty() {
+        _isFeedEmpty.value = true
     }
 
-    fun addHeaderToFeedList() {
-        var date = ""
-        val feedListWithHeader = mutableListOf<FeedListItem>()
-        requireNotNull(feedList.value).forEachIndexed { index, feed ->
-            if (feed.date != date) {
-                date = feed.date
-                feedListWithHeader.add(
-                    FeedListItem(
-                        "$index$date",
-                        FeedAdapter.FEED_HEADER_TYPE,
-                        formatDate(date),
-                        "${feed.day}요일",
-                        null
-                    )
-                )
-            }
-            feedListWithHeader.add(
-                FeedListItem(
-                    feed.recordId.toString(),
-                    FeedAdapter.FEED_CONTENT_TYPE,
-                    formatDate(date),
-                    "${feed.day}요일",
-                    feed
-                )
-            )
+    private fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
+    fun getFeedList() {
+        if (requireNotNull(feedList.value).isEmpty()) {
+            initIsLoading(true)
         }
-        initFeedListWithHeader(feedListWithHeader)
+        if (requireNotNull(feedList.value).isNotEmpty() && hasNextPage) {
+            isAddLoading = true
+            addLoadingItem()
+        }
+        viewModelScope.launch {
+            feedRepository.getFeedList(lastId, listLimit)
+                .onSuccess { response ->
+                    val tempFeeds = response.data.feedList
+                    if (tempFeeds.isNotEmpty()) {
+                        lastId = tempFeeds.last().recordId
+                    } else if (lastId == -1) {
+                        initIsFeedEmpty()
+                    }
+                    val feeds = feedRepository.addHeaderToFeedList(tempFeeds)
+                    if (tempFeeds.size < listLimit && lastId != -1) {
+                        hasNextPage = false
+                        feeds.add(
+                            FeedListItem(id = "footer", viewType = FEED_FOOTER_TYPE, feed = null)
+                        )
+                    }
+                    isAddLoading = false
+                    initIsLoading(false)
+                    _feedList.postValue(
+                        requireNotNull(_feedList.value).toMutableList().apply {
+                            remove(loadingItem)
+                            addAll(feeds)
+                        })
+                }
+                .onFailure {
+                    Log.d("Feed_GetFeedList", it.message.toString())
+                }
+        }
     }
 
-    private fun initFeedListWithHeader(list: List<FeedListItem>) {
-        _feedListWithHeader.value = list
+    private fun addLoadingItem() {
+        _feedList.value = requireNotNull(_feedList.value).toMutableList().apply { add(loadingItem) }
     }
 
-    private fun formatDate(date: String): String {
-        val dateArray = date.split("-")
-        val year = dateArray[0]
-        val month = dateArray[1]
-        val dayOfMonth = dateArray[2]
-        return "${year}년 ${month}월 ${dayOfMonth}일"
+    companion object {
+        private const val listLimit = 5
     }
 }

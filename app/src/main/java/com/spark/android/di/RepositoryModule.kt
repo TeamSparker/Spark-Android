@@ -2,6 +2,7 @@ package com.spark.android.di
 
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
+import com.spark.android.data.remote.datasource.FeedDataSource
 import com.spark.android.data.remote.repository.*
 import com.spark.android.data.remote.service.*
 import dagger.Module
@@ -20,6 +21,13 @@ object RepositoryModule {
         localPreferencesDataSource: LocalPreferencesDataSource
     ): AuthRepository =
         AuthRepositoryImpl(authDataSource, localPreferencesDataSource)
+
+    @Provides
+    @Singleton
+    fun provideFeedRepository(
+        feedDataSource: FeedDataSource
+    ): FeedRepository =
+        FeedRepositoryImpl(feedDataSource)
 
     @Provides
     @Singleton

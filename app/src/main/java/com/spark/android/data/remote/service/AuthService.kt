@@ -1,6 +1,7 @@
 package com.spark.android.data.remote.service
 
 import com.spark.android.data.remote.entity.request.SignUpRequest
+import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -16,11 +17,11 @@ interface AuthService {
     suspend fun postSignUpWithImg(
         @PartMap map: Map<String, @JvmSuppressWildcards RequestBody>,
         @Part profileImg: MultipartBody.Part
-    ): SignUpResponse
+    ): BaseResponse<SignUpResponse>
 
     @Multipart
     @POST("auth/signup")
     suspend fun postSignUp(
         @PartMap map: Map<String, @JvmSuppressWildcards RequestBody>
-    ): SignUpResponse
+    ): BaseResponse<SignUpResponse>
 }

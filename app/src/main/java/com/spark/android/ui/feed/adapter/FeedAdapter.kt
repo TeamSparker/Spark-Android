@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.databinding.ItemFeedContentBinding
+import com.spark.android.databinding.ItemFeedFooterBinding
 import com.spark.android.databinding.ItemFeedHeaderBinding
+import com.spark.android.databinding.ItemFeedLoadingBinding
 import java.lang.IllegalStateException
 
 class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
@@ -31,6 +33,12 @@ class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffU
         }
     }
 
+    class FeedFooterViewHolder(private val binding: ItemFeedFooterBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    class FeedLoadingViewHolder(private val binding: ItemFeedLoadingBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
     override fun getItemViewType(position: Int) = getItem(position).viewType
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -40,6 +48,12 @@ class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffU
             )
             FEED_CONTENT_TYPE -> FeedContentViewHolder(
                 ItemFeedContentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            )
+            FEED_FOOTER_TYPE -> FeedFooterViewHolder(
+                ItemFeedFooterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            )
+            FEED_LOADING_TYPE -> FeedLoadingViewHolder(
+                ItemFeedLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
             else -> throw IllegalStateException("피드 뷰타입 설정 오류")
         }
@@ -57,6 +71,8 @@ class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffU
     companion object {
         const val FEED_HEADER_TYPE = 0
         const val FEED_CONTENT_TYPE = 1
+        const val FEED_FOOTER_TYPE = 2
+        const val FEED_LOADING_TYPE = 3
 
         private val feedDiffUtil = object : DiffUtil.ItemCallback<FeedListItem>() {
             override fun areItemsTheSame(oldItem: FeedListItem, newItem: FeedListItem): Boolean =

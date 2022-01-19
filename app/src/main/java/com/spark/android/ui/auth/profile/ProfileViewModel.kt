@@ -25,8 +25,9 @@ class ProfileViewModel @Inject constructor(
     private val _nicknameFocused = MutableLiveData<Boolean>()
     val nicknameFocused: LiveData<Boolean> = _nicknameFocused
 
-    private val _kakaoUserId = MutableLiveData<String>()
-    val kakaoUserId: LiveData<String> = _kakaoUserId
+    private var kakaoUserId: String = ""
+
+    private var fcmToken: String = ""
 
     private val _successSignUp = MutableLiveData<Event<Boolean>>()
     val successSignUp: LiveData<Event<Boolean>> = _successSignUp
@@ -39,6 +40,9 @@ class ProfileViewModel @Inject constructor(
 
     private val _profileImgBitmap = MutableLiveData<Bitmap?>()
     val profileImgBitmap: LiveData<Bitmap?> = _profileImgBitmap
+
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
 
     fun initNicknameFocused(hasFocus: Boolean) {
         _nicknameFocused.value = !(requireNotNull(nickname.value).isEmpty() && !hasFocus)
@@ -70,24 +74,31 @@ class ProfileViewModel @Inject constructor(
         profileImageMultiPart = profileImg
     }
 
-    private fun initKakaoUserId(id: String) {
-        _kakaoUserId.value = id
+    fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
     }
 
     fun initKakaoUserId() {
-        authRepository.initKakaoUserId { id -> initKakaoUserId(id) }
+        authRepository.initKakaoUserId { id -> kakaoUserId = id }
+    }
+
+    fun initFcmToken() {
+        authRepository.getFcmToken { token -> fcmToken = token }
     }
 
     fun postSignUp() {
+        initIsLoading(true)
         viewModelScope.launch {
             authRepository.postSignUp(
                 requireNotNull(nickname.value),
-                requireNotNull(kakaoUserId.value),
+                kakaoUserId,
+                fcmToken,
                 profileImageMultiPart
-            ).onSuccess { signUpResponse ->
-                authRepository.saveAccessToken(signUpResponse.data.accessToken)
+            ).onSuccess { response ->
+                authRepository.saveAccessToken(response.data.accessToken)
                 _successSignUp.postValue(Event(true))
             }.onFailure {
+                initIsLoading(false)
                 Log.d("Profile_SignUp", it.message.toString())
             }
         }

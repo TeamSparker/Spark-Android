@@ -10,7 +10,7 @@ class FeedStickyHeaderResolverImpl(
     private val isHeader: FeedListItem.() -> Boolean
 ) : StickyHeaderResolver {
 
-    override fun getItemHeaderForPos(idx: Int): FeedListItem {
+    override fun getItemHeaderForPos(idx: Int): FeedListItem? {
         var header: FeedListItem? = null
         for ((i, item) in items.withIndex()) {
             if (isHeader(item)) {
@@ -20,7 +20,7 @@ class FeedStickyHeaderResolverImpl(
                 break
             }
         }
-        return header ?: throw IllegalArgumentException("StickyHeaderProvider 에 Header 아이템 null 오류")
+        return header
     }
 
 
