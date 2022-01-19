@@ -11,13 +11,13 @@ data class Feed(
     val certifyingImg: String?,
     val date: String,
     val day: String,
-    val isLiked: Boolean,
-    val likeNum: Int,
+    var isLiked: Boolean,
+    var likeNum: Int,
     val nickname: String,
     val profileImg: String?,
     val recordId: Int,
     val roomName: String,
-    val sparkCount: Int,
+    var sparkCount: Int,
     val timerRecord: String?,
     val userId: Int
 )

@@ -5,6 +5,7 @@ import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.Feed
 import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.data.remote.entity.response.FeedResponse
+import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.ui.feed.adapter.FeedAdapter
 import javax.inject.Inject
 
@@ -18,8 +19,11 @@ class FeedRepositoryImpl @Inject constructor(
 
     override suspend fun getFeedList(lastId: Int, size: Int): Result<BaseResponse<FeedResponse>> =
         kotlin.runCatching {
-            feedDataSource.getFeedList(lastId,size)
+            feedDataSource.getFeedList(lastId, size)
         }
+
+    override suspend fun postFeedHeart(recordId: Int): Result<NoDataResponse> =
+        kotlin.runCatching { feedDataSource.postFeedHeart(recordId) }
 
     override fun addHeaderToFeedList(feedList: List<Feed>): MutableList<FeedListItem> {
         val feedListWithHeader = mutableListOf<FeedListItem>()

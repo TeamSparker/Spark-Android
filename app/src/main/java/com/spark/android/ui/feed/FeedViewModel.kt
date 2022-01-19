@@ -48,6 +48,19 @@ class FeedViewModel @Inject constructor(
         _isLoading.value = isLoading
     }
 
+    fun postFeedHeart(feedListItem: FeedListItem) {
+        viewModelScope.launch {
+            val feed = requireNotNull(feedListItem.feed)
+            feedRepository.postFeedHeart(feed.recordId)
+                .onFailure { Log.d("Feed_PostFeedHeart", it.message.toString()) }
+            when (feed.isLiked) {
+                true -> feed.likeNum--
+                else -> feed.likeNum++
+            }
+            feed.isLiked = !feed.isLiked
+        }
+    }
+
     fun getFeedList() {
         if (requireNotNull(feedList.value).isEmpty()) {
             initIsLoading(true)

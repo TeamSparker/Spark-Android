@@ -156,13 +156,27 @@
             android:id="@+id/btn_feed_heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="-8dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/feed_desc_heart"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="16dp"
             android:src="@{feed.isLiked ? @drawable/ic_feed_heart_pink : @drawable/ic_feed_heart_gray}"
             app:layout_constraintEnd_toStartOf="@id/tv_feed_heart_count"
             app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_feed_heart"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/btn_feed_heart"
+            app:layout_constraintEnd_toEndOf="@id/btn_feed_heart"
+            app:layout_constraintStart_toStartOf="@id/btn_feed_heart"
+            app:layout_constraintTop_toTopOf="@id/btn_feed_heart"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="heart.json" />
 
         <TextView
             android:id="@+id/tv_feed_heart_count"
