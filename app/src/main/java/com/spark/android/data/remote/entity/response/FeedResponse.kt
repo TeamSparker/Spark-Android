@@ -1,29 +1,25 @@
 package com.spark.android.data.remote.entity.response
 
-data class FeedResponse(
-    val statusCode: Int,
-    val success: Boolean,
-    val message: String,
-    val data: FeedData
-)
+import com.google.gson.annotations.SerializedName
 
-data class FeedData(
+data class FeedResponse(
+    @SerializedName("records")
     val feedList: List<Feed>
 )
 
 data class Feed(
+    val certifyingImg: String?,
     val date: String,
     val day: String,
-    val recordId: Int,
-    val userId: Int,
-    val nickname: String,
-    val profileImg: String,
-    val roomName: String,
-    val certifyingImg: String,
+    val isLiked: Boolean,
     val likeNum: Int,
-    val receivedSpark: Int,
-    val isLike: Boolean,
-    val timerRecord: String
+    val nickname: String,
+    val profileImg: String?,
+    val recordId: Int,
+    val roomName: String,
+    val sparkCount: Int,
+    val timerRecord: String?,
+    val userId: Int
 )
 
 data class FeedListItem(

@@ -19,6 +19,7 @@ import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_SIGNUP_MODE
 import com.spark.android.util.EventObserver
 import com.spark.android.util.KeyBoardUtil
+import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.popBackStack
@@ -35,12 +36,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         super.onViewCreated(view, savedInstanceState)
         binding.profileViewModel = profileViewModel
         profileViewModel.initKakaoUserId()
+        profileViewModel.initFcmToken()
         initStatusBarStyle()
         hideKeyBoard()
         initIsFocused()
         initPictureBtnClickListener()
         initQuitBtnClickListener()
-        initKakaoUserIdObserver()
         initSuccessSignUpObserver()
         initFragmentResultListener()
     }
@@ -80,17 +81,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
-    private fun initKakaoUserIdObserver() {
-        profileViewModel.kakaoUserId.observe(viewLifecycleOwner) {
-            profileViewModel.postSignUp()
-        }
-    }
-
     private fun initSuccessSignUpObserver() {
         profileViewModel.successSignUp.observe(viewLifecycleOwner, EventObserver { successSignUp ->
             if (successSignUp) {
+                requireContext().startActivity(
+                    Intent(requireContext(), MainActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    })
                 requireActivity().finish()
-                requireContext().startActivity(Intent(requireContext(), MainActivity::class.java))
+                profileViewModel.initIsLoading(false)
             }
         })
     }

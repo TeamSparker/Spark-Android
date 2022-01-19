@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="storageRoom"
+            type="com.spark.android.data.remote.entity.response.StorageRoom" />
+
+        <variable
             name="str"
             type="String" />
     </data>
@@ -25,16 +29,17 @@
 
         <ImageView
             android:id="@+id/iv_progressing_item_photo"
+            setImage="@{storageRoom.thumbnail}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="2dp"
             android:layout_marginBottom="2dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_storage_progressing_certification_photo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/img_storage_progressing_certification_photo" />
 
         <ImageView
             android:layout_width="0dp"
@@ -83,12 +88,13 @@
                 android:layout_marginTop="56dp"
                 android:fontFamily="@font/futura_bold"
                 android:lineSpacingExtra="1sp"
+                android:text="@{`D-` + String.valueOf(storageRoom.leftDay)}"
                 android:textColor="@color/spark_white"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="D-34"/>
+                tools:text="D-34" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -102,8 +108,7 @@
             android:src="@drawable/ic_item_fire_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/iv_progressing_item_total_sparkNumber"
@@ -113,13 +118,13 @@
             android:fontFamily="@font/futura_medium"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="1sp"
-            android:text="3"
+            android:text="@{String.valueOf(storageRoom.totalRecievedSpark)}"
             android:textColor="@color/spark_gray"
             android:textSize="20dp"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/iv_progressing_item_fire_gray"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            tools:text="3" />
 
         <TextView
             android:id="@+id/tv_progressing_item_roomName"
@@ -128,7 +133,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
-            android:text="@{str}"
+            android:text="@{storageRoom.roomName}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="24dp"
@@ -142,12 +147,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/futura_medium"
-            android:text="2021.12.26 - 2022.02.26"
+            android:text="@{storageRoom.startDate.replace(`-`,`.`) +` - `+storageRoom.endDate.replace(`-`,`.`)}"
             android:textAlignment="center"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_progressing_item_roomName" />
+            app:layout_constraintTop_toBottomOf="@id/tv_progressing_item_roomName"
+            tools:text="2021.12.26 - 2022.02.26" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,7 +6,7 @@ import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityCertifyBinding
-import com.spark.android.ui.auth.profile.MultiPartResolver
+import com.spark.android.util.MultiPartResolver
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_MODE
 import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_READY_MODE

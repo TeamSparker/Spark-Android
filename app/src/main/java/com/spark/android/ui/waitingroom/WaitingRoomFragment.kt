@@ -34,12 +34,13 @@ class WaitingRoomFragment :
     private var tooltipState = false
     private val waitingRoomViewModel by viewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
+    private var startPoint by Delegates.notNull<Boolean>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getRoomId()
-
+        initExtra()
+        binding.startPoint = startPoint
         if (roomId != null) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
@@ -54,10 +55,13 @@ class WaitingRoomFragment :
 
         initMakeRoomButtonListener()
         initSetPurposeButtonListener()
+        initMoveHomeButtonListener()
+        initRefreshButtonListener()
     }
 
-    private fun getRoomId() {
+    private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
+        startPoint = arguments?.getBoolean("startPoint") ?: false
     }
 
     private fun initClipBoard() {
@@ -134,22 +138,44 @@ class WaitingRoomFragment :
 
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
+            waitingRoomViewModel.startHabit(roomId)
+            requireActivity().finish()
+        }
+    }
+
+    private fun initSetPurposeButtonListener() {
+        binding.btnWaitingRoomEditPurpose.setOnClickListener {
             val setPurposeFragment = SetPurposeFragment()
+
+            var bundle = Bundle()
+            bundle.putInt("roomId", roomId)
+            setPurposeFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container_waiting_room, setPurposeFragment).commit()
         }
     }
 
-    private fun initSetPurposeButtonListener() {
-        binding.btnWaitingRoomRefresh.setOnClickListener {
+    private fun initMoveHomeButtonListener() {
+        binding.btnWaitingRoomMoveHome.setOnClickListener {
             requireActivity().finish()
         }
     }
 
-    private fun initMoveHomeButtonListener() {
-        binding.btnWaitingRoomMoveHome.setOnClickListener {
-            requireActivity().finish()
+    private fun initRefreshButtonListener() {
+        binding.btnWaitingRoomRefresh.setOnClickListener {
+            FloatingAnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
+            binding.btnWaitingRoomRefresh.isEnabled = false
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.btnWaitingRoomRefresh.isEnabled = true
+            }, FloatingAnimationUtil.ROTATE_TIME)
+            waitingRoomViewModel.getRefreshInfo(roomId)
+            waitingRoomViewModel.refreshInfo.observe(this) {
+                waitingRoomRecyclerViewAdapter.members.clear()
+                waitingRoomRecyclerViewAdapter.members.addAll(
+                    it
+                )
+            }
         }
     }
 }

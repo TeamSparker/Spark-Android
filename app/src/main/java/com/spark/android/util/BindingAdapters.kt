@@ -7,9 +7,11 @@ import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
+import java.lang.IllegalStateException
 
 object BindingAdapters {
     @JvmStatic
@@ -38,10 +40,12 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("setImage")
-    fun setImage(imageview: ImageView, url: String) {
-        Glide.with(imageview.context)
-            .load(url)
-            .into(imageview)
+    fun setImage(imageview: ImageView, url: String?) {
+        url?.let {
+            Glide.with(imageview.context)
+                .load(url)
+                .into(imageview)
+        }
     }
 
     @JvmStatic
@@ -64,11 +68,11 @@ object BindingAdapters {
             imageview.setImageResource(
                 when {
                     leftDay == 0 -> R.drawable.img_home_left_ticket_6
-                    leftDay <= 1 -> R.drawable.img_home_left_ticket_5
-                    leftDay <= 7 -> R.drawable.img_home_left_ticket_4
-                    leftDay <= 33 -> R.drawable.img_home_left_ticket_3
-                    leftDay <= 59 -> R.drawable.img_home_left_ticket_2
-                    leftDay <= 63 -> R.drawable.img_home_left_ticket_1
+                    leftDay <= 6 -> R.drawable.img_home_left_ticket_5
+                    leftDay <= 32 -> R.drawable.img_home_left_ticket_4
+                    leftDay <= 58 -> R.drawable.img_home_left_ticket_3
+                    leftDay <= 62 -> R.drawable.img_home_left_ticket_2
+                    leftDay <= 65 -> R.drawable.img_home_left_ticket_1
                     leftDay == 66 -> R.drawable.img_home_left_ticket_1
                     else -> throw IllegalStateException("바인딩 어댑터 setLeftBackground 오류")
                 }
@@ -86,15 +90,21 @@ object BindingAdapters {
             textView.setTextColor(
                 when {
                     leftDay == 0 -> ContextCompat.getColor(context, R.color.spark_dark_pinkred)
-                    leftDay <= 1 -> ContextCompat.getColor(context, R.color.spark_pinkred)
-                    leftDay <= 7 -> ContextCompat.getColor(context, R.color.spark_bright_pinkred)
-                    leftDay <= 33 -> ContextCompat.getColor(context, R.color.spark_light_pinkred)
-                    leftDay <= 59 -> ContextCompat.getColor(context,
-                        R.color.spark_more_light_pinkred)
-                    leftDay <= 63 -> ContextCompat.getColor(context,
-                        R.color.spark_most_light_pinkred)
-                    leftDay == 66 -> ContextCompat.getColor(context,
-                        R.color.spark_most_light_pinkred)
+                    leftDay <= 6 -> ContextCompat.getColor(context, R.color.spark_pinkred)
+                    leftDay <= 32 -> ContextCompat.getColor(context, R.color.spark_bright_pinkred)
+                    leftDay <= 58 -> ContextCompat.getColor(context, R.color.spark_light_pinkred)
+                    leftDay <= 62 -> ContextCompat.getColor(
+                        context,
+                        R.color.spark_more_light_pinkred
+                    )
+                    leftDay <= 65 -> ContextCompat.getColor(
+                        context,
+                        R.color.spark_most_light_pinkred
+                    )
+                    leftDay == 66 -> ContextCompat.getColor(
+                        context,
+                        R.color.spark_most_light_pinkred
+                    )
                     else -> throw IllegalStateException("바인딩 어댑터 setLeftTicketColor 오류")
                 }
             )
@@ -158,19 +168,19 @@ object BindingAdapters {
                 leftDay == 0 -> {
                     context.getString(R.string.home_ticket_left_comment_7)
                 }
-                leftDay <= 1 -> {
+                leftDay <= 6 -> {
                     context.getString(R.string.home_ticket_left_comment_6)
                 }
-                leftDay <= 7 -> {
+                leftDay <= 32 -> {
                     context.getString(R.string.home_ticket_left_comment_5)
                 }
-                leftDay <= 33 -> {
+                leftDay <= 58 -> {
                     context.getString(R.string.home_ticket_left_comment_4)
                 }
-                leftDay <= 59 -> {
+                leftDay <= 62 -> {
                     context.getString(R.string.home_ticket_left_comment_3)
                 }
-                leftDay <= 63 -> {
+                leftDay <= 65 -> {
                     context.getString(R.string.home_ticket_left_comment_2)
                 }
                 leftDay == 66 -> {
@@ -203,6 +213,15 @@ object BindingAdapters {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("playLoadingLottie")
+    fun playLoadingLottie(lottie: LottieAnimationView, play: Boolean) {
+        if (play) {
+            lottie.playAnimation()
+        } else {
+            lottie.cancelAnimation()
+        }
+    }
     @JvmStatic
     @BindingAdapter("setProgressBarBackground")
     fun setProgressBarBackground(progressBar: ProgressBar, leftDay: Int?) {

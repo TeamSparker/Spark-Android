@@ -19,7 +19,7 @@ class FeedHeaderDecoration(private val stickyHeaderResolver: StickyHeaderResolve
         val topChildPosition = parent.getChildAdapterPosition(topChild)
         if (topChildPosition == RecyclerView.NO_POSITION) return
 
-        val header = getHeaderViewForPos(topChildPosition, parent)
+        val header = getHeaderViewForPos(topChildPosition, parent) ?: return
         fixLayoutSize(parent, header)
 
         val childInContact = getChildInContact(parent, header.bottom) ?: return
@@ -35,8 +35,8 @@ class FeedHeaderDecoration(private val stickyHeaderResolver: StickyHeaderResolve
         drawHeader(c, header)
     }
 
-    private fun getHeaderViewForPos(itemPosition: Int, parent: RecyclerView): View {
-        val item = stickyHeaderResolver.getItemHeaderForPos(itemPosition)
+    private fun getHeaderViewForPos(itemPosition: Int, parent: RecyclerView): View? {
+        val item = stickyHeaderResolver.getItemHeaderForPos(itemPosition) ?: return null
 
         // Return same view instance if necessary,
         // avoiding multiple bindings since #onDrawOver is called multiple times

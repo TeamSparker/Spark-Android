@@ -14,8 +14,9 @@ import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
 import com.spark.android.util.KeyBoardUtil
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class InputCodeFragmentDialog : DialogFragment() {
 
     private var _binding: FragmentInputCodeDialogBinding? = null
@@ -45,7 +46,7 @@ class InputCodeFragmentDialog : DialogFragment() {
 
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
         initButtonClickListener()
-        initEditTextClearFocus()
+
         initClearErrorMessage()
     }
 
@@ -53,23 +54,30 @@ class InputCodeFragmentDialog : DialogFragment() {
         binding.btnInputCodeCheck.setOnClickListener {
             binding.etInputCodeContent.clearFocus()
 
-            val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {
-                this.putExtra("roomCode", inputCodeFragmentDialogViewModel.roomCode.value)
+            inputCodeFragmentDialogViewModel.roomCode.value?.let { roomCode ->
+                inputCodeFragmentDialogViewModel.getJoinCodeRoomInfo(
+                    roomCode
+                )
             }
-            startActivity(intent)
+
+            inputCodeFragmentDialogViewModel.roomInfo.observe(this){
+                val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {
+                    putExtra("roomInfo",inputCodeFragmentDialogViewModel.roomInfo.value)
+                }
+                startActivity(intent)
+                dismiss()
+            }
         }
     }
 
 
-    private fun initEditTextClearFocus() {
-        binding.layoutInputCodeDialog.setOnClickListener {
-            binding.etInputCodeContent.clearFocus()
-        }
-    }
 
     private fun initClearErrorMessage() {
         binding.etInputCodeContent.setOnFocusChangeListener { view, focused ->
-            if(!focused){inputCodeFragmentDialogViewModel.clearErrorMessage()}
+            if(focused){
+                inputCodeFragmentDialogViewModel.clearErrorMessage()
+                binding.etInputCodeContent.text.clear()
+            }
         }
     }
 

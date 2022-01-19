@@ -35,4 +35,24 @@ object RetrofitServiceModule {
     @Singleton
     fun provideWaitingRoomInfoService(retrofit: Retrofit): WaitingRoomInfoService =
         retrofit.create(WaitingRoomInfoService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSetPurposeService(retrofit: Retrofit): SetPurposeService =
+        retrofit.create(SetPurposeService::class.java )
+
+    @Provides
+    @Singleton
+    fun provideRefreshService(retrofit: Retrofit): RefreshService =
+        retrofit.create(RefreshService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideStartHabitService(retrofit: Retrofit): StartHabitService =
+        retrofit.create(StartHabitService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideJoinCodeRoomInfoService(retrofit: Retrofit): JoinCodeRoomInfoService =
+        retrofit.create(JoinCodeRoomInfoService::class.java)
 }

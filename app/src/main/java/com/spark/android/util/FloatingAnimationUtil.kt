@@ -3,6 +3,7 @@ package com.spark.android.util
 import android.animation.ObjectAnimator
 import android.os.Looper
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,6 +12,8 @@ import com.spark.android.R
 import java.util.logging.Handler
 
 object FloatingAnimationUtil {
+
+    const val ROTATE_TIME :Long = 1500
 
     fun toggleFab(
         buttonMain: FloatingActionButton,
@@ -23,6 +26,10 @@ object FloatingAnimationUtil {
     ) {
         // 플로팅 액션 버튼 닫기 - 열려있는 플로팅 버튼 집어넣는 애니메이션 세팅
         if (fabState) {
+            ObjectAnimator.ofFloat(buttonMain, View.ROTATION, 45f, 0f).apply {
+                duration = 300
+                start()
+            }
             ObjectAnimator.ofFloat(buttonJoinCode, "translationY", 0f).apply { start() }
             ObjectAnimator.ofFloat(buttonMakeRoom, "translationY", 0f).apply { start() }
             ObjectAnimator.ofFloat(textViewJoinCode, "translationY", 0f).apply { start() }
@@ -34,6 +41,10 @@ object FloatingAnimationUtil {
 
             // 플로팅 액션 버튼 열기 - 닫혀있는 플로팅 버튼 꺼내는 애니메이션 세팅
         } else {
+            ObjectAnimator.ofFloat(buttonMain, View.ROTATION, -45f, 0f).apply {
+                duration = 300
+                start ()
+            }
             textViewJoinCode.visibility = View.VISIBLE
             textViewMakeRoom.visibility = View.VISIBLE
             ObjectAnimator.ofFloat(buttonJoinCode, "translationY", -200f).apply { start() }
@@ -49,7 +60,7 @@ object FloatingAnimationUtil {
         ObjectAnimator.ofFloat(textview, "translationY", -150f).apply { start() }
     }
 
-    fun closeToastAnimation (textview: TextView) {
+    fun closeToastAnimation(textview: TextView) {
         ObjectAnimator.ofFloat(textview, "translationY", 0f).apply { start() }
     }
 
@@ -61,6 +72,10 @@ object FloatingAnimationUtil {
         textViewMakeRoom: TextView,
         textViewJoinCode: TextView,
     ) {
+        ObjectAnimator.ofFloat(buttonMain, View.ROTATION, 45f, 0f).apply {
+            duration = 300
+            start()
+        }
         ObjectAnimator.ofFloat(buttonJoinCode, "translationY", 0f).apply { start() }
         ObjectAnimator.ofFloat(buttonMakeRoom, "translationY", 0f).apply { start() }
         ObjectAnimator.ofFloat(textViewJoinCode, "translationY", 0f).apply { start() }
@@ -69,5 +84,14 @@ object FloatingAnimationUtil {
         textViewMakeRoom.visibility = View.GONE
         buttonMain.setImageResource(R.drawable.ic_fab_plus)
         backgroundLayout.visibility = View.GONE
+    }
+
+    fun rotateAnimation(
+        imageButton: ImageButton
+    ) {
+        ObjectAnimator.ofFloat(imageButton, View.ROTATION, 360f, 0f).apply {
+            duration = ROTATE_TIME
+            start()
+        }
     }
 }

@@ -4,9 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.spark.android.data.remote.entity.response.HomeResponse
 import com.spark.android.data.remote.entity.response.Room
 import com.spark.android.databinding.ItemHomeRecyclerviewBinding
 import com.spark.android.databinding.ItemHomeRecyclerviewWaitingBinding
@@ -14,6 +12,7 @@ import com.spark.android.ui.habit.HabitActivity
 import com.spark.android.ui.home.adapter.multiview.TICKET_STARTED
 import com.spark.android.ui.home.adapter.multiview.TICKET_WAITING
 import com.spark.android.ui.home.data.TicketData
+import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import java.lang.RuntimeException
 import kotlin.properties.Delegates
 
@@ -75,7 +74,7 @@ class HomeRecyclerViewAdapter :
         init {
             itemView.setOnClickListener {
                 val intent = Intent(it.context, HabitActivity::class.java).apply {
-                    this.putExtra("roomId", ticketList[adapterPosition].roomId)
+                    putExtra("roomId", ticketList[adapterPosition].roomId)
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 startActivity(it.context, intent, null)
@@ -87,6 +86,16 @@ class HomeRecyclerViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: Room) {
             binding.room = data
+        }
+
+        init {
+            itemView.setOnClickListener {
+                val intent = Intent(it.context, WaitingRoomActivity::class.java).apply {
+                    putExtra("roomId", ticketList[adapterPosition].roomId)
+                    putExtra("startPoint",WaitingRoomActivity.START_FROM_HOME)
+                }
+                startActivity(it.context, intent, null)
+            }
         }
     }
 

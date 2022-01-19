@@ -2,23 +2,26 @@ package com.spark.android.ui.storage
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageIncompleteBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.storage.adapter.IncompleteVpAdapter
+import com.spark.android.ui.storage.viewmodel.StorageViewModel
 
 
 class StorageIncompleteFragment :
     BaseFragment<FragmentStorageIncompleteBinding>(R.layout.fragment_storage_incomplete) {
     private val incompleteVpAdapter = IncompleteVpAdapter()
+    private val storageViewModel by activityViewModels<StorageViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initIncompleteVpAdapter()
+        initIncompleteRoomsObserver()
     }
 
     private fun initIncompleteVpAdapter() {
-        incompleteVpAdapter.setList(listOf("미완료 1", "미완료 2", "미완료 3", "미완료 4"))
         binding.vpStorageIncomplete.adapter = incompleteVpAdapter
         binding.vpStorageIncomplete.offscreenPageLimit = 3
         binding.vpStorageIncomplete.post {
@@ -29,6 +32,12 @@ class StorageIncompleteFragment :
             binding.vpStorageIncomplete.setPageTransformer { page, position ->
                 page.translationX = position * -offsetPx
             }
+        }
+    }
+
+    private fun initIncompleteRoomsObserver() {
+        storageViewModel.incompleteRooms.observe(viewLifecycleOwner) { rooms ->
+            incompleteVpAdapter.setList(rooms)
         }
     }
 }
