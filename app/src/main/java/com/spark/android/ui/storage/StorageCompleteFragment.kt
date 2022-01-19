@@ -3,6 +3,7 @@ package com.spark.android.ui.storage
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageCompleteBinding
 import com.spark.android.ui.base.BaseFragment
@@ -21,6 +22,7 @@ class StorageCompleteFragment :
     }
 
     private fun initCompleteVpAdapter() {
+        binding.vpStorageComplete.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         binding.vpStorageComplete.adapter = completeVpAdapter
         binding.vpStorageComplete.offscreenPageLimit = 3
         binding.vpStorageComplete.post {
