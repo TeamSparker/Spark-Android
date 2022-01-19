@@ -24,6 +24,10 @@ object FloatingAnimationUtil {
     ) {
         // 플로팅 액션 버튼 닫기 - 열려있는 플로팅 버튼 집어넣는 애니메이션 세팅
         if (fabState) {
+            ObjectAnimator.ofFloat(buttonMain, View.ROTATION, 45f, 0f).apply {
+                duration = 300
+                start()
+            }
             ObjectAnimator.ofFloat(buttonJoinCode, "translationY", 0f).apply { start() }
             ObjectAnimator.ofFloat(buttonMakeRoom, "translationY", 0f).apply { start() }
             ObjectAnimator.ofFloat(textViewJoinCode, "translationY", 0f).apply { start() }
@@ -35,6 +39,10 @@ object FloatingAnimationUtil {
 
             // 플로팅 액션 버튼 열기 - 닫혀있는 플로팅 버튼 꺼내는 애니메이션 세팅
         } else {
+            ObjectAnimator.ofFloat(buttonMain, View.ROTATION, -45f, 0f).apply {
+                duration = 300
+                start ()
+            }
             textViewJoinCode.visibility = View.VISIBLE
             textViewMakeRoom.visibility = View.VISIBLE
             ObjectAnimator.ofFloat(buttonJoinCode, "translationY", -200f).apply { start() }
@@ -50,7 +58,7 @@ object FloatingAnimationUtil {
         ObjectAnimator.ofFloat(textview, "translationY", -150f).apply { start() }
     }
 
-    fun closeToastAnimation (textview: TextView) {
+    fun closeToastAnimation(textview: TextView) {
         ObjectAnimator.ofFloat(textview, "translationY", 0f).apply { start() }
     }
 
@@ -62,6 +70,10 @@ object FloatingAnimationUtil {
         textViewMakeRoom: TextView,
         textViewJoinCode: TextView,
     ) {
+        ObjectAnimator.ofFloat(buttonMain, View.ROTATION, 45f, 0f).apply {
+            duration = 300
+            start()
+        }
         ObjectAnimator.ofFloat(buttonJoinCode, "translationY", 0f).apply { start() }
         ObjectAnimator.ofFloat(buttonMakeRoom, "translationY", 0f).apply { start() }
         ObjectAnimator.ofFloat(textViewJoinCode, "translationY", 0f).apply { start() }
@@ -74,8 +86,8 @@ object FloatingAnimationUtil {
 
     fun rotateAnimation(
         imageButton: ImageButton
-    ){
-        ObjectAnimator.ofFloat(imageButton,View.ROTATION,-360f,0f).apply {
+    ) {
+        ObjectAnimator.ofFloat(imageButton, View.ROTATION, -360f, 0f).apply {
             duration = 2000
             start()
         }
