@@ -48,7 +48,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.habit.HabitActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.auth.AuthActivity"

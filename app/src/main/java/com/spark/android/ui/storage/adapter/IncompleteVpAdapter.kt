@@ -4,19 +4,20 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.spark.android.databinding.ItemIncompleteListBinding
+import com.spark.android.data.remote.entity.response.StorageRoom
+import com.spark.android.databinding.ItemStorageIncompleteListBinding
 import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 
 class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteVpViewHolder>() {
 
-    var roomNameList = listOf<String>()
+    var roomNameList = listOf<StorageRoom>()
 
-    fun setList(list: List<String>) {
+    fun setList(list: List<StorageRoom>) {
         roomNameList = list
         notifyDataSetChanged()
     }
 
-    class IncompleteVpViewHolder(private val binding: ItemIncompleteListBinding) :
+    class IncompleteVpViewHolder(private val binding: ItemStorageIncompleteListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -26,13 +27,13 @@ class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteV
             }
         }
 
-        fun onBind(str: String) {
-            binding.str = str
+        fun onBind(storageRoom: StorageRoom) {
+            binding.storageRoom = storageRoom
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IncompleteVpViewHolder {
-        val binding = ItemIncompleteListBinding.inflate(
+        val binding = ItemStorageIncompleteListBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return IncompleteVpViewHolder(binding)

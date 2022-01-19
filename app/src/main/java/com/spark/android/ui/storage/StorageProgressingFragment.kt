@@ -3,22 +3,25 @@ package com.spark.android.ui.storage
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageProgressingBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.storage.adapter.ProgressingVpAdapter
+import com.spark.android.ui.storage.viewmodel.StorageViewModel
 
 class StorageProgressingFragment :
     BaseFragment<FragmentStorageProgressingBinding>(R.layout.fragment_storage_progressing) {
     private val progressingVpAdapter = ProgressingVpAdapter()
+    private val storageViewModel by activityViewModels<StorageViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initProgressingVpAdapter()
+        initProgressingRoomsObserver()
     }
 
     private fun initProgressingVpAdapter() {
-        progressingVpAdapter.setList(listOf("진행1", "진행2", "진행3", "진행4"))
         binding.vpStorageProgressing.adapter = progressingVpAdapter
         binding.vpStorageProgressing.offscreenPageLimit = 3
         binding.vpStorageProgressing.post {
@@ -29,6 +32,12 @@ class StorageProgressingFragment :
             binding.vpStorageProgressing.setPageTransformer { page, position ->
                 page.translationX = position * -offsetPx
             }
+        }
+    }
+
+    private fun initProgressingRoomsObserver() {
+        storageViewModel.progressingRooms.observe(viewLifecycleOwner) { rooms ->
+            progressingVpAdapter.setList(rooms)
         }
     }
 }

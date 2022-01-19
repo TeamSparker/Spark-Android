@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="storageRoom"
+            type="com.spark.android.data.remote.entity.response.StorageRoom" />
+
+        <variable
             name="str"
             type="String" />
     </data>
@@ -24,16 +28,17 @@
 
         <ImageView
             android:id="@+id/iv_complete_item_photo"
+            setImage="@{storageRoom.thumbnail}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="2dp"
             android:layout_marginBottom="2dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_storage_complete_certification_photo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/img_storage_complete_certification_photo" />
 
         <ImageView
             android:layout_width="0dp"
@@ -127,13 +132,14 @@
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:lineSpacingExtra="1sp"
-            android:text="3"
+            android:text="@{String.valueOf(storageRoom.totalRecievedSpark)}"
             android:textAlignment="center"
             android:textColor="@color/spark_gray"
             android:textSize="20dp"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@id/iv_complete_item_fire_gray"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="3" />
 
 
         <TextView
@@ -143,7 +149,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
-            android:text="@{str}"
+            android:text="@{storageRoom.roomName}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="24dp"
@@ -159,13 +165,14 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/futura_medium"
             android:includeFontPadding="false"
-            android:text="2021.07.01 - 2022.08.08"
+            android:text="@{storageRoom.startDate.replace(`-`,`.`) +` - `+storageRoom.endDate.replace(`-`,`.`)}"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
             app:flow_horizontalAlign="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_complete_item_roomName" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_complete_item_roomName"
+            tools:text="2021.07.01 - 2022.08.08" />
 
         <TextView
             android:id="@+id/tv_complete_item_completeReview"
@@ -178,13 +185,14 @@
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:text="약 좀 챙겨!! 건강한 디자이너가 되자 ㅠㅠㅠ 친구들이랑 먹으니 할 만했다 ㅎㅎ"
+            android:text="@{String.valueOf(storageRoom.comment)}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_complete_item_total_duration" />
+            app:layout_constraintTop_toBottomOf="@id/tv_complete_item_total_duration"
+            tools:text="약 좀 챙겨!! 건강한 디자이너가 되자 ㅠㅠㅠ 친구들이랑 먹으니 할 만했다 ㅎㅎ" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
