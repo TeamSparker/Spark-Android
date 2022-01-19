@@ -10,6 +10,10 @@
         <variable
             name="waitingRoomViewModel"
             type="com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
+
+        <variable
+            name="startPoint"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +29,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="32dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_waiting_room_home"
+            android:src="@{startPoint == true ? @drawable/ic_make_room_back : @drawable/ic_waiting_room_home}"
+            tools:src="@drawable/ic_waiting_room_home"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

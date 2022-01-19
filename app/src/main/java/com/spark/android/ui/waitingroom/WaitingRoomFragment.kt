@@ -34,12 +34,13 @@ class WaitingRoomFragment :
     private var tooltipState = false
     private val waitingRoomViewModel by viewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
+    private var startPoint by Delegates.notNull<Boolean>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getRoomId()
-
+        initExtra()
+        binding.startPoint = startPoint
         if (roomId != null) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
@@ -58,8 +59,9 @@ class WaitingRoomFragment :
         initRefreshButtonListener()
     }
 
-    private fun getRoomId() {
+    private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
+        startPoint = arguments?.getBoolean("startPoint") ?: false
     }
 
     private fun initClipBoard() {
@@ -162,6 +164,7 @@ class WaitingRoomFragment :
 
     private fun initRefreshButtonListener() {
         binding.btnWaitingRoomRefresh.setOnClickListener {
+            FloatingAnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             waitingRoomViewModel.getRefreshInfo(roomId)
             waitingRoomViewModel.refreshInfo.observe(this) {
                 waitingRoomRecyclerViewAdapter.members.clear()
