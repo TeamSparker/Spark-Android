@@ -20,7 +20,7 @@ data class StorageRoom(
     val totalRecievedSpark: Int,
     val startDate: String,
     val endDate: String,
-    val failDay: Any,
+    val failDay: Int,
     val comment: Any
 )
 
