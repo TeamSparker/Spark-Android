@@ -3,12 +3,9 @@ package com.spark.android.data.remote.repository
 import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.FirebaseMessagingService
 import com.kakao.sdk.user.UserApiClient
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
-import com.spark.android.data.remote.entity.response.BaseResponse
-import com.spark.android.data.remote.entity.response.SignUpResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -24,7 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
             if (error != null) {
                 Log.e("kakao", "토큰 정보 보기 실패", error)
             } else if (tokenInfo != null) {
-                initId("Kakao@11111${requireNotNull(tokenInfo.id)}")
+                initId("Kakao@${requireNotNull(tokenInfo.id)}")
                 Log.d(
                     "kakao", "토큰 정보 보기 성공" +
                             "\n회원번호: ${tokenInfo.id}" +
