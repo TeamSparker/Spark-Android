@@ -1,11 +1,14 @@
 package com.spark.android.ui.feed.adapter
 
+import android.animation.Animator
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.spark.android.BR
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.spark.android.R
 import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.databinding.ItemFeedContentBinding
 import com.spark.android.databinding.ItemFeedFooterBinding
@@ -13,7 +16,8 @@ import com.spark.android.databinding.ItemFeedHeaderBinding
 import com.spark.android.databinding.ItemFeedLoadingBinding
 import java.lang.IllegalStateException
 
-class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
+class FeedAdapter(private val postHeart: (FeedListItem) -> Unit) :
+    ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
     class FeedHeaderViewHolder(private val binding: ItemFeedHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(feedListItem: FeedListItem) {
@@ -23,20 +27,62 @@ class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffU
         }
     }
 
-    class FeedContentViewHolder(private val binding: ItemFeedContentBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class FeedContentViewHolder(
+        private val binding: ItemFeedContentBinding,
+        private val postHeart: (FeedListItem) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(feedListItem: FeedListItem) {
             feedListItem.feed?.let { feed ->
                 binding.setVariable(BR.feed, feed)
                 binding.executePendingBindings()
+                initHeartClickListener(feedListItem)
+            }
+        }
+
+        private fun initHeartClickListener(feedListItem: FeedListItem) {
+            binding.btnFeedHeart.setOnClickListener {
+                val feed = requireNotNull(feedListItem.feed)
+                postHeart(feedListItem)
+                binding.lottieFeedHeart.let { lottie ->
+                    when (feed.isLiked) {
+                        true -> {
+                            binding.btnFeedHeart.setImageResource(R.drawable.ic_feed_heart_gray)
+                            binding.tvFeedHeartCount.let {
+                                it.setTextColor(it.context.getColor(R.color.spark_gray))
+                                it.text = (feed.likeNum - 1).toString()
+                            }
+                        }
+                        false -> {
+                            binding.btnFeedHeart.setImageResource(R.drawable.ic_feed_heart_pink)
+                            binding.tvFeedHeartCount.let {
+                                it.setTextColor(it.context.getColor(R.color.spark_pinkred))
+                                it.text = (feed.likeNum + 1).toString()
+                            }
+                            lottie.let {
+                                it.visibility = View.VISIBLE
+                                it.playAnimation()
+                                it.addAnimatorListener(object : Animator.AnimatorListener {
+                                    override fun onAnimationEnd(animation: Animator?) {
+                                        it.visibility = View.INVISIBLE
+                                    }
+
+                                    override fun onAnimationStart(animation: Animator?) {}
+                                    override fun onAnimationCancel(animation: Animator?) {}
+                                    override fun onAnimationRepeat(animation: Animator?) {}
+
+                                })
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 
-    class FeedFooterViewHolder(private val binding: ItemFeedFooterBinding) :
+    class FeedFooterViewHolder(binding: ItemFeedFooterBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    class FeedLoadingViewHolder(private val binding: ItemFeedLoadingBinding) :
+    class FeedLoadingViewHolder(binding: ItemFeedLoadingBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun getItemViewType(position: Int) = getItem(position).viewType
@@ -47,7 +93,8 @@ class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffU
                 ItemFeedHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
             FEED_CONTENT_TYPE -> FeedContentViewHolder(
-                ItemFeedContentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                ItemFeedContentBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+                postHeart
             )
             FEED_FOOTER_TYPE -> FeedFooterViewHolder(
                 ItemFeedFooterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
