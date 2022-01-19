@@ -1,44 +1,40 @@
 package com.spark.android.ui.storage
 
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityStoragePhotoCollectionBinding
 import com.spark.android.ui.base.BaseActivity
+import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
+import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
 
 class StoragePhotoCollectionActivity :
     BaseActivity<ActivityStoragePhotoCollectionBinding>(R.layout.activity_storage_photo_collection) {
     private val photoCollectionRvAdapter = PhotoCollectionRvAdapter()
+    private val photoCollectionViewModel by viewModels<PhotoCollectionViewModel>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        photoCollectionViewModel.initPhotoCollectionNetwork(160,-1, 5)
+        binding.photoCollectionViewModel = photoCollectionViewModel
         binding.ivStoragePhotoCollectionBackWhite.setOnClickListener {
             finish()
         }
         initStoragePhotoCollectionRvAdapter()
+        initPhotoCollectionObserver()
     }
 
     private fun initStoragePhotoCollectionRvAdapter() {
-        photoCollectionRvAdapter.setList(
-            listOf(
-                "D-day",
-                "D-1",
-                "D-2",
-                "D-3",
-                "D-4",
-                "D-5",
-                "D-6",
-                "D-7",
-                "D-8",
-                "D-9",
-                "D-10",
-                "D-11",
-                "D-12",
-                "D-13",
-                "D-14",
-                "D-15"
-            )
-        )
         binding.rvStoragePhotoCollection.adapter = photoCollectionRvAdapter
     }
 
+    private fun initPhotoCollectionObserver() {
+        photoCollectionViewModel.photoList.observe(this) { photo ->
+            photoCollectionRvAdapter.setList(photo)
+
+        }
+    }
 }

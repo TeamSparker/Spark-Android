@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="str"
-            type="String" />
+            name="storageCardPhoto"
+            type="com.spark.android.data.remote.entity.response.StorageCardPhoto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,19 +22,18 @@
             android:layout_height="0dp"
             app:cardCornerRadius="2dp"
             app:cardElevation="0dp"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/iv_photo_collection_item_photo"
+                setImage="@{storageCardPhoto.certifyingImg}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_photo_collection_yogurt"
-              />
+                tools:src="@drawable/img_photo_collection_yogurt" />
 
         </androidx.cardview.widget.CardView>
 
@@ -44,7 +44,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/futura_bold"
-            android:text="@{str}"
+            android:text="@{`D-`+ String.valueOf(storageCardPhoto.leftDay)}"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/iv_photo_collection_item_fire_gray"
@@ -68,7 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:text="12"
+            android:text="@{String.valueOf(storageCardPhoto.sparkNum)}"
+            tools:text="3"
             android:textAlignment="viewEnd"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"

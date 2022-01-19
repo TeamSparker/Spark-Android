@@ -1,5 +1,6 @@
 package com.spark.android.data.remote
 
+import com.spark.android.data.remote.service.PhotoCollectionService
 import com.spark.android.data.remote.service.StorageService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -39,4 +40,5 @@ object RetrofitBuilder {
     // val sampleService: SampleService = retrofit.create(SampleService::class.java)
 
     val storageService: StorageService = retrofit.create(StorageService::class.java)
+    val photoCollectionService: PhotoCollectionService = retrofit.create(PhotoCollectionService::class.java)
 }
