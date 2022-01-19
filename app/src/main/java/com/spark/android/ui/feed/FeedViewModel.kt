@@ -20,23 +20,29 @@ class FeedViewModel @Inject constructor(
 //        feedRepository.getFeedList(size = 4).cachedIn(viewModelScope)
 
     private var lastId = -1
+    var hasNextPage = true
+        private set
 
-    private val _feedList = MutableLiveData<List<FeedListItem>>()
-    val feedList: LiveData<List<FeedListItem>> = _feedList
+    private val _feedList = MutableLiveData(mutableListOf<FeedListItem>())
+    val feedList: LiveData<MutableList<FeedListItem>> = _feedList
 
     fun getFeedList() {
         viewModelScope.launch {
             feedRepository.getFeedList(lastId, listLimit)
                 .onSuccess { response ->
                     val tempFeeds = response.data.feedList
-                    lastId = tempFeeds.last().recordId
+                    if(tempFeeds.isNotEmpty()){
+                        lastId = tempFeeds.last().recordId
+                    }
                     val feeds = feedRepository.addHeaderToFeedList(tempFeeds)
                     if (tempFeeds.size < listLimit) {
+                        hasNextPage = false
                         feeds.add(
                             FeedListItem(id = "footer", viewType = FEED_FOOTER_TYPE, feed = null)
                         )
                     }
-                    _feedList.postValue(feeds)
+                    _feedList.postValue(
+                        requireNotNull(_feedList.value).toMutableList().apply { addAll(feeds) })
                 }
                 .onFailure {
                     Log.d("Feed_GetFeedList", it.message.toString())
