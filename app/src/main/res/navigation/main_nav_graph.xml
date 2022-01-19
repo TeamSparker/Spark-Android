@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeMainFragment">
+
+    <fragment
+        android:id="@+id/homeMainFragment"
+        android:name="com.spark.android.ui.home.HomeMainFragment"
+        android:label="HomeMainFragment">
+        <action
+            android:id="@+id/action_homeMainFragment_to_storageFragment"
+            app:destination="@id/storageFragment" />
+        <action
+            android:id="@+id/action_homeMainFragment_to_feedFragment"
+            app:destination="@id/feedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.spark.android.ui.feed.FeedFragment"
+        android:label="FeedFragment">
+        <action
+            android:id="@+id/action_feedFragment_to_homeMainFragment"
+            app:destination="@id/homeMainFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_storageFragment"
+            app:destination="@id/storageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storageFragment"
+        android:name="com.spark.android.ui.storage.StorageFragment"
+        android:label="StorageFragment">
+        <action
+            android:id="@+id/action_storageFragment_to_homeMainFragment"
+            app:destination="@id/homeMainFragment" />
+        <action
+            android:id="@+id/action_storageFragment_to_feedFragment"
+            app:destination="@id/feedFragment" />
+    </fragment>
+</navigation>
