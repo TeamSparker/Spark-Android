@@ -20,12 +20,16 @@ class FeedViewModel @Inject constructor(
 //    fun getFeedPagingResource(): Flow<PagingData<FeedListItem>> =
 //        feedRepository.getFeedList(size = 4).cachedIn(viewModelScope)
 
-    private var lastId = -1
+    var lastId = -1
+        private set
     var hasNextPage = true
         private set
 
     var isAddLoading = false
         private set
+
+    private val _isFeedEmpty = MutableLiveData(false)
+    val isFeedEmpty: LiveData<Boolean> = _isFeedEmpty
 
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -36,12 +40,16 @@ class FeedViewModel @Inject constructor(
     private val _feedList = MutableLiveData(mutableListOf<FeedListItem>())
     val feedList: LiveData<MutableList<FeedListItem>> = _feedList
 
+    private fun initIsFeedEmpty() {
+        _isFeedEmpty.value = true
+    }
+
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
 
     fun getFeedList() {
-        if(requireNotNull(feedList.value).isEmpty()){
+        if (requireNotNull(feedList.value).isEmpty()) {
             initIsLoading(true)
         }
         if (requireNotNull(feedList.value).isNotEmpty() && hasNextPage) {
@@ -54,9 +62,11 @@ class FeedViewModel @Inject constructor(
                     val tempFeeds = response.data.feedList
                     if (tempFeeds.isNotEmpty()) {
                         lastId = tempFeeds.last().recordId
+                    } else if (lastId == -1) {
+                        initIsFeedEmpty()
                     }
                     val feeds = feedRepository.addHeaderToFeedList(tempFeeds)
-                    if (tempFeeds.size < listLimit) {
+                    if (tempFeeds.size < listLimit && lastId != -1) {
                         hasNextPage = false
                         feeds.add(
                             FeedListItem(id = "footer", viewType = FEED_FOOTER_TYPE, feed = null)
