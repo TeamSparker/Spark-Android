@@ -41,11 +41,12 @@ class FeedAdapter(private val postHeart: (FeedListItem) -> Unit) :
 
         private fun initHeartClickListener(feedListItem: FeedListItem) {
             binding.btnFeedHeart.setOnClickListener {
+                binding.btnFeedHeart.isEnabled = false
                 val feed = requireNotNull(feedListItem.feed)
-                postHeart(feedListItem)
                 binding.lottieFeedHeart.let { lottie ->
                     when (feed.isLiked) {
                         true -> {
+                            binding.btnFeedHeart.isEnabled = true
                             binding.btnFeedHeart.setImageResource(R.drawable.ic_feed_heart_gray)
                             binding.tvFeedHeartCount.let {
                                 it.setTextColor(it.context.getColor(R.color.spark_gray))
@@ -64,6 +65,7 @@ class FeedAdapter(private val postHeart: (FeedListItem) -> Unit) :
                                 it.addAnimatorListener(object : Animator.AnimatorListener {
                                     override fun onAnimationEnd(animation: Animator?) {
                                         it.visibility = View.INVISIBLE
+                                        binding.btnFeedHeart.isEnabled = true
                                     }
 
                                     override fun onAnimationStart(animation: Animator?) {}
@@ -75,6 +77,7 @@ class FeedAdapter(private val postHeart: (FeedListItem) -> Unit) :
                         }
                     }
                 }
+                postHeart(feedListItem)
             }
         }
     }
