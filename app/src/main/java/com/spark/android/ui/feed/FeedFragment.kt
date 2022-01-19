@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private val feedViewModel by viewModels<FeedViewModel>()
     private val feedAdapter = FeedAdapter()
-    private lateinit var feedHeaderDecoration: FeedHeaderDecoration
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,7 +55,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
                 val layoutManager = binding.rvFeed.layoutManager as LinearLayoutManager
                 val lastPosition = layoutManager.findLastCompletelyVisibleItemPosition()
                 if (feedViewModel.hasNextPage) {
-                    if (layoutManager.itemCount <= lastPosition + LOAD_POSITION &&
+                    if (!feedViewModel.isAddLoading && layoutManager.itemCount <= lastPosition + LOAD_POSITION &&
                         !binding.rvFeed.canScrollVertically(STATE_LOWEST)
                     ) {
                         feedViewModel.getFeedList()
