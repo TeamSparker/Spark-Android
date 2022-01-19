@@ -1,9 +1,10 @@
 package com.spark.android.data.remote.datasource
 
-import androidx.paging.PagingData
-import com.spark.android.data.remote.entity.response.FeedListItem
-import kotlinx.coroutines.flow.Flow
+import com.spark.android.data.remote.entity.response.BaseResponse
+import com.spark.android.data.remote.entity.response.FeedResponse
 
 interface FeedDataSource {
-    fun getFeedList(size: Int): Flow<PagingData<FeedListItem>>
+//    fun getFeedList(size: Int): Flow<PagingData<FeedListItem>>
+
+    suspend fun getFeedList(lastId: Int, size: Int): BaseResponse<FeedResponse>
 }

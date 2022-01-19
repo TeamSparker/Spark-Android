@@ -2,17 +2,16 @@ package com.spark.android.ui.feed.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import com.spark.android.BR
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.databinding.ItemFeedContentBinding
 import com.spark.android.databinding.ItemFeedHeaderBinding
 import java.lang.IllegalStateException
-import java.lang.NullPointerException
 
-class FeedAdapter : PagingDataAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
+class FeedAdapter : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
     class FeedHeaderViewHolder(private val binding: ItemFeedHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(feedListItem: FeedListItem) {
@@ -32,8 +31,7 @@ class FeedAdapter : PagingDataAdapter<FeedListItem, RecyclerView.ViewHolder>(fee
         }
     }
 
-    override fun getItemViewType(position: Int) =
-        getItem(position)?.viewType ?: throw NullPointerException("FeedAdapter getViewType 에러")
+    override fun getItemViewType(position: Int) = getItem(position).viewType
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -48,11 +46,9 @@ class FeedAdapter : PagingDataAdapter<FeedListItem, RecyclerView.ViewHolder>(fee
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        getItem(position)?.let { feedListItem ->
-            when (holder) {
-                is FeedHeaderViewHolder -> holder.bind(feedListItem)
-                is FeedContentViewHolder -> holder.bind(feedListItem)
-            }
+        when (holder) {
+            is FeedHeaderViewHolder -> holder.bind(getItem(position))
+            is FeedContentViewHolder -> holder.bind(getItem(position))
         }
     }
 
