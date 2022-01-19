@@ -51,9 +51,9 @@
 
                 <ImageView
                     android:id="@+id/iv_habit_background"
+                    setHabitBackground="@{habitViewModel.habitInfo.leftDay}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    setHabitBackground="@{habitViewModel.habitInfo.leftDay}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -145,6 +145,7 @@
                 <ProgressBar
                     android:id="@+id/progressbar_habit_progress_bar_bg"
                     style="@android:style/Widget.ProgressBar.Horizontal"
+                    setProgressBarBackground="@{habitViewModel.habitInfo.leftDay}"
                     android:layout_width="0dp"
                     android:layout_height="4dp"
                     android:layout_marginStart="20dp"
@@ -153,7 +154,6 @@
                     android:focusable="false"
                     android:max="66"
                     android:progress="@{66-habitViewModel.habitInfo.leftDay}"
-                    setProgressBarBackground="@{habitViewModel.habitInfo.leftDay}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_habit_teamlife_first" />
@@ -324,10 +324,11 @@
 
             <ImageView
                 android:id="@+id/iv_habit_today_certification_bg"
+                setVisibilityLeftDay="@{habitViewModel.habitInfo.leftDay}"
+                setVisibilityStatus="@{habitViewModel.habitInfo.myRecord.status}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_today_active"
-                android:visibility="@{habitViewModel.habitInfo.leftDay != 66 ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_habit_today_certification"
                 app:layout_constraintEnd_toEndOf="@+id/btn_habit_today_certification"
                 app:layout_constraintStart_toStartOf="@+id/btn_habit_today_certification"
@@ -335,6 +336,9 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_habit_today_certification"
+                certificationLeftDay="@{habitViewModel.habitInfo.leftDay}"
+                certificationStatus="@{habitViewModel.habitInfo.myRecord.status}"
+                android:background="@drawable/bg_habit_today_active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
@@ -342,8 +346,6 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:stateListAnimator="@null"
-                android:background="@{habitViewModel.habitInfo.leftDay != 66 ? @drawable/bg_habit_today_active : @drawable/bg_habit_today_inactive}"
-                android:enabled="@{habitViewModel.habitInfo.leftDay != 66 ? true : false}"
                 android:text="@string/habit_today_certification_btn"
                 android:textColor="@color/spark_white"
                 android:textSize="18dp"

@@ -6,28 +6,28 @@ data class HabitResponse(
     val leftDay: Int,
     val life: Int,
     val moment: String,
-    val myRecord: MyRecord,
-    val othersRecords: List<OthersRecord>,
+    val myRecord: HabitRecord,
+    val otherRecords: List<OtherRecord>,
     val purpose: String,
     val roomId: Int,
     val roomName: String,
     val startDate: String,
 )
 
-data class MyRecord(
+data class OtherRecord(
     val nickname: String,
     val profileImg: String,
-    val receivedSpark: Int,
     val recordId: Int,
-    val rest: Int,
     val status: String,
     val userId: Int,
 )
 
-data class OthersRecord(
+data class HabitRecord(
     val nickname: String,
     val profileImg: String,
+    val receivedSpark: Int = -1,
     val recordId: Int,
+    val rest: Int = -1,
     val status: String,
     val userId: Int,
 )

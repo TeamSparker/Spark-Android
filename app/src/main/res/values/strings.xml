@@ -48,7 +48,11 @@
     <!-- HabitActivity -->
     <string name="item_habit_team_send_count">0</string>
     <string name="item_habit_team_name">name</string>
-    <string name="item_habit_team_status">status</string>
+    <string name="item_habit_team_status_complete">인증을 완료했어요!</string>
+    <string name="item_habit_team_status_consider">지금은 고민중이에요.</string>
+    <string name="item_habit_team_status_rest">오늘은 쉬어요.</string>
+    <string name="item_habit_team_status_none">아직 인증하지 않았어요.</string>
+    <string name="item_habit_team_status_ready">인증은 내일부터 가능해요.</string>
     <string name="habit_d_day">D-00</string>
     <string name="habit_start_date">0000.00.00.</string>
     <string name="habit_end_date">9999.99.99.</string>

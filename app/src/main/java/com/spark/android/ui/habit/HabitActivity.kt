@@ -18,16 +18,18 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.habitViewModel = habitViewModel
 
         // test
         roomId = 160
 
         initStatusBarColor(R.color.spark_black)
 //        initRoomId()
+        initRVAdapter()
         initHabitInfoObserver()
+        initHabitRecordsObserver()
         refreshData()
         setSwipeRefreshLayout()
-        initRVAdapter()
         initHabitBackBtnClickListener()
         initHabitMoreBtnClickListener()
         initHabitTodayBtnClickListener()
@@ -39,11 +41,20 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initHabitInfoObserver() {
         habitViewModel.habitInfo.observe(this) {
+            habitRecyclerViewAdapter.response = it
             binding.habitViewModel = habitViewModel
         }
     }
 
+    private fun initHabitRecordsObserver(){
+        habitViewModel.habitRecordList.observe(this){
+            habitRecyclerViewAdapter.list.addAll(it)
+            habitRecyclerViewAdapter.notifyDataSetChanged()
+        }
+    }
+
     private fun refreshData() {
+        habitRecyclerViewAdapter.list.clear()
         if (roomId != -1) {
             habitViewModel.getHabitRoomInfo(roomId)
         }
@@ -54,22 +65,13 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
             setColorSchemeColors(context.getColor(R.color.spark_pinkred))
             setOnRefreshListener {
                 refreshData()
-                // 함수 추가
                 isRefreshing = false
             }
         }
     }
 
     private fun initRVAdapter() {
-        // test
-        var list = mutableListOf<String>()
-        list.add("a")
-        list.add("b")
-        list.add("c")
-        list.add("d")
-        list.add("e")
-        list.add("f")
-        habitRecyclerViewAdapter = HabitRecyclerViewAdapter(list)
+        habitRecyclerViewAdapter = HabitRecyclerViewAdapter()
         binding.rvHabitTeamList.adapter = habitRecyclerViewAdapter
     }
 
