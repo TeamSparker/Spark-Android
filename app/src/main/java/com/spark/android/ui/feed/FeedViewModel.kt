@@ -27,13 +27,23 @@ class FeedViewModel @Inject constructor(
     var isAddLoading = false
         private set
 
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val loadingItem =
         FeedListItem(id = "loading", viewType = FEED_LOADING_TYPE, feed = null)
 
     private val _feedList = MutableLiveData(mutableListOf<FeedListItem>())
     val feedList: LiveData<MutableList<FeedListItem>> = _feedList
 
+    private fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
     fun getFeedList() {
+        if(requireNotNull(feedList.value).isEmpty()){
+            initIsLoading(true)
+        }
         if (requireNotNull(feedList.value).isNotEmpty() && hasNextPage) {
             isAddLoading = true
             addLoadingItem()
@@ -53,6 +63,7 @@ class FeedViewModel @Inject constructor(
                         )
                     }
                     isAddLoading = false
+                    initIsLoading(false)
                     _feedList.postValue(
                         requireNotNull(_feedList.value).toMutableList().apply {
                             remove(loadingItem)
