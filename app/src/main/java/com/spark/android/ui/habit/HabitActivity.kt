@@ -46,8 +46,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         }
     }
 
-    private fun initHabitRecordsObserver(){
-        habitViewModel.habitRecordList.observe(this){
+    private fun initHabitRecordsObserver() {
+        habitViewModel.habitRecordList.observe(this) {
             habitRecyclerViewAdapter.list.addAll(it)
             habitRecyclerViewAdapter.notifyDataSetChanged()
         }
@@ -89,7 +89,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initHabitTodayBtnClickListener() {
         binding.btnHabitTodayCertification.setOnClickListener {
-            HabitTodayBottomSheet(1).show(supportFragmentManager, this.javaClass.name)
+            HabitTodayBottomSheet().show(supportFragmentManager, this.javaClass.name)
         }
     }
 
