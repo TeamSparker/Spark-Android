@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private val feedViewModel by viewModels<FeedViewModel>()
-    private val feedAdapter = FeedAdapter()
+    private val feedAdapter = FeedAdapter { recordId -> feedViewModel.postFeedHeart(recordId) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
