@@ -164,6 +164,7 @@ class WaitingRoomFragment :
 
     private fun initRefreshButtonListener() {
         binding.btnWaitingRoomRefresh.setOnClickListener {
+            FloatingAnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             waitingRoomViewModel.getRefreshInfo(roomId)
             waitingRoomViewModel.refreshInfo.observe(this) {
                 waitingRoomRecyclerViewAdapter.members.clear()

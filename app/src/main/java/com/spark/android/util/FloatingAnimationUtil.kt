@@ -3,6 +3,7 @@ package com.spark.android.util
 import android.animation.ObjectAnimator
 import android.os.Looper
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -69,5 +70,14 @@ object FloatingAnimationUtil {
         textViewMakeRoom.visibility = View.GONE
         buttonMain.setImageResource(R.drawable.ic_fab_plus)
         backgroundLayout.visibility = View.GONE
+    }
+
+    fun rotateAnimation(
+        imageButton: ImageButton
+    ){
+        ObjectAnimator.ofFloat(imageButton,View.ROTATION,-360f,0f).apply {
+            duration = 2000
+            start()
+        }
     }
 }
