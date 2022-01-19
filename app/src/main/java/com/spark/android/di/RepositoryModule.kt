@@ -62,6 +62,13 @@ object RepositoryModule {
         startHabitService: StartHabitService
     ): StartHabitRepository =
         StartHabitRepositoryImpl(startHabitService)
+
+    @Provides
+    @Singleton
+    fun providesJoinCodeRoomInfoRepository(
+        joinCodeRoomInfoService: JoinCodeRoomInfoService
+    ): JoinCodeRoomInfoRepository =
+        JoinCodeRoomInfoRepositoryImpl(joinCodeRoomInfoService)
 }
 
 

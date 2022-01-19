@@ -50,4 +50,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideStartHabitService(retrofit: Retrofit): StartHabitService =
         retrofit.create(StartHabitService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideJoinCodeRoomInfoService(retrofit: Retrofit): JoinCodeRoomInfoService =
+        retrofit.create(JoinCodeRoomInfoService::class.java)
 }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="joinCodeData"
-            type="com.spark.android.ui.joincode.data.JoinCodeData" />
+            name="joinCodeRoomInfoResponse"
+            type="com.spark.android.data.remote.entity.response.JoinCodeRoomInfoResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,7 +73,7 @@
             android:includeFontPadding="false"
             android:textColor="@color/spark_dark_gray"
             android:textSize="20dp"
-            android:text="@{joinCodeData.createrName}"
+            android:text="@{joinCodeRoomInfoResponse.creatorName+`님이 초대한 방`}"
             app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
             app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
             app:layout_constraintTop_toBottomOf="@+id/iv_join_code_background"
@@ -87,7 +87,7 @@
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
             android:textColor="@color/spark_deep_gray"
-            android:text="@{joinCodeData.roomName}"
+            android:text="@{joinCodeRoomInfoResponse.roomName}"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
             app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
