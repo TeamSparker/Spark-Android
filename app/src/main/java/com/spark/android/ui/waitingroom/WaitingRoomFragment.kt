@@ -175,6 +175,7 @@ class WaitingRoomFragment :
                 waitingRoomRecyclerViewAdapter.members.addAll(
                     it
                 )
+                waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
             }
         }
     }
