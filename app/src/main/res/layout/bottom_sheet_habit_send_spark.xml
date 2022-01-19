@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="habitViewModel"
+            type="com.spark.android.ui.habit.viewmodel.HabitViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,9 +143,9 @@
             android:text="@string/habit_send_spark_message_fourth"
             android:textColor="@color/spark_light_pinkred"
             android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_habit_send_spark_message_third" />
 
 
