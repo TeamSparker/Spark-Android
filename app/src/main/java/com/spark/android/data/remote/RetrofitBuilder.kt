@@ -1,5 +1,6 @@
 package com.spark.android.data.remote
 
+import com.spark.android.data.remote.service.HabitService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -37,4 +38,5 @@ object RetrofitBuilder {
     // 이 밑에다가 이런식으로 서비스 객체 생성하기
     // val sampleService: SampleService = retrofit.create(SampleService::class.java)
 
+    val habitService : HabitService = retrofit.create(HabitService::class.java)
 }
