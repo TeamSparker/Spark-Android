@@ -3,6 +3,7 @@ package com.spark.android.ui.storage
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.R
 import com.spark.android.databinding.FragmentStorageIncompleteBinding
 import com.spark.android.ui.base.BaseFragment
@@ -22,6 +23,7 @@ class StorageIncompleteFragment :
     }
 
     private fun initIncompleteVpAdapter() {
+        binding.vpStorageIncomplete.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         binding.vpStorageIncomplete.adapter = incompleteVpAdapter
         binding.vpStorageIncomplete.offscreenPageLimit = 3
         binding.vpStorageIncomplete.post {
@@ -32,6 +34,8 @@ class StorageIncompleteFragment :
             binding.vpStorageIncomplete.setPageTransformer { page, position ->
                 page.translationX = position * -offsetPx
             }
+
+
         }
     }
 

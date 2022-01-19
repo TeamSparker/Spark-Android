@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+        <variable
+            name="photoCollectionViewModel"
+            type="com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,7 +33,8 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="아침마다 요거트 먹기"
+            tools:text="아침마다 요거트 먹기"
+            android:text="@{photoCollectionViewModel.photoCollectionResponse.roomName}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
