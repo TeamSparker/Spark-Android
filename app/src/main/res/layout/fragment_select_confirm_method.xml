@@ -19,9 +19,10 @@
             android:id="@+id/btn_make_room_select_confirm_method_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
+            android:padding="10dp"
             android:src="@drawable/ic_make_room_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
