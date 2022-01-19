@@ -19,16 +19,13 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        roomId = intent.getIntExtra("roomId", -1)
-        roomId = 2
-
-//        refreshData()
-
-        habitViewModel.habitInfo.observe(this) {
-            binding.habitViewModel = habitViewModel
-        }
+        // test
+        roomId = 160
 
         initStatusBarColor(R.color.spark_black)
+//        initRoomId()
+        initHabitInfoObserver()
+        refreshData()
         setSwipeRefreshLayout()
         initRVAdapter()
         initHabitBackBtnClickListener()
@@ -36,8 +33,18 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitTodayBtnClickListener()
     }
 
+    private fun initRoomId() {
+        roomId = intent.getIntExtra("roomId", -1)
+    }
+
+    private fun initHabitInfoObserver() {
+        habitViewModel.habitInfo.observe(this) {
+            binding.habitViewModel = habitViewModel
+        }
+    }
+
     private fun refreshData() {
-        if(roomId != -1) {
+        if (roomId != -1) {
             habitViewModel.getHabitRoomInfo(roomId)
         }
     }
