@@ -21,23 +21,24 @@
 
         <ImageView
             android:id="@+id/iv_item_habit_team_profile"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="2dp"
             setCircleImage="@{record.profileImg}"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_item_habit_team_sticker"
-            app:layout_constraintEnd_toEndOf="@+id/iv_item_habit_team_sticker"
-            app:layout_constraintStart_toStartOf="@+id/iv_item_habit_team_sticker"
-            app:layout_constraintTop_toTopOf="@+id/iv_item_habit_team_sticker" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_item_habit_team_sticker"
+            setStatusStickerImage="@{record.status}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="31dp"
-            setStatusStickerImage="@{record.status}"
+            android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,19 +55,19 @@
             android:text="@{record.nickname}"
             android:textColor="@color/spark_black"
             android:textSize="18dp"
-            app:layout_constraintStart_toEndOf="@id/iv_item_habit_team_sticker"
+            app:layout_constraintStart_toEndOf="@id/iv_item_habit_team_profile"
             app:layout_constraintTop_toTopOf="@id/iv_item_habit_team_profile"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/tv_item_habit_team_status"
+            setUserLeftDay="@{response.leftDay}"
+            setUserStatus="@{record.status}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="9dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            setUserStatus="@{record.status}"
-            setUserLeftDay="@{response.leftDay}"
             android:textColor="@color/spark_dark_gray"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@id/iv_item_habit_team_profile"
@@ -85,15 +86,16 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_item_habit_team_send"
+            habitRestCount="@{record.rest}"
+            habitUserLeftDay="@{response.leftDay}"
+            habitUserStatus="@{record.status}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:background="@android:color/transparent"
-            habitUserStatus="@{record.status}"
-            habitRestCount="@{record.rest}"
-            app:layout_constraintBottom_toBottomOf="@id/iv_item_habit_team_sticker"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_habit_team_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_item_habit_team_sticker" />
+            app:layout_constraintTop_toTopOf="@id/iv_item_habit_team_profile" />
 
         <TextView
             android:id="@+id/tv_item_habit_team_send_count"

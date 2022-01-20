@@ -5,16 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetHabitTodayBinding
-import com.spark.android.ui.certify.CertifyActivity
+import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.ui.timer.TimerStartActivity
 
-class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFragment() {
+class HabitTodayBottomSheet() : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitTodayBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
+
+    private val habitViewModel by activityViewModels<HabitViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,12 +30,12 @@ class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFra
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.remainCount = remainCount
         val bottomSheet =
             dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         val behavior = BottomSheetBehavior.from<View>(bottomSheet!!)
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
+        binding.habitViewModel = habitViewModel
         initCertifyBtnClickListener()
         initConsiderBtnClickListener()
         initRestBtnClickListener()
@@ -49,14 +52,14 @@ class HabitTodayBottomSheet(private val remainCount: Int) : BottomSheetDialogFra
 
     private fun initConsiderBtnClickListener() {
         binding.btnHabitTodayConsider.setOnClickListener {
-            // 고민중
+            habitViewModel.postStatus("CONSIDER")
             dismiss()
         }
     }
 
     private fun initRestBtnClickListener() {
         binding.btnHabitTodayRest.setOnClickListener {
-            // 쉴래요
+            habitViewModel.postStatus("REST")
             dismiss()
         }
     }
