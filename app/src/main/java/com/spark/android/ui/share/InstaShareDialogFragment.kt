@@ -37,6 +37,7 @@ class InstaShareDialogFragment : DialogFragment() {
     private fun setLayout() {
         requireNotNull(dialog).apply {
             requireNotNull(window).apply {
+                setCancelable(false)
                 setLayout(
                     (resources.displayMetrics.widthPixels * 0.85).toInt(),
                     ViewGroup.LayoutParams.WRAP_CONTENT
