@@ -86,7 +86,7 @@
                 android:layout_marginTop="56dp"
                 android:fontFamily="@font/futura_bold"
                 android:lineSpacingExtra="1sp"
-                android:text="@{`D-` + String.valueOf(storageRoom.leftDay)}"
+                android:text="@{storageRoom.leftDay == 0 ? `D-day` : `D-` + String.valueOf(storageRoom.leftDay)}"
                 android:textColor="@color/spark_white"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -70,7 +70,7 @@
                 android:layout_marginTop="56dp"
                 android:fontFamily="@font/futura_bold"
                 android:includeFontPadding="false"
-                android:text="@{String.valueOf(storageRoom.failDay)+` DAYS`}"
+                android:text="@{storageRoom.failDay == 66 ? `D-Day` : String.valueOf(storageRoom.failDay)+` DAYS`}"
                 android:textAlignment="center"
                 android:textColor="@color/spark_white"
                 android:textSize="24dp"
