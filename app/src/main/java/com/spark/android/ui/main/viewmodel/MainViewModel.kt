@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    private val _tabPosition = MutableLiveData(TAB_HOME)
+    private val _tabPosition = MutableLiveData<Int>()
     val tabPosition: LiveData<Int> = _tabPosition
 
     fun initTabPositionFeed() {

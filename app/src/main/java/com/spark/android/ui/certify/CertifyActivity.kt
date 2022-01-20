@@ -12,6 +12,7 @@ import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_READY_MODE
 import com.spark.android.ui.certify.CertifyMode.Companion.ONLY_CAMERA_MODE
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
 import com.spark.android.ui.main.MainActivity
+import com.spark.android.ui.main.MainActivity.Companion.FROM_WHERE
 import com.spark.android.ui.share.InstaShareDialogFragment
 import com.spark.android.ui.share.InstaShareDialogFragment.Companion.INSTA_DIALOG
 import com.spark.android.ui.share.InstaShareDialogFragment.Companion.NO_SHARE
@@ -143,11 +144,12 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         supportFragmentManager.setFragmentResultListener(INSTA_DIALOG, this) { _, bundle ->
             when (bundle.get(SHARE_MODE)) {
                 SHARE -> {
-                    
+
                 }
                 NO_SHARE -> {
                     startActivity(Intent(this, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        putExtra(FROM_WHERE, FROM_CERTIFY_ACTIVITY)
                     })
                 }
             }
@@ -161,5 +163,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     override fun onBackPressed() {
         moveToTimerActivity()
+    }
+
+    companion object {
+        const val FROM_CERTIFY_ACTIVITY = "CertifyActivity"
     }
 }
