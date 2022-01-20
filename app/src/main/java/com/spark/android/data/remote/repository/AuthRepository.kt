@@ -1,6 +1,7 @@
 package com.spark.android.data.remote.repository
 
 import com.spark.android.data.remote.entity.response.BaseResponse
+import com.spark.android.data.remote.entity.response.DoorbellResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
 import okhttp3.Callback
 import okhttp3.MultipartBody
@@ -11,6 +12,8 @@ interface AuthRepository {
 
     fun getFcmToken(getFcmToken: (String) -> Unit)
 
+    fun saveAccessToken(accessToken: String)
+
     suspend fun postSignUp(
         nickname: String,
         kakaoUserId: String,
@@ -18,5 +21,8 @@ interface AuthRepository {
         profileImg: MultipartBody.Part?
     ): Result<BaseResponse<SignUpResponse>>
 
-    fun saveAccessToken(accessToken: String)
+    suspend fun getAccessToken(
+        socialId: String,
+        fcmToken: String
+    ): Result<BaseResponse<DoorbellResponse>>
 }

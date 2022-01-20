@@ -6,6 +6,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.user.UserApiClient
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
+import com.spark.android.data.remote.entity.response.BaseResponse
+import com.spark.android.data.remote.entity.response.DoorbellResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -37,6 +39,10 @@ class AuthRepositoryImpl @Inject constructor(
         })
     }
 
+    override fun saveAccessToken(accessToken: String) {
+        localPreferencesDataSource.saveAccessToken(accessToken)
+    }
+
     override suspend fun postSignUp(
         nickname: String,
         kakaoUserId: String,
@@ -50,7 +56,9 @@ class AuthRepositoryImpl @Inject constructor(
         authDataSource.postSignUp(map, profileImg)
     }
 
-    override fun saveAccessToken(accessToken: String) {
-        localPreferencesDataSource.saveAccessToken(accessToken)
-    }
+    override suspend fun getAccessToken(
+        socialId: String,
+        fcmToken: String
+    ): Result<BaseResponse<DoorbellResponse>> =
+        kotlin.runCatching { authDataSource.getAccessToken(socialId, fcmToken) }
 }
