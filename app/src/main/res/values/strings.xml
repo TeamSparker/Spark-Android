@@ -149,8 +149,8 @@
 
     <!-- HabitGoalManageActivity -->
     <string name="habit_goal_manage_title">나의 목표 관리</string>
-    <string name="habit_goal_manage_tip_top">\'아침 독서\' 습관방의</string>
-    <string name="habit_goal_manage_tip_bottom">시간과 목표를 적어봐요.</string>
+    <string name="habit_goal_manage_tip_top">습관방의</string>
+    <string name="habit_goal_manage_tip_bottom">시간과 목표를 적어보세요!</string>
     <string name="habit_goal_manage_time_title">언제 습관을 진행할 건가요?</string>
     <string name="habit_goal_manage_time_example">ex. 잠자기 전 / 오후 5시</string>
     <string name="habit_goal_manage_goal_title">이방에서 나만의 목표는 무엇인가요?</string>
