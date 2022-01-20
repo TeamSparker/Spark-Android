@@ -41,7 +41,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.activity = this
         binding.mainViewModel = mainViewModel
         initStatusBarStyle()
-        initTabPositionFromOthers()
         initBindingVariable()
         initFloatingButtonClickListener()
         initTabPositionObserver()
@@ -72,8 +71,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun initTabPositionFromOthers() {
         when (intent.getStringExtra(FROM_WHERE)) {
-            FROM_CERTIFY_ACTIVITY -> mainViewModel.initTabPositionFeed()
+            FROM_CERTIFY_ACTIVITY -> {
+                mainViewModel.initTabPositionFeed()
+            }
         }
+        intent.removeExtra(FROM_WHERE)
     }
 
     private fun findNavController(): NavController {
