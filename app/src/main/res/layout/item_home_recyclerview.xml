@@ -115,6 +115,7 @@
 
             <TextView
                 android:id="@+id/tv_home_right_ticket_complete_colored_people_number"
+                setLeftTicketColor="@{room.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -122,7 +123,6 @@
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
                 android:text="@{room.leftDay == 66 ? `` : String.valueOf(room.doneMemberNum)}"
-                setLeftTicketColor="@{room.leftDay}"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket"
@@ -135,12 +135,24 @@
                 android:layout_marginBottom="23dp"
                 android:fontFamily="@font/futura_medium"
                 android:includeFontPadding="false"
-                android:text="@{room.leftDay == 66 ? String.valueOf(room.memberNum)+`명` : `/`+String.valueOf(room.memberNum)+`명`}"
+                android:text="@{room.leftDay == 66 ? String.valueOf(room.memberNum) : `/`+String.valueOf(room.memberNum)}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
                 app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_colored_people_number"
-                tools:text="/7명" />
+                tools:text="/7" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/home_ticket_people"
+                android:textColor="@color/spark_deep_gray"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_home_right_ticket_complete_people_number"
+                app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_people_number" />
 
             <TextView
                 android:id="@+id/tv_home_right_ticket_life"
