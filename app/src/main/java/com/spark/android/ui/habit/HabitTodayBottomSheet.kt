@@ -14,7 +14,7 @@ import com.spark.android.ui.certify.CertifyBottomSheet
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.ui.timer.TimerStartActivity
 
-class HabitTodayBottomSheet() : BottomSheetDialogFragment() {
+class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitTodayBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
@@ -46,14 +46,18 @@ class HabitTodayBottomSheet() : BottomSheetDialogFragment() {
         binding.btnHabitTodayCertificationNow.setOnClickListener {
             if (habitViewModel.habitInfo.value?.fromStart == true) {
                 val intent = Intent(context, TimerStartActivity::class.java)
-                intent.putExtra("roomName", habitViewModel.habitInfo.value?.roomName.toString())
-                intent.putExtra("fromStart",
-                    habitViewModel.habitInfo.value?.fromStart.toString().toBoolean())
+                intent.apply {
+                    putExtra("roomName", habitViewModel.habitInfo.value?.roomName.toString())
+                    putExtra("fromStart",
+                        habitViewModel.habitInfo.value?.fromStart.toString().toBoolean())
+                    putExtra("roomId", habitViewModel.habitInfo.value?.roomId)
+                }
                 startActivity(intent)
                 dismiss()
             } else {
                 dismiss()
-                CertifyBottomSheet().show(requireActivity().supportFragmentManager, this.javaClass.name)
+                CertifyBottomSheet().show(requireActivity().supportFragmentManager,
+                    this.javaClass.name)
             }
         }
     }

@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
+import com.spark.android.data.remote.RetrofitBuilder
+import com.spark.android.data.remote.entity.request.CertifyRequest
 import com.spark.android.databinding.ActivityCertifyBinding
 import com.spark.android.util.MultiPartResolver
 import com.spark.android.ui.base.BaseActivity
@@ -17,6 +19,7 @@ import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
+import retrofit2.http.Multipart
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
@@ -41,6 +44,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     private fun initIntentData() {
         certifyViewModel.initTimerRecord(intent.getStringExtra("timerRecord").toString())
         certifyViewModel.initRoomName(intent.getStringExtra("roomName").toString())
+        certifyViewModel.initRoomId(intent.getIntExtra("roomId", -1))
 
         val fromStart = intent.getBooleanExtra("fromStart", true)
         if(fromStart) {
@@ -70,6 +74,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         val intent = Intent(this, TimerStartActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             putExtra("roomName", certifyViewModel.roomName.value.toString())
+            putExtra("roomId", certifyViewModel.roomId.value)
             putExtra("timerRecord", certifyViewModel.timerRecord.value.toString())
             putExtra("myVisible",View.VISIBLE)
             putExtra("myInvisible", View.INVISIBLE)
@@ -117,6 +122,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     private fun initCertifyPhotoUploadBtnClickListener() {
         binding.btnCertifyPhotoUpload.setOnClickListener {
+            certifyViewModel.postCertification()
             finish()
         }
     }

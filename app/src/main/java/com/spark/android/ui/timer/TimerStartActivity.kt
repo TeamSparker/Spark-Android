@@ -24,6 +24,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
     private val timerStartViewModel by viewModels<TimerStartViewModel>()
     var pauseTime = 0L
     var roomName : String? = null
+    var roomId : Int? = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         binding.btnTimerStartBottom.visibility = myInvisible
         roomName = intent.getStringExtra("roomName")
         binding.tvTimerRoomName.text = roomName
-
+        roomId = intent.getIntExtra("roomId", -1)
 
         //binding.chronometerTimer.base = SystemClock.elapsedRealtime() - (nr_of_min * 60000)
 
@@ -131,6 +132,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
                 addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 putExtra("timerRecord", binding.chronometerTimer.text)
                 putExtra("roomName", roomName)
+                putExtra("roomId", roomId)
             }
             startActivity(intent)
             finish()

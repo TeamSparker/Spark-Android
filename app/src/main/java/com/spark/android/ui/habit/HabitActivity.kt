@@ -34,6 +34,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initRoomId() {
         roomId = intent.getIntExtra("roomId", -1)
+//        roomId = 160
     }
 
     private fun initHabitInfoObserver() {
