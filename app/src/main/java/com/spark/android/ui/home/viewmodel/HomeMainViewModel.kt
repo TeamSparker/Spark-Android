@@ -18,10 +18,23 @@ class HomeMainViewModel @Inject constructor(
     private val _roomList = MutableLiveData<List<Room>>()
     val roomList: LiveData<List<Room>> = _roomList
 
+    private val _isLoading = MutableLiveData(false)
+    val isLoading :LiveData<Boolean> = _isLoading
+
+    var lastId = -1
+        private set
+
+    fun updateIsLoading(){
+        _isLoading.postValue(false)
+    }
+
     fun getHomeAllRoom(lastid: Int, size: Int) {
         viewModelScope.launch {
+            _isLoading.value = true
             val response = homeRepository.getHomeAllRoom(lastid, size)
             _roomList.postValue(response.data?.rooms)
         }
     }
+
+
 }

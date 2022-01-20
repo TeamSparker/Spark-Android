@@ -2,11 +2,9 @@ package com.spark.android.ui.storage
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityStoragePhotoCollectionBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
 import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
 
@@ -18,7 +16,8 @@ class StoragePhotoCollectionActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        photoCollectionViewModel.initPhotoCollectionNetwork(160,-1, 5)
+        val roomId = intent.getIntExtra("roomId", -1)
+        photoCollectionViewModel.initPhotoCollectionNetwork(roomId, -1, 5)
         binding.photoCollectionViewModel = photoCollectionViewModel
         binding.ivStoragePhotoCollectionBackWhite.setOnClickListener {
             finish()
