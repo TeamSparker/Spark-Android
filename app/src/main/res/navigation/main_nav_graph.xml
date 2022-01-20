@@ -10,10 +10,19 @@
         android:label="HomeMainFragment">
         <action
             android:id="@+id/action_homeMainFragment_to_storageFragment"
-            app:destination="@id/storageFragment" />
+            app:destination="@id/storageFragment"
+            app:popUpTo="@id/storageFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeMainFragment_to_feedFragment"
-            app:destination="@id/feedFragment" />
+            app:destination="@id/feedFragment"
+            app:popUpTo="@id/feedFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeMainFragment_self"
+            app:destination="@id/homeMainFragment"
+            app:popUpTo="@id/homeMainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
@@ -21,10 +30,19 @@
         android:label="FeedFragment">
         <action
             android:id="@+id/action_feedFragment_to_homeMainFragment"
-            app:destination="@id/homeMainFragment" />
+            app:destination="@id/homeMainFragment"
+            app:popUpTo="@id/homeMainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_feedFragment_to_storageFragment"
-            app:destination="@id/storageFragment" />
+            app:destination="@id/storageFragment"
+            app:popUpTo="@id/storageFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_feedFragment_self"
+            app:destination="@id/feedFragment"
+            app:popUpTo="@id/feedFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/storageFragment"
@@ -32,9 +50,18 @@
         android:label="StorageFragment">
         <action
             android:id="@+id/action_storageFragment_to_homeMainFragment"
-            app:destination="@id/homeMainFragment" />
+            app:destination="@id/homeMainFragment"
+            app:popUpTo="@id/homeMainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_storageFragment_to_feedFragment"
-            app:destination="@id/feedFragment" />
+            app:destination="@id/feedFragment"
+            app:popUpTo="@id/feedFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_storageFragment_self"
+            app:destination="@id/storageFragment"
+            app:popUpTo="@id/storageFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

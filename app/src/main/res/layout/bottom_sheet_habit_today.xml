@@ -4,9 +4,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="remainCount"
-            type="int" />
+            name="habitViewModel"
+            type="com.spark.android.ui.habit.viewmodel.HabitViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
+            android:visibility="@{habitViewModel.habitInfo.fromStart == true ? View.VISIBLE : View.GONE}"
             android:src="@drawable/ic_habit_today_stopwatch"
             app:layout_constraintEnd_toStartOf="@id/iv_habit_today_photo"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -158,7 +162,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="@{Integer.toString(remainCount)}"
+            android:text="@{Integer.toString(habitViewModel.habitInfo.life)}"
             android:textColor="@color/spark_dark_pinkred"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/tv_habit_today_rest_tail"
@@ -206,17 +210,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="54dp"
-            android:background="@{remainCount == 0 ? @drawable/shape_habit_today_inactive : @drawable/shape_habit_today_active}"
+            android:background="@{habitViewModel.habitInfo.life == 0 ? @drawable/shape_habit_today_inactive : @drawable/shape_habit_today_active}"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:gravity="center"
-            android:enabled="@{remainCount == 0 ? false : true}"
+            android:enabled="@{habitViewModel.habitInfo.life == 0 ? false : true}"
             android:includeFontPadding="false"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:text="@string/habit_today_rest_btn"
-            android:textColor="@{remainCount == 0 ? @color/spark_gray : @color/spark_light_pinkred}"
+            android:textColor="@{habitViewModel.habitInfo.life == 0 ? @color/spark_gray : @color/spark_light_pinkred}"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

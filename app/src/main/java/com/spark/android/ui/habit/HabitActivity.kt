@@ -20,11 +20,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         super.onCreate(savedInstanceState)
         binding.habitViewModel = habitViewModel
 
-        // test
-        roomId = 160
-
         initStatusBarColor(R.color.spark_black)
-//        initRoomId()
+        initRoomId()
         initRVAdapter()
         initHabitInfoObserver()
         initHabitRecordsObserver()
@@ -37,6 +34,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initRoomId() {
         roomId = intent.getIntExtra("roomId", -1)
+//        roomId = 160
     }
 
     private fun initHabitInfoObserver() {
@@ -46,8 +44,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         }
     }
 
-    private fun initHabitRecordsObserver(){
-        habitViewModel.habitRecordList.observe(this){
+    private fun initHabitRecordsObserver() {
+        habitViewModel.habitRecordList.observe(this) {
             habitRecyclerViewAdapter.list.addAll(it)
             habitRecyclerViewAdapter.notifyDataSetChanged()
         }
@@ -55,6 +53,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun refreshData() {
         habitRecyclerViewAdapter.list.clear()
+        habitRecyclerViewAdapter.notifyDataSetChanged()
         if (roomId != -1) {
             habitViewModel.getHabitRoomInfo(roomId)
         }
@@ -89,7 +88,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initHabitTodayBtnClickListener() {
         binding.btnHabitTodayCertification.setOnClickListener {
-            HabitTodayBottomSheet(1).show(supportFragmentManager, this.javaClass.name)
+            HabitTodayBottomSheet().show(supportFragmentManager, this.javaClass.name)
         }
     }
 

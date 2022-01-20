@@ -1,5 +1,6 @@
 package com.spark.android.ui.auth.signin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -7,6 +8,7 @@ import com.spark.android.R
 import com.spark.android.data.remote.service.KakaoLoginService
 import com.spark.android.databinding.FragmentSignInBinding
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.ui.main.MainActivity
 import com.spark.android.util.EventObserver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
@@ -24,9 +26,12 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signInViewModel = signInViewModel
+        signInViewModel.addSourcesToIsInitUserInfo()
         initKakaoLoginBtnClickListener()
         initStatusBarStyle()
         initIsSuccessKakaoLoginObserver()
+        initIsInitUserInfoObserver()
+        initDoorBellResponseObserver()
     }
 
     private fun initStatusBarStyle() {
@@ -47,10 +52,36 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     private fun initIsSuccessKakaoLoginObserver() {
         signInViewModel.isSuccessKakaoLogin.observe(viewLifecycleOwner, EventObserver { isSuccess ->
             if (isSuccess) {
-                navigate(R.id.action_signInFragment_to_profileFragment)
+                signInViewModel.initKakaoUserId()
+                signInViewModel.initFcmToken()
             } else {
                 requireContext().showToast(getString(R.string.sign_in_kakao_login_failure_msg))
             }
         })
     }
+
+    private fun initIsInitUserInfoObserver() {
+        signInViewModel.isInitUserInfo.observe(viewLifecycleOwner) { isInit ->
+            if (isInit) {
+                signInViewModel.getAccessToken()
+            }
+        }
+    }
+
+    private fun initDoorBellResponseObserver() {
+        signInViewModel.doorbellResponse.observe(viewLifecycleOwner) { response ->
+            if (response.isNew) {
+                navigate(R.id.action_signInFragment_to_profileFragment)
+            } else {
+                requireContext().showToast(getString(R.string.sign_in_complete_login_msg))
+                signInViewModel.saveAccessToken()
+                startActivity(Intent(requireContext(), MainActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                })
+                requireActivity().finish()
+            }
+        }
+    }
+
+
 }

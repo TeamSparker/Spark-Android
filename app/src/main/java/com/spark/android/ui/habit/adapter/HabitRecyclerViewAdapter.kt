@@ -12,7 +12,7 @@ import com.spark.android.ui.habit.HabitSendSparkBottomSheet
 
 class HabitRecyclerViewAdapter : RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder>() {
     val list = mutableListOf<HabitRecord>()
-    lateinit var response : HabitResponse
+    lateinit var response: HabitResponse
 
     class HabitViewHolder(private val binding: ItemHabitTeamBinding, private val size: Int) :
         RecyclerView.ViewHolder(binding.root) {
@@ -24,7 +24,9 @@ class HabitRecyclerViewAdapter : RecyclerView.Adapter<HabitRecyclerViewAdapter.H
             binding.record = record
             binding.response = response
             binding.btnItemHabitTeamSend.setOnClickListener {
-                HabitSendSparkBottomSheet().show((it.context as AppCompatActivity).supportFragmentManager,
+                val habitSendSparkBottomSheet = HabitSendSparkBottomSheet()
+                habitSendSparkBottomSheet.setSelectedItem(record.nickname, record.recordId)
+                habitSendSparkBottomSheet.show((it.context as AppCompatActivity).supportFragmentManager,
                     this.javaClass.name)
             }
         }

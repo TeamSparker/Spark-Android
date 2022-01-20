@@ -2,32 +2,38 @@ package com.spark.android.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.spark.android.R
 import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.feed.FeedFragment
-import com.spark.android.ui.home.HomeMainFragment
-import com.spark.android.ui.joincode.JoinCodeActivity
+import com.spark.android.ui.feed.FeedFragmentDirections
+import com.spark.android.ui.home.HomeMainFragmentDirections
 import com.spark.android.ui.joincode.inputcode.InputCodeFragmentDialog
-import com.spark.android.ui.storage.StorageFragment
 import com.spark.android.ui.main.viewmodel.MainViewModel
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_FEED
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_HOME
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_STORAGE
 import com.spark.android.ui.makeroom.MakeRoomActivity
+import com.spark.android.ui.storage.StorageFragmentDirections
 import com.spark.android.util.FloatingAnimationUtil
+import com.spark.android.util.getToast
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.IllegalStateException
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val mainViewModel by viewModels<MainViewModel>()
     private var fabState = false
+    private var backBtnWaitTime = 0L
+    private val toast: Toast by lazy { getToast(getString(R.string.main_back_btn_msg)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +43,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initBindingVariable()
         initFloatingButtonClickListener()
         initTabPositionObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.initTabPositionHome()
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - backBtnWaitTime >= BACK_BTN_WAIT_TIME) {
+            backBtnWaitTime = System.currentTimeMillis()
+            toast.show()
+        } else {
+            toast.cancel()
+            ActivityCompat.finishAffinity(this)
+            System.runFinalization()
+            exitProcess(0)
+        }
     }
 
     private fun initStatusBarStyle() {
@@ -52,20 +75,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun initTabPositionObserver() {
         mainViewModel.tabPosition.observe(this) { position ->
-            when (position) {
-                TAB_FEED -> when (findNavController().currentDestination?.id) {
-                    R.id.homeMainFragment -> findNavController().navigate(R.id.action_homeMainFragment_to_feedFragment)
-                    R.id.storageFragment -> findNavController().navigate(R.id.action_storageFragment_to_feedFragment)
+            findNavController().navigate(
+                when (position) {
+                    TAB_FEED -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> FeedFragmentDirections.actionFeedFragmentSelf()
+                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentToFeedFragment()
+                        R.id.storageFragment -> StorageFragmentDirections.actionStorageFragmentToFeedFragment()
+                        else -> throw IllegalStateException()
+                    }
+                    TAB_HOME -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> FeedFragmentDirections.actionFeedFragmentToHomeMainFragment()
+                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentSelf()
+                        R.id.storageFragment -> StorageFragmentDirections.actionStorageFragmentToHomeMainFragment()
+                        else -> throw IllegalStateException()
+                    }
+                    TAB_STORAGE -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> FeedFragmentDirections.actionFeedFragmentToStorageFragment()
+                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentToStorageFragment()
+                        R.id.storageFragment -> StorageFragmentDirections.actionStorageFragmentSelf()
+                        else -> throw IllegalStateException()
+                    }
+                    else -> throw IllegalStateException()
                 }
-                TAB_HOME -> when (findNavController().currentDestination?.id) {
-                    R.id.feedFragment -> findNavController().navigate(R.id.action_feedFragment_to_homeMainFragment)
-                    R.id.storageFragment -> findNavController().navigate(R.id.action_storageFragment_to_homeMainFragment)
-                }
-                TAB_STORAGE -> when (findNavController().currentDestination?.id) {
-                    R.id.homeMainFragment -> findNavController().navigate(R.id.action_homeMainFragment_to_storageFragment)
-                    R.id.feedFragment -> findNavController().navigate(R.id.action_feedFragment_to_storageFragment)
-                }
-            }
+            )
         }
     }
 
@@ -110,4 +142,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         )
     }
 
+    companion object {
+        private const val BACK_BTN_WAIT_TIME = 2000L
+    }
 }
