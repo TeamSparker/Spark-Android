@@ -7,10 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.RetrofitBuilder
-import com.spark.android.data.remote.entity.request.CertifyRequest
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import retrofit2.http.Multipart
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class CertifyViewModel : ViewModel() {
     private val _certifyMode = MutableLiveData<Int>()
@@ -32,6 +32,9 @@ class CertifyViewModel : ViewModel() {
 
     private val _imgBitmap = MutableLiveData<Bitmap?>()
     val imgBitmap: LiveData<Bitmap?> = _imgBitmap
+
+    private val _isSuccessCertify = MutableLiveData<Boolean>()
+    val isSuccessCertify: LiveData<Boolean> = _isSuccessCertify
 
     fun initCertifyMode(certifyMode: Int) {
         _certifyMode.value = certifyMode
@@ -64,14 +67,22 @@ class CertifyViewModel : ViewModel() {
     }
 
     fun postCertification() {
+        val timerRecordMultiPart = if (timerRecord.value.isNullOrEmpty()) {
+            null
+        } else {
+            mapOf("timerRecord" to requireNotNull(timerRecord.value).toRequestBody("text/plain".toMediaTypeOrNull()))
+        }
         viewModelScope.launch {
             roomId.value?.let { roomId ->
                 RetrofitBuilder.certifyService.postCertification(
                     roomId,
-                    CertifyRequest(
-                        Multipart(), timerRecord.value.toString()
-                    )
-                )
+                    timerRecordMultiPart,
+                    certifyImgMultiPart
+                ).onSuccess { response ->
+                    _isSuccessCertify.postValue(response.success)
+                }.onFailure {
+
+                }
             }
         }
     }

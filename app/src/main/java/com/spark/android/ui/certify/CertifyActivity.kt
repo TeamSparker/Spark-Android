@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
-import com.spark.android.data.remote.RetrofitBuilder
-import com.spark.android.data.remote.entity.request.CertifyRequest
 import com.spark.android.databinding.ActivityCertifyBinding
-import com.spark.android.util.MultiPartResolver
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_MODE
 import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_READY_MODE
@@ -17,9 +14,9 @@ import com.spark.android.ui.certify.viewmodel.CertifyViewModel
 import com.spark.android.ui.timer.TimerStartActivity
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
+import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
-import retrofit2.http.Multipart
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
@@ -39,6 +36,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         initCertifyPhotoBtnClickListener()
         initCertifyPhotoAgainBtnClickListener()
         initCertifyPhotoUploadBtnClickListener()
+        initIsSuccessCertifyObserver()
     }
 
     private fun initIntentData() {
@@ -123,7 +121,14 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     private fun initCertifyPhotoUploadBtnClickListener() {
         binding.btnCertifyPhotoUpload.setOnClickListener {
             certifyViewModel.postCertification()
-            finish()
+        }
+    }
+
+    private fun initIsSuccessCertifyObserver(){
+        certifyViewModel.isSuccessCertify.observe(this){ isSuccess ->
+            if(isSuccess){
+                finish()
+            }
         }
     }
 
