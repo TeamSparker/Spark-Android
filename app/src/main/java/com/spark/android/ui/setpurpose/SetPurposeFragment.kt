@@ -21,12 +21,14 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
     private val setPurposeViewModel by viewModels<SetPurposeViewModel>()
     private var roomId by Delegates.notNull<Int>()
+    private lateinit var roomName :String
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRoomId()
+        getExtraData()
+        binding.roomName = roomName
         binding.setPurposeViewModel = setPurposeViewModel
         initEditTextClearFocus()
         initPurposeEditTextFocusListener()
@@ -36,8 +38,9 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     }
 
 
-    private fun initRoomId() {
+    private fun getExtraData() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
+        roomName = arguments?.getString("roomName").toString()
     }
 
 
