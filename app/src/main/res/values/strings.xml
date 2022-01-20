@@ -28,6 +28,7 @@
     <string name="sign_in_info">로그인 시 <u>이용약관</u>과 <u>개인정보 처리 방침</u>에 동의하게 됩니다.</string>
     <string name="sign_in_desc_kakao_login">카카오 로그인 버튼</string>
     <string name="sign_in_kakao_login_failure_msg">카카오 로그인에 실패하였습니다.\n다시 시도해주세요.</string>
+    <string name="sign_in_complete_login_msg">로그인되었습니다.</string>
 
     <!-- ProfileFragment -->
     <string name="profile_desc_quit">종료 버튼</string>
@@ -71,6 +72,7 @@
     <string name="main_bottom_nav_storage">보관함</string>
     <string name="main_fab_make_room">방 만들기</string>
     <string name="main_fab_join_code">코드로 참여</string>
+    <string name="main_back_btn_msg">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
 
     <!-- FeedFragment -->
     <string name="feed_desc_certificate_photo">피드 인증 사진</string>
@@ -196,8 +198,13 @@
     <!-- CertifyBottomSheet -->
     <string name="certify_camera">카메라 촬영</string>
     <string name="certify_album">앨범에서 선택</string>
-    <string name="sign_in_complete_login_msg">로그인되었습니다.</string>
-    <string name="main_back_btn_msg">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
+
+    <!-- InstaDialogFragment -->
+    <string name="insta_desc_pattern_img">인스타 다이얼로그 패턴</string>
+    <string name="insta_desc_clap_img">인스타 다이얼로그 박수 이미지</string>
+    <string name="insta_btn_msg">인스타에 자랑하기</string>
+    <string name="insta_content_msg">방금 업로드한 멋진 인증,\n더 많은 친구들에게 자랑해 볼까요?</string>
+    <string name="insta_cancel_msg"><u>피드로 보러 가기</u></string>
 
 </resources>
 
