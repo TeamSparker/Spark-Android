@@ -44,4 +44,5 @@ object RetrofitBuilder {
     val setStatusService: SetStatusService = retrofit.create(SetStatusService::class.java)
     val sendSparkService: SendSparkService = retrofit.create(SendSparkService::class.java)
     val certifyService: CertifyService = retrofit.create(CertifyService::class.java)
+    val setPurposeService: SetPurposeService = retrofit.create(SetPurposeService::class.java)
 }
