@@ -11,7 +11,6 @@ import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
-import java.lang.IllegalStateException
 
 object BindingAdapters {
     @JvmStatic
@@ -222,6 +221,7 @@ object BindingAdapters {
             lottie.cancelAnimation()
         }
     }
+
     @JvmStatic
     @BindingAdapter("setProgressBarBackground")
     fun setProgressBarBackground(progressBar: ProgressBar, leftDay: Int?) {
@@ -302,8 +302,14 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["habitUserStatus", "habitRestCount"], requireAll = true)
-    fun setSendSparkImg(imageButton: ImageButton, status: String?, habitRestCount: Int?) {
+    @BindingAdapter(value = ["habitUserStatus", "habitRestCount", "habitUserLeftDay"],
+        requireAll = true)
+    fun setSendSparkBtn(
+        imageButton: ImageButton,
+        status: String?,
+        habitRestCount: Int?,
+        habitUserLeftDay: Int?,
+    ) {
         if (status != null) {
             if (habitRestCount != -1) {
                 imageButton.setImageResource(
@@ -311,23 +317,31 @@ object BindingAdapters {
                 )
                 imageButton.isEnabled = false
             } else {
-                imageButton.setImageResource(
-                    when (status) {
-                        "DONE", "REST" -> R.drawable.ic_habit_fire_inactive
-                        "NONE", "CONSIDER" -> R.drawable.ic_habit_fire_default
-                        else -> throw IllegalStateException("bindingAdapter setSendSparkImg error")
-                    }
-                )
-                imageButton.isEnabled = (
+                if (habitUserLeftDay == 66) {
+                    imageButton.setImageResource(
+                        R.drawable.ic_habit_fire_inactive
+                    )
+                    imageButton.isEnabled = false
+                } else {
+                    imageButton.setImageResource(
                         when (status) {
-                            "DONE", "REST" -> false
-                            "NONE", "CONSIDER" -> true
+                            "DONE", "REST" -> R.drawable.ic_habit_fire_inactive
+                            "NONE", "CONSIDER" -> R.drawable.ic_habit_fire_default
                             else -> throw IllegalStateException("bindingAdapter setSendSparkImg error")
                         }
-                        )
+                    )
+                    imageButton.isEnabled = (
+                            when (status) {
+                                "DONE", "REST" -> false
+                                "NONE", "CONSIDER" -> true
+                                else -> throw IllegalStateException("bindingAdapter setSendSparkImg error")
+                            }
+                            )
+                }
             }
         }
     }
+
 
     @JvmStatic
     @BindingAdapter(value = ["certificationLeftDay", "certificationStatus"], requireAll = true)
@@ -345,12 +359,12 @@ object BindingAdapters {
                     }
                 )
                 button.isEnabled = (
-                    when (status) {
-                        "DONE", "REST" -> false
-                        "NONE", "CONSIDER" -> true
-                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
-                    }
-                )
+                        when (status) {
+                            "DONE", "REST" -> false
+                            "NONE", "CONSIDER" -> true
+                            else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
+                        }
+                        )
             }
         }
     }
@@ -363,12 +377,12 @@ object BindingAdapters {
                 imageview.visibility = View.GONE
             } else {
                 imageview.visibility = (
-                    when (status) {
-                        "DONE", "REST" -> View.GONE
-                        "NONE", "CONSIDER" -> View.VISIBLE
-                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationVisibility error")
-                    }
-                )
+                        when (status) {
+                            "DONE", "REST" -> View.GONE
+                            "NONE", "CONSIDER" -> View.VISIBLE
+                            else -> throw IllegalStateException("bindingAdapter setHabitCertificationVisibility error")
+                        }
+                        )
             }
         }
     }

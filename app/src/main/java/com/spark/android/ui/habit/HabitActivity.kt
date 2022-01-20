@@ -20,11 +20,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         super.onCreate(savedInstanceState)
         binding.habitViewModel = habitViewModel
 
-        // test
-        roomId = 160
-
         initStatusBarColor(R.color.spark_black)
-//        initRoomId()
+        initRoomId()
         initRVAdapter()
         initHabitInfoObserver()
         initHabitRecordsObserver()
@@ -55,6 +52,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun refreshData() {
         habitRecyclerViewAdapter.list.clear()
+        habitRecyclerViewAdapter.notifyDataSetChanged()
         if (roomId != -1) {
             habitViewModel.getHabitRoomInfo(roomId)
         }

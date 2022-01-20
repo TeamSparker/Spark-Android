@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="nickname"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +36,7 @@
             android:includeFontPadding="false"
             android:paddingHorizontal="30dp"
             android:singleLine="true"
-            android:text="@string/habit_send_spark_toast_content"
+            android:text="@{nickname+@string/habit_send_spark_toast_content}"
             android:textColor="@color/spark_more_deep_gray"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"

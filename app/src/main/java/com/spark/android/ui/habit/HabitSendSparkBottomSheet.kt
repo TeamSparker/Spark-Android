@@ -15,6 +15,8 @@ import com.spark.android.util.SendSparkToast
 class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitSendSparkBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
+    var selectedItemId = -1
+    var selectedItemNickname = ""
 
     private val habitViewModel by activityViewModels<HabitViewModel>()
 
@@ -48,30 +50,43 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
 
     private fun initSendFirstBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageFirst.setOnClickListener {
-            SendSparkToast.showToast(view.context)
+            habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageFirst.text.toString(),
+                selectedItemId)
+            SendSparkToast.showToast(view.context, selectedItemNickname)
             dismiss()
         }
     }
 
     private fun initSendSecondBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageSecond.setOnClickListener {
-            SendSparkToast.showToast(view.context)
+            habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageSecond.text.toString(),
+                selectedItemId)
+            SendSparkToast.showToast(view.context, selectedItemNickname)
             dismiss()
         }
     }
 
     private fun initSendThirdBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageThird.setOnClickListener {
-            habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageFirst.text.toString(), 808)
-            SendSparkToast.showToast(view.context)
+            habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageThird.text.toString(),
+                selectedItemId)
+            SendSparkToast.showToast(view.context, selectedItemNickname)
             dismiss()
         }
     }
 
     private fun initSendFourthBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageFourth.setOnClickListener {
-            SendSparkToast.showToast(view.context)
+            habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageFourth.text.toString(),
+                selectedItemId)
+            SendSparkToast.showToast(view.context, selectedItemNickname)
             dismiss()
         }
     }
+
+    fun setSelectedItem(nickname: String, recordId: Int) {
+        selectedItemId = recordId
+        selectedItemNickname = nickname
+    }
+
 }
