@@ -197,6 +197,7 @@
     <string name="certify_camera">카메라 촬영</string>
     <string name="certify_album">앨범에서 선택</string>
     <string name="sign_in_complete_login_msg">로그인되었습니다.</string>
+    <string name="main_back_btn_msg">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
 
 </resources>
 
