@@ -23,7 +23,8 @@ class ProgressingVpAdapter : RecyclerView.Adapter<ProgressingVpAdapter.Progressi
 
         init {
             itemView.setOnClickListener {
-                val intent = Intent(it.context,StoragePhotoCollectionActivity::class.java)
+                val intent = Intent(it.context, StoragePhotoCollectionActivity::class.java)
+                intent.putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                 it.context.startActivity(intent)
             }
         }

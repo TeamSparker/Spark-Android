@@ -232,18 +232,30 @@ object BindingAdapters {
             progressBar.progressDrawable =
                 (
                         when {
-                            leftDay == 0 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_6,
-                                null)
-                            leftDay <= 6 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_5,
-                                null)
-                            leftDay <= 32 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_4,
-                                null)
-                            leftDay <= 58 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_3,
-                                null)
-                            leftDay <= 62 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_2,
-                                null)
-                            leftDay <= 66 -> resources.getDrawable(R.drawable.layer_list_habit_progressbar_1,
-                                null)
+                            leftDay == 0 -> resources.getDrawable(
+                                R.drawable.layer_list_habit_progressbar_6,
+                                null
+                            )
+                            leftDay <= 6 -> resources.getDrawable(
+                                R.drawable.layer_list_habit_progressbar_5,
+                                null
+                            )
+                            leftDay <= 32 -> resources.getDrawable(
+                                R.drawable.layer_list_habit_progressbar_4,
+                                null
+                            )
+                            leftDay <= 58 -> resources.getDrawable(
+                                R.drawable.layer_list_habit_progressbar_3,
+                                null
+                            )
+                            leftDay <= 62 -> resources.getDrawable(
+                                R.drawable.layer_list_habit_progressbar_2,
+                                null
+                            )
+                            leftDay <= 66 -> resources.getDrawable(
+                                R.drawable.layer_list_habit_progressbar_1,
+                                null
+                            )
                             else -> throw IllegalStateException("bindingAdapter setProgressBarLeftBackground error")
                         }
                         )
@@ -298,7 +310,8 @@ object BindingAdapters {
                         "REST" -> R.string.item_habit_team_status_rest
                         "DONE" -> R.string.item_habit_team_status_complete
                         else -> throw IllegalStateException("bindingAdapter setStatusText error")
-                    })
+                    }
+                )
             }
         }
     }
@@ -347,12 +360,12 @@ object BindingAdapters {
                     }
                 )
                 button.isEnabled = (
-                    when (status) {
-                        "DONE", "REST" -> false
-                        "NONE", "CONSIDER" -> true
-                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
-                    }
-                )
+                        when (status) {
+                            "DONE", "REST" -> false
+                            "NONE", "CONSIDER" -> true
+                            else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
+                        }
+                        )
             }
         }
     }
@@ -365,12 +378,12 @@ object BindingAdapters {
                 imageview.visibility = View.GONE
             } else {
                 imageview.visibility = (
-                    when (status) {
-                        "DONE", "REST" -> View.GONE
-                        "NONE", "CONSIDER" -> View.VISIBLE
-                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationVisibility error")
-                    }
-                )
+                        when (status) {
+                            "DONE", "REST" -> View.GONE
+                            "NONE", "CONSIDER" -> View.VISIBLE
+                            else -> throw IllegalStateException("bindingAdapter setHabitCertificationVisibility error")
+                        }
+                        )
             }
         }
     }
@@ -452,6 +465,21 @@ object BindingAdapters {
                     else -> throw IllegalStateException("바인딩 어댑터 setIncompleteCardSparkFlake 오류")
                 }
             )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["imageUrl","status"], requireAll = false)
+    fun ImageView.setPhotoImage(url:String?,status:String){
+        when (status) {
+            "DONE" -> {
+                Glide.with(this.context)
+                    .load(url)
+                    .into(this)
+            }
+            "NONE" -> {
+                this.setBackgroundResource(R.drawable.ic_bottom_navigation_home)
+            }
         }
     }
 }
