@@ -56,7 +56,9 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
+            android:visibility="@{homeViewModel.isLoading() == false &amp;&amp; homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +91,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_home_no_room" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_feed_loading"
+            playLoadingLottie="@{homeViewModel.isLoading}"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="@{homeViewModel.isLoading? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_home_toolbar"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home_ticket"

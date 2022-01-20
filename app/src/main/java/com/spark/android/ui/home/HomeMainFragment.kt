@@ -37,6 +37,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         homeMainViewModel.roomList.observe(this) {
             homeRecyclerViewAdapter.ticketList.addAll(it)
             homeRecyclerViewAdapter.notifyDataSetChanged()
+            homeMainViewModel.updateIsLoading()
         }
     }
 
@@ -44,5 +45,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         homeRecyclerViewAdapter = HomeRecyclerViewAdapter()
         binding.rvHomeTicket.adapter = homeRecyclerViewAdapter
     }
+
+
 
 }
