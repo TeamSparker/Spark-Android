@@ -23,11 +23,12 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
     }
 
     private fun startSplashLottie() {
-        binding.lottieIntro.playAnimation()
+        binding.lottieIntroBg.playAnimation()
+        binding.lottieIntroLogo.playAnimation()
     }
 
     private fun initLottieListener() {
-        binding.lottieIntro.addAnimatorListener(object : Animator.AnimatorListener {
+        binding.lottieIntroBg.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationEnd(animation: Animator?) {
                 if (introViewModel.hasToken()) {
                     moveToMainActivity()
