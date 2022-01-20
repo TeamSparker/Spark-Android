@@ -13,11 +13,23 @@
         tools:context=".ui.intro.IntroActivity">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_intro"
+            android:id="@+id/lottie_intro_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:lottie_fileName="splash.json" />
+            app:lottie_fileName="splash_bg.json" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_intro_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38"
+            app:lottie_fileName="splash_logo.json" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
