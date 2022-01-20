@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -50,6 +51,10 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
 
     private fun initSendFirstBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageFirst.setOnClickListener {
+            binding.btnHabitSendSparkMessageFirst.apply {
+                setBackgroundResource(R.drawable.shape_habit_today_selected)
+                setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
+            }
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageFirst.text.toString(),
                 selectedItemId)
             SendSparkToast.showToast(view.context, selectedItemNickname)
@@ -59,6 +64,10 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
 
     private fun initSendSecondBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageSecond.setOnClickListener {
+            binding.btnHabitSendSparkMessageSecond.apply {
+                setBackgroundResource(R.drawable.shape_habit_today_selected)
+                setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
+            }
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageSecond.text.toString(),
                 selectedItemId)
             SendSparkToast.showToast(view.context, selectedItemNickname)
@@ -68,6 +77,10 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
 
     private fun initSendThirdBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageThird.setOnClickListener {
+            binding.btnHabitSendSparkMessageThird.apply {
+                setBackgroundResource(R.drawable.shape_habit_today_selected)
+                setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
+            }
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageThird.text.toString(),
                 selectedItemId)
             SendSparkToast.showToast(view.context, selectedItemNickname)
@@ -77,6 +90,10 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
 
     private fun initSendFourthBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageFourth.setOnClickListener {
+            binding.btnHabitSendSparkMessageFourth.apply {
+                setBackgroundResource(R.drawable.shape_habit_today_selected)
+                setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
+            }
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageFourth.text.toString(),
                 selectedItemId)
             SendSparkToast.showToast(view.context, selectedItemNickname)
@@ -88,5 +105,4 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
         selectedItemId = recordId
         selectedItemNickname = nickname
     }
-
 }

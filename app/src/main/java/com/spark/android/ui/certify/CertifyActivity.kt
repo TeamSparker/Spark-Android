@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
+import com.spark.android.data.remote.RetrofitBuilder
+import com.spark.android.data.remote.entity.request.CertifyRequest
 import com.spark.android.databinding.ActivityCertifyBinding
 import com.spark.android.util.MultiPartResolver
 import com.spark.android.ui.base.BaseActivity
@@ -17,11 +19,11 @@ import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
+import retrofit2.http.Multipart
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
     private val multiPartResolver = MultiPartResolver(this)
-    var timerRecord : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         initIntentData()
         initImgUriObserver()
         initImgBitmapObserver()
-        initCertifyMode()
         initCertifyBackBtnClickListener()
         initCertifyQuitBtnClickListener()
         initCertifyPhotoBtnClickListener()
@@ -41,9 +42,16 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     }
 
     private fun initIntentData() {
-        timerRecord = intent.getStringExtra("timerRecord")
-        // get Room id
-        binding.tvCertifyTimer.text = timerRecord
+        certifyViewModel.initTimerRecord(intent.getStringExtra("timerRecord").toString())
+        certifyViewModel.initRoomName(intent.getStringExtra("roomName").toString())
+        certifyViewModel.initRoomId(intent.getIntExtra("roomId", -1))
+
+        val fromStart = intent.getBooleanExtra("fromStart", true)
+        if(fromStart) {
+            certifyViewModel.initCertifyMode(NORMAL_READY_MODE)
+        } else {
+            certifyViewModel.initCertifyMode(ONLY_CAMERA_MODE)
+        }
     }
 
     private fun initImgUriObserver() {
@@ -62,18 +70,14 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         }
     }
 
-    private fun initCertifyMode() {
-        // get extra
-        certifyViewModel.initCertifyMode(NORMAL_READY_MODE)
-//        certifyViewModel.initOnlyCamera(intent.getBooleanExtra("onlyCamera",false))
-    }
-
     private fun moveToTimerActivity() {
         val intent = Intent(this, TimerStartActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            putExtra("roomName", certifyViewModel.roomName.value.toString())
+            putExtra("roomId", certifyViewModel.roomId.value)
+            putExtra("timerRecord", certifyViewModel.timerRecord.value.toString())
             putExtra("myVisible",View.VISIBLE)
             putExtra("myInvisible", View.INVISIBLE)
-            putExtra("timerRecord", timerRecord)
         }
         startActivity(intent)
         finish()
@@ -118,6 +122,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     private fun initCertifyPhotoUploadBtnClickListener() {
         binding.btnCertifyPhotoUpload.setOnClickListener {
+            certifyViewModel.postCertification()
             finish()
         }
     }

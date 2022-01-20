@@ -1,10 +1,6 @@
 package com.spark.android.data.remote
 
-import com.spark.android.data.remote.service.PhotoCollectionService
-import com.spark.android.data.remote.service.StorageService
-import com.spark.android.data.remote.service.HabitService
-import com.spark.android.data.remote.service.SendSparkService
-import com.spark.android.data.remote.service.SetStatusService
+import com.spark.android.data.remote.service.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -47,4 +43,5 @@ object RetrofitBuilder {
     val photoCollectionService: PhotoCollectionService = retrofit.create(PhotoCollectionService::class.java)
     val setStatusService: SetStatusService = retrofit.create(SetStatusService::class.java)
     val sendSparkService: SendSparkService = retrofit.create(SendSparkService::class.java)
+    val certifyService: CertifyService = retrofit.create(CertifyService::class.java)
 }

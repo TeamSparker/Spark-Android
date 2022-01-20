@@ -5,11 +5,25 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.spark.android.data.remote.RetrofitBuilder
+import com.spark.android.data.remote.entity.request.CertifyRequest
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
+import retrofit2.http.Multipart
 
 class CertifyViewModel : ViewModel() {
     private val _certifyMode = MutableLiveData<Int>()
     val certifyMode: LiveData<Int> = _certifyMode
+
+    private val _roomName = MutableLiveData<String>()
+    val roomName: LiveData<String> = _roomName
+
+    private val _roomId = MutableLiveData<Int>()
+    val roomId: LiveData<Int> = _roomId
+
+    private val _timerRecord = MutableLiveData<String>()
+    val timerRecord: LiveData<String> = _timerRecord
 
     private lateinit var certifyImgMultiPart: MultipartBody.Part
 
@@ -21,6 +35,18 @@ class CertifyViewModel : ViewModel() {
 
     fun initCertifyMode(certifyMode: Int) {
         _certifyMode.value = certifyMode
+    }
+
+    fun initRoomName(roomName: String) {
+        _roomName.value = roomName
+    }
+
+    fun initRoomId(roomId: Int) {
+        _roomId.value = roomId
+    }
+
+    fun initTimerRecord(timerRecord: String) {
+        _timerRecord.value = timerRecord
     }
 
     fun initImgUri(uri: Uri) {
@@ -35,5 +61,18 @@ class CertifyViewModel : ViewModel() {
 
     fun initCertifyImgMultiPart(multipart: MultipartBody.Part) {
         certifyImgMultiPart = multipart
+    }
+
+    fun postCertification() {
+        viewModelScope.launch {
+            roomId.value?.let { roomId ->
+                RetrofitBuilder.certifyService.postCertification(
+                    roomId,
+                    CertifyRequest(
+                        Multipart(), timerRecord.value.toString()
+                    )
+                )
+            }
+        }
     }
 }
