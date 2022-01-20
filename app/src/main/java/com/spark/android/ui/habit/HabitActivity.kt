@@ -92,6 +92,11 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        refreshData()
+    }
+
     override fun onPause() {
         super.onPause()
         overridePendingTransition(0, 0)
