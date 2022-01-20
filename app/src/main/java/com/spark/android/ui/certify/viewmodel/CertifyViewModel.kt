@@ -11,6 +11,12 @@ class CertifyViewModel : ViewModel() {
     private val _certifyMode = MutableLiveData<Int>()
     val certifyMode: LiveData<Int> = _certifyMode
 
+    private val _roomName = MutableLiveData<String>()
+    val roomName: LiveData<String> = _roomName
+
+    private val _timerRecord = MutableLiveData<String>()
+    val timerRecord: LiveData<String> = _timerRecord
+
     private lateinit var certifyImgMultiPart: MultipartBody.Part
 
     private val _imgUri = MutableLiveData<Uri?>()
@@ -21,6 +27,14 @@ class CertifyViewModel : ViewModel() {
 
     fun initCertifyMode(certifyMode: Int) {
         _certifyMode.value = certifyMode
+    }
+
+    fun initRoomName(roomName: String) {
+        _roomName.value = roomName
+    }
+
+    fun initTimerRecord(timerRecord: String) {
+        _timerRecord.value = timerRecord
     }
 
     fun initImgUri(uri: Uri) {
