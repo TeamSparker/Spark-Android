@@ -11,6 +11,12 @@ import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_MODE
 import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_READY_MODE
 import com.spark.android.ui.certify.CertifyMode.Companion.ONLY_CAMERA_MODE
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
+import com.spark.android.ui.main.MainActivity
+import com.spark.android.ui.share.InstaShareDialogFragment
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.INSTA_DIALOG
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.NO_SHARE
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.SHARE
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.SHARE_MODE
 import com.spark.android.ui.timer.TimerStartActivity
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
@@ -37,6 +43,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         initCertifyPhotoAgainBtnClickListener()
         initCertifyPhotoUploadBtnClickListener()
         initIsSuccessCertifyObserver()
+        initFragmentResultListener()
     }
 
     private fun initIntentData() {
@@ -45,7 +52,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         certifyViewModel.initRoomId(intent.getIntExtra("roomId", -1))
 
         val fromStart = intent.getBooleanExtra("fromStart", true)
-        if(fromStart) {
+        if (fromStart) {
             certifyViewModel.initCertifyMode(NORMAL_READY_MODE)
         } else {
             certifyViewModel.initCertifyMode(ONLY_CAMERA_MODE)
@@ -74,7 +81,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
             putExtra("roomName", certifyViewModel.roomName.value.toString())
             putExtra("roomId", certifyViewModel.roomId.value)
             putExtra("timerRecord", certifyViewModel.timerRecord.value.toString())
-            putExtra("myVisible",View.VISIBLE)
+            putExtra("myVisible", View.VISIBLE)
             putExtra("myInvisible", View.INVISIBLE)
         }
         startActivity(intent)
@@ -124,10 +131,25 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         }
     }
 
-    private fun initIsSuccessCertifyObserver(){
-        certifyViewModel.isSuccessCertify.observe(this){ isSuccess ->
-            if(isSuccess){
-                finish()
+    private fun initIsSuccessCertifyObserver() {
+        certifyViewModel.isSuccessCertify.observe(this) { isSuccess ->
+            if (isSuccess) {
+                InstaShareDialogFragment().show(supportFragmentManager, this.javaClass.name)
+            }
+        }
+    }
+
+    private fun initFragmentResultListener() {
+        supportFragmentManager.setFragmentResultListener(INSTA_DIALOG, this) { _, bundle ->
+            when (bundle.get(SHARE_MODE)) {
+                SHARE -> {
+                    
+                }
+                NO_SHARE -> {
+                    startActivity(Intent(this, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    })
+                }
             }
         }
     }

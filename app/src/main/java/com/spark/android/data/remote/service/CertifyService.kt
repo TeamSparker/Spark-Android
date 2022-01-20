@@ -13,5 +13,5 @@ interface CertifyService {
         @Path("roomId") roomId: Int,
         @PartMap map: Map<String, @JvmSuppressWildcards RequestBody>?,
         @Part img: MultipartBody.Part,
-    ): Result<BaseResponse<CertifyResponse>>
+    ): BaseResponse<CertifyResponse>
 }

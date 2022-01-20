@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import com.spark.android.R
 import com.spark.android.databinding.DialogInstaShareBinding
 
@@ -46,12 +48,14 @@ class InstaShareDialogFragment : DialogFragment() {
 
     private fun setConfirmTextClickListener() {
         binding.btnInstaShare.setOnClickListener {
+            setFragmentResult(INSTA_DIALOG, bundleOf(SHARE_MODE to SHARE))
             dismiss()
         }
     }
 
     private fun setCancelTextClickListener() {
         binding.tvInstaCancel.setOnClickListener {
+            setFragmentResult(INSTA_DIALOG, bundleOf(SHARE_MODE to NO_SHARE))
             dismiss()
         }
     }
@@ -59,5 +63,12 @@ class InstaShareDialogFragment : DialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val INSTA_DIALOG = "InstaDialog"
+        const val SHARE_MODE = "ShareMode"
+        const val NO_SHARE = false
+        const val SHARE = true
     }
 }

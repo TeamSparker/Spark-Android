@@ -74,11 +74,13 @@ class CertifyViewModel : ViewModel() {
         }
         viewModelScope.launch {
             roomId.value?.let { roomId ->
-                RetrofitBuilder.certifyService.postCertification(
-                    roomId,
-                    timerRecordMultiPart,
-                    certifyImgMultiPart
-                ).onSuccess { response ->
+                kotlin.runCatching {
+                    RetrofitBuilder.certifyService.postCertification(
+                        roomId,
+                        timerRecordMultiPart,
+                        certifyImgMultiPart
+                    )
+                }.onSuccess { response ->
                     _isSuccessCertify.postValue(response.success)
                 }.onFailure {
 
