@@ -11,6 +11,7 @@ import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_FOOTER_TYPE
 import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_LOADING_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Collections.addAll
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,6 +40,10 @@ class FeedViewModel @Inject constructor(
 
     private val _feedList = MutableLiveData(mutableListOf<FeedListItem>())
     val feedList: LiveData<MutableList<FeedListItem>> = _feedList
+
+    fun initShownDate(){
+        feedRepository.initShownDate()
+    }
 
     private fun initIsFeedEmpty() {
         _isFeedEmpty.value = true

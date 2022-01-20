@@ -60,4 +60,8 @@ class FeedRepositoryImpl @Inject constructor(
         val dayOfMonth = dateArray[2]
         return "${year}년 ${month}월 ${dayOfMonth}일"
     }
+
+    override fun initShownDate() {
+        shownDate = ""
+    }
 }
