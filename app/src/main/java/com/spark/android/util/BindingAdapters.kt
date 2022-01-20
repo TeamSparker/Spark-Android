@@ -349,7 +349,7 @@ object BindingAdapters {
         if (status != null && leftDay != null) {
             if (leftDay == 66) {
                 button.setBackgroundResource(R.drawable.bg_habit_today_inactive)
-                button.isEnabled = false
+                button.isEnabled = true
             } else {
                 button.setBackgroundResource(
                     when (status) {
@@ -360,7 +360,7 @@ object BindingAdapters {
                 )
                 button.isEnabled = (
                         when (status) {
-                            "DONE", "REST" -> false
+                            "DONE", "REST" -> true
                             "NONE", "CONSIDER" -> true
                             else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
                         }

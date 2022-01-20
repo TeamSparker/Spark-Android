@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetHabitMoreBinding
+import com.spark.android.ui.habit.viewmodel.HabitViewModel
 
-class HabitMoreBottomSheet() : BottomSheetDialogFragment() {
+class HabitMoreBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitMoreBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
+    private val habitViewModel by activityViewModels<HabitViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +39,12 @@ class HabitMoreBottomSheet() : BottomSheetDialogFragment() {
     private fun initGoalBtnClickListener() {
         binding.tvHabitMoreGoal.setOnClickListener {
             val intent = Intent(context, HabitGoalManageActivity::class.java)
+            intent.apply {
+                putExtra("roomId", habitViewModel.habitInfo.value?.roomId)
+                putExtra("roomName", habitViewModel.habitInfo.value?.roomName)
+                putExtra("moment", habitViewModel.habitInfo.value?.moment)
+                putExtra("purpose", habitViewModel.habitInfo.value?.purpose)
+            }
             startActivity(intent)
             dismiss()
         }
