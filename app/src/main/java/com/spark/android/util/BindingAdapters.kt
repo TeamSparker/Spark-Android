@@ -81,6 +81,8 @@ object BindingAdapters {
     }
 
 
+
+
     @JvmStatic
     @BindingAdapter("setLeftTicketColor")
     fun setLeftTicketColor(textView: TextView, leftDay: Int?) {
@@ -370,6 +372,86 @@ object BindingAdapters {
                     }
                 )
             }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setCardOutLineColor")
+    fun setCardOutLineColor(view: View, leftDay: Int?) {
+
+        if (leftDay != null) {
+            view.setBackgroundResource(
+                when {
+                    leftDay == 0 -> R.drawable.shape_spark_dark_pinkred_fill_line_2_rect_black
+                    leftDay <= 6 -> R.drawable.shape_spark_pinkred_fill_line_2_rect_black
+                    leftDay <= 32 -> R.drawable.shape_spark_bright_pinkred_fill_line_rect_2_black
+                    leftDay <= 58 -> R.drawable.shape_spark_light_pinkred_fill_line_2_rect_black
+                    leftDay <= 62 -> R.drawable.shape_spark_more_light_pinkred_fill_line_2_rect_black
+                    leftDay <= 65 -> R.drawable.shape_spark_most_light_pinkred_fill_line_2_rect_black
+                    leftDay == 66 -> R.drawable.shape_spark_most_light_pinkred_fill_line_2_rect_black
+                    else -> throw IllegalStateException("바인딩 어댑터 setCardOutLineColor 오류")
+                }
+            )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setCardInLineColor")
+    fun setCardInLineColor(view: View, leftDay: Int?) {
+
+        if (leftDay != null) {
+            view.setBackgroundResource(
+                when {
+                    leftDay == 0 -> R.drawable.shape_spark_dark_pinkred_line_2_rect_bottomless
+                    leftDay <= 6 -> R.drawable.shape_spark_pinkred_line_2_rect_bottomless
+                    leftDay <= 32 -> R.drawable.shape_spark_bright_pinkred_line_2_rect_bottomless
+                    leftDay <= 58 -> R.drawable.shape_spark_light_pinkred_line_2_rect_bottomless
+                    leftDay <= 62 -> R.drawable.shape_spark_more_light_pinkred_line_2_rect_bottomless
+                    leftDay <= 65 -> R.drawable.shape_spark_most_light_pinkred_line_2_rect_bottomless
+                    leftDay == 66 -> R.drawable.shape_spark_most_light_pinkred_line_2_rect_bottomless
+                    else -> throw IllegalStateException("바인딩 어댑터 setCardInLineColor 오류")
+                }
+            )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setProgressingCardSparkFlake")
+    fun setProgressingCardSparkFlake(imageview: ImageView, leftDay: Int?) {
+
+        if (leftDay != null) {
+            imageview.setBackgroundResource(
+                when {
+                    leftDay == 0 -> R.drawable.ic_storage_progressing_item_sparkflake6
+                    leftDay <= 6 -> R.drawable.ic_storage_progressing_item_sparkflake5
+                    leftDay <= 32 -> R.drawable.ic_storage_progressing_item_sparkflake4
+                    leftDay <= 58 -> R.drawable.ic_storage_progressing_item_sparkflake3
+                    leftDay <= 62 -> R.drawable.ic_storage_progressing_item_sparkflake2
+                    leftDay <= 65 -> R.drawable.ic_storage_progressing_item_sparkflake1
+                    leftDay == 66 -> R.drawable.ic_storage_progressing_item_sparkflake1
+                    else -> throw IllegalStateException("바인딩 어댑터 setProgressingCardSparkFlake 오류")
+                }
+            )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setIncompleteCardSparkFlake")
+    fun setIncompleteCardSparkFlake(imageview: ImageView, failDay: Int?) {
+
+        if (failDay != null) {
+            imageview.setBackgroundResource(
+                when {
+                    failDay == 0 -> R.drawable.ic_storage_incomplete_item_sparkflake1
+                    failDay <= 6 -> R.drawable.ic_storage_incomplete_item_sparkflake1
+                    failDay <= 32 -> R.drawable.ic_storage_incomplete_item_sparkflake2
+                    failDay <= 58 -> R.drawable.ic_storage_incomplete_item_sparkflake3
+                    failDay <= 62 -> R.drawable.ic_storage_incomplete_item_sparkflake4
+                    failDay <= 65 -> R.drawable.ic_storage_incomplete_item_sparkflake5
+                    failDay == 66 -> R.drawable.ic_storage_incomplete_item_sparkflake6
+                    else -> throw IllegalStateException("바인딩 어댑터 setIncompleteCardSparkFlake 오류")
+                }
+            )
         }
     }
 }
