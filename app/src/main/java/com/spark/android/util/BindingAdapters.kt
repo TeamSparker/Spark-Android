@@ -478,7 +478,6 @@ object BindingAdapters {
                     .into(this)
             }
             "NONE" -> {
-                this.setBackgroundResource(R.drawable.ic_bottom_navigation_home)
             }
         }
     }
