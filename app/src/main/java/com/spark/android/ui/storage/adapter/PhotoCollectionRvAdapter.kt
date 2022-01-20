@@ -3,23 +3,23 @@ package com.spark.android.ui.storage.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.spark.android.data.remote.entity.response.StorageCardPhoto
 import com.spark.android.databinding.ItemPhotoCollectionListBinding
 
 class PhotoCollectionRvAdapter :
     RecyclerView.Adapter<PhotoCollectionRvAdapter.PhotoCollectionRvViewHolder>() {
 
-    var leftDayList = listOf<String>()
-
-    fun setList(list: List<String>) {
-        leftDayList = list
+    var photolist = listOf<StorageCardPhoto>()
+    fun setList(list: List<StorageCardPhoto>) {
+        photolist = list
         notifyDataSetChanged()
     }
 
 
     class PhotoCollectionRvViewHolder(private val binding: ItemPhotoCollectionListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(str: String) {
-            binding.str = str
+        fun onBind(storageCardPhoto:StorageCardPhoto) {
+            binding.storageCardPhoto = storageCardPhoto
         }
     }
 
@@ -31,8 +31,8 @@ class PhotoCollectionRvAdapter :
     }
 
     override fun onBindViewHolder(holder: PhotoCollectionRvViewHolder, position: Int) {
-        holder.onBind(leftDayList[position])
+        holder.onBind(photolist[position])
     }
 
-    override fun getItemCount(): Int = leftDayList.size
+    override fun getItemCount(): Int = photolist.size
 }

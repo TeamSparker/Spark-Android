@@ -3,14 +3,12 @@ package com.spark.android.ui.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.spark.android.R
 import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.feed.FeedFragment
-import com.spark.android.ui.home.HomeMainFragment
-import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.InputCodeFragmentDialog
-import com.spark.android.ui.storage.StorageFragment
 import com.spark.android.ui.main.viewmodel.MainViewModel
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_FEED
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_HOME
@@ -20,14 +18,12 @@ import com.spark.android.util.FloatingAnimationUtil
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.IllegalStateException
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val mainViewModel by viewModels<MainViewModel>()
-    private lateinit var feedFragment: FeedFragment
-    private lateinit var homeMainFragment: HomeMainFragment
-    private lateinit var storageFragment: StorageFragment
     private var fabState = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +31,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.activity = this
         binding.mainViewModel = mainViewModel
         initStatusBarStyle()
-        initTransactionEvent()
         initBindingVariable()
         initFloatingButtonClickListener()
         initTabPositionObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.initTabPositionHome()
     }
 
     private fun initStatusBarStyle() {
@@ -46,24 +46,37 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initStatusBarTextColorToWhite()
     }
 
-    private fun initTransactionEvent() {
-        feedFragment = FeedFragment()
-        homeMainFragment = HomeMainFragment()
-        storageFragment = StorageFragment()
-        supportFragmentManager.beginTransaction().add(R.id.container_main, homeMainFragment)
-            .commit()
+    private fun findNavController(): NavController {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.container_main) as NavHostFragment
+        return navHostFragment.navController
     }
 
     private fun initTabPositionObserver() {
         mainViewModel.tabPosition.observe(this) { position ->
-            when (position) {
-                TAB_FEED -> supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_main, feedFragment).commit()
-                TAB_HOME -> supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_main, homeMainFragment).commit()
-                TAB_STORAGE -> supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_main, storageFragment).commit()
-            }
+            findNavController().navigate(
+                when (position) {
+                    TAB_FEED -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> R.id.action_feedFragment_self
+                        R.id.homeMainFragment -> R.id.action_homeMainFragment_to_feedFragment
+                        R.id.storageFragment -> R.id.action_storageFragment_to_feedFragment
+                        else -> throw IllegalStateException()
+                    }
+                    TAB_HOME -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> R.id.action_feedFragment_to_homeMainFragment
+                        R.id.homeMainFragment -> R.id.action_homeMainFragment_self
+                        R.id.storageFragment -> R.id.action_storageFragment_to_homeMainFragment
+                        else -> throw IllegalStateException()
+                    }
+                    TAB_STORAGE -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> R.id.action_feedFragment_to_storageFragment
+                        R.id.homeMainFragment -> R.id.action_homeMainFragment_to_storageFragment
+                        R.id.storageFragment -> R.id.action_storageFragment_self
+                        else -> throw IllegalStateException()
+                    }
+                    else -> throw IllegalStateException()
+                }
+            )
         }
     }
 
@@ -88,21 +101,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.fabState = fabState
     }
 
-    fun initMakeRoomClickListener(){
-        val intent = Intent(this,MakeRoomActivity::class.java)
+    fun initMakeRoomClickListener() {
+        val intent = Intent(this, MakeRoomActivity::class.java)
         startActivity(intent)
-        FloatingAnimationUtil.closeFabAnimation(binding.fabHomeMain,
+        FloatingAnimationUtil.closeFabAnimation(
+            binding.fabHomeMain,
             binding.fabHomeMakeRoom,
             binding.fabHomeJoinCode,
             binding.layoutMainFabBackground,
             binding.tvFabMakeRoom,
-            binding.tvFabJoinCode)
+            binding.tvFabJoinCode
+        )
         fabState = !fabState
     }
 
-    fun initMakeJoinCodeListener(){
+    fun initMakeJoinCodeListener() {
         InputCodeFragmentDialog().show(
-            supportFragmentManager,"InputCodeDialog"
+            supportFragmentManager, "InputCodeDialog"
         )
     }
 
