@@ -18,6 +18,7 @@ class StorageIncompleteFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.storageViewModel = storageViewModel
         initIncompleteVpAdapter()
         initIncompleteRoomsObserver()
     }

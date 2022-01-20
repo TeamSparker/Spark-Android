@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="storageViewModel"
+            type="com.spark.android.ui.storage.viewmodel.StorageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,11 +30,35 @@
             android:paddingBottom="7dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/iv_storage_complete_empty_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="136dp"
+            android:src="@drawable/ic_storage_card_empty"
+            android:visibility="@{storageViewModel.storageResponse.completeRoomNum == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        
+        <TextView
+            android:id="@+id/tv_storage_empty_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_kr"
+            android:includeFontPadding="false"
+            android:text="아직 습관 카드가 없어요.\n인증과 함께 카드를 모아보세요!"
+            android:textAlignment="center"
+            android:textColor="@color/spark_gray"
+            android:textSize="18sp"
+            android:visibility="@{storageViewModel.storageResponse.completeRoomNum == 0 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="@id/iv_storage_complete_empty_card"
+            app:layout_constraintStart_toStartOf="@id/iv_storage_complete_empty_card"
+            app:layout_constraintTop_toBottomOf="@id/iv_storage_complete_empty_card" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

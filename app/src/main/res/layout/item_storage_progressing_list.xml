@@ -4,14 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="storageRoom"
             type="com.spark.android.data.remote.entity.response.StorageRoom" />
-
-        <variable
-            name="str"
-            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,9 +16,10 @@
 
         <View
             android:id="@+id/view_progressing_layout_out"
+            setCardOutLineColor="@{storageRoom.leftDay}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_spark_light_pinkred_fill_line_2_rect_black"
+            tools:background="@drawable/shape_spark_light_pinkred_fill_line_2_rect_black"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="-25dp" />
 
@@ -57,7 +53,8 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
-            android:background="@drawable/shape_spark_light_pinkred_line_2_rect_bottomless"
+            tools:background="@drawable/shape_spark_light_pinkred_line_2_rect_bottomless"
+            setCardInLineColor="@{storageRoom.leftDay}"
             app:layout_constraintBottom_toTopOf="@id/iv_progressing_item_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +73,8 @@
                 android:id="@+id/iv_progressing_item_sparkflake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_storage_progressing_item_sparkflake"
+                setProgressingCardSparkFlake="@{storageRoom.leftDay}"
+                tools:src="@drawable/ic_storage_progressing_item_sparkflake3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -88,7 +86,7 @@
                 android:layout_marginTop="56dp"
                 android:fontFamily="@font/futura_bold"
                 android:lineSpacingExtra="1sp"
-                android:text="@{`D-` + String.valueOf(storageRoom.leftDay)}"
+                android:text="@{storageRoom.leftDay == 0 ? `D-day` : `D-` + String.valueOf(storageRoom.leftDay)}"
                 android:textColor="@color/spark_white"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"

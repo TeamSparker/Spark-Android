@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="storageCardPhoto"
             type="com.spark.android.data.remote.entity.response.StorageCardPhoto" />
@@ -15,6 +17,17 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="7dp"
         android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/iv_photo_collection_sticker_rest"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_sticker_rest"
+            android:visibility="@{storageCardPhoto.status == `REST` ? View.VISIBLE : View.INVISIBLE       }"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_photo_collection_item_roundedCorner"
@@ -29,7 +42,8 @@
 
             <ImageView
                 android:id="@+id/iv_photo_collection_item_photo"
-                setImage="@{storageCardPhoto.certifyingImg}"
+                imageUrl="@{storageCardPhoto.certifyingImg}"
+                status="@{storageCardPhoto.status}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -44,7 +58,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/futura_bold"
-            android:text="@{`D-`+ String.valueOf(storageCardPhoto.leftDay)}"
+            android:text="@{storageCardPhoto.leftDay == 0 ? `D-day` : `D-`+ String.valueOf(storageCardPhoto.leftDay)}"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/iv_photo_collection_item_fire_gray"
@@ -69,12 +83,12 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:text="@{String.valueOf(storageCardPhoto.sparkNum)}"
-            tools:text="3"
             android:textAlignment="viewEnd"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="@id/cardview_photo_collection_item_roundedCorner"
-            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner" />
+            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner"
+            tools:text="3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
