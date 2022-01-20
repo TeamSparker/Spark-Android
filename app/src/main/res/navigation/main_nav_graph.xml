@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeMainFragment_to_feedFragment"
             app:destination="@id/feedFragment" />
+        <action
+            android:id="@+id/action_homeMainFragment_self"
+            app:destination="@id/homeMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
@@ -25,6 +28,9 @@
         <action
             android:id="@+id/action_feedFragment_to_storageFragment"
             app:destination="@id/storageFragment" />
+        <action
+            android:id="@+id/action_feedFragment_self"
+            app:destination="@id/feedFragment" />
     </fragment>
     <fragment
         android:id="@+id/storageFragment"
@@ -36,5 +42,8 @@
         <action
             android:id="@+id/action_storageFragment_to_feedFragment"
             app:destination="@id/feedFragment" />
+        <action
+            android:id="@+id/action_storageFragment_self"
+            app:destination="@id/storageFragment" />
     </fragment>
 </navigation>

@@ -8,11 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.spark.android.R
 import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.feed.FeedFragment
-import com.spark.android.ui.home.HomeMainFragment
-import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.InputCodeFragmentDialog
-import com.spark.android.ui.storage.StorageFragment
 import com.spark.android.ui.main.viewmodel.MainViewModel
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_FEED
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_HOME
@@ -22,6 +18,7 @@ import com.spark.android.util.FloatingAnimationUtil
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.IllegalStateException
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -39,6 +36,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initTabPositionObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.initTabPositionHome()
+    }
+
     private fun initStatusBarStyle() {
         initStatusBarColor(R.color.spark_white)
         initStatusBarTextColorToWhite()
@@ -52,20 +54,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun initTabPositionObserver() {
         mainViewModel.tabPosition.observe(this) { position ->
-            when (position) {
-                TAB_FEED -> when (findNavController().currentDestination?.id) {
-                    R.id.homeMainFragment -> findNavController().navigate(R.id.action_homeMainFragment_to_feedFragment)
-                    R.id.storageFragment -> findNavController().navigate(R.id.action_storageFragment_to_feedFragment)
+            findNavController().navigate(
+                when (position) {
+                    TAB_FEED -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> R.id.action_feedFragment_self
+                        R.id.homeMainFragment -> R.id.action_homeMainFragment_to_feedFragment
+                        R.id.storageFragment -> R.id.action_storageFragment_to_feedFragment
+                        else -> throw IllegalStateException()
+                    }
+                    TAB_HOME -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> R.id.action_feedFragment_to_homeMainFragment
+                        R.id.homeMainFragment -> R.id.action_homeMainFragment_self
+                        R.id.storageFragment -> R.id.action_storageFragment_to_homeMainFragment
+                        else -> throw IllegalStateException()
+                    }
+                    TAB_STORAGE -> when (findNavController().currentDestination?.id) {
+                        R.id.feedFragment -> R.id.action_feedFragment_to_storageFragment
+                        R.id.homeMainFragment -> R.id.action_homeMainFragment_to_storageFragment
+                        R.id.storageFragment -> R.id.action_storageFragment_self
+                        else -> throw IllegalStateException()
+                    }
+                    else -> throw IllegalStateException()
                 }
-                TAB_HOME -> when (findNavController().currentDestination?.id) {
-                    R.id.feedFragment -> findNavController().navigate(R.id.action_feedFragment_to_homeMainFragment)
-                    R.id.storageFragment -> findNavController().navigate(R.id.action_storageFragment_to_homeMainFragment)
-                }
-                TAB_STORAGE -> when (findNavController().currentDestination?.id) {
-                    R.id.homeMainFragment -> findNavController().navigate(R.id.action_homeMainFragment_to_storageFragment)
-                    R.id.feedFragment -> findNavController().navigate(R.id.action_feedFragment_to_storageFragment)
-                }
-            }
+            )
         }
     }
 
