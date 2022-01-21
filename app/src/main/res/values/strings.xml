@@ -38,13 +38,13 @@
     <string name="profile_info_3">을 설정해주세요!</string>
     <string name="profile_desc_photo">프로필 사진 배경</string>
     <string name="profile_nickname_hint">닉네임 입력</string>
-    <string name="profile_start_spark">스파크 시작하기</string>
+    <string name="profile_start_spark">가입완료</string>
     <string name="profile_nickname_count_sum">/10</string>
-    <string name="profile_from_camera">사진 촬영하기</string>
-    <string name="profile_from_album">앨범에서 선택하기</string>
-    <string name="profile_delete_profile_picture">사진 삭제하기</string>
-    <string name="profile_dialog_content">회원가입을 그만둘까요?\n초기 가입 화면으로 되돌아갑니다.</string>
-    <string name="profile_dialog_stop_signup">그만두기</string>
+    <string name="profile_from_camera">카메라 촬영</string>
+    <string name="profile_from_album">앨범에서 선택</string>
+    <string name="profile_delete_profile_picture">사진 삭제</string>
+    <string name="profile_dialog_content">회원가입이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
+    <string name="profile_dialog_stop_signup">나가기</string>
     <string name="profile_dialog_cancel">취소</string>
 
     <!-- HabitActivity -->
