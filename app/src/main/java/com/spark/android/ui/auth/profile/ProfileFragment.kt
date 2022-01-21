@@ -41,7 +41,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         hideKeyBoard()
         initIsFocused()
         initPictureBtnClickListener()
-        initQuitBtnClickListener()
+        //initQuitBtnClickListener()
         initSuccessSignUpObserver()
         initFragmentResultListener()
     }
