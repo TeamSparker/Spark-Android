@@ -14,8 +14,6 @@
         android:id="@+id/layout_habit_goal_manage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         tools:context=".ui.habit.HabitGoalManageActivity">
 
         <androidx.appcompat.widget.AppCompatImageButton
