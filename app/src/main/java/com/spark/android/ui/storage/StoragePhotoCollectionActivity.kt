@@ -9,6 +9,8 @@ import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
 import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
+import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 
 class StoragePhotoCollectionActivity :
     BaseActivity<ActivityStoragePhotoCollectionBinding>(R.layout.activity_storage_photo_collection) {
@@ -21,6 +23,7 @@ class StoragePhotoCollectionActivity :
         val roomId = intent.getIntExtra("roomId", -1)
         photoCollectionViewModel.initPhotoCollectionNetwork(roomId, -1, 70)
         binding.photoCollectionViewModel = photoCollectionViewModel
+        initStatusBarStyle()
         setOnBackBtnClickListener()
         initStoragePhotoCollectionRvAdapter()
         initPhotoCollectionObserver()
@@ -29,6 +32,10 @@ class StoragePhotoCollectionActivity :
     override fun onBackPressed() {
         super.onBackPressed()
         moveToMain()
+    }
+
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_black)
     }
 
     private fun initStoragePhotoCollectionRvAdapter() {
