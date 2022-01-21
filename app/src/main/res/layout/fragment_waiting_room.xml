@@ -443,6 +443,7 @@
             android:background="@drawable/shape_btn_active"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/waiting_room_start_habit"
             android:textColor="@color/spark_white"
             android:textSize="18dp"

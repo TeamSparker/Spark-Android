@@ -129,6 +129,7 @@
             android:background="@{nameSettingViewModel.habitName.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active }"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/room_name_setting_next_btn_text"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
