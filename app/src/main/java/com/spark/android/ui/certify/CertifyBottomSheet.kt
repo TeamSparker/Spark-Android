@@ -21,7 +21,7 @@ import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_CA
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_STORAGE_PERMISSION
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
 
-class CertifyBottomSheet() : BottomSheetDialogFragment() {
+class CertifyBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetCertifyBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
@@ -32,8 +32,8 @@ class CertifyBottomSheet() : BottomSheetDialogFragment() {
     ) { result: ActivityResult ->
         result.data?.let { intent ->
             intent.data?.let { uri ->
-                certifyViewModel.initCertifyMode(CertifyMode.NORMAL_MODE)
                 certifyViewModel.initImgUri(uri)
+                showCertifyActivity()
                 dismiss()
             }
         }
@@ -45,8 +45,8 @@ class CertifyBottomSheet() : BottomSheetDialogFragment() {
         result.data?.let { intent ->
             intent.extras?.let { extras ->
                 val photo = extras.get("data") as Bitmap
-                certifyViewModel.initCertifyMode(CertifyMode.NORMAL_MODE)
                 certifyViewModel.initImgBitmap(photo)
+                showCertifyActivity()
                 dismiss()
             }
         }
@@ -68,8 +68,19 @@ class CertifyBottomSheet() : BottomSheetDialogFragment() {
         val behavior = BottomSheetBehavior.from<View>(bottomSheet!!)
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
+        initArgumentsData()
         initFromAlbumBtnClickListener()
         initFromCameraBtnClickListener()
+    }
+
+    private fun initArgumentsData() {
+        arguments?.getInt("roomId")?.let { certifyViewModel.initRoomId(it) }
+        arguments?.getString("roomName")?.let { certifyViewModel.initRoomName(it) }
+        arguments?.getString("profileImg")?.let { certifyViewModel.initProfileImg(it) }
+        arguments?.getString("nickName")?.let { certifyViewModel.initNickName(it) }
+        arguments?.getInt("certifyMode")?.let { certifyViewModel.initCertifyMode(it) }
+        arguments?.getBoolean("onlyCameraInitial")
+            ?.let { certifyViewModel.initOnlyCameraInitial(it) }
     }
 
     private fun initFromAlbumBtnClickListener() {
@@ -118,6 +129,26 @@ class CertifyBottomSheet() : BottomSheetDialogFragment() {
                     )
                 }
             }
+        }
+    }
+
+    private fun showCertifyActivity() {
+        if (certifyViewModel.certifyMode.value == CertifyMode.ONLY_CAMERA_MODE) {
+            if (certifyViewModel.onlyCameraInitial.value == true) {
+                val intent = Intent(context, CertifyActivity::class.java)
+                intent.apply {
+                    putExtra("timerRecord", certifyViewModel.timerRecord.value)
+                    putExtra("roomName", certifyViewModel.roomName.value)
+                    putExtra("roomId", certifyViewModel.roomId.value)
+                    putExtra("certifyMode", CertifyMode.ONLY_CAMERA_MODE)
+                    putExtra("onlyCameraInitial", false)
+                    putExtra("imgUri", certifyViewModel.imgUri.value)
+                    putExtra("imgBitmap", certifyViewModel.imgBitmap.value)
+                }
+                startActivity(intent)
+            }
+        } else {
+            certifyViewModel.initCertifyMode(CertifyMode.NORMAL_MODE)
         }
     }
 
