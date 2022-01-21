@@ -21,6 +21,7 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.storageViewModel = storageViewModel
+        storageViewModel.initProgressMode()
         initStorageOutAdapter()
         initModeObserver()
         binding.vpStorageOut.isUserInputEnabled = false;

@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class StorageViewModel : ViewModel() {
 
-    private val _storageMode = MutableLiveData(PROGRESSING)
+    private val _storageMode = MutableLiveData<String>()
     val storageMode: LiveData<String> = _storageMode
 
     private val _storageResponse = MutableLiveData<StorageResponse>()

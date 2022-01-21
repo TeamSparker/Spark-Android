@@ -80,8 +80,6 @@ object BindingAdapters {
     }
 
 
-
-
     @JvmStatic
     @BindingAdapter("setLeftTicketColor")
     fun setLeftTicketColor(textView: TextView, leftDay: Int?) {
@@ -488,6 +486,7 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter(value = ["imageUrl", "status"], requireAll = false)
     fun ImageView.setPhotoImage(url: String?, status: String) {
+        this.clipToOutline = true
         when (status) {
             "DONE" -> {
                 Glide.with(this.context)
@@ -496,7 +495,7 @@ object BindingAdapters {
             }
             "REST" -> {
                 Glide.with(this.context)
-                    .load(R.drawable.ic_sticker_rest)
+                    .load(R.drawable.sticker_rest)
                     .into(this)
             }
             "NONE" -> {
