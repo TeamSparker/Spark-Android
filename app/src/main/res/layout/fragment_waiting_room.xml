@@ -60,7 +60,7 @@
             android:includeFontPadding="false"
             android:text="@string/waiting_room_copy_code"
             android:textColor="@color/spark_dark_pinkred"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_name" />

@@ -22,7 +22,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
     private val setPurposeViewModel by viewModels<SetPurposeViewModel>()
     private var roomId by Delegates.notNull<Int>()
-    private lateinit var roomName :String
+    private lateinit var roomName: String
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,8 +36,8 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         initWhenEditTextFocusListener()
         initsettingPurposeBackButton()
         initsettingPurposeFinish()
-        EditTextUtil.focusedEditText(binding.etSetPurposeWhen,binding.viewSetPurposeOne)
-        EditTextUtil.focusedEditText(binding.etSetPurposeMyPurpose,binding.viewSetPurposeTwo)
+        EditTextUtil.focusedEditText(binding.etSetPurposeWhen, binding.viewSetPurposeOne)
+        EditTextUtil.focusedEditText(binding.etSetPurposeMyPurpose, binding.viewSetPurposeTwo)
     }
 
 
@@ -91,6 +91,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
                 var bundle = Bundle()
                 bundle.putInt("roomId", roomId)
+                bundle.putBoolean("startPoint", true)
                 waitingRoomFragment.arguments = bundle
 
                 requireActivity().supportFragmentManager.beginTransaction()
@@ -105,6 +106,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
+            bundle.putBoolean("startPoint", true)
             waitingRoomFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()
