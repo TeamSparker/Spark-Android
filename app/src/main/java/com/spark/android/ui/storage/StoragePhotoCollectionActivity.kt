@@ -19,7 +19,7 @@ class StoragePhotoCollectionActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val roomId = intent.getIntExtra("roomId", -1)
-        photoCollectionViewModel.initPhotoCollectionNetwork(roomId, -1, 5)
+        photoCollectionViewModel.initPhotoCollectionNetwork(roomId, -1, 70)
         binding.photoCollectionViewModel = photoCollectionViewModel
         setOnBackBtnClickListener()
         initStoragePhotoCollectionRvAdapter()
