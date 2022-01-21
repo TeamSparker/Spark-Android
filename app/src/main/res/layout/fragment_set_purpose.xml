@@ -53,7 +53,7 @@
             android:layout_marginTop="42dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="@{`‘`+roomName+`’`+ `습관방에서의`}"
+            android:text="@{`‘`+roomName+`’`+ ` 습관방에서의`}"
             android:textColor="@color/spark_dark_gray"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"

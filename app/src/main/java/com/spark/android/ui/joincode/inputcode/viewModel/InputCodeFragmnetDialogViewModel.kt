@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.entity.response.JoinCodeRoomInfoResponse
 import com.spark.android.data.remote.repository.JoinCodeRoomInfoRepository
 import com.spark.android.ui.feed.adapter.StickyHeaderResolver
+import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -23,8 +24,8 @@ class InputCodeFragmentDialogViewModel @Inject constructor(
     private var _errorMessage = MutableLiveData<String>("")
     val errorMessage: LiveData<String> = _errorMessage
 
-    private var _roomInfo = MutableLiveData<JoinCodeRoomInfoResponse>()
-    val roomInfo: LiveData<JoinCodeRoomInfoResponse> = _roomInfo
+    private var _roomInfo = MutableLiveData<Event<JoinCodeRoomInfoResponse>>()
+    val roomInfo: LiveData<Event<JoinCodeRoomInfoResponse>> = _roomInfo
 
     fun clearErrorMessage() {
         _errorMessage.postValue("")
@@ -34,13 +35,13 @@ class InputCodeFragmentDialogViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val response = joinCodeRoomInfoRepository.getJoinCodeRoomInfo(code)
-                _roomInfo.postValue(response.data!!)
-            }catch (e:HttpException){
+                _roomInfo.postValue(Event(response.data!!))
+            } catch (e: HttpException) {
                 val rawData = e.response()?.errorBody()?.byteString().toString()
-                val processedData = rawData.slice(IntRange(47,rawData.length-4))
-                if(processedData == "이미 참여 중인 코드예요."){
+                val processedData = rawData.slice(IntRange(47, rawData.length - 4))
+                if (processedData == "이미 참여 중인 코드예요.") {
                     _errorMessage.postValue("이미 참여 중인 코드예요.")
-                }else{
+                } else {
                     _errorMessage.postValue("참여할 수 없는 코드예요.")
                 }
             }

@@ -300,6 +300,16 @@
                     app:layout_constraintStart_toEndOf="@id/tv_habit_goal_title"
                     app:layout_constraintTop_toTopOf="@id/tv_habit_goal_title" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/spark_black"
+                    android:visibility="@{habitViewModel.isLoading? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_habit_text_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_habit_background" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
@@ -351,9 +361,32 @@
                 android:text="@string/habit_today_certification_btn"
                 android:textColor="@color/spark_white"
                 android:textSize="18dp"
+                android:visibility="@{habitViewModel.isLoading? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/spark_black_opacity_80"
+                android:visibility="@{habitViewModel.isLoading? View.VISIBLE : View.GONE}"
+                tools:visibility="gone">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_habit_loading"
+                    playLoadingLottie="@{habitViewModel.isLoading}"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="@{habitViewModel.isLoading? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_fileName="loading.json"
+                    app:lottie_loop="true" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

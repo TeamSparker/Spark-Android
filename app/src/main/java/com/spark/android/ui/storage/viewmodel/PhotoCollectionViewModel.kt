@@ -13,6 +13,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PhotoCollectionViewModel : ViewModel() {
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _photoCollectionResponse = MutableLiveData<PhotoCollectionResponse>()
     val photoCollectionResponse: LiveData<PhotoCollectionResponse> = _photoCollectionResponse
@@ -20,7 +22,12 @@ class PhotoCollectionViewModel : ViewModel() {
     private val _photoList = MutableLiveData<List<StorageCardPhoto>>()
     val photoList: LiveData<List<StorageCardPhoto>> = _photoList
 
+    private fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
     fun initPhotoCollectionNetwork(roomId: Int, lastid: Int, size: Int) {
+        initIsLoading(true)
         val call: Call<BaseResponse<PhotoCollectionResponse>> =
             RetrofitBuilder.photoCollectionService.getPhotoCollectionData(roomId, lastid, size)
 
@@ -33,6 +40,7 @@ class PhotoCollectionViewModel : ViewModel() {
                     val photoCollectionData = response.body()?.data!!
                     _photoCollectionResponse.postValue(photoCollectionData)
                     _photoList.postValue(photoCollectionData.records)
+                    initIsLoading(false)
                 }
             }
 

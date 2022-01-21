@@ -2,7 +2,6 @@ package com.spark.android.ui.joincode.inputcode
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
-import com.spark.android.util.KeyBoardUtil
+import com.spark.android.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +45,6 @@ class InputCodeFragmentDialog : DialogFragment() {
 
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
         initButtonClickListener()
-
         initClearErrorMessage()
     }
 
@@ -60,21 +58,22 @@ class InputCodeFragmentDialog : DialogFragment() {
                 )
             }
 
-            inputCodeFragmentDialogViewModel.roomInfo.observe(this){
+            inputCodeFragmentDialogViewModel.roomInfo.observe(viewLifecycleOwner, EventObserver() {
                 val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {
-                    putExtra("roomInfo",inputCodeFragmentDialogViewModel.roomInfo.value)
+                    putExtra(
+                        "roomInfo",
+                        requireNotNull(inputCodeFragmentDialogViewModel.roomInfo.value).peekContent()
+                    )
                 }
                 startActivity(intent)
-                dismiss()
-            }
+            })
         }
     }
 
 
-
     private fun initClearErrorMessage() {
         binding.etInputCodeContent.setOnFocusChangeListener { view, focused ->
-            if(focused){
+            if (focused) {
                 inputCodeFragmentDialogViewModel.clearErrorMessage()
                 binding.etInputCodeContent.text.clear()
             }

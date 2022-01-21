@@ -127,6 +127,7 @@
             android:id="@+id/tv_complete_item_total_sparkNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="130dp"
             android:fontFamily="@font/futura_medium"
             android:gravity="center_horizontal"
