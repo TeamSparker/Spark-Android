@@ -33,23 +33,26 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            tools:text="아침마다 요거트 먹기"
             android:text="@{photoCollectionViewModel.photoCollectionResponse.roomName}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="아침마다 요거트 먹기" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/iv_storage_photoCollection_back_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
             android:src="@drawable/ic_back_white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_storage_photoCollection_roomName" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_storage_photoCollection"
