@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="roomName"
+            type="String" />
 
         <variable
             name="setPurposeViewModel"
@@ -50,7 +53,7 @@
             android:layout_marginTop="42dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="@string/set_purpose_explain_one"
+            android:text="@{`‘`+roomName+`’`+ `습관방에서의`}"
             android:textColor="@color/spark_dark_gray"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +66,7 @@
             android:layout_marginTop="6dp"
             android:includeFontPadding="false"
             android:text="@string/set_purpose_explain_two"
+            android:fontFamily="@font/noto_sans_kr_regular"
             android:textColor="@color/spark_dark_gray"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/tv_set_purpose_explain_one"

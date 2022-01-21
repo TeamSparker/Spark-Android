@@ -10,5 +10,7 @@ class WaitingRoomInfoRepositoryImpl @Inject constructor(
 ) :WaitingRoomInfoRepository{
     override suspend fun getWaitingRoomInfo(
         roomId: Int
-    ) = waitingRoomInfoService.getWaitingRoomInfo(roomId)
+    ) = kotlin.runCatching {
+        waitingRoomInfoService.getWaitingRoomInfo(roomId)
+    }
 }

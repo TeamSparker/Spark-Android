@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetHabitTodayBinding
 import com.spark.android.ui.certify.CertifyBottomSheet
+import com.spark.android.ui.certify.CertifyMode
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.ui.timer.TimerStartActivity
 
@@ -42,6 +43,21 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
         initRestBtnClickListener()
     }
 
+    private fun showCertifyBottomSheet() {
+        val certifyBottomSheet = CertifyBottomSheet()
+        val bundle = Bundle()
+        habitViewModel.habitInfo.value?.roomId?.let { it1 -> bundle.putInt("roomId", it1) }
+        bundle.putString("roomName", habitViewModel.habitInfo.value?.roomName.toString())
+        bundle.putString("profileImgUrl",
+            habitViewModel.habitInfo.value?.myRecord?.profileImg.toString())
+        bundle.putString("nickname", habitViewModel.habitInfo.value?.myRecord?.nickname.toString())
+        bundle.putInt("certifyMode", CertifyMode.ONLY_CAMERA_MODE)
+        bundle.putBoolean("onlyCameraInitial", true)
+        certifyBottomSheet.arguments = bundle
+        certifyBottomSheet.show(requireActivity().supportFragmentManager,
+            this.javaClass.name)
+    }
+
     private fun initCertifyBtnClickListener() {
         binding.btnHabitTodayCertificationNow.setOnClickListener {
             if (habitViewModel.habitInfo.value?.fromStart == true) {
@@ -56,8 +72,7 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
                 dismiss()
             } else {
                 dismiss()
-                CertifyBottomSheet().show(requireActivity().supportFragmentManager,
-                    this.javaClass.name)
+                showCertifyBottomSheet()
             }
         }
     }

@@ -5,5 +5,5 @@ import com.spark.android.data.remote.entity.response.NoDataResponse
 
 interface SetPurposeRepository {
 
-    suspend fun setPurpose(roomId:Int,body:SetPurposeRequest): NoDataResponse
+    suspend fun setPurpose(roomId:Int,body:SetPurposeRequest): Result<NoDataResponse>
 }

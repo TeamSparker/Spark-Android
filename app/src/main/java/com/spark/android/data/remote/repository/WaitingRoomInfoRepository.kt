@@ -5,5 +5,5 @@ import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
 
 interface WaitingRoomInfoRepository {
 
-    suspend fun getWaitingRoomInfo(roomId: Int): BaseResponse<WaitingRoomInfoResponse>
+    suspend fun getWaitingRoomInfo(roomId: Int): Result<BaseResponse<WaitingRoomInfoResponse>>
 }

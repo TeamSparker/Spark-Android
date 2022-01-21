@@ -22,8 +22,17 @@ class CertifyViewModel : ViewModel() {
     private val _roomId = MutableLiveData<Int>()
     val roomId: LiveData<Int> = _roomId
 
+    private val _nickName = MutableLiveData<String>()
+    val nickName: LiveData<String> = _nickName
+
+    private val _profileImg = MutableLiveData<String>()
+    val profileImg: LiveData<String> = _profileImg
+
     private val _timerRecord = MutableLiveData<String>()
     val timerRecord: LiveData<String> = _timerRecord
+
+    private val _onlyCameraInitial = MutableLiveData<Boolean>()
+    val onlyCameraInitial: LiveData<Boolean> = _onlyCameraInitial
 
     private lateinit var certifyImgMultiPart: MultipartBody.Part
 
@@ -36,6 +45,10 @@ class CertifyViewModel : ViewModel() {
     private val _isSuccessCertify = MutableLiveData<Boolean>()
     val isSuccessCertify: LiveData<Boolean> = _isSuccessCertify
 
+    fun initOnlyCameraInitial(onlyCameraInitial: Boolean) {
+        _onlyCameraInitial.value = onlyCameraInitial
+    }
+
     fun initCertifyMode(certifyMode: Int) {
         _certifyMode.value = certifyMode
     }
@@ -46,6 +59,14 @@ class CertifyViewModel : ViewModel() {
 
     fun initRoomId(roomId: Int) {
         _roomId.value = roomId
+    }
+
+    fun initNickName(nickname: String) {
+        _nickName.value = nickname
+    }
+
+    fun initProfileImg(profileImg: String) {
+        _profileImg.value = profileImg
     }
 
     fun initTimerRecord(timerRecord: String) {
@@ -67,25 +88,38 @@ class CertifyViewModel : ViewModel() {
     }
 
     fun postCertification() {
-        val timerRecordMultiPart = if (timerRecord.value.isNullOrEmpty()) {
-            null
-        } else {
-            mapOf("timerRecord" to requireNotNull(timerRecord.value).toRequestBody("text/plain".toMediaTypeOrNull()))
-        }
-        viewModelScope.launch {
-            roomId.value?.let { roomId ->
-                kotlin.runCatching {
-                    RetrofitBuilder.certifyService.postCertification(
-                        roomId,
-                        timerRecordMultiPart,
-                        certifyImgMultiPart
-                    )
-                }.onSuccess { response ->
-                    _isSuccessCertify.postValue(response.success)
-                }.onFailure {
+        if (timerRecord.value.isNullOrEmpty()) {
+            viewModelScope.launch {
+                roomId.value?.let { roomId ->
+                    kotlin.runCatching {
+                        RetrofitBuilder.certifyService.postCertification(
+                            roomId,
+                            certifyImgMultiPart
+                        )
+                    }.onSuccess { response ->
+                        _isSuccessCertify.postValue(response.success)
+                    }.onFailure {
 
+                    }
+                }
+            }
+        } else {
+            viewModelScope.launch {
+                roomId.value?.let { roomId ->
+                    kotlin.runCatching {
+                        RetrofitBuilder.certifyService.postCertificationFromStart(
+                            roomId,
+                            mapOf("timerRecord" to requireNotNull(timerRecord.value).toRequestBody("text/plain".toMediaTypeOrNull())),
+                            certifyImgMultiPart
+                        )
+                    }.onSuccess { response ->
+                        _isSuccessCertify.postValue(response.success)
+                    }.onFailure {
+
+                    }
                 }
             }
         }
+
     }
 }

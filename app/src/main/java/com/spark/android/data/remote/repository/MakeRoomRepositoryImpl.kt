@@ -11,5 +11,7 @@ class MakeRoomRepositoryImpl @Inject constructor(
 ) : MakeRoomRepository {
     override suspend fun makeRoom(
         body: MakeRoomRequest
-    ) = makeRoomService.makeRoom(body)
+    ) = kotlin.runCatching {
+        makeRoomService.makeRoom(body)
+    }
 }

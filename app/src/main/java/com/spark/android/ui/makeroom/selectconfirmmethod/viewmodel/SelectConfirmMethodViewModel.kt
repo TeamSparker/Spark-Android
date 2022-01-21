@@ -1,5 +1,6 @@
 package com.spark.android.ui.makeroom.selectconfirmmethod.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.spark.android.data.remote.repository.MakeRoomRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class SelectConfirmMethodViewModel @Inject constructor(
@@ -31,8 +33,12 @@ class SelectConfirmMethodViewModel @Inject constructor(
 
     fun makeRoom(requestData : MakeRoomRequest) {
         viewModelScope.launch {
-            val response = makeRoomRepository.makeRoom(requestData)
-            _roomId.postValue(response.data?.roomId)
+            makeRoomRepository.makeRoom(requestData)
+                .onSuccess {
+                    _roomId.postValue(it.data.roomId)
+                }.onFailure {
+                    Log.d("Select Confirm Method" , it.message.toString())
+                }
         }
     }
 

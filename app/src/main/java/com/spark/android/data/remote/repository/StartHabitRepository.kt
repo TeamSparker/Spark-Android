@@ -4,5 +4,5 @@ import com.spark.android.data.remote.entity.response.NoDataResponse
 
 interface StartHabitRepository {
 
-    suspend fun startHabit(roomId: Int): NoDataResponse
+    suspend fun startHabit(roomId: Int): Result<NoDataResponse>
 }

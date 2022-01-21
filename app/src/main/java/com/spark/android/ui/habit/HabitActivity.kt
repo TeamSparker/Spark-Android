@@ -25,7 +25,6 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initRVAdapter()
         initHabitInfoObserver()
         initHabitRecordsObserver()
-        refreshData()
         setSwipeRefreshLayout()
         initHabitBackBtnClickListener()
         initHabitMoreBtnClickListener()
@@ -34,7 +33,6 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initRoomId() {
         roomId = intent.getIntExtra("roomId", -1)
-//        roomId = 160
     }
 
     private fun initHabitInfoObserver() {
@@ -90,6 +88,11 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         binding.btnHabitTodayCertification.setOnClickListener {
             HabitTodayBottomSheet().show(supportFragmentManager, this.javaClass.name)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshData()
     }
 
     override fun onPause() {

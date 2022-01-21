@@ -7,6 +7,7 @@ import com.spark.android.R
 import com.spark.android.databinding.ActivityHabitGoalManageBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.habit.viewmodel.HabitGoalManageViewModel
+import com.spark.android.util.KeyBoardUtil
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 
@@ -23,16 +24,26 @@ class HabitGoalManageActivity :
         initStatusBarColor(R.color.spark_white)
         initStatusBarTextColorToWhite()
 
+        initIntentData()
         initEditTextClearFocus()
         initTimeEditTextFocusListener()
         initGoalEditTextFocusListener()
         initQuitBtnClickListener()
+        initCompleteBtnClickListener()
+    }
+
+    private fun initIntentData() {
+        habitGoalManageViewModel.initRoomId(intent.getIntExtra("roomId", -1))
+        intent.getStringExtra("roomName")?.let { habitGoalManageViewModel.initRoomName(it) }
+        habitGoalManageViewModel.moment.value = intent.getStringExtra("moment")
+        habitGoalManageViewModel.purpose.value = intent.getStringExtra("purpose")
     }
 
     private fun initEditTextClearFocus() {
         binding.layoutHabitGoalManage.setOnClickListener {
             binding.etHabitGoalTime.clearFocus()
             binding.etHabitGoalGoal.clearFocus()
+            KeyBoardUtil.hide(this)
         }
     }
 
@@ -62,6 +73,13 @@ class HabitGoalManageActivity :
 
     private fun initQuitBtnClickListener() {
         binding.btnHabitGoalManageQuit.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun initCompleteBtnClickListener() {
+        binding.btnHabitGoalComplete.setOnClickListener {
+            habitGoalManageViewModel.setPurpose()
             finish()
         }
     }

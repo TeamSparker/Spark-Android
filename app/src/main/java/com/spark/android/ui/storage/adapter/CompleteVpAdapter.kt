@@ -23,6 +23,7 @@ class CompleteVpAdapter : RecyclerView.Adapter<CompleteVpAdapter.CompleteVpViewH
         init {
             itemView.setOnClickListener {
                 val intent = Intent(it.context, StoragePhotoCollectionActivity::class.java)
+                intent.putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                 it.context.startActivity(intent)
             }
         }

@@ -9,9 +9,6 @@
             name="storageRoom"
             type="com.spark.android.data.remote.entity.response.StorageRoom" />
 
-        <variable
-            name="str"
-            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +53,8 @@
                 android:id="@+id/iv_incomplete_item_sparkflake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_storage_incomplete_item_sparkflake"
+                tools:src="@drawable/ic_storage_incomplete_item_sparkflake3"
+                setIncompleteCardSparkFlake="@{storageRoom.failDay}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +67,7 @@
                 android:layout_marginTop="56dp"
                 android:fontFamily="@font/futura_bold"
                 android:includeFontPadding="false"
-                android:text="@{String.valueOf(storageRoom.failDay)+` DAYS`}"
+                android:text="@{storageRoom.failDay == 66 ? `D-day` : String.valueOf(storageRoom.failDay)+` DAYS`}"
                 android:textAlignment="center"
                 android:textColor="@color/spark_white"
                 android:textSize="24dp"

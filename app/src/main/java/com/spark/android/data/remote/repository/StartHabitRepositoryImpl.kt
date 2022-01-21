@@ -9,5 +9,7 @@ class StartHabitRepositoryImpl @Inject constructor(
 ) :StartHabitRepository{
     override suspend fun startHabit(
         roomId:Int
-    )= startHabitService.startHabit(roomId)
+    )= kotlin.runCatching {
+        startHabitService.startHabit(roomId)
+    }
 }
