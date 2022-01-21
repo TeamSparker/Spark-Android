@@ -13,6 +13,9 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 class CertifyViewModel : ViewModel() {
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val _certifyMode = MutableLiveData<Int>()
     val certifyMode: LiveData<Int> = _certifyMode
 
@@ -44,6 +47,10 @@ class CertifyViewModel : ViewModel() {
 
     private val _isSuccessCertify = MutableLiveData<Boolean>()
     val isSuccessCertify: LiveData<Boolean> = _isSuccessCertify
+
+    fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
 
     fun initOnlyCameraInitial(onlyCameraInitial: Boolean) {
         _onlyCameraInitial.value = onlyCameraInitial
@@ -88,6 +95,7 @@ class CertifyViewModel : ViewModel() {
     }
 
     fun postCertification() {
+        initIsLoading(true)
         if (timerRecord.value.isNullOrEmpty()) {
             viewModelScope.launch {
                 roomId.value?.let { roomId ->
@@ -98,6 +106,7 @@ class CertifyViewModel : ViewModel() {
                         )
                     }.onSuccess { response ->
                         _isSuccessCertify.postValue(response.success)
+                        initIsLoading(false)
                     }.onFailure {
 
                     }
@@ -114,6 +123,7 @@ class CertifyViewModel : ViewModel() {
                         )
                     }.onSuccess { response ->
                         _isSuccessCertify.postValue(response.success)
+                        initIsLoading(false)
                     }.onFailure {
 
                     }
