@@ -501,7 +501,7 @@ object BindingAdapters {
             }
             "NONE" -> {
                 Glide.with(this.context)
-                    .load(R.drawable.ic_bottom_navigation_home)
+                    .load(R.drawable.ic_sticker_none)
                     .into(this)
             }
             "CONSIDER" -> {
