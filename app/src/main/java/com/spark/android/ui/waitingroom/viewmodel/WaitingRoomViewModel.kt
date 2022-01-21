@@ -21,6 +21,8 @@ class WaitingRoomViewModel @Inject constructor(
     private val refreshRepository: RefreshRepository,
     private val startHabitRepository: StartHabitRepository
 ) : ViewModel() {
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _waitingRoomInfo = MutableLiveData<WaitingRoomInfoResponse>()
     val waitingRoomInfo: LiveData<WaitingRoomInfoResponse> = _waitingRoomInfo
@@ -28,11 +30,17 @@ class WaitingRoomViewModel @Inject constructor(
     private val _refreshInfo = MutableLiveData<List<Member>>()
     val refreshInfo :LiveData<List<Member>> = _refreshInfo
 
+    fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
     fun getWaitingRoomInfo(roomId: Int) {
+        initIsLoading(true)
         viewModelScope.launch {
             waitingRoomInfoRepository.getWaitingRoomInfo(roomId)
                 .onSuccess {
                     _waitingRoomInfo.postValue(it.data!!)
+                    initIsLoading(false)
                 }.onFailure {
                     Log.d("WaitingRoomInfo",it.message.toString())
                 }

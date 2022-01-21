@@ -18,6 +18,9 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private var profileImageMultiPart: MultipartBody.Part? = null
 
     val nickname = MutableLiveData("")
@@ -41,8 +44,9 @@ class ProfileViewModel @Inject constructor(
     private val _profileImgBitmap = MutableLiveData<Bitmap?>()
     val profileImgBitmap: LiveData<Bitmap?> = _profileImgBitmap
 
-    private val _isLoading = MutableLiveData(false)
-    val isLoading: LiveData<Boolean> = _isLoading
+    fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
 
     fun initNicknameFocused(hasFocus: Boolean) {
         _nicknameFocused.value = !(requireNotNull(nickname.value).isEmpty() && !hasFocus)
@@ -72,10 +76,6 @@ class ProfileViewModel @Inject constructor(
 
     fun initProfileImgMultiPart(profileImg: MultipartBody.Part?) {
         profileImageMultiPart = profileImg
-    }
-
-    fun initIsLoading(isLoading: Boolean) {
-        _isLoading.value = isLoading
     }
 
     fun initKakaoUserId() {
