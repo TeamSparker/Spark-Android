@@ -6,6 +6,8 @@ import com.spark.android.R
 import com.spark.android.databinding.ActivityWaitingRoomBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.setpurpose.SetPurposeFragment
+import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -19,6 +21,7 @@ class WaitingRoomActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initStatusBarStyle()
         initExtra()
         initTransactionEvent()
     }
@@ -37,6 +40,11 @@ class WaitingRoomActivity :
 
         supportFragmentManager.beginTransaction()
             .add(R.id.container_waiting_room, waitingRoomFragment).commit()
+    }
+
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
     }
 
     companion object {
