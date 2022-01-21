@@ -1,5 +1,6 @@
 package com.spark.android.ui.setpurpose.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,8 +22,12 @@ class SetPurposeViewModel @Inject constructor(
 
     fun setPurpose(roomId: Int, body: SetPurposeRequest) {
         viewModelScope.launch {
-            val response = setPurposeRepository.setPurpose(roomId,body)
-            networkState.postValue(response.success)
+            setPurposeRepository.setPurpose(roomId,body)
+                .onSuccess {
+                    networkState.postValue(it.success)
+                }.onFailure {
+                    Log.d("setPurpose",it.message.toString())
+                }
         }
     }
 }

@@ -6,10 +6,11 @@ import javax.inject.Inject
 class HomeRepositoryImpl @Inject constructor(
     private val homeService: HomeService
 ) : HomeRepository {
-
     override suspend fun getHomeAllRoom(
         lastid: Int,
         size: Int
-    ) = homeService.getHomeAllRoom(lastid, size)
+    ) = kotlin.runCatching {
+        homeService.getHomeAllRoom(lastid, size)
+    }
 
 }

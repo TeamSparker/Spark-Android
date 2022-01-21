@@ -10,5 +10,7 @@ class SetPurposeRepositoryImpl @Inject constructor(
     override suspend fun setPurpose(
         roomId: Int,
         body: SetPurposeRequest
-    ) = setPurposeService.setPurpose(roomId, body)
+    ) = kotlin.runCatching {
+        setPurposeService.setPurpose(roomId, body)
+    }
 }
