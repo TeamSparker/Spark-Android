@@ -44,15 +44,15 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
             when (mode) {
                 PROGRESSING -> {
                     binding.vpStorageOut.currentItem = 0
-                    storageViewModel.initStorageNetwork(PROGRESSING, -1, 5)
+                    storageViewModel.initStorageNetwork(PROGRESSING, -1, 30)
                 }
                 COMPLETE -> {
                     binding.vpStorageOut.currentItem = 1
-                    storageViewModel.initStorageNetwork(COMPLETE, -1, 5)
+                    storageViewModel.initStorageNetwork(COMPLETE, -1, 30)
                 }
                 INCOMPLETE -> {
                     binding.vpStorageOut.currentItem = 2
-                    storageViewModel.initStorageNetwork(INCOMPLETE, -1, 5)
+                    storageViewModel.initStorageNetwork(INCOMPLETE, -1, 30)
                 }
                 else -> throw IllegalStateException()
             }
