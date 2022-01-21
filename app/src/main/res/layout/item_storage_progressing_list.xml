@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="storageRoom"
             type="com.spark.android.data.remote.entity.response.StorageRoom" />
@@ -48,17 +49,17 @@
 
         <View
             android:id="@+id/view_progressing_layout_in"
+            setCardInLineColor="@{storageRoom.leftDay}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
-            tools:background="@drawable/shape_spark_light_pinkred_line_2_rect_bottomless"
-            setCardInLineColor="@{storageRoom.leftDay}"
             app:layout_constraintBottom_toTopOf="@id/iv_progressing_item_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/shape_spark_light_pinkred_line_2_rect_bottomless" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_progressing_item_title"
@@ -71,13 +72,13 @@
 
             <ImageView
                 android:id="@+id/iv_progressing_item_sparkflake"
+                setProgressingCardSparkFlake="@{storageRoom.leftDay}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                setProgressingCardSparkFlake="@{storageRoom.leftDay}"
-                tools:src="@drawable/ic_storage_progressing_item_sparkflake3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_storage_progressing_item_sparkflake3" />
 
             <TextView
                 android:id="@+id/tv_progressing_item_leftDays"
@@ -112,6 +113,7 @@
             android:id="@+id/iv_progressing_item_total_sparkNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="130dp"
             android:fontFamily="@font/futura_medium"
             android:gravity="center_horizontal"
