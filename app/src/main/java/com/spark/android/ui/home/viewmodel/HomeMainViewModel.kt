@@ -1,5 +1,6 @@
 package com.spark.android.ui.home.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,8 +32,12 @@ class HomeMainViewModel @Inject constructor(
     fun getHomeAllRoom(lastid: Int, size: Int) {
         viewModelScope.launch {
             _isLoading.value = true
-            val response = homeRepository.getHomeAllRoom(lastid, size)
-            _roomList.postValue(response.data?.rooms)
+            homeRepository.getHomeAllRoom(lastid,size)
+                .onSuccess {
+                    _roomList.postValue(it.data.rooms)
+                }.onFailure {
+                    Log.d("Home_main error", it.message.toString())
+                }
         }
     }
 

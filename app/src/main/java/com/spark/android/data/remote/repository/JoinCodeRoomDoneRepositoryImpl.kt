@@ -10,5 +10,7 @@ class JoinCodeRoomDoneRepositoryImpl @Inject constructor(
 ) : JoinCodeRoomDoneRepository {
     override suspend fun setJoinCodeRoomDone(
         roomId: Int
-    ) = joinCodeRoomDoneService.setJoinCodeRoomDone(roomId)
+    ) = kotlin.runCatching {
+        joinCodeRoomDoneService.setJoinCodeRoomDone(roomId)
+    }
 }

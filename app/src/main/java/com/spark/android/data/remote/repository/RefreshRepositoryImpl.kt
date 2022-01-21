@@ -10,5 +10,7 @@ class RefreshRepositoryImpl @Inject constructor(
 ) : RefreshRepository{
     override suspend fun getRefresh(
         roomId: Int
-    ) = refreshService.getRefresh(roomId)
+    ) = kotlin.runCatching {
+        refreshService.getRefresh(roomId)
+    }
 }

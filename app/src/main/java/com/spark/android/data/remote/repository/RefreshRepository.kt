@@ -5,5 +5,5 @@ import com.spark.android.data.remote.entity.response.RefreshResponse
 
 interface RefreshRepository {
 
-    suspend fun getRefresh(roomId:Int):BaseResponse<RefreshResponse>
+    suspend fun getRefresh(roomId:Int): Result<BaseResponse<RefreshResponse>>
 }

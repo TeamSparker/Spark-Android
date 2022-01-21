@@ -1,5 +1,6 @@
 package com.spark.android.ui.waitingroom.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +13,7 @@ import com.spark.android.data.remote.repository.WaitingRoomInfoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class WaitingRoomViewModel @Inject constructor(
@@ -28,21 +30,32 @@ class WaitingRoomViewModel @Inject constructor(
 
     fun getWaitingRoomInfo(roomId: Int) {
         viewModelScope.launch {
-            val response = waitingRoomInfoRepository.getWaitingRoomInfo(roomId)
-            _waitingRoomInfo.postValue(response.data!!)
+            waitingRoomInfoRepository.getWaitingRoomInfo(roomId)
+                .onSuccess {
+                    _waitingRoomInfo.postValue(it.data!!)
+                }.onFailure {
+                    Log.d("WaitingRoomInfo",it.message.toString())
+                }
         }
     }
 
     fun getRefreshInfo(roomId: Int){
         viewModelScope.launch {
-            val response = refreshRepository.getRefresh(roomId)
-            _refreshInfo.postValue(response.data?.members)
+            refreshRepository.getRefresh(roomId)
+                .onSuccess {
+                    _refreshInfo.postValue(it.data.members)
+                }.onFailure {
+                    Log.d("refreshPeopleList",it.message.toString())
+                }
         }
     }
 
     fun startHabit(roomId: Int){
         viewModelScope.launch {
             startHabitRepository.startHabit(roomId)
+                .onFailure {
+                    Log.d("startHabit",it.message.toString())
+                }
         }
     }
 

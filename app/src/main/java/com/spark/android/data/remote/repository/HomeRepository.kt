@@ -5,5 +5,5 @@ import com.spark.android.data.remote.entity.response.BaseResponse
 
 interface HomeRepository {
 
-    suspend fun getHomeAllRoom(lastid : Int, size : Int) : BaseResponse<HomeResponse>
+    suspend fun getHomeAllRoom(lastid : Int, size : Int) : Result<BaseResponse<HomeResponse>>
 }
