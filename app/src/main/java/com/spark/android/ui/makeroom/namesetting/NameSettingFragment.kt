@@ -11,6 +11,7 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentNameSettingBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.makeroom.namesetting.viewmodel.NameSettingViewModel
+import com.spark.android.util.EditTextUtil
 import com.spark.android.util.KeyBoardUtil
 
 
@@ -25,6 +26,7 @@ class NameSettingFragment : BaseFragment<FragmentNameSettingBinding>(R.layout.fr
         initEditTextClearFocus()
         initNextButton()
         initBackButton()
+        EditTextUtil.focusedEditText(binding.etMakeRoomNameSettingHabitName,binding.viewNameSetting)
     }
 
     private fun initEditTextClearFocus() {
