@@ -22,6 +22,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
     var pauseTime = 0L
     var roomName: String? = null
     var roomId: Int? = -1
+    var nickname = ""
+    var profileImgUrl = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         roomName = intent.getStringExtra("roomName")
         binding.tvTimerRoomName.text = roomName
         roomId = intent.getIntExtra("roomId", -1)
-
+        profileImgUrl = intent.getStringExtra("profileImgUrl") ?: ""
+        nickname = intent.getStringExtra("nickname") ?: ""
         //binding.chronometerTimer.base = SystemClock.elapsedRealtime() - (nr_of_min * 60000)
 
         //initTimerStateObserver()
@@ -131,6 +134,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
                 putExtra("roomName", roomName)
                 putExtra("roomId", roomId)
                 putExtra("certifyMode", CertifyMode.NORMAL_READY_MODE)
+                putExtra("profileImgUrl", profileImgUrl)
+                putExtra("nickname", nickname)
             }
             startActivity(intent)
             finish()

@@ -54,10 +54,10 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         certifyViewModel.initTimerRecord(intent.getStringExtra("timerRecord"))
         certifyViewModel.initRoomName(intent.getStringExtra("roomName").toString())
         certifyViewModel.initRoomId(intent.getIntExtra("roomId", -1))
-
-        certifyViewModel.initCertifyMode(intent.getIntExtra("certifyMode",
-            CertifyMode.NORMAL_READY_MODE))
+        certifyViewModel.initNickName(intent.getStringExtra("nickname") ?: "")
+        certifyViewModel.initCertifyMode(intent.getIntExtra("certifyMode", NORMAL_READY_MODE))
         certifyViewModel.initOnlyCameraInitial(intent.getBooleanExtra("onlyCameraInitial", false))
+        intent.getStringExtra("profileImgUrl")?.let { certifyViewModel.initProfileImg(it) }
         intent.getParcelableExtra<Uri>("imgUri")?.let { certifyViewModel.initImgUri(it) }
         intent.getParcelableExtra<Bitmap>("imgBitmap")?.let { certifyViewModel.initImgBitmap(it) }
 
@@ -148,14 +148,11 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
             when (bundle.get(SHARE_MODE)) {
                 SHARE -> {
                     startActivity(Intent(this, InstaActivity::class.java).apply {
-//                        flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                        putExtra(FROM_WHERE, FROM_CERTIFY_ACTIVITY)
-                        putExtra("nickname", "닉네임")
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        putExtra(FROM_WHERE, FROM_CERTIFY_ACTIVITY)
+                        putExtra("nickname", certifyViewModel.nickName.value)
                         putExtra("roomName", certifyViewModel.roomName.value)
-                        putExtra(
-                            "profileImgUrl",
-                            "https://console.firebase.google.com/project/we-sopt-spark/storage/we-sopt-spark.appspot.com/files/~2Fusers"
-                        )
+                        putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                         putExtra("certifyImgUri", certifyViewModel.imgUri.value)
                         putExtra("certifyImgBitmap", certifyViewModel.imgBitmap.value)
                         putExtra("timerRecord", certifyViewModel.timerRecord.value)
@@ -177,9 +174,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     }
 
     override fun onBackPressed() {
-        if(certifyViewModel.certifyMode.value == CertifyMode.ONLY_CAMERA_MODE) {
+        if (certifyViewModel.certifyMode.value == CertifyMode.ONLY_CAMERA_MODE) {
             showStopCertifyPhotoDialog()
-        }else {
+        } else {
             moveToTimerActivity()
         }
     }

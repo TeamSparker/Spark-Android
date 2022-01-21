@@ -76,8 +76,8 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     private fun initArgumentsData() {
         arguments?.getInt("roomId")?.let { certifyViewModel.initRoomId(it) }
         arguments?.getString("roomName")?.let { certifyViewModel.initRoomName(it) }
-        arguments?.getString("profileImg")?.let { certifyViewModel.initProfileImg(it) }
-        arguments?.getString("nickName")?.let { certifyViewModel.initNickName(it) }
+        arguments?.getString("profileImgUrl")?.let { certifyViewModel.initProfileImg(it) }
+        arguments?.getString("nickname")?.let { certifyViewModel.initNickName(it) }
         arguments?.getInt("certifyMode")?.let { certifyViewModel.initCertifyMode(it) }
         arguments?.getBoolean("onlyCameraInitial")
             ?.let { certifyViewModel.initOnlyCameraInitial(it) }
@@ -138,10 +138,12 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                 val intent = Intent(context, CertifyActivity::class.java)
                 intent.apply {
                     putExtra("timerRecord", certifyViewModel.timerRecord.value)
+                    putExtra("nickname",certifyViewModel.nickName.value)
                     putExtra("roomName", certifyViewModel.roomName.value)
                     putExtra("roomId", certifyViewModel.roomId.value)
                     putExtra("certifyMode", CertifyMode.ONLY_CAMERA_MODE)
                     putExtra("onlyCameraInitial", false)
+                    putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                     putExtra("imgUri", certifyViewModel.imgUri.value)
                     putExtra("imgBitmap", certifyViewModel.imgBitmap.value)
                 }

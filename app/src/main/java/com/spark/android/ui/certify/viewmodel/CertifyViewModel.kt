@@ -28,8 +28,8 @@ class CertifyViewModel : ViewModel() {
     private val _profileImg = MutableLiveData<String>()
     val profileImg: LiveData<String> = _profileImg
 
-    private val _timerRecord = MutableLiveData<String>()
-    val timerRecord: LiveData<String> = _timerRecord
+    private val _timerRecord = MutableLiveData<String?>()
+    val timerRecord: LiveData<String?> = _timerRecord
 
     private val _onlyCameraInitial = MutableLiveData<Boolean>()
     val onlyCameraInitial: LiveData<Boolean> = _onlyCameraInitial
