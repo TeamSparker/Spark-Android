@@ -41,8 +41,6 @@ class HabitGoalManageActivity :
 
     private fun initEditTextClearFocus() {
         binding.layoutHabitGoalManage.setOnClickListener {
-            binding.etHabitGoalTime.clearFocus()
-            binding.etHabitGoalGoal.clearFocus()
             KeyBoardUtil.hide(this)
         }
     }
