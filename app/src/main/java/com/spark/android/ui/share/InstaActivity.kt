@@ -1,12 +1,18 @@
 package com.spark.android.ui.share
 
 import android.content.ActivityNotFoundException
-import android.content.ContentResolver
+import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.spark.android.R
 import com.spark.android.databinding.ActivityInstaBinding
@@ -15,12 +21,20 @@ import com.spark.android.ui.certify.CertifyActivity.Companion.FROM_CERTIFY_ACTIV
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.main.MainActivity.Companion.FROM_WHERE
 import com.spark.android.util.showToast
+import android.provider.MediaStore
+import java.io.ByteArrayOutputStream
+import java.io.OutputStream
+import java.util.*
+import android.graphics.drawable.Drawable
+
 
 class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta) {
     private lateinit var imgUri: Uri
+    private lateinit var instaFeedUri: Uri
     private val instaShareActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
+        contentResolver.delete(instaFeedUri, null, null)
         moveToFeed()
     }
 
@@ -37,7 +51,51 @@ class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta
         intent.getParcelableExtra<Bitmap>("certifyImgBitmap")?.let {
             binding.ivInstaStickerCertifyImg.setImageBitmap(it)
         }
-        shareInsta()
+
+        binding.layoutInstaStickerBg.post {
+            instaFeedUri = getImageUri(viewToBitmap(binding.layoutInstaStickerBg))!!
+            shareInsta(instaFeedUri)
+        }
+    }
+
+    private fun viewToBitmap(view: View): Bitmap {
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.OVERLAY);
+        view.draw(canvas)
+        return bitmap
+    }
+
+    private fun getImageUri(bitmap: Bitmap): Uri? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            var outputStream: OutputStream? = null
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+                put(MediaStore.MediaColumns.IS_PENDING, 1)
+            }
+            val uri =
+                contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+            uri?.let {
+                outputStream = contentResolver.openOutputStream(it)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                contentValues.clear()
+                contentValues.put(MediaStore.Video.Media.IS_PENDING, 0)
+                contentResolver.update(it, contentValues, null, null)
+            }
+
+            return uri
+        } else {
+            val bytes = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+            return Uri.parse(
+                MediaStore.Images.Media.insertImage(
+                    contentResolver,
+                    bitmap,
+                    "InstaShareLayer-${Calendar.getInstance().time}",
+                    null
+                )
+            )
+        }
     }
 
     private fun moveToFeed() {
@@ -47,21 +105,20 @@ class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta
         })
     }
 
-    private fun shareInsta() {
-        val stickerBackgroundUri = imgUri
+    private fun shareInsta(uri: Uri) {
 
         val sourceApplication = "com.spark.android"
 
         val intent = Intent("com.instagram.share.ADD_TO_STORY")
         intent.type = "image/jpeg"
         intent.putExtra("source_application", sourceApplication)
-        intent.putExtra("top_background_color", "#c6c6c6")
-        intent.putExtra("bottom_background_color", "#616161")
-        intent.putExtra("interactive_asset_uri", stickerBackgroundUri)
+        intent.putExtra("top_background_color", "#737376")
+        intent.putExtra("bottom_background_color", "#737376")
+        intent.putExtra("interactive_asset_uri", uri)
 
         grantUriPermission(
             "com.instagram.android",
-            stickerBackgroundUri,
+            uri,
             Intent.FLAG_GRANT_READ_URI_PERMISSION
         )
         try {
@@ -71,6 +128,5 @@ class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta
             moveToFeed()
             Log.d("Insta_Share", "Instagram 앱이 없습니다.")
         }
-
     }
 }

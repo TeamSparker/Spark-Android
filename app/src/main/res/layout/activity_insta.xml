@@ -28,113 +28,135 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/spark_black_opacity_80"
+        android:paddingHorizontal="24dp"
         tools:context=".ui.share.InstaActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_insta_sticker_bg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/spark_dark_gray"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/iv_insta_sticker_tag"
-            app:layout_constraintStart_toStartOf="@id/iv_insta_sticker_tag"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_insta_sticker_certify_img"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/insta_desc_sticker_certify_img"
-                android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@color/spark_gray" />
-
-            <TextView
-                android:id="@+id/tv_feed_time_stamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/futura_bold"
-                android:text="@{timerRecord}"
-                android:textColor="@color/spark_white"
-                android:textSize="40dp"
-                android:visibility="@{timerRecord == `` ? View.INVISIBLE : View.VISIBLE}"
-                app:layout_constraintBottom_toBottomOf="@id/iv_insta_sticker_certify_img"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/iv_insta_sticker_certify_img"
-                tools:text="00:30:18" />
-
-            <ImageView
-                android:id="@+id/iv_insta_sticker_profile"
-                setCircleImage="@{profileImgUrl}"
-                android:layout_width="64dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="-32dp"
-                android:background="@drawable/shape_white_line_circle"
-                android:contentDescription="@string/feed_desc_profile_photo"
-                android:padding="2dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_insta_sticker_certify_img"
-                tools:src="@drawable/asset_insta_sticker_tag" />
-
-            <TextView
-                android:id="@+id/tv_insta_sticker_nickname"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/noto_sans_kr_medium"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:text="@{nickname}"
-                android:textColor="@color/spark_deep_gray"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_insta_sticker_profile"
-                tools:text="닉네임" />
-
-            <TextView
-                android:id="@+id/tv_insta_sticker_room_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="18dp"
-                android:fontFamily="@font/noto_sans_kr_bold"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:text="@{roomName}"
-                android:textColor="@color/spark_deep_gray"
-                android:textSize="20dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_insta_sticker_nickname"
-                tools:text="룸네임" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <ImageView
+                    android:id="@+id/iv_insta_sticker_certify_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/insta_desc_sticker_certify_img"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@color/spark_gray" />
+
+                <TextView
+                    android:id="@+id/tv_feed_time_stamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_bold"
+                    android:text="@{timerRecord}"
+                    android:textColor="@color/spark_white"
+                    android:textSize="40dp"
+                    android:visibility="@{timerRecord == `` ? View.INVISIBLE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_insta_sticker_certify_img"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_insta_sticker_certify_img"
+                    tools:text="00:30:18" />
+
+                <ImageView
+                    android:id="@+id/iv_insta_sticker_profile"
+                    setCircleImage="@{profileImgUrl}"
+                    android:layout_width="64dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="-32dp"
+                    android:background="@drawable/shape_white_line_circle"
+                    android:contentDescription="@string/feed_desc_profile_photo"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_insta_sticker_certify_img"
+                    tools:src="@drawable/asset_insta_sticker_tag" />
+
+                <TextView
+                    android:id="@+id/tv_insta_sticker_nickname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@{nickname}"
+                    android:textColor="@color/spark_deep_gray"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_insta_sticker_profile"
+                    tools:text="닉네임" />
+
+                <TextView
+                    android:id="@+id/tv_insta_sticker_room_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@{roomName}"
+                    android:textColor="@color/spark_deep_gray"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_insta_sticker_nickname"
+                    tools:text="룸네임" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/iv_insta_sticker_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/insta_desc_sticker_tag"
+                android:paddingHorizontal="108dp"
+                android:src="@drawable/asset_insta_sticker_tag"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/iv_insta_sticker_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-40dp"
-            android:contentDescription="@string/insta_desc_sticker_tag"
-            android:paddingHorizontal="108dp"
-            android:src="@drawable/asset_insta_sticker_tag"
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/layout_insta_sticker_bg" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
