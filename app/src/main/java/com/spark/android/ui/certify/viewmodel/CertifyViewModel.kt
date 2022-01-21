@@ -92,9 +92,8 @@ class CertifyViewModel : ViewModel() {
             viewModelScope.launch {
                 roomId.value?.let { roomId ->
                     kotlin.runCatching {
-                        RetrofitBuilder.certifyService.postCertificationFromStart(
+                        RetrofitBuilder.certifyService.postCertification(
                             roomId,
-                            mapOf("timerRecord" to requireNotNull(timerRecord.value).toRequestBody("text/plain".toMediaTypeOrNull())),
                             certifyImgMultiPart
                         )
                     }.onSuccess { response ->
@@ -105,12 +104,12 @@ class CertifyViewModel : ViewModel() {
                 }
             }
         } else {
-
             viewModelScope.launch {
                 roomId.value?.let { roomId ->
                     kotlin.runCatching {
-                        RetrofitBuilder.certifyService.postCertification(
+                        RetrofitBuilder.certifyService.postCertificationFromStart(
                             roomId,
+                            mapOf("timerRecord" to requireNotNull(timerRecord.value).toRequestBody("text/plain".toMediaTypeOrNull())),
                             certifyImgMultiPart
                         )
                     }.onSuccess { response ->

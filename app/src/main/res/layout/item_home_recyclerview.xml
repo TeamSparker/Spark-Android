@@ -89,7 +89,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:includeFontPadding="false"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:text="@{room.roomName}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="20dp"

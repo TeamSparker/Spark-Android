@@ -24,7 +24,7 @@ import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFI
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_BITMAP
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_URI
 
-class ProfileBottomSheet() : BottomSheetDialogFragment() {
+class ProfileBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetProfileBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 

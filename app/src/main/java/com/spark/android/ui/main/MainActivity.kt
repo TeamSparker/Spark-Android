@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.spark.android.R
 import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
+import com.spark.android.ui.certify.CertifyActivity.Companion.FROM_CERTIFY_ACTIVITY
 import com.spark.android.ui.feed.FeedFragmentDirections
 import com.spark.android.ui.home.HomeMainFragmentDirections
 import com.spark.android.ui.joincode.inputcode.InputCodeFragmentDialog
@@ -48,6 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onResume() {
         super.onResume()
         mainViewModel.initTabPositionHome()
+        initTabPositionFromOthers()
     }
 
     override fun onBackPressed() {
@@ -65,6 +67,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun initStatusBarStyle() {
         initStatusBarColor(R.color.spark_white)
         initStatusBarTextColorToWhite()
+    }
+
+    private fun initTabPositionFromOthers() {
+        when (intent.getStringExtra(FROM_WHERE)) {
+            FROM_CERTIFY_ACTIVITY -> {
+                mainViewModel.initTabPositionFeed()
+            }
+        }
+        intent.removeExtra(FROM_WHERE)
     }
 
     private fun findNavController(): NavController {
@@ -144,5 +155,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     companion object {
         private const val BACK_BTN_WAIT_TIME = 2000L
+        const val FROM_WHERE = "fromWhere"
     }
 }

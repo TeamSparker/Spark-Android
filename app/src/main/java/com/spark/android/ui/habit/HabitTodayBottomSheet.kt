@@ -63,6 +63,8 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
             if (habitViewModel.habitInfo.value?.fromStart == true) {
                 val intent = Intent(context, TimerStartActivity::class.java)
                 intent.apply {
+                    putExtra("nickname", habitViewModel.habitInfo.value?.myRecord?.nickname)
+                    putExtra("profileImgUrl", habitViewModel.habitInfo.value?.myRecord?.profileImg)
                     putExtra("roomName", habitViewModel.habitInfo.value?.roomName.toString())
                     putExtra("roomId", habitViewModel.habitInfo.value?.roomId)
                 }

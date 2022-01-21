@@ -13,12 +13,20 @@ import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_MODE
 import com.spark.android.ui.certify.CertifyMode.Companion.NORMAL_READY_MODE
 import com.spark.android.ui.certify.CertifyMode.Companion.ONLY_CAMERA_MODE
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
+import com.spark.android.ui.main.MainActivity
+import com.spark.android.ui.main.MainActivity.Companion.FROM_WHERE
+import com.spark.android.ui.share.InstaShareDialogFragment
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.INSTA_DIALOG
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.NO_SHARE
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.SHARE
+import com.spark.android.ui.share.InstaShareDialogFragment.Companion.SHARE_MODE
 import com.spark.android.ui.timer.TimerStartActivity
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
 import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
+import com.spark.android.ui.share.InstaActivity
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
@@ -39,17 +47,20 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         initCertifyPhotoAgainBtnClickListener()
         initCertifyPhotoUploadBtnClickListener()
         initIsSuccessCertifyObserver()
+        initFragmentResultListener()
     }
 
     private fun initIntentData() {
         certifyViewModel.initTimerRecord(intent.getStringExtra("timerRecord").toString())
         certifyViewModel.initRoomName(intent.getStringExtra("roomName").toString())
         certifyViewModel.initRoomId(intent.getIntExtra("roomId", -1))
+
         certifyViewModel.initCertifyMode(intent.getIntExtra("certifyMode",
             CertifyMode.NORMAL_READY_MODE))
         certifyViewModel.initOnlyCameraInitial(intent.getBooleanExtra("onlyCameraInitial", false))
         intent.getParcelableExtra<Uri>("imgUri")?.let { certifyViewModel.initImgUri(it) }
         intent.getParcelableExtra<Bitmap>("imgBitmap")?.let { certifyViewModel.initImgBitmap(it) }
+
     }
 
     private fun initImgUriObserver() {
@@ -127,7 +138,35 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     private fun initIsSuccessCertifyObserver() {
         certifyViewModel.isSuccessCertify.observe(this) { isSuccess ->
             if (isSuccess) {
-                finish()
+                InstaShareDialogFragment().show(supportFragmentManager, this.javaClass.name)
+            }
+        }
+    }
+
+    private fun initFragmentResultListener() {
+        supportFragmentManager.setFragmentResultListener(INSTA_DIALOG, this) { _, bundle ->
+            when (bundle.get(SHARE_MODE)) {
+                SHARE -> {
+                    startActivity(Intent(this, InstaActivity::class.java).apply {
+//                        flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        putExtra(FROM_WHERE, FROM_CERTIFY_ACTIVITY)
+                        putExtra("nickname", "닉네임")
+                        putExtra("roomName", certifyViewModel.roomName.value)
+                        putExtra(
+                            "profileImgUrl",
+                            "https://console.firebase.google.com/project/we-sopt-spark/storage/we-sopt-spark.appspot.com/files/~2Fusers"
+                        )
+                        putExtra("certifyImgUri", certifyViewModel.imgUri.value)
+                        putExtra("certifyImgBitmap", certifyViewModel.imgBitmap.value)
+                        putExtra("timerRecord", certifyViewModel.timerRecord.value)
+                    })
+                }
+                NO_SHARE -> {
+                    startActivity(Intent(this, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        putExtra(FROM_WHERE, FROM_CERTIFY_ACTIVITY)
+                    })
+                }
             }
         }
     }
@@ -143,5 +182,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         }else {
             moveToTimerActivity()
         }
+    }
+
+    companion object {
+        const val FROM_CERTIFY_ACTIVITY = "CertifyActivity"
     }
 }

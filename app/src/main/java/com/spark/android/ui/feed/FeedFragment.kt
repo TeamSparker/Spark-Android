@@ -22,6 +22,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.feedViewModel = feedViewModel
+        feedViewModel.initShownDate()
         feedViewModel.getFeedList()
         initFeedRvAdapter()
         addScrollListenerToFeedRv()
