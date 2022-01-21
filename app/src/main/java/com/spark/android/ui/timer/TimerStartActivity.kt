@@ -10,21 +10,18 @@ import com.spark.android.R
 import com.spark.android.databinding.ActivityTimerStartBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.CertifyActivity
+import com.spark.android.ui.certify.CertifyMode
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
-
 
 
 class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.activity_timer_start) {
     private val timerStartViewModel by viewModels<TimerStartViewModel>()
     var pauseTime = 0L
-    var roomName : String? = null
-    var roomId : Int? = -1
+    var roomName: String? = null
+    var roomId: Int? = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +32,10 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         val timerRecord = intent.getStringExtra("timerRecord")
         initFormatChange(timerRecord)
         initClickEvent()
-        val myVisible = intent.getIntExtra("myVisible",View.INVISIBLE)
+        val myVisible = intent.getIntExtra("myVisible", View.INVISIBLE)
         binding.btnTimerStop.visibility = myVisible
         binding.btnTimerPlay.visibility = myVisible
-        val myInvisible = intent.getIntExtra("myInvisible",View.VISIBLE)
+        val myInvisible = intent.getIntExtra("myInvisible", View.VISIBLE)
         binding.btnTimerStartBottom.visibility = myInvisible
         roomName = intent.getStringExtra("roomName")
         binding.tvTimerRoomName.text = roomName
@@ -133,21 +130,22 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
                 putExtra("timerRecord", binding.chronometerTimer.text)
                 putExtra("roomName", roomName)
                 putExtra("roomId", roomId)
+                putExtra("certifyMode", CertifyMode.NORMAL_READY_MODE)
             }
             startActivity(intent)
             finish()
         }
     }
 
-    private fun initFormatChange(timerRecord:String?) {
+    private fun initFormatChange(timerRecord: String?) {
         val chrono = binding.chronometerTimer
 //        chrono.base = SystemClock.elapsedRealtime()
 //        chrono.text = "00:00:00"
 
-        if(timerRecord.isNullOrBlank()){
+        if (timerRecord.isNullOrBlank()) {
             chrono.base = SystemClock.elapsedRealtime()
             chrono.text = "00:00:00"
-        } else{
+        } else {
             val timeArray = requireNotNull(timerRecord).split(":")
             val hour = timeArray[0].toLong()
             val min = timeArray[1].toLong()

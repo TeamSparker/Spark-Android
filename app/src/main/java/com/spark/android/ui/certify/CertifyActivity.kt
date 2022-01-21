@@ -1,6 +1,8 @@
 package com.spark.android.ui.certify
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -43,13 +45,11 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         certifyViewModel.initTimerRecord(intent.getStringExtra("timerRecord").toString())
         certifyViewModel.initRoomName(intent.getStringExtra("roomName").toString())
         certifyViewModel.initRoomId(intent.getIntExtra("roomId", -1))
-
-        val fromStart = intent.getBooleanExtra("fromStart", true)
-        if(fromStart) {
-            certifyViewModel.initCertifyMode(NORMAL_READY_MODE)
-        } else {
-            certifyViewModel.initCertifyMode(ONLY_CAMERA_MODE)
-        }
+        certifyViewModel.initCertifyMode(intent.getIntExtra("certifyMode",
+            CertifyMode.NORMAL_READY_MODE))
+        certifyViewModel.initOnlyCameraInitial(intent.getBooleanExtra("onlyCameraInitial", false))
+        intent.getParcelableExtra<Uri>("imgUri")?.let { certifyViewModel.initImgUri(it) }
+        intent.getParcelableExtra<Bitmap>("imgBitmap")?.let { certifyViewModel.initImgBitmap(it) }
     }
 
     private fun initImgUriObserver() {
@@ -74,7 +74,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
             putExtra("roomName", certifyViewModel.roomName.value.toString())
             putExtra("roomId", certifyViewModel.roomId.value)
             putExtra("timerRecord", certifyViewModel.timerRecord.value.toString())
-            putExtra("myVisible",View.VISIBLE)
+            putExtra("myVisible", View.VISIBLE)
             putExtra("myInvisible", View.INVISIBLE)
         }
         startActivity(intent)
@@ -124,9 +124,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         }
     }
 
-    private fun initIsSuccessCertifyObserver(){
-        certifyViewModel.isSuccessCertify.observe(this){ isSuccess ->
-            if(isSuccess){
+    private fun initIsSuccessCertifyObserver() {
+        certifyViewModel.isSuccessCertify.observe(this) { isSuccess ->
+            if (isSuccess) {
                 finish()
             }
         }
@@ -138,6 +138,10 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     }
 
     override fun onBackPressed() {
-        moveToTimerActivity()
+        if(certifyViewModel.certifyMode.value == CertifyMode.ONLY_CAMERA_MODE) {
+            showStopCertifyPhotoDialog()
+        }else {
+            moveToTimerActivity()
+        }
     }
 }
