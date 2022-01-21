@@ -17,11 +17,5 @@ object LocalPreferencesModule {
     @Provides
     @Singleton
     fun providesLocalPreferences(@ApplicationContext context: Context): SharedPreferences =
-        EncryptedSharedPreferences.create(
-            context,
-            context.packageName,
-            MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build(),
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+        context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
 }
