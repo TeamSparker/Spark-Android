@@ -2,7 +2,6 @@ package com.spark.android.ui.joincode.inputcode
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
 import com.spark.android.util.EventObserver
-import com.spark.android.util.KeyBoardUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,7 +45,6 @@ class InputCodeFragmentDialog : DialogFragment() {
 
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
         initButtonClickListener()
-
         initClearErrorMessage()
     }
 
