@@ -10,6 +10,8 @@ import com.spark.android.databinding.ActivityJoinCodeBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.joincode.viewmodel.JoinCodeViewModel
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
+import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +26,7 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
 
         initExtra()
         binding.joinCodeRoomInfoResponse = roomInfo
+        initStatusBarStyle()
         initInputCodeAgainButtonListener()
         initEnterWaitingRoomButtonListener()
     }
@@ -48,5 +51,10 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
     }
 }

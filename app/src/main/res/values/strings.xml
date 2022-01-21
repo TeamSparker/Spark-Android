@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SparkAndroid</string>
+    <string name="app_name">Spark</string>
     <string name="binding_error">Binding not initialized to reference the view.</string>
 
     <!-- IntroActivity -->

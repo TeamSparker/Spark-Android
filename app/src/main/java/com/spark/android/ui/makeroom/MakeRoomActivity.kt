@@ -11,6 +11,8 @@ import com.spark.android.ui.makeroom.selectconfirmmethod.SelectConfirmMethodFrag
 import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
+import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +20,12 @@ class MakeRoomActivity : BaseActivity<ActivityMakeRoomBinding>(R.layout.activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initStatusBarStyle()
 
+    }
+
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
     }
 }

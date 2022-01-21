@@ -33,7 +33,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
 
 
     private fun updateHomeRecyclerViewAdapter(){
-        homeMainViewModel.getHomeAllRoom(-1,20)
+        homeMainViewModel.getHomeAllRoom(-1,100)
         homeMainViewModel.roomList.observe(this) {
             homeRecyclerViewAdapter.ticketList.addAll(it)
             homeRecyclerViewAdapter.notifyDataSetChanged()
