@@ -12,6 +12,7 @@ import com.spark.android.databinding.FragmentSetPurposeBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
+import com.spark.android.util.EditTextUtil
 import com.spark.android.util.KeyBoardUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -35,6 +36,8 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         initWhenEditTextFocusListener()
         initsettingPurposeBackButton()
         initsettingPurposeFinish()
+        EditTextUtil.focusedEditText(binding.etSetPurposeWhen,binding.viewSetPurposeOne)
+        EditTextUtil.focusedEditText(binding.etSetPurposeMyPurpose,binding.viewSetPurposeTwo)
     }
 
 
