@@ -51,7 +51,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     }
 
     private fun initIntentData() {
-        certifyViewModel.initTimerRecord(intent.getStringExtra("timerRecord").toString())
+        certifyViewModel.initTimerRecord(intent.getStringExtra("timerRecord"))
         certifyViewModel.initRoomName(intent.getStringExtra("roomName").toString())
         certifyViewModel.initRoomId(intent.getIntExtra("roomId", -1))
 

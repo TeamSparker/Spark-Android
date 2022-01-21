@@ -69,7 +69,7 @@ class CertifyViewModel : ViewModel() {
         _profileImg.value = profileImg
     }
 
-    fun initTimerRecord(timerRecord: String) {
+    fun initTimerRecord(timerRecord: String?) {
         _timerRecord.value = timerRecord
     }
 
