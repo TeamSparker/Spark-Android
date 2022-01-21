@@ -38,6 +38,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         binding.habitViewModel = habitViewModel
+        initSendSuccessObserver()
         initSendFirstBtnClickListener(view)
         initSendSecondBtnClickListener(view)
         initSendThirdBtnClickListener(view)
@@ -49,16 +50,26 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
         _binding = null
     }
 
+    private fun initSendSuccessObserver() {
+        habitViewModel.sendSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                dismiss()
+                habitViewModel.initSendSuccess(false)
+            }
+        }
+    }
+
     private fun initSendFirstBtnClickListener(view: View) {
         binding.btnHabitSendSparkMessageFirst.setOnClickListener {
             binding.btnHabitSendSparkMessageFirst.apply {
                 setBackgroundResource(R.drawable.shape_habit_today_selected)
                 setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
             }
+            habitViewModel.initSendSuccess(false)
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageFirst.text.toString(),
                 selectedItemId)
+            SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
-            dismiss()
         }
     }
 
@@ -68,10 +79,11 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
                 setBackgroundResource(R.drawable.shape_habit_today_selected)
                 setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
             }
+            habitViewModel.initSendSuccess(false)
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageSecond.text.toString(),
                 selectedItemId)
+            SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
-            dismiss()
         }
     }
 
@@ -81,10 +93,11 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
                 setBackgroundResource(R.drawable.shape_habit_today_selected)
                 setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
             }
+            habitViewModel.initSendSuccess(false)
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageThird.text.toString(),
                 selectedItemId)
+            SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
-            dismiss()
         }
     }
 
@@ -94,10 +107,11 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
                 setBackgroundResource(R.drawable.shape_habit_today_selected)
                 setTextColor(ContextCompat.getColor(context!!, R.color.spark_dark_pinkred))
             }
+            habitViewModel.initSendSuccess(false)
             habitViewModel.postSendSpark(binding.btnHabitSendSparkMessageFourth.text.toString(),
                 selectedItemId)
+            SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
-            dismiss()
         }
     }
 

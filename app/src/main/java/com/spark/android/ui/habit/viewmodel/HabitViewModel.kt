@@ -12,6 +12,7 @@ import com.spark.android.data.remote.entity.response.HabitResponse
 import com.spark.android.data.remote.service.HabitService
 import com.spark.android.data.remote.service.SendSparkService
 import com.spark.android.data.remote.service.SetStatusService
+import com.spark.android.util.Event
 import kotlinx.coroutines.launch
 
 class HabitViewModel : ViewModel() {
@@ -24,6 +25,13 @@ class HabitViewModel : ViewModel() {
 
     private val _habitRecordList = MutableLiveData<MutableList<HabitRecord>>()
     val habitRecordList: LiveData<MutableList<HabitRecord>> = _habitRecordList
+
+    private val _sendSuccess = MutableLiveData<Boolean>()
+    val sendSuccess: LiveData<Boolean> = _sendSuccess
+
+    fun initSendSuccess(success: Boolean) {
+        _sendSuccess.value = success
+    }
 
     fun getHabitRoomInfo(roomId: Int) {
         viewModelScope.launch {
@@ -56,8 +64,11 @@ class HabitViewModel : ViewModel() {
     fun postSendSpark(content: String, recordId: Int) {
         viewModelScope.launch {
             habitInfo.value?.let {
-                sendSparkService.sendSpark(it.roomId,
-                    SendSparkRequest(content, recordId))
+                kotlin.runCatching {
+                    sendSparkService.sendSpark(it.roomId,
+                        SendSparkRequest(content, recordId))
+                }.onSuccess { _sendSuccess.value = true }
+
             }
         }
     }
