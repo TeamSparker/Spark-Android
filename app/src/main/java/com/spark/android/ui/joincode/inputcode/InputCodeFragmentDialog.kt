@@ -13,6 +13,7 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.ui.joincode.JoinCodeActivity
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
+import com.spark.android.util.EventObserver
 import com.spark.android.util.KeyBoardUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,21 +61,22 @@ class InputCodeFragmentDialog : DialogFragment() {
                 )
             }
 
-            inputCodeFragmentDialogViewModel.roomInfo.observe(this){
+            inputCodeFragmentDialogViewModel.roomInfo.observe(viewLifecycleOwner, EventObserver() {
                 val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {
-                    putExtra("roomInfo",inputCodeFragmentDialogViewModel.roomInfo.value)
+                    putExtra(
+                        "roomInfo",
+                        requireNotNull(inputCodeFragmentDialogViewModel.roomInfo.value).peekContent()
+                    )
                 }
                 startActivity(intent)
-                dismiss()
-            }
+            })
         }
     }
 
 
-
     private fun initClearErrorMessage() {
         binding.etInputCodeContent.setOnFocusChangeListener { view, focused ->
-            if(focused){
+            if (focused) {
                 inputCodeFragmentDialogViewModel.clearErrorMessage()
                 binding.etInputCodeContent.text.clear()
             }

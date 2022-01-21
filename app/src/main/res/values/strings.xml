@@ -95,7 +95,7 @@
 
     <!-- SelectConfirmMethod -->
     <string name="select_confirm_method_title">어떻게 습관을 인증할까요?</string>
-    <string name="select_confirm_method_content">습관 유형에 알맞은 인증 방식을\n선택해 주세요</string>
+    <string name="select_confirm_method_content">습관 유형에 알맞은 인증 방식을\n선택해 주세요.</string>
     <string name="select_confirm_method_enter_waiting">대기방 입장하기</string>
     <string name="select_confirm_method_picture_title">사진으로 인증하기</string>
     <string name="select_confirm_method_picture_content">미라클 모닝, 영양제 먹기와 같이 특정 순간을\n인증하는 습관에 추천해요.</string>
