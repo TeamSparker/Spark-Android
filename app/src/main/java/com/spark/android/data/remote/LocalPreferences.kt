@@ -13,13 +13,7 @@ object LocalPreferences {
     private lateinit var localPreferences: SharedPreferences
 
     fun init(context: Context) {
-        localPreferences = EncryptedSharedPreferences.create(
-            context,
-            context.packageName,
-            MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build(),
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+        localPreferences = context.getSharedPreferences(context.packageName,Context.MODE_PRIVATE)
     }
 
     fun saveAccessToken(accessToken: String) {
