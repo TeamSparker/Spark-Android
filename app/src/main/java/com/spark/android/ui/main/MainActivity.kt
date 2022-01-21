@@ -45,6 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initBindingVariable()
         initFloatingButtonClickListener()
         initTabPositionObserver()
+        initBlackBgClickListener()
     }
 
     override fun onResume() {
@@ -155,6 +156,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         InputCodeFragmentDialog().show(
             supportFragmentManager, "InputCodeDialog"
         )
+    }
+
+    fun initBlackBgClickListener() {
+        binding.layoutMainFabBackground.setOnClickListener {
+            FloatingAnimationUtil.closeFabAnimation(
+                binding.fabHomeMain,
+                binding.fabHomeMakeRoom,
+                binding.fabHomeJoinCode,
+                binding.layoutMainFabBackground,
+                binding.tvFabMakeRoom,
+                binding.tvFabJoinCode
+            )
+            fabState = !fabState
+        }
     }
 
     companion object {
