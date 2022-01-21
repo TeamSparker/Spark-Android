@@ -48,14 +48,15 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
         val bundle = Bundle()
         habitViewModel.habitInfo.value?.roomId?.let { it1 -> bundle.putInt("roomId", it1) }
         bundle.putString("roomName", habitViewModel.habitInfo.value?.roomName.toString())
-        bundle.putString("profileImgUrl",
-            habitViewModel.habitInfo.value?.myRecord?.profileImg.toString())
+        bundle.putString("profileImgUrl", habitViewModel.habitInfo.value?.myRecord?.profileImg.toString())
         bundle.putString("nickname", habitViewModel.habitInfo.value?.myRecord?.nickname.toString())
         bundle.putInt("certifyMode", CertifyMode.ONLY_CAMERA_MODE)
         bundle.putBoolean("onlyCameraInitial", true)
         certifyBottomSheet.arguments = bundle
-        certifyBottomSheet.show(requireActivity().supportFragmentManager,
-            this.javaClass.name)
+        certifyBottomSheet.show(
+            requireActivity().supportFragmentManager,
+            this.javaClass.name
+        )
     }
 
     private fun initCertifyBtnClickListener() {
@@ -67,6 +68,10 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
                     putExtra("profileImgUrl", habitViewModel.habitInfo.value?.myRecord?.profileImg)
                     putExtra("roomName", habitViewModel.habitInfo.value?.roomName.toString())
                     putExtra("roomId", habitViewModel.habitInfo.value?.roomId)
+                    putExtra(
+                        "profileImgUrl",
+                        habitViewModel.habitInfo.value?.myRecord?.profileImg.toString()
+                    )
                 }
                 startActivity(intent)
                 dismiss()
