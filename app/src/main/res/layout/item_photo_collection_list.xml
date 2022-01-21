@@ -18,23 +18,13 @@
         android:layout_marginHorizontal="7dp"
         android:paddingBottom="16dp">
 
-        <ImageView
-            android:id="@+id/iv_photo_collection_sticker_rest"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:src="@drawable/ic_sticker_rest"
-            android:visibility="@{storageCardPhoto.status == `REST` ? View.VISIBLE : View.INVISIBLE       }"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_photo_collection_item_roundedCorner"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:cardCornerRadius="2dp"
             app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/iv_photo_collection_item_photo"
+                status = "@{storageCardPhoto.status}"
                 imageUrl="@{storageCardPhoto.certifyingImg}"
-                status="@{storageCardPhoto.status}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"

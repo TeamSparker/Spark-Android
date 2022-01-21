@@ -317,8 +317,10 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["habitUserStatus", "habitRestCount", "habitUserLeftDay"],
-        requireAll = true)
+    @BindingAdapter(
+        value = ["habitUserStatus", "habitRestCount", "habitUserLeftDay"],
+        requireAll = true
+    )
     fun setSendSparkBtn(
         imageButton: ImageButton,
         status: String?,
@@ -484,15 +486,25 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["imageUrl","status"], requireAll = false)
-    fun ImageView.setPhotoImage(url:String?,status:String){
+    @BindingAdapter(value = ["imageUrl", "status"], requireAll = false)
+    fun ImageView.setPhotoImage(url: String?, status: String) {
         when (status) {
             "DONE" -> {
                 Glide.with(this.context)
                     .load(url)
                     .into(this)
             }
+            "REST" -> {
+                Glide.with(this.context)
+                    .load(R.drawable.ic_sticker_rest)
+                    .into(this)
+            }
             "NONE" -> {
+                Glide.with(this.context)
+                    .load(R.drawable.ic_bottom_navigation_home)
+                    .into(this)
+            }
+            "CONSIDER" -> {
 
             }
         }
