@@ -27,6 +27,10 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
         binding.vpStorageOut.isUserInputEnabled = false;
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        storageViewModel.initFirstLoading(false)
+    }
 
     private fun initStorageOutAdapter() {
         val fragmentList = listOf(

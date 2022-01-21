@@ -374,7 +374,7 @@
                 tools:visibility="gone">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lottie_profile_loading"
+                    android:id="@+id/lottie_habit_loading"
                     playLoadingLottie="@{habitViewModel.isLoading}"
                     android:layout_width="100dp"
                     android:layout_height="100dp"

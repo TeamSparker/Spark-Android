@@ -32,7 +32,7 @@ class HabitViewModel : ViewModel() {
     private val _sendSuccess = MutableLiveData<Boolean>()
     val sendSuccess: LiveData<Boolean> = _sendSuccess
 
-    fun initIsLoading(isLoading: Boolean) {
+    private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
 

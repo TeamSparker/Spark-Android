@@ -50,6 +50,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/spark_black"
                 android:textSize="20dp"
+                android:visibility="@{storageViewModel.isLoading? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="나는야쿵짝지혜 님의" />
@@ -63,6 +64,7 @@
                 android:text="@{String.valueOf(storageViewModel.storageResponse.totalRoomNum)+`가지 스파크`}"
                 android:textColor="@color/spark_black"
                 android:textSize="20dp"
+                android:visibility="@{storageViewModel.isLoading? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="@+id/tv_storage_title_nickname"
                 app:layout_constraintTop_toBottomOf="@id/tv_storage_title_nickname"
                 tools:text="19가지 스파크" />
@@ -76,6 +78,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="30dp"
             android:onClick="@{()->storageViewModel.initProgressMode()}"
+            android:visibility="@{storageViewModel.isLoading? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_storage_title">
 
@@ -125,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:onClick="@{()->storageViewModel.initCompleteMode()}"
+            android:visibility="@{storageViewModel.isLoading? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/constraintLayout_progressing_touchArea"
             app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing_touchArea">
 
@@ -175,6 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:onClick="@{()->storageViewModel.initIncompleteMode()}"
+            android:visibility="@{storageViewModel.isLoading? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/constraintLayout_complete_touchArea"
             app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing_touchArea">
 
@@ -227,10 +232,24 @@
             android:layout_height="0dp"
             android:layout_marginTop="22dp"
             android:overScrollMode="never"
+            android:visibility="@{storageViewModel.isLoading? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_progressing_touchArea" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_storage_loading"
+            playLoadingLottie="@{storageViewModel.isLoading}"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="@{storageViewModel.isLoading? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

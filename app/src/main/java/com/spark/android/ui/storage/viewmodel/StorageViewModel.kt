@@ -16,6 +16,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class StorageViewModel : ViewModel() {
+    private var firstLoading = false
+
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _storageMode = MutableLiveData<String>()
     val storageMode: LiveData<String> = _storageMode
@@ -32,6 +36,15 @@ class StorageViewModel : ViewModel() {
     private val _completeRooms = MutableLiveData<List<StorageRoom>>()
     val completeRooms: LiveData<List<StorageRoom>> = _completeRooms
 
+    private fun initIsLoading(isLoading: Boolean) {
+        if (!firstLoading) {
+            _isLoading.value = isLoading
+        }
+    }
+
+    fun initFirstLoading(isFirst: Boolean) {
+        firstLoading = isFirst
+    }
 
     fun initProgressMode() {
         _storageMode.value = PROGRESSING
@@ -46,6 +59,7 @@ class StorageViewModel : ViewModel() {
     }
 
     fun initStorageNetwork(type: String, lastid: Int, size: Int) {
+        initIsLoading(true)
         val call: Call<BaseResponse<StorageResponse>> =
             RetrofitBuilder.storageService.getStorageData(type, lastid, size)
 
@@ -57,13 +71,16 @@ class StorageViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val storageData = response.body()?.data!!
                     _storageResponse.postValue(storageData)
-                    when(type){
+                    when (type) {
                         PROGRESSING -> _progressingRooms.postValue(storageData.rooms)
                         INCOMPLETE -> _incompleteRooms.postValue(storageData.rooms)
                         COMPLETE -> _completeRooms.postValue(storageData.rooms)
                     }
+                    initIsLoading(false)
+                    initFirstLoading(true)
                 }
             }
+
             override fun onFailure(call: Call<BaseResponse<StorageResponse>>, t: Throwable) {
                 Log.e("NetworkTest", "error:$t")
             }
