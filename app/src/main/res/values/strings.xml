@@ -206,5 +206,11 @@
     <string name="insta_content_msg">방금 업로드한 멋진 인증,\n더 많은 친구들에게 자랑해 볼까요?</string>
     <string name="insta_cancel_msg"><u>피드로 보러 가기</u></string>
 
+    <!-- InstaActivity -->
+    <string name="insta_error_msg">공유할 수 있는 앱이 없습니다.</string>
+    <string name="insta_desc_sticker_bg">인스타 공유 스티커 배경</string>
+    <string name="insta_desc_sticker_tag">인스타 공유 스티커 태그</string>
+    <string name="insta_desc_sticker_certify_img">인스타 공유 스티커 인증 사진</string>
+
 </resources>
 

@@ -24,6 +24,7 @@ import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
 import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
+import com.spark.android.ui.share.InstaActivity
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
@@ -144,7 +145,19 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         supportFragmentManager.setFragmentResultListener(INSTA_DIALOG, this) { _, bundle ->
             when (bundle.get(SHARE_MODE)) {
                 SHARE -> {
-
+                    startActivity(Intent(this, InstaActivity::class.java).apply {
+//                        flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        putExtra(FROM_WHERE, FROM_CERTIFY_ACTIVITY)
+                        putExtra("nickname", "닉네임")
+                        putExtra("roomName", certifyViewModel.roomName.value)
+                        putExtra(
+                            "profileImgUrl",
+                            "https://console.firebase.google.com/project/we-sopt-spark/storage/we-sopt-spark.appspot.com/files/~2Fusers"
+                        )
+                        putExtra("certifyImgUri", certifyViewModel.imgUri.value)
+                        putExtra("certifyImgBitmap", certifyViewModel.imgBitmap.value)
+                        putExtra("timerRecord", certifyViewModel.timerRecord.value)
+                    })
                 }
                 NO_SHARE -> {
                     startActivity(Intent(this, MainActivity::class.java).apply {
