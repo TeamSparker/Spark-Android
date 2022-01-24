@@ -41,7 +41,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         hideKeyBoard()
         initIsFocused()
         initPictureBtnClickListener()
-        //initQuitBtnClickListener()
         initSuccessSignUpObserver()
         initFragmentResultListener()
     }
@@ -100,11 +99,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(uri))
             profileViewModel.initProfileImgUri(uri)
         }
-        setFragmentResultListener(REQUEST_PROFILE_IMG_BITMAP) { _, bundle ->
-            val bitmap = bundle.get(PROFILE_IMG) as Bitmap
-            profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(bitmap))
-            profileViewModel.initProfileImgBitmap(bitmap)
-        }
         setFragmentResultListener(REQUEST_PROFILE_DELETE) { _, _ ->
             profileViewModel.initProfileImgMultiPart(null)
             profileViewModel.deleteProfileImg()
@@ -113,7 +107,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     companion object {
         const val REQUEST_PROFILE_IMG_URI = "requestProfileImgUri"
-        const val REQUEST_PROFILE_IMG_BITMAP = "requestProfileImgBitmap"
         const val REQUEST_PROFILE_DELETE = "requestProfileDelete"
         const val PROFILE_IMG = "profileImg"
     }

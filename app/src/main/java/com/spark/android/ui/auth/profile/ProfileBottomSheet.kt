@@ -18,15 +18,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetProfileBinding
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.PROFILE_IMG
-import android.graphics.Bitmap
+import android.net.Uri
+import android.util.Log
 import androidx.fragment.app.setFragmentResultListener
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_DELETE
-import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_BITMAP
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_URI
+import com.spark.android.util.getImgUri
+import java.lang.NullPointerException
 
 class ProfileBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetProfileBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
+
+    private lateinit var imgUri: Uri
 
     private val fromAlbumActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -41,14 +45,9 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
 
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) { result: ActivityResult ->
-        result.data?.let {
-            it.extras?.let { extras ->
-                val photo = extras.get("data") as Bitmap
-                setFragmentResult(REQUEST_PROFILE_IMG_BITMAP, bundleOf(PROFILE_IMG to photo))
-                dismiss()
-            }
-        }
+    ) {
+        setFragmentResult(REQUEST_PROFILE_IMG_URI, bundleOf(PROFILE_IMG to imgUri))
+        dismiss()
     }
 
 
@@ -107,9 +106,16 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
                     requireContext(),
                     android.Manifest.permission.CAMERA
                 ) -> {
-                    fromCameraActivityLauncher.launch(
-                        Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    )
+                    try {
+                        imgUri = getImgUri(requireContext().contentResolver)
+                            ?: throw NullPointerException()
+                        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+                            it.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
+                            fromCameraActivityLauncher.launch(it)
+                        }
+                    } catch (e: NullPointerException) {
+                        Log.e("ProfileBottomSheet", "ImgUri Null 에러")
+                    }
                 }
                 else -> {
                     ActivityCompat.requestPermissions(

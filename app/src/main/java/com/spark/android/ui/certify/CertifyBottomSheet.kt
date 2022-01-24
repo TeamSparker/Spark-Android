@@ -2,7 +2,7 @@ package com.spark.android.ui.certify
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -20,11 +20,15 @@ import com.spark.android.databinding.BottomSheetCertifyBinding
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_CAMERA_PERMISSION
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_STORAGE_PERMISSION
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
+import android.util.Log
+import com.spark.android.util.getImgUri
+import java.lang.NullPointerException
 
 class CertifyBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetCertifyBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
+    private lateinit var imgUri: Uri
     private val certifyViewModel by activityViewModels<CertifyViewModel>()
 
     private val fromAlbumActivityLauncher = registerForActivityResult(
@@ -41,15 +45,10 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
 
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) { result: ActivityResult ->
-        result.data?.let { intent ->
-            intent.extras?.let { extras ->
-                val photo = extras.get("data") as Bitmap
-                certifyViewModel.initImgBitmap(photo)
-                showCertifyActivity()
-                dismiss()
-            }
-        }
+    ) {
+        certifyViewModel.initImgUri(imgUri)
+        showCertifyActivity()
+        dismiss()
     }
 
     override fun onCreateView(
@@ -117,9 +116,16 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                     android.Manifest.permission.CAMERA
                 ),
                 -> {
-                    fromCameraActivityLauncher.launch(
-                        Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    )
+                    try {
+                        imgUri = getImgUri(requireContext().contentResolver)
+                            ?: throw NullPointerException()
+                        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+                            it.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
+                            fromCameraActivityLauncher.launch(it)
+                        }
+                    } catch (e: NullPointerException) {
+                        Log.e("CertifyBottomSheet", "ImgUri Null 에러")
+                    }
                 }
                 else -> {
                     ActivityCompat.requestPermissions(
@@ -138,14 +144,13 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                 val intent = Intent(context, CertifyActivity::class.java)
                 intent.apply {
                     putExtra("timerRecord", certifyViewModel.timerRecord.value)
-                    putExtra("nickname",certifyViewModel.nickName.value)
+                    putExtra("nickname", certifyViewModel.nickName.value)
                     putExtra("roomName", certifyViewModel.roomName.value)
                     putExtra("roomId", certifyViewModel.roomId.value)
                     putExtra("certifyMode", CertifyMode.ONLY_CAMERA_MODE)
                     putExtra("onlyCameraInitial", false)
                     putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                     putExtra("imgUri", certifyViewModel.imgUri.value)
-                    putExtra("imgBitmap", certifyViewModel.imgBitmap.value)
                 }
                 startActivity(intent)
             }

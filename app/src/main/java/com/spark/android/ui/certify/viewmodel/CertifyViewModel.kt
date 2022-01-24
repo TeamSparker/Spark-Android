@@ -85,11 +85,6 @@ class CertifyViewModel : ViewModel() {
         _imgBitmap.value = null
     }
 
-    fun initImgBitmap(bitmap: Bitmap) {
-        _imgBitmap.value = bitmap
-        _imgUri.value = null
-    }
-
     fun initCertifyImgMultiPart(multipart: MultipartBody.Part) {
         certifyImgMultiPart = multipart
     }
