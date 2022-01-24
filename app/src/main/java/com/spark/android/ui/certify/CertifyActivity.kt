@@ -1,7 +1,6 @@
 package com.spark.android.ui.certify
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -40,7 +39,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         initStatusBarTextColorToWhite()
         initIntentData()
         initImgUriObserver()
-        initImgBitmapObserver()
         initCertifyBackBtnClickListener()
         initCertifyQuitBtnClickListener()
         initCertifyPhotoBtnClickListener()
@@ -59,21 +57,12 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         certifyViewModel.initOnlyCameraInitial(intent.getBooleanExtra("onlyCameraInitial", false))
         intent.getStringExtra("profileImgUrl")?.let { certifyViewModel.initProfileImg(it) }
         intent.getParcelableExtra<Uri>("imgUri")?.let { certifyViewModel.initImgUri(it) }
-        intent.getParcelableExtra<Bitmap>("imgBitmap")?.let { certifyViewModel.initImgBitmap(it) }
 
     }
 
     private fun initImgUriObserver() {
         certifyViewModel.imgUri.observe(this) { uri ->
             uri?.let {
-                certifyViewModel.initCertifyImgMultiPart(multiPartResolver.createImgMultiPart(it))
-            }
-        }
-    }
-
-    private fun initImgBitmapObserver() {
-        certifyViewModel.imgBitmap.observe(this) { bitmap ->
-            bitmap?.let {
                 certifyViewModel.initCertifyImgMultiPart(multiPartResolver.createImgMultiPart(it))
             }
         }
@@ -154,7 +143,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
                         putExtra("roomName", certifyViewModel.roomName.value)
                         putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                         putExtra("certifyImgUri", certifyViewModel.imgUri.value)
-                        putExtra("certifyImgBitmap", certifyViewModel.imgBitmap.value)
                         putExtra("timerRecord", certifyViewModel.timerRecord.value)
                     })
                 }

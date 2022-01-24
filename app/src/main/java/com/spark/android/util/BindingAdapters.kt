@@ -14,26 +14,18 @@ import com.spark.android.R
 
 object BindingAdapters {
     @JvmStatic
-    @BindingAdapter(value = ["profileImgUri", "profileImgBitmap"], requireAll = false)
-    fun setProfileImg(imageview: ImageView, imgUri: Uri?, imgBitmap: Bitmap?) {
-        if (imgUri == null && imgBitmap == null) {
+    @BindingAdapter("profileImgUri")
+    fun setProfileImg(imageview: ImageView, imgUri: Uri?) {
+        if (imgUri == null) {
             Glide.with(imageview.context)
                 .load(R.drawable.ic_profile_photo)
                 .circleCrop()
                 .into(imageview)
         } else {
-            imgUri?.let { uri ->
-                Glide.with(imageview.context)
-                    .load(uri)
-                    .circleCrop()
-                    .into(imageview)
-            }
-            imgBitmap?.let { bitmap ->
-                Glide.with(imageview.context)
-                    .load(bitmap)
-                    .circleCrop()
-                    .into(imageview)
-            }
+            Glide.with(imageview.context)
+                .load(imgUri)
+                .circleCrop()
+                .into(imageview)
         }
     }
 
@@ -197,19 +189,14 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["certifyImgUri", "certifyImgBitmap"], requireAll = false)
-    fun setCertifyImg(imageview: ImageView, imgUri: Uri?, imgBitmap: Bitmap?) {
-        if (imgUri == null && imgBitmap == null) {
+    @BindingAdapter("certifyImgUri")
+    fun setCertifyImg(imageview: ImageView, imgUri: Uri?) {
+        if (imgUri == null) {
             imageview.setImageResource(R.drawable.shape_spark_light_gray_fill_rect)
         } else {
-            imgUri?.let { uri ->
-                imageview.setImageURI(uri)
-            }
-            imgBitmap?.let { bitmap ->
-                imageview.setImageBitmap(bitmap)
-            }
-            imageview.clipToOutline = true
+            imageview.setImageURI(imgUri)
         }
+        imageview.clipToOutline = true
     }
 
     @JvmStatic

@@ -74,7 +74,6 @@
 
         <ImageView
             android:id="@+id/iv_profile_photo"
-            profileImgBitmap="@{profileViewModel.profileImgBitmap}"
             profileImgUri="@{profileViewModel.profileImgUri}"
             android:layout_width="0dp"
             android:layout_height="0dp"

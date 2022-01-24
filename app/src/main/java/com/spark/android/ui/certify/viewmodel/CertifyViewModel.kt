@@ -42,9 +42,6 @@ class CertifyViewModel : ViewModel() {
     private val _imgUri = MutableLiveData<Uri?>()
     val imgUri: LiveData<Uri?> = _imgUri
 
-    private val _imgBitmap = MutableLiveData<Bitmap?>()
-    val imgBitmap: LiveData<Bitmap?> = _imgBitmap
-
     private val _isSuccessCertify = MutableLiveData<Boolean>()
     val isSuccessCertify: LiveData<Boolean> = _isSuccessCertify
 
@@ -82,12 +79,6 @@ class CertifyViewModel : ViewModel() {
 
     fun initImgUri(uri: Uri) {
         _imgUri.value = uri
-        _imgBitmap.value = null
-    }
-
-    fun initImgBitmap(bitmap: Bitmap) {
-        _imgBitmap.value = bitmap
-        _imgUri.value = null
     }
 
     fun initCertifyImgMultiPart(multipart: MultipartBody.Part) {

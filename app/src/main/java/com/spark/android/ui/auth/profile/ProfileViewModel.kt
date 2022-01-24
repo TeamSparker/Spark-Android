@@ -41,9 +41,6 @@ class ProfileViewModel @Inject constructor(
     private val _profileImgUri = MutableLiveData<Uri?>()
     val profileImgUri: LiveData<Uri?> = _profileImgUri
 
-    private val _profileImgBitmap = MutableLiveData<Bitmap?>()
-    val profileImgBitmap: LiveData<Bitmap?> = _profileImgBitmap
-
     fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
@@ -58,19 +55,11 @@ class ProfileViewModel @Inject constructor(
 
     fun initProfileImgUri(uri: Uri) {
         _profileImgUri.value = uri
-        _profileImgBitmap.value = null
-        initDeleteMode(true)
-    }
-
-    fun initProfileImgBitmap(bitmap: Bitmap) {
-        _profileImgBitmap.value = bitmap
-        _profileImgUri.value = null
         initDeleteMode(true)
     }
 
     fun deleteProfileImg() {
         _profileImgUri.value = null
-        _profileImgBitmap.value = null
         initDeleteMode(false)
     }
 
