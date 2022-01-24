@@ -1,7 +1,6 @@
 package com.spark.android.ui.auth.profile
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -94,7 +93,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     private fun initFragmentResultListener() {
-        setFragmentResultListener(REQUEST_PROFILE_IMG_URI) { _, bundle ->
+        setFragmentResultListener(REQUEST_PROFILE_IMG_FROM_ALBUM) { _, bundle ->
+            val uri = bundle.get(PROFILE_IMG) as Uri
+            profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(uri))
+            profileViewModel.initProfileImgUri(uri)
+        }
+        setFragmentResultListener(REQUEST_PROFILE_IMG_FROM_CAMERA) { _, bundle ->
             val uri = bundle.get(PROFILE_IMG) as Uri
             profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(uri))
             profileViewModel.initProfileImgUri(uri)
@@ -106,7 +110,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     companion object {
-        const val REQUEST_PROFILE_IMG_URI = "requestProfileImgUri"
+        const val REQUEST_PROFILE_IMG_FROM_ALBUM = "requestProfileImgFromAlbum"
+        const val REQUEST_PROFILE_IMG_FROM_CAMERA = "requestProfileImgCamera"
         const val REQUEST_PROFILE_DELETE = "requestProfileDelete"
         const val PROFILE_IMG = "profileImg"
     }

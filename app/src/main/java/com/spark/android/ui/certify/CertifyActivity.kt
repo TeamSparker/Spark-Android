@@ -39,7 +39,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         initStatusBarTextColorToWhite()
         initIntentData()
         initImgUriObserver()
-        initImgBitmapObserver()
         initCertifyBackBtnClickListener()
         initCertifyQuitBtnClickListener()
         initCertifyPhotoBtnClickListener()
@@ -64,14 +63,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
     private fun initImgUriObserver() {
         certifyViewModel.imgUri.observe(this) { uri ->
             uri?.let {
-                certifyViewModel.initCertifyImgMultiPart(multiPartResolver.createImgMultiPart(it))
-            }
-        }
-    }
-
-    private fun initImgBitmapObserver() {
-        certifyViewModel.imgBitmap.observe(this) { bitmap ->
-            bitmap?.let {
                 certifyViewModel.initCertifyImgMultiPart(multiPartResolver.createImgMultiPart(it))
             }
         }
@@ -152,7 +143,6 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
                         putExtra("roomName", certifyViewModel.roomName.value)
                         putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                         putExtra("certifyImgUri", certifyViewModel.imgUri.value)
-                        putExtra("certifyImgBitmap", certifyViewModel.imgBitmap.value)
                         putExtra("timerRecord", certifyViewModel.timerRecord.value)
                     })
                 }

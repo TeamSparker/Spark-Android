@@ -22,7 +22,8 @@ import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.setFragmentResultListener
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_DELETE
-import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_URI
+import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_FROM_ALBUM
+import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_FROM_CAMERA
 import com.spark.android.util.getImgUri
 import java.lang.NullPointerException
 
@@ -37,7 +38,7 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     ) { result: ActivityResult ->
         result.data?.let {
             if (it.data != null) {
-                setFragmentResult(REQUEST_PROFILE_IMG_URI, bundleOf(PROFILE_IMG to it.data))
+                setFragmentResult(REQUEST_PROFILE_IMG_FROM_ALBUM, bundleOf(PROFILE_IMG to it.data))
                 dismiss()
             }
         }
@@ -46,7 +47,7 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        setFragmentResult(REQUEST_PROFILE_IMG_URI, bundleOf(PROFILE_IMG to imgUri))
+        setFragmentResult(REQUEST_PROFILE_IMG_FROM_CAMERA, bundleOf(PROFILE_IMG to imgUri))
         dismiss()
     }
 
