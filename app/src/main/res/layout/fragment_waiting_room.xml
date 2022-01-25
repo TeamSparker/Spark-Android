@@ -58,9 +58,10 @@
             android:background="@drawable/shape_spark_dark_pinkred_line_rect"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/waiting_room_copy_code"
             android:textColor="@color/spark_dark_pinkred"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_name" />
@@ -443,6 +444,7 @@
             android:background="@drawable/shape_btn_active"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/waiting_room_start_habit"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
@@ -451,6 +453,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/spark_black_opacity_80"
+            android:visibility="@{waitingRoomViewModel.isLoading? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_waiting_room_loading"
+                playLoadingLottie="@{waitingRoomViewModel.isLoading}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="@{waitingRoomViewModel.isLoading? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

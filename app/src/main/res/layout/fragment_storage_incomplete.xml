@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -36,13 +37,13 @@
             android:id="@+id/iv_storage_incomplete_empty_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="136dp"
             android:src="@drawable/ic_storage_card_empty"
-            app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{storageViewModel.storageResponse.failRoomNum == 0 ? View.VISIBLE : View.INVISIBLE}"
-
+            app:layout_constraintBottom_toTopOf="@id/tv_storage_empty_guide"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/tv_storage_empty_guide"
@@ -56,10 +57,9 @@
             android:textColor="@color/spark_gray"
             android:textSize="18sp"
             android:visibility="@{storageViewModel.storageResponse.failRoomNum == 0 ? View.VISIBLE : View.INVISIBLE}"
-
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/iv_storage_incomplete_empty_card"
             app:layout_constraintStart_toStartOf="@id/iv_storage_incomplete_empty_card"
-            app:layout_constraintTop_toBottomOf="@id/iv_storage_incomplete_empty_card"
-            />
+            app:layout_constraintTop_toBottomOf="@id/iv_storage_incomplete_empty_card" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

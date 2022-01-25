@@ -4,7 +4,7 @@
 
     <!-- IntroActivity -->
     <string name="intro_desc_title">앱 이름</string>
-    <string name="intro_content">친구와 함께 66일간 습관을!</string>
+    <string name="intro_content">습관에 불을 지펴봐!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -38,13 +38,13 @@
     <string name="profile_info_3">을 설정해주세요!</string>
     <string name="profile_desc_photo">프로필 사진 배경</string>
     <string name="profile_nickname_hint">닉네임 입력</string>
-    <string name="profile_start_spark">스파크 시작하기</string>
+    <string name="profile_start_spark">가입완료</string>
     <string name="profile_nickname_count_sum">/10</string>
-    <string name="profile_from_camera">사진 촬영하기</string>
-    <string name="profile_from_album">앨범에서 선택하기</string>
-    <string name="profile_delete_profile_picture">사진 삭제하기</string>
-    <string name="profile_dialog_content">회원가입을 그만둘까요?\n초기 가입 화면으로 되돌아갑니다.</string>
-    <string name="profile_dialog_stop_signup">그만두기</string>
+    <string name="profile_from_camera">카메라 촬영</string>
+    <string name="profile_from_album">앨범에서 선택</string>
+    <string name="profile_delete_profile_picture">사진 삭제</string>
+    <string name="profile_dialog_content">회원가입이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
+    <string name="profile_dialog_stop_signup">나가기</string>
     <string name="profile_dialog_cancel">취소</string>
 
     <!-- HabitActivity -->
@@ -70,7 +70,7 @@
     <!-- MainActivity -->
     <string name="main_bottom_nav_feed">피드</string>
     <string name="main_bottom_nav_home">홈</string>
-    <string name="main_bottom_nav_storage">보관함</string>
+    <string name="main_bottom_nav_storage">내 보관함</string>
     <string name="main_fab_make_room">방 만들기</string>
     <string name="main_fab_join_code">코드로 참여</string>
     <string name="main_back_btn_msg">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
@@ -95,7 +95,7 @@
 
     <!-- SelectConfirmMethod -->
     <string name="select_confirm_method_title">어떻게 습관을 인증할까요?</string>
-    <string name="select_confirm_method_content">습관 유형에 알맞은 인증 방식을\n선택해 주세요</string>
+    <string name="select_confirm_method_content">습관 유형에 알맞은 인증 방식을\n선택해 주세요.</string>
     <string name="select_confirm_method_enter_waiting">대기방 입장하기</string>
     <string name="select_confirm_method_picture_title">사진으로 인증하기</string>
     <string name="select_confirm_method_picture_content">미라클 모닝, 영양제 먹기와 같이 특정 순간을\n인증하는 습관에 추천해요.</string>
@@ -151,12 +151,12 @@
     <string name="set_purpose_done_button">작성 완료</string>
 
     <!-- HabitGoalManageActivity -->
-    <string name="habit_goal_manage_title">나의 목표 관리</string>
-    <string name="habit_goal_manage_tip_top">습관방의</string>
+    <string name="habit_goal_manage_title">나의 목표 수정</string>
+    <string name="habit_goal_manage_tip_top"> 습관방의</string>
     <string name="habit_goal_manage_tip_bottom">시간과 목표를 적어보세요!</string>
     <string name="habit_goal_manage_time_title">언제 습관을 진행할 건가요?</string>
     <string name="habit_goal_manage_time_example">ex. 잠자기 전 / 오후 5시</string>
-    <string name="habit_goal_manage_goal_title">이방에서 나만의 목표는 무엇인가요?</string>
+    <string name="habit_goal_manage_goal_title">나만의 목표는 무엇인가요?</string>
     <string name="habit_goal_manage_goal_example">ex. 포기하지 말자 / 하루에 1페이지씩</string>
     <string name="habit_goal_complete">수정 완료</string>
 
@@ -169,7 +169,7 @@
     <string name="habit_send_spark_message_fourth">🤞 얼마 안 남았어, 어서 하자!</string>
 
     <!-- HabitMoreBottomSheet -->
-    <string name="habit_more_goal">나의 목표 관리</string>
+    <string name="habit_more_goal">나의 목표 수정</string>
 
     <!-- HabitTodayBottomSheet -->
     <string name="habit_today_comment_top">오늘도 꺼지지 않는 스파크,</string>
@@ -188,7 +188,7 @@
     <!-- CertifyActivity -->
     <string name="certify_step_one">1</string>
     <string name="certify_step_two">2</string>
-    <string name="certify_content_top">습관을 모두 마치셨군요!</string>
+    <string name="certify_content_top">시간 측정을 마치셨군요!</string>
     <string name="certify_content_bottom">이곳에 사진을 함께 추가해 주세요.</string>
     <string name="certify_photo">사진 인증하기</string>
     <string name="certify_photo_again">사진 변경</string>

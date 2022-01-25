@@ -55,6 +55,7 @@
             android:text="@{record.nickname}"
             android:textColor="@color/spark_black"
             android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_habit_team_status"
             app:layout_constraintStart_toEndOf="@id/iv_item_habit_team_profile"
             app:layout_constraintTop_toTopOf="@id/iv_item_habit_team_profile"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -71,7 +72,8 @@
             android:textColor="@color/spark_dark_gray"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@id/iv_item_habit_team_profile"
-            app:layout_constraintStart_toStartOf="@id/tv_item_habit_team_name" />
+            app:layout_constraintStart_toStartOf="@id/tv_item_habit_team_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_habit_team_name" />
 
         <ImageView
             android:id="@+id/iv_item_habit_team_me"

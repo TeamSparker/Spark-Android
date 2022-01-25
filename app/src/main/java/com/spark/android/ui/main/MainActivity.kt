@@ -20,6 +20,7 @@ import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_HOME
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_STORAGE
 import com.spark.android.ui.makeroom.MakeRoomActivity
 import com.spark.android.ui.storage.StorageFragmentDirections
+import com.spark.android.ui.storage.StoragePhotoCollectionActivity.Companion.FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY
 import com.spark.android.util.FloatingAnimationUtil
 import com.spark.android.util.getToast
 import com.spark.android.util.initStatusBarColor
@@ -44,6 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initBindingVariable()
         initFloatingButtonClickListener()
         initTabPositionObserver()
+        initBlackBgClickListener()
     }
 
     override fun onResume() {
@@ -73,6 +75,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         when (intent.getStringExtra(FROM_WHERE)) {
             FROM_CERTIFY_ACTIVITY -> {
                 mainViewModel.initTabPositionFeed()
+            }
+            FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY -> {
+                mainViewModel.initTabPositionStorage()
             }
         }
         intent.removeExtra(FROM_WHERE)
@@ -151,6 +156,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         InputCodeFragmentDialog().show(
             supportFragmentManager, "InputCodeDialog"
         )
+    }
+
+    fun initBlackBgClickListener() {
+        binding.layoutMainFabBackground.setOnClickListener {
+            FloatingAnimationUtil.closeFabAnimation(
+                binding.fabHomeMain,
+                binding.fabHomeMakeRoom,
+                binding.fabHomeJoinCode,
+                binding.layoutMainFabBackground,
+                binding.tvFabMakeRoom,
+                binding.tvFabJoinCode
+            )
+            fabState = !fabState
+        }
     }
 
     companion object {

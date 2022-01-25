@@ -10,6 +10,7 @@ import com.spark.android.databinding.FragmentStorageProgressingBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.storage.adapter.ProgressingVpAdapter
 import com.spark.android.ui.storage.viewmodel.StorageViewModel
+import kotlin.math.abs
 
 class StorageProgressingFragment :
     BaseFragment<FragmentStorageProgressingBinding>(R.layout.fragment_storage_progressing) {

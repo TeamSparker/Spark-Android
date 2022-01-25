@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="photoCollectionViewModel"
             type="com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel" />
@@ -70,6 +73,28 @@
             app:layout_constraintVertical_bias="0.0"
             app:spanCount="2"
             tools:listitem="@layout/item_photo_collection_list" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/spark_black_opacity_80"
+            android:visibility="@{photoCollectionViewModel.isLoading? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_storage_photo_loading"
+                playLoadingLottie="@{photoCollectionViewModel.isLoading}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="@{photoCollectionViewModel.isLoading? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

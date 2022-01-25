@@ -18,6 +18,9 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private var profileImageMultiPart: MultipartBody.Part? = null
 
     val nickname = MutableLiveData("")
@@ -38,11 +41,9 @@ class ProfileViewModel @Inject constructor(
     private val _profileImgUri = MutableLiveData<Uri?>()
     val profileImgUri: LiveData<Uri?> = _profileImgUri
 
-    private val _profileImgBitmap = MutableLiveData<Bitmap?>()
-    val profileImgBitmap: LiveData<Bitmap?> = _profileImgBitmap
-
-    private val _isLoading = MutableLiveData(false)
-    val isLoading: LiveData<Boolean> = _isLoading
+    fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
 
     fun initNicknameFocused(hasFocus: Boolean) {
         _nicknameFocused.value = !(requireNotNull(nickname.value).isEmpty() && !hasFocus)
@@ -54,28 +55,16 @@ class ProfileViewModel @Inject constructor(
 
     fun initProfileImgUri(uri: Uri) {
         _profileImgUri.value = uri
-        _profileImgBitmap.value = null
-        initDeleteMode(true)
-    }
-
-    fun initProfileImgBitmap(bitmap: Bitmap) {
-        _profileImgBitmap.value = bitmap
-        _profileImgUri.value = null
         initDeleteMode(true)
     }
 
     fun deleteProfileImg() {
         _profileImgUri.value = null
-        _profileImgBitmap.value = null
         initDeleteMode(false)
     }
 
     fun initProfileImgMultiPart(profileImg: MultipartBody.Part?) {
         profileImageMultiPart = profileImg
-    }
-
-    fun initIsLoading(isLoading: Boolean) {
-        _isLoading.value = isLoading
     }
 
     fun initKakaoUserId() {
