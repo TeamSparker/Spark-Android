@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.data.remote.entity.request.SetPurposeRequest
@@ -36,8 +37,6 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         initWhenEditTextFocusListener()
         initsettingPurposeBackButton()
         initsettingPurposeFinish()
-        EditTextUtil.focusedEditText(binding.etSetPurposeWhen, binding.viewSetPurposeOne)
-        EditTextUtil.focusedEditText(binding.etSetPurposeMyPurpose, binding.viewSetPurposeTwo)
     }
 
 
@@ -54,11 +53,15 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     }
 
     private fun initWhenEditTextFocusListener() {
-        binding.etSetPurposeWhen.setOnFocusChangeListener { view, b ->
-            if (b) {
+        binding.etSetPurposeWhen.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.viewSetPurposeOne.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_pinkred))
                 binding.tvSetPurposeExplainOne.visibility = View.GONE
                 binding.tvSetPurposeExplainTwo.visibility = View.GONE
             } else {
+                if(binding.etSetPurposeWhen.text.isEmpty()){
+                    binding.viewSetPurposeOne.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_gray))
+                }
                 binding.tvSetPurposeExplainOne.visibility = View.VISIBLE
                 binding.tvSetPurposeExplainTwo.visibility = View.VISIBLE
             }
@@ -66,11 +69,15 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     }
 
     private fun initPurposeEditTextFocusListener() {
-        binding.etSetPurposeMyPurpose.setOnFocusChangeListener { view, b ->
-            if (b) {
+        binding.etSetPurposeMyPurpose.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.viewSetPurposeTwo.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_pinkred))
                 binding.tvSetPurposeExplainOne.visibility = View.GONE
                 binding.tvSetPurposeExplainTwo.visibility = View.GONE
             } else {
+                if(binding.etSetPurposeMyPurpose.text.isEmpty()){
+                    binding.viewSetPurposeTwo.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_gray))
+                }
                 binding.tvSetPurposeExplainOne.visibility = View.VISIBLE
                 binding.tvSetPurposeExplainTwo.visibility = View.VISIBLE
             }

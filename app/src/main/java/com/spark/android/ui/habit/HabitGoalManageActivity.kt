@@ -3,6 +3,7 @@ package com.spark.android.ui.habit
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.spark.android.R
 import com.spark.android.databinding.ActivityHabitGoalManageBinding
 import com.spark.android.ui.base.BaseActivity
@@ -31,8 +32,6 @@ class HabitGoalManageActivity :
         initGoalEditTextFocusListener()
         initQuitBtnClickListener()
         initCompleteBtnClickListener()
-        EditTextUtil.focusedEditText(binding.etHabitGoalTime,binding.viewHabitGoalTimeUnderBar)
-        EditTextUtil.focusedEditText(binding.etHabitGoalGoal,binding.viewHabitGoalGoalUnderBar)
     }
 
     private fun initIntentData() {
@@ -48,12 +47,19 @@ class HabitGoalManageActivity :
         }
     }
 
+
+
+
     private fun initTimeEditTextFocusListener() {
-        binding.etHabitGoalTime.setOnFocusChangeListener { view, b ->
-            if (b) {
+        binding.etHabitGoalTime.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.viewHabitGoalTimeUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalTimeUnderBar.context, R.color.spark_pinkred))
                 binding.tvHabitGoalManageTipTop.visibility = View.GONE
                 binding.tvHabitGoalManageTipBottom.visibility = View.GONE
             } else {
+                if(binding.etHabitGoalTime.text.isEmpty()){
+                    binding.viewHabitGoalTimeUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalTimeUnderBar.context, R.color.spark_gray))
+                }
                 binding.tvHabitGoalManageTipTop.visibility = View.VISIBLE
                 binding.tvHabitGoalManageTipBottom.visibility = View.VISIBLE
             }
@@ -61,11 +67,15 @@ class HabitGoalManageActivity :
     }
 
     private fun initGoalEditTextFocusListener() {
-        binding.etHabitGoalGoal.setOnFocusChangeListener { view, b ->
-            if (b) {
+        binding.etHabitGoalGoal.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.viewHabitGoalGoalUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalGoalUnderBar.context, R.color.spark_pinkred))
                 binding.tvHabitGoalManageTipTop.visibility = View.GONE
                 binding.tvHabitGoalManageTipBottom.visibility = View.GONE
             } else {
+                if(binding.etHabitGoalGoal.text.isEmpty()){
+                    binding.viewHabitGoalGoalUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalGoalUnderBar.context, R.color.spark_gray))
+                }
                 binding.tvHabitGoalManageTipTop.visibility = View.VISIBLE
                 binding.tvHabitGoalManageTipBottom.visibility = View.VISIBLE
             }
