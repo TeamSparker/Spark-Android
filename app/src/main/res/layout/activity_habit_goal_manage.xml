@@ -14,8 +14,6 @@
         android:id="@+id/layout_habit_goal_manage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         tools:context=".ui.habit.HabitGoalManageActivity">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -134,7 +132,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:background="@{habitGoalManageViewModel.moment.length() == 0 ? @color/spark_gray : @color/spark_pinkred }"
+            android:background="@color/spark_gray"
             app:layout_constraintBottom_toTopOf="@+id/tv_habit_goal_manage_goal_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -226,7 +224,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:background="@{habitGoalManageViewModel.purpose.length() == 0 ? @color/spark_gray : @color/spark_pinkred }"
+            android:background="@color/spark_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_habit_goal_goal" />
