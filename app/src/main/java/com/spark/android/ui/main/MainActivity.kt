@@ -160,7 +160,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     fun initBlackBgClickListener() {
         binding.layoutMainFabBackground.setOnClickListener {
-            FloatingAnimationUtil.closeFabAnimation(
+            AnimationUtil.closeFabAnimation(
                 binding.fabHomeMain,
                 binding.fabHomeMakeRoom,
                 binding.fabHomeJoinCode,
