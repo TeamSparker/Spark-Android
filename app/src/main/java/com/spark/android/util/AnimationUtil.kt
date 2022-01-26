@@ -1,17 +1,22 @@
 package com.spark.android.util
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.opengl.Visibility
 import android.os.Looper
 import android.view.View
+import android.view.animation.Animation
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.animation.addListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
 import java.util.logging.Handler
 
-object FloatingAnimationUtil {
+object AnimationUtil {
 
     const val ROTATE_TIME :Long = 1500
 
@@ -91,6 +96,32 @@ object FloatingAnimationUtil {
     ) {
         ObjectAnimator.ofFloat(imageButton, View.ROTATION, 360f, 0f).apply {
             duration = ROTATE_TIME
+            start()
+        }
+    }
+
+    fun fadeIn(textview: TextView) {
+        ObjectAnimator.ofFloat(textview, View.ALPHA, 0f,1f).apply{
+            addListener(object : AnimatorListenerAdapter(){
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    textview.visibility = View.VISIBLE
+                }
+            })
+            duration = 1000
+            start()
+        }
+    }
+
+    fun fadeOut(textview: TextView) {
+        ObjectAnimator.ofFloat(textview, View.ALPHA, 1f,0f).apply{
+            addListener(object : AnimatorListenerAdapter(){
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    textview.visibility = View.GONE
+                }
+            })
+            duration = 1000
             start()
         }
     }

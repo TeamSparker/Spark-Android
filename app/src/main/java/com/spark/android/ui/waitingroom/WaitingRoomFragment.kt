@@ -4,16 +4,12 @@ import android.content.ClipboardManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.spark.android.R
 import com.spark.android.databinding.FragmentWaitingRoomBinding
 import com.spark.android.ui.base.BaseFragment
-import com.spark.android.util.FloatingAnimationUtil
+import com.spark.android.util.AnimationUtil
 import android.content.ClipData
-import android.content.Context
 
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
@@ -24,7 +20,6 @@ import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
-import com.spark.android.ui.waitingroom.data.WaitingData
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -77,9 +72,9 @@ class WaitingRoomFragment :
             clipboard.setPrimaryClip(clip)
 
             binding.tvWaitingRoomToast.visibility = View.VISIBLE
-            FloatingAnimationUtil.openToastAnimation(binding.tvWaitingRoomToast)
+            AnimationUtil.openToastAnimation(binding.tvWaitingRoomToast)
             Handler(Looper.getMainLooper()).postDelayed({
-                FloatingAnimationUtil.closeToastAnimation(
+                AnimationUtil.closeToastAnimation(
                     binding.tvWaitingRoomToast
                 )
 
@@ -167,11 +162,11 @@ class WaitingRoomFragment :
 
     private fun initRefreshButtonListener() {
         binding.btnWaitingRoomRefresh.setOnClickListener {
-            FloatingAnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
+            AnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             binding.btnWaitingRoomRefresh.isEnabled = false
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.btnWaitingRoomRefresh.isEnabled = true
-            }, FloatingAnimationUtil.ROTATE_TIME)
+            }, AnimationUtil.ROTATE_TIME)
             waitingRoomViewModel.getRefreshInfo(roomId)
             waitingRoomViewModel.refreshInfo.observe(this) {
                 waitingRoomRecyclerViewAdapter.members.clear()
