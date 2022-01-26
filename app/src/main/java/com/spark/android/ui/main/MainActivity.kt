@@ -20,7 +20,7 @@ import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_HOME
 import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_STORAGE
 import com.spark.android.ui.makeroom.MakeRoomActivity
 import com.spark.android.ui.storage.StorageFragmentDirections
-import com.spark.android.util.FloatingAnimationUtil
+import com.spark.android.util.AnimationUtil
 import com.spark.android.util.getToast
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
@@ -115,7 +115,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun initFloatingButtonClickListener() {
         binding.fabHomeMain.setOnClickListener() {
-            FloatingAnimationUtil.toggleFab(
+            AnimationUtil.toggleFab(
                 binding.fabHomeMain,
                 binding.fabHomeMakeRoom,
                 binding.fabHomeJoinCode,
@@ -136,7 +136,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     fun initMakeRoomClickListener() {
         val intent = Intent(this, MakeRoomActivity::class.java)
         startActivity(intent)
-        FloatingAnimationUtil.closeFabAnimation(
+        AnimationUtil.closeFabAnimation(
             binding.fabHomeMain,
             binding.fabHomeMakeRoom,
             binding.fabHomeJoinCode,

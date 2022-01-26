@@ -13,6 +13,7 @@ import com.spark.android.databinding.FragmentSetPurposeBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
+import com.spark.android.util.AnimationUtil
 import com.spark.android.util.EditTextUtil
 import com.spark.android.util.KeyBoardUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,14 +57,14 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         binding.etSetPurposeWhen.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.viewSetPurposeOne.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_pinkred))
-                binding.tvSetPurposeExplainOne.visibility = View.GONE
-                binding.tvSetPurposeExplainTwo.visibility = View.GONE
+                AnimationUtil.fadeOut(binding.tvSetPurposeExplainOne)
+                AnimationUtil.fadeOut(binding.tvSetPurposeExplainTwo)
             } else {
                 if(binding.etSetPurposeWhen.text.isEmpty()){
                     binding.viewSetPurposeOne.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_gray))
                 }
-                binding.tvSetPurposeExplainOne.visibility = View.VISIBLE
-                binding.tvSetPurposeExplainTwo.visibility = View.VISIBLE
+                AnimationUtil.fadeIn(binding.tvSetPurposeExplainOne)
+                AnimationUtil.fadeIn(binding.tvSetPurposeExplainTwo)
             }
         }
     }
@@ -72,14 +73,14 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         binding.etSetPurposeMyPurpose.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.viewSetPurposeTwo.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_pinkred))
-                binding.tvSetPurposeExplainOne.visibility = View.GONE
-                binding.tvSetPurposeExplainTwo.visibility = View.GONE
+                AnimationUtil.fadeOut(binding.tvSetPurposeExplainOne)
+                AnimationUtil.fadeOut(binding.tvSetPurposeExplainTwo)
             } else {
                 if(binding.etSetPurposeMyPurpose.text.isEmpty()){
                     binding.viewSetPurposeTwo.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_gray))
                 }
-                binding.tvSetPurposeExplainOne.visibility = View.VISIBLE
-                binding.tvSetPurposeExplainTwo.visibility = View.VISIBLE
+                AnimationUtil.fadeIn(binding.tvSetPurposeExplainOne)
+                AnimationUtil.fadeIn(binding.tvSetPurposeExplainTwo)
             }
         }
     }
