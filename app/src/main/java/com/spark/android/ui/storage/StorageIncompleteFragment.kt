@@ -26,17 +26,7 @@ class StorageIncompleteFragment :
         binding.vpStorageIncomplete.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         binding.vpStorageIncomplete.adapter = incompleteVpAdapter
         binding.vpStorageIncomplete.offscreenPageLimit = 3
-        binding.vpStorageIncomplete.post {
-            val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)
-            val pagerWidth = binding.vpStorageIncomplete.width
-            val screenWidth = resources.displayMetrics.widthPixels
-            val offsetPx = screenWidth - pageMarginPx - pagerWidth
-            binding.vpStorageIncomplete.setPageTransformer { page, position ->
-                page.translationX = position * -offsetPx
-            }
-
-
-        }
+        binding.vpStorageIncomplete.setPageTransformer(ZoomOutPageTransformer())
     }
 
     private fun initIncompleteRoomsObserver() {

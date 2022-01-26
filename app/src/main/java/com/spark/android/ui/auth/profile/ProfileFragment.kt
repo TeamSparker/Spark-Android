@@ -102,6 +102,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             val uri = bundle.get(PROFILE_IMG) as Uri
             profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(uri))
             profileViewModel.initProfileImgUri(uri)
+            // 나중에 찍은 사진 저장 안되도록 해보기
         }
         setFragmentResultListener(REQUEST_PROFILE_DELETE) { _, _ ->
             profileViewModel.initProfileImgMultiPart(null)

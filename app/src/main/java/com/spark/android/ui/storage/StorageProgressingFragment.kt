@@ -28,15 +28,7 @@ class StorageProgressingFragment :
         binding.vpStorageProgressing.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         binding.vpStorageProgressing.adapter = progressingVpAdapter
         binding.vpStorageProgressing.offscreenPageLimit = 3
-        binding.vpStorageProgressing.post {
-            val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)
-            val pagerWidth = binding.vpStorageProgressing.width
-            val screenWidth = resources.displayMetrics.widthPixels
-            val offsetPx = screenWidth - pageMarginPx - pagerWidth
-            binding.vpStorageProgressing.setPageTransformer { page, position ->
-                page.translationX = position * -offsetPx
-            }
-        }
+        binding.vpStorageProgressing.setPageTransformer(ZoomOutPageTransformer())
     }
 
     private fun initProgressingRoomsObserver() {
