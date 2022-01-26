@@ -17,7 +17,7 @@ class StorageCompleteFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.storageViewModel= storageViewModel
+        binding.storageViewModel = storageViewModel
         initCompleteVpAdapter()
         initCompleteRoomsObserver()
     }
@@ -26,15 +26,7 @@ class StorageCompleteFragment :
         binding.vpStorageComplete.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         binding.vpStorageComplete.adapter = completeVpAdapter
         binding.vpStorageComplete.offscreenPageLimit = 3
-        binding.vpStorageComplete.post {
-            val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)
-            val pagerWidth = binding.vpStorageComplete.width
-            val screenWidth = resources.displayMetrics.widthPixels
-            val offsetPx = screenWidth - pageMarginPx - pagerWidth
-            binding.vpStorageComplete.setPageTransformer { page, position ->
-                page.translationX = position * -offsetPx
-            }
-        }
+        binding.vpStorageComplete.setPageTransformer(ZoomOutPageTransformer())
     }
 
     private fun initCompleteRoomsObserver() {

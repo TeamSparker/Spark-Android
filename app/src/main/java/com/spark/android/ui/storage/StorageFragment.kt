@@ -14,7 +14,6 @@ import com.spark.android.ui.storage.adapter.StorageViewPagerOutAdapter
 import com.spark.android.ui.storage.viewmodel.StorageViewModel
 import java.lang.IllegalStateException
 
-
 class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
     private lateinit var viewPagerOutAdapter: StorageViewPagerOutAdapter
     private val storageViewModel by activityViewModels<StorageViewModel>()
@@ -53,17 +52,23 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
                 PROGRESSING -> {
                     binding.vpStorageOut.currentItem = 0
                     progressingIndicatorAnim.start()
-                    storageViewModel.initStorageNetwork(PROGRESSING, -1, 30)
+                    if (!storageViewModel.isInitProgressing) {
+                        storageViewModel.initStorageNetwork(PROGRESSING, -1, 30)
+                    }
                 }
                 COMPLETE -> {
                     binding.vpStorageOut.currentItem = 1
                     completeIndicatorAnim.start()
-                    storageViewModel.initStorageNetwork(COMPLETE, -1, 30)
+                    if (!storageViewModel.isInitComplete) {
+                        storageViewModel.initStorageNetwork(COMPLETE, -1, 30)
+                    }
                 }
                 INCOMPLETE -> {
                     binding.vpStorageOut.currentItem = 2
                     incompleteIndicatorAnim.start()
-                    storageViewModel.initStorageNetwork(INCOMPLETE, -1, 30)
+                    if (!storageViewModel.isInitIncomplete) {
+                        storageViewModel.initStorageNetwork(INCOMPLETE, -1, 30)
+                    }
                 }
                 else -> throw IllegalStateException()
             }
