@@ -18,6 +18,13 @@ import retrofit2.Response
 class StorageViewModel : ViewModel() {
     private var firstLoading = false
 
+    var isInitProgressing = false
+        private set
+    var isInitComplete = false
+        private set
+    var isInitIncomplete = false
+        private set
+
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -58,6 +65,14 @@ class StorageViewModel : ViewModel() {
         _storageMode.value = INCOMPLETE
     }
 
+    private fun updateIsInitType(type: String) {
+        when (type) {
+            PROGRESSING -> isInitProgressing = true
+            COMPLETE -> isInitComplete = true
+            INCOMPLETE -> isInitComplete = true
+        }
+    }
+
     fun initStorageNetwork(type: String, lastid: Int, size: Int) {
         initIsLoading(true)
         val call: Call<BaseResponse<StorageResponse>> =
@@ -76,6 +91,7 @@ class StorageViewModel : ViewModel() {
                         INCOMPLETE -> _incompleteRooms.postValue(storageData.rooms)
                         COMPLETE -> _completeRooms.postValue(storageData.rooms)
                     }
+                    updateIsInitType(type)
                     initIsLoading(false)
                     initFirstLoading(true)
                 }
