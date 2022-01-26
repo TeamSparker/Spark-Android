@@ -10,7 +10,6 @@ import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.storage.adapter.IncompleteVpAdapter
 import com.spark.android.ui.storage.viewmodel.StorageViewModel
 
-
 class StorageIncompleteFragment :
     BaseFragment<FragmentStorageIncompleteBinding>(R.layout.fragment_storage_incomplete) {
     private val incompleteVpAdapter = IncompleteVpAdapter()

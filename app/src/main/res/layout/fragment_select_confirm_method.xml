@@ -185,6 +185,7 @@
             android:background="@drawable/shape_btn_active"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/select_confirm_method_enter_waiting"
             android:textColor="@color/spark_white"
             android:textSize="19dp"

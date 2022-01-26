@@ -24,7 +24,7 @@
             android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
             android:padding="10dp"
-            android:src="@drawable/ic_make_room_back"
+            android:src="@drawable/ic_quit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,6 +129,7 @@
             android:background="@{nameSettingViewModel.habitName.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active }"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/room_name_setting_next_btn_text"
             android:textColor="@color/spark_white"
             android:textSize="18dp"

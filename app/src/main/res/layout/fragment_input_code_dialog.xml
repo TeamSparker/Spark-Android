@@ -88,6 +88,7 @@
             android:enabled="@{inputCodeFragmentDialogViewModel.roomCode.length() != 7 ? false : true}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/input_code_dialog_done"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
