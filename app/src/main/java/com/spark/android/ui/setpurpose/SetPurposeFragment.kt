@@ -38,6 +38,8 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         initWhenEditTextFocusListener()
         initsettingPurposeBackButton()
         initsettingPurposeFinish()
+        initWhenEditTextTouchListener()
+        initPurposeEditTextTouchListener()
     }
 
 
@@ -53,34 +55,80 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         }
     }
 
+    private fun initWhenEditTextTouchListener() {
+        binding.etSetPurposeWhen.setOnClickListener {
+            AnimationUtil.getFocusInSetPurpose(
+                binding.tvSetPurposeExplainOne,
+                binding.tvSetPurposeExplainTwo,
+                binding.etSetPurposeWhen,
+                binding.layoutSetPurposeMoving
+            )
+        }
+    }
+
     private fun initWhenEditTextFocusListener() {
         binding.etSetPurposeWhen.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.viewSetPurposeOne.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_pinkred))
-                AnimationUtil.fadeOut(binding.tvSetPurposeExplainOne)
-                AnimationUtil.fadeOut(binding.tvSetPurposeExplainTwo)
+                binding.viewSetPurposeOne.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.viewSetPurposeOne.context,
+                        R.color.spark_pinkred
+                    )
+                )
             } else {
-                if(binding.etSetPurposeWhen.text.isEmpty()){
-                    binding.viewSetPurposeOne.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_gray))
+                if (binding.etSetPurposeWhen.text.isEmpty()) {
+                    binding.viewSetPurposeOne.setBackgroundColor(
+                        ContextCompat.getColor(
+                            binding.viewSetPurposeOne.context,
+                            R.color.spark_gray
+                        )
+                    )
                 }
-                AnimationUtil.fadeIn(binding.tvSetPurposeExplainOne)
-                AnimationUtil.fadeIn(binding.tvSetPurposeExplainTwo)
+                AnimationUtil.lostFocusInSetPurpose(
+                    binding.tvSetPurposeExplainOne,
+                    binding.tvSetPurposeExplainTwo,
+                    binding.layoutSetPurposeMoving
+                )
+                binding.etSetPurposeWhen.isCursorVisible = false
             }
+        }
+    }
+
+    private fun initPurposeEditTextTouchListener() {
+        binding.etSetPurposeMyPurpose.setOnClickListener {
+            AnimationUtil.getFocusInSetPurpose(
+                binding.tvSetPurposeExplainOne,
+                binding.tvSetPurposeExplainTwo,
+                binding.etSetPurposeMyPurpose,
+                binding.layoutSetPurposeMoving
+            )
         }
     }
 
     private fun initPurposeEditTextFocusListener() {
         binding.etSetPurposeMyPurpose.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.viewSetPurposeTwo.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_pinkred))
-                AnimationUtil.fadeOut(binding.tvSetPurposeExplainOne)
-                AnimationUtil.fadeOut(binding.tvSetPurposeExplainTwo)
+                binding.viewSetPurposeTwo.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.viewSetPurposeOne.context,
+                        R.color.spark_pinkred
+                    )
+                )
             } else {
-                if(binding.etSetPurposeMyPurpose.text.isEmpty()){
-                    binding.viewSetPurposeTwo.setBackgroundColor(ContextCompat.getColor(binding.viewSetPurposeOne.context, R.color.spark_gray))
+                if (binding.etSetPurposeMyPurpose.text.isEmpty()) {
+                    binding.viewSetPurposeTwo.setBackgroundColor(
+                        ContextCompat.getColor(
+                            binding.viewSetPurposeOne.context,
+                            R.color.spark_gray
+                        )
+                    )
                 }
-                AnimationUtil.fadeIn(binding.tvSetPurposeExplainOne)
-                AnimationUtil.fadeIn(binding.tvSetPurposeExplainTwo)
+                AnimationUtil.lostFocusInSetPurpose(
+                    binding.tvSetPurposeExplainOne,
+                    binding.tvSetPurposeExplainTwo,
+                    binding.layoutSetPurposeMoving
+                )
+                binding.etSetPurposeMyPurpose.isCursorVisible = false
             }
         }
     }
