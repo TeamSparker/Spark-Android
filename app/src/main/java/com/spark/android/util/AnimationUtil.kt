@@ -3,6 +3,8 @@ package com.spark.android.util
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.app.Activity
+import android.inputmethodservice.KeyboardView
 import android.opengl.Visibility
 import android.os.Looper
 import android.view.View
@@ -107,7 +109,7 @@ object AnimationUtil {
         textviewTwo: TextView,
         constraintLayout: ConstraintLayout
     ) {
-        ObjectAnimator.ofFloat(constraintLayout, "translationY", -300f).apply {
+        ObjectAnimator.ofFloat(constraintLayout, "translationY", 0f).apply {
             start()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
@@ -136,7 +138,8 @@ object AnimationUtil {
         textviewOne: TextView,
         textviewTwo: TextView,
         editText: EditText,
-        constraintLayout: ConstraintLayout
+        constraintLayout: ConstraintLayout,
+        activity: Activity
     ) {
         ObjectAnimator.ofFloat(textviewTwo, View.ALPHA, 1f, 0f).apply {
             duration = 500
@@ -146,15 +149,17 @@ object AnimationUtil {
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    ObjectAnimator.ofFloat(constraintLayout, "translationY", -300f).apply {
+                    ObjectAnimator.ofFloat(constraintLayout, "translationY", -220f).apply {
                         start()
                         addListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationEnd(animation: Animator?) {
                                 super.onAnimationEnd(animation)
                                 textviewOne.visibility = View.GONE
                                 textviewTwo.visibility = View.GONE
-                                editText.requestFocus(1)
+                                editText.isFocusableInTouchMode = true
+                                editText.requestFocus()
                                 editText.isCursorVisible = true
+                                KeyBoardUtil.show(activity)
                             }
                         })
                     }

@@ -1,10 +1,12 @@
 package com.spark.android.ui.setpurpose
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.spark.android.R
@@ -25,6 +27,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     private val setPurposeViewModel by viewModels<SetPurposeViewModel>()
     private var roomId by Delegates.notNull<Int>()
     private lateinit var roomName: String
+    private var layoutState = false
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +40,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         initPurposeEditTextFocusListener()
         initWhenEditTextFocusListener()
         initsettingPurposeBackButton()
-        initsettingPurposeFinish()
+        initSettingPurposeFinish()
         initWhenEditTextTouchListener()
         initPurposeEditTextTouchListener()
     }
@@ -51,18 +54,28 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
     private fun initEditTextClearFocus() {
         binding.layoutSetPurpose.setOnClickListener {
+            layoutState = false
             KeyBoardUtil.hide(requireActivity())
         }
     }
 
     private fun initWhenEditTextTouchListener() {
         binding.etSetPurposeWhen.setOnClickListener {
-            AnimationUtil.getFocusInSetPurpose(
-                binding.tvSetPurposeExplainOne,
-                binding.tvSetPurposeExplainTwo,
-                binding.etSetPurposeWhen,
-                binding.layoutSetPurposeMoving
-            )
+            if (!layoutState) {
+                AnimationUtil.getFocusInSetPurpose(
+                    binding.tvSetPurposeExplainOne,
+                    binding.tvSetPurposeExplainTwo,
+                    binding.etSetPurposeWhen,
+                    binding.layoutSetPurposeMoving,
+                    requireActivity()
+                )
+                layoutState = true
+            } else {
+                binding.etSetPurposeWhen.isFocusableInTouchMode = true
+                binding.etSetPurposeWhen.requestFocus()
+                binding.etSetPurposeWhen.isCursorVisible = true
+                KeyBoardUtil.show(requireActivity())
+            }
         }
     }
 
@@ -90,18 +103,29 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                     binding.layoutSetPurposeMoving
                 )
                 binding.etSetPurposeWhen.isCursorVisible = false
+                binding.etSetPurposeWhen.isFocusableInTouchMode = false
+                layoutState = false
             }
         }
     }
 
     private fun initPurposeEditTextTouchListener() {
         binding.etSetPurposeMyPurpose.setOnClickListener {
-            AnimationUtil.getFocusInSetPurpose(
-                binding.tvSetPurposeExplainOne,
-                binding.tvSetPurposeExplainTwo,
-                binding.etSetPurposeMyPurpose,
-                binding.layoutSetPurposeMoving
-            )
+            if (!layoutState) {
+                AnimationUtil.getFocusInSetPurpose(
+                    binding.tvSetPurposeExplainOne,
+                    binding.tvSetPurposeExplainTwo,
+                    binding.etSetPurposeMyPurpose,
+                    binding.layoutSetPurposeMoving,
+                    requireActivity()
+                )
+                layoutState = true
+            } else {
+                binding.etSetPurposeMyPurpose.isFocusableInTouchMode = true
+                binding.etSetPurposeMyPurpose.requestFocus()
+                binding.etSetPurposeMyPurpose.isCursorVisible = true
+                KeyBoardUtil.show(requireActivity())
+            }
         }
     }
 
@@ -129,11 +153,13 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                     binding.layoutSetPurposeMoving
                 )
                 binding.etSetPurposeMyPurpose.isCursorVisible = false
+                binding.etSetPurposeMyPurpose.isFocusableInTouchMode = false
+                layoutState = false
             }
         }
     }
 
-    private fun initsettingPurposeFinish() {
+    private fun initSettingPurposeFinish() {
         binding.btnSetPurposeFinish.setOnClickListener {
             setPurposeViewModel.setPurpose(
                 roomId,
