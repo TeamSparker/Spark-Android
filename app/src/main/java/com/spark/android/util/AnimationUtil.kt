@@ -107,8 +107,12 @@ object AnimationUtil {
     fun lostFocusInSetPurpose(
         textviewOne: TextView,
         textviewTwo: TextView,
+        editTextOne: EditText,
+        editTextTwo: EditText,
         constraintLayout: ConstraintLayout
     ) {
+        editTextOne.isClickable = false
+        editTextTwo.isClickable = false
         ObjectAnimator.ofFloat(constraintLayout, "translationY", 0f).apply {
             start()
             addListener(object : AnimatorListenerAdapter() {
@@ -124,6 +128,8 @@ object AnimationUtil {
                                 super.onAnimationStart(animation)
                                 textviewOne.visibility = View.VISIBLE
                                 textviewTwo.visibility = View.VISIBLE
+                                editTextOne.isClickable = true
+                                editTextTwo.isClickable = true
                             }
                         })
                         duration = 500
@@ -139,8 +145,10 @@ object AnimationUtil {
         textviewTwo: TextView,
         editText: EditText,
         constraintLayout: ConstraintLayout,
-        activity: Activity
+        activity: Activity,
+        outerConstraintLayout: ConstraintLayout
     ) {
+        outerConstraintLayout.isClickable = false
         ObjectAnimator.ofFloat(textviewTwo, View.ALPHA, 1f, 0f).apply {
             duration = 500
             start()
@@ -160,6 +168,7 @@ object AnimationUtil {
                                 editText.requestFocus()
                                 editText.isCursorVisible = true
                                 KeyBoardUtil.show(activity)
+                                outerConstraintLayout.isClickable = true
                             }
                         })
                     }
