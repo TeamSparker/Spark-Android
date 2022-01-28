@@ -3,22 +3,26 @@ package com.spark.android.util
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.app.Activity
+import android.inputmethodservice.KeyboardView
 import android.opengl.Visibility
 import android.os.Looper
 import android.view.View
 import android.view.animation.Animation
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.addListener
+import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
 import java.util.logging.Handler
 
 object AnimationUtil {
 
-    const val ROTATE_TIME :Long = 1500
+    const val ROTATE_TIME: Long = 1500
 
     fun toggleFab(
         buttonMain: FloatingActionButton,
@@ -48,7 +52,7 @@ object AnimationUtil {
         } else {
             ObjectAnimator.ofFloat(buttonMain, View.ROTATION, -45f, 0f).apply {
                 duration = 300
-                start ()
+                start()
             }
             textViewJoinCode.visibility = View.VISIBLE
             textViewMakeRoom.visibility = View.VISIBLE
@@ -100,29 +104,79 @@ object AnimationUtil {
         }
     }
 
-    fun fadeIn(textview: TextView) {
-        ObjectAnimator.ofFloat(textview, View.ALPHA, 0f,1f).apply{
-            addListener(object : AnimatorListenerAdapter(){
-                override fun onAnimationStart(animation: Animator?) {
-                    super.onAnimationStart(animation)
-                    textview.visibility = View.VISIBLE
+    fun lostFocusInSetPurpose(
+        textviewOne: TextView,
+        textviewTwo: TextView,
+        editTextOne: EditText,
+        editTextTwo: EditText,
+        constraintLayout: ConstraintLayout
+    ) {
+        editTextOne.isClickable = false
+        editTextTwo.isClickable = false
+        ObjectAnimator.ofFloat(constraintLayout, "translationY", 0f).apply {
+            start()
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    ObjectAnimator.ofFloat(textviewTwo, View.ALPHA, 0f, 1f).apply {
+                        duration = 500
+                        start()
+                    }
+                    ObjectAnimator.ofFloat(textviewOne, View.ALPHA, 0f, 1f).apply {
+                        addListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationStart(animation: Animator?) {
+                                super.onAnimationStart(animation)
+                                textviewOne.visibility = View.VISIBLE
+                                textviewTwo.visibility = View.VISIBLE
+                                editTextOne.isClickable = true
+                                editTextTwo.isClickable = true
+                            }
+                        })
+                        duration = 500
+                        start()
+                    }
                 }
             })
-            duration = 1000
+        }
+    }
+
+    fun getFocusInSetPurpose(
+        textviewOne: TextView,
+        textviewTwo: TextView,
+        editText: EditText,
+        constraintLayout: ConstraintLayout,
+        activity: Activity,
+        outerConstraintLayout: ConstraintLayout
+    ) {
+        outerConstraintLayout.isClickable = false
+        ObjectAnimator.ofFloat(textviewTwo, View.ALPHA, 1f, 0f).apply {
+            duration = 500
+            start()
+        }
+        ObjectAnimator.ofFloat(textviewOne, View.ALPHA, 1f, 0f).apply {
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    ObjectAnimator.ofFloat(constraintLayout, "translationY", -220f).apply {
+                        start()
+                        addListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator?) {
+                                super.onAnimationEnd(animation)
+                                textviewOne.visibility = View.GONE
+                                textviewTwo.visibility = View.GONE
+                                editText.isFocusableInTouchMode = true
+                                editText.requestFocus()
+                                editText.isCursorVisible = true
+                                KeyBoardUtil.show(activity)
+                                outerConstraintLayout.isClickable = true
+                            }
+                        })
+                    }
+                }
+            })
+            duration = 500
             start()
         }
     }
 
-    fun fadeOut(textview: TextView) {
-        ObjectAnimator.ofFloat(textview, View.ALPHA, 1f,0f).apply{
-            addListener(object : AnimatorListenerAdapter(){
-                override fun onAnimationEnd(animation: Animator?) {
-                    super.onAnimationEnd(animation)
-                    textview.visibility = View.GONE
-                }
-            })
-            duration = 1000
-            start()
-        }
-    }
 }

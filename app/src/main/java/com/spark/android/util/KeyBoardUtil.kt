@@ -13,4 +13,12 @@ object KeyBoardUtil {
             view.clearFocus()
         }
     }
+
+    fun show(activity: Activity) {
+        val inputMethodManager =
+            activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        activity.currentFocus?.let { view ->
+            inputMethodManager.showSoftInput(view, 0)
+        }
+    }
 }
