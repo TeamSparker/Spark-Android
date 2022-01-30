@@ -47,6 +47,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
     }
 
     private fun initVisibleStopAndPlayBtn(myVisible : Int, myInvisible : Int) {
+
         val myVisible = intent.getIntExtra("myVisible", View.INVISIBLE)
         binding.btnTimerStop.visibility = myVisible
         binding.btnTimerPlay.visibility = myVisible
