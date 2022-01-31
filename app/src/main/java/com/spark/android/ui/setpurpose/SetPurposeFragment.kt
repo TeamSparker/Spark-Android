@@ -31,6 +31,26 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     private lateinit var roomName: String
     private var layoutState = false
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
+    private lateinit var callback: OnBackPressedCallback
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        super.onAttach(context)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val waitingRoomFragment = WaitingRoomFragment()
+
+                var bundle = Bundle()
+                bundle.putInt("roomId", roomId)
+                bundle.putBoolean("startPoint", true)
+                waitingRoomFragment.arguments = bundle
+
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -204,5 +224,11 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
     override fun onDestroyView() {
         keyboardVisibilityUtils.detachKeyboardListeners()
+        super.onDestroyView()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
     }
 }
