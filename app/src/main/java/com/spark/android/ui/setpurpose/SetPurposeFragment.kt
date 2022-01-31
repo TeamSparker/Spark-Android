@@ -160,6 +160,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                     binding.layoutSetPurposeMoving
                 )
                 layoutState = false
+                requireActivity().currentFocus?.clearFocus()
             }
         )
     }
