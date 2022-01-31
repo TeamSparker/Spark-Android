@@ -74,7 +74,7 @@ class HomeRecyclerViewAdapter :
         init {
             itemView.setOnClickListener {
                 val intent = Intent(it.context, HabitActivity::class.java).apply {
-                    putExtra("roomId", ticketList[adapterPosition].roomId)
+                    putExtra("roomId", ticketList[absoluteAdapterPosition].roomId)
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 startActivity(it.context, intent, null)
@@ -91,7 +91,7 @@ class HomeRecyclerViewAdapter :
         init {
             itemView.setOnClickListener {
                 val intent = Intent(it.context, WaitingRoomActivity::class.java).apply {
-                    putExtra("roomId", ticketList[adapterPosition].roomId)
+                    putExtra("roomId", ticketList[absoluteAdapterPosition].roomId)
                     putExtra("startPoint",WaitingRoomActivity.START_FROM_HOME)
                 }
                 startActivity(it.context, intent, null)
