@@ -35,7 +35,6 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        super.onAttach(context)
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val waitingRoomFragment = WaitingRoomFragment()
