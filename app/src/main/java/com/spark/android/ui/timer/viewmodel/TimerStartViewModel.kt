@@ -9,18 +9,9 @@ class TimerStartViewModel : ViewModel() {
     private val _timerState = MutableLiveData(TIMER_RESET)
     val timerState: LiveData<Int> get() = _timerState
 
-    fun initTimerReset() {
-        _timerState.value = TIMER_RESET
+    fun setState(state: Int) {
+        _timerState.value = state
     }
-
-    fun initTimerRun() {
-        _timerState.value = TIMER_RUN
-    }
-
-    fun initTimerPause() {
-        _timerState.value = TIMER_PAUSE
-    }
-
 
     companion object {
         const val TIMER_RESET = 0

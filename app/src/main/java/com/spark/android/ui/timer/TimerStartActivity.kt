@@ -24,6 +24,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
     var roomId: Int? = -1
     var nickname = ""
     var profileImgUrl = ""
+    var myVisible = 0
+    var myInvisible = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,37 +36,24 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         val timerRecord = intent.getStringExtra("timerRecord")
         initFormatChange(timerRecord)
         initClickEvent()
-        val myVisible = intent.getIntExtra("myVisible", View.INVISIBLE)
-        binding.btnTimerStop.visibility = myVisible
-        binding.btnTimerPlay.visibility = myVisible
-        val myInvisible = intent.getIntExtra("myInvisible", View.VISIBLE)
-        binding.btnTimerStartBottom.visibility = myInvisible
+        initVisibleStopAndPlayBtn(myVisible,myInvisible)
+
         roomName = intent.getStringExtra("roomName")
         binding.tvTimerRoomName.text = roomName
         roomId = intent.getIntExtra("roomId", -1)
         profileImgUrl = intent.getStringExtra("profileImgUrl") ?: ""
         nickname = intent.getStringExtra("nickname") ?: ""
-        //binding.chronometerTimer.base = SystemClock.elapsedRealtime() - (nr_of_min * 60000)
 
-        //initTimerStateObserver()
     }
 
-//    private fun initTimerStateObserver() {
-//        timerStartViewModel.timerState.observe(this) {
-//            when (it) {
-//                TIMER_RESET -> {
-//                    binding.chronometerTimer.base = SystemClock.elapsedRealtime()
-//                }
-//                TIMER_RUN -> {
-//                    binding.chronometerTimer.base = SystemClock.elapsedRealtime()
-//                    binding.chronometerTimer.start()
-//                }
-//                TIMER_PAUSE -> {
-//                    binding.chronometerTimer.stop()
-//                }
-//            }
-//        }
-//    }
+    private fun initVisibleStopAndPlayBtn(myVisible : Int, myInvisible : Int) {
+
+        val myVisible = intent.getIntExtra("myVisible", View.INVISIBLE)
+        binding.btnTimerStop.visibility = myVisible
+        binding.btnTimerPlay.visibility = myVisible
+        val myInvisible = intent.getIntExtra("myInvisible", View.VISIBLE)
+        binding.btnTimerStartBottom.visibility = myInvisible
+    }
 
     private fun initClickEvent() {
         binding.btnTimerStartBottom.setOnClickListener {
@@ -109,11 +98,9 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
             pauseTime = binding.chronometerTimer.base - SystemClock.elapsedRealtime()
             binding.chronometerTimer.stop()
-
         }
 
         binding.btnTimerQuit.setOnClickListener {
-            // TimerStartActivity에서 x버튼을 누를 시 -> finish() -> HabitTodayBottomSheet로 돌아감
 
             binding.btnTimerQuit.setOnClickListener {
                 DialogUtil(DialogUtil.STOP_CERTIFY_TIMER) {
@@ -123,10 +110,6 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         }
 
         binding.btnTimerNextStepBottom.setOnClickListener {
-            // TimerStartActivity에서 다음 단계로 버튼 누를시 ->
-            // 1. 타이머 시간값 : binding.chronometerTimer.text
-            // 2. 룸 아이디 값
-            // 가지고 사진 인증 액티비티로 넘겨야 함
 
             val intent = Intent(this, CertifyActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -144,8 +127,6 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
     private fun initFormatChange(timerRecord: String?) {
         val chrono = binding.chronometerTimer
-//        chrono.base = SystemClock.elapsedRealtime()
-//        chrono.text = "00:00:00"
 
         if (timerRecord.isNullOrBlank()) {
             chrono.base = SystemClock.elapsedRealtime()
