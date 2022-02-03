@@ -21,10 +21,10 @@
             android:id="@+id/btn_timer_quit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
+            android:padding="10dp"
             android:src="@drawable/ic_quit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -145,9 +145,10 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_timer_stopwatch_play"
-                android:visibility="invisible"
+                android:visibility="@{timerStartViewModel.timerState == timerStartViewModel.TIMER_PAUSE ? View.VISIBLE : View.INVISIBLE }"
                 app:layout_constraintStart_toEndOf="@id/btn_timer_stop"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
 
             <ImageButton
                 android:id="@+id/btn_timer_pause"
@@ -157,9 +158,10 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_timer_stopwatch_pause"
-                android:visibility="invisible"
+                android:visibility="@{timerStartViewModel.timerState == timerStartViewModel.TIMER_RUN ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintStart_toEndOf="@id/btn_timer_stop"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
 
             <ImageButton
                 android:id="@+id/btn_timer_stop"
@@ -168,10 +170,10 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_timer_stopwatch_stop"
-                android:visibility="invisible"
+                android:visibility="@{timerStartViewModel.timerState == timerStartViewModel.TIMER_RESET ? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                 />
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -216,6 +218,7 @@
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
+            android:visibility="@{timerStartViewModel.timerState == timerStartViewModel.TIMER_RESET ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
