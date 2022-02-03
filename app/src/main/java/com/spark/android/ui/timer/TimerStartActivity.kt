@@ -12,6 +12,9 @@ import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.CertifyActivity
 import com.spark.android.ui.certify.CertifyMode
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel
+import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_PAUSE
+import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RESET
+import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RUN
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
@@ -57,7 +60,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
     private fun initClickEvent() {
         binding.btnTimerStartBottom.setOnClickListener {
-            timerStartViewModel.initTimerRun()
+            timerStartViewModel.setState(TIMER_RUN)
+
             binding.btnTimerStartBottom.visibility = View.INVISIBLE
             binding.btnTimerPause.visibility = View.VISIBLE
             binding.btnTimerStop.visibility = View.VISIBLE
@@ -69,7 +73,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         binding.btnTimerStop.setOnClickListener {
 
             DialogUtil(DialogUtil.STOP_TIMER) {
-                timerStartViewModel.initTimerReset()
+                timerStartViewModel.setState(TIMER_RESET)
+
                 binding.btnTimerStop.visibility = View.INVISIBLE
                 binding.btnTimerPause.visibility = View.INVISIBLE
                 binding.btnTimerPlay.visibility = View.INVISIBLE
@@ -83,7 +88,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         }
 
         binding.btnTimerPlay.setOnClickListener {
-            timerStartViewModel.initTimerRun()
+            timerStartViewModel.setState(TIMER_RUN)
             binding.btnTimerPlay.visibility = View.INVISIBLE
             binding.btnTimerPause.visibility = View.VISIBLE
 
@@ -92,7 +97,8 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         }
 
         binding.btnTimerPause.setOnClickListener {
-            timerStartViewModel.initTimerPause()
+            timerStartViewModel.setState(TIMER_PAUSE)
+
             binding.btnTimerPause.visibility = View.INVISIBLE
             binding.btnTimerPlay.visibility = View.VISIBLE
 
