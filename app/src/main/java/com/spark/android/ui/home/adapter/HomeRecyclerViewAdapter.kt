@@ -4,6 +4,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.Room
 import com.spark.android.databinding.ItemHomeRecyclerviewBinding
@@ -17,14 +19,13 @@ import java.lang.RuntimeException
 import kotlin.properties.Delegates
 
 class HomeRecyclerViewAdapter :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    ListAdapter<Room, RecyclerView.ViewHolder>(homeDiffUtil) {
 
     private lateinit var itemHomeRecyclerviewBinding: ItemHomeRecyclerviewBinding
     private lateinit var itemHomeRecyclerviewWaitingBinding: ItemHomeRecyclerviewWaitingBinding
-    val ticketList = mutableListOf<Room>()
 
     override fun getItemViewType(position: Int): Int {
-        return if (ticketList[position].isStarted) {
+        return if (getItem(position).isStarted) {
             TICKET_STARTED
         } else {
             TICKET_WAITING
@@ -57,13 +58,15 @@ class HomeRecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is HomeRecyclerViewHolder) {
-            holder.onBind(ticketList[position])
+            holder.onBind(getItem(position))
         } else if (holder is HomeRecyclerViewWaitingHolder) {
-            holder.onBind(ticketList[position])
+            holder.onBind(getItem(position))
         }
     }
 
-    override fun getItemCount(): Int = ticketList.size
+    fun updateHomeList(rooms: List<Room>) {
+        submitList(rooms)
+    }
 
     inner class HomeRecyclerViewHolder(val binding: ItemHomeRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -74,7 +77,7 @@ class HomeRecyclerViewAdapter :
         init {
             itemView.setOnClickListener {
                 val intent = Intent(it.context, HabitActivity::class.java).apply {
-                    putExtra("roomId", ticketList[absoluteAdapterPosition].roomId)
+                    putExtra("roomId", getItem(absoluteAdapterPosition).roomId)
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 startActivity(it.context, intent, null)
@@ -91,12 +94,21 @@ class HomeRecyclerViewAdapter :
         init {
             itemView.setOnClickListener {
                 val intent = Intent(it.context, WaitingRoomActivity::class.java).apply {
-                    putExtra("roomId", ticketList[absoluteAdapterPosition].roomId)
-                    putExtra("startPoint",WaitingRoomActivity.START_FROM_HOME)
+                    putExtra("roomId", getItem(absoluteAdapterPosition).roomId)
+                    putExtra("startPoint", WaitingRoomActivity.START_FROM_HOME)
                 }
                 startActivity(it.context, intent, null)
             }
         }
     }
 
+    companion object {
+        private val homeDiffUtil = object : DiffUtil.ItemCallback<Room>() {
+            override fun areItemsTheSame(oldItem: Room, newItem: Room): Boolean =
+                oldItem.roomId == newItem.roomId
+
+            override fun areContentsTheSame(oldItem: Room, newItem: Room): Boolean =
+                oldItem == newItem
+        }
+    }
 }
