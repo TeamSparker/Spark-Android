@@ -61,6 +61,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
     private fun initClickEvent() {
         binding.btnTimerStartBottom.setOnClickListener {
             timerStartViewModel.setState(TIMER_RUN)
+
             binding.btnTimerStartBottom.visibility = View.INVISIBLE
             binding.btnTimerPause.visibility = View.VISIBLE
             binding.btnTimerStop.visibility = View.VISIBLE
@@ -73,6 +74,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
             DialogUtil(DialogUtil.STOP_TIMER) {
                 timerStartViewModel.setState(TIMER_RESET)
+
                 binding.btnTimerStop.visibility = View.INVISIBLE
                 binding.btnTimerPause.visibility = View.INVISIBLE
                 binding.btnTimerPlay.visibility = View.INVISIBLE
@@ -96,6 +98,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
         binding.btnTimerPause.setOnClickListener {
             timerStartViewModel.setState(TIMER_PAUSE)
+
             binding.btnTimerPause.visibility = View.INVISIBLE
             binding.btnTimerPlay.visibility = View.VISIBLE
 
