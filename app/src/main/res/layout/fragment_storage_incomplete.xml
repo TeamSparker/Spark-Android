@@ -52,7 +52,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/noto_sans_kr"
             android:includeFontPadding="false"
-            android:text="아직 습관 카드가 없어요.\n인증과 함께 카드를 모아보세요!"
+            android:text="@string/storage_fragment_no_card_msg"
             android:textAlignment="center"
             android:textColor="@color/spark_gray"
             android:textSize="18sp"
