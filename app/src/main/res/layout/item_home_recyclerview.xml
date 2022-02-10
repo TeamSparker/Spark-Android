@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_home_left_ticket_1" />
+                tools:srcCompat="@drawable/img_home_left_ticket_1" />
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket"
