@@ -70,6 +70,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
                 selectedItemId)
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
+            setSendSparkBtnDisabled()
         }
     }
 
@@ -84,6 +85,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
                 selectedItemId)
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
+            setSendSparkBtnDisabled()
         }
     }
 
@@ -98,6 +100,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
                 selectedItemId)
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
+            setSendSparkBtnDisabled()
         }
     }
 
@@ -112,7 +115,15 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
                 selectedItemId)
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
+            setSendSparkBtnDisabled()
         }
+    }
+
+    private fun setSendSparkBtnDisabled() {
+        binding.btnHabitSendSparkMessageFirst.isEnabled = false
+        binding.btnHabitSendSparkMessageSecond.isEnabled = false
+        binding.btnHabitSendSparkMessageThird.isEnabled = false
+        binding.btnHabitSendSparkMessageFourth.isEnabled = false
     }
 
     fun setSelectedItem(nickname: String, recordId: Int) {
