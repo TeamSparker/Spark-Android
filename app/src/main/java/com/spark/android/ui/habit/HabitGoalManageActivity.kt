@@ -8,15 +8,15 @@ import com.spark.android.R
 import com.spark.android.databinding.ActivityHabitGoalManageBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.habit.viewmodel.HabitGoalManageViewModel
-import com.spark.android.util.EditTextUtil
-import com.spark.android.util.KeyBoardUtil
-import com.spark.android.util.initStatusBarColor
-import com.spark.android.util.initStatusBarTextColorToWhite
+import com.spark.android.util.*
 
 class HabitGoalManageActivity :
     BaseActivity<ActivityHabitGoalManageBinding>(R.layout.activity_habit_goal_manage) {
 
     private val habitGoalManageViewModel by viewModels<HabitGoalManageViewModel>()
+    private var layoutState = false
+
+    private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +28,38 @@ class HabitGoalManageActivity :
 
         initIntentData()
         initEditTextClearFocus()
+        initTimeEditTextTouchListener()
         initTimeEditTextFocusListener()
+        initGoalEditTextTouchListener()
         initGoalEditTextFocusListener()
         initQuitBtnClickListener()
         initCompleteBtnClickListener()
+        initKeyBoardEvent()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initUnderBarColor()
+    }
+
+    private fun initUnderBarColor() {
+        if(!binding.etHabitGoalTime.text.isEmpty()){
+            binding.viewHabitGoalTimeUnderBar.setBackgroundColor(
+                ContextCompat.getColor(
+                    binding.viewHabitGoalTimeUnderBar.context,
+                    R.color.spark_pinkred
+                )
+            )
+        }
+
+        if(!binding.etHabitGoalGoal.text.isEmpty()){
+            binding.viewHabitGoalGoalUnderBar.setBackgroundColor(
+                ContextCompat.getColor(
+                    binding.viewHabitGoalGoalUnderBar.context,
+                    R.color.spark_pinkred
+                )
+            )
+        }
     }
 
     private fun initIntentData() {
@@ -43,25 +71,73 @@ class HabitGoalManageActivity :
 
     private fun initEditTextClearFocus() {
         binding.layoutHabitGoalManage.setOnClickListener {
+            layoutState = false
             KeyBoardUtil.hide(this)
         }
     }
 
-
-
+    private fun initTimeEditTextTouchListener() {
+        binding.etHabitGoalTime.setOnClickListener {
+            if (!layoutState) {
+                AnimationUtil.getFocusInSetPurpose(
+                    binding.tvHabitGoalManageTipTop,
+                    binding.tvHabitGoalManageTipBottom,
+                    binding.etHabitGoalTime,
+                    binding.layoutHabitGoalManageMoving,
+                    this,
+                    binding.layoutHabitGoalManage
+                )
+                layoutState = true
+            } else {
+                binding.etHabitGoalTime.isFocusableInTouchMode = true
+                binding.etHabitGoalTime.requestFocus()
+                binding.etHabitGoalTime.isCursorVisible = true
+                KeyBoardUtil.show(this)
+            }
+        }
+    }
 
     private fun initTimeEditTextFocusListener() {
         binding.etHabitGoalTime.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.viewHabitGoalTimeUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalTimeUnderBar.context, R.color.spark_pinkred))
-                binding.tvHabitGoalManageTipTop.visibility = View.GONE
-                binding.tvHabitGoalManageTipBottom.visibility = View.GONE
+                binding.viewHabitGoalTimeUnderBar.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.viewHabitGoalTimeUnderBar.context,
+                        R.color.spark_pinkred
+                    )
+                )
             } else {
                 if(binding.etHabitGoalTime.text.isEmpty()){
-                    binding.viewHabitGoalTimeUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalTimeUnderBar.context, R.color.spark_gray))
+                    binding.viewHabitGoalTimeUnderBar.setBackgroundColor(
+                        ContextCompat.getColor(
+                            binding.viewHabitGoalTimeUnderBar.context,
+                            R.color.spark_gray
+                        )
+                    )
                 }
-                binding.tvHabitGoalManageTipTop.visibility = View.VISIBLE
-                binding.tvHabitGoalManageTipBottom.visibility = View.VISIBLE
+                binding.etHabitGoalTime.isCursorVisible = false
+                binding.etHabitGoalTime.isFocusableInTouchMode = false
+            }
+        }
+    }
+
+    private fun initGoalEditTextTouchListener() {
+        binding.etHabitGoalGoal.setOnClickListener {
+            if (!layoutState) {
+                AnimationUtil.getFocusInSetPurpose(
+                    binding.tvHabitGoalManageTipTop,
+                    binding.tvHabitGoalManageTipBottom,
+                    binding.etHabitGoalGoal,
+                    binding.layoutHabitGoalManageMoving,
+                    this,
+                    binding.layoutHabitGoalManage
+                )
+                layoutState = true
+            } else {
+                binding.etHabitGoalGoal.isFocusableInTouchMode = true
+                binding.etHabitGoalGoal.requestFocus()
+                binding.etHabitGoalGoal.isCursorVisible = true
+                KeyBoardUtil.show(this)
             }
         }
     }
@@ -69,17 +145,41 @@ class HabitGoalManageActivity :
     private fun initGoalEditTextFocusListener() {
         binding.etHabitGoalGoal.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.viewHabitGoalGoalUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalGoalUnderBar.context, R.color.spark_pinkred))
-                binding.tvHabitGoalManageTipTop.visibility = View.GONE
-                binding.tvHabitGoalManageTipBottom.visibility = View.GONE
+                binding.viewHabitGoalGoalUnderBar.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.viewHabitGoalGoalUnderBar.context,
+                        R.color.spark_pinkred
+                    )
+                )
             } else {
                 if(binding.etHabitGoalGoal.text.isEmpty()){
-                    binding.viewHabitGoalGoalUnderBar.setBackgroundColor(ContextCompat.getColor(binding.viewHabitGoalGoalUnderBar.context, R.color.spark_gray))
+                    binding.viewHabitGoalGoalUnderBar.setBackgroundColor(
+                        ContextCompat.getColor(
+                            binding.viewHabitGoalGoalUnderBar.context,
+                            R.color.spark_gray
+                        )
+                    )
                 }
-                binding.tvHabitGoalManageTipTop.visibility = View.VISIBLE
-                binding.tvHabitGoalManageTipBottom.visibility = View.VISIBLE
+                binding.etHabitGoalGoal.isCursorVisible = false
+                binding.etHabitGoalGoal.isFocusableInTouchMode = false
             }
         }
+    }
+
+    private fun initKeyBoardEvent() {
+        keyboardVisibilityUtils = KeyboardVisibilityUtils(this.window,
+            onHideKeyboard = {
+                AnimationUtil.lostFocusInSetPurpose(
+                    binding.tvHabitGoalManageTipTop,
+                    binding.tvHabitGoalManageTipBottom,
+                    binding.etHabitGoalTime,
+                    binding.etHabitGoalGoal,
+                    binding.layoutHabitGoalManageMoving
+                )
+                layoutState = false
+                this.currentFocus?.clearFocus()
+            }
+        )
     }
 
     private fun initQuitBtnClickListener() {
