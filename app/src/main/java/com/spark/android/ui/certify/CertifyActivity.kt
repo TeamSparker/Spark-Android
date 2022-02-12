@@ -26,6 +26,7 @@ import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.ui.share.InstaActivity
+import com.spark.android.ui.timer.viewmodel.TimerStartViewModel
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
@@ -74,9 +75,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
             putExtra("roomName", certifyViewModel.roomName.value.toString())
             putExtra("roomId", certifyViewModel.roomId.value)
             putExtra("timerRecord", certifyViewModel.timerRecord.value.toString())
-            putExtra("myVisible", View.VISIBLE)
-            putExtra("myInvisible", View.INVISIBLE)
+            putExtra("comeBackTimerState", TimerStartViewModel.TIMER_PAUSE)
         }
+
         startActivity(intent)
         finish()
     }

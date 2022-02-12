@@ -213,5 +213,9 @@
     <string name="insta_desc_sticker_tag">인스타 공유 스티커 태그</string>
     <string name="insta_desc_sticker_certify_img">인스타 공유 스티커 인증 사진</string>
 
+    <!-- StorageFragment -->
+    <string name="storage_fragment_no_card_msg">아직 습관 카드가 없어요.\n인증과 함께 카드를 모아보세요!</string>
+
+
 </resources>
 

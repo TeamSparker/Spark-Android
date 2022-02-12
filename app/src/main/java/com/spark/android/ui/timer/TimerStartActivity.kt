@@ -3,7 +3,6 @@ package com.spark.android.ui.timer
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
-import android.view.View
 import android.widget.Chronometer.OnChronometerTickListener
 import androidx.activity.viewModels
 import com.spark.android.R
@@ -27,8 +26,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
     var roomId: Int? = -1
     var nickname = ""
     var profileImgUrl = ""
-    var myVisible = 0
-    var myInvisible = 0
+    var comeBackTimerState = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +37,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
         val timerRecord = intent.getStringExtra("timerRecord")
         initFormatChange(timerRecord)
         initClickEvent()
-        initVisibleStopAndPlayBtn(myVisible,myInvisible)
+        initVisibleStopAndPlayBtn(comeBackTimerState)
 
         roomName = intent.getStringExtra("roomName")
         binding.tvTimerRoomName.text = roomName
@@ -49,22 +47,14 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
     }
 
-    private fun initVisibleStopAndPlayBtn(myVisible : Int, myInvisible : Int) {
-
-        val myVisible = intent.getIntExtra("myVisible", View.INVISIBLE)
-        binding.btnTimerStop.visibility = myVisible
-        binding.btnTimerPlay.visibility = myVisible
-        val myInvisible = intent.getIntExtra("myInvisible", View.VISIBLE)
-        binding.btnTimerStartBottom.visibility = myInvisible
+    private fun initVisibleStopAndPlayBtn(comeBackTimerState: Int) {
+        val comeBackTimerState = intent.getIntExtra("comeBackTimerState", TIMER_RESET)
+        timerStartViewModel.setState(comeBackTimerState)
     }
 
     private fun initClickEvent() {
         binding.btnTimerStartBottom.setOnClickListener {
             timerStartViewModel.setState(TIMER_RUN)
-
-            binding.btnTimerStartBottom.visibility = View.INVISIBLE
-            binding.btnTimerPause.visibility = View.VISIBLE
-            binding.btnTimerStop.visibility = View.VISIBLE
 
             binding.chronometerTimer.base = SystemClock.elapsedRealtime() + pauseTime
             binding.chronometerTimer.start()
@@ -75,10 +65,6 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
             DialogUtil(DialogUtil.STOP_TIMER) {
                 timerStartViewModel.setState(TIMER_RESET)
 
-                binding.btnTimerStop.visibility = View.INVISIBLE
-                binding.btnTimerPause.visibility = View.INVISIBLE
-                binding.btnTimerPlay.visibility = View.INVISIBLE
-                binding.btnTimerStartBottom.visibility = View.VISIBLE
                 pauseTime = 0L
                 binding.chronometerTimer.base = SystemClock.elapsedRealtime()
                 initFormatChange(null)
@@ -89,8 +75,6 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
         binding.btnTimerPlay.setOnClickListener {
             timerStartViewModel.setState(TIMER_RUN)
-            binding.btnTimerPlay.visibility = View.INVISIBLE
-            binding.btnTimerPause.visibility = View.VISIBLE
 
             binding.chronometerTimer.base = SystemClock.elapsedRealtime() + pauseTime
             binding.chronometerTimer.start()
@@ -98,9 +82,6 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
         binding.btnTimerPause.setOnClickListener {
             timerStartViewModel.setState(TIMER_PAUSE)
-
-            binding.btnTimerPause.visibility = View.INVISIBLE
-            binding.btnTimerPlay.visibility = View.VISIBLE
 
             pauseTime = binding.chronometerTimer.base - SystemClock.elapsedRealtime()
             binding.chronometerTimer.stop()
