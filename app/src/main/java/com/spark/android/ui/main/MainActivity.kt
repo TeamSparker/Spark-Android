@@ -55,14 +55,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun onBackPressed() {
-        if (System.currentTimeMillis() - backBtnWaitTime >= BACK_BTN_WAIT_TIME) {
-            backBtnWaitTime = System.currentTimeMillis()
-            toast.show()
+        if(fabState){
+            AnimationUtil.closeFabAnimation(
+                binding.fabHomeMain,
+                binding.fabHomeMakeRoom,
+                binding.fabHomeJoinCode,
+                binding.layoutMainFabBackground,
+                binding.tvFabMakeRoom,
+                binding.tvFabJoinCode
+            )
+            fabState = !fabState
+            initBindingVariable()
         } else {
-            toast.cancel()
-            ActivityCompat.finishAffinity(this)
-            System.runFinalization()
-            exitProcess(0)
+            //한번더 뒤로가기 눌렀을때 앱꺼지게하는 코드(주석 이창환이 몰라서 달아놓음)
+            if (System.currentTimeMillis() - backBtnWaitTime >= BACK_BTN_WAIT_TIME) {
+                backBtnWaitTime = System.currentTimeMillis()
+                toast.show()
+            } else {
+                toast.cancel()
+                ActivityCompat.finishAffinity(this)
+                System.runFinalization()
+                exitProcess(0)
+            }
         }
     }
 
