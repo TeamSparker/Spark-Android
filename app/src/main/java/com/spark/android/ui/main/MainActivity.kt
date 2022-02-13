@@ -150,6 +150,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             binding.tvFabJoinCode
         )
         fabState = !fabState
+        initBindingVariable()
     }
 
     fun initMakeJoinCodeListener() {
@@ -169,6 +170,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 binding.tvFabJoinCode
             )
             fabState = !fabState
+            initBindingVariable()
         }
     }
 
