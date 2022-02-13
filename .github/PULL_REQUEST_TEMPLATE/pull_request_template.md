@@ -1,5 +1,5 @@
 ---
-name: Pull-request
+name: pull_request_template
 about: 풀리퀘할때 작성해주세요
 title: ''
 labels: ''
