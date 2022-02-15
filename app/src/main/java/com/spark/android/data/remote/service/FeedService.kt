@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface FeedService {
     @GET("feed")
     suspend fun getFeedList(
-        @Query("lastid") lastId: Int,
+        @Query("lastId") lastId: Int,
         @Query("size") size: Int
     ): BaseResponse<FeedResponse>
 

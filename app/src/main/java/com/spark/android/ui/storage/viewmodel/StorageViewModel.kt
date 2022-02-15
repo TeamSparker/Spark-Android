@@ -73,10 +73,10 @@ class StorageViewModel : ViewModel() {
         }
     }
 
-    fun initStorageNetwork(type: String, lastid: Int, size: Int) {
+    fun initStorageNetwork(type: String, lastId: Int, size: Int) {
         initIsLoading(true)
         val call: Call<BaseResponse<StorageResponse>> =
-            RetrofitBuilder.storageService.getStorageData(type, lastid, size)
+            RetrofitBuilder.storageService.getStorageData(type, lastId, size)
 
         call.enqueue(object : Callback<BaseResponse<StorageResponse>> {
             override fun onResponse(
