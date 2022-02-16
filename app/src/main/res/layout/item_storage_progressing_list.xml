@@ -118,7 +118,7 @@
             android:fontFamily="@font/futura_medium"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="1sp"
-            android:text="@{String.valueOf(safeUnbox(storageRoom.totalRecievedSpark))}"
+            android:text="@{String.valueOf(safeUnbox(storageRoom.totalReceivedSpark))}"
             android:textColor="@color/spark_gray"
             android:textSize="20dp"
             android:textStyle="normal"
