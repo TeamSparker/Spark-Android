@@ -3,19 +3,14 @@ package com.spark.android.ui.storage.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageProgressingListBinding
 import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 
-class ProgressingVpAdapter : RecyclerView.Adapter<ProgressingVpAdapter.ProgressingVpViewHolder>() {
-
-    var roomNameList = listOf<StorageRoom>()
-
-    fun setList(list: List<StorageRoom>) {
-        roomNameList = list
-        notifyDataSetChanged()
-    }
+class ProgressingVpAdapter : ListAdapter<StorageRoom, ProgressingVpAdapter.ProgressingVpViewHolder>(progressingDiffUtil) {
 
 
     class ProgressingVpViewHolder(private val binding: ItemStorageProgressingListBinding) :
@@ -43,8 +38,23 @@ class ProgressingVpAdapter : RecyclerView.Adapter<ProgressingVpAdapter.Progressi
     }
 
     override fun onBindViewHolder(holder: ProgressingVpViewHolder, position: Int) {
-        holder.onBind(roomNameList[position])
+
+        if(holder is ProgressingVpViewHolder) {
+            holder.onBind(getItem(position))
+        }
     }
 
-    override fun getItemCount(): Int = roomNameList.size
+    fun updateProgressingRoomList(storageRooms: List<StorageRoom>) {
+        submitList(storageRooms)
+    }
+
+    companion object {
+        private val progressingDiffUtil = object : DiffUtil.ItemCallback<StorageRoom>() {
+            override fun areItemsTheSame(oldItem: StorageRoom, newItem: StorageRoom): Boolean =
+                oldItem.roomId == newItem.roomId
+
+            override fun areContentsTheSame(oldItem: StorageRoom, newItem: StorageRoom): Boolean =
+                oldItem == newItem
+        }
+    }
 }

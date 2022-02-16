@@ -33,7 +33,7 @@ class StorageProgressingFragment :
 
     private fun initProgressingRoomsObserver() {
         storageViewModel.progressingRooms.observe(viewLifecycleOwner) { rooms ->
-            progressingVpAdapter.setList(rooms)
+            progressingVpAdapter.updateProgressingRoomList(rooms)
         }
     }
 }
