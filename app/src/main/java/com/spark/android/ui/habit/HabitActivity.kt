@@ -44,14 +44,11 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun initHabitRecordsObserver() {
         habitViewModel.habitRecordList.observe(this) {
-            habitRecyclerViewAdapter.list.addAll(it)
-            habitRecyclerViewAdapter.notifyDataSetChanged()
+            habitRecyclerViewAdapter.updateHabitList(it)
         }
     }
 
     private fun refreshData() {
-        habitRecyclerViewAdapter.list.clear()
-        habitRecyclerViewAdapter.notifyDataSetChanged()
         if (roomId != -1) {
             habitViewModel.getHabitRoomInfo(roomId)
         }
@@ -88,11 +85,6 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         binding.btnHabitTodayCertification.setOnClickListener {
             HabitTodayBottomSheet().show(supportFragmentManager, this.javaClass.name)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        refreshData()
     }
 
     override fun onPause() {

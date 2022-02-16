@@ -4,14 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.HabitRecord
 import com.spark.android.data.remote.entity.response.HabitResponse
 import com.spark.android.databinding.ItemHabitTeamBinding
 import com.spark.android.ui.habit.HabitSendSparkBottomSheet
 
-class HabitRecyclerViewAdapter : RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder>() {
-    val list = mutableListOf<HabitRecord>()
+class HabitRecyclerViewAdapter : ListAdapter<HabitRecord, HabitRecyclerViewAdapter.HabitViewHolder>(habitDiffUtil) {
     lateinit var response: HabitResponse
 
     class HabitViewHolder(private val binding: ItemHabitTeamBinding, private val size: Int) :
@@ -35,12 +36,24 @@ class HabitRecyclerViewAdapter : RecyclerView.Adapter<HabitRecyclerViewAdapter.H
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
         val binding =
             ItemHabitTeamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HabitViewHolder(binding, list.size)
+        return HabitViewHolder(binding, currentList.size)
     }
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        holder.onBind(position, list[position], response)
+        holder.onBind(position, getItem(position), response)
     }
 
-    override fun getItemCount() = list.size
+    fun updateHabitList(habits: List<HabitRecord>) {
+        submitList(habits)
+    }
+
+    companion object {
+        private val habitDiffUtil = object : DiffUtil.ItemCallback<HabitRecord>() {
+            override fun areItemsTheSame(oldItem: HabitRecord, newItem: HabitRecord): Boolean =
+                oldItem.recordId == newItem.recordId
+
+            override fun areContentsTheSame(oldItem: HabitRecord, newItem: HabitRecord): Boolean =
+                oldItem == newItem
+        }
+    }
 }
