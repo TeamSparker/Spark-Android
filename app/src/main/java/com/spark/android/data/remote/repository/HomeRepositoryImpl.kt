@@ -7,10 +7,10 @@ class HomeRepositoryImpl @Inject constructor(
     private val homeService: HomeService
 ) : HomeRepository {
     override suspend fun getHomeAllRoom(
-        lastid: Int,
+        lastId: Int,
         size: Int
     ) = kotlin.runCatching {
-        homeService.getHomeAllRoom(lastid, size)
+        homeService.getHomeAllRoom(lastId, size)
     }
 
 }

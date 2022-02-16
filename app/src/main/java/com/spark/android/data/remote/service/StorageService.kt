@@ -11,7 +11,7 @@ interface StorageService  {
     @GET("myroom")
     fun getStorageData(
         @Query("type") type:String,
-        @Query("lastid") lastid:Int,
+        @Query("lastId") lastId:Int,
         @Query("size") size:Int
     ): Call<BaseResponse<StorageResponse>>
 }

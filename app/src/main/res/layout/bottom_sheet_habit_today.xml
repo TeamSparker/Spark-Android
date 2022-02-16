@@ -162,7 +162,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="@{Integer.toString(habitViewModel.habitInfo.life)}"
+            android:text="@{Integer.toString(habitViewModel.habitInfo.myRecord.rest)}"
             android:textColor="@color/spark_dark_pinkred"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/tv_habit_today_rest_tail"
