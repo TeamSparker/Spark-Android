@@ -13,10 +13,8 @@ import com.spark.android.databinding.ItemHomeRecyclerviewWaitingBinding
 import com.spark.android.ui.habit.HabitActivity
 import com.spark.android.ui.home.adapter.multiview.TICKET_STARTED
 import com.spark.android.ui.home.adapter.multiview.TICKET_WAITING
-import com.spark.android.ui.home.data.TicketData
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import java.lang.RuntimeException
-import kotlin.properties.Delegates
 
 class HomeRecyclerViewAdapter :
     ListAdapter<Room, RecyclerView.ViewHolder>(homeDiffUtil) {
