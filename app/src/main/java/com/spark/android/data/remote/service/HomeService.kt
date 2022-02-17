@@ -9,9 +9,8 @@ interface HomeService {
 
     @GET("room")
     suspend fun getHomeAllRoom(
-        @Query("lastid") lastid: Int,
+        @Query("lastId") lastId: Int,
         @Query("size") size: Int
     ): BaseResponse<HomeResponse>
-
 
 }

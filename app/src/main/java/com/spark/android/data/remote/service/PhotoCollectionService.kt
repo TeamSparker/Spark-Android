@@ -12,7 +12,7 @@ interface PhotoCollectionService {
     @GET("myroom/{roomId}")
     fun getPhotoCollectionData(
         @Path("roomId") roomId : Int,
-        @Query("lastid") lastid: Int,
+        @Query("lastId") lastId: Int,
         @Query("size") size: Int
     ): Call<BaseResponse<PhotoCollectionResponse>>
 }

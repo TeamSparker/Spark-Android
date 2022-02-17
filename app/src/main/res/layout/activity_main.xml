@@ -33,7 +33,9 @@
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/layout_main_bottom_nav"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/main_nav_graph" />
+            app:layout_constraintVertical_bias="0.0"
+            app:navGraph="@navigation/main_nav_graph"
+            tools:layout_editor_absoluteX="0dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_main_bottom_nav"
@@ -136,6 +138,18 @@
             android:clickable="true"
             android:visibility="gone" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_spark_dark_pinkred"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
+            app:layout_constraintStart_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main"
+            android:layout_marginTop="8dp"
+            android:clickable="false"
+            android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"/>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_home_join_code"
             android:layout_width="wrap_content"
@@ -180,6 +194,7 @@
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="28dp"
             android:backgroundTint="@{fabState ? @color/spark_white : @color/spark_dark_pinkred}"
+            android:elevation="0dp"
             android:src="@drawable/ic_fab_plus"
             android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
             app:borderWidth="0dp"

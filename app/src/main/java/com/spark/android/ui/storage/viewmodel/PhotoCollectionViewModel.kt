@@ -26,10 +26,10 @@ class PhotoCollectionViewModel : ViewModel() {
         _isLoading.value = isLoading
     }
 
-    fun initPhotoCollectionNetwork(roomId: Int, lastid: Int, size: Int) {
+    fun initPhotoCollectionNetwork(roomId: Int, lastId: Int, size: Int) {
         initIsLoading(true)
         val call: Call<BaseResponse<PhotoCollectionResponse>> =
-            RetrofitBuilder.photoCollectionService.getPhotoCollectionData(roomId, lastid, size)
+            RetrofitBuilder.photoCollectionService.getPhotoCollectionData(roomId, lastId, size)
 
         call.enqueue(object : Callback<BaseResponse<PhotoCollectionResponse>> {
             override fun onResponse(
