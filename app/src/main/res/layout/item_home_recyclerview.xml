@@ -7,8 +7,6 @@
 
         <import type="android.view.View" />
 
-        <import type="com.spark.android.ui.home.mode.HomeMyStatusMode"/>
-
         <variable
             name="room"
             type="com.spark.android.data.remote.entity.response.Room" />
@@ -210,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:visibility="@{room.myStatus.equals(HomeMyStatusMode.DONE) ? View.VISIBLE : View.GONE }"
+                android:visibility="@{room.myStatus.equals(`DONE`) ? View.VISIBLE : View.GONE }"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
                 app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title"
                 android:src="@drawable/ic_home_ticket_tag_done" />
@@ -221,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:visibility="@{room.myStatus.equals(HomeMyStatusMode.REST) ? View.VISIBLE : View.GONE }"
+                android:visibility="@{room.myStatus.equals(`REST`) ? View.VISIBLE : View.GONE }"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
                 app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title"
                 android:src="@drawable/ic_home_ticket_tag_rest" />
