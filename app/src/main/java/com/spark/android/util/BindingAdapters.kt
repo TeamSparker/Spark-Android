@@ -104,8 +104,8 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("setRightBackground")
-    fun setRightBackground(imageview: ImageView, isDone: Boolean) {
-        if (isDone) {
+    fun setRightBackground(imageview: ImageView, myStatus: String) {
+        if (myStatus == "DONE") {
             imageview.setImageResource(R.drawable.img_home_right_ticket_fold)
         } else {
             imageview.setImageResource(R.drawable.img_home_right_ticket)
