@@ -6,7 +6,7 @@ data class HomeResponse(
 
 data class Room(
     val doneMemberNum: Int,
-    val isDone: Boolean,
+    val myStatus: String?,
     val isStarted: Boolean,
     val leftDay: Int?,
     val life: Int,
