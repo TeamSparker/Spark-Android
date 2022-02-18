@@ -54,46 +54,33 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+        <ImageView
+            android:id="@+id/iv_home_no_room"
             android:layout_width="wrap_content"
-            android:visibility="@{homeViewModel.isLoading() == false &amp;&amp; homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="23dp"
+            android:visibility="@{homeViewModel.isLoading() == false &amp;&amp; homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_home_no_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/img_home_no_room" />
+
+        <TextView
+            android:id="@+id/tv_home_no_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/home_no_room"
+            android:textAlignment="center"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            android:visibility="@{homeViewModel.isLoading() == false &amp;&amp; homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_home_toolbar">
-
-            <ImageView
-                android:id="@+id/iv_home_no_room"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="@{homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_home_no_room" />
-
-            <TextView
-                android:id="@+id/tv_home_no_room"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
-                android:includeFontPadding="false"
-                android:lineHeight="21dp"
-                android:text="@string/home_no_room"
-                android:textAlignment="center"
-                android:textColor="@color/spark_dark_gray"
-                android:textSize="18dp"
-                android:visibility="@{homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_home_no_room" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.63" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_feed_loading"
