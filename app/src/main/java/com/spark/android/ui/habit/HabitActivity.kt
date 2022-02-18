@@ -29,6 +29,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitBackBtnClickListener()
         initHabitMoreBtnClickListener()
         initHabitTodayBtnClickListener()
+        setFragmentResultListener()
     }
 
     private fun initRoomId() {
@@ -85,6 +86,13 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         binding.btnHabitTodayCertification.setOnClickListener {
             HabitTodayBottomSheet().show(supportFragmentManager, this.javaClass.name)
         }
+    }
+
+    private fun setFragmentResultListener() {
+        supportFragmentManager
+            .setFragmentResultListener("refreshHabitData", this) { requestKey, bundle ->
+                refreshData()
+            }
     }
 
     override fun onResume() {
