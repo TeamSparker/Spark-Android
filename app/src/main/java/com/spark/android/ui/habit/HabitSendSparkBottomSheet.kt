@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
@@ -71,6 +73,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
             setSendSparkBtnDisabled()
+            setFragmentResult()
         }
     }
 
@@ -86,6 +89,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
             setSendSparkBtnDisabled()
+            setFragmentResult()
         }
     }
 
@@ -101,6 +105,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
             setSendSparkBtnDisabled()
+            setFragmentResult()
         }
     }
 
@@ -116,6 +121,7 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
             SendSparkToast.cancelToast()
             SendSparkToast.showToast(view.context, selectedItemNickname)
             setSendSparkBtnDisabled()
+            setFragmentResult()
         }
     }
 
@@ -129,5 +135,9 @@ class HabitSendSparkBottomSheet : BottomSheetDialogFragment() {
     fun setSelectedItem(nickname: String, recordId: Int) {
         selectedItemId = recordId
         selectedItemNickname = nickname
+    }
+
+    private fun setFragmentResult() {
+        setFragmentResult("refreshHabitData", bundleOf("bundleKey" to "sendSpark"))
     }
 }
