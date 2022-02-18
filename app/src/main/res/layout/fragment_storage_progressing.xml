@@ -36,13 +36,12 @@
             android:id="@+id/iv_storage_progressing_empty_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
             android:src="@drawable/ic_storage_card_empty"
             android:visibility="@{storageViewModel.storageResponse.ongoingRoomNum == 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/tv_storage_empty_guide"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_storage_empty_guide"
@@ -54,12 +53,13 @@
             android:text="@string/storage_fragment_no_card_msg"
             android:textAlignment="center"
             android:textColor="@color/spark_gray"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:visibility="@{storageViewModel.storageResponse.ongoingRoomNum == 0 ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/iv_storage_progressing_empty_card"
-            app:layout_constraintStart_toStartOf="@id/iv_storage_progressing_empty_card"
-            app:layout_constraintTop_toBottomOf="@id/iv_storage_progressing_empty_card" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.49" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
