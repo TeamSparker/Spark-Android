@@ -57,74 +57,69 @@
             android:layout_marginEnd="12dp"
             app:layout_constraintBottom_toTopOf="@id/iv_progressing_item_photo"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:background="@drawable/shape_spark_light_pinkred_line_2_rect_bottomless" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_progressing_item_title"
+        <ImageView
+            android:id="@+id/iv_progressing_item_sparkflake"
+            setProgressingCardSparkFlake="@{storageRoom.leftDay}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_storage_progressing_item_sparkflake3" />
 
-            <ImageView
-                android:id="@+id/iv_progressing_item_sparkflake"
-                setProgressingCardSparkFlake="@{storageRoom.leftDay}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_storage_progressing_item_sparkflake3" />
-
-            <TextView
-                android:id="@+id/tv_progressing_item_leftDays"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
-                android:fontFamily="@font/futura_bold"
-                android:lineSpacingExtra="1sp"
-                android:text="@{storageRoom.leftDay == 0 ? `D-day` : `D-` + String.valueOf(safeUnbox(storageRoom.leftDay))}"
-                android:textColor="@color/spark_white"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="D-34" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_progressing_item_leftDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/futura_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="1sp"
+            android:text="@{storageRoom.leftDay == 0 ? `D-day` : `D-` + String.valueOf(safeUnbox(storageRoom.leftDay))}"
+            android:textColor="@color/spark_white"
+            android:textSize="24dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_progressing_item_sparkflake"
+            app:layout_constraintEnd_toEndOf="@+id/iv_progressing_item_sparkflake"
+            app:layout_constraintStart_toStartOf="@+id/iv_progressing_item_sparkflake"
+            tools:text="D-34" />
 
         <ImageView
             android:id="@+id/iv_progressing_item_fire_gray"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginStart="139dp"
-            android:layout_marginTop="133dp"
-            android:layout_marginEnd="153dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/ic_item_fire_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/tv_progressing_item_total_sparkNumber"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/tv_progressing_item_leftDays"
+            app:layout_constraintTop_toBottomOf="@id/iv_progressing_item_sparkflake" />
 
         <TextView
-            android:id="@+id/iv_progressing_item_total_sparkNumber"
+            android:id="@+id/tv_progressing_item_total_sparkNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginTop="9dp"
             android:fontFamily="@font/futura_medium"
             android:gravity="center_horizontal"
+            android:includeFontPadding="false"
             android:lineSpacingExtra="1sp"
             android:text="@{String.valueOf(safeUnbox(storageRoom.totalReceivedSpark))}"
             android:textColor="@color/spark_gray"
             android:textSize="20dp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/tv_progressing_item_leftDays"
             app:layout_constraintStart_toEndOf="@+id/iv_progressing_item_fire_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="3" />
+            app:layout_constraintTop_toBottomOf="@id/iv_progressing_item_sparkflake"
+            tools:text="300" />
 
         <TextView
             android:id="@+id/tv_progressing_item_roomName"
@@ -149,6 +144,7 @@
             android:fontFamily="@font/futura_medium"
             android:text="@{storageRoom.startDate.replace(`-`,`.`) +` - `+storageRoom.endDate.replace(`-`,`.`)}"
             android:textAlignment="center"
+            android:includeFontPadding="false"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
