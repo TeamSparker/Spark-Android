@@ -39,14 +39,6 @@
             app:layout_constraintStart_toStartOf="@id/iv_incomplete_item_photo"
             app:layout_constraintTop_toTopOf="@id/iv_incomplete_item_photo" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_incomplete_item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
 
             <ImageView
@@ -55,47 +47,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="36dp"
                 tools:src="@drawable/ic_storage_incomplete_item_sparkflake3" />
 
-            <TextView
-                android:id="@+id/tv_incomplte_item_leftDays"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
-                android:fontFamily="@font/futura_bold"
-                android:includeFontPadding="false"
-                android:text="@{storageRoom.failDay == 66 ? `D-day` : String.valueOf(safeUnbox(storageRoom.failDay))+` DAYS`}"
-                android:textAlignment="center"
-                android:textColor="@color/spark_white"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="32 DAYS" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_incomplte_item_leftDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/futura_bold"
+            android:includeFontPadding="false"
+            android:text="@{storageRoom.failDay == 66 ? `D-day` : String.valueOf(safeUnbox(storageRoom.failDay))+` DAYS`}"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="24dp"
+            android:layout_marginStart="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_incomplete_item_sparkflake"
+            app:layout_constraintEnd_toEndOf="@+id/iv_incomplete_item_sparkflake"
+            app:layout_constraintStart_toStartOf="@+id/iv_incomplete_item_sparkflake"
+            tools:text="32 DAYS" />
 
         <ImageView
             android:id="@+id/iv_incomplete_item_fire_gray"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginStart="139dp"
-            android:layout_marginTop="133dp"
-            android:layout_marginEnd="153dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/ic_item_fire_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/tv_incomplete_item_total_sparkNumber"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/tv_incomplte_item_leftDays"
+
+            app:layout_constraintTop_toBottomOf="@id/iv_incomplete_item_sparkflake" />
 
         <TextView
             android:id="@+id/tv_incomplete_item_total_sparkNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="9dp"
             android:fontFamily="@font/futura_medium"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="1sp"
@@ -103,9 +94,10 @@
             android:textColor="@color/spark_gray"
             android:textSize="20dp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/tv_incomplte_item_leftDays"
             app:layout_constraintStart_toEndOf="@id/iv_incomplete_item_fire_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="3" />
+            app:layout_constraintTop_toBottomOf="@id/iv_incomplete_item_sparkflake"
+            tools:text="300" />
 
 
         <TextView

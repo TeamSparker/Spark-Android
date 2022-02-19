@@ -114,13 +114,13 @@
             android:id="@+id/iv_complete_item_fire_gray"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginStart="139dp"
-            android:layout_marginTop="133dp"
-            android:layout_marginEnd="153dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/ic_item_fire_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/tv_complete_item_total_sparkNumber"
+            app:layout_constraintStart_toStartOf="@+id/iv_complete_item_sparkflake"
+            app:layout_constraintTop_toBottomOf="@id/iv_complete_item_sparkflake"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            />
 
 
         <TextView
@@ -128,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="9dp"
             android:fontFamily="@font/futura_medium"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
@@ -138,9 +138,10 @@
             android:textColor="@color/spark_gray"
             android:textSize="20dp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/iv_complete_item_sparkflake"
             app:layout_constraintStart_toEndOf="@id/iv_complete_item_fire_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="3" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_complete_item_sparkflake"
+            tools:text="300" />
 
 
         <TextView
