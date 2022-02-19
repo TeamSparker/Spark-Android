@@ -22,11 +22,13 @@
         <ImageView
             android:id="@+id/iv_item_habit_team_profile"
             setCircleImage="@{record.profileImg}"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/shape_habit_light_gray_line_circle"
+            android:padding="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
