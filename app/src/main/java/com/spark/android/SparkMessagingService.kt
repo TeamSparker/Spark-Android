@@ -14,6 +14,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.spark.android.ui.intro.IntroActivity
+import com.spark.android.util.ImageUrlTransformer
 import java.lang.IllegalArgumentException
 
 class SparkMessagingService : FirebaseMessagingService() {
@@ -97,16 +98,10 @@ class SparkMessagingService : FirebaseMessagingService() {
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
         val imageUrl = remoteMessage.data["imageUrl"].toString()
-        val imageType = when {
-            imageUrl.contains(JPEG) -> JPEG
-            imageUrl.contains(PNG) -> PNG
-            else -> throw IllegalArgumentException("FCM imageUrl 이미지 확장자 에러")
-        }
-        val resizeImagedUrl = imageUrl.replace(imageType, SMALL_IMG_SIZE + imageType)
         when (remoteMessage.data["expand"].toString()) {
             EXPAND -> Glide.with(this)
                 .asBitmap()
-                .load(resizeImagedUrl)
+                .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onResourceReady(
                         resource: Bitmap,
@@ -120,7 +115,7 @@ class SparkMessagingService : FirebaseMessagingService() {
                 })
             NOT_EXPAND -> Glide.with(this)
                 .asBitmap()
-                .load(resizeImagedUrl)
+                .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
                 .circleCrop()
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onResourceReady(
@@ -138,8 +133,5 @@ class SparkMessagingService : FirebaseMessagingService() {
     companion object {
         private const val EXPAND = "enable"
         private const val NOT_EXPAND = "disable"
-        private const val SMALL_IMG_SIZE = "_270x270"
-        private const val JPEG = ".jpeg"
-        private const val PNG = ".png"
     }
 }
