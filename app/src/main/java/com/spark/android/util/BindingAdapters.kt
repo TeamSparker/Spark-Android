@@ -1,7 +1,6 @@
 package com.spark.android.util
 
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
 import android.net.Uri
 import android.view.View
 import android.widget.*
@@ -482,12 +481,12 @@ object BindingAdapters {
             }
             "REST" -> {
                 Glide.with(this.context)
-                    .load(R.drawable.sticker_rest)
+                    .load(R.drawable.ic_photo_collection_sticker_rest)
                     .into(this)
             }
             "NONE" -> {
                 Glide.with(this.context)
-                    .load(R.drawable.ic_sticker_none)
+                    .load(R.drawable.ic_photo_collection_sticker_none)
                     .into(this)
             }
             "CONSIDER" -> {
