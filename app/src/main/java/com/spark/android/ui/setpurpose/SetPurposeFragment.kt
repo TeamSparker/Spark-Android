@@ -186,6 +186,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
     private fun initSettingPurposeFinish() {
         binding.btnSetPurposeFinish.setOnClickListener {
+            binding.btnSetPurposeFinish.isClickable = false
             setPurposeViewModel.setPurpose(
                 roomId,
                 SetPurposeRequest(
