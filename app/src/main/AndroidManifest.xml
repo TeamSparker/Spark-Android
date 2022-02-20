@@ -28,7 +28,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.certify.CertifyActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.timer.TimerStartActivity"

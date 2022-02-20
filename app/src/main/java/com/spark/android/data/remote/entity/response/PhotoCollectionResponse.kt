@@ -11,5 +11,6 @@ data class StorageCardPhoto(
     val leftDay: Int,
     val recordId: Int,
     val sparkNum: Int,
-    val status: String
+    val status: String,
+    val timerRecord: String
 )
