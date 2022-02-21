@@ -23,13 +23,28 @@ class MultiPartResolver @Inject constructor(
     @ActivityContext private val context: Context
 ) {
     fun createImgMultiPart(uri: Uri): MultipartBody.Part {
+        var resizedWidth = RESIZED_SIZE
+        var resizedHeight = RESIZED_SIZE
         val options = BitmapFactory.Options()
         val inputStream = context.contentResolver.openInputStream(uri)
         val byteArrayOutputStream = ByteArrayOutputStream()
         getRotatedBitmap(
             BitmapFactory.decodeStream(inputStream, null, options),
             getOrientationOfImage(uri)
-        )?.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
+        )?.let {
+            if (it.width >= RESIZED_SIZE && it.height >= RESIZED_SIZE) {
+                if (it.width >= it.height) {
+                    resizedWidth = resizedHeight * (it.width.toFloat() / it.height.toFloat())
+                } else {
+                    resizedHeight = resizedWidth * (it.height.toFloat() / it.width.toFloat())
+                }
+            } else {
+                resizedWidth = it.width.toFloat()
+                resizedHeight = it.height.toFloat()
+            }
+            Bitmap.createScaledBitmap(it, resizedWidth.toInt(), resizedHeight.toInt(), true)
+                .compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        }
         val file = File(replaceFileName(uri.toString()))
         val surveyBody =
             byteArrayOutputStream.toByteArray().toRequestBody("image/jpeg".toMediaTypeOrNull())
@@ -89,4 +104,8 @@ class MultiPartResolver @Inject constructor(
     }
 
     private fun replaceFileName(fileName: String): String = "${fileName.replace(".", "_")}.jpeg"
+
+    companion object {
+        private const val RESIZED_SIZE = 720f
+    }
 }
