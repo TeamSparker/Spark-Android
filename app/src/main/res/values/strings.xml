@@ -101,6 +101,8 @@
     <string name="select_confirm_method_picture_content">미라클 모닝, 영양제 먹기와 같이 특정 순간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
+    <string name="select_confirm_method_dialog_title">방 생성을 완료하시겠습니까?\n방 이름과 인증 방식은 수정이 어렵습니다.</string>
+    <string name="select_confirm_method_dialog_done">완료</string>
 
     <!-- TimerStartActivity -->
     <string name="timer_step_stopwatch">스톱워치</string>
