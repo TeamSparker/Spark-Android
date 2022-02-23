@@ -15,6 +15,8 @@ import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.makeroom.selectconfirmmethod.viewmodel.SelectConfirmMethodViewModel
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
+import com.spark.android.util.DialogUtil
+import com.spark.android.util.DialogUtil.Companion.CHECK_CONFIRM_MODE
 import com.spark.android.util.popBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,28 +38,31 @@ class SelectConfirmMethodFragment :
 
     private fun initOpenWaitingRoom() {
         binding.btnMakeRoomSelectConfirmMethodEnterWaiting.setOnClickListener {
-            binding.btnMakeRoomSelectConfirmMethodEnterWaiting.isClickable = false
-            val requestData = selectConfirmMethodViewModel.methodState.value?.let { methodState ->
-                args.roomName?.let { roomName ->
-                    MakeRoomRequest(
-                        roomName,
-                        methodState
-                    )
-                }
-            }
+            DialogUtil(CHECK_CONFIRM_MODE) {
+                binding.btnMakeRoomSelectConfirmMethodEnterWaiting.isClickable = false
+                val requestData =
+                    selectConfirmMethodViewModel.methodState.value?.let { methodState ->
+                        args.roomName?.let { roomName ->
+                            MakeRoomRequest(
+                                roomName,
+                                methodState
+                            )
+                        }
+                    }
 
-            if (requestData != null) {
-                selectConfirmMethodViewModel.makeRoom(requestData)
-            }
-            selectConfirmMethodViewModel.roomId.observe(this) {
-                val intent = Intent(requireActivity(), WaitingRoomActivity::class.java).apply {
-                    putExtra("roomId", selectConfirmMethodViewModel.roomId.value)
-                    putExtra("startPoint",WaitingRoomActivity.START_FROM_CONFIRM_METHOD)
+                if (requestData != null) {
+                    selectConfirmMethodViewModel.makeRoom(requestData)
                 }
-                startActivity(intent)
+                selectConfirmMethodViewModel.roomId.observe(this) {
+                    val intent = Intent(requireActivity(), WaitingRoomActivity::class.java).apply {
+                        putExtra("roomId", selectConfirmMethodViewModel.roomId.value)
+                        putExtra("startPoint", WaitingRoomActivity.START_FROM_CONFIRM_METHOD)
+                    }
+                    startActivity(intent)
 
-                requireActivity().finish()
-            }
+                    requireActivity().finish()
+                }
+            }.show(requireActivity().supportFragmentManager,this.javaClass.name)
         }
     }
 

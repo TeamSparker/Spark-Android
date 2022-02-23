@@ -46,7 +46,7 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
     }
 
     private fun initExtra() {
-        roomInfo = intent.getParcelableExtra<JoinCodeRoomInfoResponse>("roomInfo")!!
+        roomInfo = intent.getParcelableExtra("roomInfo")!!
     }
 
     private fun initInputCodeAgainButtonListener() {
