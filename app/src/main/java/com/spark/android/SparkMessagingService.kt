@@ -14,6 +14,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.spark.android.ui.intro.IntroActivity
+import com.spark.android.util.ImageCropUtil
 import com.spark.android.util.ImageUrlTransformer
 import java.lang.IllegalArgumentException
 
@@ -93,7 +94,12 @@ class SparkMessagingService : FirebaseMessagingService() {
             .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    createNotificationWithImage(remoteMessage, resource)
+                    val bitmap = if (resource.width != resource.height) {
+                        ImageCropUtil.squareCropBitmap(resource)
+                    } else {
+                        resource
+                    }
+                    createNotificationWithImage(remoteMessage, bitmap)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {}
