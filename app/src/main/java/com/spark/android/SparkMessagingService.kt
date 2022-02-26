@@ -8,7 +8,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -17,7 +16,6 @@ import com.google.firebase.messaging.RemoteMessage
 import com.spark.android.ui.intro.IntroActivity
 import com.spark.android.util.ImageUrlTransformer
 import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 
 class SparkMessagingService : FirebaseMessagingService() {
     data class NotificationCategory(
@@ -35,12 +33,24 @@ class SparkMessagingService : FirebaseMessagingService() {
             if (remoteMessage.data["imageUrl"].toString().isNotBlank()) {
                 transformImageUrlToBitmap(remoteMessage)
             } else {
-                showNotificationWithoutImage(remoteMessage)
+                createNotificationWithoutImage(remoteMessage)
             }
         }
     }
 
-    private fun showNotificationWithoutImage(remoteMessage: RemoteMessage) {
+    private fun showAlarm(alarmId: Int, category: String, builder: NotificationCompat.Builder) {
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val channelId = getString(R.string.app_name)
+        val channelName = getString(R.string.app_name)
+        val channelImportance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel(channelId, channelName, channelImportance)
+        notificationManager.createNotificationChannel(channel)
+        notificationManager.notify(alarmId, builder.build())
+        notificationManager.notify(getSummaryId(category), getSummary(category).build())
+    }
+
+    private fun createNotificationWithoutImage(remoteMessage: RemoteMessage) {
         val alarmId = remoteMessage.sentTime.toInt()
         val category = remoteMessage.data["category"].toString()
         val intent = Intent(this, IntroActivity::class.java)
@@ -55,19 +65,10 @@ class SparkMessagingService : FirebaseMessagingService() {
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setAutoCancel(true)
                 .setGroup(category)
-
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channelId = getString(R.string.app_name)
-        val channelName = getString(R.string.app_name)
-        val channelImportance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(channelId, channelName, channelImportance)
-        notificationManager.createNotificationChannel(channel)
-        notificationManager.notify(alarmId, builder.build())
-        notificationManager.notify(getSummaryId(category), getSummary(category).build())
+        showAlarm(alarmId, category, builder)
     }
 
-    private fun showNotificationWithImage(remoteMessage: RemoteMessage, bitmap: Bitmap) {
+    private fun createNotificationWithImage(remoteMessage: RemoteMessage, bitmap: Bitmap) {
         val alarmId = remoteMessage.sentTime.toInt()
         val category = remoteMessage.data["category"].toString()
         val intent = Intent(this, IntroActivity::class.java)
@@ -82,16 +83,7 @@ class SparkMessagingService : FirebaseMessagingService() {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
             .setGroup(category)
-
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channelId = getString(R.string.app_name)
-        val channelName = getString(R.string.app_name)
-        val channelImportance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(channelId, channelName, channelImportance)
-        notificationManager.createNotificationChannel(channel)
-        notificationManager.notify(alarmId, builder.build())
-        notificationManager.notify(getSummaryId(category), getSummary(category).build())
+        showAlarm(alarmId, category, builder)
     }
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
@@ -100,11 +92,8 @@ class SparkMessagingService : FirebaseMessagingService() {
             .asBitmap()
             .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
             .into(object : CustomTarget<Bitmap>() {
-                override fun onResourceReady(
-                    resource: Bitmap,
-                    transition: Transition<in Bitmap>?
-                ) {
-                    showNotificationWithImage(remoteMessage, resource)
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    createNotificationWithImage(remoteMessage, resource)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {}
