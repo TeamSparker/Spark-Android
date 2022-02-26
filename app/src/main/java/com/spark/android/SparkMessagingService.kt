@@ -61,30 +61,14 @@ class SparkMessagingService : FirebaseMessagingService() {
         val intent = Intent(this, IntroActivity::class.java)
         val pendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        val builder = when (remoteMessage.data["expand"].toString()) {
-            EXPAND -> NotificationCompat.Builder(this, getString(R.string.app_name))
-                .setContentTitle(remoteMessage.data["title"].toString())
-                .setContentText(remoteMessage.data["body"].toString())
-                .setSmallIcon(R.mipmap.ic_app_logo)
-                .setLargeIcon(bitmap)
-                .setStyle(
-                    NotificationCompat.BigPictureStyle()
-                        .bigPicture(bitmap)
-                        .bigLargeIcon(null)
-                )
-                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setAutoCancel(true)
-            NOT_EXPAND -> NotificationCompat.Builder(this, getString(R.string.app_name))
-                .setContentTitle(remoteMessage.data["title"].toString())
-                .setContentText(remoteMessage.data["body"].toString())
-                .setSmallIcon(R.mipmap.ic_app_logo)
-                .setLargeIcon(bitmap)
-                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setAutoCancel(true)
-            else -> throw IllegalArgumentException("FCM expand 필드값 에러")
-        }
+        val builder = NotificationCompat.Builder(this, getString(R.string.app_name))
+            .setContentTitle(remoteMessage.data["title"].toString())
+            .setContentText(remoteMessage.data["body"].toString())
+            .setSmallIcon(R.mipmap.ic_app_logo)
+            .setLargeIcon(bitmap)
+            .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setAutoCancel(true)
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -98,40 +82,18 @@ class SparkMessagingService : FirebaseMessagingService() {
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
         val imageUrl = remoteMessage.data["imageUrl"].toString()
-        when (remoteMessage.data["expand"].toString()) {
-            EXPAND -> Glide.with(this)
-                .asBitmap()
-                .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
-                .into(object : CustomTarget<Bitmap>() {
-                    override fun onResourceReady(
-                        resource: Bitmap,
-                        transition: Transition<in Bitmap>?
-                    ) {
-                        showNotificationWithImage(remoteMessage, resource)
-                    }
+        Glide.with(this)
+            .asBitmap()
+            .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onResourceReady(
+                    resource: Bitmap,
+                    transition: Transition<in Bitmap>?
+                ) {
+                    showNotificationWithImage(remoteMessage, resource)
+                }
 
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-
-                })
-            NOT_EXPAND -> Glide.with(this)
-                .asBitmap()
-                .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
-                .circleCrop()
-                .into(object : CustomTarget<Bitmap>() {
-                    override fun onResourceReady(
-                        resource: Bitmap,
-                        transition: Transition<in Bitmap>?
-                    ) {
-                        showNotificationWithImage(remoteMessage, resource)
-                    }
-
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                })
-        }
-    }
-
-    companion object {
-        private const val EXPAND = "enable"
-        private const val NOT_EXPAND = "disable"
+                override fun onLoadCleared(placeholder: Drawable?) {}
+            })
     }
 }
