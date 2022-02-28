@@ -34,6 +34,7 @@ class WaitingRoomFragment :
     private var roomId by Delegates.notNull<Int>()
     private var startPoint by Delegates.notNull<Boolean>()
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.waitingRoomViewModel = waitingRoomViewModel
@@ -165,16 +166,12 @@ class WaitingRoomFragment :
         binding.btnWaitingRoomRefresh.setOnClickListener {
             AnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             binding.btnWaitingRoomRefresh.isEnabled = false
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.btnWaitingRoomRefresh.isEnabled = true
-            }, AnimationUtil.ROTATE_TIME)
             waitingRoomViewModel.getRefreshInfo(roomId)
-            waitingRoomViewModel.refreshInfo.observe(this) {
+            waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
                 waitingRoomRecyclerViewAdapter.members.clear()
-                waitingRoomRecyclerViewAdapter.members.addAll(
-                    it
-                )
+                waitingRoomRecyclerViewAdapter.members.addAll(it)
                 waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
+                binding.btnWaitingRoomRefresh.isEnabled = true
             }
         }
     }
