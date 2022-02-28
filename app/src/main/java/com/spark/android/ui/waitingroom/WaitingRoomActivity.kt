@@ -6,6 +6,7 @@ import com.spark.android.R
 import com.spark.android.databinding.ActivityWaitingRoomBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.setpurpose.SetPurposeFragment
+import com.spark.android.ui.waitingroom.checkroom.CheckRoomFragment
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,13 +34,20 @@ class WaitingRoomActivity :
 
     private fun initTransactionEvent() {
         val waitingRoomFragment = WaitingRoomFragment()
+        val checkRoomFragment = CheckRoomFragment()
         var bundle = Bundle()
         bundle.putInt("roomId", roomId)
         bundle.putBoolean("startPoint",startPoint)
         waitingRoomFragment.arguments = bundle
+        checkRoomFragment.arguments = bundle
 
-        supportFragmentManager.beginTransaction()
-            .add(R.id.container_waiting_room, waitingRoomFragment).commit()
+        if(startPoint) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container_waiting_room, waitingRoomFragment).commit()
+        } else {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container_waiting_room, checkRoomFragment).commit()
+        }
     }
 
     private fun initStatusBarStyle() {
