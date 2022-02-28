@@ -72,7 +72,7 @@ class WaitingRoomFragment :
             clipboard.setPrimaryClip(clip)
 
             binding.tvWaitingRoomToast.visibility = View.VISIBLE
-            AnimationUtil.openToastAnimation(binding.tvWaitingRoomToast)
+            val toast = AnimationUtil.openToastAnimation(binding.tvWaitingRoomToast)
             Handler(Looper.getMainLooper()).postDelayed({
                 AnimationUtil.closeToastAnimation(
                     binding.tvWaitingRoomToast
@@ -169,7 +169,7 @@ class WaitingRoomFragment :
                 binding.btnWaitingRoomRefresh.isEnabled = true
             }, AnimationUtil.ROTATE_TIME)
             waitingRoomViewModel.getRefreshInfo(roomId)
-            waitingRoomViewModel.refreshInfo.observe(this) {
+            waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
                 waitingRoomRecyclerViewAdapter.members.clear()
                 waitingRoomRecyclerViewAdapter.members.addAll(
                     it

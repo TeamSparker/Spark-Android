@@ -31,7 +31,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
 
     private fun updateHomeRecyclerViewAdapter(){
         homeMainViewModel.getHomeAllRoom(-1,100)
-        homeMainViewModel.roomList.observe(this) {
+        homeMainViewModel.roomList.observe(viewLifecycleOwner) {
             homeRecyclerViewAdapter.updateHomeList(it)
             homeMainViewModel.updateIsLoading()
         }

@@ -194,7 +194,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                     setPurposeViewModel.myPurpose.value!!
                 )
             )
-            setPurposeViewModel.networkState.observe(this) {
+            setPurposeViewModel.networkState.observe(viewLifecycleOwner) {
                 val waitingRoomFragment = WaitingRoomFragment()
 
                 var bundle = Bundle()
