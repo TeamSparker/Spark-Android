@@ -8,6 +8,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -88,22 +90,30 @@ class SparkMessagingService : FirebaseMessagingService() {
     }
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
+        var isImgUploaded = false
+        var bitmap =
+            requireNotNull(ContextCompat.getDrawable(this, R.drawable.ic_habit_sticker_complete)).toBitmap(240, 240)
         val imageUrl = remoteMessage.data["imageUrl"].toString()
         Glide.with(this)
             .asBitmap()
             .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
+            .error(R.mipmap.ic_app_logo)
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    val bitmap = if (resource.width != resource.height) {
+                    bitmap = if (resource.width != resource.height) {
                         ImageCropUtil.squareCropBitmap(resource)
                     } else {
                         resource
                     }
+                    isImgUploaded = true
                     createNotificationWithImage(remoteMessage, bitmap)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {}
             })
+        if(!isImgUploaded){
+            createNotificationWithImage(remoteMessage, bitmap)
+        }
     }
 
     private fun getSummary(category: String) =
