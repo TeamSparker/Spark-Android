@@ -90,31 +90,22 @@ class SparkMessagingService : FirebaseMessagingService() {
     }
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
-        var isImgUploaded = false
-        var bitmap = requireNotNull(
-            ContextCompat.getDrawable(this, R.drawable.ic_habit_sticker_complete)
-        ).toBitmap(270, 270)
         val imageUrl = remoteMessage.data["imageUrl"].toString()
         Glide.with(this)
             .asBitmap()
             .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
-            .error(R.mipmap.ic_app_logo)
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    bitmap = if (resource.width != resource.height) {
+                    val bitmap = if (resource.width != resource.height) {
                         ImageCropUtil.squareCropBitmap(resource)
                     } else {
                         resource
                     }
-                    isImgUploaded = true
                     createNotificationWithImage(remoteMessage, bitmap)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {}
             })
-        if (!isImgUploaded) {
-            createNotificationWithImage(remoteMessage, bitmap)
-        }
     }
 
     private fun getSummary(category: String) =
