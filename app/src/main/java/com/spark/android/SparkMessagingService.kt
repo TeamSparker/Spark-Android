@@ -44,7 +44,7 @@ class SparkMessagingService : FirebaseMessagingService() {
     private fun showAlarm(alarmId: Int, category: String, builder: NotificationCompat.Builder) {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channelId = getString(R.string.app_name)
+        val channelId = getString(R.string.app_name) + category
         val channelName = getString(R.string.app_name)
         val channelImportance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(channelId, channelName, channelImportance)
@@ -91,8 +91,9 @@ class SparkMessagingService : FirebaseMessagingService() {
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
         var isImgUploaded = false
-        var bitmap =
-            requireNotNull(ContextCompat.getDrawable(this, R.drawable.ic_habit_sticker_complete)).toBitmap(240, 240)
+        var bitmap = requireNotNull(
+            ContextCompat.getDrawable(this, R.drawable.ic_habit_sticker_complete)
+        ).toBitmap(270, 270)
         val imageUrl = remoteMessage.data["imageUrl"].toString()
         Glide.with(this)
             .asBitmap()
@@ -111,7 +112,7 @@ class SparkMessagingService : FirebaseMessagingService() {
 
                 override fun onLoadCleared(placeholder: Drawable?) {}
             })
-        if(!isImgUploaded){
+        if (!isImgUploaded) {
             createNotificationWithImage(remoteMessage, bitmap)
         }
     }
