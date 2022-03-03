@@ -33,7 +33,7 @@ class WaitingRoomFragment :
     private var tooltipState = false
     private val waitingRoomViewModel by activityViewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
-    private var startPoint by Delegates.notNull<Boolean>()
+    private var startPoint by Delegates.notNull<Int>()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,11 +41,17 @@ class WaitingRoomFragment :
         binding.waitingRoomViewModel = waitingRoomViewModel
         initExtra()
         binding.startPoint = startPoint
-
+        if(startPoint != 2){
+            waitingRoomViewModel.getWaitingRoomInfo(roomId)
+        }
         initWatitingRoomRecyclerViewAdapter()
-        updateWatitingRoomRecyclerViewAdapter()
-        initClipBoard()
-        initTooltipButton()
+
+        waitingRoomViewModel.waitingRoomInfo.observe(viewLifecycleOwner) {
+            updateWatitingRoomRecyclerViewAdapter()
+            initClipBoard()
+            initTooltipButton()
+        }
+
         initMakeRoomButtonListener()
         initSetPurposeButtonListener()
         initMoveHomeButtonListener()
@@ -54,7 +60,7 @@ class WaitingRoomFragment :
 
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
-        startPoint = arguments?.getBoolean("startPoint") ?: false
+        startPoint = arguments?.getInt("startPoint",1) ?: 1
     }
 
     private fun initClipBoard() {

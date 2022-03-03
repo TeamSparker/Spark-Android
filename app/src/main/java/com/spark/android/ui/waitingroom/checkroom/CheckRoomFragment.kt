@@ -25,7 +25,7 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
 
     private val checkRoomViewModel by activityViewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
-    private var startPoint by Delegates.notNull<Boolean>()
+    private var startPoint by Delegates.notNull<Int>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,7 +43,7 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
 
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
-        startPoint = arguments?.getBoolean("startPoint") ?: false
+        startPoint = arguments?.getInt("startPoint",1) ?: 1
     }
 
     private fun initClipBoard() {
@@ -69,7 +69,7 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
             val waitingRoomFragment = WaitingRoomFragment()
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
-            bundle.putBoolean("startPoint", startPoint)
+            bundle.putInt("startPoint", startPoint)
             waitingRoomFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()

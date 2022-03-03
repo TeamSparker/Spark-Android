@@ -13,7 +13,7 @@
 
         <variable
             name="startPoint"
-            type="Boolean" />
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +30,7 @@
             android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
             android:padding="10dp"
-            android:src="@{startPoint == true ? @drawable/ic_make_room_back : @drawable/ic_waiting_room_home}"
+            android:src="@{startPoint == 1 ? @drawable/ic_make_room_back : @drawable/ic_waiting_room_home}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_waiting_room_home" />

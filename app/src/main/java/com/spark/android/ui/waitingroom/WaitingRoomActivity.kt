@@ -17,7 +17,7 @@ class WaitingRoomActivity :
     BaseActivity<ActivityWaitingRoomBinding>(R.layout.activity_waiting_room) {
 
     private var roomId by Delegates.notNull<Int>()
-    private var startPoint by Delegates.notNull<Boolean>()
+    private var startPoint by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class WaitingRoomActivity :
 
     private fun initExtra() {
         roomId = intent.getIntExtra("roomId", -1)
-        startPoint = intent.getBooleanExtra("startPoint",false)
+        startPoint = intent.getIntExtra("startPoint",1)
     }
 
     private fun initTransactionEvent() {
@@ -37,11 +37,11 @@ class WaitingRoomActivity :
         val checkRoomFragment = CheckRoomFragment()
         var bundle = Bundle()
         bundle.putInt("roomId", roomId)
-        bundle.putBoolean("startPoint",startPoint)
+        bundle.putInt("startPoint",startPoint)
         waitingRoomFragment.arguments = bundle
         checkRoomFragment.arguments = bundle
 
-        if(startPoint) {
+        if(startPoint == 1 || startPoint == 3) {
             supportFragmentManager.beginTransaction()
                 .add(R.id.container_waiting_room, waitingRoomFragment).commit()
         } else {
@@ -56,9 +56,9 @@ class WaitingRoomActivity :
     }
 
     companion object {
-        const val START_FROM_HOME = true
-        const val START_FROM_CONFIRM_METHOD = false
-        const val START_FROM_JOIN_CODE = false
+        const val START_FROM_HOME = 1
+        const val START_FROM_CONFIRM_METHOD = 2
+        const val START_FROM_JOIN_CODE = 3
     }
 
 }
