@@ -91,9 +91,7 @@ class WaitingRoomFragment :
     private fun updateWatitingRoomRecyclerViewAdapter() {
         waitingRoomViewModel.getRefreshInfo(roomId)
         waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
-            waitingRoomRecyclerViewAdapter.members.clear()
-            waitingRoomRecyclerViewAdapter.members.addAll(it)
-            waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
+            waitingRoomRecyclerViewAdapter.updateMemberList(it)
         }
     }
 
@@ -159,9 +157,7 @@ class WaitingRoomFragment :
             binding.btnWaitingRoomRefresh.isEnabled = false
             waitingRoomViewModel.getRefreshInfo(roomId)
             waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
-                waitingRoomRecyclerViewAdapter.members.clear()
-                waitingRoomRecyclerViewAdapter.members.addAll(it)
-                waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
+                waitingRoomRecyclerViewAdapter.updateMemberList(it)
                 binding.btnWaitingRoomRefresh.isEnabled = true
             }
         }
