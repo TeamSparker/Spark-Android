@@ -182,6 +182,8 @@
     <string name="habit_today_rest_tail">회</string>
     <string name="habit_today_consider_btn">고민중</string>
     <string name="habit_today_rest_btn">쉴래요</string>
+    <string name="habit_today_rest_dialog">엇! 정말 쉴 건가요?\n푹 쉴 수 있도록 인증은 막아둘게요😊</string>
+    <string name="habit_today_rest_confirm">쉴래요</string>
 
     <!-- HabitSendSparkCompleteToast -->
     <string name="habit_send_spark_toast_content">에게 스파크를 보냈어요!</string>
