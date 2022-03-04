@@ -55,6 +55,9 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
                 checkRoomViewModel.waitingRoomInfo.value?.roomCode
             )
             clipboard.setPrimaryClip(clip)
+
+            binding.tvCheckRoomToast.visibility = View.VISIBLE
+            AnimationUtil.grayBoxToastAnimation(binding.tvCheckRoomToast)
         }
     }
 
