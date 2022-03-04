@@ -172,6 +172,8 @@ class WaitingRoomFragment :
 
     override fun onPause() {
         super.onPause()
-        toastAnimation.cancel()
+        if(::toastAnimation.isInitialized) {
+            toastAnimation.cancel()
+        }
     }
 }
