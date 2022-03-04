@@ -1,6 +1,7 @@
 package com.spark.android.util
 
 import android.animation.Animator
+import android.animation.AnimatorInflater
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.app.Activity
@@ -15,7 +16,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.addListener
+import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
 import java.util.logging.Handler
@@ -65,12 +68,13 @@ object AnimationUtil {
         }
     }
 
-    fun openToastAnimation(textview: TextView) {
-        ObjectAnimator.ofFloat(textview, "translationY", -150f).apply { start() }
-    }
 
-    fun closeToastAnimation(textview: TextView) {
-        ObjectAnimator.ofFloat(textview, "translationY", 0f).apply { start() }
+    fun grayBoxToastAnimation(textview: TextView) {
+        AnimatorInflater.loadAnimator(textview.context,R.animator.animator_toast_message).apply{
+            doOnEnd { textview.visibility = View.GONE }
+            setTarget(textview)
+            start()
+        }
     }
 
     fun closeFabAnimation(

@@ -419,20 +419,20 @@
             android:id="@+id/tv_waiting_room_toast"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/shape_spark_deep_gray_fill_rect"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="center"
+            android:visibility="gone"
             android:includeFontPadding="false"
             android:text="@string/waiting_room_copy_code_toast"
             android:textColor="@color/spark_white"
             android:textSize="16dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_waiting_room_start_habit"
-            app:layout_constraintEnd_toEndOf="@+id/btn_waiting_room_start_habit"
-            app:layout_constraintStart_toStartOf="@+id/btn_waiting_room_start_habit"
-            app:layout_constraintTop_toTopOf="@+id/btn_waiting_room_start_habit" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_waiting_room_start_habit"

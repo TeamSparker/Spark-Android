@@ -74,16 +74,7 @@ class WaitingRoomFragment :
             clipboard.setPrimaryClip(clip)
 
             binding.tvWaitingRoomToast.visibility = View.VISIBLE
-            AnimationUtil.openToastAnimation(binding.tvWaitingRoomToast)
-            Handler(Looper.getMainLooper()).postDelayed({
-                AnimationUtil.closeToastAnimation(
-                    binding.tvWaitingRoomToast
-                )
-
-            }, 2000)
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.tvWaitingRoomToast.visibility = View.GONE
-            }, 3000)
+            AnimationUtil.grayBoxToastAnimation(binding.tvWaitingRoomToast)
         }
     }
 
