@@ -59,8 +59,6 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
             )
             clipboard.setPrimaryClip(clip)
 
-//            binding.tvCheckRoomToast.visibility = View.VISIBLE
-//            AnimationUtil.grayBoxToastAnimation(binding.tvCheckRoomToast)
             binding.btnCheckRoomCopyCode.isClickable = false
             binding.tvCheckRoomToast.visibility = View.VISIBLE
             toastAnimation =
@@ -95,6 +93,8 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
 
     override fun onPause() {
         super.onPause()
-        toastAnimation.cancel()
+        if(::toastAnimation.isInitialized) {
+            toastAnimation.cancel()
+        }
     }
 }
