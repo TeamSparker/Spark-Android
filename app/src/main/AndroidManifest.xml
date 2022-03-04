@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
         <activity
-            android:name=".ui.storage.CardMainPhotoPickActivity"
+            android:name=".ui.storage.photo.StorageCardMainPhotoPickActivity"
             android:exported="true" />
         <activity
             android:name=".ui.share.InstaActivity"
