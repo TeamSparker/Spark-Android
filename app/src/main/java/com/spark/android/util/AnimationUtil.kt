@@ -69,12 +69,11 @@ object AnimationUtil {
     }
 
 
-    fun grayBoxToastAnimation(textview: TextView) {
-        AnimatorInflater.loadAnimator(textview.context,R.animator.animator_toast_message).apply{
-            doOnEnd { textview.visibility = View.GONE }
-            setTarget(textview)
-            start()
-        }
+    fun grayBoxToastAnimation(textview: TextView): Animator? {
+        return AnimatorInflater.loadAnimator(textview.context, R.animator.animator_toast_message)
+            .apply {
+                setTarget(textview)
+            }
     }
 
     fun closeFabAnimation(
