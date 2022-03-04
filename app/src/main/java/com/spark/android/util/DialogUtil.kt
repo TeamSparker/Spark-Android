@@ -62,7 +62,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
             STOP_CERTIFY_PHOTO -> getString(R.string.certify_dialog_content)
             STOP_CERTIFY_TIMER -> getString(R.string.timer_dialog_stop_content)
             STOP_TIMER -> getString(R.string.timer_dialog_stop_timer_content)
-            CHECK_CONFIRM_MODE -> getString((R.string.select_confirm_method_dialog_title))
+            CHECK_CONFIRM_MODE -> getString(R.string.select_confirm_method_dialog_title)
             else -> throw IllegalStateException()
         }
     }

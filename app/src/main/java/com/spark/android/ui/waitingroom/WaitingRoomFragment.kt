@@ -14,6 +14,7 @@ import android.content.ClipData
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
 import com.spark.android.ui.main.MainActivity
@@ -30,9 +31,9 @@ class WaitingRoomFragment :
 
     private lateinit var waitingRoomRecyclerViewAdapter: WaitingRoomRecyclerViewAdapter
     private var tooltipState = false
-    private val waitingRoomViewModel by viewModels<WaitingRoomViewModel>()
+    private val waitingRoomViewModel by activityViewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
-    private var startPoint by Delegates.notNull<Boolean>()
+    private var startPoint by Delegates.notNull<Int>()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,12 +41,12 @@ class WaitingRoomFragment :
         binding.waitingRoomViewModel = waitingRoomViewModel
         initExtra()
         binding.startPoint = startPoint
-        if (roomId != null) {
+        if(startPoint != 2){
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
         initWatitingRoomRecyclerViewAdapter()
 
-        waitingRoomViewModel.waitingRoomInfo.observe(this) {
+        waitingRoomViewModel.waitingRoomInfo.observe(viewLifecycleOwner) {
             updateWatitingRoomRecyclerViewAdapter()
             initClipBoard()
             initTooltipButton()
@@ -59,7 +60,7 @@ class WaitingRoomFragment :
 
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
-        startPoint = arguments?.getBoolean("startPoint") ?: false
+        startPoint = arguments?.getInt("startPoint",1) ?: 1
     }
 
     private fun initClipBoard() {
@@ -73,16 +74,7 @@ class WaitingRoomFragment :
             clipboard.setPrimaryClip(clip)
 
             binding.tvWaitingRoomToast.visibility = View.VISIBLE
-            AnimationUtil.openToastAnimation(binding.tvWaitingRoomToast)
-            Handler(Looper.getMainLooper()).postDelayed({
-                AnimationUtil.closeToastAnimation(
-                    binding.tvWaitingRoomToast
-                )
-
-            }, 2000)
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.tvWaitingRoomToast.visibility = View.GONE
-            }, 3000)
+            AnimationUtil.grayBoxToastAnimation(binding.tvWaitingRoomToast)
         }
     }
 
@@ -97,13 +89,12 @@ class WaitingRoomFragment :
     }
 
     private fun updateWatitingRoomRecyclerViewAdapter() {
-        waitingRoomRecyclerViewAdapter.members.clear()
-        waitingRoomViewModel.waitingRoomInfo.value?.let {
-            waitingRoomRecyclerViewAdapter.members.addAll(
-                it.members
-            )
+        waitingRoomViewModel.getRefreshInfo(roomId)
+        waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
+            waitingRoomRecyclerViewAdapter.members.clear()
+            waitingRoomRecyclerViewAdapter.members.addAll(it)
+            waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
         }
-        waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
     }
 
     private fun initTooltipButton() {

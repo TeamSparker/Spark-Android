@@ -53,7 +53,7 @@ class SelectConfirmMethodFragment :
                 if (requestData != null) {
                     selectConfirmMethodViewModel.makeRoom(requestData)
                 }
-                selectConfirmMethodViewModel.roomId.observe(this) {
+                selectConfirmMethodViewModel.roomId.observe(viewLifecycleOwner) {
                     val intent = Intent(requireActivity(), WaitingRoomActivity::class.java).apply {
                         putExtra("roomId", selectConfirmMethodViewModel.roomId.value)
                         putExtra("startPoint", WaitingRoomActivity.START_FROM_CONFIRM_METHOD)
