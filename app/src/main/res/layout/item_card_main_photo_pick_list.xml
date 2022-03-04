@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="storageCardPhoto"
+            type="com.spark.android.data.remote.entity.response.StorageCardPhoto" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/iv_main_photo_pick_item_roundedCorner"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_transparent_2"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/img_photo_collection_yogurt"
+            />
+
+        <View
+            android:id="@+id/view_main_photo_pick_card_picked_boundary"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_spark_pinkred_line_rect_2"
+            app:layout_constraintTop_toTopOf="@id/iv_main_photo_pick_item_roundedCorner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_main_photo_pick_item_roundedCorner"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_main_photo_pick_tag_main"
+            android:layout_width="42dp"
+            android:layout_height="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_main_photo_pick_card_picked_boundary"
+            android:background="@color/spark_pinkred"
+            android:text="대표"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="14dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_white"
+            android:lineSpacingExtra="6sp"
+            android:textAlignment="center"
+            android:paddingTop="0dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
