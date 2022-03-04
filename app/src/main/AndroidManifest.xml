@@ -50,7 +50,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.storage.StoragePhotoCollectionActivity"
+            android:name=".ui.storage.photo.StoragePhotoCollectionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

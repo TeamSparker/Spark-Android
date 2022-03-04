@@ -3,14 +3,12 @@ package com.spark.android.ui.joincode
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.os.bundleOf
 import com.spark.android.R
 import com.spark.android.data.remote.entity.response.JoinCodeRoomInfoResponse
 import com.spark.android.databinding.ActivityJoinCodeBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.joincode.viewmodel.JoinCodeViewModel
 import com.spark.android.ui.main.MainActivity
-import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite

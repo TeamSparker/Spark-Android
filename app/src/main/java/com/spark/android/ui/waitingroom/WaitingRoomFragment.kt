@@ -12,13 +12,8 @@ import com.spark.android.util.AnimationUtil
 import android.content.ClipData
 
 import android.content.Context.CLIPBOARD_SERVICE
-import android.content.Intent
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.viewModels
-import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
-import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.setpurpose.SetPurposeFragment
-import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.photo
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,6 @@ import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
 import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
 import com.spark.android.util.initStatusBarColor
-import com.spark.android.util.initStatusBarTextColorToWhite
 
 class StoragePhotoCollectionActivity :
     BaseActivity<ActivityStoragePhotoCollectionBinding>(R.layout.activity_storage_photo_collection) {
@@ -27,6 +26,7 @@ class StoragePhotoCollectionActivity :
         setOnBackBtnClickListener()
         initStoragePhotoCollectionRvAdapter()
         initPhotoCollectionObserver()
+        initPhotoCollectionMoreBtnClickListener()
     }
 
     override fun onBackPressed() {
@@ -49,8 +49,14 @@ class StoragePhotoCollectionActivity :
         }
     }
 
+    private fun initPhotoCollectionMoreBtnClickListener(){
+        binding.btnStoragePhotoCollectionMoreWhite.setOnClickListener{
+            PhotoCollectionMoreBottomSheet().show(supportFragmentManager, this.javaClass.name)
+        }
+    }
+
     private fun setOnBackBtnClickListener() {
-        binding.ivStoragePhotoCollectionBackWhite.setOnClickListener {
+        binding.btnStoragePhotoCollectionBackWhite.setOnClickListener {
             moveToMain()
         }
     }

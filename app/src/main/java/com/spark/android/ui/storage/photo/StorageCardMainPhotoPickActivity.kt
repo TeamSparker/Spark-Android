@@ -1,4 +1,4 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.photo
 
 import android.os.Bundle
 import androidx.activity.viewModels
