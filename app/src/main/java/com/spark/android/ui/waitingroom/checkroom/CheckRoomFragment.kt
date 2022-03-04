@@ -1,5 +1,6 @@
 package com.spark.android.ui.waitingroom.checkroom
 
+import android.animation.Animator
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.animation.doOnEnd
 import androidx.fragment.app.activityViewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentCheckRoomBinding
@@ -26,6 +28,7 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
     private val checkRoomViewModel by activityViewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
     private var startPoint by Delegates.notNull<Int>()
+    private lateinit var toastAnimation: Animator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,8 +59,18 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
             )
             clipboard.setPrimaryClip(clip)
 
+//            binding.tvCheckRoomToast.visibility = View.VISIBLE
+//            AnimationUtil.grayBoxToastAnimation(binding.tvCheckRoomToast)
+            binding.btnCheckRoomCopyCode.isClickable = false
             binding.tvCheckRoomToast.visibility = View.VISIBLE
-            AnimationUtil.grayBoxToastAnimation(binding.tvCheckRoomToast)
+            toastAnimation =
+                requireNotNull(AnimationUtil.grayBoxToastAnimation(binding.tvCheckRoomToast)).apply {
+                    doOnEnd {
+                        binding.tvCheckRoomToast.visibility = View.GONE
+                        binding.btnCheckRoomCopyCode.isClickable = true
+                    }
+                    start()
+                }
         }
     }
 
@@ -78,5 +91,10 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        toastAnimation.cancel()
     }
 }

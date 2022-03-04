@@ -1,5 +1,7 @@
 package com.spark.android.ui.waitingroom
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.content.ClipboardManager
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +15,8 @@ import android.content.ClipData
 
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnPause
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -34,14 +38,14 @@ class WaitingRoomFragment :
     private val waitingRoomViewModel by activityViewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
     private var startPoint by Delegates.notNull<Int>()
-
+    private lateinit var toastAnimation: Animator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.waitingRoomViewModel = waitingRoomViewModel
         initExtra()
         binding.startPoint = startPoint
-        if(startPoint != 2){
+        if (startPoint != 2) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
         initWatitingRoomRecyclerViewAdapter()
@@ -60,7 +64,7 @@ class WaitingRoomFragment :
 
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
-        startPoint = arguments?.getInt("startPoint",1) ?: 1
+        startPoint = arguments?.getInt("startPoint", 1) ?: 1
     }
 
     private fun initClipBoard() {
@@ -73,19 +77,22 @@ class WaitingRoomFragment :
             )
             clipboard.setPrimaryClip(clip)
 
+            binding.btnWaitingRoomCopyCode.isClickable = false
             binding.tvWaitingRoomToast.visibility = View.VISIBLE
-            AnimationUtil.grayBoxToastAnimation(binding.tvWaitingRoomToast)
+            toastAnimation =
+                requireNotNull(AnimationUtil.grayBoxToastAnimation(binding.tvWaitingRoomToast)).apply {
+                    doOnEnd {
+                        binding.tvWaitingRoomToast.visibility = View.GONE
+                        binding.btnWaitingRoomCopyCode.isClickable = true
+                    }
+                    start()
+                }
         }
     }
 
     private fun initWatitingRoomRecyclerViewAdapter() {
-
-
         waitingRoomRecyclerViewAdapter = WaitingRoomRecyclerViewAdapter()
-
         binding.rvWaitingRoomMembers.adapter = waitingRoomRecyclerViewAdapter
-
-
     }
 
     private fun updateWatitingRoomRecyclerViewAdapter() {
@@ -161,5 +168,10 @@ class WaitingRoomFragment :
                 binding.btnWaitingRoomRefresh.isEnabled = true
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        toastAnimation.cancel()
     }
 }
