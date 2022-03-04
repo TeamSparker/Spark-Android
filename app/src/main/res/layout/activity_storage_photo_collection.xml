@@ -58,6 +58,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageButton
+            android:id="@+id/iv_storage_photoCollection_more_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_vertical_white"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="22dp"
+            android:padding="10dp"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_storage_photoCollection"
             android:layout_width="0dp"
