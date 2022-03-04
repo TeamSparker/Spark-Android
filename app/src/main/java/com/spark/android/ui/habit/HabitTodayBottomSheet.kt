@@ -16,6 +16,7 @@ import com.spark.android.ui.certify.CertifyBottomSheet
 import com.spark.android.ui.certify.CertifyMode
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.ui.timer.TimerStartActivity
+import com.spark.android.util.DialogUtil
 
 class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitTodayBinding? = null
@@ -50,7 +51,8 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
         val bundle = Bundle()
         habitViewModel.habitInfo.value?.roomId?.let { it1 -> bundle.putInt("roomId", it1) }
         bundle.putString("roomName", habitViewModel.habitInfo.value?.roomName.toString())
-        bundle.putString("profileImgUrl", habitViewModel.habitInfo.value?.myRecord?.profileImg.toString())
+        bundle.putString("profileImgUrl",
+            habitViewModel.habitInfo.value?.myRecord?.profileImg.toString())
         bundle.putString("nickname", habitViewModel.habitInfo.value?.myRecord?.nickname.toString())
         bundle.putInt("certifyMode", CertifyMode.ONLY_CAMERA_MODE)
         bundle.putBoolean("onlyCameraInitial", true)
@@ -94,10 +96,16 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
 
     private fun initRestBtnClickListener() {
         binding.btnHabitTodayRest.setOnClickListener {
+            dismiss()
+            showRestDialog()
+        }
+    }
+
+    private fun showRestDialog() {
+        DialogUtil(DialogUtil.HABIT_REST) {
             habitViewModel.postStatus("REST")
             setFragmentResult("refreshHabitData", bundleOf("bundleKey" to "rest"))
-            dismiss()
-        }
+        }.show(requireActivity().supportFragmentManager, this.javaClass.name)
     }
 
     override fun onDestroyView() {
