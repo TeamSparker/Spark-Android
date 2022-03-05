@@ -7,9 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -28,6 +27,7 @@ class SparkMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
+        Log.d("fcm token ", token)
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -44,7 +44,7 @@ class SparkMessagingService : FirebaseMessagingService() {
     private fun showAlarm(alarmId: Int, category: String, builder: NotificationCompat.Builder) {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channelId = getString(R.string.app_name) + category
+        val channelId = getChannelId(category)
         val channelName = getString(R.string.app_name)
         val channelImportance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(channelId, channelName, channelImportance)
@@ -60,7 +60,7 @@ class SparkMessagingService : FirebaseMessagingService() {
         val pendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         val builder =
-            NotificationCompat.Builder(this, getString(R.string.app_name))
+            NotificationCompat.Builder(this, getChannelId(category))
                 .setContentTitle(remoteMessage.data["title"].toString())
                 .setContentText(remoteMessage.data["body"].toString())
                 .setSmallIcon(R.mipmap.ic_app_logo)
@@ -77,7 +77,7 @@ class SparkMessagingService : FirebaseMessagingService() {
         val intent = Intent(this, IntroActivity::class.java)
         val pendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        val builder = NotificationCompat.Builder(this, getString(R.string.app_name))
+        val builder = NotificationCompat.Builder(this, getChannelId(category))
             .setContentTitle(remoteMessage.data["title"].toString())
             .setContentText(remoteMessage.data["body"].toString())
             .setSmallIcon(R.mipmap.ic_app_logo)
@@ -108,8 +108,11 @@ class SparkMessagingService : FirebaseMessagingService() {
             })
     }
 
+    private fun getChannelId(category: String) =
+        getSummaryId(category).toString() + getString(R.string.app_name)
+
     private fun getSummary(category: String) =
-        NotificationCompat.Builder(this, getString(R.string.app_name))
+        NotificationCompat.Builder(this, getChannelId(category))
             .setSmallIcon(R.mipmap.ic_app_logo)
             .setContentTitle(getString(R.string.app_name))
             .setGroup(category)
