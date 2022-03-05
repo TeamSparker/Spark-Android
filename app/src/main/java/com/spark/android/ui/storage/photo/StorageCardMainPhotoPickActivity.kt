@@ -23,6 +23,7 @@ class StorageCardMainPhotoPickActivity :
         setOnBackBtnClickListener()
         initStorageMainPhotoPickRvAdapter()
         initMainPhotoPickObserver()
+        initMainPhotoPickBackBtnClickListener()
     }
 
     private fun initStorageMainPhotoPickRvAdapter() {
@@ -43,5 +44,14 @@ class StorageCardMainPhotoPickActivity :
         }
     }
 
+    private fun initMainPhotoPickBackBtnClickListener(){
+        binding.btnCardMainPhotoPickBackWhite.setOnClickListener{
+            finish()
+        }
+
+        binding.tvCardMainPhotoPickComplete.setOnClickListener {
+            finish()
+        }
+    }
 }
 
