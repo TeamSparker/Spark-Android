@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
         
         <ImageButton
+            android:id="@+id/btn_card_main_photo_pick_back_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back_white"
