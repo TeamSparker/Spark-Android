@@ -12,17 +12,21 @@ import com.spark.android.databinding.BottomSheetPhotoCollectionMoreBinding
 import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
 
 class PhotoCollectionMoreBottomSheet : BottomSheetDialogFragment() {
-    private var _binding : BottomSheetPhotoCollectionMoreBinding? = null
+    private var _binding: BottomSheetPhotoCollectionMoreBinding? = null
     val binding get() = _binding ?: error("Binding not initialized to referenxe the view.")
     private val photoCollectionViewModel by activityViewModels<PhotoCollectionViewModel>()
+    private var changePhotoBtnClickListener: (() -> Unit)? = null
 
+    fun setChangePhotoBtnClickListener(listener: (() -> Unit)) {
+        changePhotoBtnClickListener = listener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = BottomSheetPhotoCollectionMoreBinding.inflate(inflater,container,false)
+        _binding = BottomSheetPhotoCollectionMoreBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,10 +42,7 @@ class PhotoCollectionMoreBottomSheet : BottomSheetDialogFragment() {
 
     private fun initChangePhotoBtnClickListener() {
         binding.tvMainPhotoPickMoreChangePhoto.setOnClickListener {
-            val intent = Intent(context, StorageCardMainPhotoPickActivity::class.java)
-            intent.apply {
-                putExtra("roomId",-1)
-            }
+            changePhotoBtnClickListener?.invoke()
         }
     }
 

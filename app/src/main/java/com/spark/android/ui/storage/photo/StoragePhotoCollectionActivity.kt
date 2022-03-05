@@ -15,11 +15,12 @@ class StoragePhotoCollectionActivity :
     BaseActivity<ActivityStoragePhotoCollectionBinding>(R.layout.activity_storage_photo_collection) {
     private val photoCollectionRvAdapter = PhotoCollectionRvAdapter()
     private val photoCollectionViewModel by viewModels<PhotoCollectionViewModel>()
+    private var roomId = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val roomId = intent.getIntExtra("roomId", -1)
+        roomId = intent.getIntExtra("roomId", -1)
         photoCollectionViewModel.initPhotoCollectionNetwork(roomId, -1, 70)
         binding.photoCollectionViewModel = photoCollectionViewModel
         initStatusBarStyle()
@@ -45,13 +46,19 @@ class StoragePhotoCollectionActivity :
     private fun initPhotoCollectionObserver() {
         photoCollectionViewModel.photoList.observe(this) { photo ->
             photoCollectionRvAdapter.setList(photo)
-
         }
     }
 
-    private fun initPhotoCollectionMoreBtnClickListener(){
-        binding.btnStoragePhotoCollectionMoreWhite.setOnClickListener{
-            PhotoCollectionMoreBottomSheet().show(supportFragmentManager, this.javaClass.name)
+    private fun initPhotoCollectionMoreBtnClickListener() {
+        binding.btnStoragePhotoCollectionMoreWhite.setOnClickListener {
+            PhotoCollectionMoreBottomSheet().apply {
+                setChangePhotoBtnClickListener {
+                    val intent = Intent(context, StorageCardMainPhotoPickActivity::class.java)
+                    startActivity(intent.apply {
+                        putExtra("roomId", roomId)
+                    })
+                }
+            }.show(supportFragmentManager, this.javaClass.name)
         }
     }
 
