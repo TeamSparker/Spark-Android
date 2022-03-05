@@ -43,6 +43,7 @@ class PhotoCollectionMoreBottomSheet : BottomSheetDialogFragment() {
     private fun initChangePhotoBtnClickListener() {
         binding.tvMainPhotoPickMoreChangePhoto.setOnClickListener {
             changePhotoBtnClickListener?.invoke()
+            dismiss()
         }
     }
 
