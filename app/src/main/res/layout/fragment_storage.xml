@@ -87,7 +87,7 @@
                 android:layout_width="16dp"
                 android:layout_height="2dp"
                 android:background="@color/spark_dark_pinkred"
-                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.PROGRESSING) ? View.VISIBLE : View.GONE}"
+                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.PROGRESSING) ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintStart_toStartOf="@id/constraintLayout_progressing_touchArea"
                 app:layout_constraintTop_toTopOf="@+id/constraintLayout_progressing_touchArea" />
 
@@ -136,7 +136,7 @@
                 android:layout_width="16dp"
                 android:layout_height="2dp"
                 android:background="@color/spark_dark_pinkred"
-                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.COMPLETE) ? View.VISIBLE : View.GONE}"
+                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.COMPLETE) ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintStart_toStartOf="@id/constraintLayout_complete_touchArea"
                 app:layout_constraintTop_toTopOf="@id/constraintLayout_complete_touchArea" />
 
@@ -186,7 +186,7 @@
                 android:layout_width="16dp"
                 android:layout_height="2dp"
                 android:background="@color/spark_dark_pinkred"
-                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.INCOMPLETE) ? View.VISIBLE : View.GONE}"
+                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.INCOMPLETE) ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout_incomplete_touchArea"
                 app:layout_constraintTop_toTopOf="@id/constraintLayout_incomplete_touchArea" />
 
