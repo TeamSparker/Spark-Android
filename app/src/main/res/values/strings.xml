@@ -219,12 +219,16 @@
 
     <!-- StorageFragment -->
     <string name="storage_fragment_no_card_msg">아직 습관 카드가 없어요.\n인증과 함께 카드를 모아보세요!</string>
+    <string name="storage_tab_name_progressing">진행중</string>
+    <string name="storage_tab_name_complete">완료</string>
+    <string name="storage_tab_name_incomplete">미완료</string>
 
     <!-- CheckRoomFragment-->
     <string name="check_room_title">방을 만들었어요!</string>
     <string name="check_room_content">코드를 복사해 친구들을 초대해 보세요!</string>
     <string name="check_room_waiting_room_button">대기방 입장하기</string>
     <string name="check_room_home_button">홈으로 가기</string>
+
 
 </resources>
 
