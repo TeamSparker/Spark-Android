@@ -13,6 +13,7 @@ import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.WAITING_ROOM_BOTTOM_SHEET_GUEST
 import com.spark.android.util.DialogUtil.Companion.WAITING_ROOM_BOTTOM_SHEET_HOST
+import com.spark.android.util.popBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,10 +42,12 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
                 DialogUtil(WAITING_ROOM_BOTTOM_SHEET_HOST){
 
                 }.show(requireActivity().supportFragmentManager,this.javaClass.name)
+                dismiss()
             }else{
                 DialogUtil(WAITING_ROOM_BOTTOM_SHEET_GUEST){
 
                 }.show(requireActivity().supportFragmentManager,this.javaClass.name)
+                dismiss()
             }
         }
     }
