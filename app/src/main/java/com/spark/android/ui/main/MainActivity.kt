@@ -21,7 +21,7 @@ import com.spark.android.ui.main.viewmodel.MainViewModel.Companion.TAB_STORAGE
 import com.spark.android.ui.makeroom.MakeRoomActivity
 import com.spark.android.ui.storage.StorageFragmentDirections
 import com.spark.android.util.AnimationUtil
-import com.spark.android.ui.storage.StoragePhotoCollectionActivity.Companion.FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY
+import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity.Companion.FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY
 import com.spark.android.util.getToast
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite

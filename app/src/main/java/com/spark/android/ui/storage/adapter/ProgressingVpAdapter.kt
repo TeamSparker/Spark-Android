@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageProgressingListBinding
-import com.spark.android.ui.storage.StoragePhotoCollectionActivity
+import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity
 
 class ProgressingVpAdapter : ListAdapter<StorageRoom, ProgressingVpAdapter.ProgressingVpViewHolder>(progressingDiffUtil) {
 
