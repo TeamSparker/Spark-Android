@@ -44,7 +44,7 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
     }
 
     private fun initExtra() {
-        roomInfo = intent.getParcelableExtra<JoinCodeRoomInfoResponse>("roomInfo")!!
+        roomInfo = intent.getParcelableExtra("roomInfo")!!
     }
 
     private fun initInputCodeAgainButtonListener() {
@@ -63,7 +63,7 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
         binding.btnJoinCodeEnterWaitingRoom.setOnClickListener {
             joinCodeViewModel.setJoinCodeRoomDone(roomInfo.roomId)
             val intent = Intent(this, WaitingRoomActivity::class.java).apply {
-                this.putExtra("roomId", roomInfo.roomId)
+                putExtra("roomId", roomInfo.roomId)
                 putExtra("startPoint", WaitingRoomActivity.START_FROM_JOIN_CODE)
             }
             startActivity(intent)

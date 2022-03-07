@@ -101,6 +101,8 @@
     <string name="select_confirm_method_picture_content">미라클 모닝, 영양제 먹기와 같이 특정 순간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
+    <string name="select_confirm_method_dialog_title">우왓👍! 이대로 습관방을 만들까요?\n방 이름과 인증 방식은 더이상 수정이\n안 돼요.</string>
+    <string name="select_confirm_method_dialog_done">완료</string>
 
     <!-- TimerStartActivity -->
     <string name="timer_step_stopwatch">스톱워치</string>
@@ -119,7 +121,7 @@
     <string name="waiting_room_when">시간</string>
     <string name="waiting_room_purpose">목표</string>
     <string name="waiting_room_we_sparker">함께하는 스파커들</string>
-    <string name="waiting_room_we_sparker_explain">습관을 시작한 후에는 인원 추가가 불가능합니다.</string>
+    <string name="waiting_room_we_sparker_explain">습관방은 최대 10명까지 입장할 수 있습니다.</string>
     <string name="waiting_room_start_habit">습관방 만들기</string>
     <string name="waiting_room_no_purpose">습관을 시작하기 전에</string>
     <string name="waiting_room_no_purpose_second_line">시간과 목표를 작성해 주세요!</string>
@@ -180,6 +182,8 @@
     <string name="habit_today_rest_tail">회</string>
     <string name="habit_today_consider_btn">고민중</string>
     <string name="habit_today_rest_btn">쉴래요</string>
+    <string name="habit_today_rest_dialog">엇! 정말 쉴 건가요?\n푹 쉴 수 있도록 인증은 막아둘게요😊</string>
+    <string name="habit_today_rest_confirm">쉴래요</string>
 
     <!-- HabitSendSparkCompleteToast -->
     <string name="habit_send_spark_toast_content">에게 스파크를 보냈어요!</string>
@@ -216,6 +220,11 @@
     <!-- StorageFragment -->
     <string name="storage_fragment_no_card_msg">아직 습관 카드가 없어요.\n인증과 함께 카드를 모아보세요!</string>
 
+    <!-- CheckRoomFragment-->
+    <string name="check_room_title">방을 만들었어요!</string>
+    <string name="check_room_content">코드를 복사해 친구들을 초대해 보세요!</string>
+    <string name="check_room_waiting_room_button">대기방 입장하기</string>
+    <string name="check_room_home_button">홈으로 가기</string>
 
 </resources>
 

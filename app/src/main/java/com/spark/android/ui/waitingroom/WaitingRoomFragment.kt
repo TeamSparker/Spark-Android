@@ -1,5 +1,7 @@
 package com.spark.android.ui.waitingroom
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.content.ClipboardManager
 import android.os.Bundle
 import android.os.Handler
@@ -12,6 +14,11 @@ import com.spark.android.util.AnimationUtil
 import android.content.ClipData
 
 import android.content.Context.CLIPBOARD_SERVICE
+import android.content.Intent
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnPause
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
@@ -25,21 +32,22 @@ class WaitingRoomFragment :
 
     private lateinit var waitingRoomRecyclerViewAdapter: WaitingRoomRecyclerViewAdapter
     private var tooltipState = false
-    private val waitingRoomViewModel by viewModels<WaitingRoomViewModel>()
+    private val waitingRoomViewModel by activityViewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
-    private var startPoint by Delegates.notNull<Boolean>()
+    private var startPoint by Delegates.notNull<Int>()
+    private lateinit var toastAnimation: Animator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.waitingRoomViewModel = waitingRoomViewModel
         initExtra()
         binding.startPoint = startPoint
-        if (roomId != null) {
+        if (startPoint != 2) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
         initWatitingRoomRecyclerViewAdapter()
 
-        waitingRoomViewModel.waitingRoomInfo.observe(this) {
+        waitingRoomViewModel.waitingRoomInfo.observe(viewLifecycleOwner) {
             updateWatitingRoomRecyclerViewAdapter()
             initClipBoard()
             initTooltipButton()
@@ -53,7 +61,7 @@ class WaitingRoomFragment :
 
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
-        startPoint = arguments?.getBoolean("startPoint") ?: false
+        startPoint = arguments?.getInt("startPoint", 1) ?: 1
     }
 
     private fun initClipBoard() {
@@ -66,38 +74,29 @@ class WaitingRoomFragment :
             )
             clipboard.setPrimaryClip(clip)
 
+            binding.btnWaitingRoomCopyCode.isClickable = false
             binding.tvWaitingRoomToast.visibility = View.VISIBLE
-            AnimationUtil.openToastAnimation(binding.tvWaitingRoomToast)
-            Handler(Looper.getMainLooper()).postDelayed({
-                AnimationUtil.closeToastAnimation(
-                    binding.tvWaitingRoomToast
-                )
-
-            }, 2000)
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.tvWaitingRoomToast.visibility = View.GONE
-            }, 3000)
+            toastAnimation =
+                requireNotNull(AnimationUtil.grayBoxToastAnimation(binding.tvWaitingRoomToast)).apply {
+                    doOnEnd {
+                        binding.tvWaitingRoomToast.visibility = View.GONE
+                        binding.btnWaitingRoomCopyCode.isClickable = true
+                    }
+                    start()
+                }
         }
     }
 
     private fun initWatitingRoomRecyclerViewAdapter() {
-
-
         waitingRoomRecyclerViewAdapter = WaitingRoomRecyclerViewAdapter()
-
         binding.rvWaitingRoomMembers.adapter = waitingRoomRecyclerViewAdapter
-
-
     }
 
     private fun updateWatitingRoomRecyclerViewAdapter() {
-        waitingRoomRecyclerViewAdapter.members.clear()
-        waitingRoomViewModel.waitingRoomInfo.value?.let {
-            waitingRoomRecyclerViewAdapter.members.addAll(
-                it.members
-            )
+        waitingRoomViewModel.getRefreshInfo(roomId)
+        waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
+            waitingRoomRecyclerViewAdapter.updateMemberList(it)
         }
-        waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
     }
 
     private fun initTooltipButton() {
@@ -160,17 +159,18 @@ class WaitingRoomFragment :
         binding.btnWaitingRoomRefresh.setOnClickListener {
             AnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             binding.btnWaitingRoomRefresh.isEnabled = false
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.btnWaitingRoomRefresh.isEnabled = true
-            }, AnimationUtil.ROTATE_TIME)
             waitingRoomViewModel.getRefreshInfo(roomId)
-            waitingRoomViewModel.refreshInfo.observe(this) {
-                waitingRoomRecyclerViewAdapter.members.clear()
-                waitingRoomRecyclerViewAdapter.members.addAll(
-                    it
-                )
-                waitingRoomRecyclerViewAdapter.notifyDataSetChanged()
+            waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
+                waitingRoomRecyclerViewAdapter.updateMemberList(it)
+                binding.btnWaitingRoomRefresh.isEnabled = true
             }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if(::toastAnimation.isInitialized) {
+            toastAnimation.cancel()
         }
     }
 }

@@ -62,6 +62,8 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
             STOP_CERTIFY_PHOTO -> getString(R.string.certify_dialog_content)
             STOP_CERTIFY_TIMER -> getString(R.string.timer_dialog_stop_content)
             STOP_TIMER -> getString(R.string.timer_dialog_stop_timer_content)
+            CHECK_CONFIRM_MODE -> getString(R.string.select_confirm_method_dialog_title)
+            HABIT_REST -> getString(R.string.habit_today_rest_dialog)
             else -> throw IllegalStateException()
         }
     }
@@ -71,6 +73,8 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
             STOP_SIGNUP_MODE -> getString(R.string.profile_dialog_stop_signup)
             STOP_CERTIFY_PHOTO, STOP_CERTIFY_TIMER -> getString(R.string.certify_dialog_stop_certify)
             STOP_TIMER -> getString(R.string.timer_dialog_stop_timer)
+            CHECK_CONFIRM_MODE -> getString(R.string.select_confirm_method_dialog_done)
+            HABIT_REST -> getString(R.string.habit_today_rest_confirm)
             else -> throw IllegalStateException()
         }
     }
@@ -98,5 +102,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
         const val STOP_CERTIFY_PHOTO = 1
         const val STOP_CERTIFY_TIMER = 2
         const val STOP_TIMER = 3
+        const val CHECK_CONFIRM_MODE = 4
+        const val HABIT_REST = 5
     }
 }

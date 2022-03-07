@@ -15,6 +15,7 @@ import com.spark.android.data.remote.entity.request.SetPurposeRequest
 import com.spark.android.databinding.FragmentSetPurposeBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
+import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.util.AnimationUtil
 import com.spark.android.util.EditTextUtil
@@ -41,7 +42,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
                 var bundle = Bundle()
                 bundle.putInt("roomId", roomId)
-                bundle.putBoolean("startPoint", true)
+                bundle.putInt("startPoint", WaitingRoomActivity.START_FROM_HOME)
                 waitingRoomFragment.arguments = bundle
 
                 requireActivity().supportFragmentManager.beginTransaction()
@@ -194,12 +195,12 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                     setPurposeViewModel.myPurpose.value!!
                 )
             )
-            setPurposeViewModel.networkState.observe(this) {
+            setPurposeViewModel.networkState.observe(viewLifecycleOwner) {
                 val waitingRoomFragment = WaitingRoomFragment()
 
                 var bundle = Bundle()
                 bundle.putInt("roomId", roomId)
-                bundle.putBoolean("startPoint", true)
+                bundle.putInt("startPoint",WaitingRoomActivity.START_FROM_HOME)
                 waitingRoomFragment.arguments = bundle
 
                 requireActivity().supportFragmentManager.beginTransaction()
@@ -214,7 +215,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
 
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
-            bundle.putBoolean("startPoint", true)
+            bundle.putInt("startPoint", WaitingRoomActivity.START_FROM_HOME)
             waitingRoomFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()
