@@ -22,6 +22,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
+import com.spark.android.ui.waitingroom.bottomsheet.WaitingRoomFragmentBottomSheet
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -57,6 +58,7 @@ class WaitingRoomFragment :
         initSetPurposeButtonListener()
         initMoveHomeButtonListener()
         initRefreshButtonListener()
+        initExtraMenuButton()
     }
 
     private fun initExtra() {
@@ -164,6 +166,13 @@ class WaitingRoomFragment :
                 waitingRoomRecyclerViewAdapter.updateMemberList(it)
                 binding.btnWaitingRoomRefresh.isEnabled = true
             }
+        }
+    }
+
+    private fun initExtraMenuButton(){
+        binding.btnWaitingRoomExtraMenu.setOnClickListener {
+            val waitingRoomFragmentBottomSheet = WaitingRoomFragmentBottomSheet()
+            waitingRoomFragmentBottomSheet.show(requireActivity().supportFragmentManager,waitingRoomFragmentBottomSheet.tag)
         }
     }
 

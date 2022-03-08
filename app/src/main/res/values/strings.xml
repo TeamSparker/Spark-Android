@@ -229,6 +229,11 @@
     <string name="check_room_waiting_room_button">대기방 입장하기</string>
     <string name="check_room_home_button">홈으로 가기</string>
 
-
+    <!-- WaitingRoomFragmentBottomSheet-->
+    <string name="waiting_room_bottom_sheet_delete_room">방 삭제</string>
+    <string name="waiting_room_bottom_sheet_delete_room_host">정말 대기방을 삭제할 건가요?\n다른 스파커들에게도 습관방이 삭제돼요.</string>
+    <string name="waiting_room_bottom_sheet_delete_room_guest">정말 대기방을 나갈 건가요?\n습관이 시작되면 재접속이 불가능해요</string>
+    <string name="waiting_room_bottom_sheet_delete_room_host_button">삭제</string>
+    <string name="waiting_room_bottom_sheet_delete_room_guest_button">나가기</string>
 </resources>
 
