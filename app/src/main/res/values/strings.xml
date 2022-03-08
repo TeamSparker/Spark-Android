@@ -245,5 +245,22 @@
     <string name="my_page_main_sign_out">로그아웃</string>
     <string name="my_page_main_withdrawal"><u>회원 탈퇴</u></string>
 
+    <!-- AlarmSettingFragment -->
+    <string name="alarm_setting_desc_back_btn">뒤로가기 버튼</string>
+    <string name="alarm_setting_title">알림</string>
+    <string name="alarm_setting_setting">설정</string>
+    <string name="alarm_setting_start_habit">습관방 시작</string>
+    <string name="alarm_setting_start_habit_desc">대기 중이었던 방이 시작되면 바로 알 수 있어요.</string>
+    <string name="alarm_setting_spark_activity">스파커 활동</string>
+    <string name="alarm_setting_send_spark">스파크 보내기</string>
+    <string name="alarm_setting_send_spark_desc">받은 스파크를 확인할 수 있어요.</string>
+    <string name="alarm_setting_consider">고민중</string>
+    <string name="alarm_setting_consider_desc">다른 스파커가 고민중인 경우 바로 알 수 있어요.</string>
+    <string name="alarm_setting_certification">인증 완료</string>
+    <string name="alarm_setting_certification_desc">스파커들의 인증 사진을 바로 확인할 수 있어요.</string>
+    <string name="alarm_setting_remind">리마인드</string>
+    <string name="alarm_setting_not_done">미완료 습관방</string>
+    <string name="alarm_setting_not_done_desc">21:00에 미완료된 방이 있을 경우 알 수 있어요.</string>
+
 </resources>
 
