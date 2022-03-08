@@ -226,5 +226,23 @@
     <string name="check_room_waiting_room_button">대기방 입장하기</string>
     <string name="check_room_home_button">홈으로 가기</string>
 
+    <!-- MyPageMainFragment -->
+    <string name="my_page_main_desc_back_btn">뒤로가기 버튼</string>
+    <string name="my_page_main_title">MY</string>
+    <string name="my_page_main_desc_profile_img">마이페이지 프로필 이미지</string>
+    <string name="my_page_main_profile">프로필</string>
+    <string name="my_page_main_desc_modify_profile">프로필 변경하러가기</string>
+    <string name="my_page_main_setting">설정</string>
+    <string name="my_page_main_alarm">알림</string>
+    <string name="my_page_main_question">문의하기</string>
+    <string name="my_page_main_customer_service">고객센터</string>
+    <string name="my_page_main_guide">스파크 사용 가이드</string>
+    <string name="my_page_main_service">서비스</string>
+    <string name="my_page_main_policy">약관 및 정책</string>
+    <string name="my_page_main_version_info">버전 정보</string>
+    <string name="my_page_main_version">v1.0.0</string>
+    <string name="my_page_main_sign_out">로그아웃</string>
+    <string name="my_page_main_withdrawal"><u>회원 탈퇴</u></string>
+
 </resources>
 
