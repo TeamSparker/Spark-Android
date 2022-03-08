@@ -23,7 +23,9 @@ import androidx.fragment.app.viewModels
 import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
 import com.spark.android.ui.waitingroom.bottomsheet.WaitingRoomFragmentBottomSheet
+import com.spark.android.ui.waitingroom.makeroomcheckdialog.MakeRoomCheckFragmentDialog
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
+import com.spark.android.util.KeyBoardUtil.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -131,9 +133,9 @@ class WaitingRoomFragment :
 
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
-            binding.btnWaitingRoomStartHabit.isClickable = false
-            waitingRoomViewModel.startHabit(roomId)
-            requireActivity().finish()
+            MakeRoomCheckFragmentDialog().show(
+                requireActivity().supportFragmentManager,"MakeROomCheckDialog"
+            )
         }
     }
 
