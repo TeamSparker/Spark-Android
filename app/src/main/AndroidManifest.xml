@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
         <activity
+            android:name=".ui.storage.photo.StorageCardMainPhotoPickActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.share.InstaActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
@@ -51,7 +54,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.storage.StoragePhotoCollectionActivity"
+            android:name=".ui.storage.photo.StoragePhotoCollectionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

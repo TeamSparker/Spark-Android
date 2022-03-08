@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageIncompleteListBinding
-import com.spark.android.ui.storage.StoragePhotoCollectionActivity
+import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity
 
 class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteVpViewHolder>() {
 

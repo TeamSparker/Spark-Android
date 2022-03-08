@@ -57,7 +57,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/shape_spark_dark_pinkred_line_2_rect_bottomless"
-            app:layout_constraintBottom_toTopOf="@id/iv_complete_item_photo"
+            app:layout_constraintBottom_toTopOf="@id/tv_complete_item_roomName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

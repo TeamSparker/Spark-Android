@@ -20,10 +20,7 @@ import androidx.core.animation.doOnPause
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
-import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.setpurpose.SetPurposeFragment
-import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
 import com.spark.android.ui.waitingroom.bottomsheet.WaitingRoomFragmentBottomSheet
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel

@@ -13,13 +13,14 @@ import com.spark.android.ui.storage.StorageMode.Companion.PROGRESSING
 import com.spark.android.ui.storage.adapter.StorageViewPagerOutAdapter
 import com.spark.android.ui.storage.viewmodel.StorageViewModel
 import java.lang.IllegalStateException
+import android.animation.ObjectAnimator
+
+
+
 
 class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
     private lateinit var viewPagerOutAdapter: StorageViewPagerOutAdapter
     private val storageViewModel by activityViewModels<StorageViewModel>()
-    private val progressingIndicatorAnim by lazy { getIndicatorAnimator(binding.viewStorageProgressingIndicator) }
-    private val incompleteIndicatorAnim by lazy { getIndicatorAnimator(binding.viewStorageIncompleteIndicator) }
-    private val completeIndicatorAnim by lazy { getIndicatorAnimator(binding.viewStorageCompleteIndicator) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,21 +52,21 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
             when (mode) {
                 PROGRESSING -> {
                     binding.vpStorageOut.currentItem = 0
-                    progressingIndicatorAnim.start()
+                    indicatorBarAnimator(binding.viewStorageProgressingIndicator)
                     if (!storageViewModel.isInitProgressing) {
                         storageViewModel.initStorageNetwork(PROGRESSING, -1, 30)
                     }
                 }
                 COMPLETE -> {
                     binding.vpStorageOut.currentItem = 1
-                    completeIndicatorAnim.start()
+                    indicatorBarAnimator(binding.viewStorageCompleteIndicator)
                     if (!storageViewModel.isInitComplete) {
                         storageViewModel.initStorageNetwork(COMPLETE, -1, 30)
                     }
                 }
                 INCOMPLETE -> {
                     binding.vpStorageOut.currentItem = 2
-                    incompleteIndicatorAnim.start()
+                    indicatorBarAnimator(binding.viewStorageIncompleteIndicator)
                     if (!storageViewModel.isInitIncomplete) {
                         storageViewModel.initStorageNetwork(INCOMPLETE, -1, 30)
                     }
@@ -75,12 +76,10 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
         }
     }
 
-    private fun getIndicatorAnimator(view: View) = AnimatorInflater
-        .loadAnimator(
-            context,
-            R.animator.animator_storage_indicator
-        ).apply {
-            setTarget(view)
-        }
-
+    private fun indicatorBarAnimator(indicator : View){
+        val indicatorAnim = ObjectAnimator.ofFloat(indicator,"scaleX",0f,1.0f)
+        indicator.pivotX = 0f
+        indicatorAnim.duration = 150
+        indicatorAnim.start()
+    }
 }

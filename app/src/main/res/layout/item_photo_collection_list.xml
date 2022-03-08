@@ -19,7 +19,7 @@
         android:paddingBottom="16dp">
 
         <ImageView
-            android:id="@+id/cardview_photo_collection_item_roundedCorner"
+            android:id="@+id/iv_photo_collection_item_roundedCorner"
             imageUrl="@{storageCardPhoto.certifyingImg}"
             status="@{storageCardPhoto.status}"
             android:layout_width="match_parent"
@@ -29,23 +29,24 @@
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/img_photo_collection_yogurt" />
 
         <TextView
+            android:id="@+id/tv_photo_collection_item_timer_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_bold"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/cardview_photo_collection_item_roundedCorner"
-            app:layout_constraintEnd_toEndOf="@id/cardview_photo_collection_item_roundedCorner"
-            app:layout_constraintStart_toStartOf="@+id/cardview_photo_collection_item_roundedCorner"
-            app:layout_constraintTop_toTopOf="@+id/cardview_photo_collection_item_roundedCorner"
-            android:text="@{storageCardPhoto.timerRecord}" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_photo_collection_item_roundedCorner"
+            app:layout_constraintEnd_toEndOf="@id/iv_photo_collection_item_roundedCorner"
+            app:layout_constraintStart_toStartOf="@+id/iv_photo_collection_item_roundedCorner"
+            app:layout_constraintTop_toTopOf="@+id/iv_photo_collection_item_roundedCorner"
+            android:text="@{storageCardPhoto.timerRecord}"
+            tools:text = "00:00:00"/>
 
         <TextView
             android:id="@+id/tv_photo_collection_item_leftDays"
@@ -59,7 +60,7 @@
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@id/iv_photo_collection_item_fire_gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner"
+            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_roundedCorner"
             tools:text="D-day" />
 
         <ImageView
@@ -70,7 +71,7 @@
             android:layout_marginEnd="1dp"
             android:src="@drawable/ic_item_fire_gray"
             app:layout_constraintEnd_toStartOf="@id/tv_photo_collection_item_total_sparkNumber"
-            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner" />
+            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_roundedCorner" />
 
         <TextView
             android:id="@+id/tv_photo_collection_item_total_sparkNumber"
@@ -82,8 +83,8 @@
             android:textAlignment="viewEnd"
             android:textColor="@color/spark_gray"
             android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="@id/cardview_photo_collection_item_roundedCorner"
-            app:layout_constraintTop_toBottomOf="@id/cardview_photo_collection_item_roundedCorner"
+            app:layout_constraintEnd_toEndOf="@id/iv_photo_collection_item_roundedCorner"
+            app:layout_constraintTop_toBottomOf="@id/iv_photo_collection_item_roundedCorner"
             tools:text="3" />
 
 

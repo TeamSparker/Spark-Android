@@ -219,6 +219,9 @@
 
     <!-- StorageFragment -->
     <string name="storage_fragment_no_card_msg">아직 습관 카드가 없어요.\n인증과 함께 카드를 모아보세요!</string>
+    <string name="storage_tab_name_progressing">진행중</string>
+    <string name="storage_tab_name_complete">완료</string>
+    <string name="storage_tab_name_incomplete">미완료</string>
 
     <!-- CheckRoomFragment-->
     <string name="check_room_title">방을 만들었어요!</string>
