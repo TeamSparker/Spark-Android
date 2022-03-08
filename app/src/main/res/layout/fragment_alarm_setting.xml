@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/spark_white"
-    tools:context=".AlarmSettingFragment">
+    tools:context=".ui.alarmsetting.AlarmSettingFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
