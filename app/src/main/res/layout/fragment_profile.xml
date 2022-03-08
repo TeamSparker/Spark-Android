@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="modifyMode"
+            type="boolean" />
+
+        <variable
             name="profileViewModel"
             type="com.spark.android.ui.auth.profile.ProfileViewModel" />
     </data>
@@ -33,6 +37,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="프로필 수정"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
             android:id="@+id/tv_profile_info_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +62,7 @@
             android:text="@string/profile_info_1"
             android:textColor="@color/spark_black"
             android:textSize="20dp"
+            android:visibility="@{modifyMode ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_profile_quit" />
 
@@ -57,6 +77,7 @@
             android:text="@string/profile_info_2"
             android:textColor="@color/spark_pinkred"
             android:textSize="20dp"
+            android:visibility="@{modifyMode ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_profile_info_1" />
 
@@ -69,6 +90,7 @@
             android:text="@string/profile_info_3"
             android:textColor="@color/spark_black"
             android:textSize="20dp"
+            android:visibility="@{modifyMode ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/tv_profile_info_2"
             app:layout_constraintTop_toTopOf="@id/tv_profile_info_2" />
 
@@ -102,7 +124,7 @@
             android:layout_marginTop="70dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/noto_sans_kr_regular"
-            android:hint="@string/profile_nickname_hint"
+            android:hint="@{modifyMode ? profileViewModel.nickname : @string/profile_nickname_hint}"
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="textPersonName"
@@ -173,6 +195,27 @@
             android:text="@string/profile_start_spark"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
+            android:visibility="@{modifyMode ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_profile_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/spark_pinkred"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="14dp"
+            android:stateListAnimator="@null"
+            android:text="@string/profile_modify"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -181,7 +224,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/spark_black_opacity_80"
-            android:visibility="@{profileViewModel.isLoading? View.VISIBLE : View.GONE}">
+            android:visibility="@{profileViewModel.isLoading? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottie_profile_loading"
