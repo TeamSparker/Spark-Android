@@ -262,5 +262,13 @@
     <string name="alarm_setting_not_done">미완료 습관방</string>
     <string name="alarm_setting_not_done_desc">21:00에 미완료된 방이 있을 경우 알 수 있어요.</string>
 
+    <!-- WithdrawalFragment -->
+    <string name="withdrawal_title">회원 탈퇴</string>
+    <string name="withdrawal_desc_back_btn">뒤로가기 버튼</string>
+    <string name="withdrawal_warning_title">회원 탈퇴 유의사항</string>
+    <string name="withdrawal_warning_content">회원 탈퇴 시,\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파</string>
+    <string name="withdrawal_agree_msg">위의 사항을 숙지하였으며, 이에 동의합니다.</string>
+    <string name="withdrawal_submit">탈퇴하기</string>
+
 </resources>
 
