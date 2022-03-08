@@ -38,7 +38,7 @@
     <string name="profile_info_3">을 설정해주세요!</string>
     <string name="profile_desc_photo">프로필 사진 배경</string>
     <string name="profile_nickname_hint">닉네임 입력</string>
-    <string name="profile_start_spark">가입완료</string>
+    <string name="profile_start_spark">가입 완료</string>
     <string name="profile_nickname_count_sum">/10</string>
     <string name="profile_from_camera">카메라 촬영</string>
     <string name="profile_from_album">앨범에서 선택</string>
@@ -46,6 +46,7 @@
     <string name="profile_dialog_content">회원가입이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
     <string name="profile_dialog_stop_signup">나가기</string>
     <string name="profile_dialog_cancel">취소</string>
+    <string name="profile_modify">수정 완료</string>
 
     <!-- HabitActivity -->
     <string name="item_habit_team_send_count">0</string>
@@ -229,6 +230,49 @@
     <string name="check_room_waiting_room_button">대기방 입장하기</string>
     <string name="check_room_home_button">홈으로 가기</string>
 
+    <!-- MyPageMainFragment -->
+    <string name="my_page_main_desc_back_btn">뒤로가기 버튼</string>
+    <string name="my_page_main_title">MY</string>
+    <string name="my_page_main_desc_profile_img">마이페이지 프로필 이미지</string>
+    <string name="my_page_main_profile">프로필</string>
+    <string name="my_page_main_desc_modify_profile">프로필 변경하러가기</string>
+    <string name="my_page_main_setting">설정</string>
+    <string name="my_page_main_alarm">알림</string>
+    <string name="my_page_main_question">문의하기</string>
+    <string name="my_page_main_customer_service">고객센터</string>
+    <string name="my_page_main_guide">스파크 사용 가이드</string>
+    <string name="my_page_main_service">서비스</string>
+    <string name="my_page_main_policy">약관 및 정책</string>
+    <string name="my_page_main_version_info">버전 정보</string>
+    <string name="my_page_main_version">v1.0.0</string>
+    <string name="my_page_main_sign_out">로그아웃</string>
+    <string name="my_page_main_withdrawal"><u>회원 탈퇴</u></string>
+
+    <!-- AlarmSettingFragment -->
+    <string name="alarm_setting_desc_back_btn">뒤로가기 버튼</string>
+    <string name="alarm_setting_title">알림</string>
+    <string name="alarm_setting_setting">설정</string>
+    <string name="alarm_setting_start_habit">습관방 시작</string>
+    <string name="alarm_setting_start_habit_desc">대기 중이었던 방이 시작되면 바로 알 수 있어요.</string>
+    <string name="alarm_setting_spark_activity">스파커 활동</string>
+    <string name="alarm_setting_send_spark">스파크 보내기</string>
+    <string name="alarm_setting_send_spark_desc">받은 스파크를 확인할 수 있어요.</string>
+    <string name="alarm_setting_consider">고민중</string>
+    <string name="alarm_setting_consider_desc">다른 스파커가 고민중인 경우 바로 알 수 있어요.</string>
+    <string name="alarm_setting_certification">인증 완료</string>
+    <string name="alarm_setting_certification_desc">스파커들의 인증 사진을 바로 확인할 수 있어요.</string>
+    <string name="alarm_setting_remind">리마인드</string>
+    <string name="alarm_setting_not_done">미완료 습관방</string>
+    <string name="alarm_setting_not_done_desc">21:00에 미완료된 방이 있을 경우 알 수 있어요.</string>
+
+    <!-- WithdrawalFragment -->
+    <string name="withdrawal_title">회원 탈퇴</string>
+    <string name="withdrawal_desc_back_btn">뒤로가기 버튼</string>
+    <string name="withdrawal_warning_title">회원 탈퇴 유의사항</string>
+    <string name="withdrawal_warning_content">회원 탈퇴 시,\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파</string>
+    <string name="withdrawal_agree_msg">위의 사항을 숙지하였으며, 이에 동의합니다.</string>
+    <string name="withdrawal_submit">탈퇴하기</string>
+
     <!-- WaitingRoomFragmentBottomSheet-->
     <string name="waiting_room_bottom_sheet_delete_room">방 삭제</string>
     <string name="waiting_room_bottom_sheet_delete_room_host">정말 대기방을 삭제할 건가요?\n다른 스파커들에게도 습관방이 삭제돼요.</string>
@@ -242,5 +286,6 @@
     <string name="make_room_check_dialog_content_two">둘째,오늘부터 습관을 실행하고\n인증해야 해요.</string>
     <string name="make_room_check_dialog_button_dismiss">취소</string>
     <string name="make_room_check_dialog_button_make_room">시작할게요</string>
+
 </resources>
 
