@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,290 +7,299 @@
     android:background="@color/spark_white"
     tools:context=".ui.alarmsetting.AlarmSettingFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/btn_alarm_setting_back"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="48dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="22dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/alarm_setting_desc_back_btn"
+        android:padding="10dp"
+        android:src="@drawable/ic_back_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btn_alarm_setting_back"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv_my_page_main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:includeFontPadding="false"
+        android:text="@string/alarm_setting_title"
+        android:textColor="@color/spark_black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="22dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/alarm_setting_desc_back_btn"
-            android:padding="10dp"
-            android:src="@drawable/ic_back_black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:paddingBottom="48dp">
 
-        <TextView
-            android:id="@+id/tv_my_page_main_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_title"
-            android:textColor="@color/spark_black"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_setting"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="38dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_setting"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="14dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_title" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_start_habit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_start_habit"
+                android:textColor="@color/spark_black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_setting" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_start_habit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_start_habit"
-            android:textColor="@color/spark_black"
-            android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_setting" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_start_habit_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_start_habit_desc"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_start_habit" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_start_habit_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_start_habit_desc"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="12dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_start_habit" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_setting_start_habit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:thumb="@drawable/selector_switch_thumb"
+                android:track="@drawable/selector_switch_track"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_start_habit_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_start_habit"
+                app:switchMinWidth="36dp" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_alarm_setting_start_habit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:thumb="@drawable/selector_switch_thumb"
-            android:track="@drawable/selector_switch_track"
-            app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_start_habit_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_start_habit"
-            app:switchMinWidth="36dp" />
+            <View
+                android:id="@+id/view_alarm_setting_top"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:background="@color/spark_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_start_habit_desc" />
 
-        <View
-            android:id="@+id/view_alarm_setting_top"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:background="@color/spark_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_start_habit_desc" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_spark_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_spark_activity"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
+                app:layout_constraintTop_toBottomOf="@id/view_alarm_setting_top" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_spark_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_spark_activity"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="14dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
-            app:layout_constraintTop_toBottomOf="@id/view_alarm_setting_top" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_send_spark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_send_spark"
+                android:textColor="@color/spark_black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_spark_activity"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_spark_activity" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_send_spark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_send_spark"
-            android:textColor="@color/spark_black"
-            android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_spark_activity"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_spark_activity" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_send_spark_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_send_spark_desc"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_send_spark"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_send_spark" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_send_spark_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_send_spark_desc"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="12dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_send_spark"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_send_spark" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_setting_send_spark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:thumb="@drawable/selector_switch_thumb"
+                android:track="@drawable/selector_switch_track"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_send_spark_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_send_spark"
+                app:switchMinWidth="36dp" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_alarm_setting_send_spark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:thumb="@drawable/selector_switch_thumb"
-            android:track="@drawable/selector_switch_track"
-            app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_send_spark_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_send_spark"
-            app:switchMinWidth="36dp" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_consider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_consider"
+                android:textColor="@color/spark_black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_spark_activity"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_send_spark_desc" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_consider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_consider"
-            android:textColor="@color/spark_black"
-            android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_spark_activity"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_send_spark_desc" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_consider_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_consider_desc"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_consider"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_consider" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_consider_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_consider_desc"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="12dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_consider"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_consider" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_setting_consider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:thumb="@drawable/selector_switch_thumb"
+                android:track="@drawable/selector_switch_track"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_consider_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_consider"
+                app:switchMinWidth="36dp" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_alarm_setting_consider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:thumb="@drawable/selector_switch_thumb"
-            android:track="@drawable/selector_switch_track"
-            app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_consider_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_consider"
-            app:switchMinWidth="36dp" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_certification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_certification"
+                android:textColor="@color/spark_black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_spark_activity"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_consider_desc" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_certification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_certification"
-            android:textColor="@color/spark_black"
-            android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_spark_activity"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_consider_desc" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_certification_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_certification_desc"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_certification"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_certification" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_certification_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_certification_desc"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="12dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_certification"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_certification" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_setting_certification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:thumb="@drawable/selector_switch_thumb"
+                android:track="@drawable/selector_switch_track"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_certification_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_certification"
+                app:switchMinWidth="36dp" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_alarm_setting_certification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:thumb="@drawable/selector_switch_thumb"
-            android:track="@drawable/selector_switch_track"
-            app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_certification_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_certification"
-            app:switchMinWidth="36dp" />
+            <View
+                android:id="@+id/view_alarm_setting_bottom"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:background="@color/spark_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_certification_desc" />
 
-        <View
-            android:id="@+id/view_alarm_setting_bottom"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:background="@color/spark_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_certification_desc" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_remind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_remind"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
+                app:layout_constraintTop_toBottomOf="@id/view_alarm_setting_bottom" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_remind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_remind"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="14dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_setting"
-            app:layout_constraintTop_toBottomOf="@id/view_alarm_setting_bottom" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_not_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_not_done"
+                android:textColor="@color/spark_black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_remind"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_remind" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_not_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_not_done"
-            android:textColor="@color/spark_black"
-            android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_remind"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_remind" />
+            <TextView
+                android:id="@+id/tv_alarm_setting_not_done_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/alarm_setting_not_done_desc"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_not_done"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_not_done" />
 
-        <TextView
-            android:id="@+id/tv_alarm_setting_not_done_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@string/alarm_setting_not_done_desc"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="12dp"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_setting_not_done"
-            app:layout_constraintTop_toBottomOf="@id/tv_alarm_setting_not_done" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_setting_not_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:thumb="@drawable/selector_switch_thumb"
+                android:track="@drawable/selector_switch_track"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_not_done_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_not_done"
+                app:switchMinWidth="36dp" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_alarm_setting_not_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:thumb="@drawable/selector_switch_thumb"
-            android:track="@drawable/selector_switch_track"
-            app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_not_done_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_alarm_setting_not_done"
-            app:switchMinWidth="36dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
