@@ -30,8 +30,6 @@ class InputCodeFragmentDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = true
-
-
     }
 
     override fun onCreateView(

@@ -20,12 +20,12 @@ import androidx.core.animation.doOnPause
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
-import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.setpurpose.SetPurposeFragment
-import com.spark.android.ui.storage.StoragePhotoCollectionActivity
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
+import com.spark.android.ui.waitingroom.bottomsheet.WaitingRoomFragmentBottomSheet
+import com.spark.android.ui.waitingroom.makeroomcheckdialog.MakeRoomCheckFragmentDialog
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
+import com.spark.android.util.KeyBoardUtil.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -60,6 +60,7 @@ class WaitingRoomFragment :
         initSetPurposeButtonListener()
         initMoveHomeButtonListener()
         initRefreshButtonListener()
+        initExtraMenuButton()
     }
 
     private fun initExtra() {
@@ -132,9 +133,9 @@ class WaitingRoomFragment :
 
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
-            binding.btnWaitingRoomStartHabit.isClickable = false
-            waitingRoomViewModel.startHabit(roomId)
-            requireActivity().finish()
+            MakeRoomCheckFragmentDialog().show(
+                requireActivity().supportFragmentManager,"MakeROomCheckDialog"
+            )
         }
     }
 
@@ -167,6 +168,13 @@ class WaitingRoomFragment :
                 waitingRoomRecyclerViewAdapter.updateMemberList(it)
                 binding.btnWaitingRoomRefresh.isEnabled = true
             }
+        }
+    }
+
+    private fun initExtraMenuButton(){
+        binding.btnWaitingRoomExtraMenu.setOnClickListener {
+            val waitingRoomFragmentBottomSheet = WaitingRoomFragmentBottomSheet()
+            waitingRoomFragmentBottomSheet.show(requireActivity().supportFragmentManager,waitingRoomFragmentBottomSheet.tag)
         }
     }
 

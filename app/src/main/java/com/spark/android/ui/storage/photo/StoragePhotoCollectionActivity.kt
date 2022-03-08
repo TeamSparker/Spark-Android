@@ -1,4 +1,4 @@
-package com.spark.android.ui.storage
+package com.spark.android.ui.storage.photo
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,23 +10,24 @@ import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
 import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
 import com.spark.android.util.initStatusBarColor
-import com.spark.android.util.initStatusBarTextColorToWhite
 
 class StoragePhotoCollectionActivity :
     BaseActivity<ActivityStoragePhotoCollectionBinding>(R.layout.activity_storage_photo_collection) {
     private val photoCollectionRvAdapter = PhotoCollectionRvAdapter()
     private val photoCollectionViewModel by viewModels<PhotoCollectionViewModel>()
+    private var roomId = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val roomId = intent.getIntExtra("roomId", -1)
+        roomId = intent.getIntExtra("roomId", -1)
         photoCollectionViewModel.initPhotoCollectionNetwork(roomId, -1, 70)
         binding.photoCollectionViewModel = photoCollectionViewModel
         initStatusBarStyle()
         setOnBackBtnClickListener()
         initStoragePhotoCollectionRvAdapter()
         initPhotoCollectionObserver()
+        initPhotoCollectionMoreBtnClickListener()
     }
 
     override fun onBackPressed() {
@@ -45,12 +46,24 @@ class StoragePhotoCollectionActivity :
     private fun initPhotoCollectionObserver() {
         photoCollectionViewModel.photoList.observe(this) { photo ->
             photoCollectionRvAdapter.setList(photo)
+        }
+    }
 
+    private fun initPhotoCollectionMoreBtnClickListener() {
+        binding.btnStoragePhotoCollectionMoreWhite.setOnClickListener {
+            PhotoCollectionMoreBottomSheet().apply {
+                setChangePhotoBtnClickListener {
+                    val intent = Intent(context, StorageCardMainPhotoPickActivity::class.java)
+                    startActivity(intent.apply {
+                        putExtra("roomId", roomId)
+                    })
+                }
+            }.show(supportFragmentManager, this.javaClass.name)
         }
     }
 
     private fun setOnBackBtnClickListener() {
-        binding.ivStoragePhotoCollectionBackWhite.setOnClickListener {
+        binding.btnStoragePhotoCollectionBackWhite.setOnClickListener {
             moveToMain()
         }
     }

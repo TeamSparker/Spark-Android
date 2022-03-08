@@ -55,12 +55,10 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
-            app:layout_constraintBottom_toTopOf="@id/iv_progressing_item_photo"
+            app:layout_constraintBottom_toTopOf="@id/tv_progressing_item_roomName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:background="@drawable/shape_spark_light_pinkred_line_2_rect_bottomless" />
 
         <ImageView
