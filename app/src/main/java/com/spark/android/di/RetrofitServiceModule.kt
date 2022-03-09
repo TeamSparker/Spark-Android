@@ -61,4 +61,14 @@ object RetrofitServiceModule {
     @Singleton
     fun provideJoinCodeRoomDoneService(retrofit: Retrofit): JoinCodeRoomDoneService =
         retrofit.create(JoinCodeRoomDoneService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideDeleteRoomService(retrofit: Retrofit): DeleteRoomService =
+        retrofit.create(DeleteRoomService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideLeaveRoomService(retrofit: Retrofit): LeaveRoomService =
+        retrofit.create(LeaveRoomService::class.java)
 }

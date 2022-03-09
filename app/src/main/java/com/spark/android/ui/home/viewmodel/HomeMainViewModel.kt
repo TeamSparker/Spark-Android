@@ -41,5 +41,7 @@ class HomeMainViewModel @Inject constructor(
         }
     }
 
+    fun getHomeToastMessage() = homeRepository.getHomeToastMessage()
 
+    fun getHomeToastMessageState() = homeRepository.getHomeToastMessageState()
 }
