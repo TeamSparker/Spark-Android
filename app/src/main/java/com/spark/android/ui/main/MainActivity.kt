@@ -171,6 +171,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         InputCodeFragmentDialog().show(
             supportFragmentManager, "InputCodeDialog"
         )
+        AnimationUtil.closeFabAnimation(
+            binding.fabHomeMain,
+            binding.fabHomeMakeRoom,
+            binding.fabHomeJoinCode,
+            binding.layoutMainFabBackground,
+            binding.tvFabMakeRoom,
+            binding.tvFabJoinCode
+        )
+        fabState = !fabState
+        initBindingVariable()
     }
 
     fun initBlackBgClickListener() {
