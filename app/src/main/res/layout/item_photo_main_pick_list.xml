@@ -20,6 +20,8 @@
 
         <ImageView
             android:id="@+id/iv_main_photo_pick_item_roundedCorner"
+            imageUrl="@{storageCardPhoto.certifyingImg}"
+            status="@{storageCardPhoto.status}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -29,7 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/img_photo_collection_yogurt"
+            tools:src="@tools:sample/backgrounds/scenic"
             />
 
         <View

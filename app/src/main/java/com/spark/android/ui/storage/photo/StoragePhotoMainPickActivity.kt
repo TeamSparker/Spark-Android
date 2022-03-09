@@ -5,13 +5,13 @@ import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityStoragePhotoMainPickBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
+import com.spark.android.ui.storage.adapter.PhotoMainPickRvAdapter
 import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
 import com.spark.android.util.initStatusBarColor
 
 class StoragePhotoMainPickActivity :
     BaseActivity<ActivityStoragePhotoMainPickBinding>(R.layout.activity_storage_photo_main_pick) {
-    private val mainPhotoPickRvAdapter = PhotoCollectionRvAdapter()
+    private val mainPhotoPickRvAdapter = PhotoMainPickRvAdapter()
     private val mainPhotoPickViewModel by viewModels<PhotoCollectionViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

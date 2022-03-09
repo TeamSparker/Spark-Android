@@ -15,7 +15,6 @@ class PhotoCollectionRvAdapter :
         notifyDataSetChanged()
     }
 
-
     class PhotoCollectionRvViewHolder(private val binding: ItemPhotoCollectionListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(storageCardPhoto:StorageCardPhoto) {
