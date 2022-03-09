@@ -11,4 +11,8 @@ interface HomeRepository {
 
     fun getHomeToastMessageState():Boolean
 
+    fun setHomeToastMessage(message:String)
+
+    fun setHomeToastMessageState(state:Boolean)
+
 }

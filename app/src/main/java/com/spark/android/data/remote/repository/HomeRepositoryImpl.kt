@@ -18,4 +18,12 @@ class HomeRepositoryImpl @Inject constructor(
     override fun getHomeToastMessageState(): Boolean =
         localPreferencesHomeDataSource.getHomeToastMessageState()
 
+
+    override fun setHomeToastMessage(message: String) {
+        localPreferencesHomeDataSource.setHomeToastMessage(message)
+    }
+
+    override fun setHomeToastMessageState(state: Boolean) {
+        localPreferencesHomeDataSource.setHomeToastMessageState(state)
+    }
 }

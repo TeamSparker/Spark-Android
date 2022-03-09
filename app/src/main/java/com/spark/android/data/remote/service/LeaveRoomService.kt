@@ -8,6 +8,6 @@ interface LeaveRoomService {
 
     @DELETE("room/{roomId}/out")
     suspend fun leaveRoom(
-        @Path("roomID") roomId: Int
+        @Path("roomId") roomId: Int
     ):NoDataResponse
 }

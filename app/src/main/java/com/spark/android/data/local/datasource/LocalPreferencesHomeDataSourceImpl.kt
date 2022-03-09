@@ -14,4 +14,12 @@ class LocalPreferencesHomeDataSourceImpl @Inject constructor(
     override fun getHomeToastMessageState(): Boolean =
         localPreferences.getBoolean(LocalPreferencesWaitingRoomDataSourceImpl.HOME_TOAST_MESSAGE_STATE, false)
 
+    override fun setHomeToastMessage(message: String) {
+        localPreferences.edit().putString(LocalPreferencesWaitingRoomDataSourceImpl.HOME_TOAST_MESSAGE,message).apply()
+    }
+
+    override fun setHomeToastMessageState(state: Boolean) {
+        localPreferences.edit().putBoolean(LocalPreferencesWaitingRoomDataSourceImpl.HOME_TOAST_MESSAGE_STATE,state).apply()
+    }
+
 }

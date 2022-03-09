@@ -19,6 +19,6 @@ class LocalPreferencesWaitingRoomDataSourceImpl @Inject constructor(
 
     companion object {
         const val HOME_TOAST_MESSAGE = "HOME_TOAST_MESSAGE"
-        const val HOME_TOAST_MESSAGE_STATE = "HOME_TOAST_MESSAGE"
+        const val HOME_TOAST_MESSAGE_STATE = "HOME_TOAST_MESSAGE_STATE"
     }
 }
