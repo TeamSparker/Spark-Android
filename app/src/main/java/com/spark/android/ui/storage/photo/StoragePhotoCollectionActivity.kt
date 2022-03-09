@@ -8,13 +8,13 @@ import com.spark.android.databinding.ActivityStoragePhotoCollectionBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
-import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
+import com.spark.android.ui.storage.viewmodel.PhotoViewModel
 import com.spark.android.util.initStatusBarColor
 
 class StoragePhotoCollectionActivity :
     BaseActivity<ActivityStoragePhotoCollectionBinding>(R.layout.activity_storage_photo_collection) {
     private val photoCollectionRvAdapter = PhotoCollectionRvAdapter()
-    private val photoCollectionViewModel by viewModels<PhotoCollectionViewModel>()
+    private val photoCollectionViewModel by viewModels<PhotoViewModel>()
     private var roomId = 0
 
 

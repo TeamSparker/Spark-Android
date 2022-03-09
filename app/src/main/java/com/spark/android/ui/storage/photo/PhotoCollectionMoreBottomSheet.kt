@@ -1,6 +1,5 @@
 package com.spark.android.ui.storage.photo
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +8,11 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.databinding.BottomSheetPhotoCollectionMoreBinding
-import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
+import com.spark.android.ui.storage.viewmodel.PhotoViewModel
 
 class PhotoCollectionMoreBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetPhotoCollectionMoreBinding? = null
     val binding get() = _binding ?: error("Binding not initialized to referenxe the view.")
-    private val photoCollectionViewModel by activityViewModels<PhotoCollectionViewModel>()
     private var changePhotoBtnClickListener: (() -> Unit)? = null
 
     fun setChangePhotoBtnClickListener(listener: (() -> Unit)) {

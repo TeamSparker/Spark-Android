@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PhotoCollectionViewModel : ViewModel() {
+class PhotoViewModel : ViewModel() {
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -21,6 +21,13 @@ class PhotoCollectionViewModel : ViewModel() {
 
     private val _photoList = MutableLiveData<List<StorageCardPhoto>>()
     val photoList: LiveData<List<StorageCardPhoto>> = _photoList
+
+    private val _photoIsPicked = MutableLiveData<Boolean>(false)
+    val photoIsPicked : LiveData<Boolean> = _photoIsPicked
+
+    private fun initPhotoPicked(){
+        _photoIsPicked.value = true
+    }
 
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading

@@ -6,19 +6,19 @@ import com.spark.android.R
 import com.spark.android.databinding.ActivityStoragePhotoMainPickBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.storage.adapter.PhotoMainPickRvAdapter
-import com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel
+import com.spark.android.ui.storage.viewmodel.PhotoViewModel
 import com.spark.android.util.initStatusBarColor
 
 class StoragePhotoMainPickActivity :
     BaseActivity<ActivityStoragePhotoMainPickBinding>(R.layout.activity_storage_photo_main_pick) {
-    private val mainPhotoPickRvAdapter = PhotoMainPickRvAdapter()
-    private val mainPhotoPickViewModel by viewModels<PhotoCollectionViewModel>()
+    private val photoMainPickRvAdapter = PhotoMainPickRvAdapter()
+    private val photoMainPickViewModel by viewModels<PhotoViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val roomId = intent.getIntExtra("roomId",-1)
-        mainPhotoPickViewModel.initPhotoCollectionNetwork(roomId,-1,70)
-        binding.mainPhotoPickViewModel = mainPhotoPickViewModel
+        photoMainPickViewModel.initPhotoCollectionNetwork(roomId,-1,70)
+        binding.mainPhotoPickViewModel = photoMainPickViewModel
         initStatusBarStyle()
         setOnBackBtnClickListener()
         initStorageMainPhotoPickRvAdapter()
@@ -27,7 +27,7 @@ class StoragePhotoMainPickActivity :
     }
 
     private fun initStorageMainPhotoPickRvAdapter() {
-        binding.rvStorageMainPhotoPick.adapter = mainPhotoPickRvAdapter
+        binding.rvStorageMainPhotoPick.adapter = photoMainPickRvAdapter
     }
 
     private fun setOnBackBtnClickListener() {
@@ -39,8 +39,8 @@ class StoragePhotoMainPickActivity :
     }
 
     private fun initMainPhotoPickObserver() {
-        mainPhotoPickViewModel.photoList.observe(this){
-            photo -> mainPhotoPickRvAdapter.setList(photo)
+        photoMainPickViewModel.photoList.observe(this){
+            photo -> photoMainPickRvAdapter.setList(photo)
         }
     }
 
