@@ -53,7 +53,7 @@ class StoragePhotoCollectionActivity :
         binding.btnStoragePhotoCollectionMoreWhite.setOnClickListener {
             PhotoCollectionMoreBottomSheet().apply {
                 setChangePhotoBtnClickListener {
-                    val intent = Intent(context, StorageCardMainPhotoPickActivity::class.java)
+                    val intent = Intent(context, StoragePhotoMainPickActivity::class.java)
                     startActivity(intent.apply {
                         putExtra("roomId", roomId)
                     })
