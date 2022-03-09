@@ -49,6 +49,10 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
 
     private fun initInputCodeAgainButtonListener() {
         binding.btnJoinCodeInputAgain.setOnClickListener {
+            val resultIntent = Intent(this,MainActivity::class.java).apply {
+                putExtra("finishState", BACK_TO_JOIN_CODE)
+            }
+            setResult(RESULT_OK,resultIntent)
             finish()
         }
     }
@@ -67,6 +71,10 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
                 putExtra("startPoint", WaitingRoomActivity.START_FROM_JOIN_CODE)
             }
             startActivity(intent)
+            val resultIntent = Intent(this,MainActivity::class.java).apply {
+                putExtra("finishState", GO_TO_WAITING_ROOM)
+            }
+            setResult(RESULT_OK,resultIntent)
             finish()
         }
     }
@@ -74,5 +82,10 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
     private fun initStatusBarStyle() {
         initStatusBarColor(R.color.spark_white)
         initStatusBarTextColorToWhite()
+    }
+
+    companion object{
+        const val GO_TO_WAITING_ROOM = true
+        const val BACK_TO_JOIN_CODE = false
     }
 }
