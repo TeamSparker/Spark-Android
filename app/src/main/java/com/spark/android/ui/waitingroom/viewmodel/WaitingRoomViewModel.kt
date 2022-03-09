@@ -28,7 +28,7 @@ class WaitingRoomViewModel @Inject constructor(
     val waitingRoomInfo: LiveData<WaitingRoomInfoResponse> = _waitingRoomInfo
 
     private val _refreshInfo = MutableLiveData<List<Member>>()
-    val refreshInfo :LiveData<List<Member>> = _refreshInfo
+    val refreshInfo: LiveData<List<Member>> = _refreshInfo
 
     fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
@@ -42,29 +42,55 @@ class WaitingRoomViewModel @Inject constructor(
                     _waitingRoomInfo.postValue(it.data!!)
                     initIsLoading(false)
                 }.onFailure {
-                    Log.d("WaitingRoomInfo",it.message.toString())
+                    Log.d("WaitingRoomInfo", it.message.toString())
                 }
         }
     }
 
-    fun getRefreshInfo(roomId: Int){
+    fun getRefreshInfo(roomId: Int) {
         viewModelScope.launch {
             refreshRepository.getRefresh(roomId)
                 .onSuccess {
                     _refreshInfo.postValue(it.data.members)
                 }.onFailure {
-                    Log.d("refreshPeopleList",it.message.toString())
+                    Log.d("refreshPeopleList", it.message.toString())
                 }
         }
     }
 
-    fun startHabit(roomId: Int){
+    fun startHabit(roomId: Int) {
         viewModelScope.launch {
             startHabitRepository.startHabit(roomId)
                 .onFailure {
-                    Log.d("startHabit",it.message.toString())
+                    Log.d("startHabit", it.message.toString())
                 }
         }
     }
 
+    fun deleteWaitingRoom(roomId: Int) {
+        viewModelScope.launch {
+            waitingRoomInfoRepository.deleteWaitingRoom(roomId)
+                .onFailure {
+                    Log.d("deleteWaitingRoom", it.message.toString())
+                }
+        }
+    }
+
+    fun leaveRoom(roomId: Int) {
+        viewModelScope.launch {
+            waitingRoomInfoRepository.leaveRoom(roomId)
+                .onFailure {
+                    Log.d("leaveRoom", it.message.toString())
+                }
+        }
+    }
+
+
+    fun setHomeToastMessage(message: String) {
+        waitingRoomInfoRepository.setHomeToastMessage(message)
+    }
+
+    fun setHomeToastMessageState(state: Boolean) {
+        waitingRoomInfoRepository.setHomeToastMessageState(state)
+    }
 }

@@ -1,8 +1,7 @@
 package com.spark.android.di
 
 import android.content.SharedPreferences
-import com.spark.android.data.local.datasource.LocalPreferencesDataSource
-import com.spark.android.data.local.datasource.LocalPreferencesDataSourceImpl
+import com.spark.android.data.local.datasource.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,4 +15,14 @@ object LocalDataSourceModule {
     @Singleton
     fun provideLocalPreferencesImpl(localPreferences: SharedPreferences): LocalPreferencesDataSource =
         LocalPreferencesDataSourceImpl(localPreferences)
+
+    @Provides
+    @Singleton
+    fun provideLocalPreferencesWaitingRoomDataSource(localPreferences: SharedPreferences): LocalPreferencesWaitingRoomDataSource =
+        LocalPreferencesWaitingRoomDataSourceImpl(localPreferences)
+
+    @Provides
+    @Singleton
+    fun provideLocalPreferencesHomeDataSource(localPreferences: SharedPreferences): LocalPreferencesHomeDataSource =
+        LocalPreferencesHomeDataSourceImpl(localPreferences)
 }

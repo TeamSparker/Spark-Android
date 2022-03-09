@@ -1,8 +1,11 @@
 package com.spark.android.di
 
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
+import com.spark.android.data.local.datasource.LocalPreferencesHomeDataSource
+import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.datasource.FeedDataSource
+import com.spark.android.data.remote.datasource.RemoteWaitingRoomDataSource
 import com.spark.android.data.remote.repository.*
 import com.spark.android.data.remote.service.*
 import dagger.Module
@@ -32,9 +35,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesHomeRepository(
-        homeService: HomeService
+        homeService: HomeService,
+        localPreferencesHomeDataSource: LocalPreferencesHomeDataSource
     ): HomeRepository =
-        HomeRepositoryImpl(homeService)
+        HomeRepositoryImpl(homeService,localPreferencesHomeDataSource)
 
     @Provides
     @Singleton
@@ -46,9 +50,13 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesWaitingRoomInfoRepository(
-        waitingRoomInfoService: WaitingRoomInfoService
+        localPreferencesWaitingRoomDataSource: LocalPreferencesWaitingRoomDataSource,
+        remoteWaitingRoomDataSource: RemoteWaitingRoomDataSource
     ): WaitingRoomInfoRepository =
-        WaitingRoomInfoRepositoryImpl(waitingRoomInfoService)
+        WaitingRoomInfoRepositoryImpl(
+            localPreferencesWaitingRoomDataSource,
+            remoteWaitingRoomDataSource
+        )
 
     @Provides
     @Singleton
@@ -66,7 +74,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesStartHabittRepository(
+    fun providesStartHabitRepository(
         startHabitService: StartHabitService
     ): StartHabitRepository =
         StartHabitRepositoryImpl(startHabitService)
