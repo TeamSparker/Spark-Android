@@ -1,18 +1,19 @@
 package com.spark.android.ui.withdrawal
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.spark.android.R
+import com.spark.android.databinding.FragmentWithdrawalBinding
+import com.spark.android.ui.base.BaseFragment
+import com.spark.android.util.popBackStack
 
-class WithdrawalFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_withdrawal, container, false)
+class WithdrawalFragment : BaseFragment<FragmentWithdrawalBinding>(R.layout.fragment_withdrawal) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initBackBtnClickListener()
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnWithdrawalBack.setOnClickListener { popBackStack() }
     }
 }

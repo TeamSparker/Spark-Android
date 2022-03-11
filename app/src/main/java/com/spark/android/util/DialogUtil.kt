@@ -66,13 +66,14 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
             HABIT_REST -> getString(R.string.habit_today_rest_dialog)
             WAITING_ROOM_BOTTOM_SHEET_HOST -> getString(R.string.waiting_room_bottom_sheet_delete_room_host)
             WAITING_ROOM_BOTTOM_SHEET_GUEST -> getString(R.string.waiting_room_bottom_sheet_delete_room_guest)
+            STOP_MODIFY_PROFILE -> getString(R.string.profile_modify_dialog_content)
             else -> throw IllegalStateException()
         }
     }
 
     private fun setConfirmText() {
         binding.confirmText = when (dialogMode) {
-            STOP_SIGNUP_MODE -> getString(R.string.profile_dialog_stop_signup)
+            STOP_SIGNUP_MODE, STOP_MODIFY_PROFILE -> getString(R.string.profile_dialog_stop_signup)
             STOP_CERTIFY_PHOTO, STOP_CERTIFY_TIMER -> getString(R.string.certify_dialog_stop_certify)
             STOP_TIMER -> getString(R.string.timer_dialog_stop_timer)
             CHECK_CONFIRM_MODE -> getString(R.string.select_confirm_method_dialog_done)
@@ -110,5 +111,6 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
         const val HABIT_REST = 5
         const val WAITING_ROOM_BOTTOM_SHEET_HOST = 6
         const val WAITING_ROOM_BOTTOM_SHEET_GUEST = 7
+        const val STOP_MODIFY_PROFILE = 8
     }
 }

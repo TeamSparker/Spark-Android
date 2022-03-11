@@ -33,6 +33,22 @@
             android:contentDescription="@string/profile_desc_quit"
             android:padding="10dp"
             android:src="@drawable/ic_profile_quit"
+            android:visibility="@{modifyMode ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/btn_profile_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/profile_desc_back_btn"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_black"
+            android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
