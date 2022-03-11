@@ -88,7 +88,7 @@
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/noto_sans_kr_medium"
                     android:includeFontPadding="false"
-                    android:text="힛이"
+                    android:text="닉네임"
                     android:textColor="@color/spark_black"
                     android:textSize="18dp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_my_page_main_profile"

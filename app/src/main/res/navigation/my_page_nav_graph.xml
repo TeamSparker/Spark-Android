@@ -29,7 +29,12 @@
         android:id="@+id/profileFragmentFromMyPage"
         android:name="com.spark.android.ui.auth.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="modifyMode"
+            android:defaultValue="true"
+            app:argType="boolean" />
+    </fragment>
     <fragment
         android:id="@+id/alarmSettingFragment"
         android:name="com.spark.android.ui.alarmsetting.AlarmSettingFragment"
