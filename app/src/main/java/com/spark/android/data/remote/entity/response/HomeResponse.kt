@@ -13,5 +13,6 @@ data class Room(
     val memberNum: Int,
     val profileImg: List<String>,
     val roomId: Int,
-    val roomName: String
+    val roomName: String,
+    val isUploaded: Boolean
 )
