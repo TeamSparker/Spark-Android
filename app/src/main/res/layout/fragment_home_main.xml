@@ -27,7 +27,7 @@
             tools:layout_editor_absoluteX="0dp">
 
             <ImageButton
-                android:id="@+id/btn_home_tool_bar_profile"
+                android:id="@+id/btn_home_tool_bar_my_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"

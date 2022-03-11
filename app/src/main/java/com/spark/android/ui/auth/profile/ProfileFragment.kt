@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
 import com.spark.android.ui.base.BaseFragment
@@ -15,6 +16,7 @@ import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.DELETE_MODE
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_PROFILE_DIALOG
 import com.spark.android.util.DialogUtil
+import com.spark.android.util.DialogUtil.Companion.STOP_MODIFY_PROFILE
 import com.spark.android.util.DialogUtil.Companion.STOP_SIGNUP_MODE
 import com.spark.android.util.EventObserver
 import com.spark.android.util.KeyBoardUtil
@@ -30,18 +32,25 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     @Inject
     lateinit var multiPartResolver: MultiPartResolver
     private val profileViewModel by viewModels<ProfileViewModel>()
+    private val args by navArgs<ProfileFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profileViewModel = profileViewModel
         profileViewModel.initKakaoUserId()
         profileViewModel.initFcmToken()
+        initModifyMode()
         initStatusBarStyle()
         hideKeyBoard()
         initIsFocused()
+        initBackBtnClickListener()
         initPictureBtnClickListener()
         initSuccessSignUpObserver()
         initFragmentResultListener()
+    }
+
+    private fun initModifyMode() {
+        binding.modifyMode = args.modifyMode
     }
 
     private fun initStatusBarStyle() {
@@ -74,6 +83,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun initQuitBtnClickListener() {
         binding.btnProfileQuit.setOnClickListener {
             DialogUtil(STOP_SIGNUP_MODE) {
+                popBackStack()
+            }.show(parentFragmentManager, this.javaClass.name)
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnProfileBack.setOnClickListener {
+            DialogUtil(STOP_MODIFY_PROFILE) {
                 popBackStack()
             }.show(parentFragmentManager, this.javaClass.name)
         }

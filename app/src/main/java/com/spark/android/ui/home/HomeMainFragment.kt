@@ -1,5 +1,6 @@
 package com.spark.android.ui.home
 
+import android.content.Intent
 import android.animation.Animator
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import com.spark.android.databinding.FragmentHomeMainBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.home.adapter.HomeRecyclerViewAdapter
 import com.spark.android.ui.home.viewmodel.HomeMainViewModel
+import com.spark.android.ui.mypage.MyPageActivity
 import com.spark.android.util.AnimationUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +31,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
 
         initHomeRecyclerViewAdapter()
         updateHomeRecyclerViewAdapter()
+        initMyPageBtnClickListener()
 
     }
 
@@ -50,6 +53,14 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         binding.rvHomeTicket.adapter = homeRecyclerViewAdapter
     }
 
+    private fun initMyPageBtnClickListener() {
+        binding.btnHomeToolBarMyPage.setOnClickListener {
+            startActivity(Intent(requireContext(), MyPageActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            })
+        }
+    }
+
     private fun showToastMessage(){
         if(homeMainViewModel.getHomeToastMessageState()){
             homeMainViewModel.updateToastMessage(homeMainViewModel.getHomeToastMessage())
@@ -66,7 +77,6 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
                 }
         }
     }
-
 
     override fun onPause() {
         super.onPause()
