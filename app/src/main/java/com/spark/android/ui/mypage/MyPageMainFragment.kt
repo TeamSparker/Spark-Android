@@ -12,6 +12,7 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
         super.onViewCreated(view, savedInstanceState)
         initBackBtnClickListener()
         initModifyProfileBtnClickListener()
+        initAlarmSettingBtnClickListener()
     }
 
     private fun initBackBtnClickListener() {
@@ -21,6 +22,12 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
     private fun initModifyProfileBtnClickListener() {
         binding.btnMyPageMainModifyProfile.setOnClickListener {
             navigate(R.id.action_myPageMainFragment_to_profileFragmentFromMyPage)
+        }
+    }
+
+    private fun initAlarmSettingBtnClickListener() {
+        binding.btnMyPageMainAlarm.setOnClickListener {
+            navigate(R.id.action_myPageMainFragment_to_alarmSettingFragment)
         }
     }
 
