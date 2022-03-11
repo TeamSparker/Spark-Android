@@ -45,6 +45,7 @@
     <string name="profile_from_album">앨범에서 선택</string>
     <string name="profile_delete_profile_picture">사진 삭제</string>
     <string name="profile_dialog_content">회원가입이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
+    <string name="profile_modify_dialog_content">프로필 수정이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
     <string name="profile_dialog_stop_signup">나가기</string>
     <string name="profile_dialog_cancel">취소</string>
     <string name="profile_modify">수정 완료</string>

@@ -16,6 +16,7 @@ import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.DELETE_MODE
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_PROFILE_DIALOG
 import com.spark.android.util.DialogUtil
+import com.spark.android.util.DialogUtil.Companion.STOP_MODIFY_PROFILE
 import com.spark.android.util.DialogUtil.Companion.STOP_SIGNUP_MODE
 import com.spark.android.util.EventObserver
 import com.spark.android.util.KeyBoardUtil
@@ -42,6 +43,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         initStatusBarStyle()
         hideKeyBoard()
         initIsFocused()
+        initBackBtnClickListener()
         initPictureBtnClickListener()
         initSuccessSignUpObserver()
         initFragmentResultListener()
@@ -81,6 +83,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun initQuitBtnClickListener() {
         binding.btnProfileQuit.setOnClickListener {
             DialogUtil(STOP_SIGNUP_MODE) {
+                popBackStack()
+            }.show(parentFragmentManager, this.javaClass.name)
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnProfileBack.setOnClickListener {
+            DialogUtil(STOP_MODIFY_PROFILE) {
                 popBackStack()
             }.show(parentFragmentManager, this.javaClass.name)
         }
