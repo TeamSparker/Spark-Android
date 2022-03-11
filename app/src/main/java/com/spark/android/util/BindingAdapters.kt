@@ -102,12 +102,20 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("setRightBackground")
-    fun setRightBackground(imageview: ImageView, myStatus: String) {
-        if (myStatus == "DONE") {
+    @BindingAdapter(value = ["myStatus","isUploaded"],requireAll = false)
+    fun setRightBackground(imageview: ImageView, myStatus: String , isUploaded: Boolean ) {
+        if(myStatus == "DONE") {
             imageview.setImageResource(R.drawable.img_home_right_ticket_fold)
-        } else {
+        }else if (myStatus =="NONE" || myStatus == "REST"){
             imageview.setImageResource(R.drawable.img_home_right_ticket)
+        }else if(myStatus == "COMPLETE" && isUploaded){
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish_fold)
+        }else if(myStatus == "COMPLETE" && !isUploaded){
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish)
+        }else if(myStatus == "FAIL" && isUploaded){
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish_fold)
+        }else if(myStatus == "FAIL" && !isUploaded){
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish)
         }
     }
 
