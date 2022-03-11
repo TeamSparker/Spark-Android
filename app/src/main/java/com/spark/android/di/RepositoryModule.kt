@@ -5,6 +5,7 @@ import com.spark.android.data.local.datasource.LocalPreferencesHomeDataSource
 import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.datasource.FeedDataSource
+import com.spark.android.data.remote.datasource.RemoteHomeDataSource
 import com.spark.android.data.remote.datasource.RemoteWaitingRoomDataSource
 import com.spark.android.data.remote.repository.*
 import com.spark.android.data.remote.service.*
@@ -35,10 +36,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesHomeRepository(
-        homeService: HomeService,
+        remoteHomeDataSource: RemoteHomeDataSource,
         localPreferencesHomeDataSource: LocalPreferencesHomeDataSource
     ): HomeRepository =
-        HomeRepositoryImpl(homeService,localPreferencesHomeDataSource)
+        HomeRepositoryImpl(remoteHomeDataSource,localPreferencesHomeDataSource)
 
     @Provides
     @Singleton
