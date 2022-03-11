@@ -16,8 +16,9 @@ import com.spark.android.ui.home.adapter.multiview.TICKET_WAITING
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import java.lang.RuntimeException
 
-class HomeRecyclerViewAdapter :
-    ListAdapter<Room, RecyclerView.ViewHolder>(homeDiffUtil) {
+class HomeRecyclerViewAdapter(
+    private val finishRoomEvent: ((Int) -> Unit)? = null
+) : ListAdapter<Room, RecyclerView.ViewHolder>(homeDiffUtil) {
 
     private lateinit var itemHomeRecyclerviewBinding: ItemHomeRecyclerviewBinding
     private lateinit var itemHomeRecyclerviewWaitingBinding: ItemHomeRecyclerviewWaitingBinding
@@ -56,7 +57,7 @@ class HomeRecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is HomeRecyclerViewHolder) {
-            holder.onBind(getItem(position))
+            holder.onBind(getItem(position),finishRoomEvent)
         } else if (holder is HomeRecyclerViewWaitingHolder) {
             holder.onBind(getItem(position))
         }
@@ -68,20 +69,22 @@ class HomeRecyclerViewAdapter :
 
     inner class HomeRecyclerViewHolder(val binding: ItemHomeRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: Room) {
+        fun onBind(data: Room, finishRoomEvent: ((Int) -> Unit)? = null) {
             binding.room = data
-        }
-
-        init {
-            itemView.setOnClickListener {
-                val intent = Intent(it.context, HabitActivity::class.java).apply {
-                    putExtra("roomId", getItem(absoluteAdapterPosition).roomId)
-                    addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            binding.root.setOnClickListener {
+                if (data.myStatus == "COMPLETE" || data.myStatus == "FAIL") {
+                    finishRoomEvent?.invoke(data.roomId)
+                } else {
+                    val intent = Intent(it.context, HabitActivity::class.java).apply {
+                        putExtra("roomId", getItem(absoluteAdapterPosition).roomId)
+                        addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    }
+                    startActivity(it.context, intent, null)
                 }
-                startActivity(it.context, intent, null)
             }
         }
     }
+
 
     inner class HomeRecyclerViewWaitingHolder(val binding: ItemHomeRecyclerviewWaitingBinding) :
         RecyclerView.ViewHolder(binding.root) {

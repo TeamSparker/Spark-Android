@@ -40,8 +40,15 @@ class HomeMainViewModel @Inject constructor(
                 .onSuccess {
                     _roomList.postValue(it.data.rooms)
                 }.onFailure {
-                    Log.d("Home_main error", it.message.toString())
+                    Log.d("Home_main_error_get_list", it.message.toString())
                 }
+        }
+    }
+
+    fun readFinishHabitRoom(roomId: Int) {
+        viewModelScope.launch {
+            homeRepository.readFinishHabitRoom(roomId)
+                .onFailure { Log.d("Home_main_error_finish_room", it.message.toString()) }
         }
     }
 

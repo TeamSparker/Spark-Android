@@ -40,8 +40,8 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         showToastMessage()
     }
 
-    private fun updateHomeRecyclerViewAdapter(){
-        homeMainViewModel.getHomeAllRoom(-1,100)
+    private fun updateHomeRecyclerViewAdapter() {
+        homeMainViewModel.getHomeAllRoom(-1, 100)
         homeMainViewModel.roomList.observe(viewLifecycleOwner) {
             homeRecyclerViewAdapter.updateHomeList(it)
             homeMainViewModel.updateIsLoading()
@@ -49,9 +49,10 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
     }
 
     private fun initHomeRecyclerViewAdapter() {
-        homeRecyclerViewAdapter = HomeRecyclerViewAdapter()
+        homeRecyclerViewAdapter = HomeRecyclerViewAdapter(::finishRoomEvent)
         binding.rvHomeTicket.adapter = homeRecyclerViewAdapter
     }
+
 
     private fun initMyPageBtnClickListener() {
         binding.btnHomeToolBarMyPage.setOnClickListener {
@@ -69,18 +70,24 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
                 requireNotNull(AnimationUtil.grayBoxToastAnimation(binding.tvHomeToast)).apply {
                     doOnStart {
                         homeMainViewModel.setHomeToastMessage("")
-                        homeMainViewModel.setHomeToastMessageState(false) }
+                        homeMainViewModel.setHomeToastMessageState(false)
+                    }
                     doOnEnd {
                         homeMainViewModel.updateToastMessage("")
-                        binding.tvHomeToast.visibility = View.GONE }
+                        binding.tvHomeToast.visibility = View.GONE
+                    }
                     start()
                 }
         }
     }
 
+    private fun finishRoomEvent(roomId: Int) {
+        homeMainViewModel.readFinishHabitRoom(roomId)
+    }
+
     override fun onPause() {
         super.onPause()
-        if(::toastAnimation.isInitialized) {
+        if (::toastAnimation.isInitialized) {
             toastAnimation.cancel()
         }
     }

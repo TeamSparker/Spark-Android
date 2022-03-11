@@ -71,4 +71,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideLeaveRoomService(retrofit: Retrofit): LeaveRoomService =
         retrofit.create(LeaveRoomService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideHomeHabitRoomFinishService(retrofit: Retrofit): HomeHabitRoomFinishService =
+        retrofit.create(HomeHabitRoomFinishService::class.java)
 }

@@ -1,15 +1,21 @@
 package com.spark.android.data.remote.repository
 
 import com.spark.android.data.local.datasource.LocalPreferencesHomeDataSource
+import com.spark.android.data.remote.datasource.RemoteHomeDataSource
+import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.service.HomeService
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(
-    private val homeService: HomeService,
+    private val remoteHomeDataSource: RemoteHomeDataSource,
     private val localPreferencesHomeDataSource: LocalPreferencesHomeDataSource
 ) : HomeRepository {
     override suspend fun getHomeAllRoom(lastId: Int, size: Int) = kotlin.runCatching {
-        homeService.getHomeAllRoom(lastId, size)
+        remoteHomeDataSource.getHomeAllRoom(lastId, size)
+    }
+
+    override suspend fun readFinishHabitRoom(roomId: Int) = kotlin.runCatching {
+        remoteHomeDataSource.readFinishHabitRoom(roomId)
     }
 
     override fun getHomeToastMessage(): String =
