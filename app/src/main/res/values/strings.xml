@@ -32,6 +32,7 @@
     <string name="sign_in_complete_login_msg">로그인되었습니다.</string>
 
     <!-- ProfileFragment -->
+    <string name="profile_desc_back_btn">뒤로가기 버튼</string>
     <string name="profile_desc_quit">종료 버튼</string>
     <string name="profile_info_1">스파크에서 사용할</string>
     <string name="profile_info_2">프로필</string>
