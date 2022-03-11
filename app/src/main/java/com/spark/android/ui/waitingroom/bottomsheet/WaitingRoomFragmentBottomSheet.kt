@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
@@ -27,27 +28,44 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentWaitingRoomBottomSheetBinding.inflate(layoutInflater,container,false)
+        _binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_waiting_room_bottom_sheet,
+            container,
+            false
+        )
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.waitingRoomBottomSheetViewModel=waitingRoomBottomSheetViewModel
         initDeleteRoomButtonClickListener()
     }
 
-    private fun initDeleteRoomButtonClickListener(){
+    private fun initDeleteRoomButtonClickListener() {
         binding.tvWaitingRoomBottomSheetDeleteRoom.setOnClickListener {
-            if(waitingRoomBottomSheetViewModel.waitingRoomInfo.value?.reqUser?.isHost == true){
-                DialogUtil(WAITING_ROOM_BOTTOM_SHEET_HOST){
-
-                }.show(requireActivity().supportFragmentManager,this.javaClass.name)
-                dismiss()
-            }else{
-                DialogUtil(WAITING_ROOM_BOTTOM_SHEET_GUEST){
-
-                }.show(requireActivity().supportFragmentManager,this.javaClass.name)
-                dismiss()
+            if (waitingRoomBottomSheetViewModel.waitingRoomInfo.value?.reqUser?.isHost == true) {
+                DialogUtil(WAITING_ROOM_BOTTOM_SHEET_HOST) {
+                    waitingRoomBottomSheetViewModel.deleteWaitingRoom(
+                        waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomId
+                    )
+                    waitingRoomBottomSheetViewModel.setHomeToastMessage("'${waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomName}' 대기방이 삭제되었어요.")
+                    waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
+                    dismiss()
+                    requireActivity().finish()
+                }.show(requireActivity().supportFragmentManager, this.javaClass.name)
+            } else {
+                DialogUtil(WAITING_ROOM_BOTTOM_SHEET_GUEST) {
+                    waitingRoomBottomSheetViewModel.leaveRoom(
+                        waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomId
+                    )
+                    waitingRoomBottomSheetViewModel.setHomeToastMessage("'${waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomName}' 대기방을 나갔어요.")
+                    waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
+                    dismiss()
+                    requireActivity().finish()
+                }.show(requireActivity().supportFragmentManager, this.javaClass.name)
             }
         }
     }

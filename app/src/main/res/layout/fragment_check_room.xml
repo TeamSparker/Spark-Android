@@ -73,6 +73,28 @@
             app:layout_constraintStart_toStartOf="@+id/tv_check_room_content"
             app:layout_constraintTop_toBottomOf="@+id/tv_check_room_content" />
 
+        <ImageView
+            android:id="@+id/iv_check_room_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_check_room_copy_code"
+            app:srcCompat="@drawable/bg_join_code" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_check_room"
+            android:layout_width="294dp"
+            android:layout_height="208dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_check_room_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_check_room_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_check_room_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_check_room_background"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="ticket_welcome.json"
+            app:lottie_loop="true" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_check_room_move_home"
             android:layout_width="0dp"

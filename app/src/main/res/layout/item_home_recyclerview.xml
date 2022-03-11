@@ -11,7 +11,7 @@
             name="room"
             type="com.spark.android.data.remote.entity.response.Room" />
 
-   </data>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_home_main_whole"
@@ -39,13 +39,14 @@
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket"
-                setRightBackground="@{room.myStatus}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:isUploaded="@{room.isUploaded}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket"
                 app:layout_constraintTop_toTopOf="parent"
+                app:myStatus="@{room.myStatus}"
                 tools:src="@drawable/img_home_right_ticket_fold" />
 
             <TextView
@@ -92,7 +93,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:text="@{room.roomName}"
-                android:textColor="@color/spark_deep_gray"
+                android:textColor="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? @color/spark_white : @color/spark_deep_gray}"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
@@ -110,6 +111,7 @@
                 android:text="@{room.leftDay == 66 ? @string/home_ticket_user_with : @string/home_ticket_done_user}"
                 android:textColor="@color/spark_dark_gray"
                 android:textSize="12dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
                 tools:text="@string/home_ticket_done_user" />
@@ -125,6 +127,7 @@
                 android:includeFontPadding="false"
                 android:text="@{room.leftDay == 66 ? `` : String.valueOf(room.doneMemberNum)}"
                 android:textSize="18dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket"
                 tools:text="3" />
@@ -139,6 +142,7 @@
                 android:text="@{room.leftDay == 66 ? String.valueOf(room.memberNum) : `/`+String.valueOf(room.memberNum)}"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="18dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket"
                 app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_colored_people_number"
                 tools:text="/7" />
@@ -152,6 +156,7 @@
                 android:text="@string/home_ticket_people"
                 android:textColor="@color/spark_deep_gray"
                 android:textSize="18dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_home_right_ticket_complete_people_number"
                 app:layout_constraintStart_toEndOf="@+id/tv_home_right_ticket_complete_people_number" />
 
@@ -166,8 +171,24 @@
                 android:text="@string/home_ticket_life"
                 android:textColor="@color/spark_dark_gray"
                 android:textSize="12dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_right_ticket" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_finish_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="27dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.VISIBLE : View.GONE}"
+                android:includeFontPadding="false"
+                android:text="@string/home_ticket_right_finish_content"
+                android:textColor="@color/spark_gray"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket" />
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_life_one"
@@ -176,6 +197,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
                 android:layout_marginBottom="23dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_home_right_ticket_life_two"
                 app:srcCompat="@drawable/ic_home_ticket_life_full" />
@@ -187,6 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
                 android:layout_marginBottom="23dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_home_right_ticket_life_three"
                 app:srcCompat="@drawable/ic_home_ticket_life_full" />
@@ -198,6 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="23dp"
                 android:layout_marginBottom="23dp"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) || room.myStatus.equals(`FAIL`)? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/iv_home_right_ticket"
                 app:srcCompat="@drawable/ic_home_ticket_life_full" />
@@ -208,10 +232,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
+                android:src="@drawable/ic_home_ticket_tag_done"
                 android:visibility="@{room.myStatus.equals(`DONE`) ? View.VISIBLE : View.GONE }"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title"
-                android:src="@drawable/ic_home_ticket_tag_done" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title" />
 
             <ImageView
                 android:id="@+id/iv_home_right_ticket_tag_rest"
@@ -219,10 +243,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
+                android:src="@drawable/ic_home_ticket_tag_rest"
                 android:visibility="@{room.myStatus.equals(`REST`) ? View.VISIBLE : View.GONE }"
                 app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title"
-                android:src="@drawable/ic_home_ticket_tag_rest" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket_tag_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_home_ticket_tag_complete"
+                android:visibility="@{room.myStatus.equals(`COMPLETE`) ? View.VISIBLE : View.GONE }"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket_tag_fail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_home_ticket_tag_fail"
+                android:visibility="@{room.myStatus.equals(`FAIL`) ? View.VISIBLE : View.GONE }"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket"
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_right_ticket_title" />
 
             <ImageView
                 android:id="@+id/iv_home_left_ticket_profile_one"
