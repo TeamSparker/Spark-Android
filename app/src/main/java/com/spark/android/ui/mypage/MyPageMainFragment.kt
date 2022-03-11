@@ -13,6 +13,7 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
         initBackBtnClickListener()
         initModifyProfileBtnClickListener()
         initAlarmSettingBtnClickListener()
+        initWithdrawalBtnClickListener()
     }
 
     private fun initBackBtnClickListener() {
@@ -28,6 +29,12 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
     private fun initAlarmSettingBtnClickListener() {
         binding.btnMyPageMainAlarm.setOnClickListener {
             navigate(R.id.action_myPageMainFragment_to_alarmSettingFragment)
+        }
+    }
+
+    private fun initWithdrawalBtnClickListener() {
+        binding.tvMyPageMainWithdrawal.setOnClickListener {
+            navigate(R.id.action_myPageMainFragment_to_withdrawalFragment)
         }
     }
 
