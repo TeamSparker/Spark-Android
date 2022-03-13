@@ -14,13 +14,12 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun postSignUp(
         map: Map<String, RequestBody>,
         profileImg: MultipartBody.Part?
-    ): BaseResponse<SignUpResponse> {
-        return if (profileImg == null) {
+    ): BaseResponse<SignUpResponse> =
+        if (profileImg == null) {
             authService.postSignUp(map)
         } else {
             authService.postSignUpWithImg(map, profileImg)
         }
-    }
 
     override suspend fun getAccessToken(
         socialId: String,
