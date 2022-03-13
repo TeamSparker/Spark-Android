@@ -516,5 +516,25 @@ object BindingAdapters {
             }
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("setFinishRoomDialogTitle")
+    fun setFinishRoomDialogTitle(textview: TextView, myStatus: String?) {
+        if(myStatus == "COMPLETE"){
+            textview.setText(R.string.finish_room_dialog_success_title)
+        }else if (myStatus == "FAIL"){
+            textview.setText(R.string.finish_room_dialog_fail_title)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setFinishRoomDialogContent")
+    fun setFinishRoomDialogContent(textview: TextView, myStatus: String?) {
+        if(myStatus == "COMPLETE"){
+            textview.setText(R.string.finish_room_dialog_success_content)
+        }else if (myStatus == "FAIL"){
+            textview.setText(R.string.finish_room_dialog_fail_content)
+        }
+    }
 }
 
