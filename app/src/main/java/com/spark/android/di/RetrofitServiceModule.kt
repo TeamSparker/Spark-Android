@@ -79,6 +79,11 @@ object RetrofitServiceModule {
 
     @Provides
     @Singleton
+    fun providesAlarmSettingService(retrofit: Retrofit): AlarmSettingService =
+        retrofit.create(AlarmSettingService::class.java)
+
+    @Provides
+    @Singleton
     fun provideHomeHabitRoomFinishService(retrofit: Retrofit): HomeHabitRoomFinishService =
         retrofit.create(HomeHabitRoomFinishService::class.java)
 }

@@ -37,6 +37,13 @@ object RemoteDataSourceModule {
 
     @Provides
     @Singleton
+    fun providesAlarmSettingDataSource(
+        alarmSettingService: AlarmSettingService
+    ): AlarmSettingDataSource =
+        AlarmSettingDataSourceImpl(alarmSettingService)
+
+    @Provides
+    @Singleton
     fun providesRemoteHomeDataSource(
         homeHabitRoomFinishService: HomeHabitRoomFinishService,
         homeService: HomeService
