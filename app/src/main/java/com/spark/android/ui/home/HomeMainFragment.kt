@@ -7,11 +7,13 @@ import android.view.View
 import androidx.core.animation.doOnCancel
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentHomeMainBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.home.adapter.HomeRecyclerViewAdapter
+import com.spark.android.ui.home.finishroomdialog.FinishRoomDialogFragment
 import com.spark.android.ui.home.viewmodel.HomeMainViewModel
 import com.spark.android.ui.mypage.MyPageActivity
 import com.spark.android.util.AnimationUtil
@@ -81,8 +83,15 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         }
     }
 
-    private fun finishRoomEvent(roomId: Int) {
+    private fun finishRoomEvent(roomId: Int, myStatus: String) {
         homeMainViewModel.readFinishHabitRoom(roomId)
+        val finishRoomDialog = FinishRoomDialogFragment()
+        val bundle = Bundle()
+        bundle.putString("myStatus",myStatus)
+        finishRoomDialog.arguments = bundle
+        finishRoomDialog.show(
+            requireActivity().supportFragmentManager, "FinishRoomDialog"
+        )
     }
 
     override fun onPause() {

@@ -291,6 +291,11 @@
     <string name="make_room_check_dialog_button_dismiss">취소</string>
     <string name="make_room_check_dialog_button_make_room">시작할게요</string>
 
-
+    <!-- FinishRoomDialogFragment-->
+    <string name="finish_room_dialog_success_title">Congratulations!</string>
+    <string name="finish_room_dialog_fail_title">Don\'t give up!</string>
+    <string name="finish_room_dialog_success_content">66간의 도전 성공!\n여기까지 달려온 나를 마음껏 칭찬해주기!</string>
+    <string name="finish_room_dialog_fail_content">성공하진 못했어도 실패는 아니에요.\n그러니 언제든 주저 말고 다시 도전하기!</string>
+    <string name="finish_room_dialog_dismiss_button">확인했어요</string>
 </resources>
 

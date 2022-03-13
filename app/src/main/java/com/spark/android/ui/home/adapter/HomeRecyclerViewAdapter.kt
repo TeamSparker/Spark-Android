@@ -17,7 +17,7 @@ import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import java.lang.RuntimeException
 
 class HomeRecyclerViewAdapter(
-    private val finishRoomEvent: ((Int) -> Unit)? = null
+    private val finishRoomEvent: ((Int , String) -> Unit)? = null
 ) : ListAdapter<Room, RecyclerView.ViewHolder>(homeDiffUtil) {
 
     private lateinit var itemHomeRecyclerviewBinding: ItemHomeRecyclerviewBinding
@@ -69,11 +69,11 @@ class HomeRecyclerViewAdapter(
 
     inner class HomeRecyclerViewHolder(val binding: ItemHomeRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: Room, finishRoomEvent: ((Int) -> Unit)? = null) {
+        fun onBind(data: Room, finishRoomEvent: ((Int,String) -> Unit)? = null) {
             binding.room = data
             binding.root.setOnClickListener {
                 if (data.myStatus == "COMPLETE" || data.myStatus == "FAIL") {
-                    finishRoomEvent?.invoke(data.roomId)
+                    finishRoomEvent?.invoke(data.roomId,data.myStatus)
                 } else {
                     val intent = Intent(it.context, HabitActivity::class.java).apply {
                         putExtra("roomId", getItem(absoluteAdapterPosition).roomId)
