@@ -67,6 +67,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
             WAITING_ROOM_BOTTOM_SHEET_HOST -> getString(R.string.waiting_room_bottom_sheet_delete_room_host)
             WAITING_ROOM_BOTTOM_SHEET_GUEST -> getString(R.string.waiting_room_bottom_sheet_delete_room_guest)
             STOP_MODIFY_PROFILE -> getString(R.string.profile_modify_dialog_content)
+            WITHDRAWAL -> getString(R.string.withdrawal_dialog_content)
             else -> throw IllegalStateException()
         }
     }
@@ -80,6 +81,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
             HABIT_REST -> getString(R.string.habit_today_rest_confirm)
             WAITING_ROOM_BOTTOM_SHEET_HOST -> getString(R.string.waiting_room_bottom_sheet_delete_room_host_button)
             WAITING_ROOM_BOTTOM_SHEET_GUEST -> getString(R.string.waiting_room_bottom_sheet_delete_room_guest_button)
+            WITHDRAWAL -> getString(R.string.withdrawal_withdraw)
             else -> throw IllegalStateException()
         }
     }
@@ -112,5 +114,6 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
         const val WAITING_ROOM_BOTTOM_SHEET_HOST = 6
         const val WAITING_ROOM_BOTTOM_SHEET_GUEST = 7
         const val STOP_MODIFY_PROFILE = 8
+        const val WITHDRAWAL = 9
     }
 }

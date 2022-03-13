@@ -1,11 +1,16 @@
 package com.spark.android.ui.withdrawal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentWithdrawalBinding
+import com.spark.android.ui.auth.AuthActivity
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.util.DialogUtil
+import com.spark.android.util.DialogUtil.Companion.WITHDRAWAL
 import com.spark.android.util.popBackStack
 
 class WithdrawalFragment : BaseFragment<FragmentWithdrawalBinding>(R.layout.fragment_withdrawal) {
@@ -14,9 +19,19 @@ class WithdrawalFragment : BaseFragment<FragmentWithdrawalBinding>(R.layout.frag
         super.onViewCreated(view, savedInstanceState)
         binding.withdrawalViewModel = withdrawalViewModel
         initBackBtnClickListener()
+        initWithdrawalBtnClickListener()
     }
 
     private fun initBackBtnClickListener() {
         binding.btnWithdrawalBack.setOnClickListener { popBackStack() }
+    }
+
+    private fun initWithdrawalBtnClickListener() {
+        binding.btnWithdrawalWithdraw.setOnClickListener {
+            DialogUtil(WITHDRAWAL) {
+                ActivityCompat.finishAffinity(requireActivity())
+                startActivity(Intent(requireContext(), AuthActivity::class.java))
+            }.show(parentFragmentManager, this.javaClass.name)
+        }
     }
 }
