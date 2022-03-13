@@ -274,7 +274,8 @@
     <string name="withdrawal_warning_title">회원 탈퇴 유의사항</string>
     <string name="withdrawal_warning_content">회원 탈퇴 시,\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파</string>
     <string name="withdrawal_agree_msg">위의 사항을 숙지하였으며, 이에 동의합니다.</string>
-    <string name="withdrawal_submit">탈퇴하기</string>
+    <string name="withdrawal_withdraw">탈퇴하기</string>
+    <string name="withdrawal_dialog_content">정말 Spark를 탈퇴할 건가요?\n더 멋진 서비스가 되어 기다리고 있을게요.</string>
 
     <!-- WaitingRoomFragmentBottomSheet-->
     <string name="waiting_room_bottom_sheet_delete_room_start_host">방 삭제</string>
