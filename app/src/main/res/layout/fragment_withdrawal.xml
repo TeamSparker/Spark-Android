@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="withdrawalViewModel"
+            type="com.spark.android.ui.withdrawal.WithdrawalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:button="@drawable/selector_check_box"
-                    android:checked="false"
+                    android:checked="@={withdrawalViewModel.isAgreeWithdrawal}"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_withdrawal_agree"
@@ -140,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="40dp"
-            android:background="@color/spark_gray"
+            android:background="@{withdrawalViewModel.isAgreeWithdrawal ? @color/spark_dark_pinkred : @color/spark_gray}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
             android:paddingTop="12dp"
