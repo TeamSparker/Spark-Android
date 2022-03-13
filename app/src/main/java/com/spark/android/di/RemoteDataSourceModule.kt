@@ -29,4 +29,9 @@ object RemoteDataSourceModule {
         leaveRoomService: LeaveRoomService
     ): RemoteWaitingRoomDataSource =
         RemoteWaitingRoomDataSourceImpl(waitingRoomInfoService, deleteRoomService, leaveRoomService)
+
+    @Provides
+    @Singleton
+    fun providesProfileDataSource(profileService: ProfileService): ProfileDataSource =
+        ProfileDataSourceImpl(profileService)
 }
