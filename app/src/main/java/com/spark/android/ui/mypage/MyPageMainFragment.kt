@@ -1,8 +1,11 @@
 package com.spark.android.ui.mypage
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.spark.android.BuildConfig
 import com.spark.android.R
 import com.spark.android.databinding.FragmentMyPageMainBinding
 import com.spark.android.ui.base.BaseFragment
@@ -22,6 +25,7 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
         initModifyProfileBtnClickListener()
         initAlarmSettingBtnClickListener()
         initWithdrawalBtnClickListener()
+        initQuestionBtnClickListener()
     }
 
     private fun initBackBtnClickListener() {
@@ -50,6 +54,47 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
     private fun initWithdrawalBtnClickListener() {
         binding.tvMyPageMainWithdrawal.setOnClickListener {
             navigate(R.id.action_myPageMainFragment_to_withdrawalFragment)
+        }
+    }
+
+    private fun initQuestionBtnClickListener() {
+        binding.btnMyPageMainQuestion.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_SEND).apply {
+                type = "plain/text"
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.question_email)))
+                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.question_subject))
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    getString(
+                        R.string.question_content,
+                        getDeviceName(),
+                        Build.VERSION.SDK_INT.toString(),
+                        BuildConfig.VERSION_NAME
+                    )
+                )
+            })
+        }
+    }
+
+    private fun getDeviceName(): String {
+        val manufacturer = Build.MANUFACTURER
+        val model = Build.MODEL
+        return if (model.startsWith(manufacturer)) {
+            capitalize(model)
+        } else {
+            capitalize(manufacturer) + " " + model
+        }
+    }
+
+    private fun capitalize(str: String?): String {
+        if (str == null || str.isEmpty()) {
+            return ""
+        }
+        val first = str[0]
+        return if (Character.isUpperCase(first)) {
+            str
+        } else {
+            Character.toUpperCase(first).toString() + str.substring(1)
         }
     }
 }
