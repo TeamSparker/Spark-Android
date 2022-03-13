@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
@@ -61,7 +62,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun initModifyMode() {
         binding.modifyMode = args.modifyMode
         if (args.modifyMode) {
-            profileViewModel.getProfile()
+            profileViewModel.initOldNickname(args.nickname)
+            profileViewModel.initOldProfileImgUrl(args.profileImgUrl)
         }
     }
 

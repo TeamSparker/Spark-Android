@@ -23,5 +23,13 @@
             android:name="modifyMode"
             android:defaultValue="false"
             app:argType="boolean" />
+        <argument
+            android:name="nickname"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="profileImgUrl"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -86,6 +86,17 @@ class ProfileViewModel @Inject constructor(
         authRepository.getFcmToken { token -> fcmToken = token }
     }
 
+    fun initOldProfileImgUrl(oldProfileImg: String) {
+        initProfileImgUri(oldProfileImg.toUri())
+        _oldProfileImgUrl.value = oldProfileImg
+    }
+
+    fun initOldNickname(oldNickname: String) {
+        nickname.value = oldNickname
+        _nicknameHintForModify.value = oldNickname
+        _nicknameFocused.value = true
+    }
+
     fun postSignUp() {
         initIsLoading(true)
         viewModelScope.launch {
@@ -101,22 +112,6 @@ class ProfileViewModel @Inject constructor(
                 initIsLoading(false)
                 Log.d("Profile_SignUp", it.message.toString())
             }
-        }
-    }
-
-    fun getProfile() {
-        viewModelScope.launch {
-            profileRepository.getProfile()
-                .onSuccess { response ->
-                    nickname.postValue(response.data.nickname)
-                    _nicknameHintForModify.postValue(response.data.nickname)
-                    _nicknameFocused.postValue(true)
-                    initProfileImgUri(response.data.profileImg.toUri())
-                    _oldProfileImgUrl.postValue(response.data.profileImg)
-                }
-                .onFailure {
-                    Log.d("Profile_GetProfile", it.message.toString())
-                }
         }
     }
 
