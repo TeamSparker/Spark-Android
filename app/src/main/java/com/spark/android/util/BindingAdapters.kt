@@ -18,15 +18,15 @@ object BindingAdapters {
         if (imgUri == null) {
             Glide.with(imageview.context)
                 .load(R.drawable.ic_profile_photo)
-                .placeholder(R.color.spark_light_gray)
-                .error(R.color.spark_light_gray)
+                .placeholder(R.drawable.shape_light_gray_line_circle)
+                .error(R.drawable.shape_light_gray_line_circle)
                 .circleCrop()
                 .into(imageview)
         } else {
             Glide.with(imageview.context)
                 .load(imgUri)
-                .placeholder(R.color.spark_light_gray)
-                .error(R.color.spark_light_gray)
+                .placeholder(R.drawable.shape_light_gray_line_circle)
+                .error(R.drawable.shape_light_gray_line_circle)
                 .circleCrop()
                 .into(imageview)
         }
@@ -50,8 +50,8 @@ object BindingAdapters {
         url?.let {
             Glide.with(imageview.context)
                 .load(url)
-                .placeholder(R.color.spark_light_gray)
-                .error(R.color.spark_light_gray)
+                .placeholder(R.drawable.shape_light_gray_line_circle)
+                .error(R.drawable.shape_light_gray_line_circle)
                 .circleCrop()
                 .into(imageview)
         }

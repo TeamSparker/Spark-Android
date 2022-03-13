@@ -51,6 +51,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private fun initModifyMode() {
         binding.modifyMode = args.modifyMode
+        if (args.modifyMode) {
+            profileViewModel.getProfile()
+        }
     }
 
     private fun initStatusBarStyle() {

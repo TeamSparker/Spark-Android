@@ -1,13 +1,14 @@
 package com.spark.android.ui.auth.profile
 
-import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
+import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.repository.AuthRepository
+import com.spark.android.data.remote.repository.ProfileRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val profileRepository: ProfileRepository
 ) : ViewModel() {
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -54,7 +56,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun initProfileImgUri(uri: Uri) {
-        _profileImgUri.value = uri
+        _profileImgUri.postValue(uri)
         initDeleteMode(true)
     }
 
@@ -90,6 +92,19 @@ class ProfileViewModel @Inject constructor(
                 initIsLoading(false)
                 Log.d("Profile_SignUp", it.message.toString())
             }
+        }
+    }
+
+    fun getProfile() {
+        viewModelScope.launch {
+            profileRepository.getProfile()
+                .onSuccess { response ->
+                    initProfileImgUri(response.data.profileImg.toUri())
+                    nickname.postValue(response.data.nickname)
+                }
+                .onFailure {
+                    Log.d("Profile_GetProfile", it.message.toString())
+                }
         }
     }
 }
