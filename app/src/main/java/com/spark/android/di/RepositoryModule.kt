@@ -3,6 +3,7 @@ package com.spark.android.di
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.local.datasource.LocalPreferencesHomeDataSource
 import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSource
+import com.spark.android.data.remote.datasource.AlarmSettingDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.datasource.FeedDataSource
 import com.spark.android.data.remote.datasource.ProfileDataSource
@@ -40,7 +41,7 @@ object RepositoryModule {
         remoteHomeDataSource: RemoteHomeDataSource,
         localPreferencesHomeDataSource: LocalPreferencesHomeDataSource
     ): HomeRepository =
-        HomeRepositoryImpl(remoteHomeDataSource,localPreferencesHomeDataSource)
+        HomeRepositoryImpl(remoteHomeDataSource, localPreferencesHomeDataSource)
 
     @Provides
     @Singleton
@@ -101,6 +102,13 @@ object RepositoryModule {
         profileDataSource: ProfileDataSource
     ): ProfileRepository =
         ProfileRepositoryImpl(profileDataSource)
+
+    @Provides
+    @Singleton
+    fun providesAlarmSettingRepository(
+        alarmSettingDataSource: AlarmSettingDataSource
+    ): AlarmSettingRepository =
+        AlarmSettingRepositoryImpl(alarmSettingDataSource)
 }
 
 
