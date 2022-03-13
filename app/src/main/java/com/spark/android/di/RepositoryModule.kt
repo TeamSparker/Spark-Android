@@ -5,6 +5,7 @@ import com.spark.android.data.local.datasource.LocalPreferencesHomeDataSource
 import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.datasource.FeedDataSource
+import com.spark.android.data.remote.datasource.ProfileDataSource
 import com.spark.android.data.remote.datasource.RemoteHomeDataSource
 import com.spark.android.data.remote.datasource.RemoteWaitingRoomDataSource
 import com.spark.android.data.remote.repository.*
@@ -93,6 +94,13 @@ object RepositoryModule {
         joinCodeRoomDoneService: JoinCodeRoomDoneService
     ): JoinCodeRoomDoneRepository =
         JoinCodeRoomDoneRepositoryImpl(joinCodeRoomDoneService)
+
+    @Provides
+    @Singleton
+    fun providesProfileRepository(
+        profileDataSource: ProfileDataSource
+    ): ProfileRepository =
+        ProfileRepositoryImpl(profileDataSource)
 }
 
 

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="myPageViewModel"
+            type="com.spark.android.ui.mypage.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,6 +58,7 @@
 
                 <ImageView
                     android:id="@+id/iv_my_page_main_profile"
+                    setCircleImage="@{myPageViewModel.profileData.profileImg}"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginStart="20dp"
@@ -62,7 +66,6 @@
                     android:background="@drawable/shape_light_gray_line_circle"
                     android:contentDescription="@string/my_page_main_desc_profile_img"
                     android:padding="2dp"
-                    android:src="@drawable/ic_habit_sticker_complete"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +91,7 @@
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/noto_sans_kr_medium"
                     android:includeFontPadding="false"
-                    android:text="닉네임"
+                    android:text="@{myPageViewModel.profileData.nickname}"
                     android:textColor="@color/spark_black"
                     android:textSize="18dp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_my_page_main_profile"
