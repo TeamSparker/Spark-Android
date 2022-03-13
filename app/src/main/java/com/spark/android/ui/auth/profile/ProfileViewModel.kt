@@ -46,6 +46,9 @@ class ProfileViewModel @Inject constructor(
     private val _profileImgUri = MutableLiveData(Uri.EMPTY)
     val profileImgUri: LiveData<Uri?> = _profileImgUri
 
+    private val _oldProfileImgUrl = MutableLiveData<String>()
+    val oldProfileImgUrl: LiveData<String> = _oldProfileImgUrl
+
     fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
@@ -102,10 +105,11 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             profileRepository.getProfile()
                 .onSuccess { response ->
-                    initProfileImgUri(response.data.profileImg.toUri())
                     nickname.postValue(response.data.nickname)
                     _nicknameHintForModify.postValue(response.data.nickname)
                     _nicknameFocused.postValue(true)
+                    initProfileImgUri(response.data.profileImg.toUri())
+                    _oldProfileImgUrl.postValue(response.data.profileImg)
                 }
                 .onFailure {
                     Log.d("Profile_GetProfile", it.message.toString())

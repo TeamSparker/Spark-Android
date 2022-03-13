@@ -1,14 +1,20 @@
 package com.spark.android.ui.auth.profile
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
 import com.spark.android.ui.base.BaseFragment
@@ -46,6 +52,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         initBackBtnClickListener()
         initPictureBtnClickListener()
         initSuccessSignUpObserver()
+        initOldProfileImgUrlObserver()
         initFragmentResultListener()
     }
 
@@ -110,6 +117,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 profileViewModel.initIsLoading(false)
             }
         })
+    }
+
+    private fun initOldProfileImgUrlObserver() {
+        profileViewModel.oldProfileImgUrl.observe(viewLifecycleOwner) { oldProfileImgUrl ->
+            Glide.with(requireContext())
+                .asBitmap()
+                .load(oldProfileImgUrl)
+                .into(object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        profileViewModel.initProfileImgMultiPart(
+                            multiPartResolver.createImgMultiPart(resource)
+                        )
+                    }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {}
+                })
+        }
     }
 
     private fun initFragmentResultListener() {
