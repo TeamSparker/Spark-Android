@@ -13,6 +13,7 @@ import com.spark.android.util.EventObserver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.navigate
+import com.spark.android.util.navigateWithData
 import com.spark.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -71,7 +72,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     private fun initDoorBellResponseObserver() {
         signInViewModel.doorbellResponse.observe(viewLifecycleOwner) { response ->
             if (response.isNew) {
-                navigate(R.id.action_signInFragment_to_profileFragment)
+                navigateWithData(SignInFragmentDirections.actionSignInFragmentToProfileFragment())
             } else {
                 requireContext().showToast(getString(R.string.sign_in_complete_login_msg))
                 signInViewModel.saveAccessToken()

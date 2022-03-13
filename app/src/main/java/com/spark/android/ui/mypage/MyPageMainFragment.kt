@@ -7,6 +7,7 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentMyPageMainBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.util.navigate
+import com.spark.android.util.navigateWithData
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +30,14 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
 
     private fun initModifyProfileBtnClickListener() {
         binding.btnMyPageMainModifyProfile.setOnClickListener {
-            navigate(R.id.action_myPageMainFragment_to_profileFragmentFromMyPage)
+            myPageViewModel.profileData.value?.let { profile ->
+                navigateWithData(
+                    MyPageMainFragmentDirections.actionMyPageMainFragmentToProfileFragmentFromMyPage(
+                        nickname = profile.nickname,
+                        profileImgUrl = profile.profileImg
+                    )
+                )
+            }
         }
     }
 

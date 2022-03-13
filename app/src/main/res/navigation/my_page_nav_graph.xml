@@ -34,6 +34,14 @@
             android:name="modifyMode"
             android:defaultValue="true"
             app:argType="boolean" />
+        <argument
+            android:name="nickname"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="profileImgUrl"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/alarmSettingFragment"

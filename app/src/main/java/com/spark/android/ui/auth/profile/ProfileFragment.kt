@@ -1,14 +1,21 @@
 package com.spark.android.ui.auth.profile
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
 import com.spark.android.ui.base.BaseFragment
@@ -24,6 +31,7 @@ import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.popBackStack
+import com.spark.android.util.useBitmapImg
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -46,11 +54,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         initBackBtnClickListener()
         initPictureBtnClickListener()
         initSuccessSignUpObserver()
+        initOldProfileImgUrlObserver()
+        initSuccessModifyObserver()
         initFragmentResultListener()
     }
 
     private fun initModifyMode() {
         binding.modifyMode = args.modifyMode
+        if (args.modifyMode) {
+            profileViewModel.initOldNickname(args.nickname)
+            profileViewModel.initOldProfileImgUrl(args.profileImgUrl)
+        }
     }
 
     private fun initStatusBarStyle() {
@@ -104,6 +118,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                         addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                     })
                 requireActivity().finish()
+                profileViewModel.initIsLoading(false)
+            }
+        })
+    }
+
+    private fun initOldProfileImgUrlObserver() {
+        profileViewModel.oldProfileImgUrl.observe(viewLifecycleOwner) { oldProfileImgUrl ->
+            useBitmapImg(
+                requireContext(),
+                oldProfileImgUrl
+            ) { bitmap ->
+                profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(bitmap))
+            }
+        }
+    }
+
+    private fun initSuccessModifyObserver() {
+        profileViewModel.successModify.observe(viewLifecycleOwner, EventObserver { successModify ->
+            if (successModify) {
+                popBackStack()
                 profileViewModel.initIsLoading(false)
             }
         })
