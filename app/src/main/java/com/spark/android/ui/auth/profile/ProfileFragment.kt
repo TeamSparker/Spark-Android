@@ -54,6 +54,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         initPictureBtnClickListener()
         initSuccessSignUpObserver()
         initOldProfileImgUrlObserver()
+        initSuccessModifyObserver()
         initFragmentResultListener()
     }
 
@@ -129,6 +130,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(bitmap))
             }
         }
+    }
+
+    private fun initSuccessModifyObserver() {
+        profileViewModel.successModify.observe(viewLifecycleOwner, EventObserver { successModify ->
+            if (successModify) {
+                popBackStack()
+                profileViewModel.initIsLoading(false)
+            }
+        })
     }
 
     private fun initFragmentResultListener() {

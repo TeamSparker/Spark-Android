@@ -49,6 +49,9 @@ class ProfileViewModel @Inject constructor(
     private val _oldProfileImgUrl = MutableLiveData<String>()
     val oldProfileImgUrl: LiveData<String> = _oldProfileImgUrl
 
+    private val _successModify = MutableLiveData<Event<Boolean>>()
+    val successModify: LiveData<Event<Boolean>> = _successModify
+
     fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
@@ -118,11 +121,15 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun patchProfile() {
+        initIsLoading(true)
         viewModelScope.launch {
             profileRepository.patchProfile(
                 requireNotNull(nickname.value),
                 profileImageMultiPart
-            ).onFailure {
+            ).onSuccess {
+                _successModify.postValue(Event(true))
+            }.onFailure {
+                initIsLoading(false)
                 Log.d("Profile_PatchProfile", it.message.toString())
             }
         }
