@@ -27,6 +27,9 @@ class ProfileViewModel @Inject constructor(
 
     val nickname = MutableLiveData("")
 
+    private val _nicknameHintForModify = MutableLiveData<String>()
+    val nicknameHintForModify: LiveData<String> = _nicknameHintForModify
+
     private val _nicknameFocused = MutableLiveData<Boolean>()
     val nicknameFocused: LiveData<Boolean> = _nicknameFocused
 
@@ -101,6 +104,8 @@ class ProfileViewModel @Inject constructor(
                 .onSuccess { response ->
                     initProfileImgUri(response.data.profileImg.toUri())
                     nickname.postValue(response.data.nickname)
+                    _nicknameHintForModify.postValue(response.data.nickname)
+                    _nicknameFocused.postValue(true)
                 }
                 .onFailure {
                     Log.d("Profile_GetProfile", it.message.toString())

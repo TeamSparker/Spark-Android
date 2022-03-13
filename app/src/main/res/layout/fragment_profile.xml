@@ -140,7 +140,7 @@
             android:layout_marginTop="70dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/noto_sans_kr_regular"
-            android:hint="@{modifyMode ? profileViewModel.nickname : @string/profile_nickname_hint}"
+            android:hint="@{modifyMode ? profileViewModel.nicknameHintForModify : @string/profile_nickname_hint}"
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="textPersonName"
