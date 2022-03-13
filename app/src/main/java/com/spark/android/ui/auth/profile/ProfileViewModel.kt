@@ -112,4 +112,15 @@ class ProfileViewModel @Inject constructor(
                 }
         }
     }
+
+    fun patchProfile() {
+        viewModelScope.launch {
+            profileRepository.patchProfile(
+                requireNotNull(nickname.value),
+                profileImageMultiPart
+            ).onFailure {
+                Log.d("Profile_PatchProfile", it.message.toString())
+            }
+        }
+    }
 }

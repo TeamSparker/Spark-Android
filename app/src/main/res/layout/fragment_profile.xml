@@ -225,6 +225,7 @@
             android:background="@color/spark_pinkred"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:onClick="@{()->profileViewModel.patchProfile()}"
             android:paddingTop="12dp"
             android:paddingBottom="14dp"
             android:stateListAnimator="@null"
