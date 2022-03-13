@@ -14,7 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
     private val profileRepository: ProfileRepository
-) : ViewModel() {private val _profileData = MutableLiveData<ProfileResponse>()
+) : ViewModel() {
+    private val _profileData = MutableLiveData<ProfileResponse>()
     val profileData: LiveData<ProfileResponse> = _profileData
 
     fun getProfile() {
@@ -22,8 +23,7 @@ class MyPageViewModel @Inject constructor(
             profileRepository.getProfile()
                 .onSuccess { response ->
                     _profileData.postValue(requireNotNull(response.data))
-                }
-                .onFailure {
+                }.onFailure {
                     Log.d("MyPage_GetProfile", it.message.toString())
                 }
         }

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="alarmSettingViewModel"
+            type="com.spark.android.ui.alarmsetting.AlarmSettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -98,6 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:checked="@={alarmSettingViewModel.isOnRoomStart}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_start_habit_desc"
@@ -160,6 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:checked="@={alarmSettingViewModel.isOnSpark}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_send_spark_desc"
@@ -198,6 +203,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:checked="@={alarmSettingViewModel.isOnConsider}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_consider_desc"
@@ -236,6 +242,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:checked="@={alarmSettingViewModel.isOnCertification}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_certification_desc"
@@ -298,6 +305,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:checked="@={alarmSettingViewModel.isOnRemind}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_not_done_desc"
