@@ -30,6 +30,7 @@ import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.popBackStack
+import com.spark.android.util.useBitmapImg
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -121,21 +122,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private fun initOldProfileImgUrlObserver() {
         profileViewModel.oldProfileImgUrl.observe(viewLifecycleOwner) { oldProfileImgUrl ->
-            Glide.with(requireContext())
-                .asBitmap()
-                .load(oldProfileImgUrl)
-                .into(object : CustomTarget<Bitmap>() {
-                    override fun onResourceReady(
-                        resource: Bitmap,
-                        transition: Transition<in Bitmap>?
-                    ) {
-                        profileViewModel.initProfileImgMultiPart(
-                            multiPartResolver.createImgMultiPart(resource)
-                        )
-                    }
-
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                })
+            useBitmapImg(
+                requireContext(),
+                oldProfileImgUrl
+            ) { bitmap ->
+                profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(bitmap))
+            }
         }
     }
 
