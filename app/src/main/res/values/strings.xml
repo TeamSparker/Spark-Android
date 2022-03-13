@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">Spark</string>
+    <string name="question_email">teamsparker66@gmail.com</string>
+    <string name="question_subject">스파크 문의 사항</string>
+    <string name="question_content">\n\n\nDevice : %s\nOS Version : Android %s\nApp Version : %s\n-------------------------\n\n\n\n문의 사항을 상세히 입력해주세요.</string>
     <string name="binding_error">Binding not initialized to reference the view.</string>
 
     <!-- IntroActivity -->
     <string name="intro_desc_title">앱 이름</string>
     <string name="intro_content">습관에 불을 지펴봐!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- HomeMainFragment -->
