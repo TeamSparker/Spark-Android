@@ -34,4 +34,12 @@ object RemoteDataSourceModule {
     @Singleton
     fun providesProfileDataSource(profileService: ProfileService): ProfileDataSource =
         ProfileDataSourceImpl(profileService)
+
+    @Provides
+    @Singleton
+    fun providesRemoteHomeDataSource(
+        homeHabitRoomFinishService: HomeHabitRoomFinishService,
+        homeService: HomeService
+    ): RemoteHomeDataSource =
+        RemoteHomeDataSourceImpl(homeHabitRoomFinishService, homeService)
 }
