@@ -40,7 +40,7 @@ class ProfileViewModel @Inject constructor(
     private val _deleteMode = MutableLiveData(Event(false))
     val deleteMode: LiveData<Event<Boolean>> = _deleteMode
 
-    private val _profileImgUri = MutableLiveData<Uri?>()
+    private val _profileImgUri = MutableLiveData(Uri.EMPTY)
     val profileImgUri: LiveData<Uri?> = _profileImgUri
 
     fun initIsLoading(isLoading: Boolean) {
