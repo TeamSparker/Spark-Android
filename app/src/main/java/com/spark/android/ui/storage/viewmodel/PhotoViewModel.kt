@@ -24,9 +24,8 @@ class PhotoViewModel : ViewModel() {
 
     private val _photoIsPicked = MutableLiveData<Boolean>(false)
     val photoIsPicked : LiveData<Boolean> = _photoIsPicked
-
-    private fun initPhotoPicked(){
-        _photoIsPicked.value = true
+     fun isSelectable(position : Int) : Boolean{
+        return (_photoCollectionResponse.value?.records?.get(position)?.status == "DONE")
     }
 
     private fun initIsLoading(isLoading: Boolean) {
@@ -56,7 +55,6 @@ class PhotoViewModel : ViewModel() {
             ) {
                 Log.e("NetworkTest", "error:$t")
             }
-
         })
     }
 }

@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
+
+        <variable
+            name="photoViewModel"
+            type="com.spark.android.ui.storage.viewmodel.PhotoViewModel" />
 
         <variable
             name="storageCardPhoto"
@@ -38,12 +41,11 @@
             android:id="@+id/view_main_photo_pick_card_picked_boundary"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/shape_spark_pinkred_line_rect_2"
             app:layout_constraintTop_toTopOf="@id/iv_main_photo_pick_item_roundedCorner"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/iv_main_photo_pick_item_roundedCorner"
-
+            android:background="@drawable/shape_spark_light_gray_line_rect_2"
             />
 
         <TextView
@@ -63,6 +65,7 @@
             android:lineSpacingExtra="6sp"
             android:textAlignment="center"
             android:paddingTop="0dp"
+            android:visibility="visible"
             />
 
 
