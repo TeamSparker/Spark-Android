@@ -20,26 +20,51 @@ class HomeMainViewModel @Inject constructor(
     val roomList: LiveData<List<Room>> = _roomList
 
     private val _isLoading = MutableLiveData(false)
-    val isLoading :LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _toastMessage = MutableLiveData("")
+    val toastMessage: LiveData<String> = _toastMessage
+
 
     var lastId = -1
         private set
 
-    fun updateIsLoading(){
+    fun updateIsLoading() {
         _isLoading.postValue(false)
     }
 
     fun getHomeAllRoom(lastid: Int, size: Int) {
         viewModelScope.launch {
             _isLoading.value = true
-            homeRepository.getHomeAllRoom(lastid,size)
+            homeRepository.getHomeAllRoom(lastid, size)
                 .onSuccess {
                     _roomList.postValue(it.data.rooms)
                 }.onFailure {
-                    Log.d("Home_main error", it.message.toString())
+                    Log.d("Home_main_error_get_list", it.message.toString())
                 }
         }
     }
 
+    fun readFinishHabitRoom(roomId: Int) {
+        viewModelScope.launch {
+            homeRepository.readFinishHabitRoom(roomId)
+                .onFailure { Log.d("Home_main_error_finish_room", it.message.toString()) }
+        }
+    }
 
+    fun updateToastMessage(message: String) {
+        _toastMessage.postValue(message)
+    }
+
+    fun getHomeToastMessage(): String = homeRepository.getHomeToastMessage()
+
+    fun getHomeToastMessageState(): Boolean = homeRepository.getHomeToastMessageState()
+
+    fun setHomeToastMessage(message: String) {
+        homeRepository.setHomeToastMessage(message)
+    }
+
+    fun setHomeToastMessageState(state: Boolean) {
+        homeRepository.setHomeToastMessageState(state)
+    }
 }

@@ -27,7 +27,7 @@
             tools:layout_editor_absoluteX="0dp">
 
             <ImageButton
-                android:id="@+id/btn_home_tool_bar_profile"
+                android:id="@+id/btn_home_tool_bar_my_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -111,6 +111,26 @@
             tools:listitem="@layout/item_home_recyclerview">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+
+        <TextView
+            android:id="@+id/tv_home_toast"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_spark_deep_gray_fill_rect"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="center"
+            android:visibility="gone"
+            android:includeFontPadding="false"
+            android:text="@{homeViewModel.toastMessage}"
+            android:textColor="@color/spark_white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

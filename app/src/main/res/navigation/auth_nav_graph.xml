@@ -18,5 +18,18 @@
         android:id="@+id/profileFragment"
         android:name="com.spark.android.ui.auth.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="modifyMode"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="nickname"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="profileImgUrl"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>

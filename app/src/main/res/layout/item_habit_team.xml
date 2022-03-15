@@ -27,7 +27,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/shape_habit_light_gray_line_circle"
+            android:background="@drawable/shape_light_gray_line_circle"
             android:padding="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

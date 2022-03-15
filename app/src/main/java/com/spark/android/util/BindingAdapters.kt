@@ -18,11 +18,15 @@ object BindingAdapters {
         if (imgUri == null) {
             Glide.with(imageview.context)
                 .load(R.drawable.ic_profile_photo)
+                .placeholder(R.drawable.shape_light_gray_line_circle)
+                .error(R.drawable.shape_light_gray_line_circle)
                 .circleCrop()
                 .into(imageview)
         } else {
             Glide.with(imageview.context)
                 .load(imgUri)
+                .placeholder(R.drawable.shape_light_gray_line_circle)
+                .error(R.drawable.shape_light_gray_line_circle)
                 .circleCrop()
                 .into(imageview)
         }
@@ -34,6 +38,8 @@ object BindingAdapters {
         url?.let {
             Glide.with(imageview.context)
                 .load(url)
+                .placeholder(R.color.spark_light_gray)
+                .error(R.color.spark_light_gray)
                 .into(imageview)
         }
     }
@@ -44,6 +50,8 @@ object BindingAdapters {
         url?.let {
             Glide.with(imageview.context)
                 .load(url)
+                .placeholder(R.drawable.shape_light_gray_line_circle)
+                .error(R.drawable.shape_light_gray_line_circle)
                 .circleCrop()
                 .into(imageview)
         }
@@ -102,12 +110,20 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("setRightBackground")
-    fun setRightBackground(imageview: ImageView, myStatus: String) {
+    @BindingAdapter(value = ["myStatus", "isUploaded"], requireAll = false)
+    fun setRightBackground(imageview: ImageView, myStatus: String, isUploaded: Boolean) {
         if (myStatus == "DONE") {
             imageview.setImageResource(R.drawable.img_home_right_ticket_fold)
-        } else {
+        } else if (myStatus == "NONE" || myStatus == "REST") {
             imageview.setImageResource(R.drawable.img_home_right_ticket)
+        } else if (myStatus == "COMPLETE" && isUploaded) {
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish_fold)
+        } else if (myStatus == "COMPLETE" && !isUploaded) {
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish)
+        } else if (myStatus == "FAIL" && isUploaded) {
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish_fold)
+        } else if (myStatus == "FAIL" && !isUploaded) {
+            imageview.setImageResource(R.drawable.img_home_right_ticket_finish)
         }
     }
 
@@ -477,21 +493,47 @@ object BindingAdapters {
             "DONE" -> {
                 Glide.with(this.context)
                     .load(url)
+                    .placeholder(R.color.spark_light_gray)
+                    .error(R.color.spark_light_gray)
                     .into(this)
             }
             "REST" -> {
                 Glide.with(this.context)
                     .load(R.drawable.ic_photo_collection_sticker_rest)
+                    .placeholder(R.color.spark_light_gray)
+                    .error(R.color.spark_light_gray)
                     .into(this)
             }
             "NONE" -> {
                 Glide.with(this.context)
                     .load(R.drawable.ic_photo_collection_sticker_none)
+                    .placeholder(R.color.spark_light_gray)
+                    .error(R.color.spark_light_gray)
                     .into(this)
             }
             "CONSIDER" -> {
 
             }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setFinishRoomDialogTitle")
+    fun setFinishRoomDialogTitle(textview: TextView, myStatus: String?) {
+        if(myStatus == "COMPLETE"){
+            textview.setText(R.string.finish_room_dialog_success_title)
+        }else if (myStatus == "FAIL"){
+            textview.setText(R.string.finish_room_dialog_fail_title)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setFinishRoomDialogContent")
+    fun setFinishRoomDialogContent(textview: TextView, myStatus: String?) {
+        if(myStatus == "COMPLETE"){
+            textview.setText(R.string.finish_room_dialog_success_content)
+        }else if (myStatus == "FAIL"){
+            textview.setText(R.string.finish_room_dialog_fail_content)
         }
     }
 }

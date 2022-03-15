@@ -41,7 +41,7 @@ class FeedViewModel @Inject constructor(
     private val _feedList = MutableLiveData(mutableListOf<FeedListItem>())
     val feedList: LiveData<MutableList<FeedListItem>> = _feedList
 
-    fun initShownDate(){
+    fun initShownDate() {
         feedRepository.initShownDate()
     }
 
@@ -97,8 +97,7 @@ class FeedViewModel @Inject constructor(
                             remove(loadingItem)
                             addAll(feeds)
                         })
-                }
-                .onFailure {
+                }.onFailure {
                     Log.d("Feed_GetFeedList", it.message.toString())
                 }
         }

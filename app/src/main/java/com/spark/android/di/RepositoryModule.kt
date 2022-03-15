@@ -1,8 +1,14 @@
 package com.spark.android.di
 
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
+import com.spark.android.data.local.datasource.LocalPreferencesHomeDataSource
+import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSource
+import com.spark.android.data.remote.datasource.AlarmSettingDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.datasource.FeedDataSource
+import com.spark.android.data.remote.datasource.ProfileDataSource
+import com.spark.android.data.remote.datasource.RemoteHomeDataSource
+import com.spark.android.data.remote.datasource.RemoteWaitingRoomDataSource
 import com.spark.android.data.remote.repository.*
 import com.spark.android.data.remote.service.*
 import dagger.Module
@@ -32,9 +38,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesHomeRepository(
-        homeService: HomeService
+        remoteHomeDataSource: RemoteHomeDataSource,
+        localPreferencesHomeDataSource: LocalPreferencesHomeDataSource
     ): HomeRepository =
-        HomeRepositoryImpl(homeService)
+        HomeRepositoryImpl(remoteHomeDataSource, localPreferencesHomeDataSource)
 
     @Provides
     @Singleton
@@ -46,9 +53,13 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesWaitingRoomInfoRepository(
-        waitingRoomInfoService: WaitingRoomInfoService
+        localPreferencesWaitingRoomDataSource: LocalPreferencesWaitingRoomDataSource,
+        remoteWaitingRoomDataSource: RemoteWaitingRoomDataSource
     ): WaitingRoomInfoRepository =
-        WaitingRoomInfoRepositoryImpl(waitingRoomInfoService)
+        WaitingRoomInfoRepositoryImpl(
+            localPreferencesWaitingRoomDataSource,
+            remoteWaitingRoomDataSource
+        )
 
     @Provides
     @Singleton
@@ -66,7 +77,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesStartHabittRepository(
+    fun providesStartHabitRepository(
         startHabitService: StartHabitService
     ): StartHabitRepository =
         StartHabitRepositoryImpl(startHabitService)
@@ -84,6 +95,20 @@ object RepositoryModule {
         joinCodeRoomDoneService: JoinCodeRoomDoneService
     ): JoinCodeRoomDoneRepository =
         JoinCodeRoomDoneRepositoryImpl(joinCodeRoomDoneService)
+
+    @Provides
+    @Singleton
+    fun providesProfileRepository(
+        profileDataSource: ProfileDataSource
+    ): ProfileRepository =
+        ProfileRepositoryImpl(profileDataSource)
+
+    @Provides
+    @Singleton
+    fun providesAlarmSettingRepository(
+        alarmSettingDataSource: AlarmSettingDataSource
+    ): AlarmSettingRepository =
+        AlarmSettingRepositoryImpl(alarmSettingDataSource)
 }
 
 

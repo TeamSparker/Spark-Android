@@ -17,6 +17,7 @@ import com.google.firebase.messaging.RemoteMessage
 import com.spark.android.ui.intro.IntroActivity
 import com.spark.android.util.ImageCropUtil
 import com.spark.android.util.ImageUrlTransformer
+import com.spark.android.util.useBitmapImg
 import java.lang.IllegalArgumentException
 
 class SparkMessagingService : FirebaseMessagingService() {
@@ -91,21 +92,16 @@ class SparkMessagingService : FirebaseMessagingService() {
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
         val imageUrl = remoteMessage.data["imageUrl"].toString()
-        Glide.with(this)
-            .asBitmap()
-            .load(ImageUrlTransformer.getSmallSizeImageUrl(imageUrl))
-            .into(object : CustomTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    val bitmap = if (resource.width != resource.height) {
-                        ImageCropUtil.squareCropBitmap(resource)
-                    } else {
-                        resource
-                    }
-                    createNotificationWithImage(remoteMessage, bitmap)
+        useBitmapImg(this, ImageUrlTransformer.getSmallSizeImageUrl(imageUrl)) { bitmap ->
+            createNotificationWithImage(
+                remoteMessage,
+                if (bitmap.width != bitmap.height) {
+                    ImageCropUtil.squareCropBitmap(bitmap)
+                } else {
+                    bitmap
                 }
-
-                override fun onLoadCleared(placeholder: Drawable?) {}
-            })
+            )
+        }
     }
 
     private fun getChannelId(category: String) =

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".ui.waitingroom.makeroomcheckdialog.MakeRoomCheckFragmentDialog" >
+
+        <TextView
+            android:id="@+id/tv_make_room_check_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/make_room_check_dialog_title"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textSize="16dp"
+            android:textColor="@color/spark_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_make_room_check_dialog_content_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="22dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/make_room_check_dialog_content_one"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_make_room_check_dialog_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_make_room_check_dialog_person"
+            app:layout_constraintTop_toTopOf="@+id/iv_make_room_check_dialog_person" />
+
+        <TextView
+            android:id="@+id/tv_make_room_check_dialog_content_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/make_room_check_dialog_content_two"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_make_room_check_dialog_phone"
+            app:layout_constraintStart_toStartOf="@+id/tv_make_room_check_dialog_content_one"
+            app:layout_constraintTop_toTopOf="@+id/iv_make_room_check_dialog_phone" />
+
+        <TextView
+            android:id="@+id/tv_make_room_check_dialog_button_dismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/make_room_check_dialog_button_dismiss"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:textSize="16dp"
+            android:textColor="@color/spark_dark_gray"
+            android:padding="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="34dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_make_room_check_dialog_button_make_room"
+            app:layout_constraintTop_toBottomOf="@+id/tv_make_room_check_dialog_content_two" />
+
+        <TextView
+            android:id="@+id/tv_make_room_check_dialog_button_make_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/make_room_check_dialog_button_make_room"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="16dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_make_room_check_dialog_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_make_room_check_dialog_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_make_room_check_dialog_title" />
+
+        <ImageView
+            android:id="@+id/iv_make_room_check_dialog_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_make_room_check_dialog_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_make_room_check_dialog_person" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -53,11 +53,11 @@ class MultiPartResolver @Inject constructor(
 
     fun createImgMultiPart(bitmap: Bitmap): MultipartBody.Part {
         val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
         val file = File(replaceFileName(bitmap.toString()))
         val surveyBody =
             byteArrayOutputStream.toByteArray().toRequestBody("image/jpeg".toMediaTypeOrNull())
-        return MultipartBody.Part.createFormData("file", file.name, surveyBody)
+        return MultipartBody.Part.createFormData("image", file.name, surveyBody)
     }
 
     private fun getOrientationOfImage(uri: Uri): Int {

@@ -1,11 +1,14 @@
 package com.spark.android.ui.joincode.inputcode
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -26,12 +29,11 @@ class InputCodeFragmentDialog : DialogFragment() {
     private val binding get() = _binding!!
     private val inputCodeFragmentDialogViewModel by viewModels<InputCodeFragmentDialogViewModel>()
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
+    private lateinit var getResultState: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = true
-
-
     }
 
     override fun onCreateView(
@@ -49,9 +51,23 @@ class InputCodeFragmentDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
+        initRegisterForActivityResult()
         initButtonClickListener()
         initClearErrorMessage()
         initKeyBoardEvent()
+
+    }
+
+    private fun initRegisterForActivityResult(){
+        getResultState = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()){ result ->
+            if(result.resultCode == RESULT_OK){
+                val state = result.data?.getBooleanExtra("finishState",true)
+                if(state == true){
+                    dismiss()
+                }
+            }
+        }
     }
 
     private fun initButtonClickListener() {
@@ -71,11 +87,10 @@ class InputCodeFragmentDialog : DialogFragment() {
                         requireNotNull(inputCodeFragmentDialogViewModel.roomInfo.value).peekContent()
                     )
                 }
-                startActivity(intent)
+                getResultState.launch(intent)
             })
         }
     }
-
 
     private fun initClearErrorMessage() {
         binding.etInputCodeContent.setOnFocusChangeListener { _, focused ->
@@ -115,4 +130,5 @@ class InputCodeFragmentDialog : DialogFragment() {
         keyboardVisibilityUtils.detachKeyboardListeners()
         _binding = null
     }
+
 }

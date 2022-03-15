@@ -40,7 +40,7 @@ object RetrofitServiceModule {
     @Provides
     @Singleton
     fun provideSetPurposeService(retrofit: Retrofit): SetPurposeService =
-        retrofit.create(SetPurposeService::class.java )
+        retrofit.create(SetPurposeService::class.java)
 
     @Provides
     @Singleton
@@ -61,4 +61,29 @@ object RetrofitServiceModule {
     @Singleton
     fun provideJoinCodeRoomDoneService(retrofit: Retrofit): JoinCodeRoomDoneService =
         retrofit.create(JoinCodeRoomDoneService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideDeleteRoomService(retrofit: Retrofit): DeleteRoomService =
+        retrofit.create(DeleteRoomService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideLeaveRoomService(retrofit: Retrofit): LeaveRoomService =
+        retrofit.create(LeaveRoomService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideProfileService(retrofit: Retrofit): ProfileService =
+        retrofit.create(ProfileService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesAlarmSettingService(retrofit: Retrofit): AlarmSettingService =
+        retrofit.create(AlarmSettingService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideHomeHabitRoomFinishService(retrofit: Retrofit): HomeHabitRoomFinishService =
+        retrofit.create(HomeHabitRoomFinishService::class.java)
 }
