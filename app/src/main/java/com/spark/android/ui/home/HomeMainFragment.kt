@@ -92,6 +92,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         finishRoomDialog.show(
             requireActivity().supportFragmentManager, "FinishRoomDialog"
         )
+        updateHomeRecyclerViewAdapter()
     }
 
     override fun onPause() {
