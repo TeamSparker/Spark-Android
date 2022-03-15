@@ -9,8 +9,7 @@
 
         <variable
             name="photoCollectionViewModel"
-            type="com.spark.android.ui.storage.viewmodel.PhotoCollectionViewModel" />
-
+            type="com.spark.android.ui.storage.viewmodel.PhotoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

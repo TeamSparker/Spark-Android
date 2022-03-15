@@ -22,13 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
         <activity
+            android:name=".ui.storage.photo.StoragePhotoMainPickActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.mypage.MyPageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.storage.photo.StorageCardMainPhotoPickActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.share.InstaActivity"
             android:exported="true"
