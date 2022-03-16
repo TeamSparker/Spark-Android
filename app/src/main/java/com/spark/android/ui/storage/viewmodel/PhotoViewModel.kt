@@ -22,14 +22,12 @@ class PhotoViewModel : ViewModel() {
     private val _photoList = MutableLiveData<List<StorageCardPhoto>>()
     val photoList: LiveData<List<StorageCardPhoto>> = _photoList
 
-    private val _photoIsPicked = MutableLiveData<Boolean>(false)
-    val photoIsPicked : LiveData<Boolean> = _photoIsPicked
-     fun isSelectable(position : Int) : Boolean{
-        return (_photoCollectionResponse.value?.records?.get(position)?.status == "DONE")
-    }
-
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
+    }
+
+     fun isSelectable(position : Int) : Boolean{
+        return (_photoCollectionResponse.value?.records?.get(position)?.status == "DONE")
     }
 
     fun initPhotoCollectionNetwork(roomId: Int, lastId: Int, size: Int) {
