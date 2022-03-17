@@ -51,6 +51,22 @@ class FinishRoomDialogFragment : DialogFragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        setLayout()
+    }
+
+    private fun setLayout() {
+        requireNotNull(dialog).apply {
+            requireNotNull(window).apply {
+                setLayout(
+                    (resources.displayMetrics.widthPixels * 0.99).toInt(),
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+    }
+
     private fun initMyStatus(){
         myStatus = requireNotNull(arguments?.getString("myStatus", "FAIL"))
     }

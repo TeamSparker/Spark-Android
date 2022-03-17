@@ -12,6 +12,8 @@ import com.spark.android.R
 import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.databinding.FragmentMakeRoomCheckDialogBinding
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
+import com.spark.android.util.AnimationUtil
+import com.spark.android.util.DialogUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,6 +46,23 @@ class MakeRoomCheckFragmentDialog : DialogFragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        setLayout()
+    }
+
+    private fun setLayout() {
+        requireNotNull(dialog).apply {
+            requireNotNull(window).apply {
+                setLayout(
+                    (resources.displayMetrics.widthPixels * 0.99).toInt(),
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+    }
+
+
     private fun initMakeRoomButton(){
         binding.tvMakeRoomCheckDialogButtonMakeRoom.setOnClickListener {
             binding.tvMakeRoomCheckDialogButtonMakeRoom.isClickable = false
@@ -54,6 +73,7 @@ class MakeRoomCheckFragmentDialog : DialogFragment() {
             requireActivity().finish()
         }
     }
+
 
     private fun initDisMissButton(){
         binding.tvMakeRoomCheckDialogButtonDismiss.setOnClickListener {
