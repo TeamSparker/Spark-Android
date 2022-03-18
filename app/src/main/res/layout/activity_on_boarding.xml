@@ -12,5 +12,57 @@
         android:layout_height="match_parent"
         tools:context=".ui.onboarding.OnBoardingActivity">
 
+        <TextView
+            android:id="@+id/btn_onboarding_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:fontFamily="@font/futura_medium"
+            android:textSize="18dp"
+            android:textColor="@color/spark_gray"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_onboarding_skip"
+            app:layout_constraintBottom_toTopOf="@id/btn_onboarding_start"
+            />
+
+        <ImageView
+            android:id="@+id/iv_onboarding_bg_sparkflake"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="39dp"
+            android:src="@drawable/bg_onboarding_sparkflake_pattern"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_onboarding_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_spark_dark_pinkred_fill_2_rect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:text="스파크 시작하기"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:includeFontPadding="false"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
