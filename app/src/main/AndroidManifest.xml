@@ -23,7 +23,7 @@
         android:theme="@style/Theme.SparkAndroid">
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.storage.photo.StoragePhotoMainPickActivity"
             android:exported="true" />
