@@ -8,18 +8,67 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/constraintLayout_on_boarding_one"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.onboarding.OnBoardingFirstFragment">
 
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
+            android:id="@+id/tv_on_boarding_fragment_one_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/on_boarding_fragment_one_text_1"
+            android:textColor="@color/spark_black"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="79dp"
             />
 
+        <TextView
+            android:id="@+id/tv_on_boarding_fragment_one_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/on_boarding_fragment_one_text_2"
+            android:textSize="20dp"
+            android:textColor="@color/spark_pinkred"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toStartOf="@id/tv_on_boarding_fragment_one_text_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_on_boarding_fragment_one_text_1"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@id/tv_fragment_on_boarding_fragment_one_text_3"
+            android:layout_marginEnd="4dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_fragment_on_boarding_fragment_one_text_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/on_boarding_fragment_one_text_3"
+            android:textSize="20dp"
+            android:textColor="@color/spark_black"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toEndOf="@id/tv_on_boarding_fragment_one_text_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_on_boarding_fragment_one_text_1"
+            app:layout_constraintEnd_toEndOf="@id/tv_on_boarding_fragment_one_text_1"
+            />
+
+        <ImageView
+            android:id="@+id/iv_on_boarding_fragment_one_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_onboarding_one"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="211dp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

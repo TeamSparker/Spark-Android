@@ -305,5 +305,20 @@
     <string name="finish_room_dialog_success_content">66간의 도전 성공!\n여기까지 달려온 나를 마음껏 칭찬해주기!</string>
     <string name="finish_room_dialog_fail_content">성공하진 못했어도 실패는 아니에요.\n그러니 언제든 주저 말고 다시 도전하기!</string>
     <string name="finish_room_dialog_dismiss_button">확인했어요</string>
+
+
+    <!-- OnBoardingFragment -->
+    <string name="on_boarding_fragment_one_text_1">습관 만들기,</string>
+    <string name="on_boarding_fragment_one_text_2">친구와 함께</string>
+    <string name="on_boarding_fragment_one_text_3">도전해보는 건 어때요?</string>
+    <string name="on_boarding_fragment_two_text_1">함께 습관방의 생명을 지키면서</string>
+    <string name="on_boarding_fragment_two_text_2">더 재미있게!</string>
+    <string name="on_boarding_fragment_three_text_1">66일의 시간,</string>
+    <string name="on_boarding_fragment_three_text_2">목표를 갖고 달리면 덜 힘들걸요?</string>
+    <string name="on_boarding_fragment_four_text_1">지금, 응원의</string>
+    <string name="on_boarding_fragment_four_text_2">스파크</string>
+    <string name="on_boarding_fragment_four_text_3">를 주고받으며</string>
+    <string name="on_boarding_fragment_four_text_4">습관을 만들어봐요!</string>
+
 </resources>
 
