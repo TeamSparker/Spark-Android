@@ -39,18 +39,18 @@
             android:layout_marginBottom="13dp"
             android:src="@drawable/ic_storage_card_empty"
             android:visibility="@{storageViewModel.storageResponse.completeRoomNum == 0 ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@id/tv_storage_empty_guide"
+            app:layout_constraintBottom_toTopOf="@id/tv_storage_complete_empty_guide_title_msg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/tv_storage_empty_guide"
+            android:id="@+id/tv_storage_complete_empty_guide_title_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/noto_sans_kr"
+            android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
-            android:text="@string/storage_fragment_no_card_msg"
+            android:text="@string/storage_complete_empty_guide_title_msg"
             android:textAlignment="center"
             android:textColor="@color/spark_gray"
             android:textSize="18dp"
@@ -60,6 +60,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.49" />
+
+        <TextView
+            android:id="@+id/tv_storage_complete_empty_guide_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/storage_complete_empty_guide_msg"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            android:visibility="@{storageViewModel.storageResponse.completeRoomNum == 0 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_storage_complete_empty_guide_title_msg"
+            app:layout_constraintStart_toStartOf="@+id/tv_storage_complete_empty_guide_title_msg"
+            app:layout_constraintTop_toBottomOf="@+id/tv_storage_complete_empty_guide_title_msg" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -231,7 +231,12 @@
     <string name="insta_desc_sticker_certify_img">인스타 공유 스티커 인증 사진</string>
 
     <!-- StorageFragment -->
-    <string name="storage_fragment_no_card_msg">아직 습관 카드가 없어요.\n인증과 함께 카드를 모아보세요!</string>
+    <string name="storage_progressing_empty_guide_title_msg">아직 습관 카드가 없어요.</string>
+    <string name="storage_progressing_empty_guide_msg">인증과 함께 카드를 모아보세요!</string>
+    <string name="storage_complete_empty_guide_title_msg">66일간의 습관 도전!</string>
+    <string name="storage_complete_empty_guide_msg">첫번째 성공을 이뤄내 보세요!</string>
+    <string name="storage_incomplete_empty_guide_msg">지금까지 아주 잘하고 있다는 증거!</string>
+    <string name="storage_incomplete_empty_guide_title_msg">미완료된 습관이 없네요.</string>
     <string name="storage_tab_name_progressing">진행중</string>
     <string name="storage_tab_name_complete">완료</string>
     <string name="storage_tab_name_incomplete">미완료</string>
@@ -307,5 +312,22 @@
     <string name="finish_room_dialog_success_content">66간의 도전 성공!\n여기까지 달려온 나를 마음껏 칭찬해주기!</string>
     <string name="finish_room_dialog_fail_content">성공하진 못했어도 실패는 아니에요.\n그러니 언제든 주저 말고 다시 도전하기!</string>
     <string name="finish_room_dialog_dismiss_button">확인했어요</string>
+
+    <!-- OnBoardingActivity -->
+    <string name="on_boarding_activity_btn_skip">Skip</string>
+    <string name="on_boarding_activity_btn_start">스파크 시작하기</string>
+
+    <!-- OnBoardingFragment -->
+    <string name="on_boarding_fragment_one_text_1">습관 만들기,</string>
+    <string name="on_boarding_fragment_one_text_2">친구와 함께</string>
+    <string name="on_boarding_fragment_one_text_3">도전해보는 건 어때요?</string>
+    <string name="on_boarding_fragment_two_text_1">함께 습관방의 생명을 지키면서</string>
+    <string name="on_boarding_fragment_two_text_2">더 재미있게!</string>
+    <string name="on_boarding_fragment_three_text_1">66일의 시간,</string>
+    <string name="on_boarding_fragment_three_text_2">목표를 갖고 달리면 덜 힘들걸요?</string>
+    <string name="on_boarding_fragment_four_text_1">지금, 응원의</string>
+    <string name="on_boarding_fragment_four_text_2">스파크</string>
+    <string name="on_boarding_fragment_four_text_3">를 주고받으며</string>
+    <string name="on_boarding_fragment_four_text_4">습관을 만들어봐요!</string>
 </resources>
 

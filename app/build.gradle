@@ -107,4 +107,6 @@ dependencies {
     // Lifecycle-KTX
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
 
+    // viewpager indicator
+    implementation 'me.relex:circleindicator:2.1.6'
 }
