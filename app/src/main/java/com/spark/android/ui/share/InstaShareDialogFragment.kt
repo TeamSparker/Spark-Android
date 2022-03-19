@@ -25,6 +25,7 @@ class InstaShareDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.leftDay = arguments?.getInt("leftDay") ?: -1
         setConfirmTextClickListener()
         setCancelTextClickListener()
     }
