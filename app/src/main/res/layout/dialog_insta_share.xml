@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="leftDay"
+            name="day"
             type="Integer" />
     </data>
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/futura_medium_italic"
-            android:text="@{@string/insta_left_day_title(leftDay)}"
+            android:text="@{@string/insta_left_day_title(day)}"
             android:textColor="@color/spark_dark_pinkred"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/tv_insta_content"
-            setShareDialogContent="@{leftDay}"
+            setShareDialogContent="@{day}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

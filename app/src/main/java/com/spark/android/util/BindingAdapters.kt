@@ -540,9 +540,9 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("setShareDialogContent")
-    fun TextView.setShareDialogContent(leftDay: Int) {
+    fun TextView.setShareDialogContent(day: Int) {
         this.setText(
-            when (leftDay) {
+            when (day) {
                 in 1..2 -> R.string.insta_left_day_1_content
                 in 3..6 -> R.string.insta_left_day_3_content
                 in 7..32 -> R.string.insta_left_day_7_content
