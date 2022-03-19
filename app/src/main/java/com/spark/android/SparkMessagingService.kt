@@ -107,12 +107,17 @@ class SparkMessagingService : FirebaseMessagingService() {
     private fun getChannelId(category: String) =
         getSummaryId(category).toString() + getString(R.string.app_name)
 
-    private fun getSummary(category: String) =
-        NotificationCompat.Builder(this, getChannelId(category))
+    private fun getSummary(category: String): NotificationCompat.Builder {
+        val intent = Intent(this, IntroActivity::class.java)
+        val pendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        return NotificationCompat.Builder(this, getChannelId(category))
             .setSmallIcon(R.mipmap.ic_app_logo)
             .setContentTitle(getString(R.string.app_name))
+            .setContentIntent(pendingIntent)
             .setGroup(category)
             .setGroupSummary(true)
+    }
 
     private fun getSummaryId(category: String) = when (category) {
         CATEGORY_CERTIFICATION.groupName -> CATEGORY_CERTIFICATION.summaryId
