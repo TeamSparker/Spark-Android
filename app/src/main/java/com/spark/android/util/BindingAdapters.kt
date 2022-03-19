@@ -10,6 +10,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
+import java.lang.IllegalArgumentException
 
 object BindingAdapters {
     @JvmStatic
@@ -520,9 +521,9 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setFinishRoomDialogTitle")
     fun setFinishRoomDialogTitle(textview: TextView, myStatus: String?) {
-        if(myStatus == "COMPLETE"){
+        if (myStatus == "COMPLETE") {
             textview.setText(R.string.finish_room_dialog_success_title)
-        }else if (myStatus == "FAIL"){
+        } else if (myStatus == "FAIL") {
             textview.setText(R.string.finish_room_dialog_fail_title)
         }
     }
@@ -530,11 +531,27 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setFinishRoomDialogContent")
     fun setFinishRoomDialogContent(textview: TextView, myStatus: String?) {
-        if(myStatus == "COMPLETE"){
+        if (myStatus == "COMPLETE") {
             textview.setText(R.string.finish_room_dialog_success_content)
-        }else if (myStatus == "FAIL"){
+        } else if (myStatus == "FAIL") {
             textview.setText(R.string.finish_room_dialog_fail_content)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setShareDialogContent")
+    fun TextView.setShareDialogContent(leftDay: Int) {
+        this.setText(
+            when (leftDay) {
+                in 1..2 -> R.string.insta_left_day_1_content
+                in 3..6 -> R.string.insta_left_day_3_content
+                in 7..32 -> R.string.insta_left_day_7_content
+                in 33..58 -> R.string.insta_left_day_33_content
+                in 59..65 -> R.string.insta_left_day_59_content
+                66 -> R.string.insta_left_day_66_content
+                else -> throw IllegalArgumentException("leftDay 범위 에러")
+            }
+        )
     }
 }
 
