@@ -106,6 +106,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
                 putExtra("certifyMode", CertifyMode.NORMAL_READY_MODE)
                 putExtra("profileImgUrl", profileImgUrl)
                 putExtra("nickname", nickname)
+                putExtra("leftDay", intent.getIntExtra("leftDay", -1))
             }
             startActivity(intent)
             finish()

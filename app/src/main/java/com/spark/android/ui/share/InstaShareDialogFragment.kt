@@ -25,6 +25,7 @@ class InstaShareDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.leftDay = arguments?.getInt("leftDay") ?: -1
         setConfirmTextClickListener()
         setCancelTextClickListener()
     }
@@ -39,7 +40,7 @@ class InstaShareDialogFragment : DialogFragment() {
             requireNotNull(window).apply {
                 setCancelable(false)
                 setLayout(
-                    (resources.displayMetrics.widthPixels * 0.85).toInt(),
+                    (resources.displayMetrics.widthPixels * 0.88).toInt(),
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
                 setBackgroundDrawableResource(R.drawable.shape_spark_white_fill_2_rect)

@@ -1,108 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/iv_insta_pattern"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="21dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/insta_desc_pattern_img"
-        android:src="@drawable/bg_insta_dialog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageView
-        android:id="@+id/iv_insta_clap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/insta_desc_clap_img"
-        android:src="@drawable/ic_insta_clap"
-        app:layout_constraintEnd_toEndOf="@id/iv_insta_pattern"
-        app:layout_constraintStart_toStartOf="@id/iv_insta_pattern"
-        app:layout_constraintTop_toTopOf="parent" />
+        <variable
+            name="leftDay"
+            type="Integer" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_insta_wow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/futura_medium_italic"
-        android:text="WOW!"
-        android:textColor="@color/spark_dark_pinkred"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_insta_clap" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_insta_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="@string/insta_content_msg"
-        android:textColor="@color/spark_deep_gray"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_insta_wow" />
+        <ImageView
+            android:id="@+id/iv_insta_pattern"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/insta_desc_pattern_img"
+            android:src="@drawable/bg_insta_dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_insta_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/shape_insta_black_fiil_2"
-        android:drawableStart="@drawable/ic_instagram"
-        android:drawablePadding="7dp"
-        android:fontFamily="@font/noto_sans_kr_bold"
-        android:includeFontPadding="false"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="13dp"
-        android:paddingBottom="14dp"
-        android:stateListAnimator="@null"
-        android:text="@string/insta_btn_msg"
-        android:textColor="@color/spark_white"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_insta_content" />
+        <ImageView
+            android:id="@+id/iv_insta_clap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:contentDescription="@string/insta_desc_clap_img"
+            android:src="@drawable/ic_insta_clap"
+            app:layout_constraintEnd_toEndOf="@id/iv_insta_pattern"
+            app:layout_constraintStart_toStartOf="@id/iv_insta_pattern"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_insta_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="28dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:includeFontPadding="false"
-        android:text="@string/insta_cancel_msg"
-        android:textColor="@color/spark_dark_gray"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/btn_insta_share"
-        app:layout_constraintStart_toStartOf="@id/btn_insta_share"
-        app:layout_constraintTop_toBottomOf="@id/btn_insta_share" />
+        <TextView
+            android:id="@+id/tv_insta_wow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/futura_medium_italic"
+            android:text="@{@string/insta_left_day_title(leftDay)}"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_insta_clap" />
+
+        <TextView
+            android:id="@+id/tv_insta_content"
+            setShareDialogContent="@{leftDay}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_insta_wow" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_insta_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/shape_insta_black_fiil_2"
+            android:drawableStart="@drawable/ic_instagram"
+            android:drawablePadding="7dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="13dp"
+            android:paddingBottom="14dp"
+            android:stateListAnimator="@null"
+            android:text="@string/insta_btn_msg"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_insta_content" />
+
+        <TextView
+            android:id="@+id/tv_insta_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/insta_cancel_msg"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/btn_insta_share"
+            app:layout_constraintStart_toStartOf="@id/btn_insta_share"
+            app:layout_constraintTop_toBottomOf="@id/btn_insta_share" />
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="32dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="@id/iv_insta_pattern"
-        app:layout_constraintStart_toStartOf="@id/iv_insta_pattern"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="insta.json"
-        app:lottie_loop="true" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="32dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@id/iv_insta_pattern"
+            app:layout_constraintStart_toStartOf="@id/iv_insta_pattern"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="insta.json"
+            app:lottie_loop="true" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

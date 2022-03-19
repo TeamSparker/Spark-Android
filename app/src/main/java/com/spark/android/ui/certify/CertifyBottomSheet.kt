@@ -78,8 +78,9 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
         arguments?.getString("profileImgUrl")?.let { certifyViewModel.initProfileImg(it) }
         arguments?.getString("nickname")?.let { certifyViewModel.initNickName(it) }
         arguments?.getInt("certifyMode")?.let { certifyViewModel.initCertifyMode(it) }
-        arguments?.getBoolean("onlyCameraInitial")
-            ?.let { certifyViewModel.initOnlyCameraInitial(it) }
+        arguments?.getBoolean("onlyCameraInitial")?.let {
+            certifyViewModel.initOnlyCameraInitial(it)
+        }
     }
 
     private fun initFromAlbumBtnClickListener() {
@@ -151,6 +152,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                     putExtra("onlyCameraInitial", false)
                     putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                     putExtra("imgUri", certifyViewModel.imgUri.value)
+                    arguments?.getInt("leftDay")?.let { putExtra("leftDay", it) }
                 }
                 startActivity(intent)
             }
