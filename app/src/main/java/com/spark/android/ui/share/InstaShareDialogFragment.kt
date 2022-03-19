@@ -40,7 +40,7 @@ class InstaShareDialogFragment : DialogFragment() {
             requireNotNull(window).apply {
                 setCancelable(false)
                 setLayout(
-                    (resources.displayMetrics.widthPixels * 0.99).toInt(),
+                    (resources.displayMetrics.widthPixels * 0.88).toInt(),
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
                 setBackgroundDrawableResource(R.drawable.shape_spark_white_fill_2_rect)
