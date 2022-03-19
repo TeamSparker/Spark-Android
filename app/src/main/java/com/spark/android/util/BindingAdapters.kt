@@ -494,22 +494,22 @@ object BindingAdapters {
             "DONE" -> {
                 Glide.with(this.context)
                     .load(url)
-                    .placeholder(R.color.spark_light_gray)
-                    .error(R.color.spark_light_gray)
+                    .placeholder(R.color.spark_dark_gray)
+                    .error(R.color.spark_dark_gray)
                     .into(this)
             }
             "REST" -> {
                 Glide.with(this.context)
                     .load(R.drawable.ic_photo_collection_sticker_rest)
-                    .placeholder(R.color.spark_light_gray)
-                    .error(R.color.spark_light_gray)
+                    .placeholder(R.color.spark_dark_gray)
+                    .error(R.color.spark_dark_gray)
                     .into(this)
             }
             "NONE" -> {
                 Glide.with(this.context)
                     .load(R.drawable.ic_photo_collection_sticker_none)
-                    .placeholder(R.color.spark_light_gray)
-                    .error(R.color.spark_light_gray)
+                    .placeholder(R.color.spark_dark_gray)
+                    .error(R.color.spark_dark_gray)
                     .into(this)
             }
             "CONSIDER" -> {
