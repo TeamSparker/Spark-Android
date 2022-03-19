@@ -53,7 +53,6 @@ class PhotoMainPickRvAdapter(private val onPhotoCLick: (Int) -> Unit) :
 
     companion object {
         var selectedItemPos = -1
-        var lastItemSelectedPos = -1
     }
 }
 

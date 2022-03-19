@@ -31,13 +31,16 @@ class StoragePhotoMainPickActivity :
     private fun onPhotoClick(position: Int) {
         Log.d("msg", "onPhotoCLick 작동함")
         if (photoMainPickViewModel.isSelectable(position)) {
+            val previousItemPos = selectedItemPos
             selectedItemPos = position
-            for (i in 0..photoMainPickRvAdapter.photolist.size) photoMainPickRvAdapter.notifyItemChanged(i)
+            photoMainPickRvAdapter.notifyItemChanged(previousItemPos)
+            photoMainPickRvAdapter.notifyItemChanged(selectedItemPos)
         }
     }
 
     private fun initStorageMainPhotoPickRvAdapter() {
         binding.rvStorageMainPhotoPick.adapter = photoMainPickRvAdapter
+       //  selectedItemPos =  대표이미지 인덱스 : 서버한테 물어보기
     }
 
     private fun setOnBackBtnClickListener() {
