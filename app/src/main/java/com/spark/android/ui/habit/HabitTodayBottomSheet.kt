@@ -51,11 +51,14 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
         val bundle = Bundle()
         habitViewModel.habitInfo.value?.roomId?.let { it1 -> bundle.putInt("roomId", it1) }
         bundle.putString("roomName", habitViewModel.habitInfo.value?.roomName.toString())
-        bundle.putString("profileImgUrl",
-            habitViewModel.habitInfo.value?.myRecord?.profileImg.toString())
+        bundle.putString(
+            "profileImgUrl",
+            habitViewModel.habitInfo.value?.myRecord?.profileImg.toString()
+        )
         bundle.putString("nickname", habitViewModel.habitInfo.value?.myRecord?.nickname.toString())
         bundle.putInt("certifyMode", CertifyMode.ONLY_CAMERA_MODE)
         bundle.putBoolean("onlyCameraInitial", true)
+        bundle.putInt("leftDay", requireNotNull(habitViewModel.habitInfo.value).leftDay)
         certifyBottomSheet.arguments = bundle
         certifyBottomSheet.show(
             requireActivity().supportFragmentManager,
@@ -76,6 +79,7 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
                         "profileImgUrl",
                         habitViewModel.habitInfo.value?.myRecord?.profileImg.toString()
                     )
+                    putExtra("leftDay", habitViewModel.habitInfo.value?.leftDay)
                 }
                 startActivity(intent)
                 dismiss()
