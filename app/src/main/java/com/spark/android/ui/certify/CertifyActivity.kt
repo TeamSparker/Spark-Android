@@ -129,7 +129,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         certifyViewModel.isSuccessCertify.observe(this) { isSuccess ->
             if (isSuccess) {
                 InstaShareDialogFragment().apply {
-                    Bundle().putInt("leftDay", intent.getIntExtra("leftDay", -1))
+                    arguments = Bundle().apply {
+                        putInt("leftDay", intent.getIntExtra("leftDay", -1))
+                    }
                 }.show(supportFragmentManager, this.javaClass.name)
             }
         }
