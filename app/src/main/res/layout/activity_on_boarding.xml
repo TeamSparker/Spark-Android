@@ -16,15 +16,16 @@
             android:id="@+id/btn_onboarding_skip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Skip"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/futura_medium"
-            android:textSize="18dp"
+            android:padding="10dp"
+            android:text="@string/on_boarding_activity_btn_skip"
             android:textColor="@color/spark_gray"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/iv_onboarding_bg_sparkflake"
@@ -32,38 +33,53 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="29dp"
             android:layout_marginEnd="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="39dp"
             android:src="@drawable/bg_onboarding_sparkflake_pattern"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_on_boarding"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/btn_onboarding_skip"
             app:layout_constraintBottom_toTopOf="@id/btn_onboarding_start"
+            app:layout_constraintTop_toBottomOf="@id/btn_onboarding_skip"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="29dp" />
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            app:ci_width="6dp"
+            app:ci_height="6dp"
+            app:ci_drawable_unselected="@drawable/shape_spark_gray_fill_circle"
+            app:ci_drawable="@drawable/shape_spark_pinkred_circle"
+            app:ci_margin="4dp"
             />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_onboarding_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_spark_dark_pinkred_fill_2_rect"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="40dp"
-            android:text="스파크 시작하기"
+            android:background="@drawable/shape_spark_dark_pinkred_fill_2_rect"
             android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@string/on_boarding_activity_btn_start"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
-            android:includeFontPadding="false"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

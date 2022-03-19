@@ -306,6 +306,9 @@
     <string name="finish_room_dialog_fail_content">성공하진 못했어도 실패는 아니에요.\n그러니 언제든 주저 말고 다시 도전하기!</string>
     <string name="finish_room_dialog_dismiss_button">확인했어요</string>
 
+    <!-- OnBoardingActivity -->
+    <string name="on_boarding_activity_btn_skip">Skip</string>
+    <string name="on_boarding_activity_btn_start">스파크 시작하기</string>
 
     <!-- OnBoardingFragment -->
     <string name="on_boarding_fragment_one_text_1">습관 만들기,</string>
@@ -319,6 +322,5 @@
     <string name="on_boarding_fragment_four_text_2">스파크</string>
     <string name="on_boarding_fragment_four_text_3">를 주고받으며</string>
     <string name="on_boarding_fragment_four_text_4">습관을 만들어봐요!</string>
-
 </resources>
 
