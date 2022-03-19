@@ -18,16 +18,17 @@
             android:id="@+id/iv_spark_activity_alarm_feed"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:contentDescription="@string/spark_activity_alarm_desc_feed"
+            android:contentDescription="@string/alarm_list_desc_feed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
             tools:background="@color/spark_dark_gray" />
 
         <ImageView
             android:id="@+id/iv_spark_activity_alarm_profile"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:contentDescription="@string/spark_activity_alarm_desc_profile"
+            android:contentDescription="@string/alarm_list_desc_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@color/spark_dark_gray" />
@@ -44,7 +45,8 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toStartOf="@id/iv_spark_activity_alarm_feed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginEnd="0dp" />
 
         <TextView
             android:id="@+id/tv_spark_activity_alarm_content"
