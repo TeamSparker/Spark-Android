@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/spark_most_light_pinkred"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="22dp">
+
+        <ImageView
+            android:id="@+id/iv_spark_activity_alarm_feed"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:contentDescription="@string/alarm_list_desc_feed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            tools:background="@color/spark_dark_gray" />
+
+        <ImageView
+            android:id="@+id/iv_spark_activity_alarm_profile"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:contentDescription="@string/alarm_list_desc_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/spark_dark_gray" />
+
+        <TextView
+            android:id="@+id/tv_spark_activity_alarm_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="start"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_black"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toStartOf="@id/iv_spark_activity_alarm_feed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginEnd="0dp" />
+
+        <TextView
+            android:id="@+id/tv_spark_activity_alarm_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="start"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_spark_activity_alarm_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_spark_activity_alarm_title" />
+
+        <TextView
+            android:id="@+id/tv_spark_activity_alarm_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_spark_activity_alarm_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/spark_white"
+        tools:context=".ui.alarmcenter.AlarmCenterActivity">
+
+        <ImageButton
+            android:id="@+id/btn_alarm_center_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/alarm_center_desc_back_btn"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_alarm_center_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/alarm_center_title"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_alarm_center_tab_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="46dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="@string/alarm_center_sparker_activity"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_alarm_center_title" />
+
+        <View
+            android:id="@+id/view_alarm_center_activity"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:background="@color/spark_dark_pinkred"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
+            app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
+
+        <TextView
+            android:id="@+id/tv_alarm_center_tab_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="@string/alarm_center_notice"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_activity"
+            app:layout_constraintTop_toTopOf="@id/tv_alarm_center_tab_activity" />
+
+        <View
+            android:id="@+id/view_alarm_center_notice"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:background="@color/spark_dark_pinkred"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_notice"
+            app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_notice" />
+
+
+        <ImageView
+            android:id="@+id/iv_alarm_center_notice_sticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="-4dp"
+            android:contentDescription="@string/alarm_center_desc_notice_sticker"
+            android:src="@drawable/ic_alarm_circle_sticker"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_notice"
+            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_notice" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_alarm_center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_alarm_center_tab_activity" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
