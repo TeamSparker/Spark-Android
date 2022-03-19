@@ -329,5 +329,12 @@
     <string name="on_boarding_fragment_four_text_2">스파크</string>
     <string name="on_boarding_fragment_four_text_3">를 주고받으며</string>
     <string name="on_boarding_fragment_four_text_4">습관을 만들어봐요!</string>
+
+    <!-- AlarmCenterActivity -->
+    <string name="alarm_center_desc_back_btn">뒤로가기 버튼</string>
+    <string name="alarm_center_title">알림</string>
+    <string name="alarm_center_sparker_activity">스파커 활동</string>
+    <string name="alarm_center_notice">안내</string>
+    <string name="alarm_center_desc_notice_sticker">안내 탭 빨콩 스티커</string>
 </resources>
 
