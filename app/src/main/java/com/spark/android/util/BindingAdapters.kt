@@ -494,22 +494,22 @@ object BindingAdapters {
             "DONE" -> {
                 Glide.with(this.context)
                     .load(url)
-                    .placeholder(R.color.spark_light_gray)
-                    .error(R.color.spark_light_gray)
+                    .placeholder(R.color.spark_dark_gray)
+                    .error(R.color.spark_dark_gray)
                     .into(this)
             }
             "REST" -> {
                 Glide.with(this.context)
                     .load(R.drawable.ic_photo_collection_sticker_rest)
-                    .placeholder(R.color.spark_light_gray)
-                    .error(R.color.spark_light_gray)
+                    .placeholder(R.color.spark_dark_gray)
+                    .error(R.color.spark_dark_gray)
                     .into(this)
             }
             "NONE" -> {
                 Glide.with(this.context)
                     .load(R.drawable.ic_photo_collection_sticker_none)
-                    .placeholder(R.color.spark_light_gray)
-                    .error(R.color.spark_light_gray)
+                    .placeholder(R.color.spark_dark_gray)
+                    .error(R.color.spark_dark_gray)
                     .into(this)
             }
             "CONSIDER" -> {
@@ -540,9 +540,9 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("setShareDialogContent")
-    fun TextView.setShareDialogContent(leftDay: Int) {
+    fun TextView.setShareDialogContent(day: Int) {
         this.setText(
-            when (leftDay) {
+            when (day) {
                 in 1..2 -> R.string.insta_left_day_1_content
                 in 3..6 -> R.string.insta_left_day_3_content
                 in 7..32 -> R.string.insta_left_day_7_content
