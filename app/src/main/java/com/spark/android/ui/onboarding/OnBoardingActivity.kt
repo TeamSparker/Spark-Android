@@ -28,7 +28,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.acti
         onBoardingVpAdapter.fragments.addAll(fragmentList)
 
         binding.vpOnBoarding.adapter = onBoardingVpAdapter
-        binding.indicator.setViewPager(binding.vpOnBoarding)
+        binding.indicatorOnBoarding.setViewPager(binding.vpOnBoarding)
     }
 
 
