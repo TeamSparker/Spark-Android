@@ -553,5 +553,15 @@ object BindingAdapters {
             }
         )
     }
+
+    @JvmStatic
+    @BindingAdapter("setFinishRoomDialogLottie")
+    fun setFinishRoomDialogLottie(lottie: LottieAnimationView, myStatus: String?) {
+        if (myStatus == "COMPLETE") {
+            lottie.setAnimation("home_card_success.json")
+        } else if (myStatus == "FAIL") {
+            lottie.setAnimation("home_card_fail.json")
+        }
+    }
 }
 

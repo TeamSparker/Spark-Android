@@ -27,6 +27,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_home_finish_dialog_background"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_finish_dialog_background"
+            app:lottie_autoPlay="true"
+            app:setFinishRoomDialogLottie="@{myStatus}"
+            app:lottie_loop="true" />
+
         <TextView
             android:id="@+id/tv_home_finish_dialog_title"
             android:layout_width="wrap_content"
