@@ -10,6 +10,7 @@ import com.spark.android.data.remote.entity.request.SetStatusRequest
 import com.spark.android.data.remote.entity.response.HabitRecord
 import com.spark.android.data.remote.entity.response.HabitResponse
 import com.spark.android.data.remote.service.HabitService
+import com.spark.android.data.remote.service.LeaveRoomService
 import com.spark.android.data.remote.service.SendSparkService
 import com.spark.android.data.remote.service.SetStatusService
 import com.spark.android.util.Event
@@ -19,6 +20,7 @@ class HabitViewModel : ViewModel() {
     private val habitService: HabitService = RetrofitBuilder.habitService
     private val setStatusService: SetStatusService = RetrofitBuilder.setStatusService
     private val sendSparkService: SendSparkService = RetrofitBuilder.sendSparkService
+    private val leaveRoomService: LeaveRoomService = RetrofitBuilder.leaveRoomService
 
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -87,6 +89,14 @@ class HabitViewModel : ViewModel() {
                     )
                 }.onSuccess { _sendSuccess.value = true }
 
+            }
+        }
+    }
+
+    fun leaveHabitRoom() {
+        viewModelScope.launch {
+            habitInfo.value?.roomId?.let {
+                leaveRoomService.leaveRoom(it)
             }
         }
     }
