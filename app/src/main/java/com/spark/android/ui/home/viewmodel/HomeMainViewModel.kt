@@ -16,7 +16,7 @@ class HomeMainViewModel @Inject constructor(
     private val homeRepository: HomeRepository
 ) : ViewModel() {
 
-    private val _roomList = MutableLiveData<List<Room>>()
+    private val _roomList = MutableLiveData(listOf<Room>())
     val roomList: LiveData<List<Room>> = _roomList
 
     private val _isLoading = MutableLiveData(false)
@@ -29,14 +29,34 @@ class HomeMainViewModel @Inject constructor(
     var lastId = -1
         private set
 
-    fun updateIsLoading() {
-        _isLoading.postValue(false)
+    var hasNextPage = true
+        private set
+
+    var isAddLoading = false
+        private set
+
+    private val loadingItem = Room(
+        doneMemberNum = -1,
+        myStatus = null,
+        isStarted = false,
+        leftDay = -1,
+        life = -1,
+        memberNum = -1,
+        profileImg = null,
+        roomId = -1,
+        roomName = "로딩용 더미 방 데이터",
+        isUploaded = true,
+        infiniteLoading = "loading"
+    )
+
+    fun updateIsLoading(isLoading: Boolean) {
+        _isLoading.postValue(isLoading)
     }
 
-    fun getHomeAllRoom(lastid: Int, size: Int) {
+    fun recoverHomeAllRoom(size: Int) {
         viewModelScope.launch {
             _isLoading.value = true
-            homeRepository.getHomeAllRoom(lastid, size)
+            homeRepository.getHomeAllRoom(-1 , size)
                 .onSuccess {
                     _roomList.postValue(it.data.rooms)
                 }.onFailure {
@@ -45,12 +65,50 @@ class HomeMainViewModel @Inject constructor(
         }
     }
 
+    fun getHomeAllRoom() {
+        if (requireNotNull(roomList.value).isEmpty()) {
+            updateIsLoading(true)
+        }
+        if (requireNotNull(roomList.value).isNotEmpty() && hasNextPage) {
+            isAddLoading = true
+            addLoadingItem()
+        }
+        viewModelScope.launch {
+            homeRepository.getHomeAllRoom(lastId, LIST_LIMIT)
+                .onSuccess { response ->
+                    val tempHomeList = response.data.rooms
+                    if (tempHomeList.isNotEmpty()) {
+                        lastId = tempHomeList.last().roomId
+                    }
+                    if (tempHomeList.size < LIST_LIMIT && lastId != -1) {
+                        hasNextPage = false
+                    }
+                    isAddLoading=false
+                    updateIsLoading(false)
+                    _roomList.postValue(
+                        requireNotNull(_roomList.value).toMutableList().apply {
+                            remove(loadingItem)
+                            addAll(tempHomeList)
+                        }
+                    )
+                }.onFailure {
+                    Log.d("Home_GetHomeAllRoom",it.message.toString())
+                }
+        }
+    }
+
+    private fun addLoadingItem() {
+        _roomList.value = requireNotNull(_roomList.value).toMutableList().apply { add(loadingItem) }
+    }
+
+
     fun readFinishHabitRoom(roomId: Int) {
         viewModelScope.launch {
             homeRepository.readFinishHabitRoom(roomId)
                 .onFailure { Log.d("Home_main_error_finish_room", it.message.toString()) }
         }
     }
+
 
     fun updateToastMessage(message: String) {
         _toastMessage.postValue(message)
@@ -66,5 +124,9 @@ class HomeMainViewModel @Inject constructor(
 
     fun setHomeToastMessageState(state: Boolean) {
         homeRepository.setHomeToastMessageState(state)
+    }
+
+    companion object {
+        private const val LIST_LIMIT = 6
     }
 }
