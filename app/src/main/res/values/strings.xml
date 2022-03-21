@@ -173,6 +173,8 @@
 
     <!-- HabitMoreBottomSheet -->
     <string name="habit_more_goal">나의 목표 수정</string>
+    <string name="habit_more_exit_room_dialog_confirm">나가기</string>
+    <string name="habit_more_exit_room_dialog_content">아직 습관이 완료되지 않았어요.\n그래도 나가려면 ‘방 이름’을 입력해주세요.</string>
 
     <!-- HabitTodayBottomSheet -->
     <string name="habit_today_comment_top">오늘도 꺼지지 않는 스파크,</string>

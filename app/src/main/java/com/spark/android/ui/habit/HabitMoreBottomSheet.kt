@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetHabitMoreBinding
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
+import com.spark.android.util.DialogEditTextUtil
 
 class HabitMoreBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitMoreBinding? = null
@@ -34,6 +35,7 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         initGoalBtnClickListener()
+        initExitBtnClickListener()
     }
 
     private fun initGoalBtnClickListener() {
@@ -47,6 +49,21 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
             }
             startActivity(intent)
             dismiss()
+        }
+    }
+
+    private fun initExitBtnClickListener() {
+        binding.tvHabitMoreExit.setOnClickListener {
+            showExitDialog()
+            dismiss()
+        }
+    }
+
+    private fun showExitDialog() {
+        habitViewModel.habitInfo.value?.roomName?.let {
+            DialogEditTextUtil(DialogEditTextUtil.EXIT_HABIT_ROOM, it) {
+                habitViewModel.leaveHabitRoom()
+            }.show(requireActivity().supportFragmentManager, this.javaClass.name)
         }
     }
 
