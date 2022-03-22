@@ -8,26 +8,26 @@ class AlarmCenterViewModel : ViewModel() {
     private val _vpPosition = MutableLiveData<Int>()
     val vpPosition: LiveData<Int> = _vpPosition
 
-    private val _isVpPositionSparkActivity = MutableLiveData<Boolean>()
-    val isVpPositionSparkActivity: LiveData<Boolean> = _isVpPositionSparkActivity
+    private val _isVpPositionActivity = MutableLiveData<Boolean>()
+    val isVpPositionActivity: LiveData<Boolean> = _isVpPositionActivity
 
     private val _isVpPositionNotice = MutableLiveData<Boolean>()
     val isVpPositionNotice: LiveData<Boolean> = _isVpPositionNotice
 
-    fun initVpPositionToSparkActivity() {
-        _vpPosition.value = VP_SPARK_ACTIVITY_POSITION
-        _isVpPositionSparkActivity.value = true
+    fun initVpPositionToActivity() {
+        _vpPosition.value = VP_ACTIVITY_ALARM
+        _isVpPositionActivity.value = true
         _isVpPositionNotice.value = false
     }
 
     fun initVpPositionToNotice() {
-        _vpPosition.value = VP_NOTICE_POSITION
+        _vpPosition.value = VP_NOTICE_ALARM
         _isVpPositionNotice.value = true
-        _isVpPositionSparkActivity.value = false
+        _isVpPositionActivity.value = false
     }
 
     companion object {
-        const val VP_SPARK_ACTIVITY_POSITION = 0
-        const val VP_NOTICE_POSITION = 1
+        const val VP_ACTIVITY_ALARM = 0
+        const val VP_NOTICE_ALARM = 1
     }
 }

@@ -53,10 +53,10 @@
             android:layout_marginTop="46dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToSparkActivity()}"
+            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToActivity()}"
             android:padding="4dp"
             android:text="@string/alarm_center_sparker_activity"
-            android:textColor="@{alarmCenterViewModel.isVpPositionSparkActivity? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+            android:textColor="@{alarmCenterViewModel.isVpPositionActivity? @color/spark_dark_pinkred : @color/spark_dark_gray}"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_alarm_center_title" />
@@ -67,7 +67,7 @@
             android:layout_height="2dp"
             android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
-            android:visibility="@{alarmCenterViewModel.isVpPositionSparkActivity? View.VISIBLE : View.GONE}"
+            android:visibility="@{alarmCenterViewModel.isVpPositionActivity? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
 

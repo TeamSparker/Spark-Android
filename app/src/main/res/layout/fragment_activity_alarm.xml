@@ -10,10 +10,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.alarmcenter.SparkActivityAlarmFragment">
+        tools:context=".ui.alarmcenter.ActivityAlarmFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_spark_activity"
+            android:id="@+id/rv_activity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

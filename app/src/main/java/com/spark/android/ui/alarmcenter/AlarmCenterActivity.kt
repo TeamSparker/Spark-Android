@@ -9,8 +9,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.ActivityAlarmCenterBinding
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel
-import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_NOTICE_POSITION
-import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_SPARK_ACTIVITY_POSITION
+import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_NOTICE_ALARM
+import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_ACTIVITY_ALARM
 import com.spark.android.ui.base.BaseActivity
 import java.lang.IllegalArgumentException
 
@@ -36,8 +36,8 @@ class AlarmCenterActivity :
             override fun getItemCount() = VP_ITEM_COUNT
 
             override fun createFragment(position: Int) = when (position) {
-                VP_SPARK_ACTIVITY_POSITION -> SparkActivityAlarmFragment()
-                VP_NOTICE_POSITION -> NoticeAlarmFragment()
+                VP_ACTIVITY_ALARM -> ActivityAlarmFragment()
+                VP_NOTICE_ALARM -> NoticeAlarmFragment()
                 else -> throw IllegalArgumentException("알림 센터 뷰페이저 position 범위 벗어난 오류")
             }
         }
@@ -49,8 +49,8 @@ class AlarmCenterActivity :
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 when (position) {
-                    VP_SPARK_ACTIVITY_POSITION -> alarmCenterViewModel.initVpPositionToSparkActivity()
-                    VP_NOTICE_POSITION -> alarmCenterViewModel.initVpPositionToNotice()
+                    VP_ACTIVITY_ALARM -> alarmCenterViewModel.initVpPositionToActivity()
+                    VP_NOTICE_ALARM -> alarmCenterViewModel.initVpPositionToNotice()
                 }
             }
         })
@@ -59,12 +59,12 @@ class AlarmCenterActivity :
     private fun initVpPositionObserver() {
         alarmCenterViewModel.vpPosition.observe(this) { position ->
             when (position) {
-                VP_SPARK_ACTIVITY_POSITION -> {
-                    binding.vpAlarmCenter.currentItem = VP_SPARK_ACTIVITY_POSITION
+                VP_ACTIVITY_ALARM -> {
+                    binding.vpAlarmCenter.currentItem = VP_ACTIVITY_ALARM
                     startIndicatorAnimator(binding.viewAlarmCenterActivity)
                 }
-                VP_NOTICE_POSITION -> {
-                    binding.vpAlarmCenter.currentItem = VP_NOTICE_POSITION
+                VP_NOTICE_ALARM -> {
+                    binding.vpAlarmCenter.currentItem = VP_NOTICE_ALARM
                     startIndicatorAnimator(binding.viewAlarmCenterNotice)
                 }
             }
