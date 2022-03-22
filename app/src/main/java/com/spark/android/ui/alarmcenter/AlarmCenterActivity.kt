@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.ActivityAlarmCenterBinding
 import com.spark.android.ui.alarmcenter.AlarmCenterViewModel.Companion.VP_NOTICE_POSITION
@@ -20,15 +21,16 @@ class AlarmCenterActivity :
         super.onCreate(savedInstanceState)
         binding.alarmCenterViewModel = alarmCenterViewModel
         initBackBtnClickListener()
-        initViewPagerAdapter()
-        initViewPagerPositionObserver()
+        initVpAlarmCenterAdapter()
+        initVpAlarmCenterListener()
+        initVpPositionObserver()
     }
 
     private fun initBackBtnClickListener() {
         binding.btnAlarmCenterBack.setOnClickListener { finish() }
     }
 
-    private fun initViewPagerAdapter() {
+    private fun initVpAlarmCenterAdapter() {
         binding.vpAlarmCenter.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount() = VP_ITEM_COUNT
 
@@ -40,8 +42,21 @@ class AlarmCenterActivity :
         }
     }
 
-    private fun initViewPagerPositionObserver() {
-        alarmCenterViewModel.viewPagerPosition.observe(this) { position ->
+    private fun initVpAlarmCenterListener() {
+        binding.vpAlarmCenter.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when (position) {
+                    VP_SPARK_ACTIVITY_POSITION -> alarmCenterViewModel.initVpPositionToSparkActivity()
+                    VP_NOTICE_POSITION -> alarmCenterViewModel.initVpPositionToNotice()
+                }
+            }
+        })
+    }
+
+    private fun initVpPositionObserver() {
+        alarmCenterViewModel.vpPosition.observe(this) { position ->
             when (position) {
                 VP_SPARK_ACTIVITY_POSITION -> {
                     binding.vpAlarmCenter.currentItem = VP_SPARK_ACTIVITY_POSITION

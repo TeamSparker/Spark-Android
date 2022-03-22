@@ -5,15 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AlarmCenterViewModel : ViewModel() {
-    private val _viewPagerPosition = MutableLiveData(VP_SPARK_ACTIVITY_POSITION)
-    val viewPagerPosition: LiveData<Int> = _viewPagerPosition
+    private val _vpPosition = MutableLiveData<Int>()
+    val vpPosition: LiveData<Int> = _vpPosition
+
+    private val _isVpPositionSparkActivity = MutableLiveData<Boolean>()
+    val isVpPositionSparkActivity: LiveData<Boolean> = _isVpPositionSparkActivity
+
+    private val _isVpPositionNotice = MutableLiveData<Boolean>()
+    val isVpPositionNotice: LiveData<Boolean> = _isVpPositionNotice
 
     fun initVpPositionToSparkActivity() {
-        _viewPagerPosition.value = VP_SPARK_ACTIVITY_POSITION
+        _vpPosition.value = VP_SPARK_ACTIVITY_POSITION
+        _isVpPositionSparkActivity.value = true
+        _isVpPositionNotice.value = false
     }
 
     fun initVpPositionToNotice() {
-        _viewPagerPosition.value = VP_NOTICE_POSITION
+        _vpPosition.value = VP_NOTICE_POSITION
+        _isVpPositionNotice.value = true
+        _isVpPositionSparkActivity.value = false
     }
 
     companion object {

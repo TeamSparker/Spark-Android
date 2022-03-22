@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="alarmCenterViewModel"
             type="com.spark.android.ui.alarmcenter.AlarmCenterViewModel" />
@@ -54,7 +56,7 @@
             android:onClick="@{() -> alarmCenterViewModel.initVpPositionToSparkActivity()}"
             android:padding="4dp"
             android:text="@string/alarm_center_sparker_activity"
-            android:textColor="@color/spark_dark_pinkred"
+            android:textColor="@{alarmCenterViewModel.isVpPositionSparkActivity? @color/spark_dark_pinkred : @color/spark_dark_gray}"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_alarm_center_title" />
@@ -65,6 +67,7 @@
             android:layout_height="2dp"
             android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
+            android:visibility="@{alarmCenterViewModel.isVpPositionSparkActivity? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
 
@@ -78,7 +81,7 @@
             android:onClick="@{() -> alarmCenterViewModel.initVpPositionToNotice()}"
             android:padding="4dp"
             android:text="@string/alarm_center_notice"
-            android:textColor="@color/spark_dark_gray"
+            android:textColor="@{alarmCenterViewModel.isVpPositionNotice? @color/spark_dark_pinkred : @color/spark_dark_gray}"
             android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintTop_toTopOf="@id/tv_alarm_center_tab_activity" />
@@ -89,9 +92,9 @@
             android:layout_height="2dp"
             android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
+            android:visibility="@{alarmCenterViewModel.isVpPositionNotice? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_notice"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_notice" />
-
 
         <ImageView
             android:id="@+id/iv_alarm_center_notice_sticker"
