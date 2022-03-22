@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/spark_most_light_pinkred"
+        android:background="@{alarm.isNew? @color/spark_most_light_pinkred : @color/spark_white}"
         android:paddingHorizontal="20dp"
         android:paddingVertical="22dp">
 
@@ -22,9 +22,9 @@
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:contentDescription="@string/alarm_list_desc_feed"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
             tools:background="@color/spark_dark_gray" />
 
         <ImageView
@@ -44,6 +44,7 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             android:gravity="start"
             android:includeFontPadding="false"
+            android:text="@{alarm.noticeTitle}"
             android:textColor="@color/spark_black"
             android:textSize="16dp"
             app:layout_constraintEnd_toStartOf="@id/iv_spark_activity_alarm_feed"
@@ -59,6 +60,7 @@
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="start"
             android:includeFontPadding="false"
+            android:text="@{alarm.noticeContent}"
             android:textColor="@color/spark_deep_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="@id/tv_spark_activity_alarm_title"
@@ -73,6 +75,7 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
+            android:text="@{alarm.day}"
             android:textColor="@color/spark_dark_gray"
             android:textSize="12dp"
             app:layout_constraintStart_toStartOf="parent"
