@@ -19,8 +19,15 @@ import javax.inject.Inject
 class ActivityAlarmViewModel @Inject constructor(
     private val alarmCenterRepository: AlarmCenterRepository
 ) : ViewModel() {
+    private val _emptyActivityAlarm = MutableLiveData<Event<Boolean>>()
+    val emptyActivityAlarm: LiveData<Event<Boolean>> = _emptyActivityAlarm
+
     private val _newService = MutableLiveData<Event<Boolean>>()
     val newService: LiveData<Event<Boolean>> = _newService
+
+    fun initEmptyActivityAlarm(isEmpty: Boolean) {
+        _emptyActivityAlarm.postValue(Event(isEmpty))
+    }
 
     private fun initNewService(newService: Boolean) {
         _newService.value = Event(newService)

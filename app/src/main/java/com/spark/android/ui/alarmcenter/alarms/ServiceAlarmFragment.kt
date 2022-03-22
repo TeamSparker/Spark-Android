@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import com.spark.android.R
 import com.spark.android.databinding.FragmentServiceAlarmBinding
 import com.spark.android.ui.alarmcenter.AlarmCenterActivity
@@ -25,8 +26,10 @@ class ServiceAlarmFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.serviceAlarmViewModel = serviceAlarmViewModel
         initRvServiceAlarmAdapter()
         collectServiceAlarmList()
+        initEmptyView()
         initNewActivityObserver()
     }
 
@@ -44,6 +47,20 @@ class ServiceAlarmFragment :
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 serviceAlarmViewModel.getServiceAlarmPagingSource().collectLatest { alarmList ->
                     serviceAlarmAdapter.submitData(alarmList)
+                }
+
+            }
+        }
+    }
+
+    private fun initEmptyView() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                serviceAlarmAdapter.loadStateFlow.collectLatest { loadState ->
+                    serviceAlarmViewModel.initEmptyServiceAlarm(
+                        // loadState.refresh is LoadState.NotLoading && serviceAlarmAdapter.itemCount == 0
+                        serviceAlarmAdapter.itemCount == 0
+                    )
                 }
             }
         }
