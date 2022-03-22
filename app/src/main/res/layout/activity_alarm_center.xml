@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="com.spark.android.ui.alarmcenter.alarms.AlarmType" />
+
         <variable
             name="alarmCenterViewModel"
             type="com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel" />
@@ -56,7 +58,7 @@
             android:onClick="@{() -> alarmCenterViewModel.initVpPositionToActivity()}"
             android:padding="4dp"
             android:text="@string/alarm_center_sparker_activity"
-            android:textColor="@{alarmCenterViewModel.isVpPositionActivity? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+            android:textColor="@{alarmCenterViewModel.vpPosition == AlarmType.ACTIVITY_ALARM?  @color/spark_dark_pinkred : @color/spark_dark_gray}"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_alarm_center_title" />
@@ -67,7 +69,7 @@
             android:layout_height="2dp"
             android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
-            android:visibility="@{alarmCenterViewModel.isVpPositionActivity? View.VISIBLE : View.GONE}"
+            android:visibility="@{alarmCenterViewModel.vpPosition == AlarmType.ACTIVITY_ALARM? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
 
@@ -81,7 +83,7 @@
             android:onClick="@{() -> alarmCenterViewModel.initVpPositionToService()}"
             android:padding="4dp"
             android:text="@string/alarm_center_service"
-            android:textColor="@{alarmCenterViewModel.isVpPositionService? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+            android:textColor="@{alarmCenterViewModel.vpPosition == AlarmType.SERVICE_ALARM? @color/spark_dark_pinkred : @color/spark_dark_gray}"
             android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintTop_toTopOf="@id/tv_alarm_center_tab_activity" />
@@ -92,7 +94,7 @@
             android:layout_height="2dp"
             android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
-            android:visibility="@{alarmCenterViewModel.isVpPositionService? View.VISIBLE : View.GONE}"
+            android:visibility="@{alarmCenterViewModel.vpPosition == AlarmType.SERVICE_ALARM? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_service"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_service" />
 
