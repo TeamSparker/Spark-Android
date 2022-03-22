@@ -5,8 +5,13 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.spark.android.data.remote.entity.response.Alarm
 import com.spark.android.data.remote.service.AlarmCenterService
+import com.spark.android.ui.alarmcenter.alarms.AlarmType
+import com.spark.android.ui.alarmcenter.alarms.AlarmType.Companion.ACTIVITY_ALARM
+import com.spark.android.ui.alarmcenter.alarms.AlarmType.Companion.SERVICE_ALARM
+import java.lang.IllegalArgumentException
 
 class AlarmPagingSource(
+    private val alarmType: Int,
     private val service: AlarmCenterService,
     private val limit: Int
 ) : PagingSource<Int, Alarm>() {
@@ -42,7 +47,11 @@ class AlarmPagingSource(
         return try {
             val idKey = currentIdKey
             val lastId = params.key ?: -1
-            val activityAlarmList = service.getActivityAlarmList(lastId, limit).data.alarms
+            val activityAlarmList = when (alarmType) {
+                ACTIVITY_ALARM -> service.getActivityAlarmList(lastId, limit).data.alarms
+                SERVICE_ALARM -> service.getServiceAlarmList(lastId, limit).data.alarms
+                else -> throw IllegalArgumentException("AlarmPagingSource AlarmType 오류")
+            }
             if (activityAlarmList.size == limit) {
                 lastIdMap[idKey + 1] = activityAlarmList.last().noticeId
             }

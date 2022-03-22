@@ -6,6 +6,8 @@ import androidx.paging.PagingData
 import com.spark.android.data.remote.entity.response.Alarm
 import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.service.AlarmCenterService
+import com.spark.android.ui.alarmcenter.alarms.AlarmType.Companion.ACTIVITY_ALARM
+import com.spark.android.ui.alarmcenter.alarms.AlarmType.Companion.SERVICE_ALARM
 import com.spark.android.ui.alarmcenter.alarms.pagingsource.AlarmPagingSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -19,7 +21,7 @@ class AlarmCenterDataSourceImpl @Inject constructor(
     override fun getActivityAlarmList(size: Int): Flow<PagingData<Alarm>> =
         Pager(
             config = PagingConfig(pageSize = size, enablePlaceholders = false),
-            pagingSourceFactory = { AlarmPagingSource(alarmCenterService, size) }
+            pagingSourceFactory = { AlarmPagingSource(ACTIVITY_ALARM, alarmCenterService, size) }
         ).flow
 
     override suspend fun patchServiceAlarm(): NoDataResponse =
@@ -28,6 +30,6 @@ class AlarmCenterDataSourceImpl @Inject constructor(
     override fun getServiceAlarmList(size: Int): Flow<PagingData<Alarm>> =
         Pager(
             config = PagingConfig(pageSize = size, enablePlaceholders = false),
-            pagingSourceFactory = { AlarmPagingSource(alarmCenterService, size) }
+            pagingSourceFactory = { AlarmPagingSource(SERVICE_ALARM, alarmCenterService, size) }
         ).flow
 }
