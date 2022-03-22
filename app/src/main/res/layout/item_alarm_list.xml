@@ -7,7 +7,7 @@
 
         <variable
             name="alarm"
-            type="com.spark.android.data.remote.entity.response.ActivityAlarm" />
+            type="com.spark.android.data.remote.entity.response.Alarm" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

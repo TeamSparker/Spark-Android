@@ -6,16 +6,16 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.BR
-import com.spark.android.data.remote.entity.response.ActivityAlarm
+import com.spark.android.data.remote.entity.response.Alarm
 import com.spark.android.databinding.ItemAlarmListBinding
 import com.spark.android.ui.alarmcenter.acitivityalarm.adapter.ActivityAlarmPagingAdapter.ActivityAlarmViewHolder
 
 class ActivityAlarmPagingAdapter :
-    PagingDataAdapter<ActivityAlarm, ActivityAlarmViewHolder>(activityAlarmDiffUtil) {
+    PagingDataAdapter<Alarm, ActivityAlarmViewHolder>(activityAlarmDiffUtil) {
     class ActivityAlarmViewHolder(
         private val binding: ItemAlarmListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(alarm: ActivityAlarm) {
+        fun bind(alarm: Alarm) {
             binding.setVariable(BR.alarm, alarm)
             binding.executePendingBindings()
         }
@@ -35,13 +35,13 @@ class ActivityAlarmPagingAdapter :
         )
 
     companion object {
-        private val activityAlarmDiffUtil = object : DiffUtil.ItemCallback<ActivityAlarm>() {
-            override fun areItemsTheSame(oldItem: ActivityAlarm, newItem: ActivityAlarm): Boolean =
+        private val activityAlarmDiffUtil = object : DiffUtil.ItemCallback<Alarm>() {
+            override fun areItemsTheSame(oldItem: Alarm, newItem: Alarm): Boolean =
                 oldItem.noticeId == newItem.noticeId
 
             override fun areContentsTheSame(
-                oldItem: ActivityAlarm,
-                newItem: ActivityAlarm
+                oldItem: Alarm,
+                newItem: Alarm
             ): Boolean =
                 oldItem == newItem
 

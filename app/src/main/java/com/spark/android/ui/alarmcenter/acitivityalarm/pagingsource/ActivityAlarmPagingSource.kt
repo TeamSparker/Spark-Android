@@ -3,13 +3,13 @@ package com.spark.android.ui.alarmcenter.acitivityalarm.pagingsource
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.spark.android.data.remote.entity.response.ActivityAlarm
+import com.spark.android.data.remote.entity.response.Alarm
 import com.spark.android.data.remote.service.AlarmCenterService
 
 class ActivityAlarmPagingSource(
     private val service: AlarmCenterService,
     private val limit: Int
-) : PagingSource<Int, ActivityAlarm>() {
+) : PagingSource<Int, Alarm>() {
     private var currentIdKey: Int = 1
     private val lastIdMap = hashMapOf<Int, Int>()
 
@@ -21,7 +21,7 @@ class ActivityAlarmPagingSource(
         lastIdMap[1] = FIRST_ID
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ActivityAlarm>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, Alarm>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             when {
@@ -38,7 +38,7 @@ class ActivityAlarmPagingSource(
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ActivityAlarm> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Alarm> {
         return try {
             val idKey = currentIdKey
             val lastId = params.key ?: -1

@@ -1,6 +1,6 @@
 package com.spark.android.data.remote.service
 
-import com.spark.android.data.remote.entity.response.ActivityAlarmResponse
+import com.spark.android.data.remote.entity.response.AlarmResponse
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
 import retrofit2.http.GET
@@ -15,5 +15,14 @@ interface AlarmCenterService {
     suspend fun getActivityAlarmList(
         @Query("lastId") lastId: Int,
         @Query("size") size: Int
-    ): BaseResponse<ActivityAlarmResponse>
+    ): BaseResponse<AlarmResponse>
+
+    @PATCH("notice/service/read")
+    suspend fun patchServiceAlarm(): NoDataResponse
+
+    @GET("notice/service")
+    suspend fun getServiceAlarmList(
+        @Query("lastId") lastId: Int,
+        @Query("size") size: Int
+    ): BaseResponse<AlarmResponse>
 }
