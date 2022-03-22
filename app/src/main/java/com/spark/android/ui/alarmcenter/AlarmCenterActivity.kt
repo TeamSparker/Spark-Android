@@ -12,6 +12,8 @@ import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_NOTICE_ALARM
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_ACTIVITY_ALARM
 import com.spark.android.ui.base.BaseActivity
+import com.spark.android.util.initStatusBarColor
+import com.spark.android.util.initStatusBarTextColorToWhite
 import java.lang.IllegalArgumentException
 
 class AlarmCenterActivity :
@@ -21,10 +23,16 @@ class AlarmCenterActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.alarmCenterViewModel = alarmCenterViewModel
+        initStatusBarStyle()
         initBackBtnClickListener()
         initVpAlarmCenterAdapter()
         initVpAlarmCenterListener()
         initVpPositionObserver()
+    }
+
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
     }
 
     private fun initBackBtnClickListener() {
