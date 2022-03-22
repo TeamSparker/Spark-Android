@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.spark.android.data.remote.entity.response.Alarm
 import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.service.AlarmCenterService
-import com.spark.android.ui.alarmcenter.acitivityalarm.pagingsource.ActivityAlarmPagingSource
+import com.spark.android.ui.alarmcenter.acitivityalarm.pagingsource.AlarmPagingSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -19,6 +19,6 @@ class AlarmCenterDataSourceImpl @Inject constructor(
     override fun getActivityAlarmList(size: Int): Flow<PagingData<Alarm>> =
         Pager(
             config = PagingConfig(pageSize = size, enablePlaceholders = false),
-            pagingSourceFactory = { ActivityAlarmPagingSource(alarmCenterService, size) }
+            pagingSourceFactory = { AlarmPagingSource(alarmCenterService, size) }
         ).flow
 }

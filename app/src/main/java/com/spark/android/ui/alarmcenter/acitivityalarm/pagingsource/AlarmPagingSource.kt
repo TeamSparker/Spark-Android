@@ -6,7 +6,7 @@ import androidx.paging.PagingState
 import com.spark.android.data.remote.entity.response.Alarm
 import com.spark.android.data.remote.service.AlarmCenterService
 
-class ActivityAlarmPagingSource(
+class AlarmPagingSource(
     private val service: AlarmCenterService,
     private val limit: Int
 ) : PagingSource<Int, Alarm>() {

@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.spark.android.R
 import com.spark.android.databinding.FragmentActivityAlarmBinding
-import com.spark.android.ui.alarmcenter.acitivityalarm.adapter.ActivityAlarmPagingAdapter
+import com.spark.android.ui.alarmcenter.acitivityalarm.adapter.AlarmPagingAdapter
 import com.spark.android.ui.alarmcenter.acitivityalarm.viewmodel.ActivityAlarmViewModel
 import com.spark.android.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class ActivityAlarmFragment :
     BaseFragment<FragmentActivityAlarmBinding>(R.layout.fragment_activity_alarm) {
     private val activityAlarmViewModel by viewModels<ActivityAlarmViewModel>()
-    private val activityAlarmAdapter = ActivityAlarmPagingAdapter()
+    private val activityAlarmAdapter = AlarmPagingAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
