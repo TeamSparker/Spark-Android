@@ -8,8 +8,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.ActivityAlarmCenterBinding
-import com.spark.android.ui.alarmcenter.AlarmCenterViewModel.Companion.VP_NOTICE_POSITION
-import com.spark.android.ui.alarmcenter.AlarmCenterViewModel.Companion.VP_SPARK_ACTIVITY_POSITION
+import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel
+import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_NOTICE_POSITION
+import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_SPARK_ACTIVITY_POSITION
 import com.spark.android.ui.base.BaseActivity
 import java.lang.IllegalArgumentException
 
