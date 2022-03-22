@@ -1,11 +1,14 @@
 package com.spark.android.data.remote.entity.response
 
+import com.google.gson.annotations.SerializedName
+
 data class ActivityAlarmResponse(
     val newService: Boolean,
-    val notices: List<Notice>
+    @SerializedName("notices")
+    val alarms: List<ActivityAlarm>
 )
 
-data class Notice(
+data class ActivityAlarm(
     val day: String,
     val isNew: Boolean,
     val isThumbProfile: Boolean,

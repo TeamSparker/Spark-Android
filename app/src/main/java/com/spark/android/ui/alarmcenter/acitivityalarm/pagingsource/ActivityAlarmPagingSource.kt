@@ -1,0 +1,63 @@
+package com.spark.android.ui.alarmcenter.acitivityalarm.pagingsource
+
+import android.util.Log
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
+import com.spark.android.data.remote.entity.response.ActivityAlarm
+import com.spark.android.data.remote.service.AlarmCenterService
+
+class ActivityAlarmPagingSource(
+    private val service: AlarmCenterService,
+    private val limit: Int
+) : PagingSource<Int, ActivityAlarm>() {
+    private var currentIdKey: Int = 1
+    private val lastIdMap = hashMapOf<Int, Int>()
+
+    init {
+        initFirstId()
+    }
+
+    private fun initFirstId() {
+        lastIdMap[1] = FIRST_ID
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, ActivityAlarm>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            when {
+                anchorPage?.prevKey != null -> {
+                    lastIdMap[++currentIdKey]
+                }
+                anchorPage?.nextKey != null -> {
+                    lastIdMap[--currentIdKey]
+                }
+                else -> {
+                    null
+                }
+            }
+        }
+    }
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ActivityAlarm> {
+        return try {
+            val idKey = currentIdKey
+            val lastId = params.key ?: -1
+            val activityAlarmList = service.getActivityAlarm(lastId, limit).data.alarms
+            if (activityAlarmList.size == limit) {
+                lastIdMap[idKey + 1] = activityAlarmList.last().noticeId
+            }
+            return LoadResult.Page(
+                data = activityAlarmList,
+                prevKey = if (idKey <= 1) null else lastIdMap[idKey - 1],
+                nextKey = if (activityAlarmList.size < limit) null else lastIdMap[idKey + 1]
+            )
+        } catch (e: Exception) {
+            Log.d(this.javaClass.toString(), e.message.toString())
+            LoadResult.Error(e)
+        }
+    }
+
+    companion object {
+        private const val FIRST_ID = -1
+    }
+}
