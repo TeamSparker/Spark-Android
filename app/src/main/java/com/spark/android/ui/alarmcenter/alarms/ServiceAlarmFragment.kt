@@ -41,7 +41,6 @@ class ServiceAlarmFragment :
                     serviceAlarmAdapter.submitData(alarmList)
                 }
             }
-            serviceAlarmViewModel.patchServiceAlarm()
         }
     }
 
@@ -49,5 +48,10 @@ class ServiceAlarmFragment :
         serviceAlarmViewModel.newActivity.observe(viewLifecycleOwner, EventObserver { newActivity ->
             (activity as AlarmCenterActivity).initNewActivityAlarmSticker(newActivity)
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        serviceAlarmViewModel.patchServiceAlarm()
     }
 }
