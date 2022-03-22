@@ -38,6 +38,7 @@ class ActivityAlarmFragment :
                     activityAlarmAdapter.submitData(alarmList)
                 }
             }
+            activityAlarmViewModel.patchActivityAlarm()
         }
     }
 }
