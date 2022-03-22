@@ -72,40 +72,40 @@
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
 
         <TextView
-            android:id="@+id/tv_alarm_center_tab_notice"
+            android:id="@+id/tv_alarm_center_tab_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToNotice()}"
+            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToService()}"
             android:padding="4dp"
-            android:text="@string/alarm_center_notice"
-            android:textColor="@{alarmCenterViewModel.isVpPositionNotice? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+            android:text="@string/alarm_center_service"
+            android:textColor="@{alarmCenterViewModel.isVpPositionService? @color/spark_dark_pinkred : @color/spark_dark_gray}"
             android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintTop_toTopOf="@id/tv_alarm_center_tab_activity" />
 
         <View
-            android:id="@+id/view_alarm_center_notice"
+            android:id="@+id/view_alarm_center_service"
             android:layout_width="16dp"
             android:layout_height="2dp"
             android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
-            android:visibility="@{alarmCenterViewModel.isVpPositionNotice? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_notice"
-            app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_notice" />
+            android:visibility="@{alarmCenterViewModel.isVpPositionService? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_service"
+            app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_service" />
 
         <ImageView
-            android:id="@+id/iv_alarm_center_notice_sticker"
+            android:id="@+id/iv_alarm_center_service_sticker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginBottom="-4dp"
-            android:contentDescription="@string/alarm_center_desc_notice_sticker"
+            android:contentDescription="@string/alarm_center_desc_service_sticker"
             android:src="@drawable/ic_alarm_circle_sticker"
-            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_notice"
-            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_notice" />
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_service"
+            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_service" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_alarm_center"

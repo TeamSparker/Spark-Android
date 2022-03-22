@@ -9,9 +9,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.ActivityAlarmCenterBinding
 import com.spark.android.ui.alarmcenter.acitivityalarm.ActivityAlarmFragment
-import com.spark.android.ui.alarmcenter.noticealarm.NoticeAlarmFragment
+import com.spark.android.ui.alarmcenter.servicealarm.ServiceAlarmFragment
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel
-import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_NOTICE_ALARM
+import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_SERVICE_ALARM
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_ACTIVITY_ALARM
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.util.initStatusBarColor
@@ -49,7 +49,7 @@ class AlarmCenterActivity :
 
             override fun createFragment(position: Int) = when (position) {
                 VP_ACTIVITY_ALARM -> ActivityAlarmFragment()
-                VP_NOTICE_ALARM -> NoticeAlarmFragment()
+                VP_SERVICE_ALARM -> ServiceAlarmFragment()
                 else -> throw IllegalArgumentException("알림 센터 뷰페이저 position 범위 벗어난 오류")
             }
         }
@@ -62,7 +62,7 @@ class AlarmCenterActivity :
                 super.onPageSelected(position)
                 when (position) {
                     VP_ACTIVITY_ALARM -> alarmCenterViewModel.initVpPositionToActivity()
-                    VP_NOTICE_ALARM -> alarmCenterViewModel.initVpPositionToNotice()
+                    VP_SERVICE_ALARM -> alarmCenterViewModel.initVpPositionToService()
                 }
             }
         })
@@ -75,9 +75,9 @@ class AlarmCenterActivity :
                     binding.vpAlarmCenter.currentItem = VP_ACTIVITY_ALARM
                     startIndicatorAnimator(binding.viewAlarmCenterActivity)
                 }
-                VP_NOTICE_ALARM -> {
-                    binding.vpAlarmCenter.currentItem = VP_NOTICE_ALARM
-                    startIndicatorAnimator(binding.viewAlarmCenterNotice)
+                VP_SERVICE_ALARM -> {
+                    binding.vpAlarmCenter.currentItem = VP_SERVICE_ALARM
+                    startIndicatorAnimator(binding.viewAlarmCenterService)
                 }
             }
         }

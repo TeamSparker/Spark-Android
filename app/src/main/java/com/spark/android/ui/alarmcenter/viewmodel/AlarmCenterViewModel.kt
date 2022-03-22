@@ -11,23 +11,23 @@ class AlarmCenterViewModel : ViewModel() {
     private val _isVpPositionActivity = MutableLiveData<Boolean>()
     val isVpPositionActivity: LiveData<Boolean> = _isVpPositionActivity
 
-    private val _isVpPositionNotice = MutableLiveData<Boolean>()
-    val isVpPositionNotice: LiveData<Boolean> = _isVpPositionNotice
+    private val _isVpPositionService = MutableLiveData<Boolean>()
+    val isVpPositionService: LiveData<Boolean> = _isVpPositionService
 
     fun initVpPositionToActivity() {
         _vpPosition.value = VP_ACTIVITY_ALARM
         _isVpPositionActivity.value = true
-        _isVpPositionNotice.value = false
+        _isVpPositionService.value = false
     }
 
-    fun initVpPositionToNotice() {
-        _vpPosition.value = VP_NOTICE_ALARM
-        _isVpPositionNotice.value = true
+    fun initVpPositionToService() {
+        _vpPosition.value = VP_SERVICE_ALARM
+        _isVpPositionService.value = true
         _isVpPositionActivity.value = false
     }
 
     companion object {
         const val VP_ACTIVITY_ALARM = 0
-        const val VP_NOTICE_ALARM = 1
+        const val VP_SERVICE_ALARM = 1
     }
 }

@@ -336,8 +336,8 @@
     <string name="alarm_center_desc_back_btn">뒤로가기 버튼</string>
     <string name="alarm_center_title">알림</string>
     <string name="alarm_center_sparker_activity">스파커 활동</string>
-    <string name="alarm_center_notice">안내</string>
-    <string name="alarm_center_desc_notice_sticker">안내 탭 빨콩 스티커</string>
+    <string name="alarm_center_service">안내</string>
+    <string name="alarm_center_desc_service_sticker">안내 탭 빨콩 스티커</string>
     <string name="alarm_list_desc_feed">피드 사진</string>
     <string name="alarm_list_desc_profile">프로필 사진</string>
 </resources>
