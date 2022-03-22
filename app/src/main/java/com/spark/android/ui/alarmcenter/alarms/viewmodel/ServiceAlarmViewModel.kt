@@ -1,4 +1,4 @@
-package com.spark.android.ui.alarmcenter.acitivityalarm.viewmodel
+package com.spark.android.ui.alarmcenter.alarms.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -13,17 +13,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ActivityAlarmViewModel @Inject constructor(
+class ServiceAlarmViewModel @Inject constructor(
     private val alarmCenterRepository: AlarmCenterRepository
-) : ViewModel() {
-    fun getActivityAlarmPagingSource(): Flow<PagingData<Alarm>> =
-        alarmCenterRepository.getActivityAlarmList(size = 10).cachedIn(viewModelScope)
+): ViewModel() {
+    fun getServiceAlarmPagingSource(): Flow<PagingData<Alarm>> =
+        alarmCenterRepository.getServiceAlarmList(size = 10).cachedIn(viewModelScope)
 
-    fun patchActivityAlarm() {
+    fun patchServiceAlarm() {
         viewModelScope.launch {
-            alarmCenterRepository.patchActivityAlarm()
+            alarmCenterRepository.patchServiceAlarm()
                 .onFailure {
-                    Log.d("AlarmCenter_PatchActivityAlarm", it.message.toString())
+                    Log.d("AlarmCenter_PatchServiceAlarm", it.message.toString())
                 }
         }
     }

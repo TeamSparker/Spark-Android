@@ -8,8 +8,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.ActivityAlarmCenterBinding
-import com.spark.android.ui.alarmcenter.acitivityalarm.ActivityAlarmFragment
-import com.spark.android.ui.alarmcenter.servicealarm.ServiceAlarmFragment
+import com.spark.android.ui.alarmcenter.alarms.ActivityAlarmFragment
+import com.spark.android.ui.alarmcenter.alarms.ServiceAlarmFragment
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_SERVICE_ALARM
 import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion.VP_ACTIVITY_ALARM

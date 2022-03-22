@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.alarmcenter.servicealarm.ServiceAlarmFragment">
+        tools:context=".ui.alarmcenter.alarms.ServiceAlarmFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_service_alarm"

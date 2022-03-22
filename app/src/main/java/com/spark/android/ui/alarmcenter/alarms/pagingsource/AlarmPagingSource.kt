@@ -1,4 +1,4 @@
-package com.spark.android.ui.alarmcenter.acitivityalarm.pagingsource
+package com.spark.android.ui.alarmcenter.alarms.pagingsource
 
 import android.util.Log
 import androidx.paging.PagingSource

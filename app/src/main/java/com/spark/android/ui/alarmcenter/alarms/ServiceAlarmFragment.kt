@@ -1,4 +1,4 @@
-package com.spark.android.ui.alarmcenter.servicealarm
+package com.spark.android.ui.alarmcenter.alarms
 
 import android.os.Bundle
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.spark.android.R
 import com.spark.android.databinding.FragmentServiceAlarmBinding
-import com.spark.android.ui.alarmcenter.acitivityalarm.adapter.AlarmPagingAdapter
-import com.spark.android.ui.alarmcenter.servicealarm.viewmodel.ServiceAlarmViewModel
+import com.spark.android.ui.alarmcenter.alarms.adapter.AlarmPagingAdapter
+import com.spark.android.ui.alarmcenter.alarms.viewmodel.ServiceAlarmViewModel
 import com.spark.android.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
