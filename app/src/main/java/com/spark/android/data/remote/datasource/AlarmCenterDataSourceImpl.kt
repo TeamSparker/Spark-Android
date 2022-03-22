@@ -21,4 +21,13 @@ class AlarmCenterDataSourceImpl @Inject constructor(
             config = PagingConfig(pageSize = size, enablePlaceholders = false),
             pagingSourceFactory = { AlarmPagingSource(alarmCenterService, size) }
         ).flow
+
+    override suspend fun patchServiceAlarm(): NoDataResponse =
+        alarmCenterService.patchServiceAlarm()
+
+    override fun getServiceAlarmList(size: Int): Flow<PagingData<Alarm>> =
+        Pager(
+            config = PagingConfig(pageSize = size, enablePlaceholders = false),
+            pagingSourceFactory = { AlarmPagingSource(alarmCenterService, size) }
+        ).flow
 }
