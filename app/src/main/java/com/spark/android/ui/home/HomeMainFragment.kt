@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentHomeMainBinding
+import com.spark.android.ui.alarmcenter.AlarmCenterActivity
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.home.adapter.HomeRecyclerViewAdapter
 import com.spark.android.ui.home.finishroomdialog.FinishRoomDialogFragment
@@ -29,12 +30,10 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.homeViewModel = homeMainViewModel
-
-
         initHomeRecyclerViewAdapter()
         updateHomeRecyclerViewAdapter()
         initMyPageBtnClickListener()
-
+        initAlarmCenterBtnClickListener()
     }
 
     override fun onResume() {
@@ -64,8 +63,16 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         }
     }
 
-    private fun showToastMessage(){
-        if(homeMainViewModel.getHomeToastMessageState()){
+    private fun initAlarmCenterBtnClickListener() {
+        binding.btnHomeToolBarAlarmCenter.setOnClickListener {
+            startActivity(Intent(requireContext(), AlarmCenterActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            })
+        }
+    }
+
+    private fun showToastMessage() {
+        if (homeMainViewModel.getHomeToastMessageState()) {
             homeMainViewModel.updateToastMessage(homeMainViewModel.getHomeToastMessage())
             binding.tvHomeToast.visibility = View.VISIBLE
             toastAnimation =
@@ -87,7 +94,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         homeMainViewModel.readFinishHabitRoom(roomId)
         val finishRoomDialog = FinishRoomDialogFragment()
         val bundle = Bundle()
-        bundle.putString("myStatus",myStatus)
+        bundle.putString("myStatus", myStatus)
         finishRoomDialog.arguments = bundle
         finishRoomDialog.show(
             requireActivity().supportFragmentManager, "FinishRoomDialog"
