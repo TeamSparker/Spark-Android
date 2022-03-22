@@ -12,7 +12,7 @@ interface AlarmCenterService {
     suspend fun patchActivityAlarm(): NoDataResponse
 
     @GET("notice/active")
-    suspend fun getActivityAlarm(
+    suspend fun getActivityAlarmList(
         @Query("lastId") lastId: Int,
         @Query("size") size: Int
     ): BaseResponse<ActivityAlarmResponse>

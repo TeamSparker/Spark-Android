@@ -42,7 +42,7 @@ class ActivityAlarmPagingSource(
         return try {
             val idKey = currentIdKey
             val lastId = params.key ?: -1
-            val activityAlarmList = service.getActivityAlarm(lastId, limit).data.alarms
+            val activityAlarmList = service.getActivityAlarmList(lastId, limit).data.alarms
             if (activityAlarmList.size == limit) {
                 lastIdMap[idKey + 1] = activityAlarmList.last().noticeId
             }
