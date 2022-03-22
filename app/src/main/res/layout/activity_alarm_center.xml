@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="alarmCenterViewModel"
+            type="com.spark.android.ui.alarmcenter.AlarmCenterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,6 +51,7 @@
             android:layout_marginTop="46dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
+            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToSparkActivity()}"
             android:padding="4dp"
             android:text="@string/alarm_center_sparker_activity"
             android:textColor="@color/spark_dark_pinkred"
@@ -71,6 +75,7 @@
             android:layout_marginStart="24dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
+            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToNotice()}"
             android:padding="4dp"
             android:text="@string/alarm_center_notice"
             android:textColor="@color/spark_dark_gray"
