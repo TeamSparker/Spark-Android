@@ -11,7 +11,12 @@ class AlarmCenterActivity :
     BaseActivity<ActivityAlarmCenterBinding>(R.layout.activity_alarm_center) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initBackBtnClickListener()
         initViewPagerAdapter()
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnAlarmCenterBack.setOnClickListener { finish() }
     }
 
     private fun initViewPagerAdapter() {
