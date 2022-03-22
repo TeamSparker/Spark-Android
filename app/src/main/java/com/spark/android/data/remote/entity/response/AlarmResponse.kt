@@ -15,5 +15,6 @@ data class Alarm(
     val noticeContent: String,
     val noticeId: Int,
     val noticeImg: String?,
-    val noticeTitle: String
+    val noticeTitle: String,
+    var isFirst: Boolean = false
 )

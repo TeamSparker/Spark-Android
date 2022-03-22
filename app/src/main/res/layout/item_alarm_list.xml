@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="alarm"
             type="com.spark.android.data.remote.entity.response.Alarm" />
@@ -21,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/spark_gray"
+            android:visibility="@{alarm.isFirst? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView

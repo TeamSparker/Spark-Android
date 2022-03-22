@@ -52,6 +52,9 @@ class AlarmPagingSource(
                 SERVICE_ALARM -> service.getServiceAlarmList(lastId, limit).data.alarms
                 else -> throw IllegalArgumentException("AlarmPagingSource AlarmType 오류")
             }
+            if (currentIdKey == 1) {
+                activityAlarmList.first().isFirst = true
+            }
             if (activityAlarmList.size == limit) {
                 lastIdMap[idKey + 1] = activityAlarmList.last().noticeId
             }
