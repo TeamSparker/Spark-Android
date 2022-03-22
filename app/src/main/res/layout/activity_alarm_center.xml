@@ -59,6 +59,7 @@
             android:id="@+id/view_alarm_center_activity"
             android:layout_width="16dp"
             android:layout_height="2dp"
+            android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
@@ -81,6 +82,7 @@
             android:id="@+id/view_alarm_center_notice"
             android:layout_width="16dp"
             android:layout_height="2dp"
+            android:layout_marginStart="4dp"
             android:background="@color/spark_dark_pinkred"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_notice"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_notice" />
