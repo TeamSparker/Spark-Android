@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
@@ -44,14 +45,17 @@ class AlarmCenterActivity :
     }
 
     private fun initVpAlarmCenterAdapter() {
-        binding.vpAlarmCenter.adapter = object : FragmentStateAdapter(this) {
-            override fun getItemCount() = VP_ITEM_COUNT
+        binding.vpAlarmCenter.apply {
+            adapter = object : FragmentStateAdapter(this@AlarmCenterActivity) {
+                override fun getItemCount() = VP_ITEM_COUNT
 
-            override fun createFragment(position: Int) = when (position) {
-                ACTIVITY_ALARM -> ActivityAlarmFragment()
-                SERVICE_ALARM -> ServiceAlarmFragment()
-                else -> throw IllegalArgumentException("알림 센터 뷰페이저 position 범위 벗어난 오류")
+                override fun createFragment(position: Int) = when (position) {
+                    ACTIVITY_ALARM -> ActivityAlarmFragment()
+                    SERVICE_ALARM -> ServiceAlarmFragment()
+                    else -> throw IllegalArgumentException("알림 센터 뷰페이저 position 범위 벗어난 오류")
+                }
             }
+            (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
     }
 
