@@ -30,13 +30,18 @@ class ActivityAlarmFragment :
         initNewServiceObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.rvActivityAlarm.smoothScrollToPosition(0)
+    }
+
     private fun initRvActivityAlarmAdapter() {
-        binding.rvActivity.adapter = activityAlarmAdapter
+        binding.rvActivityAlarm.adapter = activityAlarmAdapter
     }
 
     private fun collectActivityAlarmList() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 activityAlarmViewModel.getActivityAlarmPagingSource().collectLatest { alarmList ->
                     activityAlarmAdapter.submitData(alarmList)
                 }

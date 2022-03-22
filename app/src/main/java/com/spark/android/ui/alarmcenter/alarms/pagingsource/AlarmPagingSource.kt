@@ -31,10 +31,10 @@ class AlarmPagingSource(
             val anchorPage = state.closestPageToPosition(anchorPosition)
             when {
                 anchorPage?.prevKey != null -> {
-                    lastIdMap[++currentIdKey]
+                    lastIdMap[currentIdKey + 1]
                 }
                 anchorPage?.nextKey != null -> {
-                    lastIdMap[--currentIdKey]
+                    lastIdMap[currentIdKey - 1]
                 }
                 else -> {
                     null
@@ -45,7 +45,7 @@ class AlarmPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Alarm> {
         return try {
-            val idKey = currentIdKey
+            val idKey = currentIdKey++
             val lastId = params.key ?: -1
             val alarmData = when (alarmType) {
                 ACTIVITY_ALARM -> service.getActivityAlarmList(lastId, limit).data
@@ -54,7 +54,7 @@ class AlarmPagingSource(
             }
             initAlarmSticker(newActive = alarmData.newActive, newService = alarmData.newService)
             val alarmList = alarmData.alarms
-            if (currentIdKey == 1) {
+            if (idKey == 1) {
                 alarmList.first().isFirst = true
             }
             if (alarmList.size == limit) {
