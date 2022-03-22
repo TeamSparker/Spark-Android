@@ -1,11 +1,13 @@
 package com.spark.android.ui.storage.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spark.android.data.remote.RetrofitBuilder
 import com.spark.android.data.remote.entity.response.BaseResponse
+import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.entity.response.PhotoCollectionResponse
 import com.spark.android.data.remote.entity.response.StorageCardPhoto
 import retrofit2.Call
@@ -22,11 +24,25 @@ class PhotoViewModel : ViewModel() {
     private val _photoList = MutableLiveData<List<StorageCardPhoto>>()
     val photoList: LiveData<List<StorageCardPhoto>> = _photoList
 
+    private val _patchRoomId = MutableLiveData<Int>()
+    val patchRoomId: LiveData<Int> = _patchRoomId
+
+    private val _patchRecordId = MutableLiveData<Int>()
+    val patchRecordId: LiveData<Int> = _patchRecordId
+
+    fun setPatchRoomId(patchRoomId : Int){
+        _patchRoomId.postValue(patchRoomId)
+    }
+
+    fun setPatchRecordId(patchRecordId : Int){
+        _patchRecordId.postValue(patchRecordId)
+    }
+
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
 
-     fun isSelectable(position : Int) : Boolean{
+    fun isSelectable(position: Int): Boolean {
         return (_photoCollectionResponse.value?.records?.get(position)?.status == "DONE")
     }
 
@@ -55,4 +71,23 @@ class PhotoViewModel : ViewModel() {
             }
         })
     }
+
+    fun initPhotoMainNetwork() {
+        initIsLoading(true)
+        val call: Call<NoDataResponse> =
+            RetrofitBuilder.photoMainService.patchPhotoMainData(patchRoomId.value?:0, patchRecordId.value?:0)
+        call.enqueue(object : Callback<NoDataResponse> {
+
+            override fun onResponse(
+                call: Call<NoDataResponse>,
+                response: Response<NoDataResponse>
+            ) {
+                if (response.isSuccessful) initIsLoading(false)
+            }
+
+            override fun onFailure(call: Call<NoDataResponse>, t: Throwable) {
+            }
+        })
+    }
 }
+
