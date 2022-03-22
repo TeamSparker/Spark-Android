@@ -15,4 +15,10 @@ class AlarmCenterRepositoryImpl @Inject constructor(
 
     override fun getActivityAlarmList(size: Int): Flow<PagingData<Alarm>> =
         alarmCenterDataSource.getActivityAlarmList(size)
+
+    override suspend fun patchServiceAlarm(): Result<NoDataResponse> =
+        kotlin.runCatching { alarmCenterDataSource.patchServiceAlarm() }
+
+    override fun getServiceAlarmList(size: Int): Flow<PagingData<Alarm>> =
+        alarmCenterDataSource.getServiceAlarmList(size)
 }

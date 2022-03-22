@@ -13,7 +13,7 @@
         tools:context=".ui.alarmcenter.servicealarm.ServiceAlarmFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_notice_alarm"
+            android:id="@+id/rv_service_alarm"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
