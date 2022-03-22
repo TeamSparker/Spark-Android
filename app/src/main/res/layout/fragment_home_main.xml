@@ -36,11 +36,11 @@
                 android:background="@color/white"
                 android:src="@drawable/ic_tool_bar_profile"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_home_tool_bar_notice"
+                app:layout_constraintEnd_toStartOf="@+id/btn_home_tool_bar_alarm_center"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/btn_home_tool_bar_notice"
+                android:id="@+id/btn_home_tool_bar_alarm_center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
