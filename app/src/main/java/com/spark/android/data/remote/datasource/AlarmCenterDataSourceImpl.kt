@@ -18,18 +18,28 @@ class AlarmCenterDataSourceImpl @Inject constructor(
     override suspend fun patchActivityAlarm(): NoDataResponse =
         alarmCenterService.patchActivityAlarm()
 
-    override fun getActivityAlarmList(size: Int): Flow<PagingData<Alarm>> =
+    override fun getActivityAlarmList(
+        size: Int,
+        initAlarmSticker: (Boolean) -> Unit
+    ): Flow<PagingData<Alarm>> =
         Pager(
             config = PagingConfig(pageSize = size, enablePlaceholders = false),
-            pagingSourceFactory = { AlarmPagingSource(ACTIVITY_ALARM, alarmCenterService, size) }
+            pagingSourceFactory = {
+                AlarmPagingSource(ACTIVITY_ALARM, alarmCenterService, size, initAlarmSticker)
+            }
         ).flow
 
     override suspend fun patchServiceAlarm(): NoDataResponse =
         alarmCenterService.patchServiceAlarm()
 
-    override fun getServiceAlarmList(size: Int): Flow<PagingData<Alarm>> =
+    override fun getServiceAlarmList(
+        size: Int,
+        initAlarmSticker: (Boolean) -> Unit
+    ): Flow<PagingData<Alarm>> =
         Pager(
             config = PagingConfig(pageSize = size, enablePlaceholders = false),
-            pagingSourceFactory = { AlarmPagingSource(SERVICE_ALARM, alarmCenterService, size) }
+            pagingSourceFactory = {
+                AlarmPagingSource(SERVICE_ALARM, alarmCenterService, size, initAlarmSticker)
+            }
         ).flow
 }

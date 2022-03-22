@@ -73,6 +73,18 @@
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
             app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
 
+        <ImageView
+            android:id="@+id/iv_alarm_center_activity_sticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="-4dp"
+            android:contentDescription="@string/alarm_center_desc_activity_sticker"
+            android:src="@drawable/ic_alarm_circle_sticker"
+            android:visibility="@{alarmCenterViewModel.newActivityAlarm.peekContent()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
+            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_activity" />
+
         <TextView
             android:id="@+id/tv_alarm_center_tab_service"
             android:layout_width="wrap_content"
@@ -106,6 +118,7 @@
             android:layout_marginBottom="-4dp"
             android:contentDescription="@string/alarm_center_desc_service_sticker"
             android:src="@drawable/ic_alarm_circle_sticker"
+            android:visibility="@{alarmCenterViewModel.newServiceAlarm.peekContent()? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_service"
             app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_service" />
 

@@ -8,9 +8,15 @@ import kotlinx.coroutines.flow.Flow
 interface AlarmCenterDataSource {
     suspend fun patchActivityAlarm(): NoDataResponse
 
-    fun getActivityAlarmList(size: Int): Flow<PagingData<Alarm>>
+    fun getActivityAlarmList(
+        size: Int,
+        initAlarmSticker: (Boolean) -> Unit
+    ): Flow<PagingData<Alarm>>
 
     suspend fun patchServiceAlarm(): NoDataResponse
 
-    fun getServiceAlarmList(size: Int): Flow<PagingData<Alarm>>
+    fun getServiceAlarmList(
+        size: Int,
+        initAlarmSticker: (Boolean) -> Unit
+    ): Flow<PagingData<Alarm>>
 }

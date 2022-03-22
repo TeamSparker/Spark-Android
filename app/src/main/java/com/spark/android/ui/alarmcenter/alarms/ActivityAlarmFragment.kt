@@ -8,9 +8,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.spark.android.R
 import com.spark.android.databinding.FragmentActivityAlarmBinding
+import com.spark.android.ui.alarmcenter.AlarmCenterActivity
 import com.spark.android.ui.alarmcenter.alarms.adapter.AlarmPagingAdapter
 import com.spark.android.ui.alarmcenter.alarms.viewmodel.ActivityAlarmViewModel
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -25,6 +27,7 @@ class ActivityAlarmFragment :
         super.onViewCreated(view, savedInstanceState)
         initRvActivityAlarmAdapter()
         collectActivityAlarmList()
+        initNewServiceObserver()
     }
 
     private fun initRvActivityAlarmAdapter() {
@@ -40,5 +43,11 @@ class ActivityAlarmFragment :
             }
             activityAlarmViewModel.patchActivityAlarm()
         }
+    }
+
+    private fun initNewServiceObserver() {
+        activityAlarmViewModel.newService.observe(viewLifecycleOwner, EventObserver { newService ->
+            (activity as AlarmCenterActivity).initNewServiceAlarmSticker(newService)
+        })
     }
 }

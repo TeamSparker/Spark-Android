@@ -74,10 +74,12 @@ class AlarmCenterActivity :
                 ACTIVITY_ALARM -> {
                     binding.vpAlarmCenter.currentItem = ACTIVITY_ALARM
                     startIndicatorAnimator(binding.viewAlarmCenterActivity)
+                    initNewActivityAlarmSticker(false)
                 }
                 SERVICE_ALARM -> {
                     binding.vpAlarmCenter.currentItem = SERVICE_ALARM
                     startIndicatorAnimator(binding.viewAlarmCenterService)
+                    initNewServiceAlarmSticker(false)
                 }
             }
         }
@@ -88,6 +90,14 @@ class AlarmCenterActivity :
         view.pivotX = 0f
         indicatorAnim.duration = 150
         indicatorAnim.start()
+    }
+
+    fun initNewServiceAlarmSticker(newService: Boolean) {
+        alarmCenterViewModel.initNewServiceAlarm(newService)
+    }
+
+    fun initNewActivityAlarmSticker(newActivity: Boolean) {
+        alarmCenterViewModel.initNewActivityAlarm(newActivity)
     }
 
     companion object {
