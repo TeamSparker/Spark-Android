@@ -6,7 +6,7 @@ import retrofit2.http.PATCH
 import retrofit2.http.Path
 
 interface PhotoMainService {
-    @PATCH("myroom/{roomId}/{recordId}")
+    @PATCH("myroom/{roomId}/thumbnail/{recordId}")
     fun patchPhotoMainData(
         @Path("roomId") roomId: Int,
         @Path("recordId") recordId : Int

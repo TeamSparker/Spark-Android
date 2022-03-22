@@ -8,7 +8,7 @@ import com.spark.android.R
 import com.spark.android.data.remote.entity.response.StorageCardPhoto
 import com.spark.android.databinding.ItemPhotoMainPickListBinding
 
-class PhotoMainPickRvAdapter(private val onPhotoCLick: (Int) -> Unit) :
+class PhotoMainPickRvAdapter(private val onPhotoCLick: (Int,Int) -> Unit) :
     RecyclerView.Adapter<PhotoMainPickRvAdapter.PhotoMainPickRvViewHolder>() {
 
     var photolist = listOf<StorageCardPhoto>()
@@ -22,7 +22,7 @@ class PhotoMainPickRvAdapter(private val onPhotoCLick: (Int) -> Unit) :
     class PhotoMainPickRvViewHolder(private val binding: ItemPhotoMainPickListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(storageCardPhoto: StorageCardPhoto, position: Int, onPhotoCLick: (Int) -> Unit) {
+        fun onBind(storageCardPhoto: StorageCardPhoto, position: Int, onPhotoCLick: (Int,Int) -> Unit) {
             binding.storageCardPhoto = storageCardPhoto
             if (selectedItemPos == position) {
                 binding.viewMainPhotoPickCardPickedBoundary.setBackgroundResource(R.drawable.shape_spark_pinkred_line_rect_2)
@@ -32,8 +32,7 @@ class PhotoMainPickRvAdapter(private val onPhotoCLick: (Int) -> Unit) :
                 binding.tvMainPhotoPickTagMain.visibility = View.INVISIBLE
             }
             binding.ivMainPhotoPickItemRoundedCorner.setOnClickListener {
-                onPhotoCLick(position)
-
+                onPhotoCLick(position,storageCardPhoto.recordId)
             }
         }
     }
