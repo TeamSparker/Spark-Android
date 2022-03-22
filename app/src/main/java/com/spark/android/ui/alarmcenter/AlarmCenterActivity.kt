@@ -16,8 +16,10 @@ import com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel.Companion
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
+import dagger.hilt.android.AndroidEntryPoint
 import java.lang.IllegalArgumentException
 
+@AndroidEntryPoint
 class AlarmCenterActivity :
     BaseActivity<ActivityAlarmCenterBinding>(R.layout.activity_alarm_center) {
     private val alarmCenterViewModel by viewModels<AlarmCenterViewModel>()
