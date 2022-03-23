@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.R
 import com.spark.android.databinding.FragmentHomeMainBinding
+import com.spark.android.ui.alarmcenter.AlarmCenterActivity
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.home.adapter.HomeRecyclerViewAdapter
 import com.spark.android.ui.home.finishroomdialog.FinishRoomDialogFragment
@@ -37,7 +38,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         addScrollListenerToHomeRv()
         initHomeListObserver()
         initMyPageBtnClickListener()
-
+        initAlarmCenterBtnClickListener()
     }
 
     override fun onResume() {
@@ -82,6 +83,14 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
     private fun initMyPageBtnClickListener() {
         binding.btnHomeToolBarMyPage.setOnClickListener {
             startActivity(Intent(requireContext(), MyPageActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            })
+        }
+    }
+
+    private fun initAlarmCenterBtnClickListener() {
+        binding.btnHomeToolBarAlarmCenter.setOnClickListener {
+            startActivity(Intent(requireContext(), AlarmCenterActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             })
         }

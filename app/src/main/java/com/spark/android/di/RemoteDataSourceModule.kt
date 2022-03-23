@@ -49,4 +49,11 @@ object RemoteDataSourceModule {
         homeService: HomeService
     ): RemoteHomeDataSource =
         RemoteHomeDataSourceImpl(homeHabitRoomFinishService, homeService)
+
+    @Provides
+    @Singleton
+    fun provideAlarmCenterDataSource(
+        alarmCenterService: AlarmCenterService
+    ): AlarmCenterDataSource =
+        AlarmCenterDataSourceImpl(alarmCenterService)
 }

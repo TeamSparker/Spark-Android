@@ -41,8 +41,10 @@ object RetrofitBuilder {
     val habitService : HabitService = retrofit.create(HabitService::class.java)
     val storageService: StorageService = retrofit.create(StorageService::class.java)
     val photoCollectionService: PhotoCollectionService = retrofit.create(PhotoCollectionService::class.java)
+    val photoMainService: PhotoMainService = retrofit.create(PhotoMainService::class.java)
     val setStatusService: SetStatusService = retrofit.create(SetStatusService::class.java)
     val sendSparkService: SendSparkService = retrofit.create(SendSparkService::class.java)
     val certifyService: CertifyService = retrofit.create(CertifyService::class.java)
     val setPurposeService: SetPurposeService = retrofit.create(SetPurposeService::class.java)
+    val leaveRoomService: LeaveRoomService = retrofit.create(LeaveRoomService::class.java)
 }

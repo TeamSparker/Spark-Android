@@ -553,5 +553,39 @@ object BindingAdapters {
             }
         )
     }
+
+    @JvmStatic
+    @BindingAdapter("setFinishRoomDialogLottie")
+    fun setFinishRoomDialogLottie(lottie: LottieAnimationView, myStatus: String?) {
+        if (myStatus == "COMPLETE") {
+            lottie.setAnimation("home_card_success.json")
+        } else if (myStatus == "FAIL") {
+            lottie.setAnimation("home_card_fail.json")
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["isThumbProfile", "alarmImgUrl"], requireAll = false)
+    fun ImageView.setImgFromAlarmCenter(isThumbProfile: Boolean?, alarmImgUrl: String?) {
+        if (alarmImgUrl != null) {
+            when (requireNotNull(isThumbProfile)) {
+                true -> Glide.with(this)
+                    .load(alarmImgUrl)
+                    .placeholder(R.drawable.shape_light_gray_line_circle)
+                    .error(R.drawable.shape_light_gray_line_circle)
+                    .circleCrop()
+                    .into(this)
+                false -> Glide.with(this)
+                    .load(alarmImgUrl)
+                    .placeholder(R.color.spark_light_gray)
+                    .error(R.color.spark_light_gray)
+                    .centerCrop()
+                    .into(this)
+            }
+        } else {
+            this.visibility = View.GONE
+        }
+    }
+
 }
 

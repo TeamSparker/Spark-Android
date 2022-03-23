@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="activityAlarmViewModel"
+            type="com.spark.android.ui.alarmcenter.alarms.viewmodel.ActivityAlarmViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.alarmcenter.alarms.ActivityAlarmFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_activity_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingBottom="40dp"
+            android:visibility="@{activityAlarmViewModel.emptyActivityAlarm.peekContent()? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_alarm_list" />
+
+        <ImageView
+            android:id="@+id/iv_activity_alarm_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/alarm_center_desc_empty_icon"
+            android:src="@drawable/ic_alarm_center_empty"
+            android:visibility="@{activityAlarmViewModel.emptyActivityAlarm.peekContent()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_activity_alarm_empty_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_activity_alarm_empty_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/alarm_center_empty_top"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            android:visibility="@{activityAlarmViewModel.emptyActivityAlarm.peekContent()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_activity_alarm_empty_bottom"
+            app:layout_constraintTop_toBottomOf="@id/iv_activity_alarm_empty" />
+
+        <TextView
+            android:id="@+id/tv_activity_alarm_empty_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/alarm_center_empty_bottom"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            android:visibility="@{activityAlarmViewModel.emptyActivityAlarm.peekContent()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_activity_alarm_empty_top" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
