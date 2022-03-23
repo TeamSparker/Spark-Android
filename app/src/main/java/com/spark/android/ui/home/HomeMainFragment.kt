@@ -9,6 +9,8 @@ import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.R
 import com.spark.android.databinding.FragmentHomeMainBinding
 import com.spark.android.ui.alarmcenter.AlarmCenterActivity
@@ -30,8 +32,11 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.homeViewModel = homeMainViewModel
+        homeMainViewModel.getHomeAllRoom()
+
         initHomeRecyclerViewAdapter()
-        updateHomeRecyclerViewAdapter()
+        addScrollListenerToHomeRv()
+        initHomeListObserver()
         initMyPageBtnClickListener()
         initAlarmCenterBtnClickListener()
     }
@@ -41,11 +46,31 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         showToastMessage()
     }
 
-    private fun updateHomeRecyclerViewAdapter() {
-        homeMainViewModel.getHomeAllRoom(-1, 100)
-        homeMainViewModel.roomList.observe(viewLifecycleOwner) {
+
+    private fun addScrollListenerToHomeRv() {
+        binding.rvHomeTicket.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = binding.rvHomeTicket.layoutManager as LinearLayoutManager
+                val lastPosition = layoutManager.findLastCompletelyVisibleItemPosition()
+                if (homeMainViewModel.hasNextPage) {
+                    if (!homeMainViewModel.isAddLoading && layoutManager.itemCount <= lastPosition + LOAD_POSITION &&
+                        !binding.rvHomeTicket.canScrollVertically(STATE_LOWEST)
+                    ) {
+
+                        homeMainViewModel.getHomeAllRoom()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun initHomeListObserver() {
+        homeMainViewModel.roomList.observe(viewLifecycleOwner){
             homeRecyclerViewAdapter.updateHomeList(it)
-            homeMainViewModel.updateIsLoading()
+            if(homeMainViewModel.isLoading.value == true){
+                homeMainViewModel.updateIsLoading(false)
+            }
         }
     }
 
@@ -99,13 +124,19 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         finishRoomDialog.show(
             requireActivity().supportFragmentManager, "FinishRoomDialog"
         )
-        updateHomeRecyclerViewAdapter()
+        homeMainViewModel.recoverHomeAllRoom(homeMainViewModel.roomList.value?.size?.minus(1) ?: 100)
     }
+
 
     override fun onPause() {
         super.onPause()
         if (::toastAnimation.isInitialized) {
             toastAnimation.cancel()
         }
+    }
+
+    companion object {
+        private const val LOAD_POSITION = 3
+        private const val STATE_LOWEST = 1
     }
 }

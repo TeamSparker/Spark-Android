@@ -11,8 +11,10 @@ data class Room(
     val leftDay: Int?,
     val life: Int,
     val memberNum: Int,
-    val profileImg: List<String>,
+    val profileImg: List<String>?,
     val roomId: Int,
     val roomName: String,
-    val isUploaded: Boolean
+    val isUploaded: Boolean,
+
+    val infiniteLoading : String = ""
 )
