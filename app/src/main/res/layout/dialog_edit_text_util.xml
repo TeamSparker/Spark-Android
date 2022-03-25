@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="roomName"
+            type="String" />
+
+        <variable
             name="confirmText"
             type="String" />
 
@@ -38,12 +42,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:background="@android:color/transparent"
             android:cursorVisible="true"
             android:ems="10"
             android:fontFamily="@font/noto_sans_kr_regular"
+            android:hint="@{roomName}"
             android:includeFontPadding="false"
             android:inputType="text"
             android:maxLength="15"
