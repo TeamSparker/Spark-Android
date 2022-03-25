@@ -1,14 +1,12 @@
 package com.spark.android.ui.habit.userguide
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.FragmentUserGuideDialogBinding
@@ -33,6 +31,7 @@ class UserGuideFragmentDialog : DialogFragment() {
         _binding =
             DataBindingUtil.inflate(inflater,R.layout.fragment_user_guide_dialog,container,false)
         initUserGuideAdapter()
+        removeOverScrollMode()
         return binding.root
     }
 
@@ -43,6 +42,7 @@ class UserGuideFragmentDialog : DialogFragment() {
         initUserGuideAdapter()
         initUserGuideDismissButton()
         initScrollListener()
+
     }
 
     private fun setLayout() {
@@ -72,6 +72,10 @@ class UserGuideFragmentDialog : DialogFragment() {
         }
     }
 
+    private fun removeOverScrollMode(){
+        binding.vpUserGuide.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+    }
+
     private fun initScrollListener(){
         binding.vpUserGuide.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
             override fun onPageScrolled(
@@ -81,6 +85,19 @@ class UserGuideFragmentDialog : DialogFragment() {
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 binding.position = position
+                if(position == 0){
+                    binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
+                    binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
+                    binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
+                }else if(position == 1){
+                    binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
+                    binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
+                    binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
+                }else if (position == 2){
+                    binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
+                    binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
+                    binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
+                }
             }
         })
     }
