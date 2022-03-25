@@ -28,5 +28,7 @@ class AuthDataSourceImpl @Inject constructor(
     ): BaseResponse<DoorbellResponse> =
         authService.getAccessToken(socialId, fcmToken)
 
+    override suspend fun postSingOut(): NoDataResponse = authService.postSingOut()
+
     override suspend fun deleteUser(): NoDataResponse = authService.deleteUser()
 }

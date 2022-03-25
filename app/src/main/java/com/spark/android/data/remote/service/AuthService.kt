@@ -35,6 +35,9 @@ interface AuthService {
         @Query("fcmToken") fcmToken: String
     ): BaseResponse<DoorbellResponse>
 
+    @POST("auth/signout")
+    suspend fun postSingOut(): NoDataResponse
+
     @DELETE("auth/user")
     suspend fun deleteUser(): NoDataResponse
 }

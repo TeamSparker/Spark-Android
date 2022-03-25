@@ -33,5 +33,7 @@ interface AuthRepository {
         fcmToken: String
     ): Result<BaseResponse<DoorbellResponse>>
 
+    suspend fun postSignOut(): Result<NoDataResponse>
+
     suspend fun deleteUser(): Result<NoDataResponse>
 }

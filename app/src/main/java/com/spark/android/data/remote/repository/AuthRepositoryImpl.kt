@@ -83,6 +83,9 @@ class AuthRepositoryImpl @Inject constructor(
     ): Result<BaseResponse<DoorbellResponse>> =
         kotlin.runCatching { authDataSource.getAccessToken(socialId, fcmToken) }
 
+    override suspend fun postSignOut(): Result<NoDataResponse> =
+        kotlin.runCatching { authDataSource.postSingOut() }
+
     override suspend fun deleteUser(): Result<NoDataResponse> =
         kotlin.runCatching { authDataSource.deleteUser() }
 }

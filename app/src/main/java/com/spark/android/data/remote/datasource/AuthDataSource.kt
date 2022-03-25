@@ -15,5 +15,7 @@ interface AuthDataSource {
 
     suspend fun getAccessToken(socialId: String, fcmToken: String): BaseResponse<DoorbellResponse>
 
+    suspend fun postSingOut(): NoDataResponse
+
     suspend fun deleteUser(): NoDataResponse
 }
