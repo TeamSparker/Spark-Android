@@ -8,6 +8,7 @@ import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
+import com.spark.android.data.remote.entity.response.NoDataResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -61,4 +62,7 @@ class AuthRepositoryImpl @Inject constructor(
         fcmToken: String
     ): Result<BaseResponse<DoorbellResponse>> =
         kotlin.runCatching { authDataSource.getAccessToken(socialId, fcmToken) }
+
+    override suspend fun deleteUser(): Result<NoDataResponse> =
+        kotlin.runCatching { authDataSource.deleteUser() }
 }
