@@ -11,6 +11,8 @@ import okhttp3.RequestBody
 interface AuthRepository {
     fun initKakaoUserId(initId: (String) -> Unit)
 
+    fun unLinkKakaoAccount(initSuccessWithdraw: (Boolean) -> Unit)
+
     fun getFcmToken(getFcmToken: (String) -> Unit)
 
     fun saveAccessToken(accessToken: String)

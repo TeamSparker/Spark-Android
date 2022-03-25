@@ -34,6 +34,18 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun unLinkKakaoAccount(initSuccessWithdraw: (Boolean) -> Unit) {
+        UserApiClient.instance.unlink { error ->
+            if (error != null) {
+                Log.e("kakao", "연결 끊기 실패", error)
+                initSuccessWithdraw(false)
+            } else {
+                Log.i("kakao", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+                initSuccessWithdraw(true)
+            }
+        }
+    }
+
     override fun getFcmToken(getFcmToken: (String) -> Unit) {
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             getFcmToken(requireNotNull(task.result))
