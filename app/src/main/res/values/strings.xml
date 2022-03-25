@@ -4,6 +4,11 @@
     <string name="question_subject">스파크 문의 사항</string>
     <string name="question_content">\n\n\nDevice : %s\nOS Version : Android %s\nApp Version : %s\n-------------------------\n\n\n\n문의 사항을 상세히 입력해주세요.</string>
     <string name="binding_error">Binding not initialized to reference the view.</string>
+    <string name="link_my_page_policy">https://jealous-supernova-274.notion.site/5be39a11080648beaa77b588a5fb221e</string>
+    <string name="link_open_source">https://jealous-supernova-274.notion.site/Android-df9a1cf2a07c4682ba8bdabc58c32071</string>
+    <string name="link_spark_guide">https://teamsparker66.wixsite.com/spark</string>
+    <string name="link_splash_policy">https://jealous-supernova-274.notion.site/39b4b86a458744499baf01d8f6e66c8a</string>
+    <string name="link_splash_personal_info">https://jealous-supernova-274.notion.site/e708c2890590404f921b3d8b06f9a705</string>
 
     <!-- IntroActivity -->
     <string name="intro_desc_title">앱 이름</string>
@@ -29,7 +34,10 @@
 
     <!-- SignInFragment -->
     <string name="sign_in_desc_title">앱 이름</string>
-    <string name="sign_in_info">로그인 시 <u>이용약관</u>과 <u>개인정보 처리 방침</u>에 동의하게 됩니다.</string>
+    <string name="sign_in_content_left">로그인 시&#160;</string>
+    <string name="sign_in_content_policy"><u>이용약관</u>과&#160;</string>
+    <string name="sign_in_content_personal_info"><u>개인정보 처리 방침</u>에&#160;</string>
+    <string name="sign_in_content_right">동의하게 됩니다.</string>
     <string name="sign_in_desc_kakao_login">카카오 로그인 버튼</string>
     <string name="sign_in_kakao_login_failure_msg">카카오 로그인에 실패하였습니다.\n다시 시도해주세요.</string>
     <string name="sign_in_complete_login_msg">로그인되었습니다.</string>
@@ -254,7 +262,11 @@
     <string name="my_page_main_title">MY</string>
     <string name="my_page_main_desc_profile_img">마이페이지 프로필 이미지</string>
     <string name="my_page_main_profile">프로필</string>
-    <string name="my_page_main_desc_modify_profile">프로필 변경하러가기</string>
+    <string name="my_page_main_desc_modify_profile">프로필 변경 버튼</string>
+    <string name="my_page_main_desc_alarm">알림 버튼</string>
+    <string name="my_page_main_desc_question">문의하기 버튼</string>
+    <string name="my_page_main_desc_policy">약관 및 정책 버튼</string>
+    <string name="my_page_main_desc_open_source">오픈소스 라이선스 버튼</string>
     <string name="my_page_main_setting">설정</string>
     <string name="my_page_main_alarm">알림</string>
     <string name="my_page_main_question">문의하기</string>
@@ -262,6 +274,7 @@
     <string name="my_page_main_guide">스파크 사용 가이드</string>
     <string name="my_page_main_service">서비스</string>
     <string name="my_page_main_policy">약관 및 정책</string>
+    <string name="my_page_main_open_source">오픈소스 라이선스</string>
     <string name="my_page_main_version_info">버전 정보</string>
     <string name="my_page_main_version">v1.0.0</string>
     <string name="my_page_main_sign_out">로그아웃</string>

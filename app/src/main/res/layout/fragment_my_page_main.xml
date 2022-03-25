@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
+            android:overScrollMode="never"
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_title">
@@ -155,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:background="@android:color/transparent"
-                    android:contentDescription="@string/my_page_main_desc_modify_profile"
+                    android:contentDescription="@string/my_page_main_desc_alarm"
                     android:padding="8dp"
                     android:src="@drawable/ic_my_page_arrow"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_alarm"
@@ -193,7 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:contentDescription="@string/my_page_main_desc_modify_profile"
+                    android:contentDescription="@string/my_page_main_desc_question"
                     android:padding="8dp"
                     android:src="@drawable/ic_my_page_arrow"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_question"
@@ -215,32 +216,6 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_question" />
 
                 <TextView
-                    android:id="@+id/tv_my_page_main_guide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/noto_sans_kr_medium"
-                    android:includeFontPadding="false"
-                    android:text="@string/my_page_main_guide"
-                    android:textColor="@color/spark_black"
-                    android:textSize="16dp"
-                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_service" />
-
-                <ImageButton
-                    android:id="@+id/btn_my_page_main_guide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/my_page_main_desc_modify_profile"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_my_page_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_guide"
-                    app:layout_constraintEnd_toEndOf="@id/btn_my_page_main_alarm"
-                    app:layout_constraintStart_toStartOf="@id/btn_my_page_main_alarm"
-                    app:layout_constraintTop_toTopOf="@id/tv_my_page_main_guide" />
-
-                <TextView
                     android:id="@+id/tv_my_page_main_policy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -251,20 +226,47 @@
                     android:textColor="@color/spark_black"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_guide" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_service" />
 
                 <ImageButton
                     android:id="@+id/btn_my_page_main_policy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:contentDescription="@string/my_page_main_desc_modify_profile"
+                    android:contentDescription="@string/my_page_main_desc_policy"
                     android:padding="8dp"
                     android:src="@drawable/ic_my_page_arrow"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_policy"
                     app:layout_constraintEnd_toEndOf="@id/btn_my_page_main_alarm"
                     app:layout_constraintStart_toStartOf="@id/btn_my_page_main_alarm"
                     app:layout_constraintTop_toTopOf="@id/tv_my_page_main_policy" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_open_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_open_source"
+                    android:textColor="@color/spark_black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_policy" />
+
+                <ImageButton
+                    android:id="@+id/btn_my_page_main_open_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/my_page_main_desc_policy"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_my_page_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_open_source"
+                    app:layout_constraintEnd_toEndOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintStart_toStartOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_page_main_open_source" />
+
 
                 <TextView
                     android:id="@+id/tv_my_page_main_version_info"
@@ -277,7 +279,7 @@
                     android:textColor="@color/spark_black"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_policy" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_open_source" />
 
                 <TextView
                     android:id="@+id/tv_my_page_main_version"
@@ -290,8 +292,8 @@
                     android:text="@string/my_page_main_version"
                     android:textColor="@color/spark_light_dark_gray"
                     android:textSize="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_policy" />
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_version_info"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_my_page_main_sign_out"

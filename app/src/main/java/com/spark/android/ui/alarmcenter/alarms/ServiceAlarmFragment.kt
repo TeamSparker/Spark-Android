@@ -6,7 +6,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.LoadState
 import com.spark.android.R
 import com.spark.android.databinding.FragmentServiceAlarmBinding
 import com.spark.android.ui.alarmcenter.AlarmCenterActivity
