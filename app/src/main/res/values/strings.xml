@@ -4,6 +4,11 @@
     <string name="question_subject">스파크 문의 사항</string>
     <string name="question_content">\n\n\nDevice : %s\nOS Version : Android %s\nApp Version : %s\n-------------------------\n\n\n\n문의 사항을 상세히 입력해주세요.</string>
     <string name="binding_error">Binding not initialized to reference the view.</string>
+    <string name="link_my_page_policy">https://jealous-supernova-274.notion.site/5be39a11080648beaa77b588a5fb221e</string>
+    <string name="link_open_source">https://jealous-supernova-274.notion.site/Android-df9a1cf2a07c4682ba8bdabc58c32071</string>
+    <string name="link_spark_guide">https://teamsparker66.wixsite.com/spark</string>
+    <string name="link_splash_policy">https://jealous-supernova-274.notion.site/39b4b86a458744499baf01d8f6e66c8a</string>
+    <string name="link_splash_personal_info">https://jealous-supernova-274.notion.site/e708c2890590404f921b3d8b06f9a705</string>
 
     <!-- IntroActivity -->
     <string name="intro_desc_title">앱 이름</string>
