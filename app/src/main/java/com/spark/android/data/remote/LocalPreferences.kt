@@ -2,8 +2,8 @@ package com.spark.android.data.remote
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
+import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSourceImpl.Companion.HOME_TOAST_MESSAGE
+import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSourceImpl.Companion.HOME_TOAST_MESSAGE_STATE
 
 object LocalPreferences {
     private const val ACCESS_TOKEN = "ACCESS_TOKEN"
@@ -13,7 +13,7 @@ object LocalPreferences {
     private lateinit var localPreferences: SharedPreferences
 
     fun init(context: Context) {
-        localPreferences = context.getSharedPreferences(context.packageName,Context.MODE_PRIVATE)
+        localPreferences = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
     }
 
     fun saveAccessToken(accessToken: String) {
@@ -31,6 +31,18 @@ object LocalPreferences {
     fun saveUserNickname(userNickname: String) {
         localPreferences.edit()
             .putString(USER_NICKNAME, userNickname)
+            .apply()
+    }
+
+    fun setExitHabitRoomHomeToastMessage(toastMessage: String) {
+        localPreferences.edit()
+            .putString(HOME_TOAST_MESSAGE, toastMessage)
+            .apply()
+    }
+
+    fun setExitHabitRoomHomeToastMessageState(state: Boolean) {
+        localPreferences.edit()
+            .putBoolean(HOME_TOAST_MESSAGE_STATE, state)
             .apply()
     }
 

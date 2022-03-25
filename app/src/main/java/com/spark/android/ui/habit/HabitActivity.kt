@@ -3,6 +3,7 @@ package com.spark.android.ui.habit
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.spark.android.R
+import com.spark.android.data.remote.LocalPreferences
 import com.spark.android.databinding.ActivityHabitBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.habit.adapter.HabitRecyclerViewAdapter
@@ -29,7 +30,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitBackBtnClickListener()
         initHabitMoreBtnClickListener()
         initHabitTodayBtnClickListener()
-        setFragmentResultListener()
+        setRefreshDataFragmentResultListener()
+        setExitHabitRoomFragmentResultListener()
     }
 
     private fun initRoomId() {
@@ -88,10 +90,19 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         }
     }
 
-    private fun setFragmentResultListener() {
+    private fun setRefreshDataFragmentResultListener() {
         supportFragmentManager
             .setFragmentResultListener("refreshHabitData", this) { requestKey, bundle ->
                 refreshData()
+            }
+    }
+
+    private fun setExitHabitRoomFragmentResultListener() {
+        supportFragmentManager
+            .setFragmentResultListener("exitHabitRoom", this) { requestKey, bundle ->
+                LocalPreferences.setExitHabitRoomHomeToastMessage("‘${habitViewModel.habitInfo.value!!.roomName}’ 방을 나갔어요.")
+                LocalPreferences.setExitHabitRoomHomeToastMessageState(true)
+                finish()
             }
     }
 
