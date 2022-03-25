@@ -1,6 +1,7 @@
 package com.spark.android.ui.mypage
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -24,6 +25,7 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
         initBackBtnClickListener()
         initModifyProfileBtnClickListener()
         initAlarmSettingBtnClickListener()
+        initPolicyBtnClickListener()
         initWithdrawalBtnClickListener()
         initQuestionBtnClickListener()
     }
@@ -48,6 +50,12 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
     private fun initAlarmSettingBtnClickListener() {
         binding.btnMyPageMainAlarm.setOnClickListener {
             navigate(R.id.action_myPageMainFragment_to_alarmSettingFragment)
+        }
+    }
+
+    private fun initPolicyBtnClickListener() {
+        binding.btnMyPageMainPolicy.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_my_page_policy))))
         }
     }
 
