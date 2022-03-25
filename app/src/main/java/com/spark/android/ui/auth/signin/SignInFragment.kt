@@ -1,6 +1,7 @@
 package com.spark.android.ui.auth.signin
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -29,6 +30,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         binding.signInViewModel = signInViewModel
         signInViewModel.addSourcesToIsInitUserInfo()
         initKakaoLoginBtnClickListener()
+        initPolicyTvClickListener()
         initStatusBarStyle()
         initIsSuccessKakaoLoginObserver()
         initIsInitUserInfoObserver()
@@ -43,6 +45,14 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     private fun initKakaoLoginBtnClickListener() {
         binding.btnSignInKakaoLogin.setOnClickListener {
             startKakaoLogin()
+        }
+    }
+
+    private fun initPolicyTvClickListener() {
+        binding.tvSignInPolicy.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_splash_policy)))
+            )
         }
     }
 
