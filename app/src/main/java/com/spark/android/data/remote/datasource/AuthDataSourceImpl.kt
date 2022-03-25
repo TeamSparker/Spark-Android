@@ -2,6 +2,7 @@ package com.spark.android.data.remote.datasource
 
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
+import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
 import com.spark.android.data.remote.service.AuthService
 import okhttp3.MultipartBody
@@ -26,4 +27,8 @@ class AuthDataSourceImpl @Inject constructor(
         fcmToken: String
     ): BaseResponse<DoorbellResponse> =
         authService.getAccessToken(socialId, fcmToken)
+
+    override suspend fun postSingOut(): NoDataResponse = authService.postSingOut()
+
+    override suspend fun deleteUser(): NoDataResponse = authService.deleteUser()
 }

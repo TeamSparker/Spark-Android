@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="withdrawalViewModel"
             type="com.spark.android.ui.withdrawal.WithdrawalViewModel" />
@@ -64,6 +66,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
                     android:text="@string/withdrawal_warning_title"
                     android:textColor="@color/spark_black"
                     android:textSize="18dp"
@@ -82,19 +85,72 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_withdrawal_warning_title" />
 
                 <TextView
-                    android:id="@+id/tv_withdrawal_warning_content"
+                    android:id="@+id/tv_withdrawal_warning_content_top"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/withdrawal_warning_content"
+                    android:text="@string/withdrawal_warning_content_top"
                     android:textColor="@color/spark_dark_gray"
                     android:textSize="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_withdrawal_top" />
+
+                <TextView
+                    android:id="@+id/tv_withdrawal_warning_content_first_dot"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/withdrawal_warning_content_dot"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_withdrawal_warning_content_top"
+                    app:layout_constraintTop_toBottomOf="@id/tv_withdrawal_warning_content_top" />
+
+                <TextView
+                    android:id="@+id/tv_withdrawal_warning_content_first"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/withdrawal_warning_content_first"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="@id/view_withdrawal_top"
+                    app:layout_constraintStart_toEndOf="@id/tv_withdrawal_warning_content_first_dot"
+                    app:layout_constraintTop_toBottomOf="@id/tv_withdrawal_warning_content_top" />
+
+                <TextView
+                    android:id="@+id/tv_withdrawal_warning_content_second_dot"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/withdrawal_warning_content_dot"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_withdrawal_warning_content_top"
+                    app:layout_constraintTop_toBottomOf="@id/tv_withdrawal_warning_content_first" />
+
+                <TextView
+                    android:id="@+id/tv_withdrawal_warning_content_second"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/withdrawal_warning_content_second"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_withdrawal_warning_content_first"
+                    app:layout_constraintStart_toEndOf="@id/tv_withdrawal_warning_content_second_dot"
+                    app:layout_constraintTop_toBottomOf="@id/tv_withdrawal_warning_content_first" />
+
 
                 <View
                     android:id="@+id/view_withdrawal_bottom"
@@ -104,7 +160,7 @@
                     android:background="@color/spark_gray"
                     app:layout_constraintEnd_toEndOf="@id/view_withdrawal_top"
                     app:layout_constraintStart_toStartOf="@id/view_withdrawal_top"
-                    app:layout_constraintTop_toBottomOf="@id/tv_withdrawal_warning_content" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_withdrawal_warning_content_second" />
 
                 <CheckBox
                     android:id="@+id/check_box_withdrawal_agree"
@@ -130,7 +186,7 @@
                     android:text="@string/withdrawal_agree_msg"
                     android:textColor="@color/spark_dark_gray"
                     android:textSize="14dp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_withdrawal_warning_content"
+                    app:layout_constraintEnd_toEndOf="@id/tv_withdrawal_warning_content_top"
                     app:layout_constraintStart_toEndOf="@id/check_box_withdrawal_agree"
                     app:layout_constraintTop_toBottomOf="@id/view_withdrawal_bottom" />
 
@@ -157,6 +213,28 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/spark_black_opacity_80"
+            android:visibility="@{withdrawalViewModel.isLoading? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_withdrawal_loading"
+                playLoadingLottie="@{withdrawalViewModel.isLoading}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="@{withdrawalViewModel.isLoading? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
