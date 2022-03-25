@@ -31,6 +31,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         signInViewModel.addSourcesToIsInitUserInfo()
         initKakaoLoginBtnClickListener()
         initPolicyTvClickListener()
+        initPolicyTvClickListener()
         initStatusBarStyle()
         initIsSuccessKakaoLoginObserver()
         initIsInitUserInfoObserver()
@@ -52,6 +53,14 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         binding.tvSignInPolicy.setOnClickListener {
             startActivity(
                 Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_splash_policy)))
+            )
+        }
+    }
+
+    private fun initPersonalInfoTvClickListener() {
+        binding.tvSignInPersonalInfo.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_splash_personal_info)))
             )
         }
     }
