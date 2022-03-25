@@ -33,6 +33,17 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
     override fun getUserNickname(): String =
         localPreferences.getString(USER_NICKNAME, "") ?: ""
 
+    override fun removeAccessToken() {
+        localPreferences.edit()
+            .remove(ACCESS_TOKEN)
+            .apply()
+    }
+
+    override fun removeKakaoUserId() {
+        localPreferences.edit()
+            .remove(USER_KAKAO_USER_ID)
+            .apply()
+    }
 
     companion object {
         private const val ACCESS_TOKEN = "ACCESS_TOKEN"

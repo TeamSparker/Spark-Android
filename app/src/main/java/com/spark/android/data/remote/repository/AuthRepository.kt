@@ -15,6 +15,10 @@ interface AuthRepository {
 
     fun saveAccessToken(accessToken: String)
 
+    fun removeAccessToken()
+
+    fun removeKakaoUserId()
+
     suspend fun postSignUp(
         nickname: String,
         kakaoUserId: String,

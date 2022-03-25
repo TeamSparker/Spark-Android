@@ -44,6 +44,14 @@ class AuthRepositoryImpl @Inject constructor(
         localPreferencesDataSource.saveAccessToken(accessToken)
     }
 
+    override fun removeAccessToken() {
+        localPreferencesDataSource.removeAccessToken()
+    }
+
+    override fun removeKakaoUserId() {
+        localPreferencesDataSource.removeKakaoUserId()
+    }
+
     override suspend fun postSignUp(
         nickname: String,
         kakaoUserId: String,

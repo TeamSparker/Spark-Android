@@ -7,4 +7,6 @@ interface LocalPreferencesDataSource {
     fun getAccessToken(): String
     fun getUserKakaoUserId(): Long
     fun getUserNickname(): String
+    fun removeAccessToken()
+    fun removeKakaoUserId()
 }
