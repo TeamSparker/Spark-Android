@@ -116,7 +116,6 @@
                     android:id="@+id/tv_withdrawal_warning_content_first"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="false"
                     android:text="@string/withdrawal_warning_content_first"

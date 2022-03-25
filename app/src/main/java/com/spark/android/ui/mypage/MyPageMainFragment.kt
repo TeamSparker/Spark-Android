@@ -5,13 +5,17 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import com.spark.android.BuildConfig
 import com.spark.android.R
 import com.spark.android.databinding.FragmentMyPageMainBinding
+import com.spark.android.ui.auth.AuthActivity
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.util.EventObserver
 import com.spark.android.util.navigate
 import com.spark.android.util.navigateWithData
+import com.spark.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,13 +26,24 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
         super.onViewCreated(view, savedInstanceState)
         binding.myPageViewModel = myPageViewModel
         myPageViewModel.getProfile()
+        initIsSuccessSignOutObserver()
         initBackBtnClickListener()
         initModifyProfileBtnClickListener()
         initAlarmSettingBtnClickListener()
         initPolicyBtnClickListener()
         initOpenSourceBtnClickListener()
-        initWithdrawalBtnClickListener()
+        initWithdrawalTvClickListener()
         initQuestionBtnClickListener()
+    }
+
+    private fun initIsSuccessSignOutObserver() {
+        myPageViewModel.isSuccessSignOut.observe(viewLifecycleOwner, EventObserver { isSuccess ->
+            if (isSuccess) {
+                requireContext().showToast(getString(R.string.my_page_sign_out_msg))
+                ActivityCompat.finishAffinity(requireActivity())
+                startActivity(Intent(requireContext(), AuthActivity::class.java))
+            }
+        })
     }
 
     private fun initBackBtnClickListener() {
@@ -70,7 +85,7 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
         }
     }
 
-    private fun initWithdrawalBtnClickListener() {
+    private fun initWithdrawalTvClickListener() {
         binding.tvMyPageMainWithdrawal.setOnClickListener {
             navigate(R.id.action_myPageMainFragment_to_withdrawalFragment)
         }

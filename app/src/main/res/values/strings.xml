@@ -279,6 +279,7 @@
     <string name="my_page_main_version">v1.0.0</string>
     <string name="my_page_main_sign_out">로그아웃</string>
     <string name="my_page_main_withdrawal"><u>회원 탈퇴</u></string>
+    <string name="my_page_sign_out_msg">로그아웃되었습니다.</string>
 
     <!-- AlarmSettingFragment -->
     <string name="alarm_setting_desc_back_btn">뒤로가기 버튼</string>
