@@ -28,18 +28,61 @@
             app:layout_constraintVertical_bias="0.38" />
 
         <TextView
-            android:id="@+id/tv_sign_in"
+            android:id="@+id/tv_sign_in_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="@string/sign_in_info"
+            android:text="@string/sign_in_content_left"
             android:textColor="@color/spark_white"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_sign_in_policy"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sign_in_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_in_content_policy"
+            android:textColor="@color/spark_white"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_sign_in_left"
+            app:layout_constraintEnd_toStartOf="@id/tv_sign_in_personal_info"
+            app:layout_constraintStart_toEndOf="@id/tv_sign_in_left"
+            app:layout_constraintTop_toTopOf="@id/tv_sign_in_left" />
+
+        <TextView
+            android:id="@+id/tv_sign_in_personal_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_in_content_personal_info"
+            android:textColor="@color/spark_white"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_sign_in_left"
+            app:layout_constraintEnd_toStartOf="@id/tv_sign_in_right"
+            app:layout_constraintStart_toEndOf="@id/tv_sign_in_policy"
+            app:layout_constraintTop_toTopOf="@id/tv_sign_in_left" />
+
+        <TextView
+            android:id="@+id/tv_sign_in_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/sign_in_content_right"
+            android:textColor="@color/spark_white"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_sign_in_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_sign_in_personal_info"
+            app:layout_constraintTop_toTopOf="@id/tv_sign_in_policy" />
 
         <ImageButton
             android:id="@+id/btn_sign_in_kakao_login"
@@ -49,7 +92,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/sign_in_desc_kakao_login"
             android:src="@drawable/ic_kakao_login"
-            app:layout_constraintBottom_toTopOf="@id/tv_sign_in"
+            app:layout_constraintBottom_toTopOf="@id/tv_sign_in_left"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
