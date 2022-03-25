@@ -26,6 +26,7 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
         initModifyProfileBtnClickListener()
         initAlarmSettingBtnClickListener()
         initPolicyBtnClickListener()
+        initOpenSourceBtnClickListener()
         initWithdrawalBtnClickListener()
         initQuestionBtnClickListener()
     }
@@ -56,6 +57,12 @@ class MyPageMainFragment : BaseFragment<FragmentMyPageMainBinding>(R.layout.frag
     private fun initPolicyBtnClickListener() {
         binding.btnMyPageMainPolicy.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_my_page_policy))))
+        }
+    }
+
+    private fun initOpenSourceBtnClickListener() {
+        binding.btnMyPageMainOpenSource.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_open_source))))
         }
     }
 
