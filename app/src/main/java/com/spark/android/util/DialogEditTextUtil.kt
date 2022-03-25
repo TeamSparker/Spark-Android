@@ -34,6 +34,7 @@ class DialogEditTextUtil(
         super.onViewCreated(view, savedInstanceState)
         setLayout()
         setMessage()
+        setEditTextHint()
         setConfirmText()
         setConfirmTextClickListener()
         setCancelTextClickListener()
@@ -62,6 +63,10 @@ class DialogEditTextUtil(
             EXIT_HABIT_ROOM -> getString(R.string.habit_more_exit_room_dialog_content)
             else -> throw IllegalStateException()
         }
+    }
+
+    private fun setEditTextHint() {
+        binding.roomName = roomName
     }
 
     private fun setConfirmText() {
