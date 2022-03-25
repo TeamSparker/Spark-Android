@@ -42,6 +42,7 @@ class WithdrawalFragment : BaseFragment<FragmentWithdrawalBinding>(R.layout.frag
     private fun initIsSuccessWithdrawalObserver() {
         withdrawalViewModel.isSuccessWithdraw.observe(viewLifecycleOwner, EventObserver { success ->
             if (success) {
+                withdrawalViewModel.initIsLoading(false)
                 ActivityCompat.finishAffinity(requireActivity())
                 startActivity(Intent(requireContext(), AuthActivity::class.java))
             } else {

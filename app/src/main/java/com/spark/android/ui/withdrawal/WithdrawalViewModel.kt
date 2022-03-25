@@ -15,12 +15,20 @@ import javax.inject.Inject
 class WithdrawalViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     val isAgreeWithdrawal = MutableLiveData(false)
 
     private val _isSuccessWithdraw = MutableLiveData<Event<Boolean>>()
     val isSuccessWithdraw: LiveData<Event<Boolean>> = _isSuccessWithdraw
 
+    fun initIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
     fun deleteUser() {
+        initIsLoading(true)
         viewModelScope.launch {
             authRepository.deleteUser()
                 .onSuccess {
