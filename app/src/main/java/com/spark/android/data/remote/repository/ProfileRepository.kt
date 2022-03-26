@@ -13,4 +13,6 @@ interface ProfileRepository {
         nickname: String,
         profileImg: MultipartBody.Part?
     ): Result<NoDataResponse>
+
+    fun setSignUpHabitUserGuideState(state: Boolean)
 }

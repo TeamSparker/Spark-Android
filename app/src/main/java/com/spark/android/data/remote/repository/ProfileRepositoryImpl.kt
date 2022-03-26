@@ -1,5 +1,6 @@
 package com.spark.android.data.remote.repository
 
+import com.spark.android.data.local.datasource.LocalPreferencesProfileDataSource
 import com.spark.android.data.remote.datasource.ProfileDataSource
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
@@ -11,7 +12,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
-    private val profileDataSource: ProfileDataSource
+    private val profileDataSource: ProfileDataSource,
+    private val localPreferencesProfileDataSource : LocalPreferencesProfileDataSource
 ) : ProfileRepository {
     override suspend fun getProfile(): Result<BaseResponse<ProfileResponse>> =
         kotlin.runCatching { profileDataSource.getProfile() }
@@ -25,4 +27,8 @@ class ProfileRepositoryImpl @Inject constructor(
             map["nickname"] = nickname.toRequestBody("text/plain".toMediaTypeOrNull())
             profileDataSource.patchProfile(map, profileImg)
         }
+
+    override fun setSignUpHabitUserGuideState(state: Boolean) {
+        localPreferencesProfileDataSource.setSignUpHabitUserGuideState(state)
+    }
 }

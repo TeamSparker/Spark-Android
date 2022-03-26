@@ -28,6 +28,11 @@ object LocalDataSourceModule {
 
     @Provides
     @Singleton
-    fun provideLocalPreferencesHABITDataSource(localPreferences: SharedPreferences): LocalPreferencesHabitDataSource =
+    fun provideLocalPreferencesHabitDataSource(localPreferences: SharedPreferences): LocalPreferencesHabitDataSource =
         LocalPreferencesHabitDataSourceImpl(localPreferences)
+
+    @Provides
+    @Singleton
+    fun provideLocalPreferencesProfileDataSource(localPreferences: SharedPreferences): LocalPreferencesProfileDataSource =
+        LocalPreferencesProfileDataSourceImpl(localPreferences)
 }
