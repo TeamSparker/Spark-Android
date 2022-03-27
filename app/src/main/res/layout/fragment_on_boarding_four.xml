@@ -37,6 +37,7 @@
             android:text="@string/on_boarding_fragment_four_text_2"
             android:textColor="@color/spark_pinkred"
             android:textSize="20dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintEnd_toStartOf="@id/tv_on_boarding_fragment_four_text_3"
             app:layout_constraintStart_toEndOf="@id/tv_on_boarding_fragment_four_text_1"
             app:layout_constraintTop_toTopOf="@id/tv_on_boarding_fragment_four_text_1" />
