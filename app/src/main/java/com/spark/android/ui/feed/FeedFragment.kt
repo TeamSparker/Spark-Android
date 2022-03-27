@@ -17,7 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private val feedViewModel by viewModels<FeedViewModel>()
-    private val feedAdapter = FeedAdapter { recordId -> feedViewModel.postFeedHeart(recordId) }
+    private val feedAdapter =
+        FeedAdapter(
+            { recordId -> feedViewModel.postFeedHeart(recordId) },
+            { showBottomSheet() }
+        )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,6 +69,10 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
                 }
             }
         })
+    }
+
+    private fun showBottomSheet() {
+        FeedBottomSheet().show(parentFragmentManager, this.javaClass.name)
     }
 
     companion object {
