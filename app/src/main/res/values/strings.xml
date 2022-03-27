@@ -99,6 +99,7 @@
     <string name="feed_bottom_msg">최근 일주일 간의 인증만 표시됩니다.</string>
     <string name="feed_desc_empty_ticket">피드 엠티뷰 티켓 이미지</string>
     <string name="feed_empty_view_msg">아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!</string>
+    <string name="feed_report">신고하기</string>
 
     <!-- NameSettingFragment -->
     <string name="room_name_setting_title">어떤 습관방을 만들 건가요?</string>
