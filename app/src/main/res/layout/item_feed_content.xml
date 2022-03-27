@@ -198,7 +198,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/feed_desc_more"
             android:src="@drawable/ic_feed_more"
+            android:visibility="@{feed.isMyRecord? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate" />
 
