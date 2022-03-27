@@ -15,11 +15,36 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro) {
     private val introViewModel by viewModels<IntroViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initStatusBarColor(R.color.spark_black)
+        introViewModel.initFcmToken()
+        introViewModel.addSourceToIsDone()
+        initFcmTokenObserver()
+        initIsDoneObserver()
         initLottieListener()
         startSplashLottie()
+    }
+
+    private fun initFcmTokenObserver() {
+        introViewModel.fcmToken.observe(this) { token ->
+            if(token.isNotBlank()){
+                introViewModel.getFcmToken()
+            }
+        }
+    }
+
+    private fun initIsDoneObserver() {
+        introViewModel.isDone.observe(this) { isDone ->
+            if (isDone) {
+                if (introViewModel.hasToken()) {
+                    moveToMainActivity()
+                } else {
+                    moveToAuthActivity()
+                }
+            }
+        }
     }
 
     private fun startSplashLottie() {
@@ -30,11 +55,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
     private fun initLottieListener() {
         binding.lottieIntroBg.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationEnd(animation: Animator?) {
-                if (introViewModel.hasToken()) {
-                    moveToMainActivity()
-                } else {
-                    moveToAuthActivity()
-                }
+                introViewModel.initIsEndLottie()
             }
 
             override fun onAnimationStart(animation: Animator?) {}
