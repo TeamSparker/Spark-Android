@@ -11,9 +11,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_feed_report"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layout_feed_report"
         tools:context=".ui.feedreport.FeedReportActivity">
 
         <ImageButton
@@ -72,10 +72,10 @@
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
             android:maxLength="150"
-            android:text="@={feedReportViewModel.reportCause}"
             android:paddingHorizontal="12dp"
             android:paddingTop="12dp"
             android:paddingBottom="20dp"
+            android:text="@={feedReportViewModel.reportCause}"
             android:textColor="@color/spark_black"
             android:textColorHint="@color/spark_gray"
             android:textSize="16dp"
@@ -120,6 +120,7 @@
             android:enabled="@{feedReportViewModel.reportCause.length() == 0 ? false : true}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:onClick="@{()->feedReportViewModel.postFeedReport()}"
             android:paddingTop="12dp"
             android:paddingBottom="14dp"
             android:stateListAnimator="@null"

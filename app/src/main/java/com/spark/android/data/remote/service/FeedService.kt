@@ -1,5 +1,6 @@
 package com.spark.android.data.remote.service
 
+import com.spark.android.data.remote.entity.request.FeedReportRequest
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.FeedResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
@@ -24,6 +25,6 @@ interface FeedService {
     @POST("feed/{recordId}/report")
     suspend fun postFeedReport(
         @Path("recordId") recordId: Int,
-        @Body reportReason: String
+        @Body body: FeedReportRequest
     ): NoDataResponse
 }

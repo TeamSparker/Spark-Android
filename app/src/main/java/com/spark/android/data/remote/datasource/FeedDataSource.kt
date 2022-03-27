@@ -1,5 +1,6 @@
 package com.spark.android.data.remote.datasource
 
+import com.spark.android.data.remote.entity.request.FeedReportRequest
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.FeedResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
@@ -11,5 +12,5 @@ interface FeedDataSource {
 
     suspend fun postFeedHeart(recordId: Int): NoDataResponse
 
-    suspend fun postFeedReport(recordId: Int, reportReason: String): NoDataResponse
+    suspend fun postFeedReport(recordId: Int, body: FeedReportRequest): NoDataResponse
 }
