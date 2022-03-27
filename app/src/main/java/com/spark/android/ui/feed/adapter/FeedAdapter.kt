@@ -16,7 +16,10 @@ import com.spark.android.databinding.ItemFeedHeaderBinding
 import com.spark.android.databinding.ItemFeedLoadingBinding
 import java.lang.IllegalStateException
 
-class FeedAdapter(private val postHeart: (FeedListItem) -> Unit, private val showMore: () -> Unit) :
+class FeedAdapter(
+    private val postHeart: (FeedListItem) -> Unit,
+    private val showMore: (Int) -> Unit
+) :
     ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
     class FeedHeaderViewHolder(private val binding: ItemFeedHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -30,7 +33,7 @@ class FeedAdapter(private val postHeart: (FeedListItem) -> Unit, private val sho
     class FeedContentViewHolder(
         private val binding: ItemFeedContentBinding,
         private val postHeart: (FeedListItem) -> Unit,
-        private val showMore: () -> Unit
+        private val showMore: (Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             initMoreBtnClickListener()
@@ -46,7 +49,7 @@ class FeedAdapter(private val postHeart: (FeedListItem) -> Unit, private val sho
 
         private fun initMoreBtnClickListener() {
             binding.btnFeedMore.setOnClickListener {
-                showMore()
+                showMore(requireNotNull(binding.feed).recordId)
             }
         }
 
