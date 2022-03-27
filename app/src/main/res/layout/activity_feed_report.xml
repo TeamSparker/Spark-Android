@@ -5,9 +5,13 @@
 
     <data>
 
+        <variable
+            name="feedReportViewModel"
+            type="com.spark.android.ui.feedreport.FeedReportViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_feed_report"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.feedreport.FeedReportActivity">
@@ -55,11 +59,12 @@
             app:layout_constraintTop_toBottomOf="@id/tv_feed_report_title" />
 
         <EditText
+            android:id="@+id/et_feed_report"
             android:layout_width="0dp"
             android:layout_height="215dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/shape_spark_gray_line_rect_2"
+            android:background="@{feedReportViewModel.causeFocused? @drawable/shape_spark_pinkred_line_rect_2 : @drawable/shape_spark_gray_line_rect_2}"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="top"
             android:hint="@string/feed_report_hint"
@@ -70,6 +75,7 @@
             android:paddingHorizontal="12dp"
             android:paddingTop="12dp"
             android:paddingBottom="20dp"
+            android:text="@={feedReportViewModel.reportCause}"
             android:textColor="@color/spark_black"
             android:textColorHint="@color/spark_gray"
             android:textSize="16dp"
@@ -110,9 +116,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/shape_btn_active"
+            android:background="@{feedReportViewModel.reportCause.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active}"
+            android:enabled="@{feedReportViewModel.reportCause.length() == 0 ? false : true}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:onClick="@{()->feedReportViewModel.postFeedReport()}"
             android:paddingTop="12dp"
             android:paddingBottom="14dp"
             android:stateListAnimator="@null"

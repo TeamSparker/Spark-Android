@@ -19,7 +19,8 @@ data class Feed(
     val roomName: String,
     var sparkCount: Int,
     val timerRecord: String?,
-    val userId: Int
+    val userId: Int,
+    val isMyRecord: Boolean
 )
 
 data class FeedListItem(

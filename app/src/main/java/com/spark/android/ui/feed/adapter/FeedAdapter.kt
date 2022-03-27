@@ -16,7 +16,10 @@ import com.spark.android.databinding.ItemFeedHeaderBinding
 import com.spark.android.databinding.ItemFeedLoadingBinding
 import java.lang.IllegalStateException
 
-class FeedAdapter(private val postHeart: (FeedListItem) -> Unit) :
+class FeedAdapter(
+    private val postHeart: (FeedListItem) -> Unit,
+    private val showMore: (Int) -> Unit
+) :
     ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
     class FeedHeaderViewHolder(private val binding: ItemFeedHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -29,13 +32,24 @@ class FeedAdapter(private val postHeart: (FeedListItem) -> Unit) :
 
     class FeedContentViewHolder(
         private val binding: ItemFeedContentBinding,
-        private val postHeart: (FeedListItem) -> Unit
+        private val postHeart: (FeedListItem) -> Unit,
+        private val showMore: (Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            initMoreBtnClickListener()
+        }
+
         fun bind(feedListItem: FeedListItem) {
             feedListItem.feed?.let { feed ->
                 binding.setVariable(BR.feed, feed)
                 binding.executePendingBindings()
                 initHeartClickListener(feedListItem)
+            }
+        }
+
+        private fun initMoreBtnClickListener() {
+            binding.btnFeedMore.setOnClickListener {
+                showMore(requireNotNull(binding.feed).recordId)
             }
         }
 
@@ -97,7 +111,8 @@ class FeedAdapter(private val postHeart: (FeedListItem) -> Unit) :
             )
             FEED_CONTENT_TYPE -> FeedContentViewHolder(
                 ItemFeedContentBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-                postHeart
+                postHeart,
+                showMore
             )
             FEED_FOOTER_TYPE -> FeedFooterViewHolder(
                 ItemFeedFooterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
