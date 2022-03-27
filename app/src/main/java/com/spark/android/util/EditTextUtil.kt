@@ -6,14 +6,14 @@ import androidx.core.content.ContextCompat
 import com.spark.android.R
 
 object EditTextUtil {
-    fun focusedEditText(editText: EditText,view:View){
+    fun focusedEditText(editText: EditText, view: View) {
         val context = view.context
-        editText.setOnFocusChangeListener(object : View.OnFocusChangeListener{
+        editText.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(noUse: View, hasFocus: Boolean) {
-                if(hasFocus){
+                if (hasFocus) {
                     view.setBackgroundColor(ContextCompat.getColor(context, R.color.spark_pinkred))
-                }else{
-                    if(editText.text.isEmpty()){
+                } else {
+                    if (editText.text.isEmpty()) {
                         view.setBackgroundColor(ContextCompat.getColor(context, R.color.spark_gray))
                     }
                 }
