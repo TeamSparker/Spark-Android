@@ -24,6 +24,7 @@ class AuthRepositoryImpl @Inject constructor(
             if (error != null) {
                 Log.e("kakao", "토큰 정보 보기 실패", error)
             } else if (tokenInfo != null) {
+                localPreferencesDataSource.saveUserKakakoUserId("Kakao@${requireNotNull(tokenInfo.id)}")
                 initId("Kakao@${requireNotNull(tokenInfo.id)}")
                 Log.d(
                     "kakao", "토큰 정보 보기 성공" +
