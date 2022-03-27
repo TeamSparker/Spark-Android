@@ -192,5 +192,15 @@
             app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate"
             tools:text="10" />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_feed_more"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_feed_certificate" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
