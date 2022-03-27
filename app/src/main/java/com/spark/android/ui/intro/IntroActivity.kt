@@ -9,6 +9,7 @@ import com.spark.android.databinding.ActivityIntroBinding
 import com.spark.android.ui.auth.AuthActivity
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
+import com.spark.android.ui.onboarding.OnBoardingActivity
 import com.spark.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,7 +42,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
                 if (introViewModel.hasToken()) {
                     moveToMainActivity()
                 } else {
-                    moveToAuthActivity()
+                    moveToOnBoardingActivity()
                 }
             }
         }
@@ -64,15 +65,15 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
         })
     }
 
-    private fun moveToAuthActivity() {
-        startActivity(Intent(this, AuthActivity::class.java).apply {
+    private fun moveToMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         })
         finish()
     }
 
-    private fun moveToMainActivity() {
-        startActivity(Intent(this, MainActivity::class.java).apply {
+    private fun moveToOnBoardingActivity() {
+        startActivity(Intent(this,OnBoardingActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         })
         finish()
