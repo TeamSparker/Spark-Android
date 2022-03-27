@@ -25,13 +25,13 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
     }
 
     override fun getAccessToken() =
-        localPreferences.getString(ACCESS_TOKEN, "") ?: ""
+        localPreferences.getString(ACCESS_TOKEN, DEFAULT_STRING_VALUE) ?: DEFAULT_STRING_VALUE
 
     override fun getUserKakaoUserId(): Long =
-        localPreferences.getLong(USER_KAKAO_USER_ID, -1L)
+        localPreferences.getLong(USER_KAKAO_USER_ID, DEFAULT_LONG_VALUE)
 
     override fun getUserNickname(): String =
-        localPreferences.getString(USER_NICKNAME, "") ?: ""
+        localPreferences.getString(USER_NICKNAME, DEFAULT_STRING_VALUE) ?: DEFAULT_STRING_VALUE
 
     override fun removeAccessToken() {
         localPreferences.edit()
@@ -49,5 +49,7 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
         private const val ACCESS_TOKEN = "ACCESS_TOKEN"
         private const val USER_KAKAO_USER_ID = "USER_KAKAO_USER_ID"
         private const val USER_NICKNAME = "USER_NAME"
+        const val DEFAULT_LONG_VALUE = -1L
+        const val DEFAULT_STRING_VALUE = ""
     }
 }
