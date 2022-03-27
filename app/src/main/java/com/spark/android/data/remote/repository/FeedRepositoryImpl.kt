@@ -25,6 +25,12 @@ class FeedRepositoryImpl @Inject constructor(
     override suspend fun postFeedHeart(recordId: Int): Result<NoDataResponse> =
         kotlin.runCatching { feedDataSource.postFeedHeart(recordId) }
 
+    override suspend fun postFeedReport(
+        recordId: Int,
+        reportReason: String
+    ): Result<NoDataResponse> =
+        kotlin.runCatching { feedDataSource.postFeedReport(recordId, reportReason) }
+
     override fun addHeaderToFeedList(feedList: List<Feed>): MutableList<FeedListItem> {
         val feedListWithHeader = mutableListOf<FeedListItem>()
         feedList.forEachIndexed { index, feed ->

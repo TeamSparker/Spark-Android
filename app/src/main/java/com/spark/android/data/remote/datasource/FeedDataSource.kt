@@ -8,5 +8,8 @@ interface FeedDataSource {
 //    fun getFeedList(size: Int): Flow<PagingData<FeedListItem>>
 
     suspend fun getFeedList(lastId: Int, size: Int): BaseResponse<FeedResponse>
+
     suspend fun postFeedHeart(recordId: Int): NoDataResponse
+
+    suspend fun postFeedReport(recordId: Int, reportReason: String): NoDataResponse
 }

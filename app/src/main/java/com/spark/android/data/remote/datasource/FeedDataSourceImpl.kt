@@ -20,4 +20,7 @@ class FeedDataSourceImpl @Inject constructor(
 
     override suspend fun postFeedHeart(recordId: Int): NoDataResponse =
         feedService.postFeedHeart(recordId)
+
+    override suspend fun postFeedReport(recordId: Int, reportReason: String): NoDataResponse =
+        feedService.postFeedReport(recordId, reportReason)
 }
