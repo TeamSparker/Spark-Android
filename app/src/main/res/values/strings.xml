@@ -99,6 +99,15 @@
     <string name="feed_bottom_msg">최근 일주일 간의 인증만 표시됩니다.</string>
     <string name="feed_desc_empty_ticket">피드 엠티뷰 티켓 이미지</string>
     <string name="feed_empty_view_msg">아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!</string>
+    <string name="feed_report">신고하기</string>
+
+    <!-- FeedReportActivity -->
+    <string name="feed_report_desc_back_btn">뒤로가기 버튼</string>
+    <string name="feed_report_title">게시물 신고</string>
+    <string name="feed_report_feed_report_cause">신고 이유에 대해 알려주세요.</string>
+    <string name="feed_report_hint">해당 게시글을 신고하는 이유에 대해 구체적으로 작성해주세요. (최대 150자)</string>
+    <string name="feed_report_description_title">신고 전 잠깐!</string>
+    <string name="feed_report_description_content">- 신고하신 내용은 서비스 운영 정책에 따라 처리됩니다.\n- 타당한 근거 없이 신고된 내용은 반영되지 않을 수 있습니다.</string>
 
     <!-- NameSettingFragment -->
     <string name="room_name_setting_title">어떤 습관방을 만들 건가요?</string>

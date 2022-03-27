@@ -200,7 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="40dp"
-            android:background="@{withdrawalViewModel.isAgreeWithdrawal ? @color/spark_dark_pinkred : @color/spark_gray}"
+            android:background="@{withdrawalViewModel.isAgreeWithdrawal ? @drawable/shape_btn_active : @drawable/shape_btn_inactive}"
             android:enabled="@{withdrawalViewModel.isAgreeWithdrawal ? true : false}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
