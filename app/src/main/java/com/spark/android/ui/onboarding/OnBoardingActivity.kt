@@ -6,6 +6,7 @@ import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.ActivityOnBoardingBinding
+import com.spark.android.ui.auth.AuthActivity
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.onboarding.adapter.OnBoardingVpAdapter
@@ -41,12 +42,12 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.acti
         })
 
         binding.btnOnboardingSkip.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this,AuthActivity::class.java))
+            finish()
         }
         binding.btnOnboardingStart.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this,AuthActivity::class.java))
+            finish()
         }
     }
 }

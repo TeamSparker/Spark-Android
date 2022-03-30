@@ -8,6 +8,7 @@ import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
+import com.spark.android.data.remote.entity.response.NoDataResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -23,12 +24,25 @@ class AuthRepositoryImpl @Inject constructor(
             if (error != null) {
                 Log.e("kakao", "토큰 정보 보기 실패", error)
             } else if (tokenInfo != null) {
+                localPreferencesDataSource.saveUserKakakoUserId("Kakao@${requireNotNull(tokenInfo.id)}")
                 initId("Kakao@${requireNotNull(tokenInfo.id)}")
                 Log.d(
                     "kakao", "토큰 정보 보기 성공" +
                             "\n회원번호: ${tokenInfo.id}" +
                             "\n만료시간: ${tokenInfo.expiresIn} 초"
                 )
+            }
+        }
+    }
+
+    override fun unLinkKakaoAccount(initSuccessWithdraw: (Boolean) -> Unit) {
+        UserApiClient.instance.unlink { error ->
+            if (error != null) {
+                Log.e("kakao", "연결 끊기 실패", error)
+                initSuccessWithdraw(false)
+            } else {
+                Log.i("kakao", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+                initSuccessWithdraw(true)
             }
         }
     }
@@ -41,6 +55,14 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun saveAccessToken(accessToken: String) {
         localPreferencesDataSource.saveAccessToken(accessToken)
+    }
+
+    override fun removeAccessToken() {
+        localPreferencesDataSource.removeAccessToken()
+    }
+
+    override fun removeKakaoUserId() {
+        localPreferencesDataSource.removeKakaoUserId()
     }
 
     override suspend fun postSignUp(
@@ -61,4 +83,10 @@ class AuthRepositoryImpl @Inject constructor(
         fcmToken: String
     ): Result<BaseResponse<DoorbellResponse>> =
         kotlin.runCatching { authDataSource.getAccessToken(socialId, fcmToken) }
+
+    override suspend fun postSignOut(): Result<NoDataResponse> =
+        kotlin.runCatching { authDataSource.postSingOut() }
+
+    override suspend fun deleteUser(): Result<NoDataResponse> =
+        kotlin.runCatching { authDataSource.deleteUser() }
 }

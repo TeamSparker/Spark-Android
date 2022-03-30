@@ -2,6 +2,8 @@ package com.spark.android.ui.feed
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +11,8 @@ import com.spark.android.BR
 import com.spark.android.R
 import com.spark.android.databinding.FragmentFeedBinding
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.ui.feed.FeedBottomSheet.Companion.FEED
+import com.spark.android.ui.feed.FeedBottomSheet.Companion.FEED_ITEM_ID
 import com.spark.android.ui.feed.adapter.FeedAdapter
 import com.spark.android.ui.feed.adapter.FeedHeaderDecoration
 import com.spark.android.ui.feed.adapter.FeedStickyHeaderResolverImpl
@@ -17,7 +21,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private val feedViewModel by viewModels<FeedViewModel>()
-    private val feedAdapter = FeedAdapter { recordId -> feedViewModel.postFeedHeart(recordId) }
+    private val feedAdapter =
+        FeedAdapter(
+            { recordId -> feedViewModel.postFeedHeart(recordId) },
+            { itemId -> showBottomSheet(itemId) }
+        )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,6 +73,11 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
                 }
             }
         })
+    }
+
+    private fun showBottomSheet(itemId: Int) {
+        setFragmentResult(FEED, bundleOf(FEED_ITEM_ID to itemId))
+        FeedBottomSheet().show(parentFragmentManager, this.javaClass.name)
     }
 
     companion object {

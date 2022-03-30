@@ -99,6 +99,16 @@
     <string name="feed_bottom_msg">최근 일주일 간의 인증만 표시됩니다.</string>
     <string name="feed_desc_empty_ticket">피드 엠티뷰 티켓 이미지</string>
     <string name="feed_empty_view_msg">아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!</string>
+    <string name="feed_report">신고하기</string>
+    <string name="feed_desc_more">피드 더보기 버튼</string>
+
+    <!-- FeedReportActivity -->
+    <string name="feed_report_desc_back_btn">뒤로가기 버튼</string>
+    <string name="feed_report_title">게시물 신고</string>
+    <string name="feed_report_feed_report_cause">신고 이유에 대해 알려주세요.</string>
+    <string name="feed_report_hint">해당 게시글을 신고하는 이유에 대해 구체적으로 작성해주세요. (최대 150자)</string>
+    <string name="feed_report_description_title">신고 전 잠깐!</string>
+    <string name="feed_report_description_content">- 신고하신 내용은 서비스 운영 정책에 따라 처리됩니다.\n- 타당한 근거 없이 신고된 내용은 반영되지 않을 수 있습니다.</string>
 
     <!-- NameSettingFragment -->
     <string name="room_name_setting_title">어떤 습관방을 만들 건가요?</string>
@@ -279,6 +289,7 @@
     <string name="my_page_main_version">v1.0.0</string>
     <string name="my_page_main_sign_out">로그아웃</string>
     <string name="my_page_main_withdrawal"><u>회원 탈퇴</u></string>
+    <string name="my_page_sign_out_msg">로그아웃되었습니다.</string>
 
     <!-- AlarmSettingFragment -->
     <string name="alarm_setting_desc_back_btn">뒤로가기 버튼</string>
@@ -301,7 +312,10 @@
     <string name="withdrawal_title">회원 탈퇴</string>
     <string name="withdrawal_desc_back_btn">뒤로가기 버튼</string>
     <string name="withdrawal_warning_title">회원 탈퇴 유의사항</string>
-    <string name="withdrawal_warning_content">회원 탈퇴 시,\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파\n\n• 가나다라마바사아자차카타파하가나다라마,\n&#160;&#160;바차카타파하가나다라마바사아자차카타파</string>
+    <string name="withdrawal_warning_content_dot">&#160;&#160;&#160;•&#160;&#160;&#160;</string>
+    <string name="withdrawal_warning_content_top">회원 탈퇴 시,\n</string>
+    <string name="withdrawal_warning_content_first">진행 중인 모든 습관방에서 나가지며, 그동안의 습관 기록들은 전부 삭제되어 복구 불가능합니다.\n</string>
+    <string name="withdrawal_warning_content_second">최근 7일 동안의 습관 인증, 친구에게 보낸 스파크, 좋아요 등 타 스파커들에게 공유된 정보는 각각의 습관방에 귀속되어, 생성일로부터 7일 동안 보관 후 삭제됩니다.</string>
     <string name="withdrawal_agree_msg">위의 사항을 숙지하였으며, 이에 동의합니다.</string>
     <string name="withdrawal_withdraw">탈퇴하기</string>
     <string name="withdrawal_dialog_content">정말 Spark를 탈퇴할 건가요?\n더 멋진 서비스가 되어 기다리고 있을게요.</string>
@@ -340,7 +354,7 @@
     <string name="on_boarding_fragment_two_text_2">더 재미있게!</string>
     <string name="on_boarding_fragment_three_text_1">66일의 시간,</string>
     <string name="on_boarding_fragment_three_text_2">목표를 갖고 달리면 덜 힘들걸요?</string>
-    <string name="on_boarding_fragment_four_text_1">지금, 응원의</string>
+    <string name="on_boarding_fragment_four_text_1">지금, 응원의 </string>
     <string name="on_boarding_fragment_four_text_2">스파크</string>
     <string name="on_boarding_fragment_four_text_3">를 주고받으며</string>
     <string name="on_boarding_fragment_four_text_4">습관을 만들어봐요!</string>

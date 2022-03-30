@@ -33,7 +33,6 @@ class SignInViewModel @Inject constructor(
     private val _doorbellResponse = MutableLiveData<DoorbellResponse>()
     val doorbellResponse: LiveData<DoorbellResponse> = _doorbellResponse
 
-
     fun addSourcesToIsInitUserInfo() {
         with(_isInitUserInfo) {
             this.addSource(_kakaoUserId) { id ->
