@@ -107,6 +107,7 @@ class ProfileViewModel @Inject constructor(
                 profileImageMultiPart
             ).onSuccess { response ->
                 authRepository.saveAccessToken(response.data.accessToken)
+                setSignUpUserGuideDialogState(true)
                 _successSignUp.postValue(Event(true))
             }.onFailure {
                 initIsLoading(false)
@@ -128,5 +129,9 @@ class ProfileViewModel @Inject constructor(
                 Log.d("Profile_PatchProfile", it.message.toString())
             }
         }
+    }
+
+    fun setSignUpUserGuideDialogState(state: Boolean){
+        profileRepository.setSignUpHabitUserGuideState(state)
     }
 }
