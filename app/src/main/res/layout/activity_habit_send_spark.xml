@@ -35,6 +35,7 @@
             android:background="@android:color/transparent"
             android:padding="10dp"
             android:src="@{mode == 0 ? @drawable/ic_quit_white : @drawable/ic_back_white}"
+            android:stateListAnimator="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,6 +48,7 @@
             android:background="@android:color/transparent"
             android:padding="10dp"
             android:src="@drawable/ic_quit_white"
+            android:stateListAnimator="@null"
             android:visibility="@{mode == 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
