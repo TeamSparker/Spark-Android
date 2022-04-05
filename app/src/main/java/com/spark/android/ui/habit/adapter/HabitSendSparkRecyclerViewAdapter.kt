@@ -15,7 +15,6 @@ class HabitSendSparkRecyclerViewAdapter :
             binding.position = position
             if (position == 0) {
                 binding.message = "메시지 직접 입력하기"
-                binding.layoutItemHabitSendSparkMessage.setPadding(0, 0, 0, 0)
             } else {
                 binding.message = "test${position}"
             }
