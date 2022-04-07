@@ -147,7 +147,7 @@
     <string name="waiting_room_we_sparker">함께하는 스파커들</string>
     <string name="waiting_room_we_sparker_explain">습관방은 최대 10명까지 입장할 수 있습니다.</string>
     <string name="waiting_room_start_habit">습관방 만들기</string>
-    <string name="waiting_room_no_purpose">습관을 시작하기 전에</string>
+    <string name="waiting_room_no_purpose">습관을 성공하기 위한</string>
     <string name="waiting_room_no_purpose_second_line">시간과 목표를 작성해 주세요!</string>
     <string name="waiting_room_copy_code_toast">코드를 복사했어요!</string>
     <string name="waiting_room_tooltip_picture">특정 순간을 담아 사진으로 인증해요!</string>
