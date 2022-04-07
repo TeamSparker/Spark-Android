@@ -587,5 +587,16 @@ object BindingAdapters {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("setSendSparkMessageItem")
+    fun setSendSparkMessageItem(textview: TextView, position: Int?) {
+        when(position){
+            0 -> textview.setText(R.string.habit_send_spark_message_typing)
+            1 -> textview.setText(R.string.habit_send_spark_message_first)
+            2 -> textview.setText(R.string.habit_send_spark_message_second)
+            3 -> textview.setText(R.string.habit_send_spark_message_third)
+            4 -> textview.setText(R.string.habit_send_spark_message_fourth)
+        }
+    }
 }
 
