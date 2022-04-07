@@ -23,7 +23,7 @@ object RetrofitModule {
                 proceed(
                     request()
                         .newBuilder()
-                        .addHeader("Authorization", localPreferencesDataSourceImpl.getAccessToken())
+                        .addHeader("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU1LCJpYXQiOjE2NDc0OTU2NzQsImV4cCI6MTY1MDA4NzY3NCwiaXNzIjoic3BhcmsifQ.27KG5ypnsqdjXOXrtvMpqxLDR_n2DA9mqNt32kZu2Vo")
                         .build()
                 )
             }
