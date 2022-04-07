@@ -3,7 +3,7 @@
     android:shape="oval">
     <stroke
         android:width="2dp"
-        android:color="@color/spark_light_pinkred" />
+        android:color="@color/spark_pinkred" />
     <corners android:radius="2dp" />
     <solid android:color="@color/spark_white" />
 </shape>
