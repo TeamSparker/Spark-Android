@@ -176,13 +176,14 @@
     <string name="habit_goal_manage_goal_example">ex. 포기하지 말자 / 하루에 1페이지씩</string>
     <string name="habit_goal_complete">수정 완료</string>
 
-    <!-- HabitSendSparkBottomSheet -->
+    <!-- HabitSendSparkActivity -->
     <string name="habit_send_spark_title">친구에게 스파크 보내기</string>
     <string name="habit_send_spark_content">메시지를 선택해 바로 보낼 수 있어요!</string>
-    <string name="habit_send_spark_message_first">👊 아자아자 파이팅!</string>
-    <string name="habit_send_spark_message_second">🔥 오늘 안 해? 같이 해!</string>
-    <string name="habit_send_spark_message_third">👉 너만 하면 돼!</string>
-    <string name="habit_send_spark_message_fourth">🤞 얼마 안 남았어, 어서 하자!</string>
+    <string name="habit_send_spark_message_typing">메시지 직접 입력하기</string>
+    <string name="habit_send_spark_message_first">👊\n아자아자\n파이팅!</string>
+    <string name="habit_send_spark_message_second">🔥\n오늘 안 해?\n같이 해!</string>
+    <string name="habit_send_spark_message_third">👉\n너만\n하면 돼!</string>
+    <string name="habit_send_spark_message_fourth">🤞\n얼마 안 남았어\n어서 하자!</string>
 
     <!-- HabitMoreBottomSheet -->
     <string name="habit_more_goal">나의 목표 수정</string>
