@@ -378,5 +378,9 @@
     <string name="user_guide_dialog_content_third">‘쉴래요’ 기회는 4번\n조금 아껴뒀다 꼭 필요할 때 사용하기!</string>
     <string name="user_guide_dialog_dismiss_button">닫기</string>
 
+    <!--HabitLifeLessDialogFragment-->
+    <string name="habit_dialog_life_less_title">Oops...</string>
+    <string name="habit_dialog_life_less_btn_checked">확인했어요</string>
+
 </resources>
 
