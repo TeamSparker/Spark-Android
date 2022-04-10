@@ -35,6 +35,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitTodayBtnClickListener()
         setRefreshDataFragmentResultListener()
         setExitHabitRoomFragmentResultListener()
+        initHabitLifeLessDialog()
         checkUserGuideDialog()
     }
 
@@ -110,12 +111,20 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
             }
     }
 
-    private fun checkUserGuideDialog(){
-        if(habitViewModel.getUserGuideDialogState()){
+    private fun checkUserGuideDialog() {
+        if (habitViewModel.getUserGuideDialogState()) {
             UserGuideFragmentDialog().show(
                 supportFragmentManager, "UserGuideDialog"
             )
             habitViewModel.setUserGuideDialogState(false)
+        }
+    }
+
+    private fun initHabitLifeLessDialog() {
+        if (habitViewModel.habitInfo.value?.lifeDeductionCount != 0) {
+            HabitLifeLessDialogFragment().show(
+                supportFragmentManager, "LifeLessDialog"
+            )
         }
     }
 
