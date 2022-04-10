@@ -121,7 +121,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
     }
 
     private fun initHabitLifeLessDialog() {
-        if (habitViewModel.habitInfo.value?.lifeDeductionCount != 0) {
+        val lifeDeductionCount = habitViewModel.habitInfo.value?.lifeDeductionCount ?: 0
+        if (lifeDeductionCount != 0) {
             HabitLifeLessDialogFragment().show(
                 supportFragmentManager, "LifeLessDialog"
             )
