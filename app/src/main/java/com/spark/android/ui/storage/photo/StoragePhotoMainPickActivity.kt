@@ -25,7 +25,6 @@ class StoragePhotoMainPickActivity :
         photoMainPickViewModel.initPhotoCollectionNetwork(roomId, -1, 70)
         binding.mainPhotoPickViewModel = photoMainPickViewModel
         initStatusBarStyle()
-        setOnBackBtnClickListener()
         initStorageMainPhotoPickRvAdapter()
         initMainPhotoPickObserver()
         initMainPhotoPickBackBtnClickListener()
@@ -47,10 +46,6 @@ class StoragePhotoMainPickActivity :
     private fun initStorageMainPhotoPickRvAdapter() {
         binding.rvStorageMainPhotoPick.adapter = photoMainPickRvAdapter
         //  selectedItemPos =  대표이미지 인덱스 : 서버한테 물어보기
-    }
-
-    private fun setOnBackBtnClickListener() {
-
     }
 
     private fun initStatusBarStyle() {
