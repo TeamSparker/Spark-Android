@@ -31,31 +31,8 @@ class StoragePhotoMainPickActivity :
         initMainPhotoPickCompleteBtnClickListener()
     }
 
-    private fun onPhotoClick(selectedPosition: Int, patchRecordId: Int) {
-        Log.d("msg", "onPhotoCLick 작동함")
-        if (photoMainPickViewModel.isSelectable(selectedPosition)) {
-            val previousItemPos = selectedItemPos
-            selectedItemPos = selectedPosition
-            photoMainPickRvAdapter.notifyItemChanged(previousItemPos)
-            photoMainPickRvAdapter.notifyItemChanged(selectedItemPos)
-            photoMainPickViewModel.setPatchRecordId(patchRecordId)
-            photoMainPickViewModel.setPatchRoomId(roomId)
-        }
-    }
-
-    private fun initStorageMainPhotoPickRvAdapter() {
-        binding.rvStorageMainPhotoPick.adapter = photoMainPickRvAdapter
-        //  selectedItemPos =  대표이미지 인덱스 : 서버한테 물어보기
-    }
-
     private fun initStatusBarStyle() {
         initStatusBarColor(R.color.spark_black)
-    }
-
-    private fun initMainPhotoPickObserver() {
-        photoMainPickViewModel.photoList.observe(this) { photo ->
-            photoMainPickRvAdapter.setList(photo)
-        }
     }
 
     private fun initMainPhotoPickBackBtnClickListener() {
@@ -68,6 +45,29 @@ class StoragePhotoMainPickActivity :
         binding.tvCardMainPhotoPickComplete.setOnClickListener {
             photoMainPickViewModel.initPhotoMainNetwork()
             finish()
+        }
+    }
+
+    private fun initStorageMainPhotoPickRvAdapter() {
+        binding.rvStorageMainPhotoPick.adapter = photoMainPickRvAdapter
+        //  selectedItemPos =  대표이미지 인덱스 : 서버한테 물어보기
+    }
+
+    private fun initMainPhotoPickObserver() {
+        photoMainPickViewModel.photoList.observe(this) { photo ->
+            photoMainPickRvAdapter.setList(photo)
+        }
+    }
+
+    private fun onPhotoClick(selectedPosition: Int, patchRecordId: Int) {
+        Log.d("msg", "onPhotoCLick 작동함")
+        if (photoMainPickViewModel.isSelectable(selectedPosition)) {
+            val previousItemPos = selectedItemPos
+            selectedItemPos = selectedPosition
+            photoMainPickRvAdapter.notifyItemChanged(previousItemPos)
+            photoMainPickRvAdapter.notifyItemChanged(selectedItemPos)
+            photoMainPickViewModel.setPatchRecordId(patchRecordId)
+            photoMainPickViewModel.setPatchRoomId(roomId)
         }
     }
 }
