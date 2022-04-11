@@ -55,7 +55,7 @@ class StoragePhotoMainPickActivity :
 
     private fun initMainPhotoPickObserver() {
         photoMainPickViewModel.photoList.observe(this) { photo ->
-            photoMainPickRvAdapter.setList(photo)
+            photoMainPickRvAdapter.setList(photo.filter { it.status == "DONE" })
         }
     }
 
