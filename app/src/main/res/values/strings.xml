@@ -185,6 +185,10 @@
     <string name="habit_send_spark_message_second">🔥\n오늘 안 해?\n같이 해!</string>
     <string name="habit_send_spark_message_third">👉\n너만\n하면 돼!</string>
     <string name="habit_send_spark_message_fourth">🤞\n얼마 안 남았어\n어서 하자!</string>
+    <string name="habit_send_spark_message_first_content">👊아자아자 파이팅!</string>
+    <string name="habit_send_spark_message_second_content">🔥오늘 안 해? 같이 해!</string>
+    <string name="habit_send_spark_message_third_content">👉너만 하면 돼!</string>
+    <string name="habit_send_spark_message_fourth_content">🤞얼마 안 남았어, 어서 하자!</string>
     <string name="habit_send_spark_message_btn">보내기</string>
     <string name="habit_send_spark_message_et_hint">15자 이내의 응원 메시지를 보내보세요!</string>
 
