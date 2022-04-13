@@ -44,9 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/btn_onboarding_start"
-            app:layout_constraintTop_toBottomOf="@id/btn_onboarding_skip"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="29dp" />
+            app:layout_constraintTop_toBottomOf="@id/btn_onboarding_skip" />
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator_on_boarding"
@@ -70,16 +68,18 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_spark_dark_pinkred_fill_2_rect"
+            android:elevation="0dp"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/on_boarding_activity_btn_start"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
             android:visibility="invisible"
-            tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
