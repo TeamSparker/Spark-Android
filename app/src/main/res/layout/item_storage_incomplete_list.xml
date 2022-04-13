@@ -59,7 +59,7 @@
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/futura_bold"
             android:includeFontPadding="false"
-            android:text="@{storageRoom.failDay == 66 ? `D-day` : String.valueOf(safeUnbox(storageRoom.failDay))+` DAYS`}"
+            setIncompleteCardFailDay="@{storageRoom.failDay}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="24dp"

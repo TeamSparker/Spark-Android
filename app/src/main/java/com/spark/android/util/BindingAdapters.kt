@@ -587,5 +587,19 @@ object BindingAdapters {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("setIncompleteCardFailDay")
+        fun TextView.setIncompleteCardFailDay(failDay : Int){
+            if(failDay == 1){
+                this.text = "${failDay} Day"
+            }
+            else if(failDay == 6){
+                this.text = "D-day"
+            }
+            else{
+                this.text = "${failDay} Days"
+            }
+        }
+
 }
 
