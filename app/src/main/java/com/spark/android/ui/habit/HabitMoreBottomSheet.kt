@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.data.remote.LocalPreferences
 import com.spark.android.databinding.BottomSheetHabitMoreBinding
+import com.spark.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.util.DialogEditTextUtil
 
@@ -40,6 +41,7 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
 
         initGoalBtnClickListener()
         initExitBtnClickListener()
+        initUserGuideBtnClickListener()
     }
 
     private fun initGoalBtnClickListener() {
@@ -60,6 +62,13 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
         binding.tvHabitMoreExit.setOnClickListener {
             showExitDialog()
             dismiss()
+        }
+    }
+
+    private fun initUserGuideBtnClickListener(){
+        binding.tvHabitMoreUserGuide.setOnClickListener {
+            UserGuideFragmentDialog().show(
+                requireActivity().supportFragmentManager, "UserGuideDialog")
         }
     }
 
