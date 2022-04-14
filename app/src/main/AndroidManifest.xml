@@ -22,6 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
         <activity
+            android:name=".ui.habit.HabitSendSparkActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".ui.alarmcenter.AlarmCenterActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

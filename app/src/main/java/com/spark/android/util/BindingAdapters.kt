@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -587,5 +588,30 @@ object BindingAdapters {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("setSendSparkMessageItem")
+    fun setSendSparkMessageItem(textview: TextView, position: Int?) {
+        when(position){
+            0 -> textview.setText(R.string.habit_send_spark_message_typing)
+            1 -> textview.setText(R.string.habit_send_spark_message_first)
+            2 -> textview.setText(R.string.habit_send_spark_message_second)
+            3 -> textview.setText(R.string.habit_send_spark_message_third)
+            4 -> textview.setText(R.string.habit_send_spark_message_fourth)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setEditTextVisibility")
+    fun setEditTextVisibility(editText: EditText, isTyping: LiveData<Boolean>?) {
+        if (isTyping != null) {
+            if (isTyping.value == true) {
+                editText.visibility = View.VISIBLE
+                editText.requestFocus()
+            } else {
+                editText.clearFocus()
+                editText.visibility = View.GONE
+            }
+        }
+    }
 }
 
