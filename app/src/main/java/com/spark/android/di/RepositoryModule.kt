@@ -1,8 +1,6 @@
 package com.spark.android.di
 
-import com.spark.android.data.local.datasource.LocalPreferencesDataSource
-import com.spark.android.data.local.datasource.LocalPreferencesHomeDataSource
-import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSource
+import com.spark.android.data.local.datasource.*
 import com.spark.android.data.remote.datasource.AlarmCenterDataSource
 import com.spark.android.data.remote.datasource.AlarmSettingDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
@@ -100,9 +98,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesProfileRepository(
-        profileDataSource: ProfileDataSource
+        profileDataSource: ProfileDataSource,
+        localPreferencesProfileDataSource: LocalPreferencesProfileDataSource
     ): ProfileRepository =
-        ProfileRepositoryImpl(profileDataSource)
+        ProfileRepositoryImpl(profileDataSource,localPreferencesProfileDataSource)
 
     @Provides
     @Singleton
@@ -117,6 +116,13 @@ object RepositoryModule {
         alarmCenterDataSource: AlarmCenterDataSource
     ): AlarmCenterRepository =
         AlarmCenterRepositoryImpl(alarmCenterDataSource)
+
+    @Provides
+    @Singleton
+    fun providesHabitRepository(
+        localPreferencesHabitDataSource: LocalPreferencesHabitDataSource
+    ): HabitRepository =
+        HabitRepositoryImpl(localPreferencesHabitDataSource)
 }
 
 

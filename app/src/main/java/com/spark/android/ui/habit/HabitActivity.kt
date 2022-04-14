@@ -7,10 +7,13 @@ import com.spark.android.data.remote.LocalPreferences
 import com.spark.android.databinding.ActivityHabitBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.habit.adapter.HabitRecyclerViewAdapter
+import com.spark.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.util.initStatusBarColor
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
+@AndroidEntryPoint
 class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit) {
     private lateinit var habitRecyclerViewAdapter: HabitRecyclerViewAdapter
 
@@ -32,6 +35,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitTodayBtnClickListener()
         setRefreshDataFragmentResultListener()
         setExitHabitRoomFragmentResultListener()
+        initHabitLifeLessDialog()
+        checkUserGuideDialog()
     }
 
     private fun initRoomId() {
@@ -104,6 +109,28 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
                 LocalPreferences.setExitHabitRoomHomeToastMessageState(true)
                 finish()
             }
+    }
+
+    private fun checkUserGuideDialog() {
+        if (habitViewModel.getUserGuideDialogState()) {
+            var bundle = Bundle()
+            bundle.apply {
+                putBoolean("startPoint", HabitMoreBottomSheet.START_FROM_INIT_STATE)
+            }
+            UserGuideFragmentDialog().apply {
+                arguments = bundle
+            }.show(supportFragmentManager, "UserGuideDialog")
+            habitViewModel.setUserGuideDialogState(false)
+        }
+    }
+
+    private fun initHabitLifeLessDialog() {
+        val lifeDeductionCount = habitViewModel.habitInfo.value?.lifeDeductionCount ?: 0
+        if (lifeDeductionCount != 0) {
+            HabitLifeLessDialogFragment().show(
+                supportFragmentManager, "LifeLessDialog"
+            )
+        }
     }
 
     override fun onResume() {

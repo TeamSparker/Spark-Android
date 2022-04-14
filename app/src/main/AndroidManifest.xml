@@ -28,6 +28,10 @@
             android:theme="@style/Transparent"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".ui.feedreport.FeedReportActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.alarmcenter.AlarmCenterActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

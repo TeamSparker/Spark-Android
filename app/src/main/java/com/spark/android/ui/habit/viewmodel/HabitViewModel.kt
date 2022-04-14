@@ -9,14 +9,20 @@ import com.spark.android.data.remote.entity.request.SendSparkRequest
 import com.spark.android.data.remote.entity.request.SetStatusRequest
 import com.spark.android.data.remote.entity.response.HabitRecord
 import com.spark.android.data.remote.entity.response.HabitResponse
+import com.spark.android.data.remote.repository.HabitRepository
 import com.spark.android.data.remote.service.HabitService
 import com.spark.android.data.remote.service.LeaveRoomService
 import com.spark.android.data.remote.service.SendSparkService
 import com.spark.android.data.remote.service.SetStatusService
 import com.spark.android.util.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HabitViewModel : ViewModel() {
+@HiltViewModel
+class HabitViewModel @Inject constructor(
+    private val habitRepository: HabitRepository
+) : ViewModel() {
     private val habitService: HabitService = RetrofitBuilder.habitService
     private val setStatusService: SetStatusService = RetrofitBuilder.setStatusService
     private val sendSparkService: SendSparkService = RetrofitBuilder.sendSparkService
@@ -37,6 +43,7 @@ class HabitViewModel : ViewModel() {
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
+
 
     fun initSendSuccess(success: Boolean) {
         _sendSuccess.value = success
@@ -99,5 +106,11 @@ class HabitViewModel : ViewModel() {
                 leaveRoomService.leaveRoom(it)
             }
         }
+    }
+
+    fun getUserGuideDialogState(): Boolean = habitRepository.getHabitUserGuideState()
+
+    fun setUserGuideDialogState(state: Boolean) {
+        habitRepository.setHabitUserGuideState(state)
     }
 }

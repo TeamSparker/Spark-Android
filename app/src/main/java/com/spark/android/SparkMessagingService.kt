@@ -6,17 +6,12 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.spark.android.ui.intro.IntroActivity
 import com.spark.android.util.ImageCropUtil
-import com.spark.android.util.ImageUrlTransformer
 import com.spark.android.util.useBitmapImg
 import java.lang.IllegalArgumentException
 
@@ -92,7 +87,7 @@ class SparkMessagingService : FirebaseMessagingService() {
 
     private fun transformImageUrlToBitmap(remoteMessage: RemoteMessage) {
         val imageUrl = remoteMessage.data["imageUrl"].toString()
-        useBitmapImg(this, ImageUrlTransformer.getSmallSizeImageUrl(imageUrl)) { bitmap ->
+        useBitmapImg(this, imageUrl) { bitmap ->
             createNotificationWithImage(
                 remoteMessage,
                 if (bitmap.width != bitmap.height) {

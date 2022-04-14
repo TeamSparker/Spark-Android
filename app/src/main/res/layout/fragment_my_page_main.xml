@@ -42,7 +42,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -302,6 +301,7 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/noto_sans_kr_medium"
                     android:includeFontPadding="false"
+                    android:onClick="@{() -> myPageViewModel.postSignOut()}"
                     android:text="@string/my_page_main_sign_out"
                     android:textColor="@color/spark_black"
                     android:textSize="16dp"

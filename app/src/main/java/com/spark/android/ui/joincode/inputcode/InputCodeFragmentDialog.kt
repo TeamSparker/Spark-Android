@@ -50,12 +50,25 @@ class InputCodeFragmentDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setLayout()
         binding.inputCodeFragmentDialogViewModel = inputCodeFragmentDialogViewModel
         initRegisterForActivityResult()
         initButtonClickListener()
         initClearErrorMessage()
         initKeyBoardEvent()
 
+    }
+
+    private fun setLayout() {
+        requireNotNull(dialog).apply {
+            requireNotNull(window).apply {
+                setLayout(
+                    (resources.displayMetrics.widthPixels * 0.91).toInt(),
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                setBackgroundDrawableResource(R.drawable.shape_spark_white_fill_2_rect)
+            }
+        }
     }
 
     private fun initRegisterForActivityResult(){

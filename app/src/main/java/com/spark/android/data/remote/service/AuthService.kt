@@ -2,10 +2,12 @@ package com.spark.android.data.remote.service
 
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
+import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -32,4 +34,10 @@ interface AuthService {
         @Query("socialId") socialId: String,
         @Query("fcmToken") fcmToken: String
     ): BaseResponse<DoorbellResponse>
+
+    @POST("auth/signout")
+    suspend fun postSingOut(): NoDataResponse
+
+    @DELETE("auth/user")
+    suspend fun deleteUser(): NoDataResponse
 }

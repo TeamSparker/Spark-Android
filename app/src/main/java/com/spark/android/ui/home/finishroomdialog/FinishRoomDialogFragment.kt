@@ -60,9 +60,10 @@ class FinishRoomDialogFragment : DialogFragment() {
         requireNotNull(dialog).apply {
             requireNotNull(window).apply {
                 setLayout(
-                    (resources.displayMetrics.widthPixels * 0.99).toInt(),
+                    (resources.displayMetrics.widthPixels * 0.91).toInt(),
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
+                setBackgroundDrawableResource(R.drawable.shape_spark_white_fill_2_rect)
             }
         }
     }

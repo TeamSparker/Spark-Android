@@ -30,20 +30,20 @@ class PhotoViewModel : ViewModel() {
     private val _patchRecordId = MutableLiveData<Int>()
     val patchRecordId: LiveData<Int> = _patchRecordId
 
-    fun setPatchRoomId(patchRoomId : Int){
-        _patchRoomId.postValue(patchRoomId)
-    }
-
-    fun setPatchRecordId(patchRecordId : Int){
-        _patchRecordId.postValue(patchRecordId)
-    }
-
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
 
     fun isSelectable(position: Int): Boolean {
         return (_photoCollectionResponse.value?.records?.get(position)?.status == "DONE")
+    }
+
+    fun setPatchRoomId(patchRoomId : Int){
+        _patchRoomId.postValue(patchRoomId)
+    }
+
+    fun setPatchRecordId(patchRecordId : Int){
+        _patchRecordId.postValue(patchRecordId)
     }
 
     fun initPhotoCollectionNetwork(roomId: Int, lastId: Int, size: Int) {
@@ -67,7 +67,7 @@ class PhotoViewModel : ViewModel() {
             override fun onFailure(
                 call: Call<BaseResponse<PhotoCollectionResponse>>, t: Throwable
             ) {
-                Log.e("NetworkTest", "error:$t")
+                Log.e("네트워크결과", "error:$t")
             }
         })
     }
@@ -86,6 +86,7 @@ class PhotoViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<NoDataResponse>, t: Throwable) {
+                Log.e("네트워크결과","error:$t")
             }
         })
     }

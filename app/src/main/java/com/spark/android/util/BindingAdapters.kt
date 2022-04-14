@@ -613,5 +613,20 @@ object BindingAdapters {
             }
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("userGuideStartPoint", "userGuidePosition")
+    fun setDismissButtonVisibility(textview: TextView, startPoint: Boolean?, position: Int?) {
+        if (startPoint == true){
+            textview.visibility = View.VISIBLE
+        } else {
+            if (position == 2){
+                textview.visibility = View.VISIBLE
+            } else {
+                textview.visibility = View.GONE
+            }
+        }
+    }
+
 }
 
