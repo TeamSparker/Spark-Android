@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.data.remote.LocalPreferences
 import com.spark.android.databinding.BottomSheetHabitMoreBinding
+import com.spark.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.util.DialogEditTextUtil
 
@@ -40,6 +41,7 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
 
         initGoalBtnClickListener()
         initExitBtnClickListener()
+        initUserGuideBtnClickListener()
     }
 
     private fun initGoalBtnClickListener() {
@@ -63,6 +65,19 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
+    private fun initUserGuideBtnClickListener() {
+        binding.tvHabitMoreUserGuide.setOnClickListener {
+            var bundle = Bundle()
+            bundle.apply {
+                putBoolean("startPoint", START_FROM_HABIT_MORE_BUTTON)
+            }
+            UserGuideFragmentDialog().apply {
+                arguments = bundle
+            }.show(requireActivity().supportFragmentManager, "UserGuideDialog")
+            dismiss()
+        }
+    }
+
     private fun showExitDialog() {
         habitViewModel.habitInfo.value?.roomName?.let { roomName ->
             DialogEditTextUtil(DialogEditTextUtil.EXIT_HABIT_ROOM, roomName) {
@@ -75,5 +90,10 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val START_FROM_HABIT_MORE_BUTTON = true
+        const val START_FROM_INIT_STATE = false
     }
 }

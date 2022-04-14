@@ -113,9 +113,13 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun checkUserGuideDialog() {
         if (habitViewModel.getUserGuideDialogState()) {
-            UserGuideFragmentDialog().show(
-                supportFragmentManager, "UserGuideDialog"
-            )
+            var bundle = Bundle()
+            bundle.apply {
+                putBoolean("startPoint", HabitMoreBottomSheet.START_FROM_INIT_STATE)
+            }
+            UserGuideFragmentDialog().apply {
+                arguments = bundle
+            }.show(supportFragmentManager, "UserGuideDialog")
             habitViewModel.setUserGuideDialogState(false)
         }
     }
