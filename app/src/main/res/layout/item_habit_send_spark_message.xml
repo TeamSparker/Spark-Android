@@ -5,12 +5,9 @@
     <data>
 
         <variable
-            name="message"
-            type="String" />
-
-        <variable
             name="position"
             type="int" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,11 +27,11 @@
 
             <TextView
                 android:id="@+id/tv_item_habit_send_spark_messge_content"
+                setSendSparkMessageItem="@{position}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:includeFontPadding="false"
-                android:text="@{message}"
                 android:textAlignment="center"
                 android:textColor="@{position == 0 ? @color/spark_white : @color/spark_pinkred}"
                 android:textSize="16dp"
@@ -45,5 +42,7 @@
                 app:layout_constraintVertical_bias="0.504" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

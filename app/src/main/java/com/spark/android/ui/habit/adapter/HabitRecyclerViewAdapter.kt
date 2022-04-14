@@ -32,8 +32,9 @@ class HabitRecyclerViewAdapter :
 //                    this.javaClass.name)
 
                 val intent = Intent(it.context, HabitSendSparkActivity::class.java)
-                intent.putExtra("nickname", record.nickname)
+                intent.putExtra("roomId", response.roomId)
                 intent.putExtra("recordId", record.recordId)
+                intent.putExtra("nickname", record.nickname)
                 intent.putExtra("profileImg", record.profileImg)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 it.context.startActivity(intent)

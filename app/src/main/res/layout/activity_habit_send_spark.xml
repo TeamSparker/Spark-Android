@@ -8,23 +8,15 @@
         <import type="android.view.View" />
 
         <variable
-            name="nickname"
-            type="String" />
+            name="habitSendSparkViewModel"
+            type="com.spark.android.ui.habit.viewmodel.HabitSendSparkViewModel" />
 
-        <variable
-            name="profileImg"
-            type="String" />
-
-        <variable
-            name="mode"
-            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
-        tools:context=".ui.habit.HabitSendSparkFragment">
+        tools:context=".ui.habit.HabitSendSparkActivity">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_habit_send_spark_left"
@@ -34,7 +26,7 @@
             android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
             android:padding="10dp"
-            android:src="@{mode == 0 ? @drawable/ic_quit_white : @drawable/ic_back_white}"
+            android:src="@{habitSendSparkViewModel.isTyping ? @drawable/ic_back_white : @drawable/ic_quit_white}"
             android:stateListAnimator="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +41,7 @@
             android:padding="10dp"
             android:src="@drawable/ic_quit_white"
             android:stateListAnimator="@null"
-            android:visibility="@{mode == 0 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,7 +52,7 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="스파크 보내기"
+            android:text="@string/habit_send_spark_title"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
@@ -70,7 +62,7 @@
 
         <ImageView
             android:id="@+id/iv_habit_send_spark_profile"
-            setCircleImage="@{profileImg}"
+            setCircleImage="@{habitSendSparkViewModel.profileImg}"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginTop="190dp"
@@ -87,7 +79,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="@{nickname}"
+            android:text="@{habitSendSparkViewModel.nickname}"
             android:textAlignment="center"
             android:textColor="@color/spark_light_gray"
             android:textSize="18dp"
@@ -105,7 +97,7 @@
             android:overScrollMode="never"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:visibility="@{mode == 1 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/tv_habit_send_spark_guide"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,11 +112,11 @@
             android:layout_marginBottom="40dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="메시지 선택 시 바로 보낼 수 있어요!"
+            android:text="@string/habit_send_spark_guide"
             android:textAlignment="center"
             android:textColor="@color/spark_gray"
             android:textSize="18dp"
-            android:visibility="@{mode == 1 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -136,16 +128,18 @@
             android:layout_marginBottom="10dp"
             android:background="@android:color/transparent"
             android:ems="15"
+            android:text="@={habitSendSparkViewModel.message}"
             android:fontFamily="@font/noto_sans_kr_medium"
-            android:hint="15자 이내의 응원 메시지를 보내보세요!"
+            android:hint="@string/habit_send_spark_message_et_hint"
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/spark_white"
             android:textColorHint="@color/spark_dark_gray"
             android:textSize="16dp"
-            android:visibility="@{mode == 0 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@+id/view_send_spark_message_under_bar"
             app:layout_constraintEnd_toStartOf="@id/btn_habit_send_spark_send"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@id/view_send_spark_message_under_bar" />
 
         <TextView
@@ -155,12 +149,15 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
             android:padding="4dp"
+            android:text="@string/habit_send_spark_message_btn"
             android:textColor="@color/spark_gray"
             android:textSize="16dp"
-            android:visibility="@{mode == 0 ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toTopOf="@id/view_send_spark_message_under_bar"
+            android:enabled="@{habitSendSparkViewModel.message.length() == 0 ? false : true }"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_send_spark_message"
             app:layout_constraintEnd_toEndOf="@id/view_send_spark_message_under_bar"
-            app:layout_constraintStart_toEndOf="@id/et_send_spark_message" />
+            app:layout_constraintStart_toEndOf="@id/et_send_spark_message"
+            app:layout_constraintTop_toTopOf="@+id/et_send_spark_message" />
 
         <View
             android:id="@+id/view_send_spark_message_under_bar"
@@ -170,7 +167,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:background="@color/spark_pinkred"
-            android:visibility="@{mode == 0 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
