@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.spark.android.R
 import com.spark.android.databinding.FragmentUserGuideDialogBinding
 import com.spark.android.ui.habit.userguide.adapter.UserGuideAdapter
+import kotlin.properties.Delegates
 
 
 class UserGuideFragmentDialog : DialogFragment() {
@@ -18,10 +19,12 @@ class UserGuideFragmentDialog : DialogFragment() {
     private var _binding: FragmentUserGuideDialogBinding? = null
     private val binding get() = _binding!!
     private lateinit var userGuideAdapter: UserGuideAdapter
+    private var startPoint by Delegates.notNull<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        isCancelable = false
+        initStartPoint()
+        isCancelable = startPoint
     }
 
     override fun onCreateView(
@@ -29,9 +32,10 @@ class UserGuideFragmentDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding =
-            DataBindingUtil.inflate(inflater,R.layout.fragment_user_guide_dialog,container,false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_user_guide_dialog, container, false)
         initUserGuideAdapter()
         removeOverScrollMode()
+        binding.startPoint = startPoint
         return binding.root
     }
 
@@ -43,6 +47,10 @@ class UserGuideFragmentDialog : DialogFragment() {
         initUserGuideDismissButton()
         initScrollListener()
 
+    }
+
+    private fun initStartPoint() {
+        startPoint = arguments?.getBoolean("startPoint") ?: true
     }
 
     private fun setLayout() {
@@ -57,27 +65,29 @@ class UserGuideFragmentDialog : DialogFragment() {
         }
     }
 
-    private fun initUserGuideAdapter(){
-        val fragmentList = listOf(UserGuideFirstFragment(),UserGuideSecondFragment(),UserGuideThirdFragment())
+    private fun initUserGuideAdapter() {
+        val fragmentList =
+            listOf(UserGuideFirstFragment(), UserGuideSecondFragment(), UserGuideThirdFragment())
 
-        userGuideAdapter =  UserGuideAdapter(this)
+        userGuideAdapter = UserGuideAdapter(this)
         userGuideAdapter.fragments.addAll(fragmentList)
 
         binding.vpUserGuide.adapter = userGuideAdapter
     }
 
-    private fun initUserGuideDismissButton(){
+    private fun initUserGuideDismissButton() {
         binding.tvUserGuideDismissButton.setOnClickListener {
             dismiss()
         }
     }
 
-    private fun removeOverScrollMode(){
+    private fun removeOverScrollMode() {
         binding.vpUserGuide.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
 
-    private fun initScrollListener(){
-        binding.vpUserGuide.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+    private fun initScrollListener() {
+        binding.vpUserGuide.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -85,15 +95,15 @@ class UserGuideFragmentDialog : DialogFragment() {
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 binding.position = position
-                if(position == 0){
+                if (position == 0) {
                     binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
                     binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
                     binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                }else if(position == 1){
+                } else if (position == 1) {
                     binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
                     binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
                     binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                }else if (position == 2){
+                } else if (position == 2) {
                     binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
                     binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
                     binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_selected)

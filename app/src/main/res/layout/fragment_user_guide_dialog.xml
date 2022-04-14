@@ -10,6 +10,10 @@
         <variable
             name="position"
             type="Integer" />
+
+        <variable
+            name="startPoint"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,7 +68,8 @@
             android:text="@string/user_guide_dialog_dismiss_button"
             android:textColor="@color/spark_pinkred"
             android:textSize="16dp"
-            android:visibility="@{position == 2 ? View.VISIBLE : View.GONE}"
+            app:userGuideStartPoint="@{startPoint}"
+            app:userGuidePosition="@{position}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

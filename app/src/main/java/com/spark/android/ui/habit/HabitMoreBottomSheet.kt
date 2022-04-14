@@ -65,10 +65,16 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    private fun initUserGuideBtnClickListener(){
+    private fun initUserGuideBtnClickListener() {
         binding.tvHabitMoreUserGuide.setOnClickListener {
-            UserGuideFragmentDialog().show(
-                requireActivity().supportFragmentManager, "UserGuideDialog")
+            var bundle = Bundle()
+            bundle.apply {
+                putBoolean("startPoint", START_FROM_HABIT_MORE_BUTTON)
+            }
+            UserGuideFragmentDialog().apply {
+                arguments = bundle
+            }.show(requireActivity().supportFragmentManager, "UserGuideDialog")
+            dismiss()
         }
     }
 
@@ -84,5 +90,10 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val START_FROM_HABIT_MORE_BUTTON = true
+        const val START_FROM_INIT_STATE = false
     }
 }
