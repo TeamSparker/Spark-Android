@@ -1,6 +1,7 @@
 package com.spark.android.data.local.datasource
 
 import android.content.SharedPreferences
+import com.spark.android.ui.alarmsetting.AlarmOnOff
 import javax.inject.Inject
 
 class LocalPreferencesDataSourceImpl @Inject constructor(
@@ -24,6 +25,22 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
             .apply()
     }
 
+    override fun saveAlarmSettingValue(
+        startHabit: Boolean,
+        sendSpark: Boolean,
+        consider: Boolean,
+        certification: Boolean,
+        remind: Boolean
+    ) {
+        localPreferences.edit()
+            .putBoolean(ALARM_START_HABIT, startHabit)
+            .putBoolean(ALARM_SEND_SPARK, sendSpark)
+            .putBoolean(ALARM_CONSIDER, consider)
+            .putBoolean(ALARM_CERTIFICATION, certification)
+            .putBoolean(ALARM_REMIND, remind)
+            .apply()
+    }
+
     override fun getAccessToken() =
         localPreferences.getString(ACCESS_TOKEN, DEFAULT_STRING_VALUE) ?: DEFAULT_STRING_VALUE
 
@@ -32,6 +49,15 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
 
     override fun getUserNickname(): String =
         localPreferences.getString(USER_NICKNAME, DEFAULT_STRING_VALUE) ?: DEFAULT_STRING_VALUE
+
+    override fun getAlarmSettingValue(): AlarmOnOff =
+        AlarmOnOff(
+            startHabit = localPreferences.getBoolean(ALARM_START_HABIT, true),
+            sendSpark = localPreferences.getBoolean(ALARM_SEND_SPARK, true),
+            consider = localPreferences.getBoolean(ALARM_CONSIDER, true),
+            certification = localPreferences.getBoolean(ALARM_CERTIFICATION, true),
+            remind = localPreferences.getBoolean(ALARM_REMIND, true)
+        )
 
     override fun removeAccessToken() {
         localPreferences.edit()
@@ -49,6 +75,11 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
         private const val ACCESS_TOKEN = "ACCESS_TOKEN"
         private const val USER_KAKAO_USER_ID = "USER_KAKAO_USER_ID"
         private const val USER_NICKNAME = "USER_NAME"
+        private const val ALARM_START_HABIT = "ALARM_START_HABIT"
+        private const val ALARM_SEND_SPARK = "ALARM_SEND_SPARK"
+        private const val ALARM_CONSIDER = "ALARM_CONSIDER"
+        private const val ALARM_CERTIFICATION = "ALARM_CERTIFICATION"
+        private const val ALARM_REMIND = "ALARM_REMIND"
         const val DEFAULT_STRING_VALUE = ""
     }
 }
