@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.entity.response.ProfileResponse
+import com.spark.android.data.remote.repository.AlarmSettingRepository
 import com.spark.android.data.remote.repository.AuthRepository
 import com.spark.android.data.remote.repository.ProfileRepository
 import com.spark.android.util.Event
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val alarmSettingRepository: AlarmSettingRepository
 ) : ViewModel() {
     private val _profileData = MutableLiveData<ProfileResponse>()
     val profileData: LiveData<ProfileResponse> = _profileData
@@ -39,6 +41,7 @@ class MyPageViewModel @Inject constructor(
         viewModelScope.launch {
             authRepository.postSignOut()
                 .onSuccess {
+                    alarmSettingRepository.saveAlarmSettingLocalSaved(false)
                     authRepository.removeAccessToken()
                     authRepository.removeKakaoUserId()
                     _isSuccessSignOut.postValue(Event(true))

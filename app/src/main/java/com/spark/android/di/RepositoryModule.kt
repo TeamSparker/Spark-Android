@@ -101,14 +101,15 @@ object RepositoryModule {
         profileDataSource: ProfileDataSource,
         localPreferencesProfileDataSource: LocalPreferencesProfileDataSource
     ): ProfileRepository =
-        ProfileRepositoryImpl(profileDataSource,localPreferencesProfileDataSource)
+        ProfileRepositoryImpl(profileDataSource, localPreferencesProfileDataSource)
 
     @Provides
     @Singleton
     fun providesAlarmSettingRepository(
-        alarmSettingDataSource: AlarmSettingDataSource
+        alarmSettingDataSource: AlarmSettingDataSource,
+        localPreferencesDataSource: LocalPreferencesDataSource
     ): AlarmSettingRepository =
-        AlarmSettingRepositoryImpl(alarmSettingDataSource)
+        AlarmSettingRepositoryImpl(alarmSettingDataSource, localPreferencesDataSource)
 
     @Provides
     @Singleton
