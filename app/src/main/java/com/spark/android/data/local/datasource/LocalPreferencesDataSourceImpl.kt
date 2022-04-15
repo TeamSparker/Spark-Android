@@ -1,7 +1,12 @@
 package com.spark.android.data.local.datasource
 
 import android.content.SharedPreferences
-import com.spark.android.ui.alarmsetting.AlarmOnOff
+import com.spark.android.data.remote.entity.response.AlarmSettingResponse
+import com.spark.android.ui.alarmsetting.AlarmSettingViewModel.Companion.ALARM_CERTIFICATION
+import com.spark.android.ui.alarmsetting.AlarmSettingViewModel.Companion.ALARM_CONSIDER
+import com.spark.android.ui.alarmsetting.AlarmSettingViewModel.Companion.ALARM_REMIND
+import com.spark.android.ui.alarmsetting.AlarmSettingViewModel.Companion.ALARM_ROOM_START
+import com.spark.android.ui.alarmsetting.AlarmSettingViewModel.Companion.ALARM_SPARK
 import javax.inject.Inject
 
 class LocalPreferencesDataSourceImpl @Inject constructor(
@@ -25,26 +30,45 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
             .apply()
     }
 
-    override fun saveAlarmSettingLocalSaved(received: Boolean) {
+    override fun saveAlarmSettingLocalSaved(isSaved: Boolean) {
         localPreferences.edit()
-            .putBoolean(ALARM_LOCAL_SAVED, received)
+            .putBoolean(ALARM_LOCAL_SAVED, isSaved)
             .apply()
     }
 
-    override fun saveAlarmSettingValue(
-        startHabit: Boolean,
-        sendSpark: Boolean,
-        consider: Boolean,
-        certification: Boolean,
-        remind: Boolean
-    ) {
+    override fun saveAlarmSettingValue(alarmSettingValue: AlarmSettingResponse) {
         localPreferences.edit()
-            .putBoolean(ALARM_START_HABIT, startHabit)
-            .putBoolean(ALARM_SEND_SPARK, sendSpark)
-            .putBoolean(ALARM_CONSIDER, consider)
-            .putBoolean(ALARM_CERTIFICATION, certification)
-            .putBoolean(ALARM_REMIND, remind)
+            .putBoolean(ALARM_ROOM_START, alarmSettingValue.roomStart)
+            .putBoolean(ALARM_SPARK, alarmSettingValue.spark)
+            .putBoolean(ALARM_CONSIDER, alarmSettingValue.consider)
+            .putBoolean(ALARM_CERTIFICATION, alarmSettingValue.certification)
+            .putBoolean(ALARM_REMIND, alarmSettingValue.remind)
             .apply()
+    }
+
+    override fun patchAlarmSettingValue(category: String) {
+        when (category) {
+            ALARM_ROOM_START -> localPreferences.edit().putBoolean(
+                ALARM_ROOM_START,
+                !localPreferences.getBoolean(ALARM_ROOM_START, true)
+            ).apply()
+            ALARM_SPARK -> localPreferences.edit().putBoolean(
+                ALARM_SPARK,
+                !localPreferences.getBoolean(ALARM_SPARK, true)
+            ).apply()
+            ALARM_CONSIDER -> localPreferences.edit().putBoolean(
+                ALARM_CONSIDER,
+                !localPreferences.getBoolean(ALARM_CONSIDER, true)
+            ).apply()
+            ALARM_CERTIFICATION -> localPreferences.edit().putBoolean(
+                ALARM_CERTIFICATION,
+                !localPreferences.getBoolean(ALARM_CERTIFICATION, true)
+            ).apply()
+            ALARM_REMIND -> localPreferences.edit().putBoolean(
+                ALARM_REMIND,
+                !localPreferences.getBoolean(ALARM_REMIND, true)
+            ).apply()
+        }
     }
 
     override fun getAccessToken() =
@@ -59,10 +83,10 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
     override fun getAlarmSettingLocalSaved(): Boolean =
         localPreferences.getBoolean(ALARM_LOCAL_SAVED, false)
 
-    override fun getAlarmSettingValue(): AlarmOnOff =
-        AlarmOnOff(
-            startHabit = localPreferences.getBoolean(ALARM_START_HABIT, true),
-            sendSpark = localPreferences.getBoolean(ALARM_SEND_SPARK, true),
+    override fun getAlarmSettingValue(): AlarmSettingResponse =
+        AlarmSettingResponse(
+            roomStart = localPreferences.getBoolean(ALARM_ROOM_START, true),
+            spark = localPreferences.getBoolean(ALARM_SPARK, true),
             consider = localPreferences.getBoolean(ALARM_CONSIDER, true),
             certification = localPreferences.getBoolean(ALARM_CERTIFICATION, true),
             remind = localPreferences.getBoolean(ALARM_REMIND, true)
@@ -85,11 +109,6 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
         private const val USER_KAKAO_USER_ID = "USER_KAKAO_USER_ID"
         private const val USER_NICKNAME = "USER_NAME"
         private const val ALARM_LOCAL_SAVED = "ALARM_LOCAL_SAVED"
-        private const val ALARM_START_HABIT = "ALARM_START_HABIT"
-        private const val ALARM_SEND_SPARK = "ALARM_SEND_SPARK"
-        private const val ALARM_CONSIDER = "ALARM_CONSIDER"
-        private const val ALARM_CERTIFICATION = "ALARM_CERTIFICATION"
-        private const val ALARM_REMIND = "ALARM_REMIND"
         const val DEFAULT_STRING_VALUE = ""
     }
 }

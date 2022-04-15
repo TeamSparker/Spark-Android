@@ -1,5 +1,6 @@
 package com.spark.android.data.local.datasource
 
+import com.spark.android.data.remote.entity.response.AlarmSettingResponse
 import com.spark.android.ui.alarmsetting.AlarmOnOff
 
 interface LocalPreferencesDataSource {
@@ -9,15 +10,11 @@ interface LocalPreferencesDataSource {
 
     fun saveUserNickname(userNickname: String)
 
-    fun saveAlarmSettingLocalSaved(received: Boolean)
+    fun saveAlarmSettingLocalSaved(isSaved: Boolean)
 
-    fun saveAlarmSettingValue(
-        startHabit: Boolean = true,
-        sendSpark: Boolean = true,
-        consider: Boolean = true,
-        certification: Boolean = true,
-        remind: Boolean = true
-    )
+    fun saveAlarmSettingValue(alarmSettingValue: AlarmSettingResponse)
+
+    fun patchAlarmSettingValue(category:String)
 
     fun getAccessToken(): String
 
@@ -27,7 +24,7 @@ interface LocalPreferencesDataSource {
 
     fun getAlarmSettingLocalSaved(): Boolean
 
-    fun getAlarmSettingValue(): AlarmOnOff
+    fun getAlarmSettingValue(): AlarmSettingResponse
 
     fun removeAccessToken()
 
