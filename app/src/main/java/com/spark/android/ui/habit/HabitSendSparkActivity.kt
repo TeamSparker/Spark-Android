@@ -113,7 +113,6 @@ class HabitSendSparkActivity :
     private fun initKeyBoardEvent() {
         keyboardVisibilityUtils = KeyboardVisibilityUtils(this.window,
             onHideKeyboard = {
-                binding.etSendSparkMessage.text.clear()
                 onBackPressed()
             }
         )
