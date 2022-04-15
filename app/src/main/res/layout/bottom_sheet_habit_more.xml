@@ -86,7 +86,7 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             android:gravity="center"
             android:includeFontPadding="true"
-            android:text="방 나가기"
+            android:text="@string/habit_more_exit"
             android:textColor="@color/spark_pinkred"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
