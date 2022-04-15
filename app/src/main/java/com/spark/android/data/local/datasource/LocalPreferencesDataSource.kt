@@ -9,6 +9,8 @@ interface LocalPreferencesDataSource {
 
     fun saveUserNickname(userNickname: String)
 
+    fun saveAlarmSettingLocalSaved(received: Boolean)
+
     fun saveAlarmSettingValue(
         startHabit: Boolean = true,
         sendSpark: Boolean = true,
@@ -22,6 +24,8 @@ interface LocalPreferencesDataSource {
     fun getUserKakaoUserId(): String
 
     fun getUserNickname(): String
+
+    fun getAlarmSettingLocalSaved(): Boolean
 
     fun getAlarmSettingValue(): AlarmOnOff
 

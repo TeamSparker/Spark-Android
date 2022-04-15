@@ -25,6 +25,12 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
             .apply()
     }
 
+    override fun saveAlarmSettingLocalSaved(received: Boolean) {
+        localPreferences.edit()
+            .putBoolean(ALARM_LOCAL_SAVED, received)
+            .apply()
+    }
+
     override fun saveAlarmSettingValue(
         startHabit: Boolean,
         sendSpark: Boolean,
@@ -49,6 +55,9 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
 
     override fun getUserNickname(): String =
         localPreferences.getString(USER_NICKNAME, DEFAULT_STRING_VALUE) ?: DEFAULT_STRING_VALUE
+
+    override fun getAlarmSettingLocalSaved(): Boolean =
+        localPreferences.getBoolean(ALARM_LOCAL_SAVED, false)
 
     override fun getAlarmSettingValue(): AlarmOnOff =
         AlarmOnOff(
@@ -75,6 +84,7 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
         private const val ACCESS_TOKEN = "ACCESS_TOKEN"
         private const val USER_KAKAO_USER_ID = "USER_KAKAO_USER_ID"
         private const val USER_NICKNAME = "USER_NAME"
+        private const val ALARM_LOCAL_SAVED = "ALARM_LOCAL_SAVED"
         private const val ALARM_START_HABIT = "ALARM_START_HABIT"
         private const val ALARM_SEND_SPARK = "ALARM_SEND_SPARK"
         private const val ALARM_CONSIDER = "ALARM_CONSIDER"
