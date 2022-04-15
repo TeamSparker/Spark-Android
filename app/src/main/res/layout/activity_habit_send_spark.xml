@@ -115,7 +115,7 @@
             android:text="@string/habit_send_spark_guide"
             android:textAlignment="center"
             android:textColor="@color/spark_gray"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:visibility="@{habitSendSparkViewModel.isTyping ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

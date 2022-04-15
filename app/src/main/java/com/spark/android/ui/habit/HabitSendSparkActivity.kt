@@ -1,7 +1,6 @@
 package com.spark.android.ui.habit
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -12,11 +11,17 @@ import com.spark.android.ui.habit.adapter.HabitSendSparkRecyclerViewAdapter
 import com.spark.android.ui.habit.viewmodel.HabitSendSparkViewModel
 import com.spark.android.util.KeyBoardUtil
 import com.spark.android.util.KeyboardVisibilityUtils
+import com.spark.android.util.SendSparkToast
 
 class HabitSendSparkActivity :
     BaseActivity<ActivityHabitSendSparkBinding>(R.layout.activity_habit_send_spark) {
     private val habitSendSparkRecyclerViewAdapter =
-        HabitSendSparkRecyclerViewAdapter({ content -> habitSendSparkViewModel.postSendSpark(content) },
+        HabitSendSparkRecyclerViewAdapter(
+            { content ->
+                habitSendSparkViewModel.postSendSpark(content)
+                SendSparkToast.showToast(this, habitSendSparkViewModel.nickname.value.toString())
+                finish()
+            },
             { isTyping -> habitSendSparkViewModel.initIsTyping(isTyping) })
     private val habitSendSparkViewModel by viewModels<HabitSendSparkViewModel>()
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
@@ -27,7 +32,6 @@ class HabitSendSparkActivity :
 
         initSelectedItem()
         initRVAdapter()
-//        initIsTypingObserver()
         initLeftBtnClickListener()
         initRightBtnClickListener()
         initSendSparkBtnClickListener()
@@ -47,19 +51,11 @@ class HabitSendSparkActivity :
         binding.rvHabitSendSparkList.adapter = habitSendSparkRecyclerViewAdapter
     }
 
-    private fun initIsTypingObserver() {
-        habitSendSparkViewModel.isTyping.observe(this) { isTyping ->
-            if (!isTyping) {
-                KeyBoardUtil.hide(this)
-            }
-        }
-    }
-
     private fun initLeftBtnClickListener() {
         binding.btnHabitSendSparkLeft.setOnClickListener {
             if (habitSendSparkViewModel.isTyping.value == true) {
-                binding.etSendSparkMessage.clearFocus()
                 KeyBoardUtil.hide(this)
+                binding.etSendSparkMessage.clearFocus()
                 habitSendSparkViewModel.initIsTyping(false)
             } else {
                 finish()
@@ -76,6 +72,7 @@ class HabitSendSparkActivity :
     private fun initSendSparkBtnClickListener() {
         binding.btnHabitSendSparkSend.setOnClickListener {
             habitSendSparkViewModel.postSendSpark(binding.etSendSparkMessage.text.toString())
+            SendSparkToast.showToast(this, habitSendSparkViewModel.nickname.value.toString())
             finish()
         }
     }
@@ -102,10 +99,8 @@ class HabitSendSparkActivity :
 
     private fun initSendEditTextTextFocusListener() {
         binding.etSendSparkMessage.setOnFocusChangeListener { _, isFocused ->
-            if(isFocused) {
+            if (isFocused) {
                 KeyBoardUtil.show(this)
-            } else {
-                KeyBoardUtil.hide(this)
             }
         }
     }
@@ -113,8 +108,7 @@ class HabitSendSparkActivity :
     private fun initKeyBoardEvent() {
         keyboardVisibilityUtils = KeyboardVisibilityUtils(this.window,
             onHideKeyboard = {
-                binding.etSendSparkMessage.text.clear()
-                onBackPressed()
+                habitSendSparkViewModel.initIsTyping(false)
             }
         )
     }
