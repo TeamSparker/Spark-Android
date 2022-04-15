@@ -31,7 +31,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         signInViewModel.addSourcesToIsInitUserInfo()
         initKakaoLoginBtnClickListener()
         initPolicyTvClickListener()
-        initPolicyTvClickListener()
+        initPersonalInfoTvClickListener()
         initStatusBarStyle()
         initIsSuccessKakaoLoginObserver()
         initIsInitUserInfoObserver()
