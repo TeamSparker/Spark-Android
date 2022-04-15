@@ -11,6 +11,7 @@ import com.spark.android.ui.habit.adapter.HabitSendSparkRecyclerViewAdapter
 import com.spark.android.ui.habit.viewmodel.HabitSendSparkViewModel
 import com.spark.android.util.KeyBoardUtil
 import com.spark.android.util.KeyboardVisibilityUtils
+import com.spark.android.util.SendSparkToast
 
 class HabitSendSparkActivity :
     BaseActivity<ActivityHabitSendSparkBinding>(R.layout.activity_habit_send_spark) {
@@ -18,6 +19,7 @@ class HabitSendSparkActivity :
         HabitSendSparkRecyclerViewAdapter(
             { content ->
                 habitSendSparkViewModel.postSendSpark(content)
+                SendSparkToast.showToast(this, habitSendSparkViewModel.nickname.value.toString())
                 finish()
             },
             { isTyping -> habitSendSparkViewModel.initIsTyping(isTyping) })
@@ -70,6 +72,7 @@ class HabitSendSparkActivity :
     private fun initSendSparkBtnClickListener() {
         binding.btnHabitSendSparkSend.setOnClickListener {
             habitSendSparkViewModel.postSendSpark(binding.etSendSparkMessage.text.toString())
+            SendSparkToast.showToast(this, habitSendSparkViewModel.nickname.value.toString())
             finish()
         }
     }
