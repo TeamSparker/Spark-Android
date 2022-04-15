@@ -315,7 +315,7 @@
     <string name="alarm_setting_certification_desc">스파커들의 인증 사진을 바로 확인할 수 있어요.</string>
     <string name="alarm_setting_remind">리마인드</string>
     <string name="alarm_setting_not_done">미완료 습관방</string>
-    <string name="alarm_setting_not_done_desc">21:00에 미완료된 방이 있을 경우 알 수 있어요.</string>
+    <string name="alarm_setting_not_done_desc">22:00에 미완료된 방이 있을 경우 알 수 있어요.</string>
 
     <!-- WithdrawalFragment -->
     <string name="withdrawal_title">회원 탈퇴</string>
