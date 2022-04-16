@@ -14,14 +14,13 @@ import com.spark.android.data.remote.service.HabitService
 import com.spark.android.data.remote.service.LeaveRoomService
 import com.spark.android.data.remote.service.SendSparkService
 import com.spark.android.data.remote.service.SetStatusService
-import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HabitViewModel @Inject constructor(
-    private val habitRepository: HabitRepository
+    private val habitRepository: HabitRepository,
 ) : ViewModel() {
     private val habitService: HabitService = RetrofitBuilder.habitService
     private val setStatusService: SetStatusService = RetrofitBuilder.setStatusService
@@ -40,13 +39,26 @@ class HabitViewModel @Inject constructor(
     private val _sendSuccess = MutableLiveData<Boolean>()
     val sendSuccess: LiveData<Boolean> = _sendSuccess
 
+    private val _refreshSuccess = MutableLiveData<Boolean>()
+    val refreshSuccess: LiveData<Boolean> = _refreshSuccess
+
+    private val _exitSuccess = MutableLiveData<Boolean>()
+    val exitSuccess: LiveData<Boolean> = _exitSuccess
+
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
 
-
     fun initSendSuccess(success: Boolean) {
         _sendSuccess.value = success
+    }
+
+    fun initRefreshSuccess(success: Boolean) {
+        _refreshSuccess.value = success
+    }
+
+    fun initExitSuccess(success: Boolean) {
+        _exitSuccess.value = success
     }
 
     fun getHabitRoomInfo(roomId: Int) {

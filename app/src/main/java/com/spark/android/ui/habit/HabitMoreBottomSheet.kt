@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
-import com.spark.android.data.remote.LocalPreferences
 import com.spark.android.databinding.BottomSheetHabitMoreBinding
 import com.spark.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
@@ -65,6 +61,15 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
+    private fun showExitDialog() {
+        habitViewModel.habitInfo.value?.roomName?.let { roomName ->
+            DialogEditTextUtil(DialogEditTextUtil.EXIT_HABIT_ROOM, roomName) {
+                habitViewModel.leaveHabitRoom()
+                habitViewModel.initExitSuccess(true)
+            }.show(requireActivity().supportFragmentManager, this.javaClass.name)
+        }
+    }
+
     private fun initUserGuideBtnClickListener() {
         binding.tvHabitMoreUserGuide.setOnClickListener {
             var bundle = Bundle()
@@ -75,15 +80,6 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
                 arguments = bundle
             }.show(requireActivity().supportFragmentManager, "UserGuideDialog")
             dismiss()
-        }
-    }
-
-    private fun showExitDialog() {
-        habitViewModel.habitInfo.value?.roomName?.let { roomName ->
-            DialogEditTextUtil(DialogEditTextUtil.EXIT_HABIT_ROOM, roomName) {
-                habitViewModel.leaveHabitRoom()
-                setFragmentResult("exitHabitRoom", bundleOf("bundleKey" to "exit"))
-            }.show(requireActivity().supportFragmentManager, this.javaClass.name)
         }
     }
 
