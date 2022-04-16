@@ -55,7 +55,9 @@ class IntroViewModel @Inject constructor(
                     socialId = localPreferencesDataSource.getUserKakaoUserId(),
                     fcmToken = requireNotNull(fcmToken.value)
                 ).onSuccess { response ->
-                    localPreferencesDataSource.saveAccessToken(response.data.accesstoken)
+                    if(!response.data.isNew){
+                        localPreferencesDataSource.saveAccessToken(response.data.accesstoken)
+                    }
                     isSuccessGetToken.postValue(true)
                 }.onFailure {
                     Log.d("Intro_GetAccessToken", it.message.toString())
