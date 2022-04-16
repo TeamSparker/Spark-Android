@@ -51,7 +51,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         initStatusBarStyle()
         hideKeyBoard()
         initIsFocused()
-        initBackBtnClickListener()
+        initQuitBtnClickListener()
         initPictureBtnClickListener()
         initSuccessSignUpObserver()
         initOldProfileImgUrlObserver()
@@ -96,15 +96,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private fun initQuitBtnClickListener() {
         binding.btnProfileQuit.setOnClickListener {
-            DialogUtil(STOP_SIGNUP_MODE) {
-                popBackStack()
-            }.show(parentFragmentManager, this.javaClass.name)
-        }
-    }
-
-    private fun initBackBtnClickListener() {
-        binding.btnProfileBack.setOnClickListener {
-            DialogUtil(STOP_MODIFY_PROFILE) {
+            DialogUtil(
+                if (args.modifyMode) STOP_MODIFY_PROFILE else STOP_SIGNUP_MODE
+            ) {
                 popBackStack()
             }.show(parentFragmentManager, this.javaClass.name)
         }
