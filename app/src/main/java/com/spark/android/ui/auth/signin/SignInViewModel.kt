@@ -27,22 +27,18 @@ class SignInViewModel @Inject constructor(
     private val _fcmToken = MutableLiveData<String>()
     val fcmToken: LiveData<String> = _fcmToken
 
-    private val _isInitUserInfo = MediatorLiveData<Boolean>()
-    val isInitUserInfo: LiveData<Boolean> = _isInitUserInfo
-
-    private val _doorbellResponse = MutableLiveData<DoorbellResponse>()
-    val doorbellResponse: LiveData<DoorbellResponse> = _doorbellResponse
-
-    fun addSourcesToIsInitUserInfo() {
-        with(_isInitUserInfo) {
-            this.addSource(_kakaoUserId) { id ->
-                this.value = id.isNotBlank() && fcmToken.value != null
-            }
-            this.addSource(_fcmToken) { token ->
-                this.value = token.isNotBlank() && kakaoUserId.value != null
-            }
+    private val _isInitUserInfo = MediatorLiveData<Event<Boolean>>().apply {
+        addSource(_kakaoUserId) { id ->
+            value = Event(id.isNotBlank() && fcmToken.value != null)
+        }
+        addSource(_fcmToken) { token ->
+            value = Event(token.isNotBlank() && kakaoUserId.value != null)
         }
     }
+    val isInitUserInfo: LiveData<Event<Boolean>> = _isInitUserInfo
+
+    private val _doorbellResponse = MutableLiveData<Event<DoorbellResponse>>()
+    val doorbellResponse: LiveData<Event<DoorbellResponse>> = _doorbellResponse
 
     val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
@@ -63,11 +59,15 @@ class SignInViewModel @Inject constructor(
     }
 
     fun saveAccessToken() {
-        authRepository.saveAccessToken(requireNotNull(doorbellResponse.value).accesstoken)
+        authRepository.saveAccessToken(requireNotNull(doorbellResponse.value).peekContent().accesstoken)
     }
 
     private fun initIsSuccessLogin(isSuccess: Boolean) {
         _isSuccessKakaoLogin.value = Event(isSuccess)
+    }
+
+    fun resetDoorbellResponse() {
+        _doorbellResponse.value = MutableLiveData<Event<DoorbellResponse>>().value
     }
 
     fun getAccessToken() {
@@ -76,7 +76,7 @@ class SignInViewModel @Inject constructor(
                 requireNotNull(kakaoUserId.value),
                 requireNotNull(fcmToken.value)
             ).onSuccess { response ->
-                _doorbellResponse.postValue(requireNotNull(response.data))
+                _doorbellResponse.postValue(Event(requireNotNull(response.data)))
             }.onFailure {
                 Log.d("SignIn_getAccessToken", it.message.toString())
             }
