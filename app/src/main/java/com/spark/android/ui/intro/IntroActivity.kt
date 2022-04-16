@@ -21,7 +21,6 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
         super.onCreate(savedInstanceState)
         initStatusBarColor(R.color.spark_black)
         introViewModel.initFcmToken()
-        introViewModel.addSourceToIsDone()
         initFcmTokenObserver()
         initIsDoneObserver()
         initLottieListener()
