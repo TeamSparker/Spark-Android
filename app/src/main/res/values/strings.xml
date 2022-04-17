@@ -383,9 +383,9 @@
 
     <!--UserGuideFragmnetDialog-->
     <string name="user_guide_dialog_title">66일간의 습관 성공 Tip!</string>
-    <string name="user_guide_dialog_content_first">습관방의 샘명은 오직 3개,\n매일 자정까지 잊지 말고 인증하기!</string>
+    <string name="user_guide_dialog_content_first">습관방의 생명은 오직 3개,\n매일 자정까지 잊지 말고 인증하기!</string>
     <string name="user_guide_dialog_content_second">만약 친구가 고민중이라면?\n스파크를 마구 보내 힘껏 응원하기!</string>
-    <string name="user_guide_dialog_content_third">‘쉴래요’ 기회는 4번\n조금 아껴뒀다 꼭 필요할 때 사용하기!</string>
+    <string name="user_guide_dialog_content_third">‘쉴래요’ 기회는 3번\n조금 아껴뒀다 꼭 필요할 때 사용하기!</string>
     <string name="user_guide_dialog_dismiss_button">닫기</string>
 
     <!--HabitLifeLessDialogFragment-->
