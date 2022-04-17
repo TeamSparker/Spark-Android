@@ -95,18 +95,22 @@ class UserGuideFragmentDialog : DialogFragment() {
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 binding.position = position
-                if (position == 0) {
-                    binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
-                    binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                    binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                } else if (position == 1) {
-                    binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                    binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
-                    binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                } else if (position == 2) {
-                    binding.ivUserGuideDotIndicatorFirst.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                    binding.ivUserGuideDotIndicatorSecond.setBackgroundResource(R.drawable.dot_indicator_dot_unselected)
-                    binding.ivUserGuideDotIndicatorThird.setBackgroundResource(R.drawable.dot_indicator_dot_selected)
+                when (position) {
+                    0 -> {
+                        binding.ivUserGuideDotIndicatorFirst.setImageResource(R.drawable.dot_indicator_dot_selected)
+                        binding.ivUserGuideDotIndicatorSecond.setImageResource(R.drawable.dot_indicator_dot_unselected)
+                        binding.ivUserGuideDotIndicatorThird.setImageResource(R.drawable.dot_indicator_dot_unselected)
+                    }
+                    1 -> {
+                        binding.ivUserGuideDotIndicatorFirst.setImageResource(R.drawable.dot_indicator_dot_unselected)
+                        binding.ivUserGuideDotIndicatorSecond.setImageResource(R.drawable.dot_indicator_dot_selected)
+                        binding.ivUserGuideDotIndicatorThird.setImageResource(R.drawable.dot_indicator_dot_unselected)
+                    }
+                    2 -> {
+                        binding.ivUserGuideDotIndicatorFirst.setImageResource(R.drawable.dot_indicator_dot_unselected)
+                        binding.ivUserGuideDotIndicatorSecond.setImageResource(R.drawable.dot_indicator_dot_unselected)
+                        binding.ivUserGuideDotIndicatorThird.setImageResource(R.drawable.dot_indicator_dot_selected)
+                    }
                 }
             }
         })
