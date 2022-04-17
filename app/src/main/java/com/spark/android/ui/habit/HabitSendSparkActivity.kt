@@ -37,6 +37,7 @@ class HabitSendSparkActivity :
         initSendSparkBtnClickListener()
         initSendEditTextTextChangedListener()
         initSendEditTextTextFocusListener()
+        initBackgroundLayoutClickListener()
         initKeyBoardEvent()
     }
 
@@ -54,9 +55,7 @@ class HabitSendSparkActivity :
     private fun initLeftBtnClickListener() {
         binding.btnHabitSendSparkLeft.setOnClickListener {
             if (habitSendSparkViewModel.isTyping.value == true) {
-                KeyBoardUtil.hide(this)
-                binding.etSendSparkMessage.clearFocus()
-                habitSendSparkViewModel.initIsTyping(false)
+                onBackPressed()
             } else {
                 finish()
             }
@@ -105,6 +104,14 @@ class HabitSendSparkActivity :
         }
     }
 
+    private fun initBackgroundLayoutClickListener() {
+        binding.layoutHabitSendSpark.setOnClickListener {
+            if (habitSendSparkViewModel.isTyping.value == true) {
+                onBackPressed()
+            }
+        }
+    }
+
     private fun initKeyBoardEvent() {
         keyboardVisibilityUtils = KeyboardVisibilityUtils(this.window,
             onHideKeyboard = {
@@ -114,6 +121,7 @@ class HabitSendSparkActivity :
     }
 
     override fun onBackPressed() {
+        KeyBoardUtil.hide(this)
         if (habitSendSparkViewModel.isTyping.value == true) {
             habitSendSparkViewModel.initIsTyping(false)
         } else {
