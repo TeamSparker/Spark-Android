@@ -78,8 +78,8 @@
     <string name="habit_goal">goal</string>
     <string name="habit_today_certification_btn">오늘의 인증</string>
     <string name="habit_title">title</string>
-    <string name="habit_no_purpose_top">습관을 시작하기 전에</string>
-    <string name="habit_no_purpose_bottom">시간과 목표를 작성해주세요!</string>
+    <string name="habit_no_purpose_top">아직 구체적인 계획이 없어요.</string>
+    <string name="habit_no_purpose_bottom">나만의 시간과 목표를 작성해 보세요!</string>
 
     <!-- MainActivity -->
     <string name="main_bottom_nav_feed">피드</string>
