@@ -68,10 +68,10 @@
             android:text="@string/user_guide_dialog_dismiss_button"
             android:textColor="@color/spark_pinkred"
             android:textSize="16dp"
-            app:userGuideStartPoint="@{startPoint}"
-            app:userGuidePosition="@{position}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:userGuidePosition="@{position}"
+            app:userGuideStartPoint="@{startPoint}" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,30 +85,33 @@
 
             <ImageView
                 android:id="@+id/iv_user_guide_dot_indicator_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/dot_indicator_dot_selected"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/dot_indicator_dot_selected"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_user_guide_dot_indicator_second"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_user_guide_dot_indicator_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:background="@drawable/dot_indicator_dot_unselected"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="6dp"
+                android:src="@drawable/dot_indicator_dot_unselected"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_user_guide_dot_indicator_first"
+                app:layout_constraintEnd_toStartOf="@id/iv_user_guide_dot_indicator_third"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/iv_user_guide_dot_indicator_first"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_user_guide_dot_indicator_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:background="@drawable/dot_indicator_dot_unselected"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/dot_indicator_dot_unselected"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_user_guide_dot_indicator_second"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
