@@ -14,6 +14,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_habit_send_spark"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.habit.HabitSendSparkActivity">
@@ -123,9 +124,10 @@
 
         <EditText
             android:id="@+id/et_send_spark_message"
+            setEditTextVisibility="@{habitSendSparkViewModel.isTyping}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
             android:cursorVisible="true"
             android:ems="15"
@@ -134,8 +136,8 @@
             android:includeFontPadding="false"
             android:inputType="text"
             android:maxLength="15"
+            android:paddingVertical="5dp"
             android:singleLine="true"
-            setEditTextVisibility="@{habitSendSparkViewModel.isTyping}"
             android:text="@={habitSendSparkViewModel.message}"
             android:textColor="@color/spark_white"
             android:textColorHint="@color/spark_dark_gray"
@@ -152,7 +154,7 @@
             android:enabled="@{habitSendSparkViewModel.message.length() == 0 ? false : true }"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:padding="4dp"
+            android:padding="5dp"
             android:text="@string/habit_send_spark_message_btn"
             android:textColor="@color/spark_gray"
             android:textSize="16dp"
