@@ -21,11 +21,14 @@ class CompleteVpAdapter : RecyclerView.Adapter<CompleteVpAdapter.CompleteVpViewH
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            itemView.setOnClickListener {
-                val intent = Intent(it.context, StoragePhotoCollectionActivity::class.java)
-                intent.putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                it.context.startActivity(intent)
+            itemView.setOnClickListener { completeCard ->
+                val intent = Intent(completeCard.context, StoragePhotoCollectionActivity::class.java)
+                intent.apply {
+                    putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
+                    putExtra("thumbnail", requireNotNull(binding.storageRoom).thumbnail)
+                    addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                }
+                completeCard.context.startActivity(intent)
             }
         }
 
