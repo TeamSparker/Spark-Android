@@ -65,7 +65,8 @@
             android:lineSpacingExtra="6sp"
             android:textAlignment="center"
             android:paddingTop="0dp"
-            android:visibility="visible"
+            android:visibility="invisible"
+            tools:visibility="visible"
             />
 
 
