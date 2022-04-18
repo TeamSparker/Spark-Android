@@ -46,7 +46,7 @@ class PhotoViewModel : ViewModel() {
         _patchRecordId.postValue(patchRecordId)
     }
 
-    fun initPhotoCollectionNetwork(roomId: Int, lastId: Int, size: Int) {
+    fun initGetPhotoCollectionNetwork(roomId: Int, lastId: Int, size: Int) {
         initIsLoading(true)
         val call: Call<BaseResponse<PhotoCollectionResponse>> =
             RetrofitBuilder.photoCollectionService.getPhotoCollectionData(roomId, lastId, size)
@@ -72,7 +72,7 @@ class PhotoViewModel : ViewModel() {
         })
     }
 
-    fun initPhotoMainNetwork() {
+    fun initPatchPhotoMainNetwork() {
         initIsLoading(true)
         val call: Call<NoDataResponse> =
             RetrofitBuilder.photoMainService.patchPhotoMainData(patchRoomId.value?:0, patchRecordId.value?:0)
