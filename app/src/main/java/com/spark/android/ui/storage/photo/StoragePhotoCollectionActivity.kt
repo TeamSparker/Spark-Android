@@ -16,23 +16,21 @@ class StoragePhotoCollectionActivity :
     private val photoCollectionRvAdapter = PhotoCollectionRvAdapter()
     private val photoCollectionViewModel by viewModels<PhotoViewModel>()
     private var roomId = 0
+    private var thumbnail : String? = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         roomId = intent.getIntExtra("roomId", -1)
-        photoCollectionViewModel.initPhotoCollectionNetwork(roomId, -1, 70)
+        thumbnail = intent.getStringExtra("thumbnail")
+
+        photoCollectionViewModel.initGetPhotoCollectionNetwork(roomId, -1, 70)
         binding.photoCollectionViewModel = photoCollectionViewModel
         initStatusBarStyle()
         setOnBackBtnClickListener()
         initStoragePhotoCollectionRvAdapter()
         initPhotoCollectionObserver()
         initPhotoCollectionMoreBtnClickListener()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        moveToMain()
     }
 
     private fun initStatusBarStyle() {
@@ -49,6 +47,17 @@ class StoragePhotoCollectionActivity :
         }
     }
 
+    private fun setOnBackBtnClickListener() {
+        binding.btnStoragePhotoCollectionBackWhite.setOnClickListener {
+            moveToMain()
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        moveToMain()
+    }
+
     private fun initPhotoCollectionMoreBtnClickListener() {
         binding.btnStoragePhotoCollectionMoreWhite.setOnClickListener {
             PhotoCollectionMoreBottomSheet().apply {
@@ -56,15 +65,10 @@ class StoragePhotoCollectionActivity :
                     val intent = Intent(context, StoragePhotoMainPickActivity::class.java)
                     startActivity(intent.apply {
                         putExtra("roomId", roomId)
+                        putExtra("thumbnail",thumbnail)
                     })
                 }
             }.show(supportFragmentManager, this.javaClass.name)
-        }
-    }
-
-    private fun setOnBackBtnClickListener() {
-        binding.btnStoragePhotoCollectionBackWhite.setOnClickListener {
-            moveToMain()
         }
     }
 
