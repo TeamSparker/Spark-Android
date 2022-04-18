@@ -126,7 +126,7 @@
     <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요.</string>
     <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
     <string name="select_confirm_method_dialog_title">우왓👍! 이대로 습관방을 만들까요?\n방 이름과 인증 방식은 더이상 수정이\n안 돼요.</string>
-    <string name="select_confirm_method_dialog_done">완료</string>
+    <string name="select_confirm_method_dialog_done">만들래요</string>
 
     <!-- TimerStartActivity -->
     <string name="timer_step_stopwatch">스톱워치</string>
