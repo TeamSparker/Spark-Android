@@ -187,7 +187,6 @@
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:text="@{String.valueOf(storageRoom.comment)}"
             android:textAlignment="center"
             android:textColor="@color/spark_white"
             android:textSize="16dp"
