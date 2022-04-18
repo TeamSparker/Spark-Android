@@ -146,7 +146,7 @@
     <string name="waiting_room_purpose">목표</string>
     <string name="waiting_room_we_sparker">함께하는 스파커들</string>
     <string name="waiting_room_we_sparker_explain">습관방은 최대 10명까지 입장할 수 있습니다.</string>
-    <string name="waiting_room_start_habit">습관방 만들기</string>
+    <string name="waiting_room_start_habit">습관 시작하기</string>
     <string name="waiting_room_no_purpose">습관을 성공하기 위한</string>
     <string name="waiting_room_no_purpose_second_line">시간과 목표를 작성해 주세요!</string>
     <string name="waiting_room_copy_code_toast">코드를 복사했어요!</string>
@@ -340,8 +340,8 @@
 
     <!-- MakeRoomCheckFragmentDialog-->
     <string name="make_room_check_dialog_title">습관 시작 전 잠깐!</string>
-    <string name="make_room_check_dialog_content_one">첫째,습관 시작 후에는 인원 추가가\n불가능해요.</string>
-    <string name="make_room_check_dialog_content_two">둘째,오늘부터 습관을 실행하고\n인증해야 해요.</string>
+    <string name="make_room_check_dialog_content_one">첫째, 습관 시작 후에는 인원 추가가\n불가능해요.</string>
+    <string name="make_room_check_dialog_content_two">둘째, 오늘부터 습관을 실행하고\n인증해야 해요.</string>
     <string name="make_room_check_dialog_button_dismiss">취소</string>
     <string name="make_room_check_dialog_button_make_room">시작할게요</string>
 
