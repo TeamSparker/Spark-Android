@@ -45,13 +45,14 @@ class WaitingRoomFragment :
         binding.waitingRoomViewModel = waitingRoomViewModel
         initExtra()
         binding.startPoint = startPoint
-        if (startPoint != 2) {
+        if (startPoint != WaitingRoomActivity.START_FROM_CONFIRM_METHOD) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
         initWatitingRoomRecyclerViewAdapter()
 
         waitingRoomViewModel.waitingRoomInfo.observe(viewLifecycleOwner) {
             updateWatitingRoomRecyclerViewAdapter()
+            waitingRoomViewModel.initMemberListSize()
             initClipBoard()
             initTooltipButton()
         }
@@ -100,6 +101,8 @@ class WaitingRoomFragment :
         waitingRoomViewModel.getRefreshInfo(roomId)
         waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
             waitingRoomRecyclerViewAdapter.updateMemberList(it)
+            waitingRoomViewModel.updateMemberListSize()
+            binding.btnWaitingRoomRefresh.isEnabled = true
         }
     }
 
@@ -164,10 +167,6 @@ class WaitingRoomFragment :
             AnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             binding.btnWaitingRoomRefresh.isEnabled = false
             waitingRoomViewModel.getRefreshInfo(roomId)
-            waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
-                waitingRoomRecyclerViewAdapter.updateMemberList(it)
-                binding.btnWaitingRoomRefresh.isEnabled = true
-            }
         }
     }
 

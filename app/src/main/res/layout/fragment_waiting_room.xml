@@ -374,12 +374,12 @@
 
         <TextView
             android:id="@+id/tv_waiting_room_we_sparker_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="12dp"
+            android:layout_height="18dp"
             android:layout_marginStart="4dp"
             android:fontFamily="@font/futura_medium"
             android:includeFontPadding="false"
-            android:text="@{String.valueOf(waitingRoomViewModel.waitingRoomInfo.members.size())}"
+            android:text="@{String.valueOf(waitingRoomViewModel.memberListSize)}"
             android:textColor="@color/spark_deep_gray"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_we_sparker"
