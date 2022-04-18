@@ -7,7 +7,7 @@ import com.spark.android.ui.waitingroom.data.WaitingData
 
 data class WaitingRoomInfoResponse(
     val fromStart: Boolean,
-    val members: List<Member>,
+    var members: List<Member>,
     val reqUser: ReqUser,
     val roomCode: String,
     val roomId: Int,
