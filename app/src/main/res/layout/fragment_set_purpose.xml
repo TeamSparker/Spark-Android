@@ -271,6 +271,7 @@
             android:enabled="@{setPurposeViewModel.myPurpose.length() == 0 || setPurposeViewModel.habitWhen.length() == 0 ? false : true }"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/set_purpose_done_button"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
