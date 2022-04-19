@@ -30,6 +30,8 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     private val setPurposeViewModel by viewModels<SetPurposeViewModel>()
     private var roomId by Delegates.notNull<Int>()
     private lateinit var roomName: String
+    private lateinit var moment: String
+    private lateinit var purpose: String
     private var layoutState = false
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
     private lateinit var callback: OnBackPressedCallback
@@ -57,6 +59,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         getExtraData()
         binding.roomName = roomName
         binding.setPurposeViewModel = setPurposeViewModel
+        initLastPurpose()
         initEditTextClearFocus()
         initPurposeEditTextFocusListener()
         initWhenEditTextFocusListener()
@@ -70,6 +73,12 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     private fun getExtraData() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
         roomName = arguments?.getString("roomName").toString()
+        moment = arguments?.getString("moment").toString()
+        purpose = arguments?.getString("purpose").toString()
+    }
+
+    private fun initLastPurpose(){
+        setPurposeViewModel.setLastPurpose(moment,purpose)
     }
 
     private fun initEditTextClearFocus() {
