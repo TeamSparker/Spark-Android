@@ -137,7 +137,7 @@ class WaitingRoomFragment :
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
             MakeRoomCheckFragmentDialog().show(
-                requireActivity().supportFragmentManager,"MakeROomCheckDialog"
+                requireActivity().supportFragmentManager,"MakeRoomCheckDialog"
             )
         }
     }
