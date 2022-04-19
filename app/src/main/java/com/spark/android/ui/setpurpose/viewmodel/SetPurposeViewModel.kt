@@ -22,12 +22,17 @@ class SetPurposeViewModel @Inject constructor(
 
     fun setPurpose(roomId: Int, body: SetPurposeRequest) {
         viewModelScope.launch {
-            setPurposeRepository.setPurpose(roomId,body)
+            setPurposeRepository.setPurpose(roomId, body)
                 .onSuccess {
                     networkState.postValue(it.success)
                 }.onFailure {
-                    Log.d("setPurpose",it.message.toString())
+                    Log.d("setPurpose", it.message.toString())
                 }
         }
+    }
+
+    fun setLastPurpose(moment: String, purpose: String) {
+        habitWhen.postValue(moment)
+        myPurpose.postValue(purpose)
     }
 }

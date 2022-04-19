@@ -149,6 +149,8 @@ class WaitingRoomFragment :
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
             bundle.putString("roomName", waitingRoomViewModel.waitingRoomInfo.value?.roomName)
+            bundle.putString("moment", waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.moment ?: "")
+            bundle.putString("purpose", waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.purpose ?: "")
             setPurposeFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()
