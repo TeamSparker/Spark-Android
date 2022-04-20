@@ -1,16 +1,19 @@
 package com.spark.android.ui.waitingroom.makeroomcheckdialog
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.databinding.FragmentMakeRoomCheckDialogBinding
+import com.spark.android.ui.habit.HabitActivity
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import com.spark.android.util.AnimationUtil
 import com.spark.android.util.DialogUtil
@@ -33,7 +36,12 @@ class MakeRoomCheckFragmentDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_make_room_check_dialog, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_make_room_check_dialog,
+                container,
+                false
+            )
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -64,24 +72,34 @@ class MakeRoomCheckFragmentDialog : DialogFragment() {
     }
 
 
-    private fun initMakeRoomButton(){
+    private fun initMakeRoomButton() {
         binding.tvMakeRoomCheckDialogButtonMakeRoom.setOnClickListener {
             binding.tvMakeRoomCheckDialogButtonMakeRoom.isClickable = false
             makeRoomCheckFragmentDialogViewModel.waitingRoomInfo.value?.let { it ->
                 makeRoomCheckFragmentDialogViewModel.startHabit(
-                    it.roomId)
+                    it.roomId
+                )
             }
+            val intent = Intent(requireActivity(), HabitActivity::class.java).apply {
+                makeRoomCheckFragmentDialogViewModel.waitingRoomInfo.value?.let { waitingRoomInfoValue ->
+                    putExtra(
+                        "roomId",
+                        waitingRoomInfoValue.roomId
+                    )
+                }
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            }
+            startActivity(intent)
             requireActivity().finish()
         }
     }
 
 
-    private fun initDisMissButton(){
+    private fun initDisMissButton() {
         binding.tvMakeRoomCheckDialogButtonDismiss.setOnClickListener {
             dismiss()
         }
     }
-
 
 
     override fun onDestroyView() {
