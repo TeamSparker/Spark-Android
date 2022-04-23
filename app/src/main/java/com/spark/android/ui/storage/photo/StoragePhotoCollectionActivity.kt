@@ -2,8 +2,6 @@ package com.spark.android.ui.storage.photo
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -12,7 +10,6 @@ import com.spark.android.databinding.ActivityStoragePhotoCollectionBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
-import com.spark.android.ui.storage.adapter.PhotoMainPickRvAdapter.Companion.isReOpening
 import com.spark.android.ui.storage.viewmodel.PhotoViewModel
 import com.spark.android.util.initStatusBarColor
 
@@ -21,42 +18,40 @@ class StoragePhotoCollectionActivity :
     private val photoCollectionRvAdapter = PhotoCollectionRvAdapter()
     private val photoCollectionViewModel by viewModels<PhotoViewModel>()
     private var roomId = 0
-    private var thumbnail : String? = ""
-    private lateinit var activityResultLauncher : ActivityResultLauncher<Intent>
+    private var thumbnail: String? = ""
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        roomId = intent.getIntExtra("roomId", -1)
-        initActivityResultLauncher()
-        thumbnail = intent.getStringExtra("thumbnail")
-        //Log.d("개씨발","${thumbnail}")
 
-        photoCollectionViewModel.initGetPhotoCollectionNetwork(roomId, -1, 70)
-        binding.photoCollectionViewModel = photoCollectionViewModel
-        initStatusBarStyle()
-        setOnBackBtnClickListener()
+        setViewModelToLayoutForDataBinding()
         initStoragePhotoCollectionRvAdapter()
+
+        getRoomDataFromStorageCard()
+        initPhotoCollectionNetwork()
         initPhotoCollectionObserver()
+
+        initStatusBarStyle()
+        initOnBackBtnClickListener()
         initPhotoCollectionMoreBtnClickListener()
     }
 
-    private fun initActivityResultLauncher(){
-         activityResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                if (it.resultCode == RESULT_OK) {
-                    thumbnail = intent.getStringExtra("thumbnail")
-                    //Log.d("개씨발","${thumbnail}")
-                }
-            }
-    }
-
-    private fun initStatusBarStyle() {
-        initStatusBarColor(R.color.spark_black)
+    private fun setViewModelToLayoutForDataBinding() {
+        binding.photoCollectionViewModel = photoCollectionViewModel
     }
 
     private fun initStoragePhotoCollectionRvAdapter() {
         binding.rvStoragePhotoCollection.adapter = photoCollectionRvAdapter
+    }
+
+    private fun getRoomDataFromStorageCard() {
+        roomId = intent.getIntExtra("roomId", -1)
+        thumbnail = intent.getStringExtra("thumbnail")
+    }
+
+    private fun initPhotoCollectionNetwork() {
+        photoCollectionViewModel.initGetPhotoCollectionNetwork(roomId, -1, 70)
     }
 
     private fun initPhotoCollectionObserver() {
@@ -65,9 +60,19 @@ class StoragePhotoCollectionActivity :
         }
     }
 
-    private fun setOnBackBtnClickListener() {
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_black)
+    }
+
+    private fun moveToMain() {
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra(MainActivity.FROM_WHERE, FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY)
+        })
+    }
+
+    private fun initOnBackBtnClickListener() {
         binding.btnStoragePhotoCollectionBackWhite.setOnClickListener {
-            isReOpening = false
             moveToMain()
         }
     }
@@ -77,25 +82,28 @@ class StoragePhotoCollectionActivity :
         moveToMain()
     }
 
+    private fun initActivityResultLauncher() {
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == RESULT_OK) {
+                    thumbnail = it.data?.getStringExtra("new_thumbnail")
+                }
+            }
+    }
+
     private fun initPhotoCollectionMoreBtnClickListener() {
+        initActivityResultLauncher()
         binding.btnStoragePhotoCollectionMoreWhite.setOnClickListener {
             PhotoCollectionMoreBottomSheet().apply {
                 setChangePhotoBtnClickListener {
-                    val intent = Intent(context, StoragePhotoMainPickActivity::class.java)
-                    activityResultLauncher.launch(intent.apply {
+                    val intent = Intent(context, StoragePhotoMainPickActivity::class.java).apply {
                         putExtra("roomId", roomId)
-                        putExtra("thumbnail",thumbnail)
-                    })
+                        putExtra("thumbnail", thumbnail)
+                    }
+                    activityResultLauncher.launch(intent)
                 }
             }.show(supportFragmentManager, this.javaClass.name)
         }
-    }
-
-    private fun moveToMain() {
-        startActivity(Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
-            putExtra(MainActivity.FROM_WHERE, FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY)
-        })
     }
 
     companion object {

@@ -1,6 +1,5 @@
 package com.spark.android.ui.storage.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,21 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.R
 import com.spark.android.data.remote.entity.response.StorageCardPhoto
 import com.spark.android.databinding.ItemPhotoMainPickListBinding
-import okhttp3.internal.notify
 
-class PhotoMainPickRvAdapter(
-    private val setNewThumbnail: (Int, Int) -> Unit) :
+class PhotoMainPickRvAdapter(private val setNewThumbnail: (Int, Int) -> Unit) :
     RecyclerView.Adapter<PhotoMainPickRvAdapter.PhotoMainPickRvViewHolder>() {
 
     var photoList = listOf<StorageCardPhoto>()
 
     fun setPhotoMainList(list: List<StorageCardPhoto>) {
         photoList = list
-        notifyDataSetChanged()
-    }
-
-    fun setPhotoMainThumbnail(thumbnailUrl: String) {
-        thumbnail = thumbnailUrl
         notifyDataSetChanged()
     }
 
@@ -40,12 +32,13 @@ class PhotoMainPickRvAdapter(
             if(isInitialOpening == true){
                 if (storageCardPhoto.certifyingImg == thumbnailUrl) {
                     currentThumbnailItemPos = currentItemPos
-                    Log.d("개씨발","${currentItemPos} 이 사진이 썸네일이랑 같다")
                 }
             }
 
             binding.ivMainPhotoPickItemRoundedCorner.setOnClickListener {
+                isInitialOpening = false
                 setNewThumbnail(currentItemPos, storageCardPhoto.recordId)
+                thumbnail = storageCardPhoto.certifyingImg
             }
 
             if (currentThumbnailItemPos == currentItemPos) {
@@ -75,7 +68,6 @@ class PhotoMainPickRvAdapter(
         var thumbnail = ""
         var currentThumbnailItemPos = -1
         var isInitialOpening = true
-        var isReOpening = true
     }
 }
 
