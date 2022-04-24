@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/homeMainFragment">
 
     <fragment
         android:id="@+id/homeMainFragment"
         android:name="com.spark.android.ui.home.HomeMainFragment"
-        android:label="HomeMainFragment">
+        android:label="HomeMainFragment"
+        tools:layout="@layout/fragment_home_main"
+        >
         <action
             android:id="@+id/action_homeMainFragment_to_storageFragment"
             app:destination="@id/storageFragment"
@@ -27,7 +30,9 @@
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.spark.android.ui.feed.FeedFragment"
-        android:label="FeedFragment">
+        android:label="FeedFragment"
+        tools:layout="@layout/fragment_feed"
+        >
         <action
             android:id="@+id/action_feedFragment_to_homeMainFragment"
             app:destination="@id/homeMainFragment"
@@ -47,7 +52,8 @@
     <fragment
         android:id="@+id/storageFragment"
         android:name="com.spark.android.ui.storage.StorageFragment"
-        android:label="StorageFragment">
+        android:label="StorageFragment"
+        tools:layout="@layout/fragment_storage">
         <action
             android:id="@+id/action_storageFragment_to_homeMainFragment"
             app:destination="@id/homeMainFragment"
