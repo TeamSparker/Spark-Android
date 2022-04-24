@@ -28,10 +28,10 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signInViewModel = signInViewModel
-        signInViewModel.addSourcesToIsInitUserInfo()
+        signInViewModel.resetDoorbellResponse()
         initKakaoLoginBtnClickListener()
         initPolicyTvClickListener()
-        initPolicyTvClickListener()
+        initPersonalInfoTvClickListener()
         initStatusBarStyle()
         initIsSuccessKakaoLoginObserver()
         initIsInitUserInfoObserver()
@@ -81,15 +81,15 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     }
 
     private fun initIsInitUserInfoObserver() {
-        signInViewModel.isInitUserInfo.observe(viewLifecycleOwner) { isInit ->
+        signInViewModel.isInitUserInfo.observe(viewLifecycleOwner, EventObserver { isInit ->
             if (isInit) {
                 signInViewModel.getAccessToken()
             }
-        }
+        })
     }
 
     private fun initDoorBellResponseObserver() {
-        signInViewModel.doorbellResponse.observe(viewLifecycleOwner) { response ->
+        signInViewModel.doorbellResponse.observe(viewLifecycleOwner, EventObserver { response ->
             if (response.isNew) {
                 navigateWithData(SignInFragmentDirections.actionSignInFragmentToProfileFragment())
             } else {
@@ -100,7 +100,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
                 })
                 requireActivity().finish()
             }
-        }
+        })
     }
 
 

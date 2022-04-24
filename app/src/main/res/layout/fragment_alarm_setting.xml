@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="alarmSettingViewModel"
             type="com.spark.android.ui.alarmsetting.AlarmSettingViewModel" />
@@ -14,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/spark_white"
+        android:visibility="@{alarmSettingViewModel.isAlarmSettingLocalSaved().peekContent() ? View.VISIBLE : View.GONE}"
         tools:context=".ui.alarmsetting.AlarmSettingFragment">
 
         <ImageButton
@@ -102,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:checked="@{alarmSettingViewModel.isOnRoomStart}"
+                    android:checked="@{alarmSettingViewModel.alarmSettingValue.roomStart}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_room_start_desc"
@@ -165,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:checked="@{alarmSettingViewModel.isOnSpark}"
+                    android:checked="@{alarmSettingViewModel.alarmSettingValue.spark}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_send_spark_desc"
@@ -204,7 +207,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:checked="@{alarmSettingViewModel.isOnConsider}"
+                    android:checked="@{alarmSettingViewModel.alarmSettingValue.consider}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_consider_desc"
@@ -243,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:checked="@{alarmSettingViewModel.isOnCertification}"
+                    android:checked="@{alarmSettingViewModel.alarmSettingValue.certification}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_certification_desc"
@@ -306,7 +309,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:checked="@{alarmSettingViewModel.isOnRemind}"
+                    android:checked="@{alarmSettingViewModel.alarmSettingValue.remind}"
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     app:layout_constraintBottom_toBottomOf="@id/tv_alarm_setting_not_done_desc"

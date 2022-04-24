@@ -21,7 +21,7 @@ object SendSparkToast {
         if (toast != null) {
             requireNotNull(toast).apply {
                 setGravity(Gravity.TOP, 0, 20.toPx())
-                duration = Toast.LENGTH_LONG
+                duration = Toast.LENGTH_SHORT
                 view = binding.root
                 show()
             }

@@ -30,6 +30,9 @@ class WaitingRoomViewModel @Inject constructor(
     private val _refreshInfo = MutableLiveData<List<Member>>()
     val refreshInfo: LiveData<List<Member>> = _refreshInfo
 
+    private val _memberListSize = MutableLiveData<Int>()
+    val memberListSize: LiveData<Int> = _memberListSize
+
     fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
@@ -47,6 +50,10 @@ class WaitingRoomViewModel @Inject constructor(
         }
     }
 
+    fun initMemberListSize(){
+        _memberListSize.postValue(waitingRoomInfo.value?.members?.size ?: 0)
+    }
+
     fun getRefreshInfo(roomId: Int) {
         viewModelScope.launch {
             refreshRepository.getRefresh(roomId)
@@ -56,6 +63,10 @@ class WaitingRoomViewModel @Inject constructor(
                     Log.d("refreshPeopleList", it.message.toString())
                 }
         }
+    }
+
+    fun updateMemberListSize(){
+        _memberListSize.postValue(_refreshInfo.value?.size ?: 0)
     }
 
     fun startHabit(roomId: Int) {

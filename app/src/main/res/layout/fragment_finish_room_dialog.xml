@@ -36,8 +36,8 @@
             app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
             app:layout_constraintTop_toTopOf="@+id/iv_home_finish_dialog_background"
             app:lottie_autoPlay="true"
-            app:setFinishRoomDialogLottie="@{myStatus}"
-            app:lottie_loop="true" />
+            app:lottie_loop="true"
+            app:setFinishRoomDialogLottie="@{myStatus}" />
 
         <TextView
             android:id="@+id/tv_home_finish_dialog_title"
@@ -46,12 +46,12 @@
             android:layout_marginBottom="36dp"
             android:fontFamily="@font/futura_medium_italic"
             android:includeFontPadding="false"
-            app:setFinishRoomDialogTitle="@{myStatus}"
             android:textColor="@color/spark_dark_pinkred"
             android:textSize="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_home_finish_dialog_background"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_finish_dialog_background"
             app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
+            app:setFinishRoomDialogTitle="@{myStatus}"
             tools:text="Congratulations!" />
 
         <TextView
@@ -61,13 +61,13 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            app:setFinishRoomDialogContent="@{myStatus}"
             android:textAlignment="center"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_finish_dialog_background"
             app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_home_finish_dialog_title"
+            app:setFinishRoomDialogContent="@{myStatus}"
             tools:text="66간의 도전 성공!\n여기까지 달려온 나를 마음껏 칭찬해주기!" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -79,6 +79,7 @@
             android:background="@drawable/shape_insta_black_fiil_2"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
+            android:stateListAnimator="@null"
             android:text="@string/finish_room_dialog_dismiss_button"
             android:textColor="@color/spark_white"
             android:textSize="18dp"

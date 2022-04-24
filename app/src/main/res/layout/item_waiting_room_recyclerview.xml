@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="members"
             type="com.spark.android.data.remote.entity.response.Member" />
@@ -17,8 +18,8 @@
             android:id="@+id/iv_waiting_room_recyclerview_picture"
             setCircleImage="@{members.profileImg}"
             android:layout_width="60dp"
-            android:layout_marginStart="20dp"
             android:layout_height="60dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,15 +29,19 @@
             android:id="@+id/tv_waiting_room_recyclerview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="솨"
-            android:textColor="@color/spark_deep_gray"
-            android:textSize="16dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:ems="3"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
+            android:maxLines="1"
             android:text="@{members.nickname}"
-            android:layout_marginTop="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_waiting_room_recyclerview_picture"
             app:layout_constraintStart_toStartOf="@+id/iv_waiting_room_recyclerview_picture"
-            app:layout_constraintTop_toBottomOf="@+id/iv_waiting_room_recyclerview_picture" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_waiting_room_recyclerview_picture"
+            tools:text="이창환 빡빡머리" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

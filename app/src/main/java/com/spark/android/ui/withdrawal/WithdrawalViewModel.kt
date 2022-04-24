@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.spark.android.data.remote.repository.AlarmSettingRepository
 import com.spark.android.data.remote.repository.AuthRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WithdrawalViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val alarmSettingRepository: AlarmSettingRepository
 ) : ViewModel() {
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -32,6 +34,7 @@ class WithdrawalViewModel @Inject constructor(
         viewModelScope.launch {
             authRepository.deleteUser()
                 .onSuccess {
+                    alarmSettingRepository.saveAlarmSettingLocalSaved(false)
                     authRepository.removeAccessToken()
                     authRepository.removeKakaoUserId()
                     unLinkKakaoAccount()

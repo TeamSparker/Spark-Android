@@ -40,18 +40,29 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.waitingRoomBottomSheetViewModel=waitingRoomBottomSheetViewModel
+        binding.waitingRoomBottomSheetViewModel = waitingRoomBottomSheetViewModel
         initDeleteRoomButtonClickListener()
     }
 
     private fun initDeleteRoomButtonClickListener() {
         binding.tvWaitingRoomBottomSheetDeleteRoom.setOnClickListener {
+            var processedToastMessage = ""
+            if (waitingRoomBottomSheetViewModel.waitingRoomInfo.value?.roomName?.length ?: 8 > 8) {
+                processedToastMessage =
+                    requireNotNull(waitingRoomBottomSheetViewModel.waitingRoomInfo.value).roomName.slice(
+                        IntRange(0, 7)
+                    ) + "..."
+            } else {
+                processedToastMessage =
+                    requireNotNull(waitingRoomBottomSheetViewModel.waitingRoomInfo.value).roomName
+            }
+
             if (waitingRoomBottomSheetViewModel.waitingRoomInfo.value?.reqUser?.isHost == true) {
                 DialogUtil(WAITING_ROOM_BOTTOM_SHEET_HOST) {
                     waitingRoomBottomSheetViewModel.deleteWaitingRoom(
                         waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomId
                     )
-                    waitingRoomBottomSheetViewModel.setHomeToastMessage("'${waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomName}' 대기방이 삭제되었어요.")
+                    waitingRoomBottomSheetViewModel.setHomeToastMessage("'${processedToastMessage}' 대기방이 삭제되었어요.")
                     waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
                     dismiss()
                     requireActivity().finish()
@@ -61,7 +72,7 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
                     waitingRoomBottomSheetViewModel.leaveRoom(
                         waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomId
                     )
-                    waitingRoomBottomSheetViewModel.setHomeToastMessage("'${waitingRoomBottomSheetViewModel.waitingRoomInfo.value!!.roomName}' 대기방을 나갔어요.")
+                    waitingRoomBottomSheetViewModel.setHomeToastMessage("'${processedToastMessage}' 대기방을 나갔어요.")
                     waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
                     dismiss()
                     requireActivity().finish()

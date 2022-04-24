@@ -29,12 +29,12 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initRVAdapter()
         initHabitInfoObserver()
         initHabitRecordsObserver()
+        initRefreshSuccessObserver()
+        initExitSuccessObserver()
         setSwipeRefreshLayout()
         initHabitBackBtnClickListener()
         initHabitMoreBtnClickListener()
         initHabitTodayBtnClickListener()
-        setRefreshDataFragmentResultListener()
-        setExitHabitRoomFragmentResultListener()
         initHabitLifeLessDialog()
         checkUserGuideDialog()
     }
@@ -47,6 +47,26 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.habitInfo.observe(this) {
             habitRecyclerViewAdapter.response = it
             binding.habitViewModel = habitViewModel
+        }
+    }
+
+    private fun initRefreshSuccessObserver() {
+        habitViewModel.refreshSuccess.observe(this) {
+            if (habitViewModel.refreshSuccess.value == true) {
+                habitViewModel.initRefreshSuccess(false)
+                refreshData()
+            }
+        }
+    }
+
+    private fun initExitSuccessObserver() {
+        habitViewModel.exitSuccess.observe(this) {
+            if (habitViewModel.exitSuccess.value == true) {
+                habitViewModel.initExitSuccess(false)
+                LocalPreferences.setExitHabitRoomHomeToastMessage("‘${habitViewModel.habitInfo.value!!.roomName}’ 방을 나갔어요.")
+                LocalPreferences.setExitHabitRoomHomeToastMessageState(true)
+                finish()
+            }
         }
     }
 
@@ -95,27 +115,15 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         }
     }
 
-    private fun setRefreshDataFragmentResultListener() {
-        supportFragmentManager
-            .setFragmentResultListener("refreshHabitData", this) { requestKey, bundle ->
-                refreshData()
-            }
-    }
-
-    private fun setExitHabitRoomFragmentResultListener() {
-        supportFragmentManager
-            .setFragmentResultListener("exitHabitRoom", this) { requestKey, bundle ->
-                LocalPreferences.setExitHabitRoomHomeToastMessage("‘${habitViewModel.habitInfo.value!!.roomName}’ 방을 나갔어요.")
-                LocalPreferences.setExitHabitRoomHomeToastMessageState(true)
-                finish()
-            }
-    }
-
     private fun checkUserGuideDialog() {
         if (habitViewModel.getUserGuideDialogState()) {
-            UserGuideFragmentDialog().show(
-                supportFragmentManager, "UserGuideDialog"
-            )
+            var bundle = Bundle()
+            bundle.apply {
+                putBoolean("startPoint", HabitMoreBottomSheet.START_FROM_INIT_STATE)
+            }
+            UserGuideFragmentDialog().apply {
+                arguments = bundle
+            }.show(supportFragmentManager, "UserGuideDialog")
             habitViewModel.setUserGuideDialogState(false)
         }
     }

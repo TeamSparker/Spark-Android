@@ -45,13 +45,14 @@ class WaitingRoomFragment :
         binding.waitingRoomViewModel = waitingRoomViewModel
         initExtra()
         binding.startPoint = startPoint
-        if (startPoint != 2) {
+        if (startPoint != WaitingRoomActivity.START_FROM_CONFIRM_METHOD) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
         initWatitingRoomRecyclerViewAdapter()
 
         waitingRoomViewModel.waitingRoomInfo.observe(viewLifecycleOwner) {
             updateWatitingRoomRecyclerViewAdapter()
+            waitingRoomViewModel.initMemberListSize()
             initClipBoard()
             initTooltipButton()
         }
@@ -100,6 +101,8 @@ class WaitingRoomFragment :
         waitingRoomViewModel.getRefreshInfo(roomId)
         waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
             waitingRoomRecyclerViewAdapter.updateMemberList(it)
+            waitingRoomViewModel.updateMemberListSize()
+            binding.btnWaitingRoomRefresh.isEnabled = true
         }
     }
 
@@ -134,7 +137,7 @@ class WaitingRoomFragment :
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
             MakeRoomCheckFragmentDialog().show(
-                requireActivity().supportFragmentManager,"MakeROomCheckDialog"
+                requireActivity().supportFragmentManager,"MakeRoomCheckDialog"
             )
         }
     }
@@ -146,6 +149,8 @@ class WaitingRoomFragment :
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
             bundle.putString("roomName", waitingRoomViewModel.waitingRoomInfo.value?.roomName)
+            bundle.putString("moment", waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.moment ?: "")
+            bundle.putString("purpose", waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.purpose ?: "")
             setPurposeFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()
@@ -164,10 +169,6 @@ class WaitingRoomFragment :
             AnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             binding.btnWaitingRoomRefresh.isEnabled = false
             waitingRoomViewModel.getRefreshInfo(roomId)
-            waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
-                waitingRoomRecyclerViewAdapter.updateMemberList(it)
-                binding.btnWaitingRoomRefresh.isEnabled = true
-            }
         }
     }
 

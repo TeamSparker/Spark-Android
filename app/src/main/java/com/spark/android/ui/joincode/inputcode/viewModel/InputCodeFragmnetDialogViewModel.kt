@@ -39,13 +39,8 @@ class InputCodeFragmentDialogViewModel @Inject constructor(
             } catch (e: HttpException) {
                 val rawData = e.response()?.errorBody()?.byteString().toString()
                 val processedData = rawData.slice(IntRange(47, rawData.length - 4))
-                if (processedData == "이미 참여 중인 코드예요.") {
-                    _errorMessage.postValue("이미 참여 중인 코드예요.")
-                } else {
-                    _errorMessage.postValue("참여할 수 없는 코드예요.")
-                }
+                _errorMessage.postValue(processedData)
             }
-
         }
     }
 }

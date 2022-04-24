@@ -1,18 +1,19 @@
 package com.spark.android.ui.habit.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.HabitRecord
 import com.spark.android.data.remote.entity.response.HabitResponse
 import com.spark.android.databinding.ItemHabitTeamBinding
-import com.spark.android.ui.habit.HabitSendSparkBottomSheet
+import com.spark.android.ui.habit.HabitSendSparkActivity
 
-class HabitRecyclerViewAdapter : ListAdapter<HabitRecord, HabitRecyclerViewAdapter.HabitViewHolder>(habitDiffUtil) {
+class HabitRecyclerViewAdapter :
+    ListAdapter<HabitRecord, HabitRecyclerViewAdapter.HabitViewHolder>(habitDiffUtil) {
     lateinit var response: HabitResponse
 
     class HabitViewHolder(private val binding: ItemHabitTeamBinding, private val size: Int) :
@@ -25,10 +26,18 @@ class HabitRecyclerViewAdapter : ListAdapter<HabitRecord, HabitRecyclerViewAdapt
             binding.record = record
             binding.response = response
             binding.btnItemHabitTeamSend.setOnClickListener {
-                val habitSendSparkBottomSheet = HabitSendSparkBottomSheet()
-                habitSendSparkBottomSheet.setSelectedItem(record.nickname, record.recordId)
-                habitSendSparkBottomSheet.show((it.context as AppCompatActivity).supportFragmentManager,
-                    this.javaClass.name)
+//                val habitSendSparkBottomSheet = HabitSendSparkBottomSheet()
+//                habitSendSparkBottomSheet.setSelectedItem(record.nickname, record.recordId)
+//                habitSendSparkBottomSheet.show((it.context as AppCompatActivity).supportFragmentManager,
+//                    this.javaClass.name)
+
+                val intent = Intent(it.context, HabitSendSparkActivity::class.java)
+                intent.putExtra("roomId", response.roomId)
+                intent.putExtra("recordId", record.recordId)
+                intent.putExtra("nickname", record.nickname)
+                intent.putExtra("profileImg", record.profileImg)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                it.context.startActivity(intent)
             }
         }
     }

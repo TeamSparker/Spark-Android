@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
@@ -93,7 +91,7 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     private fun initConsiderBtnClickListener() {
         binding.btnHabitTodayConsider.setOnClickListener {
             habitViewModel.postStatus("CONSIDER")
-            setFragmentResult("refreshHabitData", bundleOf("bundleKey" to "consider"))
+            habitViewModel.initRefreshSuccess(true)
             dismiss()
         }
     }
@@ -108,7 +106,7 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     private fun showRestDialog() {
         DialogUtil(DialogUtil.HABIT_REST) {
             habitViewModel.postStatus("REST")
-            setFragmentResult("refreshHabitData", bundleOf("bundleKey" to "rest"))
+            habitViewModel.initRefreshSuccess(true)
         }.show(requireActivity().supportFragmentManager, this.javaClass.name)
     }
 

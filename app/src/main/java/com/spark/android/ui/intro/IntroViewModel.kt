@@ -22,19 +22,15 @@ class IntroViewModel @Inject constructor(
     val fcmToken: LiveData<String> = _fcmToken
 
     private val isSuccessGetToken = MutableLiveData(false)
-    //val isSuccessGetToken: LiveData<Event<Boolean>> = _isSuccessGetToken
 
     private val isEndLottie = MutableLiveData(false)
-    //val isEndLottie: LiveData<Boolean> = _isEndLottie
 
-    val isDone = MediatorLiveData<Boolean>()
-
-    fun addSourceToIsDone() {
-        isDone.addSource(isSuccessGetToken) { success ->
-            isDone.value = success && (isEndLottie.value ?: false)
+    val isDone = MediatorLiveData<Boolean>().apply {
+        addSource(isSuccessGetToken) { success ->
+            value = success && (isEndLottie.value ?: false)
         }
-        isDone.addSource(isEndLottie) { isEnd ->
-            isDone.value = isEnd && (isSuccessGetToken.value ?: false)
+        addSource(isEndLottie) { isEnd ->
+            value = isEnd && (isSuccessGetToken.value ?: false)
         }
     }
 
@@ -55,7 +51,9 @@ class IntroViewModel @Inject constructor(
                     socialId = localPreferencesDataSource.getUserKakaoUserId(),
                     fcmToken = requireNotNull(fcmToken.value)
                 ).onSuccess { response ->
-                    localPreferencesDataSource.saveAccessToken(response.data.accesstoken)
+                    if(!response.data.isNew){
+                        localPreferencesDataSource.saveAccessToken(response.data.accesstoken)
+                    }
                     isSuccessGetToken.postValue(true)
                 }.onFailure {
                     Log.d("Intro_GetAccessToken", it.message.toString())

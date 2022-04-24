@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
-import com.spark.android.data.remote.LocalPreferences
 import com.spark.android.databinding.BottomSheetHabitMoreBinding
+import com.spark.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.util.DialogEditTextUtil
 
@@ -40,6 +37,7 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
 
         initGoalBtnClickListener()
         initExitBtnClickListener()
+        initUserGuideBtnClickListener()
     }
 
     private fun initGoalBtnClickListener() {
@@ -67,13 +65,31 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
         habitViewModel.habitInfo.value?.roomName?.let { roomName ->
             DialogEditTextUtil(DialogEditTextUtil.EXIT_HABIT_ROOM, roomName) {
                 habitViewModel.leaveHabitRoom()
-                setFragmentResult("exitHabitRoom", bundleOf("bundleKey" to "exit"))
+                habitViewModel.initExitSuccess(true)
             }.show(requireActivity().supportFragmentManager, this.javaClass.name)
+        }
+    }
+
+    private fun initUserGuideBtnClickListener() {
+        binding.tvHabitMoreUserGuide.setOnClickListener {
+            var bundle = Bundle()
+            bundle.apply {
+                putBoolean("startPoint", START_FROM_HABIT_MORE_BUTTON)
+            }
+            UserGuideFragmentDialog().apply {
+                arguments = bundle
+            }.show(requireActivity().supportFragmentManager, "UserGuideDialog")
+            dismiss()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val START_FROM_HABIT_MORE_BUTTON = true
+        const val START_FROM_INIT_STATE = false
     }
 }
