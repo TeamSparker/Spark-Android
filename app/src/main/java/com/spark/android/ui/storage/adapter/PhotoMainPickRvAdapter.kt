@@ -8,31 +8,45 @@ import com.spark.android.R
 import com.spark.android.data.remote.entity.response.StorageCardPhoto
 import com.spark.android.databinding.ItemPhotoMainPickListBinding
 
-class PhotoMainPickRvAdapter(private val onPhotoCLick: (Int,Int) -> Unit) :
+class PhotoMainPickRvAdapter(private val setNewThumbnail: (Int, Int) -> Unit) :
     RecyclerView.Adapter<PhotoMainPickRvAdapter.PhotoMainPickRvViewHolder>() {
 
-    var photolist = listOf<StorageCardPhoto>()
+    var photoList = listOf<StorageCardPhoto>()
 
-
-    fun setList(list: List<StorageCardPhoto>) {
-        photolist = list
+    fun setPhotoMainList(list: List<StorageCardPhoto>) {
+        photoList = list
         notifyDataSetChanged()
     }
 
     class PhotoMainPickRvViewHolder(private val binding: ItemPhotoMainPickListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(storageCardPhoto: StorageCardPhoto, position: Int, onPhotoCLick: (Int,Int) -> Unit) {
+        fun onBind(
+            storageCardPhoto: StorageCardPhoto,
+            currentItemPos: Int,
+            thumbnailUrl: String,
+            setNewThumbnail: (Int, Int) -> Unit,
+        ) {
             binding.storageCardPhoto = storageCardPhoto
-            if (selectedItemPos == position) {
+
+            if(isInitialOpening == true){
+                if (storageCardPhoto.certifyingImg == thumbnailUrl) {
+                    currentThumbnailItemPos = currentItemPos
+                }
+            }
+
+            binding.ivMainPhotoPickItemRoundedCorner.setOnClickListener {
+                isInitialOpening = false
+                setNewThumbnail(currentItemPos, storageCardPhoto.recordId)
+                thumbnail = storageCardPhoto.certifyingImg
+            }
+
+            if (currentThumbnailItemPos == currentItemPos) {
                 binding.viewMainPhotoPickCardPickedBoundary.setBackgroundResource(R.drawable.shape_spark_pinkred_line_rect_2)
                 binding.tvMainPhotoPickTagMain.visibility = View.VISIBLE
             } else {
                 binding.viewMainPhotoPickCardPickedBoundary.setBackgroundResource(R.drawable.shape_spark_light_gray_line_rect_2)
                 binding.tvMainPhotoPickTagMain.visibility = View.INVISIBLE
-            }
-            binding.ivMainPhotoPickItemRoundedCorner.setOnClickListener {
-                onPhotoCLick(position,storageCardPhoto.recordId)
             }
         }
     }
@@ -45,13 +59,15 @@ class PhotoMainPickRvAdapter(private val onPhotoCLick: (Int,Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: PhotoMainPickRvViewHolder, position: Int) {
-        holder.onBind(photolist[position], position, onPhotoCLick)
+        holder.onBind(photoList[position], position, thumbnail, setNewThumbnail)
     }
 
-    override fun getItemCount(): Int = photolist.size
+    override fun getItemCount(): Int = photoList.size
 
     companion object {
-        var selectedItemPos = -1
+        var thumbnail = ""
+        var currentThumbnailItemPos = -1
+        var isInitialOpening = true
     }
 }
 

@@ -34,19 +34,15 @@ class PhotoViewModel : ViewModel() {
         _isLoading.value = isLoading
     }
 
-    fun isSelectable(position: Int): Boolean {
-        return (_photoCollectionResponse.value?.records?.get(position)?.status == "DONE")
-    }
-
-    fun setPatchRoomId(patchRoomId : Int){
+    fun setPatchRoomId(patchRoomId: Int) {
         _patchRoomId.postValue(patchRoomId)
     }
 
-    fun setPatchRecordId(patchRecordId : Int){
+    fun setPatchRecordId(patchRecordId: Int) {
         _patchRecordId.postValue(patchRecordId)
     }
 
-    fun initPhotoCollectionNetwork(roomId: Int, lastId: Int, size: Int) {
+    fun initGetPhotoCollectionNetwork(roomId: Int, lastId: Int, size: Int) {
         initIsLoading(true)
         val call: Call<BaseResponse<PhotoCollectionResponse>> =
             RetrofitBuilder.photoCollectionService.getPhotoCollectionData(roomId, lastId, size)
@@ -72,10 +68,13 @@ class PhotoViewModel : ViewModel() {
         })
     }
 
-    fun initPhotoMainNetwork() {
+    fun initPatchPhotoMainNetwork() {
         initIsLoading(true)
         val call: Call<NoDataResponse> =
-            RetrofitBuilder.photoMainService.patchPhotoMainData(patchRoomId.value?:0, patchRecordId.value?:0)
+            RetrofitBuilder.photoMainService.patchPhotoMainData(
+                patchRoomId.value ?: 0,
+                patchRecordId.value ?: 0
+            )
         call.enqueue(object : Callback<NoDataResponse> {
 
             override fun onResponse(
