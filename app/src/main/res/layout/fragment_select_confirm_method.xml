@@ -188,7 +188,7 @@
             android:stateListAnimator="@null"
             android:text="@string/select_confirm_method_enter_waiting"
             android:textColor="@color/spark_white"
-            android:textSize="19dp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
