@@ -127,6 +127,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="40dp"
             android:background="@{nameSettingViewModel.habitName.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active }"
+            android:clickable="@{nameSettingViewModel.habitName.length() == 0 ? false : true }"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
             android:stateListAnimator="@null"
