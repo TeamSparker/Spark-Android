@@ -111,6 +111,8 @@ class FeedViewModel @Inject constructor(
         _feedList.value = requireNotNull(_feedList.value).toMutableList().apply { add(loadingItem) }
     }
 
+    fun canGetNewFeeds() = !isAddLoading && !isRefresh
+
     fun refreshFeedList() {
         lastId = -1
         hasNextPage = true

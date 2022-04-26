@@ -39,7 +39,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     }
 
     private fun initSwipeRefreshLayout() {
-        with(binding.swipeFeed) {
+        with(binding.swipeRefreshFeed) {
             setColorSchemeColors(requireContext().getColor(R.color.spark_pinkred))
             setOnRefreshListener {
                 feedViewModel.refreshFeedList()
@@ -76,7 +76,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
                 val layoutManager = binding.rvFeed.layoutManager as LinearLayoutManager
                 val lastPosition = layoutManager.findLastCompletelyVisibleItemPosition()
                 if (feedViewModel.hasNextPage) {
-                    if (!feedViewModel.isAddLoading && layoutManager.itemCount <= lastPosition + LOAD_POSITION &&
+                    if (feedViewModel.canGetNewFeeds() && layoutManager.itemCount <= lastPosition + LOAD_POSITION &&
                         !binding.rvFeed.canScrollVertically(STATE_LOWEST)
                     ) {
                         feedViewModel.getFeedList()
