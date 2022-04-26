@@ -25,7 +25,6 @@ class HomeMainViewModel @Inject constructor(
     private val _toastMessage = MutableLiveData("")
     val toastMessage: LiveData<String> = _toastMessage
 
-
     var lastId = -1
         private set
 
@@ -33,6 +32,9 @@ class HomeMainViewModel @Inject constructor(
         private set
 
     var isAddLoading = false
+        private set
+
+    var isRefresh = false
         private set
 
     private val loadingItem = Room(
@@ -56,7 +58,7 @@ class HomeMainViewModel @Inject constructor(
     fun recoverHomeAllRoom(size: Int) {
         viewModelScope.launch {
             _isLoading.value = true
-            homeRepository.getHomeAllRoom(-1 , size)
+            homeRepository.getHomeAllRoom(-1, size)
                 .onSuccess {
                     _roomList.postValue(it.data.rooms)
                 }.onFailure {
@@ -76,6 +78,7 @@ class HomeMainViewModel @Inject constructor(
         viewModelScope.launch {
             homeRepository.getHomeAllRoom(lastId, LIST_LIMIT)
                 .onSuccess { response ->
+                    isRefresh = false
                     val tempHomeList = response.data.rooms
                     if (tempHomeList.isNotEmpty()) {
                         lastId = tempHomeList.last().roomId
@@ -83,7 +86,7 @@ class HomeMainViewModel @Inject constructor(
                     if (tempHomeList.size < LIST_LIMIT && lastId != -1) {
                         hasNextPage = false
                     }
-                    isAddLoading=false
+                    isAddLoading = false
                     updateIsLoading(false)
                     _roomList.postValue(
                         requireNotNull(_roomList.value).toMutableList().apply {
@@ -92,7 +95,7 @@ class HomeMainViewModel @Inject constructor(
                         }
                     )
                 }.onFailure {
-                    Log.d("Home_GetHomeAllRoom",it.message.toString())
+                    Log.d("Home_GetHomeAllRoom", it.message.toString())
                 }
         }
     }
@@ -124,6 +127,16 @@ class HomeMainViewModel @Inject constructor(
 
     fun setHomeToastMessageState(state: Boolean) {
         homeRepository.setHomeToastMessageState(state)
+    }
+
+    fun canGetNewRooms() = !isAddLoading && !isRefresh
+
+    fun refreshHomeRoom() {
+        lastId = -1
+        hasNextPage = true
+        isRefresh = true
+        _roomList.value = mutableListOf()
+        getHomeAllRoom()
     }
 
     companion object {
