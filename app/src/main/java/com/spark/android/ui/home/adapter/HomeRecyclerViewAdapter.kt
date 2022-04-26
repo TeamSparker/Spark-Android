@@ -16,6 +16,7 @@ import com.spark.android.ui.home.adapter.multiview.INFINITE_LOADING
 import com.spark.android.ui.home.adapter.multiview.TICKET_STARTED
 import com.spark.android.ui.home.adapter.multiview.TICKET_WAITING
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_HOME
 import java.lang.RuntimeException
 
 class HomeRecyclerViewAdapter(
@@ -111,7 +112,7 @@ class HomeRecyclerViewAdapter(
             itemView.setOnClickListener {
                 val intent = Intent(it.context, WaitingRoomActivity::class.java).apply {
                     putExtra("roomId", getItem(absoluteAdapterPosition).roomId)
-                    putExtra("startPoint", WaitingRoomActivity.START_FROM_HOME)
+                    putExtra("startPoint", START_FROM_HOME)
                 }
                 startActivity(it.context, intent, null)
             }

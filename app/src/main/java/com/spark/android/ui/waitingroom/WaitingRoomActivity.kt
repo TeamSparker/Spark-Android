@@ -1,5 +1,6 @@
 package com.spark.android.ui.waitingroom
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.spark.android.R
@@ -29,24 +30,23 @@ class WaitingRoomActivity :
 
     private fun initExtra() {
         roomId = intent.getIntExtra("roomId", -1)
-        startPoint = intent.getIntExtra("startPoint",1)
+        startPoint = intent.getIntExtra("startPoint", START_FROM_HOME)
     }
 
     private fun initTransactionEvent() {
-        val waitingRoomFragment = WaitingRoomFragment()
-        val checkRoomFragment = CheckRoomFragment()
+
         var bundle = Bundle()
         bundle.putInt("roomId", roomId)
-        bundle.putInt("startPoint",startPoint)
-        waitingRoomFragment.arguments = bundle
-        checkRoomFragment.arguments = bundle
+        bundle.putInt("startPoint", startPoint)
 
-        if(startPoint == 1 || startPoint == 3) {
+        if (startPoint == START_FROM_HOME || startPoint == START_FROM_JOIN_CODE) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.container_waiting_room, waitingRoomFragment).commit()
+                .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java, bundle)
+                .commit()
         } else {
             supportFragmentManager.beginTransaction()
-                .add(R.id.container_waiting_room, checkRoomFragment).commit()
+                .replace(R.id.container_waiting_room, CheckRoomFragment::class.java, bundle)
+                .commit()
         }
     }
 

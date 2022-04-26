@@ -16,6 +16,8 @@ import com.spark.android.databinding.FragmentSetPurposeBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_HOME
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_JOIN_CODE
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.util.AnimationUtil
 import com.spark.android.util.EditTextUtil
@@ -32,6 +34,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
     private lateinit var roomName: String
     private lateinit var moment: String
     private lateinit var purpose: String
+    private var startPoint by Delegates.notNull<Int>()
     private var layoutState = false
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
     private lateinit var callback: OnBackPressedCallback
@@ -40,15 +43,13 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         super.onAttach(context)
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                val waitingRoomFragment = WaitingRoomFragment()
 
                 var bundle = Bundle()
                 bundle.putInt("roomId", roomId)
-                bundle.putInt("startPoint", WaitingRoomActivity.START_FROM_HOME)
-                waitingRoomFragment.arguments = bundle
+                bundle.putInt("startPoint", startPoint)
 
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
+                    .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
@@ -75,6 +76,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         roomName = arguments?.getString("roomName").toString()
         moment = arguments?.getString("moment").toString()
         purpose = arguments?.getString("purpose").toString()
+        startPoint = arguments?.getInt("startPoint") ?: START_FROM_JOIN_CODE
     }
 
     private fun initLastPurpose(){
@@ -205,30 +207,26 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                 )
             )
             setPurposeViewModel.networkState.observe(viewLifecycleOwner) {
-                val waitingRoomFragment = WaitingRoomFragment()
 
                 var bundle = Bundle()
                 bundle.putInt("roomId", roomId)
-                bundle.putInt("startPoint",WaitingRoomActivity.START_FROM_HOME)
-                waitingRoomFragment.arguments = bundle
+                bundle.putInt("startPoint",startPoint)
 
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
+                    .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
             }
         }
     }
 
     private fun initsettingPurposeBackButton() {
         binding.btnSetPurposeQuit.setOnClickListener {
-            val waitingRoomFragment = WaitingRoomFragment()
 
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
-            bundle.putInt("startPoint", WaitingRoomActivity.START_FROM_HOME)
-            waitingRoomFragment.arguments = bundle
+            bundle.putInt("startPoint", startPoint)
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
+                .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
         }
     }
 

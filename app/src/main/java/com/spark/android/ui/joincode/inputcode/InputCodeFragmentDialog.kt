@@ -16,6 +16,7 @@ import androidx.fragment.app.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentInputCodeDialogBinding
 import com.spark.android.ui.joincode.JoinCodeActivity
+import com.spark.android.ui.joincode.JoinCodeActivity.Companion.GO_TO_WAITING_ROOM
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
 import com.spark.android.util.AnimationUtil
 import com.spark.android.util.EventObserver
@@ -75,8 +76,8 @@ class InputCodeFragmentDialog : DialogFragment() {
         getResultState = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){ result ->
             if(result.resultCode == RESULT_OK){
-                val state = result.data?.getBooleanExtra("finishState",true)
-                if(state == true){
+                val state = result.data?.getBooleanExtra("finishState",GO_TO_WAITING_ROOM)
+                if(state == GO_TO_WAITING_ROOM){
                     dismiss()
                 }
             }

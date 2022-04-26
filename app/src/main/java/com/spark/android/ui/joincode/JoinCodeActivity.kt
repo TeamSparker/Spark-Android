@@ -10,6 +10,7 @@ import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.joincode.viewmodel.JoinCodeViewModel
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_JOIN_CODE
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,7 +69,7 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
             joinCodeViewModel.setJoinCodeRoomDone(roomInfo.roomId)
             val intent = Intent(this, WaitingRoomActivity::class.java).apply {
                 putExtra("roomId", roomInfo.roomId)
-                putExtra("startPoint", WaitingRoomActivity.START_FROM_JOIN_CODE)
+                putExtra("startPoint", START_FROM_JOIN_CODE)
             }
             startActivity(intent)
             val resultIntent = Intent(this,MainActivity::class.java).apply {
