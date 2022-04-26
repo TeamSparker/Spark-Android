@@ -21,6 +21,8 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.spark.android.ui.setpurpose.SetPurposeFragment
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_CONFIRM_METHOD
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_HOME
 import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
 import com.spark.android.ui.waitingroom.bottomsheet.WaitingRoomFragmentBottomSheet
 import com.spark.android.ui.waitingroom.makeroomcheckdialog.MakeRoomCheckFragmentDialog
@@ -45,7 +47,7 @@ class WaitingRoomFragment :
         binding.waitingRoomViewModel = waitingRoomViewModel
         initExtra()
         binding.startPoint = startPoint
-        if (startPoint != WaitingRoomActivity.START_FROM_CONFIRM_METHOD) {
+        if (startPoint != START_FROM_CONFIRM_METHOD) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
         initWatitingRoomRecyclerViewAdapter()
@@ -66,7 +68,8 @@ class WaitingRoomFragment :
 
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
-        startPoint = arguments?.getInt("startPoint", 1) ?: 1
+        startPoint = arguments?.getInt("startPoint", START_FROM_HOME)
+            ?: START_FROM_HOME
     }
 
     private fun initClipBoard() {
@@ -137,24 +140,30 @@ class WaitingRoomFragment :
     private fun initMakeRoomButtonListener() {
         binding.btnWaitingRoomStartHabit.setOnClickListener {
             MakeRoomCheckFragmentDialog().show(
-                requireActivity().supportFragmentManager,"MakeRoomCheckDialog"
+                requireActivity().supportFragmentManager, "MakeRoomCheckDialog"
             )
         }
     }
 
     private fun initSetPurposeButtonListener() {
         binding.btnWaitingRoomEditPurpose.setOnClickListener {
-            val setPurposeFragment = SetPurposeFragment()
 
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
             bundle.putString("roomName", waitingRoomViewModel.waitingRoomInfo.value?.roomName)
-            bundle.putString("moment", waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.moment ?: "")
-            bundle.putString("purpose", waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.purpose ?: "")
-            setPurposeFragment.arguments = bundle
+            bundle.putString(
+                "moment",
+                waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.moment ?: ""
+            )
+            bundle.putString(
+                "purpose",
+                waitingRoomViewModel.waitingRoomInfo.value?.reqUser?.purpose ?: ""
+            )
+            bundle.putInt("startPoint", startPoint)
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_waiting_room, setPurposeFragment).commit()
+                .replace(R.id.container_waiting_room, SetPurposeFragment::class.java, bundle)
+                .commit()
         }
     }
 
@@ -172,16 +181,19 @@ class WaitingRoomFragment :
         }
     }
 
-    private fun initExtraMenuButton(){
+    private fun initExtraMenuButton() {
         binding.btnWaitingRoomExtraMenu.setOnClickListener {
             val waitingRoomFragmentBottomSheet = WaitingRoomFragmentBottomSheet()
-            waitingRoomFragmentBottomSheet.show(requireActivity().supportFragmentManager,waitingRoomFragmentBottomSheet.tag)
+            waitingRoomFragmentBottomSheet.show(
+                requireActivity().supportFragmentManager,
+                waitingRoomFragmentBottomSheet.tag
+            )
         }
     }
 
     override fun onPause() {
         super.onPause()
-        if(::toastAnimation.isInitialized) {
+        if (::toastAnimation.isInitialized) {
             toastAnimation.cancel()
         }
     }

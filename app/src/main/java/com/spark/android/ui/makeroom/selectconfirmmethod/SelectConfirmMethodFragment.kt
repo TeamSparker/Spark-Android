@@ -14,6 +14,7 @@ import com.spark.android.databinding.FragmentSelectConfirmMethodBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.makeroom.selectconfirmmethod.viewmodel.SelectConfirmMethodViewModel
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_CONFIRM_METHOD
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.CHECK_CONFIRM_MODE
@@ -56,7 +57,7 @@ class SelectConfirmMethodFragment :
                 selectConfirmMethodViewModel.roomId.observe(viewLifecycleOwner) {
                     val intent = Intent(requireActivity(), WaitingRoomActivity::class.java).apply {
                         putExtra("roomId", selectConfirmMethodViewModel.roomId.value)
-                        putExtra("startPoint", WaitingRoomActivity.START_FROM_CONFIRM_METHOD)
+                        putExtra("startPoint", START_FROM_CONFIRM_METHOD)
                     }
                     startActivity(intent)
 

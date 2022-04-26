@@ -16,6 +16,8 @@ import androidx.fragment.app.activityViewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentCheckRoomBinding
 import com.spark.android.ui.base.BaseFragment
+import com.spark.android.ui.waitingroom.WaitingRoomActivity
+import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_CONFIRM_METHOD
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import com.spark.android.util.AnimationUtil
@@ -46,7 +48,7 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
 
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
-        startPoint = arguments?.getInt("startPoint",1) ?: 1
+        startPoint = arguments?.getInt("startPoint", START_FROM_CONFIRM_METHOD) ?: START_FROM_CONFIRM_METHOD
     }
 
     private fun initClipBoard() {
@@ -80,14 +82,13 @@ class CheckRoomFragment : BaseFragment<FragmentCheckRoomBinding>(R.layout.fragme
 
     private fun initMoveWaitingRoomButton(){
         binding.btnCheckRoomMoveWaitingRoom.setOnClickListener {
-            val waitingRoomFragment = WaitingRoomFragment()
+
             var bundle = Bundle()
             bundle.putInt("roomId", roomId)
             bundle.putInt("startPoint", startPoint)
-            waitingRoomFragment.arguments = bundle
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_waiting_room, waitingRoomFragment).commit()
+                .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
         }
     }
 
