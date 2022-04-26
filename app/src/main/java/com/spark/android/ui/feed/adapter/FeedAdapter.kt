@@ -19,8 +19,7 @@ import java.lang.IllegalStateException
 class FeedAdapter(
     private val postHeart: (FeedListItem) -> Unit,
     private val showMore: (Int) -> Unit
-) :
-    ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
+) : ListAdapter<FeedListItem, RecyclerView.ViewHolder>(feedDiffUtil) {
     class FeedHeaderViewHolder(private val binding: ItemFeedHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(feedListItem: FeedListItem) {

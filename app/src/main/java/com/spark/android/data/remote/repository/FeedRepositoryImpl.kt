@@ -32,10 +32,15 @@ class FeedRepositoryImpl @Inject constructor(
     ): Result<NoDataResponse> =
         kotlin.runCatching { feedDataSource.postFeedReport(recordId, body) }
 
-    override fun addHeaderToFeedList(feedList: List<Feed>): MutableList<FeedListItem> {
+    override fun addHeaderToFeedList(
+        feedList: List<Feed>,
+        isRefresh: Boolean
+    ): MutableList<FeedListItem> {
+        var isRefreshHeader = isRefresh
         val feedListWithHeader = mutableListOf<FeedListItem>()
         feedList.forEachIndexed { index, feed ->
-            if (feed.date != shownDate) {
+            if (feed.date != shownDate || isRefreshHeader) {
+                isRefreshHeader = false
                 shownDate = feed.date
                 feedListWithHeader.add(
                     FeedListItem(

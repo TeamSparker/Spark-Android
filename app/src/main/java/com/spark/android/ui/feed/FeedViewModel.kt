@@ -29,6 +29,9 @@ class FeedViewModel @Inject constructor(
     var isAddLoading = false
         private set
 
+    var isRefresh = false
+        private set
+
     private val _isFeedEmpty = MutableLiveData(false)
     val isFeedEmpty: LiveData<Boolean> = _isFeedEmpty
 
@@ -83,7 +86,8 @@ class FeedViewModel @Inject constructor(
                     } else if (lastId == -1) {
                         initIsFeedEmpty()
                     }
-                    val feeds = feedRepository.addHeaderToFeedList(tempFeeds)
+                    val feeds = feedRepository.addHeaderToFeedList(tempFeeds, isRefresh)
+                    isRefresh = false
                     if (tempFeeds.size < listLimit && lastId != -1) {
                         hasNextPage = false
                         feeds.add(
@@ -105,6 +109,14 @@ class FeedViewModel @Inject constructor(
 
     private fun addLoadingItem() {
         _feedList.value = requireNotNull(_feedList.value).toMutableList().apply { add(loadingItem) }
+    }
+
+    fun refreshFeedList() {
+        lastId = -1
+        hasNextPage = true
+        isRefresh = true
+        _feedList.value = mutableListOf()
+        getFeedList()
     }
 
     companion object {
