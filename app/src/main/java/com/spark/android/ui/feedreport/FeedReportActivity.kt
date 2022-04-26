@@ -19,6 +19,7 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
         initFeedItemId()
         initIsFocused()
         initIsSuccessReportObserver()
+        initBackBtnClickListener()
     }
 
     private fun initFeedItemId() {
@@ -37,5 +38,11 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
                 finish()
             }
         })
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnFeedReportBack.setOnClickListener {
+            finish()
+        }
     }
 }
