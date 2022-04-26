@@ -16,6 +16,10 @@ class HomeMainViewModel @Inject constructor(
     private val homeRepository: HomeRepository
 ) : ViewModel() {
 
+    init {
+        getHomeNoticeRedDot()
+    }
+
     private val _roomList = MutableLiveData(listOf<Room>())
     val roomList: LiveData<List<Room>> = _roomList
 
@@ -24,6 +28,9 @@ class HomeMainViewModel @Inject constructor(
 
     private val _toastMessage = MutableLiveData("")
     val toastMessage: LiveData<String> = _toastMessage
+
+    private val _noticeRedDot = MutableLiveData(false)
+    val noticeRedDot: LiveData<Boolean> = _noticeRedDot
 
     var lastId = -1
         private set
@@ -109,6 +116,18 @@ class HomeMainViewModel @Inject constructor(
         viewModelScope.launch {
             homeRepository.readFinishHabitRoom(roomId)
                 .onFailure { Log.d("Home_main_error_finish_room", it.message.toString()) }
+        }
+    }
+
+    private fun  getHomeNoticeRedDot(){
+        viewModelScope.launch {
+            homeRepository.getHomeNoticeRedDot()
+                .onSuccess {
+                    _noticeRedDot.postValue(it.data.newNotice)
+                }
+                .onFailure {
+                    Log.d("Home_main_error_get_home_notice_red_dot", it.message.toString())
+                }
         }
     }
 
