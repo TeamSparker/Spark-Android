@@ -46,6 +46,7 @@ class AlarmCenterActivity :
 
     private fun initVpAlarmCenterAdapter() {
         binding.vpAlarmCenter.apply {
+            isUserInputEnabled = false
             adapter = object : FragmentStateAdapter(this@AlarmCenterActivity) {
                 override fun getItemCount() = VP_ITEM_COUNT
 
