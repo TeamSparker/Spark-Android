@@ -32,9 +32,20 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
         binding.feedViewModel = feedViewModel
         feedViewModel.initShownDate()
         feedViewModel.getFeedList()
+        initSwipeRefreshLayout()
         initFeedRvAdapter()
         addScrollListenerToFeedRv()
         initFeedListObserver()
+    }
+
+    private fun initSwipeRefreshLayout() {
+        with(binding.swipeFeed) {
+            setColorSchemeColors(requireContext().getColor(R.color.spark_pinkred))
+            setOnRefreshListener {
+                feedViewModel.refreshFeedList()
+                isRefreshing = false
+            }
+        }
     }
 
     private fun initFeedRvAdapter() {

@@ -16,7 +16,7 @@ interface FeedRepository {
 
     suspend fun postFeedReport(recordId: Int, body: FeedReportRequest): Result<NoDataResponse>
 
-    fun addHeaderToFeedList(feedList: List<Feed>): MutableList<FeedListItem>
+    fun addHeaderToFeedList(feedList: List<Feed>, isRefresh: Boolean): MutableList<FeedListItem>
 
     fun formatDate(date: String): String
 
