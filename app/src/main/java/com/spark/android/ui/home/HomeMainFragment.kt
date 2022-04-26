@@ -33,7 +33,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
         binding.homeViewModel = homeMainViewModel
         homeMainViewModel.getHomeAllRoom()
-
+        initSwipeRefreshLayout()
         initHomeRecyclerViewAdapter()
         addScrollListenerToHomeRv()
         initHomeListObserver()
@@ -46,6 +46,15 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         showToastMessage()
     }
 
+    private fun initSwipeRefreshLayout() {
+        with(binding.swipeRefreshHome) {
+            setColorSchemeColors(requireContext().getColor(R.color.spark_pinkred))
+            setOnRefreshListener {
+                homeMainViewModel.refreshHomeRoom()
+                isRefreshing = false
+            }
+        }
+    }
 
     private fun addScrollListenerToHomeRv() {
         binding.rvHomeTicket.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -54,7 +63,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
                 val layoutManager = binding.rvHomeTicket.layoutManager as LinearLayoutManager
                 val lastPosition = layoutManager.findLastCompletelyVisibleItemPosition()
                 if (homeMainViewModel.hasNextPage) {
-                    if (!homeMainViewModel.isAddLoading && layoutManager.itemCount <= lastPosition + LOAD_POSITION &&
+                    if (homeMainViewModel.canGetNewRooms() && layoutManager.itemCount <= lastPosition + LOAD_POSITION &&
                         !binding.rvHomeTicket.canScrollVertically(STATE_LOWEST)
                     ) {
 
