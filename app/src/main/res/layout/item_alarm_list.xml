@@ -22,7 +22,7 @@
             android:id="@+id/view_alarm_list_top"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/spark_gray"
+            android:background="@color/spark_gray_opacity_30"
             android:visibility="@{alarm.isFirst? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toTopOf="parent" />
 
