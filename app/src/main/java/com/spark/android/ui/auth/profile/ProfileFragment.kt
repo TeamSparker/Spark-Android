@@ -1,21 +1,14 @@
 package com.spark.android.ui.auth.profile
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.spark.android.R
 import com.spark.android.databinding.FragmentProfileBinding
 import com.spark.android.ui.base.BaseFragment
@@ -49,7 +42,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         profileViewModel.initFcmToken()
         initModifyMode()
         initStatusBarStyle()
-        hideKeyBoard()
+        initLayoutClickListener()
         initIsFocused()
         initQuitBtnClickListener()
         initPictureBtnClickListener()
@@ -74,7 +67,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         requireActivity().initStatusBarTextColorToWhite()
     }
 
-    private fun hideKeyBoard() {
+    private fun initLayoutClickListener() {
         binding.layoutProfile.setOnClickListener {
             KeyBoardUtil.hide(requireActivity())
         }

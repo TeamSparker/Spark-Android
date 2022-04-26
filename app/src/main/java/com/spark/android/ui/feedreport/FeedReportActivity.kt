@@ -7,6 +7,7 @@ import com.spark.android.databinding.ActivityFeedReportBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.feed.FeedBottomSheet.Companion.FEED_ITEM_ID
 import com.spark.android.util.EventObserver
+import com.spark.android.util.KeyBoardUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,12 +18,20 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
         super.onCreate(savedInstanceState)
         binding.feedReportViewModel = feedReportViewModel
         initFeedItemId()
+        initLayoutClickListener()
         initIsFocused()
         initIsSuccessReportObserver()
+        initBackBtnClickListener()
     }
 
     private fun initFeedItemId() {
         feedReportViewModel.initFeedItemId(intent.getIntExtra(FEED_ITEM_ID, -1))
+    }
+
+    private fun initLayoutClickListener() {
+        binding.layoutFeedReport.setOnClickListener {
+            KeyBoardUtil.hide(this)
+        }
     }
 
     private fun initIsFocused() {
@@ -37,5 +46,11 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
                 finish()
             }
         })
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnFeedReportBack.setOnClickListener {
+            finish()
+        }
     }
 }
