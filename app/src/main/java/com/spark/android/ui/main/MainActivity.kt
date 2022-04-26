@@ -12,6 +12,7 @@ import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.CertifyActivity.Companion.FROM_CERTIFY_ACTIVITY
 import com.spark.android.ui.feed.FeedFragmentDirections
+import com.spark.android.ui.feedreport.FeedReportActivity.Companion.FROM_FEED_REPORT_ACTIVITY
 import com.spark.android.ui.home.HomeMainFragmentDirections
 import com.spark.android.ui.joincode.inputcode.InputCodeFragmentDialog
 import com.spark.android.ui.main.viewmodel.MainViewModel
@@ -87,7 +88,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun initTabPositionFromOthers() {
         when (intent.getStringExtra(FROM_WHERE)) {
-            FROM_CERTIFY_ACTIVITY -> {
+            FROM_CERTIFY_ACTIVITY, FROM_FEED_REPORT_ACTIVITY -> {
                 mainViewModel.initTabPositionFeed()
             }
             FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY -> {
