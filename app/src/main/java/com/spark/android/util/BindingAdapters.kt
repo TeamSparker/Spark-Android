@@ -19,7 +19,7 @@ object BindingAdapters {
     fun setProfileImg(imageview: ImageView, imgUri: Uri?) {
         if (imgUri == null) {
             Glide.with(imageview.context)
-                .load(R.drawable.ic_profile_photo)
+                .load(R.drawable.ic_profile_empty)
                 .placeholder(R.drawable.shape_light_gray_line_circle)
                 .error(R.drawable.shape_light_gray_line_circle)
                 .circleCrop()

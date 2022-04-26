@@ -64,6 +64,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         if (args.modifyMode) {
             profileViewModel.initOldNickname(args.nickname)
             profileViewModel.initOldProfileImgUrl(args.profileImgUrl)
+        } else {
+            profileViewModel.deleteProfileImg()
         }
     }
 
