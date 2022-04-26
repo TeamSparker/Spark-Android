@@ -127,6 +127,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/iv_home_tool_bar_notice_red_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_home_notice_red_dot"
+                    android:visibility="@{homeViewModel.noticeRedDot ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_home_tool_bar_alarm_center"
+                    app:layout_constraintTop_toTopOf="@+id/btn_home_tool_bar_alarm_center" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView

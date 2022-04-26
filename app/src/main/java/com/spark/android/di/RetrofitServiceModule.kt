@@ -91,4 +91,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideAlarmCenterService(retrofit: Retrofit): AlarmCenterService =
         retrofit.create(AlarmCenterService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideHomeNoticeRedDotService(retrofit: Retrofit): HomeNoticeRedDotService =
+        retrofit.create(HomeNoticeRedDotService::class.java)
 }

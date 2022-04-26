@@ -46,9 +46,10 @@ object RemoteDataSourceModule {
     @Singleton
     fun providesRemoteHomeDataSource(
         homeHabitRoomFinishService: HomeHabitRoomFinishService,
-        homeService: HomeService
+        homeService: HomeService,
+        homeNoticeRedDotService: HomeNoticeRedDotService
     ): RemoteHomeDataSource =
-        RemoteHomeDataSourceImpl(homeHabitRoomFinishService, homeService)
+        RemoteHomeDataSourceImpl(homeHabitRoomFinishService, homeService, homeNoticeRedDotService)
 
     @Provides
     @Singleton
