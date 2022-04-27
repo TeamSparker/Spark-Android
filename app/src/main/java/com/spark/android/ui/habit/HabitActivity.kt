@@ -62,8 +62,12 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
     private fun initExitSuccessObserver() {
         habitViewModel.exitSuccess.observe(this) {
             if (habitViewModel.exitSuccess.value == true) {
+                var toastMessage = habitViewModel.habitInfo.value!!.roomName
+                if(toastMessage.length > 8) {
+                    toastMessage = toastMessage.chunked(8)[0] + "..."
+                }
                 habitViewModel.initExitSuccess(false)
-                LocalPreferences.setExitHabitRoomHomeToastMessage("‘${habitViewModel.habitInfo.value!!.roomName}’ 방을 나갔어요.")
+                LocalPreferences.setExitHabitRoomHomeToastMessage("‘${toastMessage}’ 방을 나갔어요.")
                 LocalPreferences.setExitHabitRoomHomeToastMessageState(true)
                 finish()
             }
