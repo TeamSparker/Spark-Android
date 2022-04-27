@@ -26,6 +26,7 @@ class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteV
                 intent.apply {
                     putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                     putExtra("thumbnail", requireNotNull(binding.storageRoom).thumbnail)
+                    putExtra("cardType","incompleteCard")
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 incompleteCard.context.startActivity(intent)

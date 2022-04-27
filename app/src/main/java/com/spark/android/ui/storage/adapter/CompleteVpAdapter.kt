@@ -27,6 +27,7 @@ class CompleteVpAdapter : RecyclerView.Adapter<CompleteVpAdapter.CompleteVpViewH
                 intent.apply {
                     putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                     putExtra("thumbnail", requireNotNull(binding.storageRoom).thumbnail)
+                    putExtra("cardType","completeCard")
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 completeCard.context.startActivity(intent)

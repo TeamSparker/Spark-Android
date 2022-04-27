@@ -9,8 +9,7 @@
         android:id="@+id/homeMainFragment"
         android:name="com.spark.android.ui.home.HomeMainFragment"
         android:label="HomeMainFragment"
-        tools:layout="@layout/fragment_home_main"
-        >
+        tools:layout="@layout/fragment_home_main">
         <action
             android:id="@+id/action_homeMainFragment_to_storageFragment"
             app:destination="@id/storageFragment"
@@ -31,8 +30,7 @@
         android:id="@+id/feedFragment"
         android:name="com.spark.android.ui.feed.FeedFragment"
         android:label="FeedFragment"
-        tools:layout="@layout/fragment_feed"
-        >
+        tools:layout="@layout/fragment_feed">
         <action
             android:id="@+id/action_feedFragment_to_homeMainFragment"
             app:destination="@id/homeMainFragment"
