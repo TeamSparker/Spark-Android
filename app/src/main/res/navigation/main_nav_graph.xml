@@ -67,5 +67,10 @@
             app:destination="@id/storageFragment"
             app:popUpTo="@id/storageFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="cardType"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="progressingCard" />
     </fragment>
 </navigation>

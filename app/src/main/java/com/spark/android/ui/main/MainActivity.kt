@@ -36,6 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private var fabState = false
     private var backBtnWaitTime = 0L
     private val toast: Toast by lazy { getToast(getString(R.string.main_back_btn_msg)) }
+    private var cardType: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +45,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initStatusBarStyle()
         initBindingVariable()
         initFloatingButtonClickListener()
+        cardType = "progressingCard"
+        if(IS_FROM_CARD == true){
+            cardType = intent.getStringExtra("cardType")
+        }
         initTabPositionObserver()
         initBlackBgClickListener()
     }
@@ -92,6 +97,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
             FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY -> {
                 mainViewModel.initTabPositionStorage()
+                cardType = "progressingCard"
+                IS_FROM_CARD = false
             }
         }
         intent.removeExtra(FROM_WHERE)
@@ -121,7 +128,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     }
                     TAB_STORAGE -> when (findNavController().currentDestination?.id) {
                         R.id.feedFragment -> FeedFragmentDirections.actionFeedFragmentToStorageFragment()
-                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentToStorageFragment()
+                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentToStorageFragment(cardType)
                         R.id.storageFragment -> StorageFragmentDirections.actionStorageFragmentSelf()
                         else -> throw IllegalStateException()
                     }
@@ -130,7 +137,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             )
         }
     }
-
 
     private fun initFloatingButtonClickListener() {
         binding.fabHomeMain.setOnClickListener() {
@@ -201,5 +207,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     companion object {
         private const val BACK_BTN_WAIT_TIME = 2000L
         const val FROM_WHERE = "fromWhere"
+        var IS_FROM_CARD = false
     }
 }

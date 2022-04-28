@@ -43,6 +43,24 @@ class StorageViewModel : ViewModel() {
     private val _completeRooms = MutableLiveData<List<StorageRoom>>()
     val completeRooms: LiveData<List<StorageRoom>> = _completeRooms
 
+
+    private val _currentProgressingMode = MutableLiveData(false)
+    val currentProgressingMode: LiveData<Boolean> = _currentProgressingMode
+
+    private val _currentCompleteMode = MutableLiveData(false)
+    val currentCompleteMode: LiveData<Boolean> = _currentCompleteMode
+
+    private val _currentIncompleteMode = MutableLiveData(false)
+    val currentIncompleteMode: LiveData<Boolean> = _currentIncompleteMode
+
+    fun initVpInnerMode(cardType: String) {
+        when (cardType) {
+            "progressingCard" -> _currentProgressingMode.value = true
+            "completeCard" -> _currentCompleteMode.value = true
+            "incompleteCard" -> _currentIncompleteMode.value = true
+        }
+    }
+
     private fun initIsLoading(isLoading: Boolean) {
         if (!firstLoading) {
             _isLoading.value = isLoading
@@ -65,11 +83,12 @@ class StorageViewModel : ViewModel() {
         _storageMode.value = INCOMPLETE
     }
 
-    private fun updateIsInitType(type: String) {
+    fun updateIsInitType(type: String) {
         when (type) {
             PROGRESSING -> isInitProgressing = true
             COMPLETE -> isInitComplete = true
-            INCOMPLETE -> isInitComplete = true
+            INCOMPLETE -> isInitIncomplete = true
+            else -> throw IllegalStateException()
         }
     }
 

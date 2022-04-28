@@ -25,12 +25,12 @@ class StoragePhotoMainPickActivity :
 
         initMainPhotoSelectMode()
 
-        initPhotoMainPickViewModelForDataBinding()
-        initStorageMainPhotoPickRvAdapter()
+        initViewModelForDataBinding()
+        initRvAdapter()
 
         getRoomDataFromPhotoCollection()
         initGetPhotoMainPickNetwork()
-        setOnlyDonePhotoFromPhotoList()
+        setRvAdapterDonePhotoList()
 
         initStatusBarStyle()
         initMainPhotoPickBackBtnClickListener()
@@ -51,17 +51,17 @@ class StoragePhotoMainPickActivity :
         photoMainPickViewModel.initGetPhotoCollectionNetwork(roomId, -1, 70)
     }
 
-    private fun setOnlyDonePhotoFromPhotoList() {
+    private fun setRvAdapterDonePhotoList() {
         photoMainPickViewModel.photoList.observe(this) { photo ->
             photoMainPickRvAdapter.setPhotoMainList(photo.filter { it.status == "DONE" })
         }
     }
 
-    private fun initPhotoMainPickViewModelForDataBinding() {
+    private fun initViewModelForDataBinding() {
         binding.mainPhotoPickViewModel = photoMainPickViewModel
     }
 
-    private fun initStorageMainPhotoPickRvAdapter() {
+    private fun initRvAdapter() {
         binding.rvStorageMainPhotoPick.adapter = photoMainPickRvAdapter
     }
 
