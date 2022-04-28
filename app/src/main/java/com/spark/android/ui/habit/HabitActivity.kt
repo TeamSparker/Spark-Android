@@ -35,7 +35,6 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitBackBtnClickListener()
         initHabitMoreBtnClickListener()
         initHabitTodayBtnClickListener()
-        initHabitLifeLessDialog()
         checkUserGuideDialog()
     }
 
@@ -47,6 +46,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.habitInfo.observe(this) {
             habitRecyclerViewAdapter.response = it
             binding.habitViewModel = habitViewModel
+            initHabitLifeLessDialog()
         }
     }
 
