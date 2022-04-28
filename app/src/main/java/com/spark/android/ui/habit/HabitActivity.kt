@@ -53,8 +53,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
     private fun initRefreshSuccessObserver() {
         habitViewModel.refreshSuccess.observe(this) {
             if (habitViewModel.refreshSuccess.value == true) {
-                habitViewModel.initRefreshSuccess(false)
                 refreshData()
+                habitViewModel.initRefreshSuccess(false)
             }
         }
     }
