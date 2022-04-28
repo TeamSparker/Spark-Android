@@ -11,6 +11,7 @@ import com.spark.android.ui.joincode.viewmodel.JoinCodeViewModel
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_JOIN_CODE
+import com.spark.android.util.EventObserver
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,12 +72,14 @@ class JoinCodeActivity : BaseActivity<ActivityJoinCodeBinding>(R.layout.activity
                 putExtra("roomId", roomInfo.roomId)
                 putExtra("startPoint", START_FROM_JOIN_CODE)
             }
-            startActivity(intent)
             val resultIntent = Intent(this,MainActivity::class.java).apply {
                 putExtra("finishState", GO_TO_WAITING_ROOM)
             }
-            setResult(RESULT_OK,resultIntent)
-            finish()
+            joinCodeViewModel.joinCodeState.observe(this,EventObserver{
+                startActivity(intent)
+                setResult(RESULT_OK,resultIntent)
+                finish()
+            })
         }
     }
 

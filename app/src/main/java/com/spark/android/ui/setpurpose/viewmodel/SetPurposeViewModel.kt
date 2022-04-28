@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.entity.request.SetPurposeRequest
 import com.spark.android.data.remote.repository.SetPurposeRepository
+import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,13 +19,13 @@ class SetPurposeViewModel @Inject constructor(
 
     var habitWhen = MutableLiveData("")
     var myPurpose = MutableLiveData("")
-    var networkState = MutableLiveData(false)
+    var networkState = MutableLiveData<Event<Boolean>>()
 
     fun setPurpose(roomId: Int, body: SetPurposeRequest) {
         viewModelScope.launch {
             setPurposeRepository.setPurpose(roomId, body)
                 .onSuccess {
-                    networkState.postValue(it.success)
+                    networkState.postValue(Event(it.success))
                 }.onFailure {
                     Log.d("setPurpose", it.message.toString())
                 }

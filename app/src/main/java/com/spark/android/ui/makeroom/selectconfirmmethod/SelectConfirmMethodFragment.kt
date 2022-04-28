@@ -60,7 +60,6 @@ class SelectConfirmMethodFragment :
                         putExtra("startPoint", START_FROM_CONFIRM_METHOD)
                     }
                     startActivity(intent)
-
                     requireActivity().finish()
                 }
             }.show(requireActivity().supportFragmentManager,this.javaClass.name)
