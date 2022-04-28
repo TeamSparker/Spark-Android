@@ -1,57 +1,86 @@
 package com.spark.android.ui.storage
 
-import android.animation.AnimatorInflater
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.spark.android.R
-import com.spark.android.databinding.FragmentStorageBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.storage.StorageMode.Companion.COMPLETE
 import com.spark.android.ui.storage.StorageMode.Companion.INCOMPLETE
 import com.spark.android.ui.storage.StorageMode.Companion.PROGRESSING
 import com.spark.android.ui.storage.adapter.StorageViewPagerOutAdapter
 import com.spark.android.ui.storage.viewmodel.StorageViewModel
-import java.lang.IllegalStateException
 import android.animation.ObjectAnimator
-
-
-
+import androidx.navigation.fragment.navArgs
+import com.spark.android.databinding.FragmentStorageBinding
+import kotlin.IllegalStateException
 
 class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
     private lateinit var viewPagerOutAdapter: StorageViewPagerOutAdapter
     private val storageViewModel by activityViewModels<StorageViewModel>()
+    private val args: StorageFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.storageViewModel = storageViewModel
-        storageViewModel.initProgressMode()
-        initStorageOutAdapter()
-        initModeObserver()
-        binding.vpStorageOut.isUserInputEnabled = false;
+
+        initViewModelForDataBinding()
+        when (args.cardType) {
+            "progressingCard" -> storageViewModel.initProgressMode()
+            "completeCard" -> storageViewModel.initCompleteMode()
+            "incompleteCard" -> storageViewModel.initIncompleteMode()
+            else -> throw IllegalStateException()
+        }
+        initVpAdapter()
+        setVpAdapterCardList()
+
+        observeModeForChangingTab()
+        initVpDisableUserScroll()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         storageViewModel.initFirstLoading(false)
+        storageViewModel.initProgressMode()
     }
 
-    private fun initStorageOutAdapter() {
-        val fragmentList = listOf(
+    private fun initVpDisableUserScroll() {
+        binding.vpStorageOut.isUserInputEnabled = false
+
+    }
+
+    private fun initViewModelForDataBinding() {
+        binding.storageViewModel = storageViewModel
+    }
+
+    private fun initVpAdapter() {
+        viewPagerOutAdapter = StorageViewPagerOutAdapter(requireActivity())
+        binding.vpStorageOut.adapter = viewPagerOutAdapter
+    }
+
+    private fun setVpAdapterCardList() {
+        val cardFragmentList = listOf(
             StorageProgressingFragment(),
             StorageCompleteFragment(),
             StorageIncompleteFragment()
         )
-        viewPagerOutAdapter = StorageViewPagerOutAdapter(requireActivity())
-        viewPagerOutAdapter.fragments.addAll(fragmentList)
-        binding.vpStorageOut.adapter = viewPagerOutAdapter
+        viewPagerOutAdapter.fragments.clear()
+        viewPagerOutAdapter.fragments.addAll(cardFragmentList)
     }
 
-    private fun initModeObserver() {
+    private fun indicatorBarAnimator(indicator: View) {
+        val indicatorAnim = ObjectAnimator.ofFloat(indicator, "scaleX", 0f, 1.0f)
+        indicator.pivotX = 0f
+        indicatorAnim.duration = 150
+        indicatorAnim.start()
+    }
+
+    private fun observeModeForChangingTab() {
         storageViewModel.storageMode.observe(viewLifecycleOwner) { mode ->
             when (mode) {
                 PROGRESSING -> {
                     binding.vpStorageOut.currentItem = 0
+                    viewPagerOutAdapter.notifyDataSetChanged()
+                    storageViewModel.initVpInnerMode("progressingCard")
                     indicatorBarAnimator(binding.viewStorageProgressingIndicator)
                     if (!storageViewModel.isInitProgressing) {
                         storageViewModel.initStorageNetwork(PROGRESSING, -1, 30)
@@ -59,6 +88,8 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
                 }
                 COMPLETE -> {
                     binding.vpStorageOut.currentItem = 1
+                    viewPagerOutAdapter.notifyDataSetChanged()
+                    storageViewModel.initVpInnerMode("completeCard")
                     indicatorBarAnimator(binding.viewStorageCompleteIndicator)
                     if (!storageViewModel.isInitComplete) {
                         storageViewModel.initStorageNetwork(COMPLETE, -1, 30)
@@ -66,6 +97,8 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
                 }
                 INCOMPLETE -> {
                     binding.vpStorageOut.currentItem = 2
+                  viewPagerOutAdapter.notifyDataSetChanged()
+                    storageViewModel.initVpInnerMode("incompleteCard")
                     indicatorBarAnimator(binding.viewStorageIncompleteIndicator)
                     if (!storageViewModel.isInitIncomplete) {
                         storageViewModel.initStorageNetwork(INCOMPLETE, -1, 30)
@@ -74,12 +107,5 @@ class StorageFragment : BaseFragment<FragmentStorageBinding>(R.layout.fragment_s
                 else -> throw IllegalStateException()
             }
         }
-    }
-
-    private fun indicatorBarAnimator(indicator : View){
-        val indicatorAnim = ObjectAnimator.ofFloat(indicator,"scaleX",0f,1.0f)
-        indicator.pivotX = 0f
-        indicatorAnim.duration = 150
-        indicatorAnim.start()
     }
 }

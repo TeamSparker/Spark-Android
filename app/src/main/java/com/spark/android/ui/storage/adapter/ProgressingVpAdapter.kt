@@ -22,6 +22,7 @@ class ProgressingVpAdapter : ListAdapter<StorageRoom, ProgressingVpAdapter.Progr
                 intent.apply {
                     putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                     putExtra("thumbnail", requireNotNull(binding.storageRoom).thumbnail)
+                    putExtra("cardType","progressingCard")
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 progressingCard.context.startActivity(intent)

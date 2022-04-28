@@ -9,6 +9,7 @@ import com.spark.android.R
 import com.spark.android.databinding.ActivityStoragePhotoCollectionBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
+import com.spark.android.ui.main.MainActivity.Companion.IS_FROM_CARD
 import com.spark.android.ui.storage.adapter.PhotoCollectionRvAdapter
 import com.spark.android.ui.storage.viewmodel.PhotoViewModel
 import com.spark.android.util.initStatusBarColor
@@ -21,27 +22,26 @@ class StoragePhotoCollectionActivity :
     private var thumbnail: String? = ""
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setViewModelToLayoutForDataBinding()
-        initStoragePhotoCollectionRvAdapter()
+        initViewModelForDataBinding()
+        initRvAdapter()
 
         getRoomDataFromStorageCard()
         initPhotoCollectionNetwork()
-        initPhotoCollectionObserver()
+        setRvAdapterPhotoList()
 
         initStatusBarStyle()
         initOnBackBtnClickListener()
         initPhotoCollectionMoreBtnClickListener()
     }
 
-    private fun setViewModelToLayoutForDataBinding() {
+    private fun initViewModelForDataBinding() {
         binding.photoCollectionViewModel = photoCollectionViewModel
     }
 
-    private fun initStoragePhotoCollectionRvAdapter() {
+    private fun initRvAdapter() {
         binding.rvStoragePhotoCollection.adapter = photoCollectionRvAdapter
     }
 
@@ -54,7 +54,7 @@ class StoragePhotoCollectionActivity :
         photoCollectionViewModel.initGetPhotoCollectionNetwork(roomId, -1, 70)
     }
 
-    private fun initPhotoCollectionObserver() {
+    private fun setRvAdapterPhotoList() {
         photoCollectionViewModel.photoList.observe(this) { photo ->
             photoCollectionRvAdapter.setList(photo)
         }
@@ -68,6 +68,8 @@ class StoragePhotoCollectionActivity :
         startActivity(Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
             putExtra(MainActivity.FROM_WHERE, FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY)
+            putExtra("cardType",intent.getStringExtra("cardType"))
+            IS_FROM_CARD = true
         })
     }
 
