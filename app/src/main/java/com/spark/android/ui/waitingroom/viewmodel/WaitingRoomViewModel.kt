@@ -40,6 +40,9 @@ class WaitingRoomViewModel @Inject constructor(
     private val _leaveWaitingRoomState = MutableLiveData<Event<Boolean>>()
     val leaveWaitingRoomState: LiveData<Event<Boolean>> = _leaveWaitingRoomState
 
+    private val _startHabitRoomState = MutableLiveData<Event<Boolean>>()
+    val startHabitRoomState: LiveData<Event<Boolean>> = _startHabitRoomState
+
     fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
@@ -79,6 +82,9 @@ class WaitingRoomViewModel @Inject constructor(
     fun startHabit(roomId: Int) {
         viewModelScope.launch {
             startHabitRepository.startHabit(roomId)
+                .onSuccess {
+                    _startHabitRoomState.postValue(Event(true))
+                }
                 .onFailure {
                     Log.d("startHabit", it.message.toString())
                 }

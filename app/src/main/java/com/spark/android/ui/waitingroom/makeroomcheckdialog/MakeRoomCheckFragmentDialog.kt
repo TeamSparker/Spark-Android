@@ -17,6 +17,7 @@ import com.spark.android.ui.habit.HabitActivity
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import com.spark.android.util.AnimationUtil
 import com.spark.android.util.DialogUtil
+import com.spark.android.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -89,8 +90,10 @@ class MakeRoomCheckFragmentDialog : DialogFragment() {
                 }
                 addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             }
-            startActivity(intent)
-            requireActivity().finish()
+            makeRoomCheckFragmentDialogViewModel.startHabitRoomState.observe(viewLifecycleOwner,EventObserver{
+                startActivity(intent)
+                requireActivity().finish()
+            })
         }
     }
 
