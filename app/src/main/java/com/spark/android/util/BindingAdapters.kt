@@ -2,6 +2,7 @@ package com.spark.android.util
 
 import android.content.res.ColorStateList
 import android.net.Uri
+import android.text.InputFilter
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
@@ -640,5 +641,12 @@ object BindingAdapters {
                 textview.visibility = View.GONE
             }
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["setEditTextMaxLengthText", "setEditTextMaxLengthMaxLength"], requireAll = true)
+    fun setEditTextMaxLength(editText: EditText, text: String, maxLength: Int) {
+        val max = maxLength + text.length - text.codePointCount(0, text.length)
+        editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(max))
     }
 }
