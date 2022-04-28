@@ -124,6 +124,8 @@
 
         <EditText
             android:id="@+id/et_send_spark_message"
+            setEditTextMaxLengthMaxLength="@{15}"
+            setEditTextMaxLengthText="@{habitSendSparkViewModel.message}"
             setEditTextVisibility="@{habitSendSparkViewModel.isTyping}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -135,7 +137,6 @@
             android:hint="@string/habit_send_spark_message_et_hint"
             android:includeFontPadding="false"
             android:inputType="text"
-            android:maxLength="15"
             android:paddingVertical="5dp"
             android:singleLine="true"
             android:text="@={habitSendSparkViewModel.message}"
