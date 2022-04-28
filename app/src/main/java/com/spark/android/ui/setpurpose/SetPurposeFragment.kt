@@ -19,10 +19,7 @@ import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_HOME
 import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_JOIN_CODE
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
-import com.spark.android.util.AnimationUtil
-import com.spark.android.util.EditTextUtil
-import com.spark.android.util.KeyBoardUtil
-import com.spark.android.util.KeyboardVisibilityUtils
+import com.spark.android.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -206,15 +203,16 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                     setPurposeViewModel.myPurpose.value!!
                 )
             )
-            setPurposeViewModel.networkState.observe(viewLifecycleOwner) {
+            setPurposeViewModel.networkState.observe(viewLifecycleOwner,EventObserver {
 
                 var bundle = Bundle()
                 bundle.putInt("roomId", roomId)
                 bundle.putInt("startPoint",startPoint)
+                bundle.putBoolean("setPurposeEvent",true)
 
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
-            }
+            })
         }
     }
 

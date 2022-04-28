@@ -40,6 +40,7 @@ class WaitingRoomFragment :
     private val waitingRoomViewModel by activityViewModels<WaitingRoomViewModel>()
     private var roomId by Delegates.notNull<Int>()
     private var startPoint by Delegates.notNull<Int>()
+    private var setPurposeEvent by Delegates.notNull<Boolean>()
     private lateinit var toastAnimation: Animator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,10 +67,26 @@ class WaitingRoomFragment :
         initExtraMenuButton()
     }
 
+    override fun onResume() {
+        super.onResume()
+        initSetPurposeExtra()
+        updateWaitingRoomInfoForPurpose()
+    }
+
     private fun initExtra() {
         roomId = arguments?.getInt("roomId", -1) ?: -1
         startPoint = arguments?.getInt("startPoint", START_FROM_HOME)
             ?: START_FROM_HOME
+    }
+
+    private fun initSetPurposeExtra(){
+        setPurposeEvent = arguments?.getBoolean("setPurposeEvent") ?: false
+    }
+
+    private fun updateWaitingRoomInfoForPurpose(){
+        if(setPurposeEvent){
+            waitingRoomViewModel.getWaitingRoomInfo(roomId)
+        }
     }
 
     private fun initClipBoard() {
