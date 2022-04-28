@@ -14,6 +14,7 @@ import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.WAITING_ROOM_BOTTOM_SHEET_GUEST
 import com.spark.android.util.DialogUtil.Companion.WAITING_ROOM_BOTTOM_SHEET_HOST
+import com.spark.android.util.EventObserver
 import com.spark.android.util.popBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,8 +65,10 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
                     )
                     waitingRoomBottomSheetViewModel.setHomeToastMessage("'${processedToastMessage}' 대기방이 삭제되었어요.")
                     waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
-                    dismiss()
-                    requireActivity().finish()
+                    waitingRoomBottomSheetViewModel.deleteWaitingRoomState.observe(viewLifecycleOwner,EventObserver{
+                        dismiss()
+                        requireActivity().finish()
+                    })
                 }.show(requireActivity().supportFragmentManager, this.javaClass.name)
             } else {
                 DialogUtil(WAITING_ROOM_BOTTOM_SHEET_GUEST) {
@@ -74,13 +77,14 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
                     )
                     waitingRoomBottomSheetViewModel.setHomeToastMessage("'${processedToastMessage}' 대기방을 나갔어요.")
                     waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
-                    dismiss()
-                    requireActivity().finish()
+                    waitingRoomBottomSheetViewModel.leaveWaitingRoomState.observe(viewLifecycleOwner,EventObserver{
+                        dismiss()
+                        requireActivity().finish()
+                    })
                 }.show(requireActivity().supportFragmentManager, this.javaClass.name)
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

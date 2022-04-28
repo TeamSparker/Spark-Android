@@ -10,6 +10,7 @@ import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
 import com.spark.android.data.remote.repository.RefreshRepository
 import com.spark.android.data.remote.repository.StartHabitRepository
 import com.spark.android.data.remote.repository.WaitingRoomInfoRepository
+import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,6 +34,12 @@ class WaitingRoomViewModel @Inject constructor(
     private val _memberListSize = MutableLiveData<Int>()
     val memberListSize: LiveData<Int> = _memberListSize
 
+    private val _deleteWaitingRoomState = MutableLiveData<Event<Boolean>>()
+    val deleteWaitingRoomState: LiveData<Event<Boolean>> = _deleteWaitingRoomState
+
+    private val _leaveWaitingRoomState = MutableLiveData<Event<Boolean>>()
+    val leaveWaitingRoomState: LiveData<Event<Boolean>> = _leaveWaitingRoomState
+
     fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
@@ -50,7 +57,7 @@ class WaitingRoomViewModel @Inject constructor(
         }
     }
 
-    fun initMemberListSize(){
+    fun initMemberListSize() {
         _memberListSize.postValue(waitingRoomInfo.value?.members?.size ?: 0)
     }
 
@@ -65,7 +72,7 @@ class WaitingRoomViewModel @Inject constructor(
         }
     }
 
-    fun updateMemberListSize(){
+    fun updateMemberListSize() {
         _memberListSize.postValue(_refreshInfo.value?.size ?: 0)
     }
 
@@ -81,6 +88,9 @@ class WaitingRoomViewModel @Inject constructor(
     fun deleteWaitingRoom(roomId: Int) {
         viewModelScope.launch {
             waitingRoomInfoRepository.deleteWaitingRoom(roomId)
+                .onSuccess {
+                    _deleteWaitingRoomState.postValue(Event(true))
+                }
                 .onFailure {
                     Log.d("deleteWaitingRoom", it.message.toString())
                 }
@@ -90,6 +100,9 @@ class WaitingRoomViewModel @Inject constructor(
     fun leaveRoom(roomId: Int) {
         viewModelScope.launch {
             waitingRoomInfoRepository.leaveRoom(roomId)
+                .onSuccess {
+                    _leaveWaitingRoomState.postValue(Event(true))
+                }
                 .onFailure {
                     Log.d("leaveRoom", it.message.toString())
                 }
