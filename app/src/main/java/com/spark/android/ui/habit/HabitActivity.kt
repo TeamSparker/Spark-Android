@@ -63,7 +63,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.exitSuccess.observe(this) {
             if (habitViewModel.exitSuccess.value == true) {
                 var toastMessage = habitViewModel.habitInfo.value!!.roomName
-                if(toastMessage.length > 8) {
+                if (toastMessage.length > 8) {
                     toastMessage = toastMessage.chunked(8)[0] + "..."
                 }
                 habitViewModel.initExitSuccess(false)
@@ -121,7 +121,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun checkUserGuideDialog() {
         if (habitViewModel.getUserGuideDialogState()) {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.apply {
                 putBoolean("startPoint", HabitMoreBottomSheet.START_FROM_INIT_STATE)
             }
@@ -135,7 +135,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
     private fun initHabitLifeLessDialog() {
         val lifeDeductionCount = habitViewModel.habitInfo.value?.lifeDeductionCount ?: 0
         if (lifeDeductionCount != 0) {
-            HabitLifeLessDialogFragment().show(
+            HabitLifeLessDialogFragment(lifeDeductionCount).show(
                 supportFragmentManager, "LifeLessDialog"
             )
         }
