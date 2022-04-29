@@ -13,7 +13,6 @@ import com.spark.android.util.FirebaseLogUtil
 import com.spark.android.util.FirebaseLogUtil.CLICK_HEART_FEED
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.util.Collections.addAll
 import javax.inject.Inject
 
 @HiltViewModel

@@ -33,7 +33,7 @@ object FirebaseLogUtil {
     const val CLICK_HEART_FEED = "click_HEART_feed"
     const val CLICK_CARD_MY_ROOM = "click_CARD_my_room"
 
-    const val NOTIFICATION_OPEN = "notification_open"
+    private const val NOTIFICATION_OPEN = "notification_open_"
 
 
     fun logScreenEvent(screenClass: String, screenName: String) {
@@ -54,5 +54,9 @@ object FirebaseLogUtil {
         Firebase.analytics.logEvent(contentName) {
             param(FirebaseAnalytics.Param.START_DATE, formattedDate)
         }
+    }
+
+    fun logNotificationOpenEvent(category: String) {
+        Firebase.analytics.logEvent(NOTIFICATION_OPEN + category.uppercase(), null)
     }
 }
