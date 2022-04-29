@@ -22,7 +22,7 @@
             android:id="@+id/view_storage_photoCollection_titleBar"
             android:layout_width="0dp"
             android:layout_height="72dp"
-            android:background="@color/spark_black"
+            android:background="@color/spark_more_deep_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

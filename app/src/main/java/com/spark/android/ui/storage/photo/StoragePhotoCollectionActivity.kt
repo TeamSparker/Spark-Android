@@ -61,7 +61,7 @@ class StoragePhotoCollectionActivity :
     }
 
     private fun initStatusBarStyle() {
-        initStatusBarColor(R.color.spark_black)
+        initStatusBarColor(R.color.spark_more_deep_gray)
     }
 
     private fun moveToMain() {

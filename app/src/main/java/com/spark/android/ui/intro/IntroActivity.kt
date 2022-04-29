@@ -20,7 +20,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initStatusBarColor(R.color.spark_black)
+        initStatusBarColor(R.color.spark_more_deep_gray)
         introViewModel.initFcmToken()
         checkOpenFromPushAlarm()
         initFcmTokenObserver()
