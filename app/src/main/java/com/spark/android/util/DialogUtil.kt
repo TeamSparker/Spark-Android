@@ -26,6 +26,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setLayout()
+        setCancelable()
         setCancelBtnVisibility()
         setMessage()
         setConfirmText()
@@ -50,15 +51,23 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
         }
     }
 
+    private fun setCancelable() {
+        isCancelable = when (dialogMode) {
+            UPDATE_CHECK -> false
+            else -> true
+        }
+    }
+
     private fun setCancelBtnVisibility() {
-//        binding.tvDialogUtilCancel.visibility = when (dialogMode) {
-//            mode -> View.INVISIBLE
-//            else -> View.VISIBLE
-//        }
+        binding.tvDialogUtilCancel.visibility = when (dialogMode) {
+            UPDATE_CHECK -> View.INVISIBLE
+            else -> View.VISIBLE
+        }
     }
 
     private fun setMessage() {
         binding.tvDialogUtilContent.text = when (dialogMode) {
+            UPDATE_CHECK -> getString(R.string.intro_update_check_dialog_content)
             STOP_SIGNUP_MODE -> getString(R.string.profile_dialog_content)
             STOP_CERTIFY_PHOTO -> getString(R.string.certify_dialog_content)
             STOP_CERTIFY_TIMER -> getString(R.string.timer_dialog_stop_content)
@@ -75,6 +84,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
 
     private fun setConfirmText() {
         binding.confirmText = when (dialogMode) {
+            UPDATE_CHECK -> getString(R.string.intro_update_check_dialog_confirm)
             STOP_SIGNUP_MODE, STOP_MODIFY_PROFILE -> getString(R.string.profile_dialog_stop_signup)
             STOP_CERTIFY_PHOTO, STOP_CERTIFY_TIMER -> getString(R.string.certify_dialog_stop_certify)
             STOP_TIMER -> getString(R.string.timer_dialog_stop_timer)
@@ -106,15 +116,16 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
     }
 
     companion object {
-        const val STOP_SIGNUP_MODE = 0
-        const val STOP_CERTIFY_PHOTO = 1
-        const val STOP_CERTIFY_TIMER = 2
-        const val STOP_TIMER = 3
-        const val CHECK_CONFIRM_MODE = 4
-        const val HABIT_REST = 5
-        const val WAITING_ROOM_BOTTOM_SHEET_HOST = 6
-        const val WAITING_ROOM_BOTTOM_SHEET_GUEST = 7
-        const val STOP_MODIFY_PROFILE = 8
-        const val WITHDRAWAL = 9
+        const val UPDATE_CHECK = 0
+        const val STOP_SIGNUP_MODE = 1
+        const val STOP_CERTIFY_PHOTO = 2
+        const val STOP_CERTIFY_TIMER = 3
+        const val STOP_TIMER = 4
+        const val CHECK_CONFIRM_MODE = 5
+        const val HABIT_REST = 6
+        const val WAITING_ROOM_BOTTOM_SHEET_HOST = 7
+        const val WAITING_ROOM_BOTTOM_SHEET_GUEST = 8
+        const val STOP_MODIFY_PROFILE = 9
+        const val WITHDRAWAL = 10
     }
 }

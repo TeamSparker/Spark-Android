@@ -4,11 +4,14 @@ import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.user.UserApiClient
+import com.spark.android.BuildConfig
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
+import com.spark.android.data.remote.entity.response.VersionResponse
+import com.spark.android.ui.intro.VersionUpdateState
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -63,6 +66,26 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun removeKakaoUserId() {
         localPreferencesDataSource.removeKakaoUserId()
+    }
+
+    override fun versionCheck(storeVersion: String, currentVersion: String): VersionUpdateState {
+        val storeVersionSplit = storeVersion.split(".").map { it.toInt() }
+        val currentVersionSplit = currentVersion.split(".").map { it.toInt() }
+        return when {
+            storeVersionSplit[0] > currentVersionSplit[0] -> {
+                VersionUpdateState.FORCE
+            }
+            storeVersionSplit[1] > currentVersionSplit[1] -> {
+                VersionUpdateState.FORCE
+            }
+            else -> {
+                VersionUpdateState.OPTIONAL
+            }
+        }
+    }
+
+    override suspend fun getStoreVersion() = kotlin.runCatching {
+        authDataSource.getStoreVersion()
     }
 
     override suspend fun postSignUp(

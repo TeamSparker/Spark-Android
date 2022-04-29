@@ -4,9 +4,9 @@ import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
-import okhttp3.Callback
+import com.spark.android.data.remote.entity.response.VersionResponse
+import com.spark.android.ui.intro.VersionUpdateState
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 interface AuthRepository {
     fun initKakaoUserId(initId: (String) -> Unit)
@@ -20,6 +20,10 @@ interface AuthRepository {
     fun removeAccessToken()
 
     fun removeKakaoUserId()
+
+    fun versionCheck(storeVersion: String, currentVersion: String): VersionUpdateState
+
+    suspend fun getStoreVersion(): Result<BaseResponse<VersionResponse>>
 
     suspend fun postSignUp(
         nickname: String,

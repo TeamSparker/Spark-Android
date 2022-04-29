@@ -2,14 +2,16 @@ package com.spark.android.ui.intro
 
 import android.animation.Animator
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityIntroBinding
-import com.spark.android.ui.auth.AuthActivity
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.onboarding.OnBoardingActivity
+import com.spark.android.util.DialogUtil
+import com.spark.android.util.DialogUtil.Companion.UPDATE_CHECK
 import com.spark.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,16 +22,35 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initStatusBarColor(R.color.spark_black)
-        introViewModel.initFcmToken()
+        introViewModel.versionCheck()
+        initVersionUpdateStateObserver()
         initFcmTokenObserver()
         initIsDoneObserver()
         initLottieListener()
         startSplashLottie()
     }
 
+    private fun initVersionUpdateStateObserver() {
+        introViewModel.versionUpdateState.observe(this) { state ->
+            if (state == VersionUpdateState.FORCE) {
+                DialogUtil(UPDATE_CHECK) {
+                    startActivity(
+                        Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_update)))
+                    )
+                    finish()
+                }.show(
+                    supportFragmentManager,
+                    this.javaClass.name
+                )
+            } else {
+                introViewModel.initFcmToken()
+            }
+        }
+    }
+
     private fun initFcmTokenObserver() {
         introViewModel.fcmToken.observe(this) { token ->
-            if(token.isNotBlank()){
+            if (token.isNotBlank()) {
                 introViewModel.getFcmToken()
             }
         }
@@ -72,7 +93,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
     }
 
     private fun moveToOnBoardingActivity() {
-        startActivity(Intent(this,OnBoardingActivity::class.java).apply {
+        startActivity(Intent(this, OnBoardingActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         })
         finish()
