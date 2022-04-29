@@ -5,11 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.spark.android.R
+import com.spark.android.SparkMessagingService.Companion.OPEN_FROM_PUSH_ALARM
 import com.spark.android.databinding.ActivityIntroBinding
-import com.spark.android.ui.auth.AuthActivity
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.onboarding.OnBoardingActivity
+import com.spark.android.util.FirebaseLogUtil
 import com.spark.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,15 +22,22 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
         super.onCreate(savedInstanceState)
         initStatusBarColor(R.color.spark_black)
         introViewModel.initFcmToken()
+        checkOpenFromPushAlarm()
         initFcmTokenObserver()
         initIsDoneObserver()
         initLottieListener()
         startSplashLottie()
     }
 
+    private fun checkOpenFromPushAlarm() {
+        intent.getStringExtra(OPEN_FROM_PUSH_ALARM)?.let {
+            FirebaseLogUtil.logNotificationOpenEvent(it)
+        }
+    }
+
     private fun initFcmTokenObserver() {
         introViewModel.fcmToken.observe(this) { token ->
-            if(token.isNotBlank()){
+            if (token.isNotBlank()) {
                 introViewModel.getFcmToken()
             }
         }
@@ -72,7 +80,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
     }
 
     private fun moveToOnBoardingActivity() {
-        startActivity(Intent(this,OnBoardingActivity::class.java).apply {
+        startActivity(Intent(this, OnBoardingActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         })
         finish()

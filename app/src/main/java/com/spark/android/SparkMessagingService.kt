@@ -52,7 +52,9 @@ class SparkMessagingService : FirebaseMessagingService() {
     private fun createNotificationWithoutImage(remoteMessage: RemoteMessage) {
         val alarmId = remoteMessage.sentTime.toInt()
         val category = remoteMessage.data["category"].toString()
-        val intent = Intent(this, IntroActivity::class.java)
+        val intent = Intent(this, IntroActivity::class.java).apply {
+            putExtra(OPEN_FROM_PUSH_ALARM, category)
+        }
         val pendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         val builder =
@@ -70,7 +72,9 @@ class SparkMessagingService : FirebaseMessagingService() {
     private fun createNotificationWithImage(remoteMessage: RemoteMessage, bitmap: Bitmap) {
         val alarmId = remoteMessage.sentTime.toInt()
         val category = remoteMessage.data["category"].toString()
-        val intent = Intent(this, IntroActivity::class.java)
+        val intent = Intent(this, IntroActivity::class.java).apply {
+            putExtra(OPEN_FROM_PUSH_ALARM, category)
+        }
         val pendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         val builder = NotificationCompat.Builder(this, getChannelId(category))
@@ -124,6 +128,7 @@ class SparkMessagingService : FirebaseMessagingService() {
     }
 
     companion object {
+        const val OPEN_FROM_PUSH_ALARM = "openPushAlarm"
         private val CATEGORY_CERTIFICATION = NotificationCategory(0, "certification")
         private val CATEGORY_SPARK = NotificationCategory(1, "spark")
         private val CATEGORY_REMIND = NotificationCategory(2, "remind")

@@ -9,9 +9,10 @@ import com.spark.android.data.remote.entity.response.FeedListItem
 import com.spark.android.data.remote.repository.FeedRepository
 import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_FOOTER_TYPE
 import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_LOADING_TYPE
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_HEART_FEED
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.util.Collections.addAll
 import javax.inject.Inject
 
 @HiltViewModel
@@ -57,6 +58,7 @@ class FeedViewModel @Inject constructor(
     }
 
     fun postFeedHeart(feedListItem: FeedListItem) {
+        FirebaseLogUtil.logClickEvent(CLICK_HEART_FEED)
         viewModelScope.launch {
             val feed = requireNotNull(feedListItem.feed)
             feedRepository.postFeedHeart(feed.recordId)
