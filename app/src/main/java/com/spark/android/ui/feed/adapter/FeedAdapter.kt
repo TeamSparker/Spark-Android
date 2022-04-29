@@ -14,6 +14,8 @@ import com.spark.android.databinding.ItemFeedContentBinding
 import com.spark.android.databinding.ItemFeedFooterBinding
 import com.spark.android.databinding.ItemFeedHeaderBinding
 import com.spark.android.databinding.ItemFeedLoadingBinding
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_HEART_FEED
 import java.lang.IllegalStateException
 
 class FeedAdapter(
@@ -67,6 +69,7 @@ class FeedAdapter(
                             }
                         }
                         false -> {
+                            FirebaseLogUtil.logClickEvent(CLICK_HEART_FEED)
                             binding.btnFeedHeart.setImageResource(R.drawable.ic_feed_heart_pink)
                             binding.tvFeedHeartCount.let {
                                 it.setTextColor(it.context.getColor(R.color.spark_pinkred))
