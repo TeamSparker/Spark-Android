@@ -11,6 +11,7 @@ import com.spark.android.R
 import com.spark.android.databinding.DialogInstaShareBinding
 import com.spark.android.util.FirebaseLogUtil
 import com.spark.android.util.FirebaseLogUtil.CLICK_FEED
+import com.spark.android.util.FirebaseLogUtil.CLICK_SHARE_INSTAGRAM
 
 class InstaShareDialogFragment : DialogFragment() {
     private var _binding: DialogInstaShareBinding? = null
@@ -52,6 +53,7 @@ class InstaShareDialogFragment : DialogFragment() {
 
     private fun setConfirmTextClickListener() {
         binding.btnInstaShare.setOnClickListener {
+            FirebaseLogUtil.logClickEvent(CLICK_SHARE_INSTAGRAM)
             setFragmentResult(INSTA_DIALOG, bundleOf(SHARE_MODE to SHARE))
             dismiss()
         }
