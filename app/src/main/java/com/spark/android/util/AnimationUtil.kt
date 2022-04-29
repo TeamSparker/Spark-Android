@@ -25,7 +25,8 @@ import java.util.logging.Handler
 
 object AnimationUtil {
 
-    const val ROTATE_TIME: Long = 1500
+    const val ROTATE_TIME: Long = 750
+    const val EDIT_TEXT_FOCUS_TRANSLATION: Long = 200
 
     fun toggleFab(
         buttonMain: FloatingActionButton,
@@ -122,7 +123,7 @@ object AnimationUtil {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
                     ObjectAnimator.ofFloat(textviewTwo, View.ALPHA, 0f, 1f).apply {
-                        duration = 500
+                        duration = EDIT_TEXT_FOCUS_TRANSLATION
                         start()
                     }
                     ObjectAnimator.ofFloat(textviewOne, View.ALPHA, 0f, 1f).apply {
@@ -135,7 +136,7 @@ object AnimationUtil {
                                 editTextTwo.isClickable = true
                             }
                         })
-                        duration = 500
+                        duration = EDIT_TEXT_FOCUS_TRANSLATION
                         start()
                     }
                 }
@@ -153,7 +154,7 @@ object AnimationUtil {
     ) {
         outerConstraintLayout.isClickable = false
         ObjectAnimator.ofFloat(textviewTwo, View.ALPHA, 1f, 0f).apply {
-            duration = 500
+            duration = EDIT_TEXT_FOCUS_TRANSLATION
             start()
         }
         ObjectAnimator.ofFloat(textviewOne, View.ALPHA, 1f, 0f).apply {
@@ -177,7 +178,7 @@ object AnimationUtil {
                     }
                 }
             })
-            duration = 500
+            duration = EDIT_TEXT_FOCUS_TRANSLATION
             start()
         }
     }
