@@ -17,6 +17,7 @@ import com.spark.android.ui.timer.TimerStartActivity
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.FirebaseLogUtil
 import com.spark.android.util.FirebaseLogUtil.CLICK_CERTIFYING_NOW
+import com.spark.android.util.FirebaseLogUtil.CLICK_CONSIDER_HABIT_ROOM
 
 class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitTodayBinding? = null
@@ -92,6 +93,7 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initConsiderBtnClickListener() {
+        FirebaseLogUtil.logClickEvent(CLICK_CONSIDER_HABIT_ROOM)
         binding.btnHabitTodayConsider.setOnClickListener {
             habitViewModel.postStatus("CONSIDER")
             habitViewModel.initRefreshSuccess(true)
