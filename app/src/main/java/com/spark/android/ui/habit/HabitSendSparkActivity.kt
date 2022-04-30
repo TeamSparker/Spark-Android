@@ -9,6 +9,8 @@ import com.spark.android.databinding.ActivityHabitSendSparkBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.habit.adapter.HabitSendSparkRecyclerViewAdapter
 import com.spark.android.ui.habit.viewmodel.HabitSendSparkViewModel
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_INPUT_TEXT_SPARK
 import com.spark.android.util.KeyBoardUtil
 import com.spark.android.util.KeyboardVisibilityUtils
 import com.spark.android.util.SendSparkToast
@@ -70,6 +72,7 @@ class HabitSendSparkActivity :
 
     private fun initSendSparkBtnClickListener() {
         binding.btnHabitSendSparkSend.setOnClickListener {
+            FirebaseLogUtil.logClickEvent(CLICK_INPUT_TEXT_SPARK)
             habitSendSparkViewModel.postSendSpark(binding.etSendSparkMessage.text.toString())
             SendSparkToast.showToast(this, habitSendSparkViewModel.nickname.value.toString())
             finish()
