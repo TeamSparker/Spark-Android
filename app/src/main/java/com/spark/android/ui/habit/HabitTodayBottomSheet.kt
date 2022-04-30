@@ -15,6 +15,8 @@ import com.spark.android.ui.certify.CertifyMode
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
 import com.spark.android.ui.timer.TimerStartActivity
 import com.spark.android.util.DialogUtil
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_CERTIFYING_NOW
 
 class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitTodayBinding? = null
@@ -66,6 +68,7 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
 
     private fun initCertifyBtnClickListener() {
         binding.btnHabitTodayCertificationNow.setOnClickListener {
+            FirebaseLogUtil.logClickEvent(CLICK_CERTIFYING_NOW)
             if (habitViewModel.habitInfo.value?.fromStart == true) {
                 val intent = Intent(context, TimerStartActivity::class.java)
                 intent.apply {
