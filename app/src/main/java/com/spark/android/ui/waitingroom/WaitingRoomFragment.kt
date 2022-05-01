@@ -27,6 +27,9 @@ import com.spark.android.ui.waitingroom.adapter.WaitingRoomRecyclerViewAdapter
 import com.spark.android.ui.waitingroom.bottomsheet.WaitingRoomFragmentBottomSheet
 import com.spark.android.ui.waitingroom.makeroomcheckdialog.MakeRoomCheckFragmentDialog
 import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_START_HABIT
+import com.spark.android.util.FirebaseLogUtil.SCREEN_WAITING_ROOM
 import com.spark.android.util.KeyBoardUtil.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -65,12 +68,17 @@ class WaitingRoomFragment :
         initMoveHomeButtonListener()
         initRefreshButtonListener()
         initExtraMenuButton()
+        initWaitingRoomScreenGoogleAnalytics()
     }
 
     override fun onResume() {
         super.onResume()
         initSetPurposeExtra()
         updateWaitingRoomInfoForPurpose()
+    }
+
+    private fun initWaitingRoomScreenGoogleAnalytics(){
+        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(),SCREEN_WAITING_ROOM )
     }
 
     private fun initExtra() {
@@ -159,6 +167,8 @@ class WaitingRoomFragment :
             MakeRoomCheckFragmentDialog().show(
                 requireActivity().supportFragmentManager, "MakeRoomCheckDialog"
             )
+            //GA부분
+            FirebaseLogUtil.logClickEventWithStartDate(CLICK_START_HABIT)
         }
     }
 

@@ -18,6 +18,8 @@ import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.CHECK_CONFIRM_MODE
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_NEXT_CREATE_ROOM
 import com.spark.android.util.popBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,6 +56,8 @@ class SelectConfirmMethodFragment :
                 if (requestData != null) {
                     selectConfirmMethodViewModel.makeRoom(requestData)
                 }
+                //GA 부분
+                FirebaseLogUtil.logClickEventWithStartDate(CLICK_NEXT_CREATE_ROOM)
                 selectConfirmMethodViewModel.roomId.observe(viewLifecycleOwner) {
                     val intent = Intent(requireActivity(), WaitingRoomActivity::class.java).apply {
                         putExtra("roomId", selectConfirmMethodViewModel.roomId.value)
