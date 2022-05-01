@@ -20,6 +20,8 @@ import com.spark.android.ui.home.finishroomdialog.FinishRoomDialogFragment
 import com.spark.android.ui.home.viewmodel.HomeMainViewModel
 import com.spark.android.ui.mypage.MyPageActivity
 import com.spark.android.util.AnimationUtil
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.SCREEN_HOME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,11 +41,16 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(R.layout.fragment
         initHomeListObserver()
         initMyPageBtnClickListener()
         initAlarmCenterBtnClickListener()
+        initHomeGoogleAnalytics()
     }
 
     override fun onResume() {
         super.onResume()
         showToastMessage()
+    }
+
+    private fun initHomeGoogleAnalytics(){
+        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(),SCREEN_HOME)
     }
 
     private fun initSwipeRefreshLayout() {

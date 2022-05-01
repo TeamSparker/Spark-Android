@@ -4,50 +4,67 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageCompleteListBinding
 import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity
+import com.spark.android.util.FirebaseLogUtil.logClickEvent
 
-class CompleteVpAdapter : RecyclerView.Adapter<CompleteVpAdapter.CompleteVpViewHolder>() {
+class CompleteVpAdapter :
+    ListAdapter<StorageRoom, CompleteVpAdapter.CompleteVpViewHolder>(completeDiffUtil) {
 
-    var storageRoomList = listOf<StorageRoom>()
-
-    fun setList(list: List<StorageRoom>) {
-        storageRoomList = list
-        notifyDataSetChanged()
-    }
-
-    class CompleteVpViewHolder(private val binding: ItemStorageCompleteListBinding, private val size: Int) :
+    class CompleteVpViewHolder(
+        private val binding: ItemStorageCompleteListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             itemView.setOnClickListener { completeCard ->
-                val intent = Intent(completeCard.context, StoragePhotoCollectionActivity::class.java)
+                //GA 트래킹
+                logClickEvent("click_CARD_my_room")
+
+                val intent =
+                    Intent(completeCard.context, StoragePhotoCollectionActivity::class.java)
                 intent.apply {
                     putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                     putExtra("thumbnail", requireNotNull(binding.storageRoom).thumbnail)
+                    putExtra("cardType", "completeCard")
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 completeCard.context.startActivity(intent)
             }
         }
 
-        fun onBind(position: Int, storageRoom: StorageRoom) {
+        fun onBind(storageRoom: StorageRoom) {
             binding.storageRoom = storageRoom
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompleteVpViewHolder {
-        val binding =
-            ItemStorageCompleteListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CompleteVpViewHolder(binding, storageRoomList.size)
+        val binding = ItemStorageCompleteListBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        return CompleteVpViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CompleteVpViewHolder, position: Int) {
-        holder.onBind(position,storageRoomList[position])
-        //아이템 포지션을 받아서 각각의 아이템에 데이터를 바인딩해줌 꼭 필요함
+       if(holder is CompleteVpViewHolder) {
+           holder.onBind(getItem(position))
+       }
     }
 
-    override fun getItemCount(): Int = storageRoomList.size
+    fun updateCompleteRoomList(storageRooms: List<StorageRoom>){
+        submitList(storageRooms)
+    }
+
+    companion object{
+        private val completeDiffUtil = object : DiffUtil.ItemCallback<StorageRoom>() {
+            override fun areItemsTheSame(oldItem: StorageRoom, newItem: StorageRoom): Boolean =
+                oldItem.roomId == newItem.roomId
+
+            override fun areContentsTheSame(oldItem: StorageRoom, newItem: StorageRoom): Boolean =
+                oldItem == newItem
+        }
+    }
 }

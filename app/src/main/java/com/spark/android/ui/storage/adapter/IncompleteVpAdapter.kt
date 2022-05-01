@@ -3,29 +3,31 @@ package com.spark.android.ui.storage.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageIncompleteListBinding
 import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity
+import com.spark.android.util.FirebaseLogUtil
 
-class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteVpViewHolder>() {
-
-    var roomNameList = listOf<StorageRoom>()
-
-    fun setList(list: List<StorageRoom>) {
-        roomNameList = list
-        notifyDataSetChanged()
-    }
+class IncompleteVpAdapter :
+    ListAdapter<StorageRoom, IncompleteVpAdapter.IncompleteVpViewHolder>(incompleteDiffUtil) {
 
     class IncompleteVpViewHolder(private val binding: ItemStorageIncompleteListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             itemView.setOnClickListener { incompleteCard ->
-                val intent = Intent(incompleteCard.context, StoragePhotoCollectionActivity::class.java)
+                //GA 트래킹
+                FirebaseLogUtil.logClickEvent("click_CARD_my_room")
+
+                val intent =
+                    Intent(incompleteCard.context, StoragePhotoCollectionActivity::class.java)
                 intent.apply {
                     putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                     putExtra("thumbnail", requireNotNull(binding.storageRoom).thumbnail)
+                    putExtra("cardType", "incompleteCard")
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 incompleteCard.context.startActivity(intent)
@@ -45,8 +47,22 @@ class IncompleteVpAdapter : RecyclerView.Adapter<IncompleteVpAdapter.IncompleteV
     }
 
     override fun onBindViewHolder(holder: IncompleteVpViewHolder, position: Int) {
-        holder.onBind(roomNameList[position])
+        if (holder is IncompleteVpViewHolder) {
+            holder.onBind(getItem(position))
+        }
     }
 
-    override fun getItemCount(): Int = roomNameList.size
+    fun updateIncompleteRoomList(storageRooms: List<StorageRoom>) {
+        submitList(storageRooms)
+    }
+
+    companion object {
+        private val incompleteDiffUtil = object : DiffUtil.ItemCallback<StorageRoom>() {
+            override fun areItemsTheSame(oldItem: StorageRoom, newItem: StorageRoom): Boolean =
+                oldItem.roomId == newItem.roomId
+
+            override fun areContentsTheSame(oldItem: StorageRoom, newItem: StorageRoom): Boolean =
+                oldItem == newItem
+        }
+    }
 }

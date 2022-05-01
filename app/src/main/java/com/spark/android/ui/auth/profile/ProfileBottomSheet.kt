@@ -19,6 +19,7 @@ import com.spark.android.R
 import com.spark.android.databinding.BottomSheetProfileBinding
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.PROFILE_IMG
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import androidx.fragment.app.setFragmentResultListener
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_DELETE
@@ -30,6 +31,20 @@ import java.lang.NullPointerException
 class ProfileBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetProfileBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
+
+    private val checkCameraPermission by lazy {
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private val checkCameraPermissionUnderQ by lazy {
+        checkCameraPermission && ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+    }
 
     private lateinit var imgUri: Uri
 
@@ -93,7 +108,7 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
                     ActivityCompat.requestPermissions(
                         requireActivity(),
                         arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                        REQUEST_STORAGE_PERMISSION
+                        REQUEST_READ_STORAGE_PERMISSION
                     )
                 }
             }
@@ -102,30 +117,43 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
 
     private fun initFromCameraBtnClickListener() {
         binding.tvProfileBottomFromCamera.setOnClickListener {
-            when (PackageManager.PERMISSION_GRANTED) {
-                ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    android.Manifest.permission.CAMERA
-                ) -> {
-                    try {
-                        imgUri = getImgUri(requireContext().contentResolver)
-                            ?: throw NullPointerException()
-                        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                            it.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
-                            fromCameraActivityLauncher.launch(it)
-                        }
-                    } catch (e: NullPointerException) {
-                        Log.e("ProfileBottomSheet", "ImgUri Null 에러")
-                    }
-                }
-                else -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (checkCameraPermission) {
+                    takePicture()
+                } else {
                     ActivityCompat.requestPermissions(
                         requireActivity(),
                         arrayOf(android.Manifest.permission.CAMERA),
                         REQUEST_CAMERA_PERMISSION
                     )
                 }
+            } else {
+                if (checkCameraPermissionUnderQ) {
+                    takePicture()
+                } else {
+                    ActivityCompat.requestPermissions(
+                        requireActivity(),
+                        arrayOf(
+                            android.Manifest.permission.CAMERA,
+                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        ),
+                        REQUEST_CAMERA_PERMISSION_UNDER_Q
+                    )
+                }
             }
+        }
+    }
+
+    private fun takePicture() {
+        try {
+            imgUri = getImgUri(requireContext().contentResolver)
+                ?: throw NullPointerException()
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+                it.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
+                fromCameraActivityLauncher.launch(it)
+            }
+        } catch (e: NullPointerException) {
+            Log.e("ProfileBottomSheet", "ImgUri Null 에러")
         }
     }
 
@@ -142,8 +170,9 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     }
 
     companion object {
-        const val REQUEST_STORAGE_PERMISSION = 1
+        const val REQUEST_READ_STORAGE_PERMISSION = 1
         const val REQUEST_CAMERA_PERMISSION = 2
+        const val REQUEST_CAMERA_PERMISSION_UNDER_Q = 3
         const val REQUEST_PROFILE_DIALOG = "requestProfileDialog"
         const val DELETE_MODE = "deleteMode"
     }

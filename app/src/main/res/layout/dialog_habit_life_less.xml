@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="HabitResponse"
-            type="com.spark.android.data.remote.entity.response.HabitResponse" />
+            name="LifeDeductionCount"
+            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,7 +58,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            android:text="@{`앗! 생명이 `+HabitResponse.lifeDeductionCount+`개 줄었어요.\n아직 기회는 있으니 계속 달려보자고요!`}"
+            android:text="@{`앗! 생명이 `+LifeDeductionCount+`개 줄었어요.\n아직 기회는 있으니 계속 달려보자고요!`}"
             android:textAlignment="center"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"

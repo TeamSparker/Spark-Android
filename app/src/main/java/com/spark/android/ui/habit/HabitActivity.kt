@@ -9,6 +9,8 @@ import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.habit.adapter.HabitRecyclerViewAdapter
 import com.spark.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.SCREEN_HABIT_ROOM
 import com.spark.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -22,8 +24,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(), SCREEN_HABIT_ROOM)
         binding.habitViewModel = habitViewModel
-
         initStatusBarColor(R.color.spark_black)
         initRoomId()
         initRVAdapter()
@@ -35,7 +37,6 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitBackBtnClickListener()
         initHabitMoreBtnClickListener()
         initHabitTodayBtnClickListener()
-        initHabitLifeLessDialog()
         checkUserGuideDialog()
     }
 
@@ -47,14 +48,15 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.habitInfo.observe(this) {
             habitRecyclerViewAdapter.response = it
             binding.habitViewModel = habitViewModel
+            initHabitLifeLessDialog()
         }
     }
 
     private fun initRefreshSuccessObserver() {
         habitViewModel.refreshSuccess.observe(this) {
             if (habitViewModel.refreshSuccess.value == true) {
-                habitViewModel.initRefreshSuccess(false)
                 refreshData()
+                habitViewModel.initRefreshSuccess(false)
             }
         }
     }
@@ -63,7 +65,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.exitSuccess.observe(this) {
             if (habitViewModel.exitSuccess.value == true) {
                 var toastMessage = habitViewModel.habitInfo.value!!.roomName
-                if(toastMessage.length > 8) {
+                if (toastMessage.length > 8) {
                     toastMessage = toastMessage.chunked(8)[0] + "..."
                 }
                 habitViewModel.initExitSuccess(false)
@@ -121,7 +123,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     private fun checkUserGuideDialog() {
         if (habitViewModel.getUserGuideDialogState()) {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.apply {
                 putBoolean("startPoint", HabitMoreBottomSheet.START_FROM_INIT_STATE)
             }
@@ -135,7 +137,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
     private fun initHabitLifeLessDialog() {
         val lifeDeductionCount = habitViewModel.habitInfo.value?.lifeDeductionCount ?: 0
         if (lifeDeductionCount != 0) {
-            HabitLifeLessDialogFragment().show(
+            HabitLifeLessDialogFragment(lifeDeductionCount).show(
                 supportFragmentManager, "LifeLessDialog"
             )
         }

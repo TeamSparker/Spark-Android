@@ -11,6 +11,8 @@ import com.spark.android.databinding.FragmentSignInBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.util.EventObserver
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.SCREEN_SIGN_IN
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 import com.spark.android.util.navigate
@@ -27,6 +29,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(), SCREEN_SIGN_IN)
         binding.signInViewModel = signInViewModel
         signInViewModel.resetDoorbellResponse()
         initKakaoLoginBtnClickListener()

@@ -6,12 +6,14 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.spark.android.R
+import com.spark.android.SparkMessagingService.Companion.OPEN_FROM_PUSH_ALARM
 import com.spark.android.databinding.ActivityIntroBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.onboarding.OnBoardingActivity
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.UPDATE_CHECK
+import com.spark.android.util.FirebaseLogUtil
 import com.spark.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +23,9 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initStatusBarColor(R.color.spark_black)
+        initStatusBarColor(R.color.spark_more_deep_gray)
+        checkOpenFromPushAlarm()
+        introViewModel.initFcmToken()
         introViewModel.versionCheck()
         initVersionUpdateStateObserver()
         initFcmTokenObserver()
@@ -30,6 +34,12 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
         startSplashLottie()
     }
 
+    private fun checkOpenFromPushAlarm() {
+        intent.getStringExtra(OPEN_FROM_PUSH_ALARM)?.let {
+            FirebaseLogUtil.logNotificationOpenEvent(it)
+        }
+    }
+    
     private fun initVersionUpdateStateObserver() {
         introViewModel.versionUpdateState.observe(this) { state ->
             if (state == VersionUpdateState.FORCE) {

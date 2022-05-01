@@ -19,6 +19,8 @@ import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.STOP_MODIFY_PROFILE
 import com.spark.android.util.DialogUtil.Companion.STOP_SIGNUP_MODE
 import com.spark.android.util.EventObserver
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_FINISH_SIGN_UP
 import com.spark.android.util.KeyBoardUtil
 import com.spark.android.util.MultiPartResolver
 import com.spark.android.util.initStatusBarColor
@@ -102,6 +104,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun initSuccessSignUpObserver() {
         profileViewModel.successSignUp.observe(viewLifecycleOwner, EventObserver { successSignUp ->
             if (successSignUp) {
+                FirebaseLogUtil.logClickEvent(CLICK_FINISH_SIGN_UP)
                 requireContext().startActivity(
                     Intent(requireContext(), MainActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

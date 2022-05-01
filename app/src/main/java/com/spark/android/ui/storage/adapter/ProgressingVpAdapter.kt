@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageProgressingListBinding
 import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_CARD_MY_ROOM
 
-class ProgressingVpAdapter : ListAdapter<StorageRoom, ProgressingVpAdapter.ProgressingVpViewHolder>(progressingDiffUtil) {
+class ProgressingVpAdapter :
+    ListAdapter<StorageRoom, ProgressingVpAdapter.ProgressingVpViewHolder>(progressingDiffUtil) {
 
 
     class ProgressingVpViewHolder(private val binding: ItemStorageProgressingListBinding) :
@@ -18,10 +21,15 @@ class ProgressingVpAdapter : ListAdapter<StorageRoom, ProgressingVpAdapter.Progr
 
         init {
             itemView.setOnClickListener { progressingCard ->
-                val intent = Intent(progressingCard.context, StoragePhotoCollectionActivity::class.java)
+                //GA 트래킹
+                FirebaseLogUtil.logClickEvent(CLICK_CARD_MY_ROOM)
+
+                val intent =
+                    Intent(progressingCard.context, StoragePhotoCollectionActivity::class.java)
                 intent.apply {
                     putExtra("roomId", requireNotNull(binding.storageRoom).roomId)
                     putExtra("thumbnail", requireNotNull(binding.storageRoom).thumbnail)
+                    putExtra("cardType", "progressingCard")
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 }
                 progressingCard.context.startActivity(intent)
@@ -42,7 +50,7 @@ class ProgressingVpAdapter : ListAdapter<StorageRoom, ProgressingVpAdapter.Progr
 
     override fun onBindViewHolder(holder: ProgressingVpViewHolder, position: Int) {
 
-        if(holder is ProgressingVpViewHolder) {
+        if (holder is ProgressingVpViewHolder) {
             holder.onBind(getItem(position))
         }
     }

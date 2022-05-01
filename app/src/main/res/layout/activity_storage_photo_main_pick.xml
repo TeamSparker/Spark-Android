@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
             name="mainPhotoPickViewModel"
-            type="com.spark.android.ui.storage.viewmodel.PhotoViewModel"/>
+            type="com.spark.android.ui.storage.viewmodel.PhotoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,23 +22,22 @@
             android:id="@+id/view_card_main_photo_pick_titleBar"
             android:layout_width="0dp"
             android:layout_height="72dp"
-            android:background="@color/spark_black"
+            android:background="@color/spark_more_deep_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        
+
         <ImageButton
             android:id="@+id/btn_card_main_photo_pick_back_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_white"
-            android:background="@android:color/transparent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="22dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
             android:padding="10dp"
-            />
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_card_main_photo_pick_title_text"
@@ -87,7 +87,6 @@
             app:layout_constraintTop_toBottomOf="@+id/view_card_main_photo_pick_titleBar"
             app:spanCount="2"
             tools:listitem="@layout/item_photo_main_pick_list" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

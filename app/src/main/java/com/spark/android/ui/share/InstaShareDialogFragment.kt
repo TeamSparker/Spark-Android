@@ -9,6 +9,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import com.spark.android.R
 import com.spark.android.databinding.DialogInstaShareBinding
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_FEED
+import com.spark.android.util.FirebaseLogUtil.CLICK_SHARE_INSTAGRAM
 
 class InstaShareDialogFragment : DialogFragment() {
     private var _binding: DialogInstaShareBinding? = null
@@ -18,7 +21,7 @@ class InstaShareDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = DialogInstaShareBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -50,6 +53,7 @@ class InstaShareDialogFragment : DialogFragment() {
 
     private fun setConfirmTextClickListener() {
         binding.btnInstaShare.setOnClickListener {
+            FirebaseLogUtil.logClickEvent(CLICK_SHARE_INSTAGRAM)
             setFragmentResult(INSTA_DIALOG, bundleOf(SHARE_MODE to SHARE))
             dismiss()
         }
@@ -57,6 +61,7 @@ class InstaShareDialogFragment : DialogFragment() {
 
     private fun setCancelTextClickListener() {
         binding.tvInstaCancel.setOnClickListener {
+            FirebaseLogUtil.logClickEvent(CLICK_FEED)
             setFragmentResult(INSTA_DIALOG, bundleOf(SHARE_MODE to NO_SHARE))
             dismiss()
         }

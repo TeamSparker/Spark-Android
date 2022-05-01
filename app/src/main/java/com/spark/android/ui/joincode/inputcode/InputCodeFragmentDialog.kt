@@ -20,6 +20,8 @@ import com.spark.android.ui.joincode.JoinCodeActivity.Companion.GO_TO_WAITING_RO
 import com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel
 import com.spark.android.util.AnimationUtil
 import com.spark.android.util.EventObserver
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_OK_INPUT_CODE
 import com.spark.android.util.KeyboardVisibilityUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -93,6 +95,9 @@ class InputCodeFragmentDialog : DialogFragment() {
                     roomCode
                 )
             }
+
+            //GA부분
+            FirebaseLogUtil.logClickEvent(CLICK_OK_INPUT_CODE)
 
             inputCodeFragmentDialogViewModel.roomInfo.observe(viewLifecycleOwner, EventObserver() {
                 val intent = Intent(requireActivity(), JoinCodeActivity::class.java).apply {

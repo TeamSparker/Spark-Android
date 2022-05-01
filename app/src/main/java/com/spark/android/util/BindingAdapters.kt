@@ -645,8 +645,11 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter(value = ["setEditTextMaxLengthText", "setEditTextMaxLengthMaxLength"], requireAll = true)
-    fun setEditTextMaxLength(editText: EditText, text: String, maxLength: Int) {
-        val max = maxLength + text.length - text.codePointCount(0, text.length)
+    fun setEditTextMaxLength(editText: EditText, text: String?, maxLength: Int) {
+        var max = maxLength
+        if(text != null) {
+            max = maxLength + text.length - text.codePointCount(0, text.length)
+        }
         editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(max))
     }
 }
