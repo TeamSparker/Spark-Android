@@ -3,7 +3,6 @@ package com.spark.android.ui.certify
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import com.spark.android.R
 import com.spark.android.databinding.ActivityCertifyBinding
@@ -14,19 +13,17 @@ import com.spark.android.ui.certify.CertifyMode.Companion.ONLY_CAMERA_MODE
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
 import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.main.MainActivity.Companion.FROM_WHERE
+import com.spark.android.ui.share.InstaActivity
 import com.spark.android.ui.share.InstaShareDialogFragment
 import com.spark.android.ui.share.InstaShareDialogFragment.Companion.INSTA_DIALOG
 import com.spark.android.ui.share.InstaShareDialogFragment.Companion.NO_SHARE
 import com.spark.android.ui.share.InstaShareDialogFragment.Companion.SHARE
 import com.spark.android.ui.share.InstaShareDialogFragment.Companion.SHARE_MODE
 import com.spark.android.ui.timer.TimerStartActivity
-import com.spark.android.util.DialogUtil
-import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
-import com.spark.android.util.MultiPartResolver
-import com.spark.android.util.initStatusBarColor
-import com.spark.android.util.initStatusBarTextColorToWhite
-import com.spark.android.ui.share.InstaActivity
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel
+import com.spark.android.util.*
+import com.spark.android.util.DialogUtil.Companion.STOP_CERTIFY_PHOTO
+import com.spark.android.util.FirebaseLogUtil.CLICK_UPLOAD
 
 class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_certify) {
     private val certifyViewModel by viewModels<CertifyViewModel>()
@@ -121,6 +118,7 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
 
     private fun initCertifyPhotoUploadBtnClickListener() {
         binding.btnCertifyPhotoUpload.setOnClickListener {
+            FirebaseLogUtil.logClickEvent(CLICK_UPLOAD)
             certifyViewModel.postCertification()
         }
     }

@@ -9,6 +9,8 @@ import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.habit.adapter.HabitRecyclerViewAdapter
 import com.spark.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.spark.android.ui.habit.viewmodel.HabitViewModel
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.SCREEN_HABIT_ROOM
 import com.spark.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -22,8 +24,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(), SCREEN_HABIT_ROOM)
         binding.habitViewModel = habitViewModel
-
         initStatusBarColor(R.color.spark_black)
         initRoomId()
         initRVAdapter()

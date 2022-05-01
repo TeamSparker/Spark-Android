@@ -5,8 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.R
 import com.spark.android.databinding.ItemHabitSendSparkMessageBinding
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.CLICK_MASSAGE_FIGHTING_SPARK
+import com.spark.android.util.FirebaseLogUtil.CLICK_MASSAGE_HURRY_SPARK
+import com.spark.android.util.FirebaseLogUtil.CLICK_MASSAGE_TOGETHER_SPARK
+import com.spark.android.util.FirebaseLogUtil.CLICK_MASSAGE_YOU_ONLY_SPARK
 
-class HabitSendSparkRecyclerViewAdapter(private val postSendSpark: (String) -> Unit, private val initIsTyping: (Boolean) -> Unit) :
+class HabitSendSparkRecyclerViewAdapter(
+    private val postSendSpark: (String) -> Unit,
+    private val initIsTyping: (Boolean) -> Unit,
+) :
     RecyclerView.Adapter<HabitSendSparkRecyclerViewAdapter.HabitSendSparkViewHolder>() {
     class HabitSendSparkViewHolder(
         private val binding: ItemHabitSendSparkMessageBinding,
@@ -28,24 +36,28 @@ class HabitSendSparkRecyclerViewAdapter(private val postSendSpark: (String) -> U
                     }
 
                     SECOND_ITEM -> {
+                        FirebaseLogUtil.logClickEvent(CLICK_MASSAGE_FIGHTING_SPARK)
                         content =
                             holder.itemView.context.getString(R.string.habit_send_spark_message_first_content)
                         postSendSpark(content)
                     }
 
                     THIRD_ITEM -> {
+                        FirebaseLogUtil.logClickEvent(CLICK_MASSAGE_TOGETHER_SPARK)
                         content =
                             holder.itemView.context.getString(R.string.habit_send_spark_message_second_content)
                         postSendSpark(content)
                     }
 
                     FOURTH_ITEM -> {
+                        FirebaseLogUtil.logClickEvent(CLICK_MASSAGE_YOU_ONLY_SPARK)
                         content =
                             holder.itemView.context.getString(R.string.habit_send_spark_message_third_content)
                         postSendSpark(content)
                     }
 
                     FIFTH_ITEM -> {
+                        FirebaseLogUtil.logClickEvent(CLICK_MASSAGE_HURRY_SPARK)
                         content =
                             holder.itemView.context.getString(R.string.habit_send_spark_message_fourth_content)
                         postSendSpark(content)

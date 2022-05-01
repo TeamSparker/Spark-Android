@@ -15,6 +15,8 @@ import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RESET
 import com.spark.android.ui.timer.viewmodel.TimerStartViewModel.Companion.TIMER_RUN
 import com.spark.android.util.DialogUtil
+import com.spark.android.util.FirebaseLogUtil
+import com.spark.android.util.FirebaseLogUtil.SCREEN_STOPWATCH
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 
@@ -30,6 +32,7 @@ class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.acti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(), SCREEN_STOPWATCH)
         binding.timerStartViewModel = timerStartViewModel
 
         initStatusBarColor(R.color.spark_white)
