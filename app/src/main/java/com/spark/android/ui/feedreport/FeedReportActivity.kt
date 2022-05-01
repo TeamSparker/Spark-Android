@@ -26,6 +26,15 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
         initBackBtnClickListener()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra(MainActivity.FROM_WHERE, FROM_FEED_REPORT_ACTIVITY)
+        })
+        finish()
+    }
+
     private fun initFeedItemId() {
         feedReportViewModel.initFeedItemId(intent.getIntExtra(FEED_ITEM_ID, -1))
     }
