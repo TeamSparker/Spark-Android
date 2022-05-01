@@ -6,6 +6,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.spark.android.BuildConfig
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.local.datasource.LocalPreferencesDataSourceImpl.Companion.DEFAULT_STRING_VALUE
 import com.spark.android.data.remote.repository.AuthRepository
@@ -18,6 +19,9 @@ class IntroViewModel @Inject constructor(
     private val localPreferencesDataSource: LocalPreferencesDataSource,
     private val authRepository: AuthRepository
 ) : ViewModel() {
+    private val _versionUpdateState = MutableLiveData<VersionUpdateState>()
+    val versionUpdateState: LiveData<VersionUpdateState> = _versionUpdateState
+
     private val _fcmToken = MutableLiveData<String>()
     val fcmToken: LiveData<String> = _fcmToken
 
@@ -51,7 +55,7 @@ class IntroViewModel @Inject constructor(
                     socialId = localPreferencesDataSource.getUserKakaoUserId(),
                     fcmToken = requireNotNull(fcmToken.value)
                 ).onSuccess { response ->
-                    if(!response.data.isNew){
+                    if (!response.data.isNew) {
                         localPreferencesDataSource.saveAccessToken(response.data.accesstoken)
                     }
                     isSuccessGetToken.postValue(true)
@@ -62,6 +66,19 @@ class IntroViewModel @Inject constructor(
             }
         } else {
             isSuccessGetToken.postValue(true)
+        }
+    }
+
+    fun versionCheck() {
+        viewModelScope.launch {
+            authRepository.getStoreVersion()
+                .onSuccess { response ->
+                    _versionUpdateState.postValue(
+                        authRepository.versionCheck(response.data.version, BuildConfig.VERSION_NAME)
+                    )
+                }.onFailure {
+                    Log.d("Intro_GetStoreVersion", it.message.toString())
+                }
         }
     }
 }

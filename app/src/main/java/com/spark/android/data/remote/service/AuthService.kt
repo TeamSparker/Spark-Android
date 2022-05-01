@@ -4,6 +4,7 @@ import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
+import com.spark.android.data.remote.entity.response.VersionResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -40,4 +41,7 @@ interface AuthService {
 
     @DELETE("auth/user")
     suspend fun deleteUser(): NoDataResponse
+
+    @GET("version")
+    suspend fun getStoreVersion(): BaseResponse<VersionResponse>
 }

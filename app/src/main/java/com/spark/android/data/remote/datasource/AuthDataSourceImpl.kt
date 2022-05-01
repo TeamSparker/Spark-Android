@@ -4,6 +4,7 @@ import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
 import com.spark.android.data.remote.entity.response.SignUpResponse
+import com.spark.android.data.remote.entity.response.VersionResponse
 import com.spark.android.data.remote.service.AuthService
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -12,6 +13,9 @@ import javax.inject.Inject
 class AuthDataSourceImpl @Inject constructor(
     private val authService: AuthService
 ) : AuthDataSource {
+    override suspend fun getStoreVersion(): BaseResponse<VersionResponse> =
+        authService.getStoreVersion()
+
     override suspend fun postSignUp(
         map: Map<String, RequestBody>,
         profileImg: MultipartBody.Part?
