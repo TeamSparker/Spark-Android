@@ -24,6 +24,8 @@ import com.spark.android.ui.certify.viewmodel.CertifyViewModel
 import android.util.Log
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_CAMERA_PERMISSION_UNDER_Q
 import com.spark.android.util.getImgUri
+import com.spark.android.util.getPathFromUri
+import java.io.File
 import java.lang.NullPointerException
 
 class CertifyBottomSheet : BottomSheetDialogFragment() {
@@ -62,8 +64,10 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        certifyViewModel.initImgUri(imgUri)
-        showCertifyActivity()
+        if (File(getPathFromUri(requireContext(), imgUri)).exists()) {
+            certifyViewModel.initImgUri(imgUri)
+            showCertifyActivity()
+        }
         dismiss()
     }
 

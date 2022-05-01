@@ -26,6 +26,8 @@ import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFI
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_FROM_ALBUM
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_FROM_CAMERA
 import com.spark.android.util.getImgUri
+import com.spark.android.util.getPathFromUri
+import java.io.File
 import java.lang.NullPointerException
 
 class ProfileBottomSheet : BottomSheetDialogFragment() {
@@ -62,7 +64,9 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        setFragmentResult(REQUEST_PROFILE_IMG_FROM_CAMERA, bundleOf(PROFILE_IMG to imgUri))
+        if (File(getPathFromUri(requireContext(), imgUri)).exists()) {
+            setFragmentResult(REQUEST_PROFILE_IMG_FROM_CAMERA, bundleOf(PROFILE_IMG to imgUri))
+        }
         dismiss()
     }
 
