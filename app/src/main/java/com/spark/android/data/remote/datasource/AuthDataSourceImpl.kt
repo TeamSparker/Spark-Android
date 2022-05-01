@@ -14,12 +14,7 @@ class AuthDataSourceImpl @Inject constructor(
     private val authService: AuthService
 ) : AuthDataSource {
     override suspend fun getStoreVersion(): BaseResponse<VersionResponse> =
-        BaseResponse(
-            data = VersionResponse("1.0.0"),
-            message = "성공",
-            status = 200,
-            success = true
-        )
+        authService.getStoreVersion()
 
     override suspend fun postSignUp(
         map: Map<String, RequestBody>,
