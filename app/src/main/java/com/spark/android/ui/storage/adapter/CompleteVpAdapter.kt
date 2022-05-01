@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageCompleteListBinding
 import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity
+import com.spark.android.util.FirebaseLogUtil.logClickEvent
 
 class CompleteVpAdapter :
     ListAdapter<StorageRoom, CompleteVpAdapter.CompleteVpViewHolder>(completeDiffUtil) {
@@ -20,6 +21,9 @@ class CompleteVpAdapter :
 
         init {
             itemView.setOnClickListener { completeCard ->
+                //GA 트래킹
+                logClickEvent("click_CARD_my_room")
+
                 val intent =
                     Intent(completeCard.context, StoragePhotoCollectionActivity::class.java)
                 intent.apply {

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.StorageRoom
 import com.spark.android.databinding.ItemStorageIncompleteListBinding
 import com.spark.android.ui.storage.photo.StoragePhotoCollectionActivity
+import com.spark.android.util.FirebaseLogUtil
 
 class IncompleteVpAdapter :
     ListAdapter<StorageRoom, IncompleteVpAdapter.IncompleteVpViewHolder>(incompleteDiffUtil) {
@@ -18,6 +19,9 @@ class IncompleteVpAdapter :
 
         init {
             itemView.setOnClickListener { incompleteCard ->
+                //GA 트래킹
+                FirebaseLogUtil.logClickEvent("click_CARD_my_room")
+
                 val intent =
                     Intent(incompleteCard.context, StoragePhotoCollectionActivity::class.java)
                 intent.apply {
