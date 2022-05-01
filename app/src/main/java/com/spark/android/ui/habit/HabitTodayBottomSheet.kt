@@ -96,7 +96,6 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
         FirebaseLogUtil.logClickEvent(CLICK_CONSIDER_HABIT_ROOM)
         binding.btnHabitTodayConsider.setOnClickListener {
             habitViewModel.postStatus("CONSIDER")
-            habitViewModel.initRefreshSuccess(true)
             dismiss()
         }
     }
@@ -111,7 +110,6 @@ class HabitTodayBottomSheet : BottomSheetDialogFragment() {
     private fun showRestDialog() {
         DialogUtil(DialogUtil.HABIT_REST) {
             habitViewModel.postStatus("REST")
-            habitViewModel.initRefreshSuccess(true)
         }.show(requireActivity().supportFragmentManager, this.javaClass.name)
     }
 

@@ -90,10 +90,12 @@ class HabitViewModel @Inject constructor(
     fun postStatus(statusType: String) {
         viewModelScope.launch {
             habitInfo.value?.let {
-                setStatusService.setStatus(
-                    it.roomId,
-                    SetStatusRequest(statusType)
-                )
+                kotlin.runCatching {
+                    setStatusService.setStatus(
+                        it.roomId,
+                        SetStatusRequest(statusType)
+                    )
+                }.onSuccess { _refreshSuccess.value = true }
             }
         }
     }
