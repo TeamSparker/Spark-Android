@@ -3,6 +3,7 @@ package com.spark.android.ui.certify
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -18,9 +19,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.R
 import com.spark.android.databinding.BottomSheetCertifyBinding
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_CAMERA_PERMISSION
-import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_STORAGE_PERMISSION
+import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_READ_STORAGE_PERMISSION
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
 import android.util.Log
+import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_CAMERA_PERMISSION_UNDER_Q
 import com.spark.android.util.getImgUri
 import java.lang.NullPointerException
 
@@ -30,6 +32,20 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var imgUri: Uri
     private val certifyViewModel by activityViewModels<CertifyViewModel>()
+
+    private val checkCameraPermission by lazy {
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private val checkCameraPermissionUnderQ by lazy {
+        checkCameraPermission && ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+    }
 
     private val fromAlbumActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -102,7 +118,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                     ActivityCompat.requestPermissions(
                         requireActivity(),
                         arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                        REQUEST_STORAGE_PERMISSION
+                        REQUEST_READ_STORAGE_PERMISSION
                     )
                 }
             }
@@ -111,31 +127,43 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
 
     private fun initFromCameraBtnClickListener() {
         binding.tvCertifyCamera.setOnClickListener {
-            when (PackageManager.PERMISSION_GRANTED) {
-                ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    android.Manifest.permission.CAMERA
-                ),
-                -> {
-                    try {
-                        imgUri = getImgUri(requireContext().contentResolver)
-                            ?: throw NullPointerException()
-                        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                            it.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
-                            fromCameraActivityLauncher.launch(it)
-                        }
-                    } catch (e: NullPointerException) {
-                        Log.e("CertifyBottomSheet", "ImgUri Null 에러")
-                    }
-                }
-                else -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (checkCameraPermission) {
+                    takePicture()
+                } else {
                     ActivityCompat.requestPermissions(
                         requireActivity(),
                         arrayOf(android.Manifest.permission.CAMERA),
                         REQUEST_CAMERA_PERMISSION
                     )
                 }
+            } else {
+                if (checkCameraPermissionUnderQ) {
+                    takePicture()
+                } else {
+                    ActivityCompat.requestPermissions(
+                        requireActivity(),
+                        arrayOf(
+                            android.Manifest.permission.CAMERA,
+                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        ),
+                        REQUEST_CAMERA_PERMISSION_UNDER_Q
+                    )
+                }
             }
+        }
+    }
+
+    private fun takePicture() {
+        try {
+            imgUri = getImgUri(requireContext().contentResolver)
+                ?: throw NullPointerException()
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+                it.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
+                fromCameraActivityLauncher.launch(it)
+            }
+        } catch (e: NullPointerException) {
+            Log.e("CertifyBottomSheet", "ImgUri Null 에러")
         }
     }
 
