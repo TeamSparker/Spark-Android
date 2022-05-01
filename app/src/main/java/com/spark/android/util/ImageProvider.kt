@@ -3,6 +3,7 @@ package com.spark.android.util
 import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import java.io.File
+import java.lang.NullPointerException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,4 +47,18 @@ fun useBitmapImg(context: Context, imgUrl: String, useBitmap: (Bitmap) -> Unit) 
 
             override fun onLoadCleared(placeholder: Drawable?) {}
         })
+}
+
+fun getPathFromUri(context: Context, uri: Uri): String {
+    val cursor: Cursor = context.contentResolver.query(uri, null, null, null, null)
+        ?: throw NullPointerException()
+    cursor.moveToNext()
+    val columnIndex = cursor.getColumnIndex("_data")
+    val path = if (columnIndex >= 0) {
+        cursor.getString(columnIndex)
+    } else {
+        throw IllegalAccessException()
+    }
+    cursor.close()
+    return path
 }
