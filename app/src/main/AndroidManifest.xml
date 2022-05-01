@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
     <uses-feature
         android:name="android.hardware.camera2"
@@ -81,11 +84,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.habit.HabitActivity"
+            android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".ui.auth.AuthActivity"
+            android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
