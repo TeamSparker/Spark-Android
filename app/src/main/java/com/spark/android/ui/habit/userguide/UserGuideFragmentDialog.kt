@@ -13,7 +13,6 @@ import com.spark.android.databinding.FragmentUserGuideDialogBinding
 import com.spark.android.ui.habit.userguide.adapter.UserGuideAdapter
 import kotlin.properties.Delegates
 
-
 class UserGuideFragmentDialog : DialogFragment() {
 
     private var _binding: FragmentUserGuideDialogBinding? = null

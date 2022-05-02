@@ -1,7 +1,5 @@
 package com.spark.android.ui.storage.viewmodel
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +11,7 @@ import com.spark.android.data.remote.entity.response.StorageCardPhoto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class PhotoViewModel : ViewModel() {
     private val _isLoading = MutableLiveData(false)
@@ -63,7 +62,7 @@ class PhotoViewModel : ViewModel() {
             override fun onFailure(
                 call: Call<BaseResponse<PhotoCollectionResponse>>, t: Throwable
             ) {
-                Log.e("네트워크결과", "error:$t")
+                Timber.tag("네트워크결과_GetPhotoCollection").e(t, "error")
             }
         })
     }
@@ -85,9 +84,8 @@ class PhotoViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<NoDataResponse>, t: Throwable) {
-                Log.e("네트워크결과","error:$t")
+                Timber.tag("네트워크결과_PatchPhotoMain").e(t, "error")
             }
         })
     }
 }
-

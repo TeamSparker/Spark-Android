@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.spark.android.databinding.BottomSheetPhotoCollectionMoreBinding
-import com.spark.android.ui.storage.viewmodel.PhotoViewModel
 
 class PhotoCollectionMoreBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetPhotoCollectionMoreBinding? = null

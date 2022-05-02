@@ -7,7 +7,6 @@ import com.spark.android.data.remote.entity.response.SignUpResponse
 import com.spark.android.data.remote.entity.response.VersionResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart

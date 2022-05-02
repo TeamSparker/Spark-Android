@@ -17,7 +17,7 @@ class PhotoCollectionRvAdapter :
 
     class PhotoCollectionRvViewHolder(private val binding: ItemPhotoCollectionListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(storageCardPhoto:StorageCardPhoto) {
+        fun onBind(storageCardPhoto: StorageCardPhoto) {
             binding.storageCardPhoto = storageCardPhoto
         }
     }

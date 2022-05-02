@@ -1,12 +1,12 @@
 package com.spark.android.ui.alarmcenter.alarms.pagingsource
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.spark.android.data.remote.entity.response.Alarm
 import com.spark.android.data.remote.service.AlarmCenterService
 import com.spark.android.ui.alarmcenter.alarms.AlarmType.Companion.ACTIVITY_ALARM
 import com.spark.android.ui.alarmcenter.alarms.AlarmType.Companion.SERVICE_ALARM
+import timber.log.Timber
 import java.lang.IllegalArgumentException
 
 class AlarmPagingSource(
@@ -66,7 +66,7 @@ class AlarmPagingSource(
                 nextKey = if (alarmList.size < limit) null else lastIdMap[idKey + 1]
             )
         } catch (e: Exception) {
-            Log.d(this.javaClass.toString(), e.message.toString())
+            Timber.tag(this.javaClass.toString()).d(e.message.toString())
             LoadResult.Error(e)
         }
     }

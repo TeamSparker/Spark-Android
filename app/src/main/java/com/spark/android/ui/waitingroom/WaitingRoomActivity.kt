@@ -1,12 +1,9 @@
 package com.spark.android.ui.waitingroom
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.spark.android.R
 import com.spark.android.databinding.ActivityWaitingRoomBinding
 import com.spark.android.ui.base.BaseActivity
-import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.checkroom.CheckRoomFragment
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
@@ -60,5 +57,4 @@ class WaitingRoomActivity :
         const val START_FROM_CONFIRM_METHOD = 2
         const val START_FROM_JOIN_CODE = 3
     }
-
 }

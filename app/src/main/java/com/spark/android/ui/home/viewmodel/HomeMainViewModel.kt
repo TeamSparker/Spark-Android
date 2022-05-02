@@ -1,6 +1,5 @@
 package com.spark.android.ui.home.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +8,7 @@ import com.spark.android.data.remote.entity.response.Room
 import com.spark.android.data.remote.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -69,7 +69,7 @@ class HomeMainViewModel @Inject constructor(
                 .onSuccess {
                     _roomList.postValue(it.data.rooms)
                 }.onFailure {
-                    Log.d("Home_main_error_get_list", it.message.toString())
+                    Timber.tag("Home_main_error_get_list").d(it.message.toString())
                 }
         }
     }
@@ -102,7 +102,7 @@ class HomeMainViewModel @Inject constructor(
                         }
                     )
                 }.onFailure {
-                    Log.d("Home_GetHomeAllRoom", it.message.toString())
+                    Timber.tag("Home_GetHomeAllRoom").d(it.message.toString())
                 }
         }
     }
@@ -115,18 +115,18 @@ class HomeMainViewModel @Inject constructor(
     fun readFinishHabitRoom(roomId: Int) {
         viewModelScope.launch {
             homeRepository.readFinishHabitRoom(roomId)
-                .onFailure { Log.d("Home_main_error_finish_room", it.message.toString()) }
+                .onFailure { Timber.tag("Home_main_error_finish_room").d(it.message.toString()) }
         }
     }
 
-    private fun  getHomeNoticeRedDot(){
+    private fun getHomeNoticeRedDot() {
         viewModelScope.launch {
             homeRepository.getHomeNoticeRedDot()
                 .onSuccess {
                     _noticeRedDot.postValue(it.data.newNotice)
                 }
                 .onFailure {
-                    Log.d("Home_main_error_get_home_notice_red_dot", it.message.toString())
+                    Timber.tag("Home_main_error_get_home_notice_red_dot").d(it.message.toString())
                 }
         }
     }

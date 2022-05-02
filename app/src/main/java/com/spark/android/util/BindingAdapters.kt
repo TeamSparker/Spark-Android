@@ -233,35 +233,33 @@ object BindingAdapters {
         val resources = progressBar.context.resources
         if (leftDay != null) {
             progressBar.progressDrawable =
-                (
-                        when {
-                            leftDay == 0 -> resources.getDrawable(
-                                R.drawable.layer_list_habit_progressbar_6,
-                                null
-                            )
-                            leftDay <= 6 -> resources.getDrawable(
-                                R.drawable.layer_list_habit_progressbar_5,
-                                null
-                            )
-                            leftDay <= 32 -> resources.getDrawable(
-                                R.drawable.layer_list_habit_progressbar_4,
-                                null
-                            )
-                            leftDay <= 58 -> resources.getDrawable(
-                                R.drawable.layer_list_habit_progressbar_3,
-                                null
-                            )
-                            leftDay <= 62 -> resources.getDrawable(
-                                R.drawable.layer_list_habit_progressbar_2,
-                                null
-                            )
-                            leftDay <= 66 -> resources.getDrawable(
-                                R.drawable.layer_list_habit_progressbar_1,
-                                null
-                            )
-                            else -> throw IllegalStateException("bindingAdapter setProgressBarLeftBackground error")
-                        }
-                        )
+                when {
+                    leftDay == 0 -> resources.getDrawable(
+                        R.drawable.layer_list_habit_progressbar_6,
+                        null
+                    )
+                    leftDay <= 6 -> resources.getDrawable(
+                        R.drawable.layer_list_habit_progressbar_5,
+                        null
+                    )
+                    leftDay <= 32 -> resources.getDrawable(
+                        R.drawable.layer_list_habit_progressbar_4,
+                        null
+                    )
+                    leftDay <= 58 -> resources.getDrawable(
+                        R.drawable.layer_list_habit_progressbar_3,
+                        null
+                    )
+                    leftDay <= 62 -> resources.getDrawable(
+                        R.drawable.layer_list_habit_progressbar_2,
+                        null
+                    )
+                    leftDay <= 66 -> resources.getDrawable(
+                        R.drawable.layer_list_habit_progressbar_1,
+                        null
+                    )
+                    else -> throw IllegalStateException("bindingAdapter setProgressBarLeftBackground error")
+                }
         }
     }
 
@@ -588,25 +586,23 @@ object BindingAdapters {
             this.visibility = View.GONE
         }
     }
-    
+
     @JvmStatic
     @BindingAdapter("setIncompleteCardFailDay")
-        fun TextView.setIncompleteCardFailDay(failDay : Int){
-            if(failDay == 1){
-                this.text = "${failDay} Day"
-            }
-            else if(failDay == 6){
-                this.text = "D-day"
-            }
-            else{
-                this.text = "${failDay} Days"
-            }
+    fun TextView.setIncompleteCardFailDay(failDay: Int) {
+        if (failDay == 1) {
+            this.text = "${failDay} Day"
+        } else if (failDay == 6) {
+            this.text = "D-day"
+        } else {
+            this.text = "${failDay} Days"
         }
-        
+    }
+
     @JvmStatic
     @BindingAdapter("setSendSparkMessageItem")
     fun setSendSparkMessageItem(textview: TextView, position: Int?) {
-        when(position){
+        when (position) {
             0 -> textview.setText(R.string.habit_send_spark_message_typing)
             1 -> textview.setText(R.string.habit_send_spark_message_first)
             2 -> textview.setText(R.string.habit_send_spark_message_second)
@@ -632,10 +628,10 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("userGuideStartPoint", "userGuidePosition")
     fun setDismissButtonVisibility(textview: TextView, startPoint: Boolean?, position: Int?) {
-        if (startPoint == true){
+        if (startPoint == true) {
             textview.visibility = View.VISIBLE
         } else {
-            if (position == 2){
+            if (position == 2) {
                 textview.visibility = View.VISIBLE
             } else {
                 textview.visibility = View.GONE
@@ -644,10 +640,13 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["setEditTextMaxLengthText", "setEditTextMaxLengthMaxLength"], requireAll = true)
+    @BindingAdapter(
+        value = ["setEditTextMaxLengthText", "setEditTextMaxLengthMaxLength"],
+        requireAll = true
+    )
     fun setEditTextMaxLength(editText: EditText, text: String?, maxLength: Int) {
         var max = maxLength
-        if(text != null) {
+        if (text != null) {
             max = maxLength + text.length - text.codePointCount(0, text.length)
         }
         editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(max))

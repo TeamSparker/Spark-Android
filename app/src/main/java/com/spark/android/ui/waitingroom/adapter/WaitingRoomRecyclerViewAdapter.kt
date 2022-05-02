@@ -1,23 +1,17 @@
 package com.spark.android.ui.waitingroom.adapter
 
-import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.data.remote.entity.response.Member
-import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
 import com.spark.android.databinding.ItemWaitingRoomRecyclerviewBinding
-import com.spark.android.ui.waitingroom.data.WaitingData
-import java.util.logging.Handler
 
 class WaitingRoomRecyclerViewAdapter :
     ListAdapter<Member, WaitingRoomRecyclerViewAdapter.WaitingRoomRecyclerViewHolder>(
         waitingRoomDiffUtil
     ) {
-
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

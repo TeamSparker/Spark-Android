@@ -1,15 +1,14 @@
 package com.spark.android.di
 
 import com.spark.android.data.local.datasource.*
-import com.spark.android.data.remote.datasource.AlarmCenterDataSource
-import com.spark.android.data.remote.datasource.AlarmSettingDataSource
-import com.spark.android.data.remote.datasource.AuthDataSource
-import com.spark.android.data.remote.datasource.FeedDataSource
-import com.spark.android.data.remote.datasource.ProfileDataSource
-import com.spark.android.data.remote.datasource.RemoteHomeDataSource
-import com.spark.android.data.remote.datasource.RemoteWaitingRoomDataSource
+import com.spark.android.data.remote.datasource.*
 import com.spark.android.data.remote.repository.*
-import com.spark.android.data.remote.service.*
+import com.spark.android.data.remote.service.JoinCodeRoomDoneService
+import com.spark.android.data.remote.service.JoinCodeRoomInfoService
+import com.spark.android.data.remote.service.MakeRoomService
+import com.spark.android.data.remote.service.RefreshService
+import com.spark.android.data.remote.service.SetPurposeService
+import com.spark.android.data.remote.service.StartHabitService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

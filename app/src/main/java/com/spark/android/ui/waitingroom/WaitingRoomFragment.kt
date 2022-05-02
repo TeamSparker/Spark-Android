@@ -1,25 +1,17 @@
 package com.spark.android.ui.waitingroom
 
 import android.animation.Animator
-import android.animation.ObjectAnimator
 import android.content.ClipboardManager
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import com.spark.android.R
 import com.spark.android.databinding.FragmentWaitingRoomBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.util.AnimationUtil
 import android.content.ClipData
-
 import android.content.Context.CLIPBOARD_SERVICE
-import android.content.Intent
 import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnPause
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.spark.android.ui.setpurpose.SetPurposeFragment
 import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_CONFIRM_METHOD
 import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_HOME
@@ -30,7 +22,6 @@ import com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel
 import com.spark.android.util.FirebaseLogUtil
 import com.spark.android.util.FirebaseLogUtil.CLICK_START_HABIT
 import com.spark.android.util.FirebaseLogUtil.SCREEN_WAITING_ROOM
-import com.spark.android.util.KeyBoardUtil.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -77,8 +68,8 @@ class WaitingRoomFragment :
         updateWaitingRoomInfoForPurpose()
     }
 
-    private fun initWaitingRoomScreenGoogleAnalytics(){
-        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(),SCREEN_WAITING_ROOM )
+    private fun initWaitingRoomScreenGoogleAnalytics() {
+        FirebaseLogUtil.logScreenEvent(this.javaClass.name.split(".").last(), SCREEN_WAITING_ROOM)
     }
 
     private fun initExtra() {
@@ -87,12 +78,12 @@ class WaitingRoomFragment :
             ?: START_FROM_HOME
     }
 
-    private fun initSetPurposeExtra(){
+    private fun initSetPurposeExtra() {
         setPurposeEvent = arguments?.getBoolean("setPurposeEvent") ?: false
     }
 
-    private fun updateWaitingRoomInfoForPurpose(){
-        if(setPurposeEvent){
+    private fun updateWaitingRoomInfoForPurpose() {
+        if (setPurposeEvent) {
             waitingRoomViewModel.getWaitingRoomInfo(roomId)
         }
     }

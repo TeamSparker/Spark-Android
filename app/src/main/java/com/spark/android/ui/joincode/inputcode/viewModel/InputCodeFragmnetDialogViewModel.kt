@@ -1,17 +1,14 @@
 package com.spark.android.ui.joincode.inputcode.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.entity.response.JoinCodeRoomInfoResponse
 import com.spark.android.data.remote.repository.JoinCodeRoomInfoRepository
-import com.spark.android.ui.feed.adapter.StickyHeaderResolver
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.HttpException
 import javax.inject.Inject
 

@@ -18,7 +18,6 @@ import java.lang.Exception
 import javax.inject.Inject
 import java.lang.NullPointerException
 
-
 class MultiPartResolver @Inject constructor(
     @ActivityContext private val context: Context
 ) {

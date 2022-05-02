@@ -5,23 +5,13 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.app.Activity
-import android.inputmethodservice.KeyboardView
-import android.opengl.Visibility
-import android.os.Looper
 import android.view.View
-import android.view.animation.Animation
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.animation.addListener
-import androidx.core.animation.doOnEnd
-import androidx.core.content.ContextCompat
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
-import java.util.logging.Handler
 
 object AnimationUtil {
 

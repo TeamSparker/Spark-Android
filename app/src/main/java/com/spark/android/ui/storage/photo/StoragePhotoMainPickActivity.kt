@@ -100,4 +100,3 @@ class StoragePhotoMainPickActivity :
         photoMainPickViewModel.setPatchRoomId(roomId)
     }
 }
-

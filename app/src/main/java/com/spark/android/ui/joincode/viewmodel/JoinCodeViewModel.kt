@@ -1,6 +1,5 @@
 package com.spark.android.ui.joincode.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +8,7 @@ import com.spark.android.data.remote.repository.JoinCodeRoomDoneRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +26,7 @@ class JoinCodeViewModel @Inject constructor(
                     _joinCodeState.postValue(Event(true))
                 }
                 .onFailure {
-                    Log.d("joinCodeRoom", it.message.toString())
+                    Timber.tag("joinCodeRoom").d(it.message.toString())
                 }
         }
     }

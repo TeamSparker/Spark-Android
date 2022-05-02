@@ -20,13 +20,13 @@ import com.spark.android.databinding.BottomSheetProfileBinding
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.PROFILE_IMG
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import androidx.fragment.app.setFragmentResultListener
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_DELETE
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_FROM_ALBUM
 import com.spark.android.ui.auth.profile.ProfileFragment.Companion.REQUEST_PROFILE_IMG_FROM_CAMERA
 import com.spark.android.util.getImgUri
 import com.spark.android.util.getPathFromUri
+import timber.log.Timber
 import java.io.File
 import java.lang.NullPointerException
 
@@ -157,7 +157,7 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
                 fromCameraActivityLauncher.launch(it)
             }
         } catch (e: NullPointerException) {
-            Log.e("ProfileBottomSheet", "ImgUri Null 에러")
+            Timber.tag("ProfileBottomSheet").e("ImgUri Null 에러")
         }
     }
 

@@ -1,6 +1,5 @@
 package com.spark.android.ui.mypage
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +11,7 @@ import com.spark.android.data.remote.repository.ProfileRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,7 +32,7 @@ class MyPageViewModel @Inject constructor(
                 .onSuccess { response ->
                     _profileData.postValue(requireNotNull(response.data))
                 }.onFailure {
-                    Log.d("MyPage_GetProfile", it.message.toString())
+                    Timber.tag("MyPage_GetProfile").d(it.message.toString())
                 }
         }
     }
@@ -47,7 +47,7 @@ class MyPageViewModel @Inject constructor(
                     _isSuccessSignOut.postValue(Event(true))
                 }
                 .onFailure {
-                    Log.d("myPage_signOut", it.message.toString())
+                    Timber.tag("MyPage_SignOut").d(it.message.toString())
                 }
         }
     }

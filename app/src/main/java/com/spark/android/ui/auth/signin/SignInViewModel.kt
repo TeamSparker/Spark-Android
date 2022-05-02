@@ -1,6 +1,5 @@
 package com.spark.android.ui.auth.signin
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +11,7 @@ import com.spark.android.data.remote.repository.AuthRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,10 +43,10 @@ class SignInViewModel @Inject constructor(
     val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
             initIsSuccessLogin(false)
-            Log.e("kakao", "로그인 실패", error)
+            Timber.tag("kakao").e(error, "로그인 실패")
         } else if (token != null) {
             initIsSuccessLogin(true)
-            Log.d("kakao", "로그인 성공 ${token.accessToken}")
+            Timber.tag("kakao").d("로그인 성공 ${token.accessToken}")
         }
     }
 
@@ -78,7 +78,7 @@ class SignInViewModel @Inject constructor(
             ).onSuccess { response ->
                 _doorbellResponse.postValue(Event(requireNotNull(response.data)))
             }.onFailure {
-                Log.d("SignIn_getAccessToken", it.message.toString())
+                Timber.tag("SignIn_getAccessToken").d(it.message.toString())
             }
         }
 
