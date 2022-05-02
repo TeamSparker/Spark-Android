@@ -57,6 +57,7 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
                 startActivity(Intent(this, MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
                     putExtra(MainActivity.FROM_WHERE, FROM_FEED_REPORT_ACTIVITY)
+                    putExtra(FEED_REPORT_SUCCESS, true)
                 })
                 finish()
             }
@@ -75,5 +76,6 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
 
     companion object {
         const val FROM_FEED_REPORT_ACTIVITY = "FeedReportActivity"
+        const val FEED_REPORT_SUCCESS = "feedReportSuccess"
     }
 }

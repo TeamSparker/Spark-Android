@@ -46,6 +46,10 @@
             app:destination="@id/feedFragment"
             app:popUpTo="@id/feedFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="feedReportSuccess"
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/storageFragment"
@@ -69,8 +73,8 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="cardType"
+            android:defaultValue="progressingCard"
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="progressingCard" />
+            app:nullable="true" />
     </fragment>
 </navigation>

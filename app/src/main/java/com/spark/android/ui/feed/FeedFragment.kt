@@ -2,9 +2,11 @@ package com.spark.android.ui.feed
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.animation.doOnEnd
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spark.android.BR
@@ -16,26 +18,43 @@ import com.spark.android.ui.feed.FeedBottomSheet.Companion.FEED_ITEM_ID
 import com.spark.android.ui.feed.adapter.FeedAdapter
 import com.spark.android.ui.feed.adapter.FeedHeaderDecoration
 import com.spark.android.ui.feed.adapter.FeedStickyHeaderResolverImpl
+import com.spark.android.util.AnimationUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private val feedViewModel by viewModels<FeedViewModel>()
+    private val args by navArgs<FeedFragmentArgs>()
     private val feedAdapter =
         FeedAdapter(
             { recordId -> feedViewModel.postFeedHeart(recordId) },
             { itemId -> showBottomSheet(itemId) }
         )
+    private val feedReportToastAnimator by lazy {
+        requireNotNull(AnimationUtil.grayBoxToastAnimation(binding.tvFeedToastFeedReport)).apply {
+            doOnEnd {
+                binding.tvFeedToastFeedReport.visibility = View.GONE
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.feedViewModel = feedViewModel
+        showFeedReportSuccessToast()
         feedViewModel.initShownDate()
         feedViewModel.getFeedList()
         initSwipeRefreshLayout()
         initFeedRvAdapter()
         addScrollListenerToFeedRv()
         initFeedListObserver()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (feedReportToastAnimator.isRunning) {
+            feedReportToastAnimator.cancel()
+        }
     }
 
     private fun initSwipeRefreshLayout() {
@@ -89,6 +108,13 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private fun showBottomSheet(itemId: Int) {
         setFragmentResult(FEED, bundleOf(FEED_ITEM_ID to itemId))
         FeedBottomSheet().show(parentFragmentManager, this.javaClass.name)
+    }
+
+    private fun showFeedReportSuccessToast() {
+        if (args.feedReportSuccess) {
+            binding.tvFeedToastFeedReport.visibility = View.VISIBLE
+            feedReportToastAnimator.start()
+        }
     }
 
     companion object {
