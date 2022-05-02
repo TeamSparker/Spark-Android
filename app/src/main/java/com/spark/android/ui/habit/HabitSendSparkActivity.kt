@@ -124,9 +124,10 @@ class HabitSendSparkActivity :
     }
 
     override fun onBackPressed() {
-        KeyBoardUtil.hide(this)
         if (habitSendSparkViewModel.isTyping.value == false) {
             finish()
+        } else {
+            KeyBoardUtil.hide(this)
         }
     }
 
