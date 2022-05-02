@@ -12,6 +12,7 @@ import com.spark.android.databinding.ActivityMainBinding
 import com.spark.android.ui.base.BaseActivity
 import com.spark.android.ui.certify.CertifyActivity.Companion.FROM_CERTIFY_ACTIVITY
 import com.spark.android.ui.feed.FeedFragmentDirections
+import com.spark.android.ui.feedreport.FeedReportActivity.Companion.FEED_REPORT_SUCCESS
 import com.spark.android.ui.feedreport.FeedReportActivity.Companion.FROM_FEED_REPORT_ACTIVITY
 import com.spark.android.ui.home.HomeMainFragmentDirections
 import com.spark.android.ui.joincode.inputcode.InputCodeFragmentDialog
@@ -47,7 +48,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initBindingVariable()
         initFloatingButtonClickListener()
         cardType = "progressingCard"
-        if(IS_FROM_CARD == true){
+        if (IS_FROM_CARD) {
             cardType = intent.getStringExtra("cardType")
         }
         initTabPositionObserver()
@@ -61,7 +62,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun onBackPressed() {
-        if(fabState){
+        if (fabState) {
             AnimationUtil.closeFabAnimation(
                 binding.fabHomeMain,
                 binding.fabHomeMakeRoom,
@@ -117,7 +118,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 when (position) {
                     TAB_FEED -> when (findNavController().currentDestination?.id) {
                         R.id.feedFragment -> FeedFragmentDirections.actionFeedFragmentSelf()
-                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentToFeedFragment()
+                        R.id.homeMainFragment -> {
+                            val feedReportSuccess =
+                                intent.getBooleanExtra(FEED_REPORT_SUCCESS, false)
+                            intent.removeExtra(FEED_REPORT_SUCCESS)
+                            HomeMainFragmentDirections.actionHomeMainFragmentToFeedFragment(
+                                feedReportSuccess
+                            )
+                        }
                         R.id.storageFragment -> StorageFragmentDirections.actionStorageFragmentToFeedFragment()
                         else -> throw IllegalStateException()
                     }
@@ -129,7 +137,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     }
                     TAB_STORAGE -> when (findNavController().currentDestination?.id) {
                         R.id.feedFragment -> FeedFragmentDirections.actionFeedFragmentToStorageFragment()
-                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentToStorageFragment(cardType)
+                        R.id.homeMainFragment -> HomeMainFragmentDirections.actionHomeMainFragmentToStorageFragment(
+                            cardType
+                        )
                         R.id.storageFragment -> StorageFragmentDirections.actionStorageFragmentSelf()
                         else -> throw IllegalStateException()
                     }
@@ -190,7 +200,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initBindingVariable()
     }
 
-    fun initBlackBgClickListener() {
+    private fun initBlackBgClickListener() {
         binding.layoutMainFabBackground.setOnClickListener {
             AnimationUtil.closeFabAnimation(
                 binding.fabHomeMain,
