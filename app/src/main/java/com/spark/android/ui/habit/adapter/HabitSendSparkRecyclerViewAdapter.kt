@@ -23,16 +23,13 @@ class HabitSendSparkRecyclerViewAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(holder: HabitSendSparkViewHolder, position: Int) {
-            var isTyPing = false
-
             binding.position = position
 
             binding.layoutItemHabitSendSparkMessage.setOnClickListener {
                 lateinit var content: String
                 when (position) {
                     FIRST_ITEM -> {
-                        isTyPing = !isTyPing
-                        initIsTyping(isTyPing)
+                        initIsTyping(true)
                     }
 
                     SECOND_ITEM -> {
