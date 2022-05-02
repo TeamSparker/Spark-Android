@@ -14,12 +14,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_fill_spark_light_gray_circle"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_waiting_room_recyclerview_picture"
+            app:layout_constraintEnd_toEndOf="@+id/iv_waiting_room_recyclerview_picture"
+            app:layout_constraintStart_toStartOf="@+id/iv_waiting_room_recyclerview_picture"
+            app:layout_constraintTop_toTopOf="@+id/iv_waiting_room_recyclerview_picture" />
+
         <ImageView
             android:id="@+id/iv_waiting_room_recyclerview_picture"
             setCircleImage="@{members.profileImg}"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
