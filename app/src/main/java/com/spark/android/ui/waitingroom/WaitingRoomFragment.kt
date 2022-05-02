@@ -121,7 +121,6 @@ class WaitingRoomFragment :
         waitingRoomViewModel.refreshInfo.observe(viewLifecycleOwner) {
             waitingRoomRecyclerViewAdapter.updateMemberList(it)
             waitingRoomViewModel.updateMemberListSize()
-            binding.btnWaitingRoomRefresh.isEnabled = true
         }
     }
 
@@ -193,8 +192,10 @@ class WaitingRoomFragment :
 
     private fun initRefreshButtonListener() {
         binding.btnWaitingRoomRefresh.setOnClickListener {
-            AnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh)
             binding.btnWaitingRoomRefresh.isEnabled = false
+            AnimationUtil.rotateAnimation(binding.btnWaitingRoomRefresh){
+                binding.btnWaitingRoomRefresh.isEnabled = true
+            }
             waitingRoomViewModel.getRefreshInfo(roomId)
         }
     }

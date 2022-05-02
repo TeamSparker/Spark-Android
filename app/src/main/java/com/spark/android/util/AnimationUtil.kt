@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.animation.doOnEnd
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spark.android.R
 
@@ -90,11 +91,13 @@ object AnimationUtil {
     }
 
     fun rotateAnimation(
-        imageButton: ImageButton
+        imageButton: ImageButton,
+        animationListener: (() -> Unit)
     ) {
         ObjectAnimator.ofFloat(imageButton, View.ROTATION, 360f, 0f).apply {
             duration = ROTATE_TIME
             start()
+            doOnEnd { animationListener() }
         }
     }
 
