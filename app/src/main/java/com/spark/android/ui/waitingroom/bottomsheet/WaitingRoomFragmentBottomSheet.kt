@@ -1,7 +1,6 @@
 package com.spark.android.ui.waitingroom.bottomsheet
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.WAITING_ROOM_BOTTOM_SHEET_GUEST
 import com.spark.android.util.DialogUtil.Companion.WAITING_ROOM_BOTTOM_SHEET_HOST
 import com.spark.android.util.EventObserver
-import com.spark.android.util.popBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,10 +63,12 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
                     )
                     waitingRoomBottomSheetViewModel.setHomeToastMessage("'${processedToastMessage}' 대기방이 삭제되었어요.")
                     waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
-                    waitingRoomBottomSheetViewModel.deleteWaitingRoomState.observe(viewLifecycleOwner,EventObserver{
-                        dismiss()
-                        requireActivity().finish()
-                    })
+                    waitingRoomBottomSheetViewModel.deleteWaitingRoomState.observe(
+                        viewLifecycleOwner,
+                        EventObserver {
+                            dismiss()
+                            requireActivity().finish()
+                        })
                 }.show(requireActivity().supportFragmentManager, this.javaClass.name)
             } else {
                 DialogUtil(WAITING_ROOM_BOTTOM_SHEET_GUEST) {
@@ -77,10 +77,12 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
                     )
                     waitingRoomBottomSheetViewModel.setHomeToastMessage("'${processedToastMessage}' 대기방을 나갔어요.")
                     waitingRoomBottomSheetViewModel.setHomeToastMessageState(true)
-                    waitingRoomBottomSheetViewModel.leaveWaitingRoomState.observe(viewLifecycleOwner,EventObserver{
-                        dismiss()
-                        requireActivity().finish()
-                    })
+                    waitingRoomBottomSheetViewModel.leaveWaitingRoomState.observe(
+                        viewLifecycleOwner,
+                        EventObserver {
+                            dismiss()
+                            requireActivity().finish()
+                        })
                 }.show(requireActivity().supportFragmentManager, this.javaClass.name)
             }
         }
@@ -91,4 +93,3 @@ class WaitingRoomFragmentBottomSheet : BottomSheetDialogFragment() {
         _binding = null
     }
 }
-

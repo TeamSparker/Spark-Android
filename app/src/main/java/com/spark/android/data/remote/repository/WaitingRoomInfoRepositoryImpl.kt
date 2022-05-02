@@ -2,10 +2,6 @@ package com.spark.android.data.remote.repository
 
 import com.spark.android.data.local.datasource.LocalPreferencesWaitingRoomDataSource
 import com.spark.android.data.remote.datasource.RemoteWaitingRoomDataSource
-import com.spark.android.data.remote.entity.response.BaseResponse
-import com.spark.android.data.remote.entity.response.NoDataResponse
-import com.spark.android.data.remote.entity.response.WaitingRoomInfoResponse
-import com.spark.android.data.remote.service.WaitingRoomInfoService
 import javax.inject.Inject
 
 class WaitingRoomInfoRepositoryImpl @Inject constructor(

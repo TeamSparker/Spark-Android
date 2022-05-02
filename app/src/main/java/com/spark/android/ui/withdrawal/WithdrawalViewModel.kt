@@ -1,6 +1,5 @@
 package com.spark.android.ui.withdrawal
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,7 @@ import com.spark.android.data.remote.repository.AuthRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,7 +40,7 @@ class WithdrawalViewModel @Inject constructor(
                     unLinkKakaoAccount()
                 }
                 .onFailure {
-                    Log.d("Withdrawal_deleteUser", it.message.toString())
+                    Timber.tag("Withdrawal_deleteUser").d(it.message.toString())
                 }
         }
     }

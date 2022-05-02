@@ -5,7 +5,6 @@ import com.spark.android.data.remote.datasource.AlarmSettingDataSource
 import com.spark.android.data.remote.entity.response.AlarmSettingResponse
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
-import com.spark.android.ui.alarmsetting.AlarmOnOff
 import javax.inject.Inject
 
 class AlarmSettingRepositoryImpl @Inject constructor(

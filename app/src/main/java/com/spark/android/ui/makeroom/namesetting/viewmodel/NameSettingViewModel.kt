@@ -4,5 +4,5 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class NameSettingViewModel : ViewModel () {
-    val habitName = MutableLiveData<String>("")
+    val habitName = MutableLiveData("")
 }

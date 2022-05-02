@@ -29,7 +29,7 @@ class PhotoMainPickRvAdapter(private val setNewThumbnail: (Int, Int) -> Unit) :
         ) {
             binding.storageCardPhoto = storageCardPhoto
 
-            if(isInitialOpening == true){
+            if (isInitialOpening) {
                 if (storageCardPhoto.certifyingImg == thumbnailUrl) {
                     currentThumbnailItemPos = currentItemPos
                 }
@@ -70,5 +70,3 @@ class PhotoMainPickRvAdapter(private val setNewThumbnail: (Int, Int) -> Unit) :
         var isInitialOpening = true
     }
 }
-
-

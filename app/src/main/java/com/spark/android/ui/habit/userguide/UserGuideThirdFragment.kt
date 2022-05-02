@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.spark.android.R
 
-
 class UserGuideThirdFragment : Fragment() {
 
     override fun onCreateView(

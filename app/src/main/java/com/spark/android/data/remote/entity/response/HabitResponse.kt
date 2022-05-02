@@ -32,4 +32,3 @@ data class OtherRecord(
     val status: String,
     val userId: Int,
 )
-

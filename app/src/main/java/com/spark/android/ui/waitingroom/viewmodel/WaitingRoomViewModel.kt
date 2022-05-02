@@ -1,6 +1,5 @@
 package com.spark.android.ui.waitingroom.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,8 +12,8 @@ import com.spark.android.data.remote.repository.WaitingRoomInfoRepository
 import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class WaitingRoomViewModel @Inject constructor(
@@ -55,7 +54,7 @@ class WaitingRoomViewModel @Inject constructor(
                     _waitingRoomInfo.postValue(it.data!!)
                     initIsLoading(false)
                 }.onFailure {
-                    Log.d("WaitingRoomInfo", it.message.toString())
+                    Timber.tag("WaitingRoomInfo").d(it.message.toString())
                 }
         }
     }
@@ -70,7 +69,7 @@ class WaitingRoomViewModel @Inject constructor(
                 .onSuccess {
                     _refreshInfo.postValue(it.data.members)
                 }.onFailure {
-                    Log.d("refreshPeopleList", it.message.toString())
+                    Timber.tag("refreshPeopleList").d(it.message.toString())
                 }
         }
     }
@@ -86,7 +85,7 @@ class WaitingRoomViewModel @Inject constructor(
                     _startHabitRoomState.postValue(Event(true))
                 }
                 .onFailure {
-                    Log.d("startHabit", it.message.toString())
+                    Timber.tag("startHabit").d(it.message.toString())
                 }
         }
     }
@@ -98,7 +97,7 @@ class WaitingRoomViewModel @Inject constructor(
                     _deleteWaitingRoomState.postValue(Event(true))
                 }
                 .onFailure {
-                    Log.d("deleteWaitingRoom", it.message.toString())
+                    Timber.tag("deleteWaitingRoom").d(it.message.toString())
                 }
         }
     }
@@ -110,7 +109,7 @@ class WaitingRoomViewModel @Inject constructor(
                     _leaveWaitingRoomState.postValue(Event(true))
                 }
                 .onFailure {
-                    Log.d("leaveRoom", it.message.toString())
+                    Timber.tag("leaveRoom").d(it.message.toString())
                 }
         }
     }

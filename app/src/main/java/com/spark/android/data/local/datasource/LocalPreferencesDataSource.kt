@@ -1,7 +1,6 @@
 package com.spark.android.data.local.datasource
 
 import com.spark.android.data.remote.entity.response.AlarmSettingResponse
-import com.spark.android.ui.alarmsetting.AlarmOnOff
 
 interface LocalPreferencesDataSource {
     fun saveAccessToken(accessToken: String)

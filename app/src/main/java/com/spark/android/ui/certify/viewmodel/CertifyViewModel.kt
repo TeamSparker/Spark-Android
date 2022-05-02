@@ -1,6 +1,5 @@
 package com.spark.android.ui.certify.viewmodel
 
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

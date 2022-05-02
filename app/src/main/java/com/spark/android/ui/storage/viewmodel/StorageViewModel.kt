@@ -1,6 +1,5 @@
 package com.spark.android.ui.storage.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +13,7 @@ import com.spark.android.ui.storage.StorageMode.Companion.PROGRESSING
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class StorageViewModel : ViewModel() {
     private var firstLoading = false
@@ -117,7 +117,7 @@ class StorageViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<BaseResponse<StorageResponse>>, t: Throwable) {
-                Log.e("NetworkTest", "error:$t")
+                Timber.tag("네트워크결과_InitStorageNetwork").e(t, "error")
             }
         })
     }

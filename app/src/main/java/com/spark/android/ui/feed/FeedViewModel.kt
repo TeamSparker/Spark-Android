@@ -1,6 +1,5 @@
 package com.spark.android.ui.feed
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_FOOTER_TYPE
 import com.spark.android.ui.feed.adapter.FeedAdapter.Companion.FEED_LOADING_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -59,7 +59,7 @@ class FeedViewModel @Inject constructor(
         viewModelScope.launch {
             val feed = requireNotNull(feedListItem.feed)
             feedRepository.postFeedHeart(feed.recordId)
-                .onFailure { Log.d("Feed_PostFeedHeart", it.message.toString()) }
+                .onFailure { Timber.tag("Feed_PostFeedHeart").d(it.message.toString()) }
             when (feed.isLiked) {
                 true -> feed.likeNum--
                 else -> feed.likeNum++
@@ -101,7 +101,7 @@ class FeedViewModel @Inject constructor(
                             addAll(feeds)
                         })
                 }.onFailure {
-                    Log.d("Feed_GetFeedList", it.message.toString())
+                    Timber.tag("Feed_GetFeedList").d(it.message.toString())
                 }
         }
     }

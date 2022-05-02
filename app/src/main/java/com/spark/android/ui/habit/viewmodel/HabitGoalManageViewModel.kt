@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spark.android.data.remote.RetrofitBuilder
 import com.spark.android.data.remote.entity.request.SetPurposeRequest
-import com.spark.android.data.remote.entity.request.SetStatusRequest
 import com.spark.android.data.remote.service.SetPurposeService
-import com.spark.android.data.remote.service.SetStatusService
 import kotlinx.coroutines.launch
 
 class HabitGoalManageViewModel : ViewModel() {
@@ -44,6 +42,4 @@ class HabitGoalManageViewModel : ViewModel() {
             }
         }
     }
-
-
 }

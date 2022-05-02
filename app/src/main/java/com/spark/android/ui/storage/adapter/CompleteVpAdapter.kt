@@ -1,7 +1,6 @@
 package com.spark.android.ui.storage.adapter
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -16,7 +15,8 @@ class CompleteVpAdapter :
     ListAdapter<StorageRoom, CompleteVpAdapter.CompleteVpViewHolder>(completeDiffUtil) {
 
     class CompleteVpViewHolder(
-        private val binding: ItemStorageCompleteListBinding) :
+        private val binding: ItemStorageCompleteListBinding
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -43,22 +43,22 @@ class CompleteVpAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompleteVpViewHolder {
         val binding = ItemStorageCompleteListBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
+            LayoutInflater.from(parent.context), parent, false
+        )
         return CompleteVpViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CompleteVpViewHolder, position: Int) {
-       if(holder is CompleteVpViewHolder) {
-           holder.onBind(getItem(position))
-       }
+        if (holder is CompleteVpViewHolder) {
+            holder.onBind(getItem(position))
+        }
     }
 
-    fun updateCompleteRoomList(storageRooms: List<StorageRoom>){
+    fun updateCompleteRoomList(storageRooms: List<StorageRoom>) {
         submitList(storageRooms)
     }
 
-    companion object{
+    companion object {
         private val completeDiffUtil = object : DiffUtil.ItemCallback<StorageRoom>() {
             override fun areItemsTheSame(oldItem: StorageRoom, newItem: StorageRoom): Boolean =
                 oldItem.roomId == newItem.roomId

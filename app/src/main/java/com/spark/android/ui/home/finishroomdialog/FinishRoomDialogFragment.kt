@@ -1,19 +1,14 @@
 package com.spark.android.ui.home.finishroomdialog
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import com.spark.android.R
 import com.spark.android.databinding.FragmentFinishRoomDialogBinding
-import com.spark.android.databinding.FragmentInputCodeDialogBinding
-import com.spark.android.ui.home.viewmodel.HomeMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.sql.ClientInfoStatus
 
 @AndroidEntryPoint
 class FinishRoomDialogFragment : DialogFragment() {

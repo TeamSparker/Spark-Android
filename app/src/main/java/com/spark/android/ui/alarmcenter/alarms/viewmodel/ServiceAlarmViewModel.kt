@@ -1,6 +1,5 @@
 package com.spark.android.ui.alarmcenter.alarms.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +12,7 @@ import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,7 +42,7 @@ class ServiceAlarmViewModel @Inject constructor(
         viewModelScope.launch {
             alarmCenterRepository.patchServiceAlarm()
                 .onFailure {
-                    Log.d("AlarmCenter_PatchServiceAlarm", it.message.toString())
+                    Timber.tag("AlarmCenter_PatchServiceAlarm").d(it.message.toString())
                 }
         }
     }

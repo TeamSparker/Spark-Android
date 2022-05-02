@@ -2,10 +2,7 @@ package com.spark.android.ui.makeroom.selectconfirmmethod
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.spark.android.R
@@ -15,7 +12,6 @@ import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.makeroom.selectconfirmmethod.viewmodel.SelectConfirmMethodViewModel
 import com.spark.android.ui.waitingroom.WaitingRoomActivity
 import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_CONFIRM_METHOD
-import com.spark.android.ui.waitingroom.WaitingRoomFragment
 import com.spark.android.util.DialogUtil
 import com.spark.android.util.DialogUtil.Companion.CHECK_CONFIRM_MODE
 import com.spark.android.util.FirebaseLogUtil
@@ -66,7 +62,7 @@ class SelectConfirmMethodFragment :
                     startActivity(intent)
                     requireActivity().finish()
                 }
-            }.show(requireActivity().supportFragmentManager,this.javaClass.name)
+            }.show(requireActivity().supportFragmentManager, this.javaClass.name)
         }
     }
 

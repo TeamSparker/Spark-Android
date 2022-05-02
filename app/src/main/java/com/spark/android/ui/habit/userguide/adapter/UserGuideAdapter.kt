@@ -1,7 +1,6 @@
 package com.spark.android.ui.habit.userguide.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class UserGuideAdapter(fragment: Fragment):FragmentStateAdapter(fragment) {

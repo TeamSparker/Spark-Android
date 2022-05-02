@@ -2,7 +2,6 @@ package com.spark.android.ui.storage
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
-import com.spark.android.R
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -22,7 +21,7 @@ class ZoomOutPageTransformer : ViewPager2.PageTransformer {
                     val scaleFactor = max(MIN_SCALE, 1 - abs(position))
                     val verticalMargin = pageHeight * (1 - scaleFactor) / 2
                     val horizontalMargin = pageWidth * (1 - scaleFactor) / 2
-                    translationX = position * -(horizontalMargin/2)
+                    translationX = position * -(horizontalMargin / 2)
 
                     // Scale the page down (between MIN_SCALE and 1)
                     scaleX = scaleFactor

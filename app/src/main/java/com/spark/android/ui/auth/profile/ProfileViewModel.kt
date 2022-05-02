@@ -1,7 +1,6 @@
 package com.spark.android.ui.auth.profile
 
 import android.net.Uri
-import android.util.Log
 import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +12,7 @@ import com.spark.android.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -111,7 +111,7 @@ class ProfileViewModel @Inject constructor(
                 _successSignUp.postValue(Event(true))
             }.onFailure {
                 initIsLoading(false)
-                Log.d("Profile_SignUp", it.message.toString())
+                Timber.tag("Profile_SignUp").d(it.message.toString())
             }
         }
     }
@@ -126,12 +126,12 @@ class ProfileViewModel @Inject constructor(
                 _successModify.postValue(Event(true))
             }.onFailure {
                 initIsLoading(false)
-                Log.d("Profile_PatchProfile", it.message.toString())
+                Timber.tag("Profile_PatchProfile").d(it.message.toString())
             }
         }
     }
 
-    fun setSignUpUserGuideDialogState(state: Boolean){
+    fun setSignUpUserGuideDialogState(state: Boolean) {
         profileRepository.setSignUpHabitUserGuideState(state)
     }
 }

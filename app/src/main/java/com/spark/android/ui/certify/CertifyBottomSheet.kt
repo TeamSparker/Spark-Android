@@ -21,10 +21,10 @@ import com.spark.android.databinding.BottomSheetCertifyBinding
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_CAMERA_PERMISSION
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_READ_STORAGE_PERMISSION
 import com.spark.android.ui.certify.viewmodel.CertifyViewModel
-import android.util.Log
 import com.spark.android.ui.auth.profile.ProfileBottomSheet.Companion.REQUEST_CAMERA_PERMISSION_UNDER_Q
 import com.spark.android.util.getImgUri
 import com.spark.android.util.getPathFromUri
+import timber.log.Timber
 import java.io.File
 import java.lang.NullPointerException
 
@@ -167,7 +167,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                 fromCameraActivityLauncher.launch(it)
             }
         } catch (e: NullPointerException) {
-            Log.e("CertifyBottomSheet", "ImgUri Null 에러")
+            Timber.tag("CertifyBottomSheet").d("ImgUri Null 에러")
         }
     }
 

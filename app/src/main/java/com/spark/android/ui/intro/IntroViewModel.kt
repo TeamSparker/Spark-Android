@@ -1,6 +1,5 @@
 package com.spark.android.ui.intro
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +11,7 @@ import com.spark.android.data.local.datasource.LocalPreferencesDataSourceImpl.Co
 import com.spark.android.data.remote.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -60,7 +60,7 @@ class IntroViewModel @Inject constructor(
                     }
                     isSuccessGetToken.postValue(true)
                 }.onFailure {
-                    Log.d("Intro_GetAccessToken", it.message.toString())
+                    Timber.tag("Intro_GetAccessToken").d(it.message.toString())
                     //getAccessToken()
                 }
             }
@@ -77,7 +77,7 @@ class IntroViewModel @Inject constructor(
                         authRepository.versionCheck(response.data.version, BuildConfig.VERSION_NAME)
                     )
                 }.onFailure {
-                    Log.d("Intro_GetStoreVersion", it.message.toString())
+                    Timber.tag("Intro_GetStoreVersion").d(it.message.toString())
                 }
         }
     }

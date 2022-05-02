@@ -2,11 +2,7 @@ package com.spark.android.ui.setpurpose
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.Window
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -15,11 +11,12 @@ import com.spark.android.data.remote.entity.request.SetPurposeRequest
 import com.spark.android.databinding.FragmentSetPurposeBinding
 import com.spark.android.ui.base.BaseFragment
 import com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel
-import com.spark.android.ui.waitingroom.WaitingRoomActivity
-import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_HOME
 import com.spark.android.ui.waitingroom.WaitingRoomActivity.Companion.START_FROM_JOIN_CODE
 import com.spark.android.ui.waitingroom.WaitingRoomFragment
-import com.spark.android.util.*
+import com.spark.android.util.AnimationUtil
+import com.spark.android.util.EventObserver
+import com.spark.android.util.KeyBoardUtil
+import com.spark.android.util.KeyboardVisibilityUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -46,7 +43,8 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                 bundle.putInt("startPoint", startPoint)
 
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
+                    .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java, bundle)
+                    .commit()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
@@ -61,7 +59,7 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         initEditTextClearFocus()
         initPurposeEditTextFocusListener()
         initWhenEditTextFocusListener()
-        initsettingPurposeBackButton()
+        initSettingPurposeBackButton()
         initSettingPurposeFinish()
         initWhenEditTextTouchListener()
         initPurposeEditTextTouchListener()
@@ -76,8 +74,8 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
         startPoint = arguments?.getInt("startPoint") ?: START_FROM_JOIN_CODE
     }
 
-    private fun initLastPurpose(){
-        setPurposeViewModel.setLastPurpose(moment,purpose)
+    private fun initLastPurpose() {
+        setPurposeViewModel.setLastPurpose(moment, purpose)
     }
 
     private fun initEditTextClearFocus() {
@@ -203,28 +201,30 @@ class SetPurposeFragment : BaseFragment<FragmentSetPurposeBinding>(R.layout.frag
                     setPurposeViewModel.myPurpose.value!!
                 )
             )
-            setPurposeViewModel.networkState.observe(viewLifecycleOwner,EventObserver {
+            setPurposeViewModel.networkState.observe(viewLifecycleOwner, EventObserver {
 
-                var bundle = Bundle()
+                val bundle = Bundle()
                 bundle.putInt("roomId", roomId)
-                bundle.putInt("startPoint",startPoint)
-                bundle.putBoolean("setPurposeEvent",true)
+                bundle.putInt("startPoint", startPoint)
+                bundle.putBoolean("setPurposeEvent", true)
 
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
+                    .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java, bundle)
+                    .commit()
             })
         }
     }
 
-    private fun initsettingPurposeBackButton() {
+    private fun initSettingPurposeBackButton() {
         binding.btnSetPurposeQuit.setOnClickListener {
 
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putInt("roomId", roomId)
             bundle.putInt("startPoint", startPoint)
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java,bundle).commit()
+                .replace(R.id.container_waiting_room, WaitingRoomFragment::class.java, bundle)
+                .commit()
         }
     }
 

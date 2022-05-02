@@ -4,7 +4,6 @@ import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.StorageResponse
 import retrofit2.http.GET
 import retrofit2.Call
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface StorageService  {

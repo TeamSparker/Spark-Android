@@ -1,10 +1,5 @@
 package com.spark.android.data.remote.entity.response
 
-
-import com.google.gson.annotations.SerializedName
-import com.spark.android.ui.waitingroom.data.WaitingData
-
-
 data class WaitingRoomInfoResponse(
     val fromStart: Boolean,
     var members: List<Member>,
@@ -29,4 +24,3 @@ data class ReqUser(
     val purpose: String,
     val userId: Int
 )
-

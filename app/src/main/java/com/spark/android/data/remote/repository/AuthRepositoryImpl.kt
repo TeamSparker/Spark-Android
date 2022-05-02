@@ -1,21 +1,19 @@
 package com.spark.android.data.remote.repository
 
-import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.user.UserApiClient
-import com.spark.android.BuildConfig
 import com.spark.android.data.local.datasource.LocalPreferencesDataSource
 import com.spark.android.data.remote.datasource.AuthDataSource
 import com.spark.android.data.remote.entity.response.BaseResponse
 import com.spark.android.data.remote.entity.response.DoorbellResponse
 import com.spark.android.data.remote.entity.response.NoDataResponse
-import com.spark.android.data.remote.entity.response.VersionResponse
 import com.spark.android.ui.intro.VersionUpdateState
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import timber.log.Timber
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -25,14 +23,12 @@ class AuthRepositoryImpl @Inject constructor(
     override fun initKakaoUserId(initId: (String) -> Unit) {
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
-                Log.e("kakao", "토큰 정보 보기 실패", error)
+                Timber.tag("kakao").e(error, "토큰 정보 보기 실패")
             } else if (tokenInfo != null) {
                 localPreferencesDataSource.saveUserKakakoUserId("Kakao@${requireNotNull(tokenInfo.id)}")
                 initId("Kakao@${requireNotNull(tokenInfo.id)}")
-                Log.d(
-                    "kakao", "토큰 정보 보기 성공" +
-                            "\n회원번호: ${tokenInfo.id}" +
-                            "\n만료시간: ${tokenInfo.expiresIn} 초"
+                Timber.tag("kakao").d(
+                    "토큰 정보 보기 성공\n회원번호: ${tokenInfo.id}\n만료시간: ${tokenInfo.expiresIn} 초"
                 )
             }
         }
@@ -41,10 +37,10 @@ class AuthRepositoryImpl @Inject constructor(
     override fun unLinkKakaoAccount(initSuccessWithdraw: (Boolean) -> Unit) {
         UserApiClient.instance.unlink { error ->
             if (error != null) {
-                Log.e("kakao", "연결 끊기 실패", error)
+                Timber.tag("kakao").e(error, "연결 끊기 실패")
                 initSuccessWithdraw(false)
             } else {
-                Log.i("kakao", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+                Timber.tag("kakao").d("연결 끊기 성공. SDK에서 토큰 삭제 됨")
                 initSuccessWithdraw(true)
             }
         }

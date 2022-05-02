@@ -6,13 +6,13 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.spark.android.ui.intro.IntroActivity
 import com.spark.android.util.ImageCropUtil
 import com.spark.android.util.useBitmapImg
+import timber.log.Timber
 import java.lang.IllegalArgumentException
 
 class SparkMessagingService : FirebaseMessagingService() {
@@ -23,7 +23,7 @@ class SparkMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d("fcm token ", token)
+        Timber.tag("fcm token").d(token)
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

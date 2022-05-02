@@ -6,9 +6,6 @@ import javax.inject.Inject
 class LocalPreferencesWaitingRoomDataSourceImpl @Inject constructor(
     private val localPreferences: SharedPreferences
 ) : LocalPreferencesWaitingRoomDataSource {
-
-
-
     override fun setHomeToastMessage(message: String) {
         localPreferences.edit().putString(HOME_TOAST_MESSAGE,message).apply()
     }

@@ -68,7 +68,7 @@ class StoragePhotoCollectionActivity :
         startActivity(Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
             putExtra(MainActivity.FROM_WHERE, FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY)
-            putExtra("cardType",intent.getStringExtra("cardType"))
+            putExtra("cardType", intent.getStringExtra("cardType"))
             IS_FROM_CARD = true
         })
     }

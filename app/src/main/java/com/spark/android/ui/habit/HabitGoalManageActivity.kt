@@ -1,7 +1,6 @@
 package com.spark.android.ui.habit
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.spark.android.R

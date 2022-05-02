@@ -20,7 +20,6 @@ import com.spark.android.util.FirebaseLogUtil.SCREEN_STOPWATCH
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
 
-
 class TimerStartActivity : BaseActivity<ActivityTimerStartBinding>(R.layout.activity_timer_start) {
     private val timerStartViewModel by viewModels<TimerStartViewModel>()
     var pauseTime = 0L

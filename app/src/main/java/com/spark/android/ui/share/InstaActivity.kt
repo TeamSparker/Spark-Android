@@ -11,7 +11,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.spark.android.R
@@ -22,11 +21,10 @@ import com.spark.android.ui.main.MainActivity
 import com.spark.android.ui.main.MainActivity.Companion.FROM_WHERE
 import com.spark.android.util.showToast
 import android.provider.MediaStore
+import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
-import java.util.*
-import android.graphics.drawable.Drawable
-
+import java.util.Calendar
 
 class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta) {
     private lateinit var imgUri: Uri
@@ -126,7 +124,7 @@ class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta
         } catch (e: ActivityNotFoundException) {
             showToast(getString(R.string.insta_error_msg))
             moveToFeed()
-            Log.d("Insta_Share", "Instagram 앱이 없습니다.")
+            Timber.tag("Insta_Share").d("Instagram 앱이 없습니다.")
         }
     }
 }

@@ -15,7 +15,6 @@ import com.spark.android.util.FirebaseLogUtil
 import com.spark.android.util.FirebaseLogUtil.SCREEN_SIGN_IN
 import com.spark.android.util.initStatusBarColor
 import com.spark.android.util.initStatusBarTextColorToWhite
-import com.spark.android.util.navigate
 import com.spark.android.util.navigateWithData
 import com.spark.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
