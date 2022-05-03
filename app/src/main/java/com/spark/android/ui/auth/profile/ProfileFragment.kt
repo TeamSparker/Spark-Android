@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
@@ -47,6 +48,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         initLayoutClickListener()
         initIsFocused()
         initQuitBtnClickListener()
+        initOnBackPressed()
         initPictureBtnClickListener()
         initSuccessSignUpObserver()
         initOldProfileImgUrlObserver()
@@ -91,14 +93,27 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
+    private fun showDialog() {
+        DialogUtil(
+            if (args.modifyMode) STOP_MODIFY_PROFILE else STOP_SIGNUP_MODE
+        ) {
+            popBackStack()
+        }.show(parentFragmentManager, this.javaClass.name)
+    }
+
     private fun initQuitBtnClickListener() {
         binding.btnProfileQuit.setOnClickListener {
-            DialogUtil(
-                if (args.modifyMode) STOP_MODIFY_PROFILE else STOP_SIGNUP_MODE
-            ) {
-                popBackStack()
-            }.show(parentFragmentManager, this.javaClass.name)
+            showDialog()
         }
+    }
+
+    private fun initOnBackPressed() {
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    showDialog()
+                }
+            })
     }
 
     private fun initSuccessSignUpObserver() {
