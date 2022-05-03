@@ -25,7 +25,6 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
         super.onCreate(savedInstanceState)
         initStatusBarColor(R.color.spark_more_deep_gray)
         checkOpenFromPushAlarm()
-        introViewModel.initFcmToken()
         introViewModel.versionCheck()
         initVersionUpdateStateObserver()
         initFcmTokenObserver()
@@ -39,7 +38,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
             FirebaseLogUtil.logNotificationOpenEvent(it)
         }
     }
-    
+
     private fun initVersionUpdateStateObserver() {
         introViewModel.versionUpdateState.observe(this) { state ->
             if (state == VersionUpdateState.FORCE) {
@@ -48,10 +47,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
                         Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_update)))
                     )
                     finish()
-                }.show(
-                    supportFragmentManager,
-                    this.javaClass.name
-                )
+                }.show(supportFragmentManager, this.javaClass.name)
             } else {
                 introViewModel.initFcmToken()
             }
