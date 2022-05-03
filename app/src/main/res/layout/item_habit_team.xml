@@ -8,11 +8,11 @@
 
         <variable
             name="record"
-            type="com.spark.android.data.remote.entity.response.HabitRecord" />
+            type="com.teamsparker.android.data.remote.entity.response.HabitRecord" />
 
         <variable
             name="response"
-            type="com.spark.android.data.remote.entity.response.HabitResponse" />
+            type="com.teamsparker.android.data.remote.entity.response.HabitResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

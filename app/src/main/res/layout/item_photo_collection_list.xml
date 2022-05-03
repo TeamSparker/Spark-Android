@@ -9,7 +9,7 @@
 
         <variable
             name="storageCardPhoto"
-            type="com.spark.android.data.remote.entity.response.StorageCardPhoto" />
+            type="com.teamsparker.android.data.remote.entity.response.StorageCardPhoto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

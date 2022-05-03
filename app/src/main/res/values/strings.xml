@@ -14,7 +14,7 @@
     <string name="intro_content">습관에 불을 지펴봐!</string>
     <string name="intro_update_check_dialog_content">최신 버전의 Spark가 출시되었어요.\n업데이트 후 이용해 주세요!</string>
     <string name="intro_update_check_dialog_confirm">업데이트하기</string>
-    <string name="link_update">https://play.google.com/store/apps/details?id=com.spark.android</string>
+    <string name="link_update">https://play.google.com/store/apps/details?id=com.teamsparker.android</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- HomeMainFragment -->

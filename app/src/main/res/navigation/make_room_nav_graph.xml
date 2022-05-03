@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/nameSettingFragment"
-        android:name="com.spark.android.ui.makeroom.namesetting.NameSettingFragment"
+        android:name="com.teamsparker.android.ui.makeroom.namesetting.NameSettingFragment"
         android:label="NameSettingFragment" >
         <action
             android:id="@+id/action_nameSettingFragment_to_selectConfirmMethodFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectConfirmMethodFragment"
-        android:name="com.spark.android.ui.makeroom.selectconfirmmethod.SelectConfirmMethodFragment"
+        android:name="com.teamsparker.android.ui.makeroom.selectconfirmmethod.SelectConfirmMethodFragment"
         android:label="SelectConfirmMethodFragment" >
         <argument
             android:name="roomName"

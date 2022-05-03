@@ -9,7 +9,7 @@
 
         <variable
             name="waitingRoomViewModel"
-            type="com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
+            type="com.teamsparker.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
 
         <variable
             name="startPoint"

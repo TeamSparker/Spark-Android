@@ -7,7 +7,7 @@
 
         <variable
             name="room"
-            type="com.spark.android.data.remote.entity.response.Room" />
+            type="com.teamsparker.android.data.remote.entity.response.Room" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -11,7 +11,7 @@
 
         <variable
             name="setPurposeViewModel"
-            type="com.spark.android.ui.setpurpose.viewmodel.SetPurposeViewModel" />
+            type="com.teamsparker.android.ui.setpurpose.viewmodel.SetPurposeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

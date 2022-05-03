@@ -9,7 +9,7 @@
 
         <variable
             name="storageViewModel"
-            type="com.spark.android.ui.storage.viewmodel.StorageViewModel" />
+            type="com.teamsparker.android.ui.storage.viewmodel.StorageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

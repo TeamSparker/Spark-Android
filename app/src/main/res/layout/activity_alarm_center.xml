@@ -7,11 +7,11 @@
 
         <import type="android.view.View" />
 
-        <import type="com.spark.android.ui.alarmcenter.alarms.AlarmType" />
+        <import type="com.teamsparker.android.ui.alarmcenter.alarms.AlarmType" />
 
         <variable
             name="alarmCenterViewModel"
-            type="com.spark.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel" />
+            type="com.teamsparker.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

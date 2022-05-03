@@ -9,7 +9,7 @@
 
         <variable
             name="withdrawalViewModel"
-            type="com.spark.android.ui.withdrawal.WithdrawalViewModel" />
+            type="com.teamsparker.android.ui.withdrawal.WithdrawalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

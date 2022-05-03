@@ -7,7 +7,7 @@
 
         <variable
             name="storageRoom"
-            type="com.spark.android.data.remote.entity.response.StorageRoom" />
+            type="com.teamsparker.android.data.remote.entity.response.StorageRoom" />
 
         <variable
             name="str"

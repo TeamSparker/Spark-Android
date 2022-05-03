@@ -9,7 +9,7 @@
 
         <variable
             name="timerStartViewModel"
-            type="com.spark.android.ui.timer.viewmodel.TimerStartViewModel" />
+            type="com.teamsparker.android.ui.timer.viewmodel.TimerStartViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

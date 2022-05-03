@@ -7,7 +7,7 @@
 
         <variable
             name="feedReportViewModel"
-            type="com.spark.android.ui.feedreport.FeedReportViewModel" />
+            type="com.teamsparker.android.ui.feedreport.FeedReportViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

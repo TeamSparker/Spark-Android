@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeMainFragment"
-        android:name="com.spark.android.ui.home.HomeMainFragment"
+        android:name="com.teamsparker.android.ui.home.HomeMainFragment"
         android:label="HomeMainFragment"
         tools:layout="@layout/fragment_home_main">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.spark.android.ui.feed.FeedFragment"
+        android:name="com.teamsparker.android.ui.feed.FeedFragment"
         android:label="FeedFragment"
         tools:layout="@layout/fragment_feed">
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/storageFragment"
-        android:name="com.spark.android.ui.storage.StorageFragment"
+        android:name="com.teamsparker.android.ui.storage.StorageFragment"
         android:label="StorageFragment"
         tools:layout="@layout/fragment_storage">
         <action

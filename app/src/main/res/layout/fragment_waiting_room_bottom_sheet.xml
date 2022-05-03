@@ -7,7 +7,7 @@
 
         <variable
             name="waitingRoomBottomSheetViewModel"
-            type="com.spark.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
+            type="com.teamsparker.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
