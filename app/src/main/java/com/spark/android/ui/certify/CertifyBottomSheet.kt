@@ -35,20 +35,6 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     private lateinit var imgUri: Uri
     private val certifyViewModel by activityViewModels<CertifyViewModel>()
 
-    private val checkCameraPermission by lazy {
-        ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private val checkCameraPermissionUnderQ by lazy {
-        checkCameraPermission && ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
     private val fromAlbumActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result: ActivityResult ->
@@ -132,7 +118,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     private fun initFromCameraBtnClickListener() {
         binding.tvCertifyCamera.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                if (checkCameraPermission) {
+                if (checkCameraPermission()) {
                     takePicture()
                 } else {
                     ActivityCompat.requestPermissions(
@@ -142,7 +128,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                     )
                 }
             } else {
-                if (checkCameraPermissionUnderQ) {
+                if (checkCameraPermissionUnderQ()) {
                     takePicture()
                 } else {
                     ActivityCompat.requestPermissions(
@@ -157,6 +143,19 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
             }
         }
     }
+
+    private fun checkCameraPermission() =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+
+
+    private fun checkCameraPermissionUnderQ() =
+        checkCameraPermission() && ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
 
     private fun takePicture() {
         try {
