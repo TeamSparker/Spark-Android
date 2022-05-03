@@ -9,7 +9,7 @@
 
         <variable
             name="habitSendSparkViewModel"
-            type="com.spark.android.ui.habit.viewmodel.HabitSendSparkViewModel" />
+            type="com.teamsparker.android.ui.habit.viewmodel.HabitSendSparkViewModel" />
 
     </data>
 

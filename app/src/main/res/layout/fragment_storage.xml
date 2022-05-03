@@ -7,11 +7,11 @@
 
         <import type="android.view.View" />
 
-        <import type="com.spark.android.ui.storage.StorageMode" />
+        <import type="com.teamsparker.android.ui.storage.StorageMode" />
 
         <variable
             name="storageViewModel"
-            type="com.spark.android.ui.storage.viewmodel.StorageViewModel" />
+            type="com.teamsparker.android.ui.storage.viewmodel.StorageViewModel" />
 
     </data>
 

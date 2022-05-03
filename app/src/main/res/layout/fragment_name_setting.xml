@@ -7,7 +7,7 @@
 
         <variable
             name="nameSettingViewModel"
-            type="com.spark.android.ui.makeroom.namesetting.viewmodel.NameSettingViewModel" />
+            type="com.teamsparker.android.ui.makeroom.namesetting.viewmodel.NameSettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

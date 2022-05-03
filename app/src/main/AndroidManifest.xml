@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.spark.android">
+    package="com.teamsparker.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,7 +14,7 @@
         android:required="false" />
 
     <application
-        android:name=".SparkApplication"
+        android:name="com.teamsparker.android.SparkApplication"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="false"
@@ -25,76 +25,76 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
         <activity
-            android:name=".ui.habit.HabitSendSparkActivity"
+            android:name="com.teamsparker.android.ui.habit.HabitSendSparkActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.feedreport.FeedReportActivity"
+            android:name="com.teamsparker.android.ui.feedreport.FeedReportActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.alarmcenter.AlarmCenterActivity"
+            android:name="com.teamsparker.android.ui.alarmcenter.AlarmCenterActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.onboarding.OnBoardingActivity"
+            android:name="com.teamsparker.android.ui.onboarding.OnBoardingActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.storage.photo.StoragePhotoMainPickActivity"
+            android:name="com.teamsparker.android.ui.storage.photo.StoragePhotoMainPickActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.mypage.MyPageActivity"
+            android:name="com.teamsparker.android.ui.mypage.MyPageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.share.InstaActivity"
+            android:name="com.teamsparker.android.ui.share.InstaActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.waitingroom.WaitingRoomActivity"
+            android:name="com.teamsparker.android.ui.waitingroom.WaitingRoomActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.certify.CertifyActivity"
+            android:name="com.teamsparker.android.ui.certify.CertifyActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.timer.TimerStartActivity"
+            android:name="com.teamsparker.android.ui.timer.TimerStartActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.habit.HabitGoalManageActivity"
+            android:name="com.teamsparker.android.ui.habit.HabitGoalManageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.joincode.JoinCodeActivity"
+            android:name="com.teamsparker.android.ui.joincode.JoinCodeActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.makeroom.MakeRoomActivity"
+            android:name="com.teamsparker.android.ui.makeroom.MakeRoomActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.storage.photo.StoragePhotoCollectionActivity"
+            android:name="com.teamsparker.android.ui.storage.photo.StoragePhotoCollectionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.habit.HabitActivity"
+            android:name="com.teamsparker.android.ui.habit.HabitActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name="com.teamsparker.android.ui.auth.AuthActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.intro.IntroActivity"
+            android:name="com.teamsparker.android.ui.intro.IntroActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -104,7 +104,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.teamsparker.android.ui.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
@@ -124,7 +124,7 @@
         </activity>
 
         <service
-            android:name=".SparkMessagingService"
+            android:name="com.teamsparker.android.SparkMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

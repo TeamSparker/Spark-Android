@@ -9,11 +9,11 @@
 
         <variable
             name="activity"
-            type="com.spark.android.ui.main.MainActivity" />
+            type="com.teamsparker.android.ui.main.MainActivity" />
 
         <variable
             name="mainViewModel"
-            type="com.spark.android.ui.main.viewmodel.MainViewModel" />
+            type="com.teamsparker.android.ui.main.viewmodel.MainViewModel" />
 
         <variable
             name="fabState"

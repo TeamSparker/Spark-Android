@@ -8,7 +8,7 @@
 
         <variable
             name="habitViewModel"
-            type="com.spark.android.ui.habit.viewmodel.HabitViewModel" />
+            type="com.teamsparker.android.ui.habit.viewmodel.HabitViewModel" />
 
     </data>
 

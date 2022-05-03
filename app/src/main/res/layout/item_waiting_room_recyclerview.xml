@@ -7,7 +7,7 @@
 
         <variable
             name="members"
-            type="com.spark.android.data.remote.entity.response.Member" />
+            type="com.teamsparker.android.data.remote.entity.response.Member" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

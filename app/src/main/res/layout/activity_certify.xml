@@ -7,11 +7,11 @@
 
         <import type="android.view.View" />
 
-        <import type="com.spark.android.ui.certify.CertifyMode" />
+        <import type="com.teamsparker.android.ui.certify.CertifyMode" />
 
         <variable
             name="certifyViewModel"
-            type="com.spark.android.ui.certify.viewmodel.CertifyViewModel" />
+            type="com.teamsparker.android.ui.certify.viewmodel.CertifyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

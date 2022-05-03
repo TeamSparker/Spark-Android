@@ -9,7 +9,7 @@
 
         <variable
             name="serviceAlarmViewModel"
-            type="com.spark.android.ui.alarmcenter.alarms.viewmodel.ServiceAlarmViewModel" />
+            type="com.teamsparker.android.ui.alarmcenter.alarms.viewmodel.ServiceAlarmViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

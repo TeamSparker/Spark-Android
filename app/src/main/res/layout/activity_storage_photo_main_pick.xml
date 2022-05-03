@@ -9,7 +9,7 @@
 
         <variable
             name="mainPhotoPickViewModel"
-            type="com.spark.android.ui.storage.viewmodel.PhotoViewModel" />
+            type="com.teamsparker.android.ui.storage.viewmodel.PhotoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

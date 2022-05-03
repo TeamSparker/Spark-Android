@@ -9,7 +9,7 @@
 
         <variable
             name="feed"
-            type="com.spark.android.data.remote.entity.response.Feed" />
+            type="com.teamsparker.android.data.remote.entity.response.Feed" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

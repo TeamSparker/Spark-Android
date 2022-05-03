@@ -7,7 +7,7 @@
 
         <variable
             name="signInViewModel"
-            type="com.spark.android.ui.auth.signin.SignInViewModel" />
+            type="com.teamsparker.android.ui.auth.signin.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

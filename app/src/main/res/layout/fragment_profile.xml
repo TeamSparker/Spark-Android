@@ -13,7 +13,7 @@
 
         <variable
             name="profileViewModel"
-            type="com.spark.android.ui.auth.profile.ProfileViewModel" />
+            type="com.teamsparker.android.ui.auth.profile.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

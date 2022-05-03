@@ -9,7 +9,7 @@
 
         <variable
             name="feedViewModel"
-            type="com.spark.android.ui.feed.FeedViewModel" />
+            type="com.teamsparker.android.ui.feed.FeedViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

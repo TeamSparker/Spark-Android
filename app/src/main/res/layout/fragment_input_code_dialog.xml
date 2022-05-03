@@ -7,7 +7,7 @@
 
         <variable
             name="inputCodeFragmentDialogViewModel"
-            type="com.spark.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel" />
+            type="com.teamsparker.android.ui.joincode.inputcode.viewModel.InputCodeFragmentDialogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

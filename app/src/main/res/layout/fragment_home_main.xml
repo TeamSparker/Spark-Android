@@ -9,7 +9,7 @@
 
         <variable
             name="homeViewModel"
-            type="com.spark.android.ui.home.viewmodel.HomeMainViewModel" />
+            type="com.teamsparker.android.ui.home.viewmodel.HomeMainViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

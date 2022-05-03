@@ -7,7 +7,7 @@
 
         <variable
             name="myPageViewModel"
-            type="com.spark.android.ui.mypage.MyPageViewModel" />
+            type="com.teamsparker.android.ui.mypage.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
