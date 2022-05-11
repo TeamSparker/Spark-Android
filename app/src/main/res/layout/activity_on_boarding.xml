@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.onboarding.OnBoardingActivity">
+
+        <TextView
+            android:id="@+id/btn_onboarding_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/futura_medium"
+            android:padding="10dp"
+            android:text="@string/on_boarding_activity_btn_skip"
+            android:textColor="@color/spark_gray"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/iv_onboarding_bg_sparkflake"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="39dp"
+            android:src="@drawable/bg_onboarding_sparkflake_pattern"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_on_boarding"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_onboarding_start"
+            app:layout_constraintTop_toBottomOf="@id/btn_onboarding_skip" />
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator_on_boarding"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:layout_marginTop="40dp"
+            app:ci_drawable="@drawable/shape_spark_pinkred_circle"
+            app:ci_drawable_unselected="@drawable/shape_spark_gray_fill_circle"
+            app:ci_height="6dp"
+            app:ci_margin="4dp"
+            app:ci_width="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_onboarding_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_spark_dark_pinkred_fill_2_rect"
+            android:elevation="0dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/on_boarding_activity_btn_start"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

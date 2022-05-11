@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="checkRoomViewModel"
+            type="com.teamsparker.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.waitingroom.checkroom.CheckRoomFragment">
+
+        <TextView
+            android:id="@+id/tv_check_room_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{checkRoomViewModel.waitingRoomInfo.roomName}"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="30분 독서" />
+
+        <TextView
+            android:id="@+id/tv_check_room_title_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/check_room_title"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_check_room_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_check_room_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_check_room_title" />
+
+        <TextView
+            android:id="@+id/tv_check_room_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/check_room_content"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_check_room_title_second"
+            app:layout_constraintStart_toStartOf="@+id/tv_check_room_title_second"
+            app:layout_constraintTop_toBottomOf="@+id/tv_check_room_title_second" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_check_room_copy_code"
+            android:layout_width="87dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_spark_dark_pinkred_line_rect"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/waiting_room_copy_code"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_check_room_content"
+            app:layout_constraintStart_toStartOf="@+id/tv_check_room_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_check_room_content" />
+
+        <ImageView
+            android:id="@+id/iv_check_room_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_check_room_copy_code"
+            app:srcCompat="@drawable/bg_join_code" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_check_room"
+            android:layout_width="294dp"
+            android:layout_height="208dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_check_room_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_check_room_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_check_room_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_check_room_background"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="ticket_welcome.json"
+            app:lottie_loop="true" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_check_room_move_home"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/shape_spark_dark_pinkred_line_rect"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/check_room_home_button"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_check_room_move_waiting_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_check_room_move_waiting_room"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_btn_active"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/check_room_waiting_room_button"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_check_room_toast"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_spark_deep_gray_fill_rect"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_copy_code_toast"
+            android:textColor="@color/spark_white"
+            android:textSize="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

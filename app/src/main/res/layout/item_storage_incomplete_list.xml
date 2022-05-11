@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="storageRoom"
+            type="com.teamsparker.android.data.remote.entity.response.StorageRoom" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_spark_gray_fill_line_2_rect_black">
+
+        <ImageView
+            android:id="@+id/iv_incomplete_item_photo"
+            setImage="@{storageRoom.thumbnail}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginBottom="2dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/img_storage_incomplete_certification_photo" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/bg_storage_black_filter"
+            app:layout_constraintBottom_toBottomOf="@id/iv_incomplete_item_photo"
+            app:layout_constraintEnd_toEndOf="@id/iv_incomplete_item_photo"
+            app:layout_constraintStart_toStartOf="@id/iv_incomplete_item_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_incomplete_item_photo" />
+
+
+
+            <ImageView
+                android:id="@+id/iv_incomplete_item_sparkflake"
+                setIncompleteCardSparkFlake="@{storageRoom.failDay}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="36dp"
+                tools:src="@drawable/ic_storage_incomplete_item_sparkflake3" />
+
+        <TextView
+            android:id="@+id/tv_incomplte_item_leftDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/futura_bold"
+            android:includeFontPadding="false"
+            setIncompleteCardFailDay="@{storageRoom.failDay}"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="24dp"
+            android:layout_marginStart="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_incomplete_item_sparkflake"
+            app:layout_constraintEnd_toEndOf="@+id/iv_incomplete_item_sparkflake"
+            app:layout_constraintStart_toStartOf="@+id/iv_incomplete_item_sparkflake"
+            tools:text="32 DAYS" />
+
+        <ImageView
+            android:id="@+id/iv_incomplete_item_fire_gray"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_item_fire_gray"
+            app:layout_constraintEnd_toStartOf="@id/tv_incomplete_item_total_sparkNumber"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/tv_incomplte_item_leftDays"
+
+            app:layout_constraintTop_toBottomOf="@id/iv_incomplete_item_sparkflake" />
+
+        <TextView
+            android:id="@+id/tv_incomplete_item_total_sparkNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="9dp"
+            android:fontFamily="@font/futura_medium"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="1sp"
+            android:text="@{String.valueOf(safeUnbox(storageRoom.totalReceivedSpark))}"
+            android:textColor="@color/spark_gray"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/tv_incomplte_item_leftDays"
+            app:layout_constraintStart_toEndOf="@id/iv_incomplete_item_fire_gray"
+            app:layout_constraintTop_toBottomOf="@id/iv_incomplete_item_sparkflake"
+            tools:text="300" />
+
+
+        <TextView
+            android:id="@+id/tv_incomplete_item_roomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@{storageRoom.roomName}"
+            android:textColor="@color/spark_white"
+            android:textSize="24dp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_incomplete_item_fire_gray"
+            tools:text="자기 전 명상하기" />
+
+        <TextView
+            android:id="@+id/tv_incomplete_item_total_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@{storageRoom.startDate.replace(`-`,`.`) +` - `+storageRoom.endDate.replace(`-`,`.`)}"
+            android:textColor="@color/spark_gray"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_incomplete_item_roomName"
+            tools:text="2021.12.26 - 2022.02.26" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

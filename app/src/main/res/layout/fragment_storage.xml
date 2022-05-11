@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.teamsparker.android.ui.storage.StorageMode" />
+
+        <variable
+            name="storageViewModel"
+            type="com.teamsparker.android.ui.storage.viewmodel.StorageViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_storage_out"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_home_for_white"
+        tools:context=".ui.storage.StorageFragment">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@color/spark_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_storage_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_storage_title_nickname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@{storageViewModel.storageResponse.nickname+` 님의`}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/spark_black"
+                android:textSize="20dp"
+                android:visibility="@{storageViewModel.isLoading == true ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="나는야쿵짝지혜 님의" />
+
+            <TextView
+                android:id="@+id/tv_storage_title_sparkNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(storageViewModel.storageResponse.totalRoomNum)+`가지 스파크`}"
+                android:textColor="@color/spark_black"
+                android:textSize="20dp"
+                android:visibility="@{storageViewModel.isLoading == true ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/tv_storage_title_nickname"
+                app:layout_constraintTop_toBottomOf="@id/tv_storage_title_nickname"
+                tools:text="19가지 스파크" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_progressing_touchArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:onClick="@{()->storageViewModel.initProgressMode()}"
+            android:visibility="@{storageViewModel.isLoading == true ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_storage_title">
+
+            <View
+                android:id="@+id/view_storage_progressing_indicator"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:background="@color/spark_dark_pinkred"
+                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.PROGRESSING) ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_progressing_touchArea"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_progressing_touchArea" />
+
+            <TextView
+                android:id="@+id/tv_storage_progressing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/storage_tab_name_progressing"
+                android:textAlignment="center"
+                android:textColor="@{storageViewModel.storageMode.equals(StorageMode.PROGRESSING) ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout_progressing_touchArea"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_progressing_indicator" />
+
+            <TextView
+                android:id="@+id/tv_storage_number_progressing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(storageViewModel.storageResponse.ongoingRoomNum)}"
+                android:textAlignment="viewStart"
+                android:textColor="@{storageViewModel.storageMode.equals(StorageMode.PROGRESSING) ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_storage_progressing"
+                app:layout_constraintStart_toEndOf="@id/tv_storage_progressing"
+                tools:text="6" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_complete_touchArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:onClick="@{()->storageViewModel.initCompleteMode()}"
+            android:visibility="@{storageViewModel.isLoading == true ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/constraintLayout_progressing_touchArea"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing_touchArea">
+
+            <View
+                android:id="@+id/view_storage_complete_indicator"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:background="@color/spark_dark_pinkred"
+                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.COMPLETE) ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete_touchArea"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout_complete_touchArea" />
+
+            <TextView
+                android:id="@+id/tv_storage_complete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/storage_tab_name_complete"
+                android:textAlignment="center"
+                android:textColor="@{storageViewModel.storageMode.equals(StorageMode.COMPLETE) ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_complete_touchArea"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_complete_indicator" />
+
+            <TextView
+                android:id="@+id/tv_storage_number_complete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(safeUnbox(storageViewModel.storageResponse.completeRoomNum))}"
+                android:textAlignment="viewStart"
+                android:textColor="@{storageViewModel.storageMode.equals(StorageMode.COMPLETE) ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_storage_complete"
+                app:layout_constraintStart_toEndOf="@+id/tv_storage_complete"
+                tools:text="12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_incomplete_touchArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:onClick="@{()->storageViewModel.initIncompleteMode()}"
+            android:visibility="@{storageViewModel.isLoading == true ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/constraintLayout_complete_touchArea"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout_progressing_touchArea">
+
+            <View
+                android:id="@+id/view_storage_incomplete_indicator"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:background="@color/spark_dark_pinkred"
+                android:visibility="@{storageViewModel.storageMode.equals(StorageMode.INCOMPLETE) ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout_incomplete_touchArea"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout_incomplete_touchArea" />
+
+
+            <TextView
+                android:id="@+id/tv_storage_incomplete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/storage_tab_name_incomplete"
+                android:textAlignment="center"
+                android:textColor="@{storageViewModel.storageMode.equals(StorageMode.INCOMPLETE) ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout_incomplete_touchArea"
+                app:layout_constraintTop_toBottomOf="@id/view_storage_incomplete_indicator" />
+
+            <TextView
+                android:id="@+id/tv_storage_number_incomplete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(safeUnbox(storageViewModel.storageResponse.failRoomNum))}"
+                android:textAlignment="viewStart"
+                android:textColor="@{storageViewModel.storageMode.equals(StorageMode.INCOMPLETE) ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_storage_incomplete"
+                app:layout_constraintStart_toEndOf="@+id/tv_storage_incomplete"
+                tools:text="1" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_storage_out"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            android:overScrollMode="never"
+            android:visibility="@{storageViewModel.isLoading == true ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_progressing_touchArea" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_storage_loading"
+            playLoadingLottie="@{storageViewModel.isLoading}"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="@{storageViewModel.isLoading == true ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

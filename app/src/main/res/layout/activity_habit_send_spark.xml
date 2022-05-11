@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="habitSendSparkViewModel"
+            type="com.teamsparker.android.ui.habit.viewmodel.HabitSendSparkViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_habit_send_spark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.habit.HabitSendSparkActivity">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_habit_send_spark_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@{habitSendSparkViewModel.isTyping ? @drawable/ic_back_white : @drawable/ic_quit_white}"
+            android:stateListAnimator="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_habit_send_spark_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_quit_white"
+            android:stateListAnimator="@null"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_habit_send_spark_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/habit_send_spark_title"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_habit_send_spark_profile"
+            setCircleImage="@{habitSendSparkViewModel.profileImg}"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/shape_light_gray_line_circle"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_habit_send_spark_title" />
+
+        <TextView
+            android:id="@+id/tv_habit_send_spark_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{habitSendSparkViewModel.nickname}"
+            android:textAlignment="center"
+            android:textColor="@color/spark_light_gray"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_habit_send_spark_profile" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_habit_send_spark_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/tv_habit_send_spark_guide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_habit_send_spark_message" />
+
+        <TextView
+            android:id="@+id/tv_habit_send_spark_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/habit_send_spark_guide"
+            android:textAlignment="center"
+            android:textColor="@color/spark_gray"
+            android:textSize="16dp"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_send_spark_message"
+            setEditTextMaxLengthMaxLength="@{15}"
+            setEditTextMaxLengthText="@{habitSendSparkViewModel.message}"
+            setEditTextVisibility="@{habitSendSparkViewModel.isTyping}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:cursorVisible="true"
+            android:ems="15"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:hint="@string/habit_send_spark_message_et_hint"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:paddingVertical="5dp"
+            android:singleLine="true"
+            android:text="@={habitSendSparkViewModel.message}"
+            android:textColor="@color/spark_white"
+            android:textColorHint="@color/spark_dark_gray"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/view_send_spark_message_under_bar"
+            app:layout_constraintEnd_toStartOf="@id/btn_habit_send_spark_send"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/view_send_spark_message_under_bar" />
+
+        <TextView
+            android:id="@+id/btn_habit_send_spark_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="@{habitSendSparkViewModel.message.length() == 0 ? false : true }"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:padding="5dp"
+            android:text="@string/habit_send_spark_message_btn"
+            android:textColor="@color/spark_gray"
+            android:textSize="16dp"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_send_spark_message"
+            app:layout_constraintEnd_toEndOf="@id/view_send_spark_message_under_bar"
+            app:layout_constraintStart_toEndOf="@id/et_send_spark_message"
+            app:layout_constraintTop_toTopOf="@+id/et_send_spark_message" />
+
+        <View
+            android:id="@+id/view_send_spark_message_under_bar"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/spark_pinkred"
+            android:visibility="@{habitSendSparkViewModel.isTyping ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

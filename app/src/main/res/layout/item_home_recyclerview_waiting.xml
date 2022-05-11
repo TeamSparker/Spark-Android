@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="room"
+            type="com.teamsparker.android.data.remote.entity.response.Room" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_home_main_whole_waiting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_home_main_whole_waiting"
+            app:layout_constraintEnd_toEndOf="@+id/layout_home_main_whole_waiting"
+            app:layout_constraintStart_toStartOf="@+id/layout_home_main_whole_waiting"
+            app:layout_constraintTop_toTopOf="@+id/layout_home_main_whole_waiting">
+
+
+            <ImageView
+                android:id="@+id/iv_home_left_ticket_waiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_home_left_ticket_waiting" />
+
+            <ImageView
+                android:id="@+id/iv_home_right_ticket_waiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/iv_home_left_ticket_waiting"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_home_right_ticket_waiting" />
+
+            <TextView
+                android:id="@+id/iv_home_right_ticket_waiting_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura_bold"
+                android:includeFontPadding="false"
+                android:lineHeight="28dp"
+                android:text="@string/home_waiting_ticket_left"
+                android:textAlignment="center"
+                android:textColor="@color/spark_white"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_left_ticket_waiting"
+                app:layout_constraintEnd_toEndOf="@+id/iv_home_left_ticket_waiting"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_left_ticket_waiting"
+                app:layout_constraintTop_toTopOf="@+id/iv_home_left_ticket_waiting" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_title_waiting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="21dp"
+                android:layout_marginEnd="27dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@{room.roomName}"
+                android:textColor="@color/spark_deep_gray"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket_waiting"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="아침 독서" />
+
+            <TextView
+                android:id="@+id/tv_home_right_ticket_intro_waiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="22dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/home_waiting_ticket_right_intro"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_home_right_ticket_waiting"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_right_ticket_waiting" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

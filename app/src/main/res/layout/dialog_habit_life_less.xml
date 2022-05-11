@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="LifeDeductionCount"
+            type="int" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.habit.HabitLifeLessDialogFragment">
+
+        <ImageView
+            android:id="@+id/iv_habit_dialog_life_less_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/bg_habit_dialog_life_less_sparkflake_pattern"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_habit_dialog_life_less_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/img_habit_dialog_life_less"
+            app:layout_constraintEnd_toEndOf="@+id/iv_habit_dialog_life_less_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_habit_dialog_life_less_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_habit_dialog_life_less_background" />
+
+        <TextView
+            android:id="@+id/tv_habit_dialog_life_less_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/futura_medium_italic"
+            android:gravity="center_horizontal"
+            android:text="@string/habit_dialog_life_less_title"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_habit_dialog_life_less_img" />
+
+        <TextView
+            android:id="@+id/tv_habit_life_less_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{`앗! 생명이 `+LifeDeductionCount+`개 줄었어요.\n아직 기회는 있으니 계속 달려보자고요!`}"
+            android:textAlignment="center"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_habit_dialog_life_less_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_habit_life_less_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="28dp"
+            android:background="@color/spark_black"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:paddingHorizontal="20dp"
+            android:text="@string/habit_dialog_life_less_btn_checked"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_habit_life_less_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

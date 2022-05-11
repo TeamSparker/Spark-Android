@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bottom_sheet_frame"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <View
+            android:id="@+id/view_habit_more_deco"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/spark_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_habit_more_divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/spark_light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_habit_more_deco" />
+
+        <TextView
+            android:id="@+id/tv_habit_more_goal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
+            android:includeFontPadding="true"
+            android:text="@string/habit_more_goal"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_habit_more_divider1" />
+
+        <View
+            android:id="@+id/view_habit_more_divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/spark_light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_habit_more_goal" />
+
+        <TextView
+            android:id="@+id/tv_habit_more_user_guide"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
+            android:includeFontPadding="true"
+            android:text="@string/habit_more_user_guide"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_habit_more_divider2" />
+
+        <View
+            android:id="@+id/view_habit_more_divider3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/spark_light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_habit_more_user_guide" />
+
+        <TextView
+            android:id="@+id/tv_habit_more_exit"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
+            android:includeFontPadding="true"
+            android:text="@string/habit_more_exit"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_habit_more_divider3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

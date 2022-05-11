@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="waitingRoomViewModel"
+            type="com.teamsparker.android.ui.waitingroom.viewmodel.WaitingRoomViewModel" />
+
+        <variable
+            name="startPoint"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_waiting_room"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.waitingroom.WaitingRoomFragment">
+
+        <ImageButton
+            android:id="@+id/btn_waiting_room_move_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@{startPoint == 1 ? @drawable/ic_make_room_back : @drawable/ic_waiting_room_home}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_waiting_room_home" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.roomName}"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="30분독서" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_waiting_room_copy_code"
+            android:layout_width="87dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/shape_spark_dark_pinkred_line_rect"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/waiting_room_copy_code"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_name" />
+
+        <ImageButton
+            android:id="@+id/btn_waiting_room_extra_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_watitng_room_extra_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_confirm_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_confirm_method"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_waiting_room_copy_code" />
+
+        <ImageButton
+            android:id="@+id/btn_waiting_room_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_waiting_room_info"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_confirm_method"
+            app:layout_constraintStart_toEndOf="@+id/tv_waiting_room_confirm_method"
+            app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_confirm_method" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_confirm_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_confirm_photo"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_waiting_room_copy_code" />
+
+        <View
+            android:id="@+id/view_waiting_room_hyphen"
+            android:layout_width="8dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/spark_dark_gray"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.fromStart == true ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_confirm_picture"
+            app:layout_constraintEnd_toStartOf="@+id/tv_waiting_room_confirm_picture"
+            app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_confirm_picture" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_confirm_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_confirn_timer"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="16dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.fromStart == true ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_confirm_picture"
+            app:layout_constraintEnd_toStartOf="@+id/view_waiting_room_hyphen"
+            app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_confirm_picture"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/view_waiting_room_division"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="83dp"
+            android:background="@color/spark_light_gray"
+            app:layout_constraintTop_toBottomOf="@+id/btn_waiting_room_copy_code"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <ImageView
+            android:id="@+id/iv_waiting_room_tooltip_picture"
+            android:layout_width="235dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="2dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/btn_waiting_room_info"
+            app:layout_constraintStart_toStartOf="@+id/btn_waiting_room_info"
+            app:layout_constraintTop_toBottomOf="@+id/btn_waiting_room_info"
+            app:srcCompat="@drawable/img_waiting_room_tooltip_picture" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_tooltip_picture_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_tooltip_picture"
+            android:textColor="@color/spark_white"
+            android:textSize="14dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_waiting_room_tooltip_picture"
+            app:layout_constraintEnd_toEndOf="@+id/iv_waiting_room_tooltip_picture"
+            app:layout_constraintStart_toStartOf="@+id/iv_waiting_room_tooltip_picture" />
+
+        <ImageView
+            android:id="@+id/iv_waiting_room_tooltip_timer"
+            android:layout_width="280dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="2dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/btn_waiting_room_info"
+            app:layout_constraintStart_toStartOf="@+id/btn_waiting_room_info"
+            app:layout_constraintTop_toBottomOf="@+id/btn_waiting_room_info"
+            app:srcCompat="@drawable/img_waiting_room_tooltip_timer" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_tooltip_timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_tooltip_timer"
+            android:textColor="@color/spark_white"
+            android:textSize="14dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_waiting_room_tooltip_timer"
+            app:layout_constraintEnd_toEndOf="@+id/iv_waiting_room_tooltip_timer"
+            app:layout_constraintStart_toStartOf="@+id/iv_waiting_room_tooltip_timer" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_my_purpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="29dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_purpose_title"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_waiting_room_division" />
+
+        <ImageButton
+            android:id="@+id/btn_waiting_room_edit_purpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/img_waiting_room_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_waiting_room_division" />
+
+        <ImageView
+            android:id="@+id/iv_waiting_room_profile_image"
+            setCircleImage="@{waitingRoomViewModel.waitingRoomInfo.reqUser.profileImg}"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_my_purpose"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="-12dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.reqUser.nickname}"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_waiting_room_profile_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_waiting_room_profile_image"
+            tools:text="힛이" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_when"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_when"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toEndOf="@+id/iv_waiting_room_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_nick_name" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_purpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_purpose"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_waiting_room_when"
+            app:layout_constraintStart_toStartOf="@+id/tv_waiting_room_when"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_when" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_when_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.reqUser.moment}"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_when"
+            app:layout_constraintStart_toEndOf="@+id/tv_waiting_room_when"
+            app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_when"
+            tools:text="잠자기 전에" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_purpose_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.reqUser.purpose}"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_purpose"
+            app:layout_constraintStart_toEndOf="@+id/tv_waiting_room_purpose"
+            app:layout_constraintTop_toTopOf="@+id/tv_waiting_room_purpose"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="일단 책부터 펴고 보자!" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_no_purpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_no_purpose"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@+id/iv_waiting_room_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_nick_name" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_no_purpose_second_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_no_purpose_second_line"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isPurposeSet ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/tv_waiting_room_no_purpose"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_no_purpose" />
+
+        <View
+            android:id="@+id/view_waiting_room_division_second"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="47dp"
+            android:background="@color/spark_light_gray"
+            app:layout_constraintTop_toBottomOf="@+id/iv_waiting_room_profile_image"
+            tools:layout_editor_absoluteX="20dp" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_we_sparker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_we_sparker"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_waiting_room_division_second" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_we_sparker_count"
+            android:layout_width="12dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@{String.valueOf(waitingRoomViewModel.memberListSize)}"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waiting_room_we_sparker"
+            app:layout_constraintStart_toEndOf="@+id/tv_waiting_room_we_sparker"
+            tools:text="10" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_sparker_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_we_sparker_explain"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_we_sparker" />
+
+        <ImageButton
+            android:id="@+id/btn_waiting_room_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/img_waiting_room_refresh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_waiting_room_division_second" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_waiting_room_members"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:paddingEnd="20dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_sparker_explain"
+            tools:itemCount="15"
+            tools:listitem="@layout/item_waiting_room_recyclerview" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_toast"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_spark_deep_gray_fill_rect"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/waiting_room_copy_code_toast"
+            android:textColor="@color/spark_white"
+            android:textSize="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_waiting_room_start_habit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_btn_active"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/waiting_room_start_habit"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:visibility="@{waitingRoomViewModel.waitingRoomInfo.reqUser.isHost ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/spark_black_opacity_80"
+            android:visibility="@{waitingRoomViewModel.isLoading? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_waiting_room_loading"
+                playLoadingLottie="@{waitingRoomViewModel.isLoading}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="@{waitingRoomViewModel.isLoading? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

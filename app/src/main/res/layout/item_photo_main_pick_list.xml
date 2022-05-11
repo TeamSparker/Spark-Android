@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="photoViewModel"
+            type="com.teamsparker.android.ui.storage.viewmodel.PhotoViewModel" />
+
+        <variable
+            name="storageCardPhoto"
+            type="com.teamsparker.android.data.remote.entity.response.StorageCardPhoto" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/iv_main_photo_pick_item_roundedCorner"
+            imageUrl="@{storageCardPhoto.certifyingImg}"
+            status="@{storageCardPhoto.status}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_transparent_2"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic"
+            />
+
+        <View
+            android:id="@+id/view_main_photo_pick_card_picked_boundary"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/iv_main_photo_pick_item_roundedCorner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_main_photo_pick_item_roundedCorner"
+            android:background="@drawable/shape_spark_light_gray_line_rect_2"
+            />
+
+        <TextView
+            android:id="@+id/tv_main_photo_pick_tag_main"
+            android:layout_width="42dp"
+            android:layout_height="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_main_photo_pick_card_picked_boundary"
+            android:background="@color/spark_pinkred"
+            android:text="대표"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="14dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_white"
+            android:lineSpacingExtra="6sp"
+            android:textAlignment="center"
+            android:paddingTop="0dp"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

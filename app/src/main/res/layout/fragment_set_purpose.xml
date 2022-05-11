@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="roomName"
+            type="String" />
+
+        <variable
+            name="setPurposeViewModel"
+            type="com.teamsparker.android.ui.setpurpose.viewmodel.SetPurposeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_set_purpose"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.setpurpose.SetPurposeFragment">
+
+        <ImageButton
+            android:id="@+id/btn_set_purpose_quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_quit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_set_purpose_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/set_purpose_title"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_set_purpose_explain_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{`‘`+roomName+`’`+ ` 습관방에서의`}"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_set_purpose_title" />
+
+        <TextView
+            android:id="@+id/tv_set_purpose_explain_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/set_purpose_explain_two"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_set_purpose_explain_one"
+            app:layout_constraintTop_toBottomOf="@+id/tv_set_purpose_explain_one" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_set_purpose_moving"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="184dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_set_purpose_when"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/set_purpose_when"
+                android:textColor="@color/spark_black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_set_purpose_when_example"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/set_purpose_when_example"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_set_purpose_when" />
+
+            <EditText
+                android:id="@+id/et_set_purpose_when"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:inputType="textPersonName"
+                android:maxLength="15"
+                android:text="@={setPurposeViewModel.HabitWhen}"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_set_purpose_when_example" />
+
+            <TextView
+                android:id="@+id/tv_set_purpose_when_text_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@string/set_purpose_text_limit"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_set_purpose_when"
+                app:layout_constraintEnd_toEndOf="@+id/et_set_purpose_when"
+                app:layout_constraintTop_toTopOf="@+id/et_set_purpose_when" />
+
+            <TextView
+                android:id="@+id/tv_set_purpose_when_text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(setPurposeViewModel.habitWhen.length())}"
+                android:textColor="@{setPurposeViewModel.habitWhen.length()==0 ? @color/spark_dark_gray : @color/spark_pinkred }"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_set_purpose_when_text_limit"
+                app:layout_constraintEnd_toStartOf="@+id/tv_set_purpose_when_text_limit"
+                app:layout_constraintTop_toTopOf="@+id/tv_set_purpose_when_text_limit"
+                tools:text="0" />
+
+            <View
+                android:id="@+id/view_set_purpose_one"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/spark_dark_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_set_purpose_when" />
+
+            <TextView
+                android:id="@+id/tv_set_purpose_my_purpose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="64dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/set_purpose_my_purpose"
+                android:textColor="@color/spark_black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_set_purpose_one" />
+
+            <TextView
+                android:id="@+id/tv_set_purpose_my_purpose_example"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/set_purpose_my_purpose_example"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_set_purpose_my_purpose" />
+
+            <EditText
+                android:id="@+id/et_set_purpose_my_purpose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:inputType="textPersonName"
+                android:maxLength="15"
+                android:text="@={setPurposeViewModel.myPurpose}"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_set_purpose_my_purpose_example" />
+
+            <TextView
+                android:id="@+id/tv_set_purpose_my_purpose_text_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@string/set_purpose_text_limit"
+                android:textColor="@color/spark_dark_gray"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_set_purpose_my_purpose"
+                app:layout_constraintEnd_toEndOf="@+id/et_set_purpose_my_purpose"
+                app:layout_constraintTop_toTopOf="@+id/et_set_purpose_my_purpose" />
+
+            <TextView
+                android:id="@+id/tv_set_purpose_my_purpose_text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura_medium"
+                android:includeFontPadding="false"
+                android:text="@{String.valueOf(setPurposeViewModel.myPurpose.length())}"
+                android:textColor="@{setPurposeViewModel.myPurpose.length()==0 ? @color/spark_dark_gray : @color/spark_pinkred }"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_set_purpose_my_purpose_text_limit"
+                app:layout_constraintEnd_toStartOf="@+id/tv_set_purpose_my_purpose_text_limit"
+                app:layout_constraintTop_toTopOf="@+id/tv_set_purpose_my_purpose_text_limit"
+                tools:text="0" />
+
+            <View
+                android:id="@+id/view_set_purpose_two"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/spark_dark_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_set_purpose_my_purpose" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_set_purpose_finish"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@{setPurposeViewModel.myPurpose.length() == 0 || setPurposeViewModel.habitWhen.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active}"
+            android:enabled="@{setPurposeViewModel.myPurpose.length() == 0 || setPurposeViewModel.habitWhen.length() == 0 ? false : true }"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/set_purpose_done_button"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

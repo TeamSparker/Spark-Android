@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.teamsparker.android.ui.alarmcenter.alarms.AlarmType" />
+
+        <variable
+            name="alarmCenterViewModel"
+            type="com.teamsparker.android.ui.alarmcenter.viewmodel.AlarmCenterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/spark_white"
+        tools:context=".ui.alarmcenter.AlarmCenterActivity">
+
+        <ImageButton
+            android:id="@+id/btn_alarm_center_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/alarm_center_desc_back_btn"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_alarm_center_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/alarm_center_title"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_alarm_center_tab_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="46dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToActivity()}"
+            android:padding="4dp"
+            android:text="@string/alarm_center_sparker_activity"
+            android:textColor="@{alarmCenterViewModel.vpPosition == AlarmType.ACTIVITY_ALARM?  @color/spark_dark_pinkred : @color/spark_dark_gray}"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_alarm_center_title" />
+
+        <View
+            android:id="@+id/view_alarm_center_activity"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="4dp"
+            android:background="@color/spark_dark_pinkred"
+            android:visibility="@{alarmCenterViewModel.vpPosition == AlarmType.ACTIVITY_ALARM? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
+            app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_activity" />
+
+        <ImageView
+            android:id="@+id/iv_alarm_center_activity_sticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-2dp"
+            android:layout_marginBottom="-4dp"
+            android:contentDescription="@string/alarm_center_desc_activity_sticker"
+            android:src="@drawable/ic_alarm_circle_sticker"
+            android:visibility="@{alarmCenterViewModel.newActivityAlarm.peekContent()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_activity"
+            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_activity" />
+
+        <TextView
+            android:id="@+id/tv_alarm_center_tab_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> alarmCenterViewModel.initVpPositionToService()}"
+            android:padding="4dp"
+            android:text="@string/alarm_center_service"
+            android:textColor="@{alarmCenterViewModel.vpPosition == AlarmType.SERVICE_ALARM? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+            android:textSize="18dp"
+            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_activity"
+            app:layout_constraintTop_toTopOf="@id/tv_alarm_center_tab_activity" />
+
+        <View
+            android:id="@+id/view_alarm_center_service"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="4dp"
+            android:background="@color/spark_dark_pinkred"
+            android:visibility="@{alarmCenterViewModel.vpPosition == AlarmType.SERVICE_ALARM? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_service"
+            app:layout_constraintStart_toStartOf="@id/tv_alarm_center_tab_service" />
+
+        <ImageView
+            android:id="@+id/iv_alarm_center_service_sticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-2dp"
+            android:layout_marginBottom="-4dp"
+            android:contentDescription="@string/alarm_center_desc_service_sticker"
+            android:src="@drawable/ic_alarm_circle_sticker"
+            android:visibility="@{alarmCenterViewModel.newServiceAlarm.peekContent()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_alarm_center_tab_service"
+            app:layout_constraintStart_toEndOf="@id/tv_alarm_center_tab_service" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_alarm_center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_alarm_center_tab_activity" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainPhotoPickViewModel"
+            type="com.teamsparker.android.ui.storage.viewmodel.PhotoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_linegrid_for_black"
+        tools:context=".ui.storage.CardMainPhotoPickActivity">
+
+        <View
+            android:id="@+id/view_card_main_photo_pick_titleBar"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:background="@color/spark_more_deep_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_card_main_photo_pick_back_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_card_main_photo_pick_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="대표 이미지 변경"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_main_photo_pick_titleBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_card_main_photo_pick_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/noto_sans_kr"
+            android:gravity="end"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6dp"
+            android:padding="10dp"
+            android:text="완료"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/view_card_main_photo_pick_titleBar"
+            app:layout_constraintTop_toTopOf="@+id/view_card_main_photo_pick_titleBar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_storage_mainPhoto_pick"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="13dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingTop="24dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_card_main_photo_pick_titleBar"
+            app:spanCount="2"
+            tools:listitem="@layout/item_photo_main_pick_list" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

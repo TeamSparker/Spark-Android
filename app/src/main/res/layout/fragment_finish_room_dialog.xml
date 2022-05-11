@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="myStatus"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".ui.home.finishroomdialog.FinishRoomDialogFragment">
+
+        <ImageView
+            android:id="@+id/iv_home_finish_dialog_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="14dp"
+            android:src="@drawable/bg_home_finish_dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_home_finish_dialog_background"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_finish_dialog_background"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:setFinishRoomDialogLottie="@{myStatus}" />
+
+        <TextView
+            android:id="@+id/tv_home_finish_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:fontFamily="@font/futura_medium_italic"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
+            app:setFinishRoomDialogTitle="@{myStatus}"
+            tools:text="Congratulations!" />
+
+        <TextView
+            android:id="@+id/tv_home_finish_dialog_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textAlignment="center"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_finish_dialog_title"
+            app:setFinishRoomDialogContent="@{myStatus}"
+            tools:text="66간의 도전 성공!\n여기까지 달려온 나를 마음껏 칭찬해주기!" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home_finish_dialog_check"
+            android:layout_width="123dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/shape_insta_black_fiil_2"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:stateListAnimator="@null"
+            android:text="@string/finish_room_dialog_dismiss_button"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_finish_dialog_background"
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_finish_dialog_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

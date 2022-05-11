@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="roomName"
+            type="String" />
+
+        <variable
+            name="confirmText"
+            type="String" />
+
+        <variable
+            name="cancelText"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_dialog_edit_text_util"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="14sp">
+
+        <TextView
+            android:id="@+id/tv_dialog_edit_text_util_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="@color/spark_black"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_dialog_edit_text_util"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@android:color/transparent"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:hint="@{roomName}"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:maxLength="15"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dialog_edit_text_util_content" />
+
+        <View
+            android:id="@+id/view_dialog_edit_text_util_under_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/spark_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_dialog_edit_text_util" />
+
+
+        <TextView
+            android:id="@+id/tv_dialog_edit_text_util_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="8dp"
+            android:enabled="false"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:padding="8dp"
+            android:text="@{confirmText}"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_dialog_edit_text_util_under_bar"
+            tools:text="나가기" />
+
+        <TextView
+            android:id="@+id/tv_dialog_edit_text_util_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:padding="8dp"
+            android:text="취소"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_dialog_edit_text_util_confirm"
+            app:layout_constraintTop_toBottomOf="@id/view_dialog_edit_text_util_under_bar"
+            tools:text="취소" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

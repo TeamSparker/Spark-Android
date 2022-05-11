@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="feedReportViewModel"
+            type="com.teamsparker.android.ui.feedreport.FeedReportViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_feed_report"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.feedreport.FeedReportActivity">
+
+        <ImageButton
+            android:id="@+id/btn_feed_report_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/feed_report_desc_back_btn"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_feed_report_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/feed_report_title"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_feed_report_cause_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/feed_report_feed_report_cause"
+            android:textColor="@color/spark_black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_report_title" />
+
+        <EditText
+            android:id="@+id/et_feed_report"
+            android:layout_width="0dp"
+            android:layout_height="215dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            android:background="@{feedReportViewModel.causeFocused? @drawable/shape_spark_pinkred_line_rect_2 : @drawable/shape_spark_gray_line_rect_2}"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="top"
+            android:hint="@string/feed_report_hint"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="textMultiLine"
+            android:maxLength="150"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="20dp"
+            android:text="@={feedReportViewModel.reportCause}"
+            android:textColor="@color/spark_black"
+            android:textColorHint="@color/spark_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_feed_report_cause_title" />
+
+        <TextView
+            android:id="@+id/tv_feed_report_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/feed_report_description_title"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_feed_report_description_content"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_feed_report_description_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@string/feed_report_description_content"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_feed_report_report"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_feed_report_report"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@{feedReportViewModel.reportCause.length() == 0 ? @drawable/shape_btn_inactive : @drawable/shape_btn_active}"
+            android:enabled="@{feedReportViewModel.reportCause.length() == 0 ? false : true}"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:onClick="@{()->feedReportViewModel.postFeedReport()}"
+            android:paddingTop="12dp"
+            android:paddingBottom="14dp"
+            android:stateListAnimator="@null"
+            android:text="@string/feed_report"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,3 +1,398 @@
 <resources>
-    <string name="app_name">SparkAndroid</string>
+    <string name="app_name">Spark</string>
+    <string name="question_email">teamsparker66@gmail.com</string>
+    <string name="question_subject">스파크 문의 사항</string>
+    <string name="question_content">\n\n\nDevice : %s\nOS Version : Android %s\nApp Version : %s\n-------------------------\n\n\n\n문의 사항을 상세히 입력해주세요.</string>
+    <string name="binding_error">Binding not initialized to reference the view.</string>
+    <string name="link_my_page_policy">https://jealous-supernova-274.notion.site/433c8d2f5fdd4826a836293e522f1d51</string>
+    <string name="link_open_source">https://jealous-supernova-274.notion.site/Android-3e35658d9d8f4bc09c4aa61e0efc8cbd</string>
+    <string name="link_splash_policy">https://jealous-supernova-274.notion.site/81b28d377e674f9da54566d7da1da6a6</string>
+    <string name="link_splash_personal_info">https://jealous-supernova-274.notion.site/eb4f206624434b4289aff279052e990d</string>
+
+    <!-- IntroActivity -->
+    <string name="intro_desc_title">앱 이름</string>
+    <string name="intro_content">습관에 불을 지펴봐!</string>
+    <string name="intro_update_check_dialog_content">최신 버전의 Spark가 출시되었어요.\n업데이트 후 이용해 주세요!</string>
+    <string name="intro_update_check_dialog_confirm">업데이트하기</string>
+    <string name="link_update">https://play.google.com/store/apps/details?id=com.teamsparker.android</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- HomeMainFragment -->
+    <string name="home_waiting_ticket_left">Waiting\nRoom</string>
+    <string name="home_waiting_ticket_right_intro">다른 스파커 기다리는 중...</string>
+    <string name="home_ticket_done_user">완료한 사람</string>
+    <string name="home_ticket_user_with">함께하는 사람</string>
+    <string name="home_ticket_life">우리 팀의 생명</string>
+    <string name="home_ticket_left_comment_1">내일부터 시작!</string>
+    <string name="home_ticket_left_comment_2">작심삼일 뽀개자!</string>
+    <string name="home_ticket_left_comment_3">일주일 넘겨보자!</string>
+    <string name="home_ticket_left_comment_4">절반을 향해 달려!</string>
+    <string name="home_ticket_left_comment_5">반도 안 남았어!</string>
+    <string name="home_ticket_left_comment_6">조금만 더 힘내!</string>
+    <string name="home_ticket_left_comment_7">오늘이면 끝!</string>
+    <string name="home_ticket_people">명</string>
+    <string name="home_ticket_right_finish_content">티켓을 눌러 습관방을\n정리해볼까요?</string>
+
+    <!-- SignInFragment -->
+    <string name="sign_in_desc_title">앱 이름</string>
+    <string name="sign_in_content_left">로그인 시&#160;</string>
+    <string name="sign_in_content_policy"><u>이용약관</u>과&#160;</string>
+    <string name="sign_in_content_personal_info"><u>개인정보 처리 방침</u>에&#160;</string>
+    <string name="sign_in_content_right">동의하게 됩니다.</string>
+    <string name="sign_in_desc_kakao_login">카카오 로그인 버튼</string>
+    <string name="sign_in_kakao_login_failure_msg">카카오 로그인에 실패하였습니다.\n다시 시도해주세요.</string>
+    <string name="sign_in_complete_login_msg">로그인되었습니다.</string>
+
+    <!-- ProfileFragment -->
+    <string name="profile_desc_back_btn">뒤로가기 버튼</string>
+    <string name="profile_desc_quit">종료 버튼</string>
+    <string name="profile_info_1">스파크에서 사용할</string>
+    <string name="profile_info_2">프로필</string>
+    <string name="profile_info_3">을 설정해주세요!</string>
+    <string name="profile_desc_photo">프로필 사진 배경</string>
+    <string name="profile_nickname_hint">닉네임 입력</string>
+    <string name="profile_start_spark">가입 완료</string>
+    <string name="profile_nickname_count_sum">/10</string>
+    <string name="profile_from_camera">카메라 촬영</string>
+    <string name="profile_from_album">앨범에서 선택</string>
+    <string name="profile_delete_profile_picture">사진 삭제</string>
+    <string name="profile_dialog_content">회원가입이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
+    <string name="profile_modify_dialog_content">프로필 수정이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
+    <string name="profile_dialog_stop_signup">나가기</string>
+    <string name="profile_dialog_cancel">취소</string>
+    <string name="profile_modify">수정 완료</string>
+
+    <!-- HabitActivity -->
+    <string name="item_habit_team_send_count">0</string>
+    <string name="item_habit_team_name">name</string>
+    <string name="item_habit_team_status_complete">인증을 완료했어요!</string>
+    <string name="item_habit_team_status_consider">지금은 고민중이에요.</string>
+    <string name="item_habit_team_status_rest">오늘은 쉬어요.</string>
+    <string name="item_habit_team_status_none">아직 인증하지 않았어요.</string>
+    <string name="item_habit_team_status_ready">인증은 내일부터 가능해요.</string>
+    <string name="habit_d_day">D-00</string>
+    <string name="habit_start_date">0000.00.00.</string>
+    <string name="habit_end_date">9999.99.99.</string>
+    <string name="habit_time_title">시간</string>
+    <string name="habit_time">time</string>
+    <string name="habit_goal_title">목표</string>
+    <string name="habit_goal">goal</string>
+    <string name="habit_today_certification_btn">오늘의 인증</string>
+    <string name="habit_title">title</string>
+    <string name="habit_no_purpose_top">아직 구체적인 계획이 없어요.</string>
+    <string name="habit_no_purpose_bottom">나만의 시간과 목표를 작성해 보세요!</string>
+
+    <!-- MainActivity -->
+    <string name="main_bottom_nav_feed">피드</string>
+    <string name="main_bottom_nav_home">홈</string>
+    <string name="main_bottom_nav_storage">내 보관함</string>
+    <string name="main_fab_make_room">방 만들기</string>
+    <string name="main_fab_join_code">코드로 참여</string>
+    <string name="main_back_btn_msg">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
+
+    <!-- FeedFragment -->
+    <string name="feed_desc_certificate_photo">피드 인증 사진</string>
+    <string name="feed_desc_profile_photo">피드 프로필 사진</string>
+    <string name="feed_desc_spark_fire">스파크 아이콘</string>
+    <string name="feed_desc_heart">피드 하트 버튼</string>
+    <string name="feed_desc_done_tag">done 태그</string>
+    <string name="feed_received_spark">받은 스파크</string>
+    <string name="feed_bottom_msg">최근 일주일 간의 인증만 표시됩니다.</string>
+    <string name="feed_desc_empty_ticket">피드 엠티뷰 티켓 이미지</string>
+    <string name="feed_empty_view_msg">아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!</string>
+    <string name="feed_report">신고하기</string>
+    <string name="feed_desc_more">피드 더보기 버튼</string>
+    <string name="feed_report_success_toast">신고 접수가 완료되었어요.</string>
+
+    <!-- FeedReportActivity -->
+    <string name="feed_report_desc_back_btn">뒤로가기 버튼</string>
+    <string name="feed_report_title">게시물 신고</string>
+    <string name="feed_report_feed_report_cause">신고 이유에 대해 알려주세요.</string>
+    <string name="feed_report_hint">해당 게시글을 신고하는 이유에 대해 구체적으로 작성해주세요. (최대 150자)</string>
+    <string name="feed_report_description_title">신고 전 잠깐!</string>
+    <string name="feed_report_description_content">- 신고하신 내용은 서비스 운영 정책에 따라 처리됩니다.\n- 타당한 근거 없이 신고된 내용은 반영되지 않을 수 있습니다.</string>
+
+    <!-- NameSettingFragment -->
+    <string name="room_name_setting_title">어떤 습관방을 만들 건가요?</string>
+    <string name="room_name_setting_content">진행할 습관을 담아 방 이름을\n설정해 보세요!</string>
+    <string name="room_name_setting_edit_text_hint">ex . 30분 독서</string>
+    <string name="room_name_setting_text_limit">/15</string>
+    <string name="room_name_setting_next_btn_text">다음으로</string>
+
+    <!-- SelectConfirmMethod -->
+    <string name="select_confirm_method_title">어떻게 습관을 인증할까요?</string>
+    <string name="select_confirm_method_content">습관 유형에 알맞은 인증 방식을\n선택해 주세요.</string>
+    <string name="select_confirm_method_enter_waiting">습관방 만들기</string>
+    <string name="select_confirm_method_picture_title">사진으로 인증하기</string>
+    <string name="select_confirm_method_picture_content">미라클 모닝, 영양제 먹기처럼 특정 순간을\n인증하는 습관에 추천해요.</string>
+    <string name="select_confirm_method_add_timer_content">30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요.</string>
+    <string name="select_confirm_method_add_timer_title">시간 측정 후 사진으로 인증하기</string>
+    <string name="select_confirm_method_dialog_title">우왓👍! 이대로 습관방을 만들까요?\n방 이름과 인증 방식은 더이상 수정이\n안 돼요.</string>
+    <string name="select_confirm_method_dialog_done">만들래요</string>
+
+    <!-- TimerStartActivity -->
+    <string name="timer_step_stopwatch">스톱워치</string>
+    <string name="timer_step_photo">사진</string>
+    <string name="timer_bottom_btn_mode_start">시작하기</string>
+    <string name="timer_bottom_btn_mode_next">다음 단계로</string>
+    <string name="timer_dialog_stop_content">이미 측정한 시간 기록이 사라집니다.\n그래도 나가시겠습니까?</string>
+    <string name="timer_dialog_stop_timer_content">스톱워치를 초기화하시겠습니까?</string>
+    <string name="timer_dialog_stop_timer">초기화</string>
+
+    <!-- WaitingRoomFragment -->
+    <string name="waiting_room_copy_code">코드 복사</string>
+    <string name="waiting_room_confirm_method">습관 인증 방식</string>
+    <string name="waiting_room_confirm_photo">사진인증</string>
+    <string name="waiting_room_confirn_timer">스톱워치</string>
+    <string name="waiting_room_when">시간</string>
+    <string name="waiting_room_purpose">목표</string>
+    <string name="waiting_room_we_sparker">함께하는 스파커들</string>
+    <string name="waiting_room_we_sparker_explain">습관방은 최대 10명까지 입장할 수 있습니다.</string>
+    <string name="waiting_room_start_habit">습관 시작하기</string>
+    <string name="waiting_room_no_purpose">습관을 성공하기 위한</string>
+    <string name="waiting_room_no_purpose_second_line">시간과 목표를 작성해 주세요!</string>
+    <string name="waiting_room_copy_code_toast">코드를 복사했어요!</string>
+    <string name="waiting_room_tooltip_picture">특정 순간을 담아 사진으로 인증해요!</string>
+    <string name="waiting_room_tooltip_timer">진행 시간을 측정한 후 사진과 함께 인증해요!</string>
+    <string name="waiting_room_purpose_title">나의 목표</string>
+
+    <!--InputCodeFragmentDialog-->
+    <string name="input_code_dialog_explain">친구에게 받은 코드를 입력해주세요!</string>
+    <string name="input_code_dialog_done">확인</string>
+    <string name="input_code_dialog_error_message_cant">참여할 수 없는 코드예요.</string>
+    <string name="input_code_dialog_error_message_already">이미 참여 중인 코드예요</string>
+
+    <!--JoinCodeActivity-->
+    <string name="join_code_title">잠깐!\n이 방이 맞나요?</string>
+    <string name="join_code_input_again">코드 다시 입력하기</string>
+    <string name="join_code_enter_waiting_room">대기방 입장하기</string>
+
+    <!--SetPurposeFragment-->
+    <string name="set_purpose_title">나의 목표 작성</string>
+    <string name="set_purpose_explain_one">\'아침 독서\' 습관방에서의</string>
+    <string name="set_purpose_explain_two">시간과 목표를 적어보세요!</string>
+    <string name="set_purpose_when">언제 습관을 진행할 건가요?</string>
+    <string name="set_purpose_when_example">ex. 잠자기 전 / 오후 5시</string>
+    <string name="set_purpose_text_limit">/15</string>
+    <string name="set_purpose_my_purpose">나만의 목표는 무엇인가요?</string>
+    <string name="set_purpose_my_purpose_example">ex. 포기하지 말자 / 하루에 1페이지씩</string>
+    <string name="set_purpose_done_button">작성 완료</string>
+
+    <!-- HabitGoalManageActivity -->
+    <string name="habit_goal_manage_title">나의 목표 관리</string>
+    <string name="habit_goal_manage_tip_top"> 습관방의</string>
+    <string name="habit_goal_manage_tip_bottom">시간과 목표를 적어보세요!</string>
+    <string name="habit_goal_manage_time_title">언제 습관을 진행할 건가요?</string>
+    <string name="habit_goal_manage_time_example">ex. 잠자기 전 / 오후 5시</string>
+    <string name="habit_goal_manage_goal_title">나만의 목표는 무엇인가요?</string>
+    <string name="habit_goal_manage_goal_example">ex. 포기하지 말자 / 하루에 1페이지씩</string>
+    <string name="habit_goal_complete">수정 완료</string>
+
+    <!-- HabitSendSparkActivity -->
+    <string name="habit_send_spark_title">스파크 보내기</string>
+    <string name="habit_send_spark_content">메시지를 선택해 바로 보낼 수 있어요!</string>
+    <string name="habit_send_spark_guide">메시지 선택 시 바로 보낼 수 있어요!</string>
+    <string name="habit_send_spark_message_typing">메시지\n직접 입력하기</string>
+    <string name="habit_send_spark_message_first">👊\n아자아자\n파이팅!</string>
+    <string name="habit_send_spark_message_second">🔥\n오늘 안 해?\n같이 해!</string>
+    <string name="habit_send_spark_message_third">👉\n너만\n하면 돼!</string>
+    <string name="habit_send_spark_message_fourth">🤞\n얼마 안 남았어\n어서 하자!</string>
+    <string name="habit_send_spark_message_first_content">👊아자아자 파이팅!</string>
+    <string name="habit_send_spark_message_second_content">🔥오늘 안 해? 같이 해!</string>
+    <string name="habit_send_spark_message_third_content">👉너만 하면 돼!</string>
+    <string name="habit_send_spark_message_fourth_content">🤞얼마 안 남았어, 어서 하자!</string>
+    <string name="habit_send_spark_message_btn">보내기</string>
+    <string name="habit_send_spark_message_et_hint">15자 이내의 응원 메시지를 보내보세요!</string>
+
+    <!-- HabitMoreBottomSheet -->
+    <string name="habit_more_goal">나의 목표 관리</string>
+    <string name="habit_more_exit_room_dialog_confirm">나가기</string>
+    <string name="habit_more_exit_room_dialog_content">아직 습관이 완료되지 않았어요.\n그래도 나가려면 ‘방 이름’을 입력해주세요.</string>
+    <string name="habit_more_user_guide">습관방 이용 팁</string>
+    <string name="habit_more_exit">방 나가기</string>
+
+    <!-- HabitTodayBottomSheet -->
+    <string name="habit_today_comment_top">오늘도 꺼지지 않는 스파크,</string>
+    <string name="habit_today_comment_bottom">Keep going!</string>
+    <string name="habit_today_certification_now">지금 습관 인증하기</string>
+    <string name="habit_today_consider">할까 말까...</string>
+    <string name="habit_today_rest_head">남은 횟수</string>
+    <string name="habit_today_rest_tail">회</string>
+    <string name="habit_today_consider_btn">고민중</string>
+    <string name="habit_today_rest_btn">쉴래요</string>
+    <string name="habit_today_rest_dialog">엇! 정말 쉴 건가요?\n푹 쉴 수 있도록 인증은 막아둘게요😊</string>
+    <string name="habit_today_rest_confirm">쉴래요</string>
+
+    <!-- HabitSendSparkCompleteToast -->
+    <string name="habit_send_spark_toast_content">에게 스파크를 보냈어요!</string>
+    <string name="home_no_room">아직 습관방이 없어요.\n+버튼을 눌러 습관을 시작해 보세요!</string>
+
+    <!-- CertifyActivity -->
+    <string name="certify_step_one">1</string>
+    <string name="certify_step_two">2</string>
+    <string name="certify_content_top">시간 측정을 마치셨군요!</string>
+    <string name="certify_content_bottom">이곳에 사진을 함께 추가해 주세요.</string>
+    <string name="certify_photo">사진 인증하기</string>
+    <string name="certify_photo_again">사진 변경</string>
+    <string name="certify_photo_upload">업로드하기</string>
+    <string name="certify_dialog_content">인증이 완료되지 않았습니다.\n그래도 나가시겠습니까?</string>
+    <string name="certify_dialog_stop_certify">나가기</string>
+
+    <!-- CertifyBottomSheet -->
+    <string name="certify_camera">카메라 촬영</string>
+    <string name="certify_album">앨범에서 선택</string>
+
+    <!-- InstaDialogFragment -->
+    <string name="insta_desc_pattern_img">인스타 다이얼로그 패턴</string>
+    <string name="insta_desc_clap_img">인스타 다이얼로그 박수 이미지</string>
+    <string name="insta_btn_msg">인스타에 자랑하기</string>
+    <string name="insta_cancel_msg"><u>피드로 보러 가기</u></string>
+    <string name="insta_left_day_title">DAY %d</string>
+    <string name="insta_left_day_1_content">일단 시작했으니 반은 성공!\n자, 더 많은 친구들에게 자랑해 볼까요?</string>
+    <string name="insta_left_day_3_content">우와!! 아주 잘하고 있어요!\n이대로 일주일까지 쭉~ 달려봐요!</string>
+    <string name="insta_left_day_7_content">서로의 도움이 중요한 시기예요!\n앞으로 스파크 마구 보내기로 약-속!</string>
+    <string name="insta_left_day_33_content">이제 반도 안 남았으니,\n점점 습관으로 자리잡고 있겠는 걸요?</string>
+    <string name="insta_left_day_59_content">일주일도 안 남았네요!\n거의 다 왔는 걸요? 조금만 더 Fighting!</string>
+    <string name="insta_left_day_66_content">드디어 인증이 끝났군요! 짝짝짝\n66일 간의 멋진 도전에 박수를 보내요!</string>
+
+
+    <!-- InstaActivity -->
+    <string name="insta_error_msg">공유할 수 있는 앱이 없습니다.</string>
+    <string name="insta_desc_sticker_bg">인스타 공유 스티커 배경</string>
+    <string name="insta_desc_sticker_tag">인스타 공유 스티커 태그</string>
+    <string name="insta_desc_sticker_certify_img">인스타 공유 스티커 인증 사진</string>
+
+    <!-- StorageFragment -->
+    <string name="storage_progressing_empty_guide_title_msg">아직 습관 카드가 없어요.</string>
+    <string name="storage_progressing_empty_guide_msg">인증과 함께 카드를 모아보세요!</string>
+    <string name="storage_complete_empty_guide_title_msg">66일간의 습관 도전!</string>
+    <string name="storage_complete_empty_guide_msg">첫번째 성공을 이뤄내 보세요!</string>
+    <string name="storage_incomplete_empty_guide_msg">지금까지 아주 잘하고 있다는 증거!</string>
+    <string name="storage_incomplete_empty_guide_title_msg">미완료된 습관이 없네요.</string>
+    <string name="storage_tab_name_progressing">진행중</string>
+    <string name="storage_tab_name_complete">완료</string>
+    <string name="storage_tab_name_incomplete">미완료</string>
+
+    <!-- CheckRoomFragment-->
+    <string name="check_room_title">방을 만들었어요!</string>
+    <string name="check_room_content">코드를 복사해 친구들을 초대해 보세요!</string>
+    <string name="check_room_waiting_room_button">대기방 입장하기</string>
+    <string name="check_room_home_button">홈으로 가기</string>
+
+    <!-- MyPageMainFragment -->
+    <string name="my_page_main_desc_back_btn">뒤로가기 버튼</string>
+    <string name="my_page_main_title">MY</string>
+    <string name="my_page_main_desc_profile_img">마이페이지 프로필 이미지</string>
+    <string name="my_page_main_profile">프로필</string>
+    <string name="my_page_main_desc_modify_profile">프로필 변경 버튼</string>
+    <string name="my_page_main_desc_alarm">알림 버튼</string>
+    <string name="my_page_main_desc_question">문의하기 버튼</string>
+    <string name="my_page_main_desc_policy">약관 및 정책 버튼</string>
+    <string name="my_page_main_desc_open_source">오픈소스 라이선스 버튼</string>
+    <string name="my_page_main_setting">설정</string>
+    <string name="my_page_main_alarm">알림</string>
+    <string name="my_page_main_question">문의하기</string>
+    <string name="my_page_main_customer_service">고객센터</string>
+    <string name="my_page_main_guide">스파크 사용 가이드</string>
+    <string name="my_page_main_service">서비스</string>
+    <string name="my_page_main_policy">약관 및 정책</string>
+    <string name="my_page_main_open_source">오픈소스 라이선스</string>
+    <string name="my_page_main_version_info">버전 정보</string>
+    <string name="my_page_main_version">v1.0.0</string>
+    <string name="my_page_main_sign_out">로그아웃</string>
+    <string name="my_page_main_withdrawal"><u>회원 탈퇴</u></string>
+    <string name="my_page_sign_out_msg">로그아웃되었습니다.</string>
+
+    <!-- AlarmSettingFragment -->
+    <string name="alarm_setting_desc_back_btn">뒤로가기 버튼</string>
+    <string name="alarm_setting_title">알림</string>
+    <string name="alarm_setting_setting">설정</string>
+    <string name="alarm_setting_start_habit">습관방 시작</string>
+    <string name="alarm_setting_start_habit_desc">대기 중이었던 방이 시작되면 바로 알 수 있어요.</string>
+    <string name="alarm_setting_spark_activity">스파커 활동</string>
+    <string name="alarm_setting_send_spark">스파크 보내기</string>
+    <string name="alarm_setting_send_spark_desc">받은 스파크를 확인할 수 있어요.</string>
+    <string name="alarm_setting_consider">고민중</string>
+    <string name="alarm_setting_consider_desc">다른 스파커가 고민중인 경우 바로 알 수 있어요.</string>
+    <string name="alarm_setting_certification">인증 완료</string>
+    <string name="alarm_setting_certification_desc">스파커들의 인증 사진을 바로 확인할 수 있어요.</string>
+    <string name="alarm_setting_remind">리마인드</string>
+    <string name="alarm_setting_not_done">미완료 습관방</string>
+    <string name="alarm_setting_not_done_desc">22:00에 미완료된 방이 있을 경우 알 수 있어요.</string>
+
+    <!-- WithdrawalFragment -->
+    <string name="withdrawal_title">회원 탈퇴</string>
+    <string name="withdrawal_desc_back_btn">뒤로가기 버튼</string>
+    <string name="withdrawal_warning_title">회원 탈퇴 유의사항</string>
+    <string name="withdrawal_warning_content_dot">&#160;&#160;&#160;•&#160;&#160;&#160;</string>
+    <string name="withdrawal_warning_content_top">회원 탈퇴 시,\n</string>
+    <string name="withdrawal_warning_content_first">진행 중인 모든 습관방에서 나가지며, 그동안의 습관 기록들은 전부 삭제되어 복구 불가능합니다.\n</string>
+    <string name="withdrawal_warning_content_second">최근 7일 동안의 습관 인증, 친구에게 보낸 스파크, 좋아요 등 타 스파커들에게 공유된 정보는 각각의 습관방에 귀속되어, 생성일로부터 7일 동안 보관 후 삭제됩니다.</string>
+    <string name="withdrawal_agree_msg">위의 사항을 숙지하였으며, 이에 동의합니다.</string>
+    <string name="withdrawal_withdraw">탈퇴하기</string>
+    <string name="withdrawal_dialog_content">정말 Spark를 탈퇴할 건가요?\n더 멋진 서비스가 되어 기다리고 있을게요.</string>
+
+    <!-- WaitingRoomFragmentBottomSheet-->
+    <string name="waiting_room_bottom_sheet_delete_room_start_host">방 삭제</string>
+    <string name="waiting_room_bottom_sheet_delete_room_start_guest">방 나가기</string>
+    <string name="waiting_room_bottom_sheet_delete_room_host">정말 대기방을 삭제할 건가요?\n다른 스파커들에게도 습관방이 삭제돼요.</string>
+    <string name="waiting_room_bottom_sheet_delete_room_guest">정말 대기방을 나갈 건가요?\n습관이 시작되면 재접속이 불가능해요.</string>
+    <string name="waiting_room_bottom_sheet_delete_room_host_button">삭제</string>
+    <string name="waiting_room_bottom_sheet_delete_room_guest_button">나가기</string>
+
+    <!-- MakeRoomCheckFragmentDialog-->
+    <string name="make_room_check_dialog_title">습관 시작 전 잠깐!</string>
+    <string name="make_room_check_dialog_content_one">첫째, 습관 시작 후에는 인원 추가가\n불가능해요.</string>
+    <string name="make_room_check_dialog_content_two">둘째, 오늘부터 습관을 실행하고\n인증해야 해요.</string>
+    <string name="make_room_check_dialog_button_dismiss">취소</string>
+    <string name="make_room_check_dialog_button_make_room">시작할게요</string>
+
+    <!-- FinishRoomDialogFragment-->
+    <string name="finish_room_dialog_success_title">Congratulations!</string>
+    <string name="finish_room_dialog_fail_title">Don\'t give up!</string>
+    <string name="finish_room_dialog_success_content">66간의 도전 성공!\n여기까지 달려온 나를 마음껏 칭찬해주기!</string>
+    <string name="finish_room_dialog_fail_content">성공하진 못했어도 실패는 아니에요.\n그러니 언제든 주저 말고 다시 도전하기!</string>
+    <string name="finish_room_dialog_dismiss_button">확인했어요</string>
+
+    <!-- OnBoardingActivity -->
+    <string name="on_boarding_activity_btn_skip">Skip</string>
+    <string name="on_boarding_activity_btn_start">스파크 시작하기</string>
+
+    <!-- OnBoardingFragment -->
+    <string name="on_boarding_fragment_one_text_1">습관 만들기,</string>
+    <string name="on_boarding_fragment_one_text_2">친구와 함께</string>
+    <string name="on_boarding_fragment_one_text_3">도전해보는 건 어때요?</string>
+    <string name="on_boarding_fragment_two_text_1">함께 습관방의 생명을 지키면서</string>
+    <string name="on_boarding_fragment_two_text_2">더 재미있게!</string>
+    <string name="on_boarding_fragment_three_text_1">66일의 시간,</string>
+    <string name="on_boarding_fragment_three_text_2">목표를 갖고 달리면 덜 힘들걸요?</string>
+    <string name="on_boarding_fragment_four_text_1">지금, 응원의 </string>
+    <string name="on_boarding_fragment_four_text_2">스파크</string>
+    <string name="on_boarding_fragment_four_text_3">를 주고받으며</string>
+    <string name="on_boarding_fragment_four_text_4">습관을 만들어봐요!</string>
+
+    <!-- AlarmCenterActivity -->
+    <string name="alarm_center_desc_back_btn">뒤로가기 버튼</string>
+    <string name="alarm_center_title">알림</string>
+    <string name="alarm_center_sparker_activity">스파커 활동</string>
+    <string name="alarm_center_service">안내</string>
+    <string name="alarm_center_desc_service_sticker">안내 탭 빨콩 스티커</string>
+    <string name="alarm_center_desc_activity_sticker">스파커 활동 탭 빨콩 스티커</string>
+    <string name="alarm_list_desc_img">알람 사진</string>
+    <string name="alarm_center_empty_top">아직 도착한 알림이 없어요.</string>
+    <string name="alarm_center_empty_bottom">친구와 함께 습관에 도전해 보세요!</string>
+    <string name="alarm_center_desc_empty_icon">알림센터 엠티뷰 종 아이콘</string>
+
+    <!--UserGuideFragmnetDialog-->
+    <string name="user_guide_dialog_title">66일간의 습관 성공 Tip!</string>
+    <string name="user_guide_dialog_content_first">습관방의 생명은 오직 3개,\n매일 자정까지 잊지 말고 인증하기!</string>
+    <string name="user_guide_dialog_content_second">만약 친구가 고민중이라면?\n스파크를 마구 보내 힘껏 응원하기!</string>
+    <string name="user_guide_dialog_content_third">‘쉴래요’ 기회는 3번\n조금 아껴뒀다 꼭 필요할 때 사용하기!</string>
+    <string name="user_guide_dialog_dismiss_button">닫기</string>
+
+    <!--HabitLifeLessDialogFragment-->
+    <string name="habit_dialog_life_less_title">Oops...</string>
+    <string name="habit_dialog_life_less_btn_checked">확인했어요</string>
+
 </resources>
+

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="myPageViewModel"
+            type="com.teamsparker.android.ui.mypage.MyPageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/spark_white"
+        tools:context=".ui.mypage.MyPageMainFragment">
+
+        <ImageButton
+            android:id="@+id/btn_my_page_main_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/my_page_main_desc_back_btn"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_my_page_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/futura_medium"
+            android:text="@string/my_page_main_title"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_title">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="48dp">
+
+                <ImageView
+                    android:id="@+id/iv_my_page_main_profile"
+                    setCircleImage="@{myPageViewModel.profileData.profileImg}"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/shape_light_gray_line_circle"
+                    android:contentDescription="@string/my_page_main_desc_profile_img"
+                    android:padding="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_profile"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_my_page_main_profile_name"
+                    app:layout_constraintStart_toEndOf="@id/iv_my_page_main_profile"
+                    app:layout_constraintTop_toTopOf="@id/iv_my_page_main_profile"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@{myPageViewModel.profileData.nickname}"
+                    android:textColor="@color/spark_black"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_my_page_main_profile"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_profile"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_profile" />
+
+                <ImageButton
+                    android:id="@+id/btn_my_page_main_modify_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/my_page_main_desc_modify_profile"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_my_page_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_my_page_main_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_my_page_main_profile" />
+
+                <View
+                    android:id="@+id/view_my_page_main"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/spark_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_my_page_main_profile" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_setting"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_my_page_main" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_alarm"
+                    android:textColor="@color/spark_black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_setting"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_setting" />
+
+                <ImageButton
+                    android:id="@+id/btn_my_page_main_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/my_page_main_desc_alarm"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_my_page_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_alarm"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_page_main_alarm" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_customer_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_customer_service"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_setting"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_alarm" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_question"
+                    android:textColor="@color/spark_black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_customer_service"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_customer_service" />
+
+                <ImageButton
+                    android:id="@+id/btn_my_page_main_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/my_page_main_desc_question"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_my_page_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_question"
+                    app:layout_constraintEnd_toEndOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintStart_toStartOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_page_main_question" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_service"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_setting"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_question" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_policy"
+                    android:textColor="@color/spark_black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_service" />
+
+                <ImageButton
+                    android:id="@+id/btn_my_page_main_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/my_page_main_desc_policy"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_my_page_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_policy"
+                    app:layout_constraintEnd_toEndOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintStart_toStartOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_page_main_policy" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_open_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_open_source"
+                    android:textColor="@color/spark_black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_policy" />
+
+                <ImageButton
+                    android:id="@+id/btn_my_page_main_open_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/my_page_main_desc_policy"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_my_page_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_open_source"
+                    app:layout_constraintEnd_toEndOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintStart_toStartOf="@id/btn_my_page_main_alarm"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_page_main_open_source" />
+
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_version_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_version_info"
+                    android:textColor="@color/spark_black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_open_source" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="28dp"
+                    android:fontFamily="@font/futura_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_version"
+                    android:textColor="@color/spark_light_dark_gray"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_main_version_info"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_sign_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:onClick="@{() -> myPageViewModel.postSignOut()}"
+                    android:text="@string/my_page_main_sign_out"
+                    android:textColor="@color/spark_black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_version_info" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_main_withdrawal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="76dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/my_page_main_withdrawal"
+                    android:textColor="@color/spark_gray"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_page_main_service"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_main_sign_out" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

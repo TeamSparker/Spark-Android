@@ -1,18 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <import type="android.view.View" />
+
+        <variable
+            name="activity"
+            type="com.teamsparker.android.ui.main.MainActivity" />
+
+        <variable
+            name="mainViewModel"
+            type="com.teamsparker.android.ui.main.viewmodel.MainViewModel" />
+
+        <variable
+            name="fabState"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainActivity">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/container_main"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/layout_main_bottom_nav"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:navGraph="@navigation/main_nav_graph"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_main_bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="1dp">
+
+
+            <TextView
+                android:id="@+id/tv_main_bottom_nav_feed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="26dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/main_bottom_nav_feed"
+                android:textColor="@{mainViewModel.tabPosition == 0 ? @color/spark_dark_pinkred : @color/spark_dark_gray }"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_main_bottom_nav"
+                app:layout_constraintEnd_toEndOf="@+id/btn_main_bottom_nav_feed"
+                app:layout_constraintStart_toStartOf="@+id/btn_main_bottom_nav_feed" />
+
+            <ImageButton
+                android:id="@+id/btn_main_bottom_nav_feed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="44dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{()->mainViewModel.initTabPositionFeed()}"
+                android:padding="12dp"
+                android:src="@{mainViewModel.tabPosition == 0 ? @drawable/ic_bottom_navigation_feed_selected @ : @drawable/ic_bottom_navigation_feed }"
+                app:layout_constraintEnd_toStartOf="@+id/btn_main_bottom_nav_home"
+                app:layout_constraintTop_toTopOf="@+id/btn_main_bottom_nav_home"
+                tools:src="@drawable/ic_bottom_navigation_feed" />
+
+            <TextView
+                android:id="@+id/tv_main_bottom_nav_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="26dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/main_bottom_nav_home"
+                android:textColor="@{mainViewModel.tabPosition == 1 ? @color/spark_dark_pinkred : @color/spark_dark_gray}"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_main_bottom_nav"
+                app:layout_constraintEnd_toEndOf="@+id/btn_main_bottom_nav_home"
+                app:layout_constraintStart_toStartOf="@+id/btn_main_bottom_nav_home" />
+
+            <ImageButton
+                android:id="@+id/btn_main_bottom_nav_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{()->mainViewModel.initTabPositionHome()}"
+                android:padding="12dp"
+                android:src="@{mainViewModel.tabPosition == 1 ? @drawable/ic_bottom_navigation_home_selected : @drawable/ic_bottom_navigation_home}"
+                app:layout_constraintEnd_toEndOf="@+id/layout_main_bottom_nav"
+                app:layout_constraintStart_toStartOf="@+id/layout_main_bottom_nav"
+                app:layout_constraintTop_toTopOf="@+id/layout_main_bottom_nav"
+                tools:src="@drawable/ic_bottom_navigation_home" />
+
+            <TextView
+                android:id="@+id/tv_main_bottom_nav_storage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="26dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/main_bottom_nav_storage"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_main_bottom_nav"
+                app:layout_constraintEnd_toEndOf="@+id/btn_main_bottom_nav_storage"
+                app:layout_constraintStart_toStartOf="@+id/btn_main_bottom_nav_storage"
+                tools:textColor="@{mainViewModel.tabPosition == 2 ? @color/spark_dark_pinkred : @color/spark_dark_gray }" />
+
+            <ImageButton
+                android:id="@+id/btn_main_bottom_nav_storage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{()->mainViewModel.initTabPositionStorage()}"
+                android:padding="12dp"
+                android:src="@{mainViewModel.tabPosition == 2 ? @drawable/ic_bottom_navigation_storage_selected :@drawable/ic_bottom_navigation_storage}"
+                app:layout_constraintStart_toEndOf="@+id/btn_main_bottom_nav_home"
+                app:layout_constraintTop_toTopOf="@+id/btn_main_bottom_nav_home"
+                tools:src="@drawable/ic_bottom_navigation_storage" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_main_fab_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/spark_black_opacity_80"
+            android:clickable="true"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shadow_spark_dark_pinkred"
+            android:clickable="false"
+            android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
+            app:layout_constraintStart_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_home_join_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/spark_dark_pinkred"
+            android:onClick="@{()->activity.initMakeJoinCodeListener()}"
+            android:src="@drawable/ic_fab_join_code"
+            android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
+            app:borderWidth="0dp"
+            app:fabCustomSize="44dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
+            app:layout_constraintStart_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main"
+            app:tint="@color/spark_white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_home_make_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/spark_dark_pinkred"
+            android:onClick="@{()->activity.initMakeRoomClickListener()}"
+            android:src="@drawable/ic_fab_make_room"
+            android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
+            app:borderWidth="0dp"
+            app:fabCustomSize="44dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toEndOf="@+id/fab_home_main"
+            app:layout_constraintStart_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main"
+            app:tint="@color/spark_white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_home_main"
+            setFloatingIconTint="@{fabState ? @color/spark_dark_pinkred : @color/spark_white}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint="@{fabState ? @color/spark_white : @color/spark_dark_pinkred}"
+            android:elevation="0dp"
+            android:src="@drawable/ic_fab_plus"
+            android:visibility="@{mainViewModel.tabPosition == 1 ? View.VISIBLE : View.GONE }"
+            app:borderWidth="0dp"
+            app:fabCustomSize="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_main_bottom_nav"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:backgroundTint="@color/spark_dark_pinkred"
+            tools:tint="@color/spark_white" />
+
+        <TextView
+            android:id="@+id/tv_fab_join_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/main_fab_join_code"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+
+        <TextView
+            android:id="@+id/tv_fab_make_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@string/main_fab_make_room"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_home_main"
+            app:layout_constraintEnd_toStartOf="@+id/fab_home_main"
+            app:layout_constraintTop_toTopOf="@+id/fab_home_main" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="storageRoom"
+            type="com.teamsparker.android.data.remote.entity.response.StorageRoom" />
+
+        <variable
+            name="str"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect_black">
+
+        <View
+            android:id="@+id/view_complete_item_layout_out"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_spark_dark_pinkred_fill_line_2_rect_black" />
+
+
+        <ImageView
+            android:id="@+id/iv_complete_item_photo"
+            setImage="@{storageRoom.thumbnail}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginBottom="2dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/img_storage_complete_certification_photo" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/bg_storage_black_filter"
+            app:layout_constraintBottom_toBottomOf="@id/iv_complete_item_photo"
+            app:layout_constraintEnd_toEndOf="@id/iv_complete_item_photo"
+            app:layout_constraintStart_toStartOf="@id/iv_complete_item_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_complete_item_photo" />
+
+        <View
+            android:id="@+id/view_complete_item_layout_in"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/shape_spark_dark_pinkred_line_2_rect_bottomless"
+            app:layout_constraintBottom_toTopOf="@id/tv_complete_item_roomName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_storage_complete_deco_left"
+            app:layout_constraintStart_toStartOf="@id/view_complete_item_layout_in"
+            app:layout_constraintTop_toTopOf="@id/view_complete_item_layout_in" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_storage_complete_deco_right"
+            app:layout_constraintEnd_toEndOf="@id/view_complete_item_layout_in"
+            app:layout_constraintTop_toTopOf="@id/view_complete_item_layout_in" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/ic_storage_complete_deco_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/ic_storage_complete_deco_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_complete_item_sparkflake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="83dp"
+            android:src="@drawable/ic_storage_complete_item_sparkflake"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_complete_item_fire_gray"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_item_fire_gray"
+            app:layout_constraintEnd_toStartOf="@id/tv_complete_item_total_sparkNumber"
+            app:layout_constraintStart_toStartOf="@+id/iv_complete_item_sparkflake"
+            app:layout_constraintTop_toBottomOf="@id/iv_complete_item_sparkflake"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_complete_item_total_sparkNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="9dp"
+            android:fontFamily="@font/futura_medium"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="1sp"
+            android:text="@{String.valueOf(safeUnbox(storageRoom.totalReceivedSpark))}"
+            android:textAlignment="center"
+            android:textColor="@color/spark_gray"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/iv_complete_item_sparkflake"
+            app:layout_constraintStart_toEndOf="@id/iv_complete_item_fire_gray"
+            app:layout_constraintTop_toBottomOf="@+id/iv_complete_item_sparkflake"
+            tools:text="300" />
+
+
+        <TextView
+            android:id="@+id/tv_complete_item_roomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@{storageRoom.roomName}"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_complete_item_fire_gray"
+            tools:text="매일매일 약 챙겨먹기" />
+
+        <TextView
+            android:id="@+id/tv_complete_item_total_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@{storageRoom.startDate.replace(`-`,`.`) +` - `+storageRoom.endDate.replace(`-`,`.`)}"
+            android:textColor="@color/spark_gray"
+            android:textSize="14dp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_complete_item_roomName"
+            tools:text="2021.07.01 - 2022.08.08" />
+
+        <TextView
+            android:id="@+id/tv_complete_item_completeReview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="25dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/spark_white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_complete_item_total_duration"
+            tools:text="약 좀 챙겨!! 건강한 디자이너가 되자 ㅠㅠㅠ 친구들이랑 먹으니 할 만했다 ㅎㅎ" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

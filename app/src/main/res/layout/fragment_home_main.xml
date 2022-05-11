@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="homeViewModel"
+            type="com.teamsparker.android.ui.home.viewmodel.HomeMainViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_home_for_white"
+            tools:context=".ui.home.HomeMainFragment">
+
+            <ImageView
+                android:id="@+id/iv_home_no_room_background"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_home_no_room"
+                android:visibility="@{homeViewModel.isLoading() == false &amp;&amp; homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_home_toolbar" />
+
+            <ImageView
+                android:id="@+id/iv_home_no_room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="23dp"
+                android:visibility="@{homeViewModel.isLoading() == false &amp;&amp; homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/tv_home_no_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/img_home_no_room" />
+
+            <TextView
+                android:id="@+id/tv_home_no_room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/home_no_room"
+                android:textAlignment="center"
+                android:textColor="@color/spark_gray"
+                android:textSize="18dp"
+                android:visibility="@{homeViewModel.isLoading() == false &amp;&amp; homeViewModel.roomList.size() == 0 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.63" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_feed_loading"
+                playLoadingLottie="@{homeViewModel.isLoading}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="@{homeViewModel.isLoading? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="100dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_home_toolbar"
+                app:layout_constraintVertical_bias="0.0"
+                tools:itemCount="5"
+                tools:layout_editor_absoluteX="0dp"
+                tools:listitem="@layout/item_home_recyclerview">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_home_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
+                <ImageButton
+                    android:id="@+id/btn_home_tool_bar_my_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_tool_bar_profile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_home_tool_bar_alarm_center"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btn_home_tool_bar_alarm_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_tool_bar_notice"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_home_tool_bar_notice_red_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_home_notice_red_dot"
+                    android:visibility="@{homeViewModel.noticeRedDot ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_home_tool_bar_alarm_center"
+                    app:layout_constraintTop_toTopOf="@+id/btn_home_tool_bar_alarm_center" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_home_toast"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/shape_spark_deep_gray_fill_rect"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@{homeViewModel.toastMessage}"
+                android:textColor="@color/spark_white"
+                android:textSize="16dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

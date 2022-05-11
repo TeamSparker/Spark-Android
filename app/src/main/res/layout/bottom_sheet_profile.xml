@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="deleteMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <View
+            android:id="@+id/view_profile_bottom_indicator"
+            android:layout_width="16dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/spark_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_profile_bottom_divide_1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/spark_gray_opacity_30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_profile_bottom_indicator" />
+
+        <TextView
+            android:id="@+id/tv_profile_bottom_from_camera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingVertical="19dp"
+            android:text="@string/profile_from_camera"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_profile_bottom_divide_1" />
+
+        <View
+            android:id="@+id/view_profile_bottom_divide_2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/spark_gray_opacity_30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile_bottom_from_camera" />
+
+
+        <TextView
+            android:id="@+id/tv_profile_bottom_from_album"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingVertical="19dp"
+            android:text="@string/profile_from_album"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_profile_bottom_divide_2" />
+
+        <View
+            android:id="@+id/view_profile_bottom_divide_3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/spark_gray_opacity_30"
+            android:visibility="@{deleteMode ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile_bottom_from_album" />
+
+
+        <TextView
+            android:id="@+id/tv_profile_bottom_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingVertical="19dp"
+            android:text="@string/profile_delete_profile_picture"
+            android:textColor="@color/spark_dark_pinkred"
+            android:textSize="16dp"
+            android:visibility="@{deleteMode ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_profile_bottom_divide_3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

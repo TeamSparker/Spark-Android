@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_page_nav_graph"
+    app:startDestination="@id/myPageMainFragment">
+
+    <fragment
+        android:id="@+id/myPageMainFragment"
+        android:name="com.teamsparker.android.ui.mypage.MyPageMainFragment"
+        android:label="MyPageMainFragment"
+        tools:layout="@layout/fragment_my_page_main">
+        <action
+            android:id="@+id/action_myPageMainFragment_to_profileFragmentFromMyPage"
+            app:destination="@id/profileFragmentFromMyPage" />
+        <action
+            android:id="@+id/action_myPageMainFragment_to_alarmSettingFragment"
+            app:destination="@id/alarmSettingFragment" />
+        <action
+            android:id="@+id/action_myPageMainFragment_to_withdrawalFragment"
+            app:destination="@id/withdrawalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/withdrawalFragment"
+        android:name="com.teamsparker.android.ui.withdrawal.WithdrawalFragment"
+        android:label="WithdrawalFragment"
+        tools:layout="@layout/fragment_withdrawal" />
+    <fragment
+        android:id="@+id/profileFragmentFromMyPage"
+        android:name="com.teamsparker.android.ui.auth.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="modifyMode"
+            android:defaultValue="true"
+            app:argType="boolean" />
+        <argument
+            android:name="nickname"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="profileImgUrl"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/alarmSettingFragment"
+        android:name="com.teamsparker.android.ui.alarmsetting.AlarmSettingFragment"
+        android:label="AlarmSettingFragment"
+        tools:layout="@layout/fragment_alarm_setting" />
+</navigation>

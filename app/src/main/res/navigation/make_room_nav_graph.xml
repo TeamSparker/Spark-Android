@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/make_room_nav_graph"
+    app:startDestination="@id/nameSettingFragment">
+
+    <fragment
+        android:id="@+id/nameSettingFragment"
+        android:name="com.teamsparker.android.ui.makeroom.namesetting.NameSettingFragment"
+        android:label="NameSettingFragment" >
+        <action
+            android:id="@+id/action_nameSettingFragment_to_selectConfirmMethodFragment"
+            app:destination="@id/selectConfirmMethodFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectConfirmMethodFragment"
+        android:name="com.teamsparker.android.ui.makeroom.selectconfirmmethod.SelectConfirmMethodFragment"
+        android:label="SelectConfirmMethodFragment" >
+        <argument
+            android:name="roomName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue='""' />
+    </fragment>
+</navigation>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="record"
+            type="com.teamsparker.android.data.remote.entity.response.HabitRecord" />
+
+        <variable
+            name="response"
+            type="com.teamsparker.android.data.remote.entity.response.HabitResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_item_habit_team_profile"
+            setCircleImage="@{record.profileImg}"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/shape_light_gray_line_circle"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_item_habit_team_sticker"
+            setStatusStickerImage="@{record.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item_habit_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{record.nickname}"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_habit_team_status"
+            app:layout_constraintStart_toEndOf="@id/iv_item_habit_team_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_item_habit_team_profile"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_item_habit_team_status"
+            setUserLeftDay="@{response.leftDay}"
+            setUserStatus="@{record.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_dark_gray"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_habit_team_profile"
+            app:layout_constraintStart_toStartOf="@id/tv_item_habit_team_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_habit_team_name" />
+
+        <ImageView
+            android:id="@+id/iv_item_habit_team_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_habit_tag_me"
+            android:visibility="@{record.rest != -1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_habit_team_name"
+            app:layout_constraintStart_toEndOf="@id/tv_item_habit_team_name"
+            app:layout_constraintTop_toTopOf="@id/tv_item_habit_team_name" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_item_habit_team_send"
+            habitRestCount="@{record.rest}"
+            habitUserLeftDay="@{response.leftDay}"
+            habitUserStatus="@{record.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_habit_team_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_item_habit_team_profile" />
+
+        <TextView
+            android:id="@+id/tv_item_habit_team_send_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/futura_medium"
+            android:includeFontPadding="false"
+            android:text="@{String.valueOf(record.receivedSpark)}"
+            android:textColor="@color/spark_white"
+            android:textSize="12dp"
+            android:visibility="@{record.receivedSpark != -1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/btn_item_habit_team_send"
+            app:layout_constraintStart_toStartOf="@id/btn_item_habit_team_send"
+            app:layout_constraintTop_toTopOf="@id/btn_item_habit_team_send" />
+
+        <View
+            android:id="@+id/view_item_habit_team_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/spark_light_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
