@@ -57,7 +57,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
     private fun initFcmTokenObserver() {
         introViewModel.fcmToken.observe(this) { token ->
             if (token.isNotBlank()) {
-                introViewModel.getFcmToken()
+                introViewModel.getAccessToken()
             }
         }
     }
