@@ -32,7 +32,8 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetCertifyBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
-    private lateinit var imgUri: Uri
+    private var imgUri: Uri? = null
+    private var fromCamera = false
     private val certifyViewModel by activityViewModels<CertifyViewModel>()
 
     private val fromAlbumActivityLauncher = registerForActivityResult(
@@ -41,6 +42,8 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
         result.data?.let { intent ->
             intent.data?.let { uri ->
                 certifyViewModel.initImgUri(uri)
+                certifyViewModel.initFromCamera(false)
+                fromCamera = false
                 showCertifyActivity()
                 dismiss()
             }
@@ -50,9 +53,13 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (File(getPathFromUri(requireContext(), imgUri)).exists()) {
-            certifyViewModel.initImgUri(imgUri)
-            showCertifyActivity()
+        imgUri?.let { uri ->
+            if (File(getPathFromUri(requireContext(), uri)).exists()) {
+                certifyViewModel.initImgUri(uri)
+                certifyViewModel.initFromCamera(true)
+                fromCamera = true
+                showCertifyActivity()
+            }
         }
         dismiss()
     }
@@ -61,8 +68,11 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = BottomSheetCertifyBinding.inflate(inflater, container, false)
+        savedInstanceState?.let {
+            imgUri = it.getParcelable(IMG_URI)
+        }
         return binding.root
     }
 
@@ -76,6 +86,11 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
         initArgumentsData()
         initFromAlbumBtnClickListener()
         initFromCameraBtnClickListener()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(IMG_URI, imgUri)
     }
 
     private fun initArgumentsData() {
@@ -183,6 +198,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                     putExtra("onlyCameraInitial", false)
                     putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                     putExtra("imgUri", certifyViewModel.imgUri.value)
+                    putExtra("fromCamera", fromCamera)
                     arguments?.getInt("leftDay")?.let { putExtra("leftDay", it) }
                 }
                 startActivity(intent)
@@ -195,5 +211,9 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val IMG_URI = "imgUri"
     }
 }

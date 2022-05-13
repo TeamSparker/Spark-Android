@@ -36,6 +36,9 @@ class CertifyViewModel : ViewModel() {
     private val _onlyCameraInitial = MutableLiveData<Boolean>()
     val onlyCameraInitial: LiveData<Boolean> = _onlyCameraInitial
 
+    var fromCamera = false
+        private set
+
     private lateinit var certifyImgMultiPart: MultipartBody.Part
 
     private val _imgUri = MutableLiveData<Uri?>()
@@ -78,6 +81,10 @@ class CertifyViewModel : ViewModel() {
 
     fun initImgUri(uri: Uri) {
         _imgUri.value = uri
+    }
+
+    fun initFromCamera(isFromCamera: Boolean) {
+        fromCamera = isFromCamera
     }
 
     fun initCertifyImgMultiPart(multipart: MultipartBody.Part) {

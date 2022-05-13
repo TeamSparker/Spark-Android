@@ -27,81 +27,99 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_quit" />
 
-        <TextView
-            android:id="@+id/tv_join_code_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:lineHeight="29dp"
-            android:text="@string/join_code_title"
-            android:textAlignment="center"
-            android:textColor="@color/spark_deep_gray"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:paddingBottom="40dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/btn_join_code_input_again"
+            app:layout_constraintTop_toBottomOf="@id/btn_join_code_back">
 
-        <ImageView
-            android:id="@+id/iv_join_code_background"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_join_code_title"
-            app:srcCompat="@drawable/bg_join_code" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_join_code"
-            android:layout_width="294dp"
-            android:layout_height="208dp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_join_code_background"
-            app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
-            app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
-            app:layout_constraintTop_toTopOf="@+id/iv_join_code_background"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="ticket_welcome.json"
-            app:lottie_loop="true" />
+                <TextView
+                    android:id="@+id/tv_join_code_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:lineHeight="29dp"
+                    android:text="@string/join_code_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/spark_deep_gray"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_join_code_who_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-16dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="@{joinCodeRoomInfoResponse.creatorName+`님이 초대한 방`}"
-            android:textColor="@color/spark_dark_gray"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
-            app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
-            app:layout_constraintTop_toBottomOf="@+id/iv_join_code_background"
-            tools:text="힛이님이 초대한 방" />
+                <ImageView
+                    android:id="@+id/iv_join_code_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_join_code_title"
+                    app:srcCompat="@drawable/bg_join_code" />
 
-        <TextView
-            android:id="@+id/tv_join_code_room_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:fontFamily="@font/noto_sans_kr_bold"
-            android:includeFontPadding="false"
-            android:text="@{joinCodeRoomInfoResponse.roomName}"
-            android:textColor="@color/spark_deep_gray"
-            android:textSize="24dp"
-            app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
-            app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
-            app:layout_constraintTop_toBottomOf="@+id/tv_join_code_who_call"
-            tools:text="아침독서" />
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_join_code"
+                    android:layout_width="294dp"
+                    android:layout_height="208dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_join_code_background"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
+                    app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
+                    app:layout_constraintTop_toTopOf="@+id/iv_join_code_background"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="ticket_welcome.json"
+                    app:lottie_loop="true" />
+
+                <TextView
+                    android:id="@+id/tv_join_code_who_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-16dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@{joinCodeRoomInfoResponse.creatorName+`님이 초대한 방`}"
+                    android:textColor="@color/spark_dark_gray"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
+                    app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_join_code_background"
+                    tools:text="힛이님이 초대한 방" />
+
+                <TextView
+                    android:id="@+id/tv_join_code_room_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:includeFontPadding="false"
+                    android:text="@{joinCodeRoomInfoResponse.roomName}"
+                    android:textColor="@color/spark_deep_gray"
+                    android:textSize="24dp"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_join_code_background"
+                    app:layout_constraintStart_toStartOf="@+id/iv_join_code_background"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_join_code_who_call"
+                    tools:text="아침독서" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_join_code_input_again"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="75dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/shape_spark_dark_pinkred_line_rect"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
@@ -109,15 +127,15 @@
             android:text="@string/join_code_input_again"
             android:textColor="@color/spark_pinkred"
             android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_join_code_enter_waiting_room"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_join_code_room_name" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_join_code_enter_waiting_room"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/shape_btn_active"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
@@ -125,9 +143,9 @@
             android:text="@string/join_code_enter_waiting_room"
             android:textColor="@color/spark_white"
             android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btn_join_code_input_again"
-            app:layout_constraintStart_toStartOf="@+id/btn_join_code_input_again"
-            app:layout_constraintTop_toBottomOf="@+id/btn_join_code_input_again" />
+            app:layout_constraintStart_toStartOf="@+id/btn_join_code_input_again" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

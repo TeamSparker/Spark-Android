@@ -57,9 +57,9 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
         certifyViewModel.initNickName(intent.getStringExtra("nickname") ?: "")
         certifyViewModel.initCertifyMode(intent.getIntExtra("certifyMode", NORMAL_READY_MODE))
         certifyViewModel.initOnlyCameraInitial(intent.getBooleanExtra("onlyCameraInitial", false))
+        certifyViewModel.initFromCamera(intent.getBooleanExtra("fromCamera", false))
         intent.getStringExtra("profileImgUrl")?.let { certifyViewModel.initProfileImg(it) }
         intent.getParcelableExtra<Uri>("imgUri")?.let { certifyViewModel.initImgUri(it) }
-
     }
 
     private fun initImgUriObserver() {
@@ -151,9 +151,15 @@ class CertifyActivity : BaseActivity<ActivityCertifyBinding>(R.layout.activity_c
                         putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                         putExtra("certifyImgUri", certifyViewModel.imgUri.value)
                         putExtra("timerRecord", certifyViewModel.timerRecord.value)
+                        putExtra("fromCamera", certifyViewModel.fromCamera)
                     })
                 }
                 NO_SHARE -> {
+                    if (certifyViewModel.fromCamera) {
+                        contentResolver.delete(
+                            requireNotNull(certifyViewModel.imgUri.value), null, null
+                        )
+                    }
                     startActivity(Intent(this, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
                         putExtra(FROM_WHERE, FROM_CERTIFY_ACTIVITY)

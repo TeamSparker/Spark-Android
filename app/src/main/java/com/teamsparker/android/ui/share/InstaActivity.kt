@@ -27,12 +27,18 @@ import java.io.OutputStream
 import java.util.Calendar
 
 class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta) {
-    private lateinit var imgUri: Uri
-    private lateinit var instaFeedUri: Uri
+    private var imgUri: Uri? = null
+    private var instaFeedUri: Uri? = null
+    private var fromCamera = false
     private val instaShareActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        contentResolver.delete(instaFeedUri, null, null)
+        instaFeedUri?.let {
+            contentResolver.delete(it, null, null)
+        }
+        if (fromCamera) {
+            imgUri?.let { contentResolver.delete(it, null, null) }
+        }
         moveToFeed()
     }
 
@@ -42,6 +48,7 @@ class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta
         binding.roomName = intent.getStringExtra("roomName")
         binding.profileImgUrl = intent.getStringExtra("profileImgUrl")
         binding.timerRecord = intent.getStringExtra("timerRecord")
+        fromCamera = intent.getBooleanExtra("fromCamera", false)
         intent.getParcelableExtra<Uri>("certifyImgUri")?.let {
             imgUri = it
             binding.ivInstaStickerCertifyImg.setImageURI(it)
@@ -52,7 +59,7 @@ class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta
 
         binding.layoutInstaStickerBg.post {
             instaFeedUri = getImageUri(viewToBitmap(binding.layoutInstaStickerBg))!!
-            shareInsta(instaFeedUri)
+            instaFeedUri?.let { shareInsta(it) }
         }
     }
 

@@ -212,7 +212,9 @@ object BindingAdapters {
         if (imgUri == null) {
             imageview.setImageResource(R.drawable.shape_spark_light_gray_fill_rect)
         } else {
-            imageview.setImageURI(imgUri)
+            Glide.with(imageview.context)
+                .load(imgUri)
+                .into(imageview)
         }
         imageview.clipToOutline = true
     }

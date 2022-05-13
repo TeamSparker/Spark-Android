@@ -34,7 +34,7 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetProfileBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
-    private lateinit var imgUri: Uri
+    private var imgUri: Uri? = null
 
     private val fromAlbumActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -50,8 +50,11 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (File(getPathFromUri(requireContext(), imgUri)).exists()) {
-            setFragmentResult(REQUEST_PROFILE_IMG_FROM_CAMERA, bundleOf(PROFILE_IMG to imgUri))
+        imgUri?.let { uri ->
+            Thread.sleep(700)
+            if (File(getPathFromUri(requireContext(), uri)).exists()) {
+                setFragmentResult(REQUEST_PROFILE_IMG_FROM_CAMERA, bundleOf(PROFILE_IMG to uri))
+            }
         }
         dismiss()
     }
@@ -60,7 +63,10 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        savedInstanceState?.let {
+            imgUri = it.getParcelable(IMG_URI)
+        }
         _binding = BottomSheetProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -77,6 +83,11 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
         initFromAlbumBtnClickListener()
         initFromCameraBtnClickListener()
         initDeleteImgBtnClickListener()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(IMG_URI, imgUri)
     }
 
     private fun initFromAlbumBtnClickListener() {
@@ -172,6 +183,7 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     }
 
     companion object {
+        private const val IMG_URI = "imgUri"
         const val REQUEST_READ_STORAGE_PERMISSION = 1
         const val REQUEST_CAMERA_PERMISSION = 2
         const val REQUEST_CAMERA_PERMISSION_UNDER_Q = 3

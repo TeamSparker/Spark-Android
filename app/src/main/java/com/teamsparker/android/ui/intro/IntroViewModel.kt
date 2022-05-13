@@ -48,7 +48,7 @@ class IntroViewModel @Inject constructor(
         authRepository.getFcmToken { token -> _fcmToken.value = token }
     }
 
-    fun getFcmToken() {
+    fun getAccessToken() {
         if (localPreferencesDataSource.getUserKakaoUserId() != DEFAULT_STRING_VALUE) {
             viewModelScope.launch {
                 authRepository.getAccessToken(

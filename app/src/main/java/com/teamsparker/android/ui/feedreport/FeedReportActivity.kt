@@ -10,6 +10,8 @@ import com.teamsparker.android.ui.feed.FeedBottomSheet.Companion.FEED_ITEM_ID
 import com.teamsparker.android.ui.main.MainActivity
 import com.teamsparker.android.util.EventObserver
 import com.teamsparker.android.util.KeyBoardUtil
+import com.teamsparker.android.util.initStatusBarColor
+import com.teamsparker.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,6 +21,7 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.feedReportViewModel = feedReportViewModel
+        initStatusBarStyle()
         initFeedItemId()
         initLayoutClickListener()
         initIsFocused()
@@ -33,6 +36,11 @@ class FeedReportActivity : BaseActivity<ActivityFeedReportBinding>(R.layout.acti
             putExtra(MainActivity.FROM_WHERE, FROM_FEED_REPORT_ACTIVITY)
         })
         finish()
+    }
+
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
     }
 
     private fun initFeedItemId() {
