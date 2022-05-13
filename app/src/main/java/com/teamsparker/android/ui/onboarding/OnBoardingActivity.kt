@@ -10,6 +10,8 @@ import com.teamsparker.android.databinding.ActivityOnBoardingBinding
 import com.teamsparker.android.ui.auth.AuthActivity
 import com.teamsparker.android.ui.base.BaseActivity
 import com.teamsparker.android.ui.onboarding.adapter.OnBoardingVpAdapter
+import com.teamsparker.android.util.initStatusBarColor
+import com.teamsparker.android.util.initStatusBarTextColorToWhite
 
 class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.activity_on_boarding) {
     private lateinit var onBoardingVpAdapter: OnBoardingVpAdapter
@@ -17,11 +19,17 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.acti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initStatusBarStyle()
         initOnBoardingVpAdapter()
         initOnBoardingVpIndicator()
         setBtnVisibilityOnLastPage()
         initSkipBtn()
         initStartBtn()
+    }
+
+    private fun initStatusBarStyle() {
+        initStatusBarColor(R.color.spark_white)
+        initStatusBarTextColorToWhite()
     }
 
     private fun initOnBoardingVpAdapter() {
