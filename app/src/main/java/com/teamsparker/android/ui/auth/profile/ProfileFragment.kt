@@ -37,6 +37,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     lateinit var multiPartResolver: MultiPartResolver
     private val profileViewModel by viewModels<ProfileViewModel>()
     private val args by navArgs<ProfileFragmentArgs>()
+    private var fromCamera = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -120,6 +121,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         profileViewModel.successSignUp.observe(viewLifecycleOwner, EventObserver { successSignUp ->
             if (successSignUp) {
                 FirebaseLogUtil.logClickEvent(CLICK_FINISH_SIGN_UP)
+                deleteImgFromCamera()
                 requireContext().startActivity(
                     Intent(requireContext(), MainActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -144,6 +146,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun initSuccessModifyObserver() {
         profileViewModel.successModify.observe(viewLifecycleOwner, EventObserver { successModify ->
             if (successModify) {
+                deleteImgFromCamera()
                 popBackStack()
                 profileViewModel.initIsLoading(false)
             }
@@ -160,11 +163,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             val uri = bundle.get(PROFILE_IMG) as Uri
             profileViewModel.initProfileImgMultiPart(multiPartResolver.createImgMultiPart(uri))
             profileViewModel.initProfileImgUri(uri)
-            // 나중에 찍은 사진 저장 안되도록 해보기
+            fromCamera = true
         }
         setFragmentResultListener(REQUEST_PROFILE_DELETE) { _, _ ->
             profileViewModel.initProfileImgMultiPart(null)
             profileViewModel.deleteProfileImg()
+        }
+    }
+
+    private fun deleteImgFromCamera(){
+        if (fromCamera){
+            profileViewModel.profileImgUri.value?.let {
+                requireContext().contentResolver.delete(it, null, null)
+            }
         }
     }
 
