@@ -33,6 +33,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
     private var imgUri: Uri? = null
+    private var fromCamera = false
     private val certifyViewModel by activityViewModels<CertifyViewModel>()
 
     private val fromAlbumActivityLauncher = registerForActivityResult(
@@ -41,6 +42,8 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
         result.data?.let { intent ->
             intent.data?.let { uri ->
                 certifyViewModel.initImgUri(uri)
+                certifyViewModel.initFromCamera(false)
+                fromCamera = false
                 showCertifyActivity()
                 dismiss()
             }
@@ -53,6 +56,8 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
         imgUri?.let { uri ->
             if (File(getPathFromUri(requireContext(), uri)).exists()) {
                 certifyViewModel.initImgUri(uri)
+                certifyViewModel.initFromCamera(true)
+                fromCamera = true
                 showCertifyActivity()
             }
         }
@@ -193,6 +198,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                     putExtra("onlyCameraInitial", false)
                     putExtra("profileImgUrl", certifyViewModel.profileImg.value)
                     putExtra("imgUri", certifyViewModel.imgUri.value)
+                    putExtra("fromCamera", fromCamera)
                     arguments?.getInt("leftDay")?.let { putExtra("leftDay", it) }
                 }
                 startActivity(intent)
