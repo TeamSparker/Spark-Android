@@ -22,48 +22,65 @@
         android:layout_height="match_parent"
         tools:context=".ui.waitingroom.WaitingRoomFragment">
 
+
+        <ImageButton
+            android:id="@+id/btn_waiting_room_move_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@{startPoint == 1 ? @drawable/ic_make_room_back : @drawable/ic_waiting_room_home}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_waiting_room_home" />
+
+        <TextView
+            android:id="@+id/tv_waiting_room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{waitingRoomViewModel.waitingRoomInfo.roomName}"
+            android:textColor="@color/spark_black"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="30분독서" />
+
+        <ImageButton
+            android:id="@+id/btn_waiting_room_extra_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_watitng_room_extra_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:layout_height="0dp"
+            android:layout_marginTop="18dp"
+            android:overScrollMode="never"
+            android:paddingBottom="40dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/btn_waiting_room_start_habit"
+            app:layout_constraintTop_toBottomOf="@id/tv_waiting_room_name">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/btn_waiting_room_move_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="22dp"
-                    android:background="@android:color/transparent"
-                    android:padding="10dp"
-                    android:src="@{startPoint == 1 ? @drawable/ic_make_room_back : @drawable/ic_waiting_room_home}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/ic_waiting_room_home" />
-
-                <TextView
-                    android:id="@+id/tv_waiting_room_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="33dp"
-                    android:fontFamily="@font/noto_sans_kr_medium"
-                    android:includeFontPadding="false"
-                    android:text="@{waitingRoomViewModel.waitingRoomInfo.roomName}"
-                    android:textColor="@color/spark_black"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="30분독서" />
+                android:layout_height="0dp">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_waiting_room_copy_code"
                     android:layout_width="87dp"
                     android:layout_height="36dp"
-                    android:layout_marginTop="18dp"
                     android:background="@drawable/shape_spark_dark_pinkred_line_rect"
                     android:fontFamily="@font/noto_sans_kr_medium"
                     android:includeFontPadding="false"
@@ -73,18 +90,6 @@
                     android:textSize="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_name" />
-
-                <ImageButton
-                    android:id="@+id/btn_waiting_room_extra_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_watitng_room_extra_menu"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -426,13 +431,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="128dp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
                     android:paddingEnd="20dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_waiting_room_sparker_explain"
