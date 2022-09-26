@@ -62,16 +62,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
         initTabPositionObserver()
         initBlackBgClickListener()
-        //moveAfterOpenPushAlarm()
     }
 
     override fun onResume() {
         super.onResume()
-        if (intent.getStringExtra(OPEN_FROM_PUSH_ALARM) != CERTIFICATION) {
-            mainViewModel.initTabPositionHome()
-            moveAfterOpenPushAlarm()
-        } else {
-            mainViewModel.initTabPositionFeed()
+        when (intent.getStringExtra(OPEN_FROM_PUSH_ALARM)) {
+            CERTIFICATION -> {
+                mainViewModel.initTabPositionFeed()
+                intent.removeExtra(OPEN_FROM_PUSH_ALARM)
+            }
+            else -> {
+                mainViewModel.initTabPositionHome()
+                if (intent.getStringExtra(OPEN_FROM_PUSH_ALARM) != null) {
+                    moveAfterOpenPushAlarm()
+                }
+            }
         }
         initTabPositionFromOthers()
     }
@@ -231,11 +236,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun moveAfterOpenPushAlarm() {
-        Timber.tag("fcm").d(intent.getStringExtra(OPEN_FROM_PUSH_ALARM))
         when (intent.getStringExtra(OPEN_FROM_PUSH_ALARM)) {
-            CERTIFICATION -> {
-                //mainViewModel.initTabPositionFeed()
-            }
             ROOM_START, REMIND, SPARK, CONSIDER -> {
                 startActivity(Intent(this, HabitActivity::class.java).apply {
                     putExtra(ROOM_ID, intent.getIntExtra(ROOM_ID, -1))

@@ -9,7 +9,7 @@ import timber.log.Timber
 object CheckForeground : Application.ActivityLifecycleCallbacks {
     private var instance: CheckForeground? = null
 
-    var activityCount = 0
+    private var activityCount = 0
 
     fun init(app: Application) {
         if (instance == null) {
@@ -24,7 +24,6 @@ object CheckForeground : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityStarted(activity: Activity) {
         activityCount++
-        Timber.tag("push_alarm").d("${activityCount} activity_started")
     }
 
     override fun onActivityResumed(activity: Activity) {}
@@ -33,7 +32,6 @@ object CheckForeground : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityStopped(activity: Activity) {
         activityCount--
-        Timber.tag("push_alarm").d("${activityCount} activity_stopped-------------")
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}

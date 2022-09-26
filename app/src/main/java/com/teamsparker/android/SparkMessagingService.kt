@@ -81,7 +81,7 @@ class SparkMessagingService : FirebaseMessagingService() {
     private fun createNotificationWithImage(remoteMessage: RemoteMessage, bitmap: Bitmap) {
         val alarmId = remoteMessage.sentTime.toInt()
         val category = remoteMessage.data["category"].toString()
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = Intent(this, IntroActivity::class.java ).apply {
             putExtra(OPEN_FROM_PUSH_ALARM, category)
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
