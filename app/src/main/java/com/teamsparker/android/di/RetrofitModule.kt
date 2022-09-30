@@ -1,6 +1,7 @@
 package com.teamsparker.android.di
 
 import com.teamsparker.android.data.local.datasource.LocalPreferencesDataSource
+import com.teamsparker.android.data.remote.calladapter.CustomCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +46,7 @@ object RetrofitModule {
         Retrofit.Builder()
             .baseUrl("https://asia-northeast3-we-sopt-spark.cloudfunctions.net/api/")
             .client(okHttpClient)
+            .addCallAdapterFactory(CustomCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 }
