@@ -69,7 +69,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
                     toastMessage = toastMessage.chunked(8)[0] + "..."
                 }
                 habitViewModel.initExitSuccess(false)
-                LocalPreferences.setExitHabitRoomHomeToastMessage("‘${toastMessage}’ 방을 나갔어요.")
+                LocalPreferences.setExitHabitRoomHomeToastMessage("‘$toastMessage’ 방을 나갔어요.")
                 LocalPreferences.setExitHabitRoomHomeToastMessageState(true)
                 finish()
             }
@@ -138,7 +138,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         val lifeDeductionCount = habitViewModel.habitInfo.value?.lifeDeductionCount ?: 0
         if (lifeDeductionCount != 0) {
             HabitLifeLessDialogFragment(lifeDeductionCount).show(
-                supportFragmentManager, "LifeLessDialog"
+                supportFragmentManager,
+                "LifeLessDialog"
             )
         }
     }
