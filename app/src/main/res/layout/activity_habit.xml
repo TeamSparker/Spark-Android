@@ -134,13 +134,24 @@
 
                 <ImageView
                     android:id="@+id/iv_habit_teamlife_third"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="1dp"
+                    android:layout_height="2dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="20dp"
                     android:src="@{habitViewModel.habitInfo.life > 2 ? @drawable/ic_habit_teamlife_white : @drawable/ic_habit_teamlife_empty}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_habit_more" />
+
+                <ImageView
+                    android:id="@+id/iv_life_red_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="-4dp"
+                    android:layout_marginTop="-7dp"
+                    android:src="@drawable/ic_life_red_dot"
+                    android:visibility="@{habitViewModel.habitInfo.timelineNew ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/iv_habit_teamlife_third"
+                    app:layout_constraintTop_toTopOf="@id/iv_habit_teamlife_third" />
 
                 <ProgressBar
                     android:id="@+id/progressbar_habit_progress_bar_bg"
