@@ -7,7 +7,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.teamsparker.android.R
 import com.teamsparker.android.SparkMessagingService
-import com.teamsparker.android.SparkMessagingService.Companion.CERTIFICATION
 import com.teamsparker.android.SparkMessagingService.Companion.OPEN_FROM_PUSH_ALARM
 import com.teamsparker.android.databinding.ActivityIntroBinding
 import com.teamsparker.android.ui.base.BaseActivity
@@ -17,9 +16,9 @@ import com.teamsparker.android.util.CheckForeground
 import com.teamsparker.android.util.DialogUtil
 import com.teamsparker.android.util.DialogUtil.Companion.UPDATE_CHECK
 import com.teamsparker.android.util.FirebaseLogUtil
+import com.teamsparker.android.util.NotificationCategory
 import com.teamsparker.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro) {
@@ -101,7 +100,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>(R.layout.activity_intro
     private fun moveToMainActivity() {
         startActivity(Intent(this, MainActivity::class.java).apply {
             putExtra(OPEN_FROM_PUSH_ALARM, intent.getStringExtra(OPEN_FROM_PUSH_ALARM))
-            if (intent.getStringExtra(OPEN_FROM_PUSH_ALARM) != CERTIFICATION) {
+            if (intent.getStringExtra(OPEN_FROM_PUSH_ALARM) != NotificationCategory.CERTIFICATION.category) {
                 putExtra(
                     SparkMessagingService.ROOM_ID,
                     intent.getIntExtra(SparkMessagingService.ROOM_ID, -1)

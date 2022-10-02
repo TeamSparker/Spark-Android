@@ -8,13 +8,8 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.teamsparker.android.R
-import com.teamsparker.android.SparkMessagingService.Companion.CERTIFICATION
-import com.teamsparker.android.SparkMessagingService.Companion.CONSIDER
 import com.teamsparker.android.SparkMessagingService.Companion.OPEN_FROM_PUSH_ALARM
-import com.teamsparker.android.SparkMessagingService.Companion.REMIND
 import com.teamsparker.android.SparkMessagingService.Companion.ROOM_ID
-import com.teamsparker.android.SparkMessagingService.Companion.ROOM_START
-import com.teamsparker.android.SparkMessagingService.Companion.SPARK
 import com.teamsparker.android.databinding.ActivityMainBinding
 import com.teamsparker.android.ui.base.BaseActivity
 import com.teamsparker.android.ui.certify.CertifyActivity.Companion.FROM_CERTIFY_ACTIVITY
@@ -32,11 +27,11 @@ import com.teamsparker.android.ui.makeroom.MakeRoomActivity
 import com.teamsparker.android.ui.storage.StorageFragmentDirections
 import com.teamsparker.android.util.AnimationUtil
 import com.teamsparker.android.ui.storage.photo.StoragePhotoCollectionActivity.Companion.FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY
+import com.teamsparker.android.util.NotificationCategory
 import com.teamsparker.android.util.getToast
 import com.teamsparker.android.util.initStatusBarColor
 import com.teamsparker.android.util.initStatusBarTextColorToWhite
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import java.lang.IllegalStateException
 import kotlin.system.exitProcess
 
@@ -66,19 +61,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onResume() {
         super.onResume()
-        when (intent.getStringExtra(OPEN_FROM_PUSH_ALARM)) {
-            CERTIFICATION -> {
-                mainViewModel.initTabPositionFeed()
-                intent.removeExtra(OPEN_FROM_PUSH_ALARM)
-            }
-            else -> {
-                mainViewModel.initTabPositionHome()
-                if (intent.getStringExtra(OPEN_FROM_PUSH_ALARM) != null) {
+        if (intent.getStringExtra(OPEN_FROM_PUSH_ALARM) != null) {
+            when (intent.getStringExtra(OPEN_FROM_PUSH_ALARM)) {
+                NotificationCategory.CERTIFICATION.category -> {
+                    mainViewModel.initTabPositionFeed()
+                    intent.removeExtra(OPEN_FROM_PUSH_ALARM)
+                }
+                NotificationCategory.SPARK.category,
+                NotificationCategory.REMIND.category,
+                NotificationCategory.ROOM_START.category,
+                NotificationCategory.CONSIDER.category -> {
+                    mainViewModel.initTabPositionHome()
                     moveAfterOpenPushAlarm()
                 }
             }
+        } else {
+            mainViewModel.initTabPositionHome()
+            initTabPositionFromOthers()
         }
-        initTabPositionFromOthers()
     }
 
     override fun onBackPressed() {
@@ -237,7 +237,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun moveAfterOpenPushAlarm() {
         when (intent.getStringExtra(OPEN_FROM_PUSH_ALARM)) {
-            ROOM_START, REMIND, SPARK, CONSIDER -> {
+            NotificationCategory.SPARK.category,
+            NotificationCategory.REMIND.category,
+            NotificationCategory.ROOM_START.category,
+            NotificationCategory.CONSIDER.category -> {
                 startActivity(Intent(this, HabitActivity::class.java).apply {
                     putExtra(ROOM_ID, intent.getIntExtra(ROOM_ID, -1))
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
