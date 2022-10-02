@@ -10,16 +10,14 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.teamsparker.android.ui.intro.IntroActivity
+import com.teamsparker.android.ui.main.MainActivity
 import com.teamsparker.android.util.ImageCropUtil
+import com.teamsparker.android.util.NotificationCategory
 import com.teamsparker.android.util.useBitmapImg
 import timber.log.Timber
 import java.lang.IllegalArgumentException
 
 class SparkMessagingService : FirebaseMessagingService() {
-    data class NotificationCategory(
-        val summaryId: Int,
-        val groupName: String
-    )
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
@@ -29,10 +27,14 @@ class SparkMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
         if (remoteMessage.data.isNotEmpty()) {
-            if (remoteMessage.data["imageUrl"].toString().isNotBlank()) {
-                transformImageUrlToBitmap(remoteMessage)
-            } else {
-                createNotificationWithoutImage(remoteMessage)
+            when (remoteMessage.data["category"].toString()) {
+                NotificationCategory.CERTIFICATION.category ->
+                    transformImageUrlToBitmap(remoteMessage)
+                NotificationCategory.SPARK.category,
+                NotificationCategory.REMIND.category,
+                NotificationCategory.ROOM_START.category,
+                NotificationCategory.CONSIDER.category ->
+                    createNotificationWithoutImage(remoteMessage)
             }
         }
     }
@@ -52,11 +54,20 @@ class SparkMessagingService : FirebaseMessagingService() {
     private fun createNotificationWithoutImage(remoteMessage: RemoteMessage) {
         val alarmId = remoteMessage.sentTime.toInt()
         val category = remoteMessage.data["category"].toString()
+        val roomId = requireNotNull(remoteMessage.data["roomId"]).toInt()
         val intent = Intent(this, IntroActivity::class.java).apply {
             putExtra(OPEN_FROM_PUSH_ALARM, category)
+            putExtra(ROOM_ID, roomId)
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
+
         val pendingIntent =
-            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            PendingIntent.getActivity(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
         val builder =
             NotificationCompat.Builder(this, getChannelId(category))
                 .setContentTitle(remoteMessage.data["title"].toString())
@@ -74,9 +85,16 @@ class SparkMessagingService : FirebaseMessagingService() {
         val category = remoteMessage.data["category"].toString()
         val intent = Intent(this, IntroActivity::class.java).apply {
             putExtra(OPEN_FROM_PUSH_ALARM, category)
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
+
         val pendingIntent =
-            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            PendingIntent.getActivity(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
         val builder = NotificationCompat.Builder(this, getChannelId(category))
             .setContentTitle(remoteMessage.data["title"].toString())
             .setContentText(remoteMessage.data["body"].toString())
@@ -119,20 +137,16 @@ class SparkMessagingService : FirebaseMessagingService() {
     }
 
     private fun getSummaryId(category: String) = when (category) {
-        CATEGORY_CERTIFICATION.groupName -> CATEGORY_CERTIFICATION.summaryId
-        CATEGORY_SPARK.groupName -> CATEGORY_SPARK.summaryId
-        CATEGORY_REMIND.groupName -> CATEGORY_REMIND.summaryId
-        CATEGORY_ROOM_START.groupName -> CATEGORY_ROOM_START.summaryId
-        CATEGORY_CONSIDER.groupName -> CATEGORY_CONSIDER.summaryId
+        NotificationCategory.CERTIFICATION.category -> NotificationCategory.CERTIFICATION.summaryId
+        NotificationCategory.SPARK.category -> NotificationCategory.SPARK.summaryId
+        NotificationCategory.REMIND.category -> NotificationCategory.REMIND.summaryId
+        NotificationCategory.ROOM_START.category -> NotificationCategory.ROOM_START.summaryId
+        NotificationCategory.CONSIDER.category -> NotificationCategory.CONSIDER.summaryId
         else -> throw IllegalArgumentException("FCM category 필드 오류")
     }
 
     companion object {
         const val OPEN_FROM_PUSH_ALARM = "openPushAlarm"
-        private val CATEGORY_CERTIFICATION = NotificationCategory(0, "certification")
-        private val CATEGORY_SPARK = NotificationCategory(1, "spark")
-        private val CATEGORY_REMIND = NotificationCategory(2, "remind")
-        private val CATEGORY_ROOM_START = NotificationCategory(3, "roomStart")
-        private val CATEGORY_CONSIDER = NotificationCategory(4, "consider")
+        const val ROOM_ID = "roomId"
     }
 }
