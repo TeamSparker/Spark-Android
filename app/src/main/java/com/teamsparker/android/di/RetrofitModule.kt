@@ -44,7 +44,7 @@ object RetrofitModule {
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://asia-northeast3-we-sopt-spark.cloudfunctions.net/api/")
+            .baseUrl("https://asia-northeast3-spark-test-server.cloudfunctions.net/api/")
             .client(okHttpClient)
             .addCallAdapterFactory(CustomCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())

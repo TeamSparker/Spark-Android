@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
-    private const val BASE_URL = "https://asia-northeast3-we-sopt-spark.cloudfunctions.net/api/"
+    private const val BASE_URL = "https://asia-northeast3-spark-test-server.cloudfunctions.net/api/"
 
     private val headerInterceptor = Interceptor { chain ->
         with(chain) {
