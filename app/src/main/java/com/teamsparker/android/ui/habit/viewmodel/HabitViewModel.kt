@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HabitViewModel @Inject constructor(
-    private val habitRepository: HabitRepository,
+    private val habitRepository: HabitRepository
 ) : ViewModel() {
     private val habitService: HabitService = RetrofitBuilder.habitService
     private val setStatusService: SetStatusService = RetrofitBuilder.setStatusService
@@ -70,18 +70,22 @@ class HabitViewModel @Inject constructor(
                 val data = response.data ?: throw NullPointerException("습관방 통신 에러")
                 _habitInfo.postValue(data)
 
-                _habitRecordList.postValue(mutableListOf<HabitRecord>().apply {
-                    add(data.myRecord)
-                    addAll(data.otherRecords.map {
-                        HabitRecord(
-                            nickname = it.nickname,
-                            profileImg = it.profileImg,
-                            recordId = it.recordId,
-                            status = it.status,
-                            userId = it.userId
+                _habitRecordList.postValue(
+                    mutableListOf<HabitRecord>().apply {
+                        add(data.myRecord)
+                        addAll(
+                            data.otherRecords.map {
+                                HabitRecord(
+                                    nickname = it.nickname,
+                                    profileImg = it.profileImg,
+                                    recordId = it.recordId,
+                                    status = it.status,
+                                    userId = it.userId
+                                )
+                            }
                         )
-                    })
-                })
+                    }
+                )
                 initIsLoading(false)
             }.onFailure { }
         }
@@ -109,7 +113,6 @@ class HabitViewModel @Inject constructor(
                         SendSparkRequest(content, recordId)
                     )
                 }.onSuccess { _sendSuccess.value = true }
-
             }
         }
     }
@@ -128,4 +131,3 @@ class HabitViewModel @Inject constructor(
         habitRepository.setHabitUserGuideState(state)
     }
 }
-

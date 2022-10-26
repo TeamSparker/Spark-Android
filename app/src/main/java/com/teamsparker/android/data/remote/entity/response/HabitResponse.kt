@@ -5,7 +5,6 @@ data class HabitResponse(
     val roomName: String,
     val leftDay: Int,
     val life: Int,
-    val lifeDeductionCount: Int,
     val startDate: String,
     val endDate: String,
     val fromStart: Boolean,
@@ -13,7 +12,8 @@ data class HabitResponse(
     val purpose: String,
     val myRecord: HabitRecord,
     val otherRecords: List<OtherRecord>,
-    val isTimelineNew: Boolean
+    val isTimelineNew: Boolean,
+    val isTermNew: Boolean
 )
 
 data class HabitRecord(
