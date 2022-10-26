@@ -1,6 +1,7 @@
 package com.teamsparker.android.ui.habit
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import com.teamsparker.android.R
 import com.teamsparker.android.data.remote.LocalPreferences
@@ -11,6 +12,7 @@ import com.teamsparker.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.teamsparker.android.ui.habit.viewmodel.HabitViewModel
 import com.teamsparker.android.util.FirebaseLogUtil
 import com.teamsparker.android.util.FirebaseLogUtil.SCREEN_HABIT_ROOM
+import com.teamsparker.android.util.ext.setOnSingleClickListener
 import com.teamsparker.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -38,6 +40,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         initHabitMoreBtnClickListener()
         initHabitTodayBtnClickListener()
         checkUserGuideDialog()
+        initGroupTeamLifeClickListener()
     }
 
     private fun initRoomId() {
@@ -145,6 +148,20 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 //            )
 //        }
 //    }
+
+    private fun initGroupTeamLifeClickListener() {
+        val lifeList = listOf<View>(
+            binding.ivHabitTeamlifeFirst,
+            binding.ivHabitTeamlifeSecond,
+            binding.ivHabitTeamlifeThird
+        )
+
+        lifeList.forEach {
+            it.setOnSingleClickListener {
+                // 타임라인 바텀시트 넣을꺼임
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
