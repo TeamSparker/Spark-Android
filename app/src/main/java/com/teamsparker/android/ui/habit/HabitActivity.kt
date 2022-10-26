@@ -48,7 +48,8 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.habitInfo.observe(this) {
             habitRecyclerViewAdapter.response = it
             binding.habitViewModel = habitViewModel
-            initHabitLifeLessDialog()
+//            1.1.0에서 삭제 다른기능으로 대체
+//            initHabitLifeLessDialog()
         }
     }
 
@@ -134,15 +135,16 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         }
     }
 
-    private fun initHabitLifeLessDialog() {
-        val lifeDeductionCount = habitViewModel.habitInfo.value?.lifeDeductionCount ?: 0
-        if (lifeDeductionCount != 0) {
-            HabitLifeLessDialogFragment(lifeDeductionCount).show(
-                supportFragmentManager,
-                "LifeLessDialog"
-            )
-        }
-    }
+//    1.1.0 에서 삭제 다른기능으로 대체됨
+//    private fun initHabitLifeLessDialog() {
+//        val lifeDeductionCount = habitViewModel.habitInfo.value?.lifeDeductionCount ?: 0
+//        if (lifeDeductionCount != 0) {
+//            HabitLifeLessDialogFragment(lifeDeductionCount).show(
+//                supportFragmentManager,
+//                "LifeLessDialog"
+//            )
+//        }
+//    }
 
     override fun onResume() {
         super.onResume()
