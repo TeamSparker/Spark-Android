@@ -13,6 +13,7 @@ import com.teamsparker.android.databinding.BottomSheetHabitMoreBinding
 import com.teamsparker.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.teamsparker.android.ui.habit.viewmodel.HabitViewModel
 import com.teamsparker.android.util.DialogEditTextUtil
+import com.teamsparker.android.util.ext.setOnSingleClickListener
 
 class HabitMoreBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetHabitMoreBinding? = null
@@ -22,7 +23,7 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = BottomSheetHabitMoreBinding.inflate(inflater, container, false)
         return binding.root
@@ -38,6 +39,7 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
         initGoalBtnClickListener()
         initExitBtnClickListener()
         initUserGuideBtnClickListener()
+        initFlameRoadMapBtnClickListener()
     }
 
     private fun initGoalBtnClickListener() {
@@ -80,6 +82,12 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
                 arguments = bundle
             }.show(requireActivity().supportFragmentManager, "UserGuideDialog")
             dismiss()
+        }
+    }
+
+    private fun initFlameRoadMapBtnClickListener() {
+        binding.tvHabitMoreFlameRoadmap.setOnSingleClickListener {
+            // 불꽃 다이얼로그 만들기
         }
     }
 
