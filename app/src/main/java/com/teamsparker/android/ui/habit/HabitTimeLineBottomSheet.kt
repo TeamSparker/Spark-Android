@@ -30,6 +30,7 @@ class HabitTimeLineBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = BottomSheetHabitTimeLineBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -77,8 +78,8 @@ class HabitTimeLineBottomSheet : BottomSheetDialogFragment() {
         binding.rvTimeLine.adapter = habitTimeLineRecyclerViewAdapter
     }
 
-    private fun updateRecyclerViewList(){
-        habitViewModel.timeLineList.observe(viewLifecycleOwner){
+    private fun updateRecyclerViewList() {
+        habitViewModel.timeLineList.observe(viewLifecycleOwner) {
             habitTimeLineRecyclerViewAdapter.submitList(it.timelines)
         }
     }
