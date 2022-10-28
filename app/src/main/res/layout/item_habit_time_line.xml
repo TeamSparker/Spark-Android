@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="timeLine"
+            type="com.teamsparker.android.data.remote.entity.response.Timeline" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_time_line_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:text="@{timeLine.title}"
+            android:textColor="@color/spark_black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="생명 1개 감소 ㅠㅠ" />
+
+        <TextView
+            android:id="@+id/tv_time_line_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{timeLine.content}"
+            android:textColor="@color/spark_deep_gray"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time_line_title"
+            tools:text="인증하지 않은 스파커가 있었네요 응원이 필요해요" />
+
+        <ImageView
+            android:id="@+id/iv_profile_one"
+            setCircleImage="@{timeLine.profiles.size() >= 1 ? timeLine.profiles[0] : null}"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_white_line_circle"
+            android:padding="2dp"
+            android:visibility="@{timeLine.profiles.size() >= 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time_line_content" />
+
+        <ImageView
+            android:id="@+id/iv_profile_two"
+            setCircleImage="@{timeLine.profiles.size() == 2 ? timeLine.profiles[0] : null}"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="-9dp"
+            android:background="@drawable/shape_white_line_circle"
+            android:padding="2dp"
+            android:visibility="@{timeLine.profiles.size() == 2 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_one"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile_one"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile_one" />
+
+        <TextView
+            android:id="@+id/tv_time_line_day"
+            ProfileGoneMargin="@{8}"
+            ProfileVisibleMargin="@{44}"
+            TimeLineProfileState="@{timeLine.profiles.size() >= 1 ? true : false}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@{timeLine.day}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time_line_content"
+            tools:text="3일전" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
