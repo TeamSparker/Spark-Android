@@ -9,6 +9,7 @@ import com.teamsparker.android.data.remote.entity.request.SendSparkRequest
 import com.teamsparker.android.data.remote.entity.request.SetStatusRequest
 import com.teamsparker.android.data.remote.entity.response.HabitRecord
 import com.teamsparker.android.data.remote.entity.response.HabitResponse
+import com.teamsparker.android.data.remote.entity.response.HabitRoomTimeLine
 import com.teamsparker.android.data.remote.repository.HabitRepository
 import com.teamsparker.android.data.remote.service.HabitService
 import com.teamsparker.android.data.remote.service.LeaveRoomService
@@ -16,6 +17,7 @@ import com.teamsparker.android.data.remote.service.SendSparkService
 import com.teamsparker.android.data.remote.service.SetStatusService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,6 +46,9 @@ class HabitViewModel @Inject constructor(
 
     private val _exitSuccess = MutableLiveData<Boolean>()
     val exitSuccess: LiveData<Boolean> = _exitSuccess
+
+    private var _timeLineList = MutableLiveData<HabitRoomTimeLine>()
+    val timeLineList: LiveData<HabitRoomTimeLine> = _timeLineList
 
     private fun initIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
@@ -129,5 +134,19 @@ class HabitViewModel @Inject constructor(
 
     fun setUserGuideDialogState(state: Boolean) {
         habitRepository.setHabitUserGuideState(state)
+    }
+
+    fun getHabitRoomTimeLine() {
+        viewModelScope.launch {
+            habitRepository.getHabitRoomTimeLine(
+                habitInfo.value?.roomId
+                    ?: throw IllegalStateException("getHabitRoomTimeLine in viewModel")
+            )
+                .onSuccess {
+                    _timeLineList.value = it
+                }.onFailure {
+                    Timber.d(it)
+                }
+        }
     }
 }

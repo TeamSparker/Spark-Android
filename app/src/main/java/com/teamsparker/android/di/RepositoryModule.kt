@@ -3,12 +3,7 @@ package com.teamsparker.android.di
 import com.teamsparker.android.data.local.datasource.*
 import com.teamsparker.android.data.remote.datasource.*
 import com.teamsparker.android.data.remote.repository.*
-import com.teamsparker.android.data.remote.service.JoinCodeRoomDoneService
-import com.teamsparker.android.data.remote.service.JoinCodeRoomInfoService
-import com.teamsparker.android.data.remote.service.MakeRoomService
-import com.teamsparker.android.data.remote.service.RefreshService
-import com.teamsparker.android.data.remote.service.SetPurposeService
-import com.teamsparker.android.data.remote.service.StartHabitService
+import com.teamsparker.android.data.remote.service.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -120,9 +115,8 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesHabitRepository(
-        localPreferencesHabitDataSource: LocalPreferencesHabitDataSource
+        localPreferencesHabitDataSource: LocalPreferencesHabitDataSource,
+        habitRoomTimeLineDataSource: HabitRoomTimeLineDataSource
     ): HabitRepository =
-        HabitRepositoryImpl(localPreferencesHabitDataSource)
+        HabitRepositoryImpl(localPreferencesHabitDataSource, habitRoomTimeLineDataSource)
 }
-
-

@@ -59,7 +59,7 @@ object RemoteDataSourceModule {
     ): AlarmCenterDataSource =
         AlarmCenterDataSourceImpl(alarmCenterService)
 
-    @Binds
+    @Provides
     @Singleton
     fun provideHabitRoomTimeLineDataSource(
         habitRoomTimeLineService: HabitRoomTimeLineService
