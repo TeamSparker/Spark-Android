@@ -1,9 +1,7 @@
 package com.teamsparker.android.ui.habit
 
-import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teamsparker.android.R
 import com.teamsparker.android.databinding.BottomSheetHabitTimeLineBinding
+import com.teamsparker.android.ui.habit.adapter.HabitTimeLineRecyclerViewAdapter
 import com.teamsparker.android.ui.habit.viewmodel.HabitViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,6 +22,7 @@ class HabitTimeLineBottomSheet : BottomSheetDialogFragment() {
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
     private val habitViewModel by activityViewModels<HabitViewModel>()
+    private lateinit var habitTimeLineRecyclerViewAdapter: HabitTimeLineRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +37,8 @@ class HabitTimeLineBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initTimeLineData()
+        initHabitTimeLineRecyclerViewAdapter()
+        updateRecyclerViewList()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -68,6 +70,17 @@ class HabitTimeLineBottomSheet : BottomSheetDialogFragment() {
 
     private fun initTimeLineData() {
         habitViewModel.getHabitRoomTimeLine()
+    }
+
+    private fun initHabitTimeLineRecyclerViewAdapter() {
+        habitTimeLineRecyclerViewAdapter = HabitTimeLineRecyclerViewAdapter()
+        binding.rvTimeLine.adapter = habitTimeLineRecyclerViewAdapter
+    }
+
+    private fun updateRecyclerViewList(){
+        habitViewModel.timeLineList.observe(viewLifecycleOwner){
+            habitTimeLineRecyclerViewAdapter.submitList(it.timelines)
+        }
     }
 
     override fun onDestroyView() {
