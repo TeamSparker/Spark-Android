@@ -66,6 +66,7 @@
             android:textSize="16dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
+            android:gravity="center"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
