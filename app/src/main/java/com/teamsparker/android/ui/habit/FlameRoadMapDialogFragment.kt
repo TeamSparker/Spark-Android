@@ -8,6 +8,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.teamsparker.android.R
 import com.teamsparker.android.databinding.FragmentFlameRoadMapDialogBinding
+import com.teamsparker.android.ui.habit.adapter.FlameRoadMapAdapter
+import com.teamsparker.android.ui.habit.flameroadmap.*
 import com.teamsparker.android.ui.habit.viewmodel.HabitViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FlameRoadMapDialogFragment : DialogFragment() {
 
     private val habitViewModel by activityViewModels<HabitViewModel>()
+    private lateinit var flameRoadMapAdapter: FlameRoadMapAdapter
 
     private var _binding: FragmentFlameRoadMapDialogBinding? = null
     private val binding
@@ -38,6 +41,8 @@ class FlameRoadMapDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initViewPagerAdapter()
     }
 
     override fun onStart() {
@@ -55,6 +60,21 @@ class FlameRoadMapDialogFragment : DialogFragment() {
                 setBackgroundDrawableResource(R.drawable.shape_spark_white_fill_2_rect)
             }
         }
+    }
+
+    private fun initViewPagerAdapter() {
+        val flakeList = listOf(
+            Level1Fragment(),
+            Level2Fragment(),
+            Level3Fragment(),
+            Level4Fragment(),
+            Level5Fragment(),
+            Level6Fragment()
+        )
+
+        flameRoadMapAdapter = FlameRoadMapAdapter(this)
+        flameRoadMapAdapter.fragments.addAll(flakeList)
+        binding.vpFlameRoadmap.adapter = flameRoadMapAdapter
     }
 
     override fun onDestroyView() {
