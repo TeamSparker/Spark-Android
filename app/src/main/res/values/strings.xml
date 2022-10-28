@@ -395,5 +395,8 @@
     <string name="habit_dialog_life_less_title">Oops...</string>
     <string name="habit_dialog_life_less_btn_checked">확인했어요</string>
 
+    <!--HabitTImeLineBottomSheet-->
+    <string name="habit_time_line_title">생명 타임라인</string>
+
 </resources>
 

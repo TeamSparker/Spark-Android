@@ -158,7 +158,7 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
         lifeList.forEach {
             it.setOnSingleClickListener {
-                // 타임라인 바텀시트 넣을꺼임
+                HabitTimeLineBottomSheet().show(supportFragmentManager, this.javaClass.name)
             }
         }
     }
