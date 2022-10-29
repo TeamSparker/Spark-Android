@@ -87,7 +87,8 @@ class HabitMoreBottomSheet : BottomSheetDialogFragment() {
 
     private fun initFlameRoadMapBtnClickListener() {
         binding.tvHabitMoreFlameRoadmap.setOnSingleClickListener {
-            // 불꽃 다이얼로그 만들기
+            FlameRoadMapDialogFragment().show(requireActivity().supportFragmentManager, "FlameRoadMapDialogFragment")
+            dismiss()
         }
     }
 
