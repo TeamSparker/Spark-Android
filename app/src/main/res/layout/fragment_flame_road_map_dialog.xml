@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="habitViewModel"
             type="com.teamsparker.android.ui.habit.viewmodel.HabitViewModel" />
@@ -19,11 +20,21 @@
         tools:context=".ui.habit.FlameRoadMapDialogFragment">
 
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_flame_roadmap"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="53dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/iv_left_gradation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="53dp"
+            android:clickable="false"
             android:src="@drawable/bg_flame_road_map_gradation_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,45 +44,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="53dp"
+            android:clickable="false"
             android:src="@drawable/bg_flame_road_map_gradation_right"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_flame_roadmap"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="53dp"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:textColor="@color/spark_pinkred"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/futura_medium_italic"
             android:layout_marginTop="29dp"
+            android:fontFamily="@font/futura_medium_italic"
+            android:includeFontPadding="false"
+            android:textColor="@color/spark_pinkred"
+            android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vp_flame_roadmap"
-            tools:text="level3"/>
+            tools:text="level3" />
 
         <TextView
             android:id="@+id/tv_level_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
             android:textColor="@color/spark_deep_gray"
             android:textSize="16dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:gravity="center"
-            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_level"
-            tools:text="7일동안 열심히 달렸네요!\n 세번째 불꽃 결정을 얻었어요."/>
+            tools:text="7일동안 열심히 달렸네요!\n 세번째 불꽃 결정을 얻었어요." />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/check_button"
@@ -79,12 +84,12 @@
             android:layout_height="48dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="28dp"
-            android:text="@string/finish_room_dialog_dismiss_button"
-            android:textSize="18dp"
-            android:textColor="@color/spark_white"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/noto_sans_kr_bold"
             android:background="@drawable/shape_insta_black_fiil_2"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:text="@string/finish_room_dialog_dismiss_button"
+            android:textColor="@color/spark_white"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
