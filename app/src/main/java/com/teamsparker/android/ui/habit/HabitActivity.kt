@@ -15,6 +15,7 @@ import com.teamsparker.android.util.FirebaseLogUtil.SCREEN_HABIT_ROOM
 import com.teamsparker.android.util.ext.setOnSingleClickListener
 import com.teamsparker.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.IllegalStateException
 import kotlin.properties.Delegates
 
 @AndroidEntryPoint
@@ -51,6 +52,9 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.habitInfo.observe(this) {
             habitRecyclerViewAdapter.response = it
             binding.habitViewModel = habitViewModel
+            if(habitViewModel.habitInfo.value?.isTermNew ?: throw IllegalStateException("isTermNew 값 null로 옴")){
+                FlameRoadMapDialogFragment().show(supportFragmentManager, "FlameRoadMapDialogFragment")
+            }
 //            1.1.0에서 삭제 다른기능으로 대체
 //            initHabitLifeLessDialog()
         }
