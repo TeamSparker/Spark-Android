@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import com.teamsparker.android.R
 import com.teamsparker.android.databinding.FragmentFlameRoadMapDialogBinding
 import com.teamsparker.android.ui.habit.adapter.FlameRoadMapAdapter
@@ -45,6 +46,7 @@ class FlameRoadMapDialogFragment : DialogFragment() {
 
         initViewPagerAdapter()
         setViewPagerOption()
+        initViewPagerPositionListener()
     }
 
     override fun onStart() {
@@ -91,6 +93,15 @@ class FlameRoadMapDialogFragment : DialogFragment() {
                 page.translationX = position * -offsetPx
             }
         }
+    }
+
+    private fun initViewPagerPositionListener(){
+        binding.vpFlameRoadmap.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                binding.level = position + 1
+            }
+        })
     }
 
     override fun onDestroyView() {

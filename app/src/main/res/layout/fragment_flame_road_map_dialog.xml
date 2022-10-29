@@ -57,6 +57,7 @@
             android:fontFamily="@font/futura_medium_italic"
             android:includeFontPadding="false"
             android:textColor="@color/spark_pinkred"
+            setFlameRoadMapTitle="@{level}"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

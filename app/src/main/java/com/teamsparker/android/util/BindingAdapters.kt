@@ -664,4 +664,17 @@ object BindingAdapters {
             this.layoutParams = layoutParams
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("setFlameRoadMapTitle")
+    fun setFlameRoadMapTitle(textview: TextView, level: Int?) {
+        when (level) {
+            1 -> textview.setText(R.string.flame_road_map_title_level_1)
+            2 -> textview.setText(R.string.flame_road_map_title_level_2)
+            3 -> textview.setText(R.string.flame_road_map_title_level_3)
+            4 -> textview.setText(R.string.flame_road_map_title_level_4)
+            5 -> textview.setText(R.string.flame_road_map_title_level_5)
+            6 -> textview.setText(R.string.flame_road_map_title_level_6)
+        }
+    }
 }

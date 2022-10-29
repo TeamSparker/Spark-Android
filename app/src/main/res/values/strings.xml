@@ -398,5 +398,13 @@
     <!--HabitTImeLineBottomSheet-->
     <string name="habit_time_line_title">생명 타임라인</string>
 
+    <!--FlameRoadMapDialogFragment-->
+    <string name="flame_road_map_title_level_1">Level 1</string>
+    <string name="flame_road_map_title_level_2">Level 2</string>
+    <string name="flame_road_map_title_level_3">Level 3</string>
+    <string name="flame_road_map_title_level_4">Level 4</string>
+    <string name="flame_road_map_title_level_5">Level 5</string>
+    <string name="flame_road_map_title_level_6">Level 6</string>
+
 </resources>
 
