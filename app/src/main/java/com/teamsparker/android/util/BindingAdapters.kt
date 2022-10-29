@@ -9,7 +9,6 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
-import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -675,6 +674,49 @@ object BindingAdapters {
             4 -> textview.setText(R.string.flame_road_map_title_level_4)
             5 -> textview.setText(R.string.flame_road_map_title_level_5)
             6 -> textview.setText(R.string.flame_road_map_title_level_6)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setFlameRoadMapContnentDay", "setFlameRoadMapContnentLevel")
+    fun setFlameRoadMapContent(textview: TextView, leftDay: Int, level: Int?) {
+        when (level) {
+            1 -> textview.setText(R.string.flame_road_map_content_level_1)
+            2 -> {
+                if (leftDay <= 62) {
+                    textview.setText(R.string.flame_road_map_content_level_2)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_2)
+                }
+            }
+            3 -> {
+                if (leftDay <= 58) {
+                    textview.setText(R.string.flame_road_map_content_level_3)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_3)
+                }
+            }
+            4 -> {
+                if (leftDay <= 32) {
+                    textview.setText(R.string.flame_road_map_content_level_4)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_4)
+                }
+            }
+            5 -> {
+                if (leftDay <= 6) {
+                    textview.setText(R.string.flame_road_map_content_level_5)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_5)
+                }
+            }
+            6 -> {
+                if (leftDay == 0) {
+                    textview.setText(R.string.flame_road_map_content_level_6)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_6)
+                }
+            }
         }
     }
 }

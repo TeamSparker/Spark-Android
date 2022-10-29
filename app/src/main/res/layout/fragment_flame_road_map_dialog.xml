@@ -73,6 +73,8 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:textColor="@color/spark_deep_gray"
+            setFlameRoadMapContnentDay="@{habitViewModel.habitInfo.leftDay}"
+            setFlameRoadMapContnentLevel="@{level}"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

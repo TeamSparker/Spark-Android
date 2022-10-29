@@ -43,6 +43,7 @@ class FlameRoadMapDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.habitViewModel = habitViewModel
         initViewPagerAdapter()
         setViewPagerOption()
         initViewPagerPositionListener()
