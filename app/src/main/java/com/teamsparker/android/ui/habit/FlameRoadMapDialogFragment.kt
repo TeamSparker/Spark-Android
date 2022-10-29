@@ -48,6 +48,7 @@ class FlameRoadMapDialogFragment : DialogFragment() {
         setViewPagerOption()
         initViewPagerPositionListener()
         initCheckButtonOnclickListener()
+        initViewPagerPosition()
     }
 
     override fun onStart() {
@@ -109,6 +110,19 @@ class FlameRoadMapDialogFragment : DialogFragment() {
     private fun initCheckButtonOnclickListener() {
         binding.checkButton.setOnClickListener {
             dismiss()
+        }
+    }
+
+    private fun initViewPagerPosition(){
+        binding.vpFlameRoadmap.currentItem
+        when (habitViewModel.habitInfo.value?.leftDay) {
+            0 -> binding.vpFlameRoadmap.currentItem = 5
+            in 1..6 -> binding.vpFlameRoadmap.currentItem = 4
+            in 7..32 -> binding.vpFlameRoadmap.currentItem = 3
+            in 33..58 -> binding.vpFlameRoadmap.currentItem = 2
+            in 59..62 -> binding.vpFlameRoadmap.currentItem = 1
+            in 63..65 -> binding.vpFlameRoadmap.currentItem = 0
+            else -> throw IllegalArgumentException("leftDay 범위 에러")
         }
     }
 
