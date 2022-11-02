@@ -8,12 +8,15 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.teamsparker.android.R
+import com.teamsparker.android.SparkMessagingService.Companion.OPEN_FROM_PUSH_ALARM
+import com.teamsparker.android.SparkMessagingService.Companion.ROOM_ID
 import com.teamsparker.android.databinding.ActivityMainBinding
 import com.teamsparker.android.ui.base.BaseActivity
 import com.teamsparker.android.ui.certify.CertifyActivity.Companion.FROM_CERTIFY_ACTIVITY
 import com.teamsparker.android.ui.feed.FeedFragmentDirections
 import com.teamsparker.android.ui.feedreport.FeedReportActivity.Companion.FEED_REPORT_SUCCESS
 import com.teamsparker.android.ui.feedreport.FeedReportActivity.Companion.FROM_FEED_REPORT_ACTIVITY
+import com.teamsparker.android.ui.habit.HabitActivity
 import com.teamsparker.android.ui.home.HomeMainFragmentDirections
 import com.teamsparker.android.ui.joincode.inputcode.InputCodeFragmentDialog
 import com.teamsparker.android.ui.main.viewmodel.MainViewModel
@@ -24,6 +27,7 @@ import com.teamsparker.android.ui.makeroom.MakeRoomActivity
 import com.teamsparker.android.ui.storage.StorageFragmentDirections
 import com.teamsparker.android.util.AnimationUtil
 import com.teamsparker.android.ui.storage.photo.StoragePhotoCollectionActivity.Companion.FROM_STORAGE_PHOTO_COLLECTION_ACTIVITY
+import com.teamsparker.android.util.NotificationCategory
 import com.teamsparker.android.util.getToast
 import com.teamsparker.android.util.initStatusBarColor
 import com.teamsparker.android.util.initStatusBarTextColorToWhite
@@ -57,8 +61,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onResume() {
         super.onResume()
-        mainViewModel.initTabPositionHome()
-        initTabPositionFromOthers()
+        if (intent.getStringExtra(OPEN_FROM_PUSH_ALARM) != null) {
+            when (intent.getStringExtra(OPEN_FROM_PUSH_ALARM)) {
+                NotificationCategory.CERTIFICATION.category -> {
+                    mainViewModel.initTabPositionFeed()
+                    intent.removeExtra(OPEN_FROM_PUSH_ALARM)
+                }
+                NotificationCategory.SPARK.category,
+                NotificationCategory.REMIND.category,
+                NotificationCategory.ROOM_START.category,
+                NotificationCategory.CONSIDER.category -> {
+                    mainViewModel.initTabPositionHome()
+                    moveAfterOpenPushAlarm()
+                }
+            }
+        } else {
+            mainViewModel.initTabPositionHome()
+            initTabPositionFromOthers()
+        }
     }
 
     override fun onBackPressed() {
@@ -213,6 +233,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             fabState = !fabState
             initBindingVariable()
         }
+    }
+
+    private fun moveAfterOpenPushAlarm() {
+        when (intent.getStringExtra(OPEN_FROM_PUSH_ALARM)) {
+            NotificationCategory.SPARK.category,
+            NotificationCategory.REMIND.category,
+            NotificationCategory.ROOM_START.category,
+            NotificationCategory.CONSIDER.category -> {
+                startActivity(Intent(this, HabitActivity::class.java).apply {
+                    putExtra(ROOM_ID, intent.getIntExtra(ROOM_ID, -1))
+                    addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                })
+            }
+        }
+        intent.removeExtra(OPEN_FROM_PUSH_ALARM)
     }
 
     companion object {
