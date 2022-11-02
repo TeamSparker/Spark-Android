@@ -2,6 +2,7 @@ package com.teamsparker.android.di
 
 import com.teamsparker.android.data.remote.datasource.*
 import com.teamsparker.android.data.remote.service.*
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,4 +58,11 @@ object RemoteDataSourceModule {
         alarmCenterService: AlarmCenterService
     ): AlarmCenterDataSource =
         AlarmCenterDataSourceImpl(alarmCenterService)
+
+    @Provides
+    @Singleton
+    fun provideHabitRoomTimeLineDataSource(
+        habitRoomTimeLineService: HabitRoomTimeLineService
+    ): HabitRoomTimeLineDataSource =
+        HabitRoomTImeLineDataSourceImpl(habitRoomTimeLineService)
 }

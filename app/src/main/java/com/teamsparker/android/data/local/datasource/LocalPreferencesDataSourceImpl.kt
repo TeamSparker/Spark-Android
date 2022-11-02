@@ -105,10 +105,10 @@ class LocalPreferencesDataSourceImpl @Inject constructor(
     }
 
     companion object {
-        private const val ACCESS_TOKEN = "ACCESS_TOKEN"
-        private const val USER_KAKAO_USER_ID = "USER_KAKAO_USER_ID"
-        private const val USER_NICKNAME = "USER_NAME"
-        private const val ALARM_LOCAL_SAVED = "ALARM_LOCAL_SAVED"
+        const val ACCESS_TOKEN = "ACCESS_TOKEN"
+        const val USER_KAKAO_USER_ID = "USER_KAKAO_USER_ID"
+        const val USER_NICKNAME = "USER_NAME"
+        const val ALARM_LOCAL_SAVED = "ALARM_LOCAL_SAVED"
         const val DEFAULT_STRING_VALUE = ""
     }
 }

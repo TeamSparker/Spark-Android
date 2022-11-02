@@ -95,4 +95,9 @@ object RetrofitServiceModule {
     @Singleton
     fun provideHomeNoticeRedDotService(retrofit: Retrofit): HomeNoticeRedDotService =
         retrofit.create(HomeNoticeRedDotService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideHabitRoomTimeLineService(retrofit: Retrofit): HabitRoomTimeLineService =
+        retrofit.create(HabitRoomTimeLineService::class.java)
 }
