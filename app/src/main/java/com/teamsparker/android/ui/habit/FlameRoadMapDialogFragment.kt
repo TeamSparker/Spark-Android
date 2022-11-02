@@ -13,6 +13,7 @@ import com.teamsparker.android.ui.habit.adapter.FlameRoadMapAdapter
 import com.teamsparker.android.ui.habit.flameroadmap.*
 import com.teamsparker.android.ui.habit.viewmodel.HabitViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.abs
 
 @AndroidEntryPoint
 class FlameRoadMapDialogFragment : DialogFragment() {
@@ -92,7 +93,12 @@ class FlameRoadMapDialogFragment : DialogFragment() {
         binding.vpFlameRoadmap.apply {
             offscreenPageLimit = 3
             setPageTransformer { page, position ->
+                // 미리보기 살짝 보이기
                 page.translationX = position * -offsetPx
+                // 미리보기 크기 조절
+                var focusedPageDistanceRatio = 1 - abs(position)
+                page.scaleY = 0.7f + focusedPageDistanceRatio * 0.3f
+                page.scaleX = 0.7f + focusedPageDistanceRatio * 0.3f
             }
         }
     }
@@ -113,7 +119,7 @@ class FlameRoadMapDialogFragment : DialogFragment() {
         }
     }
 
-    private fun initViewPagerPosition(){
+    private fun initViewPagerPosition() {
         binding.vpFlameRoadmap.currentItem
         when (habitViewModel.habitInfo.value?.leftDay) {
             0 -> binding.vpFlameRoadmap.currentItem = 5
