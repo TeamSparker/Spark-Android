@@ -17,6 +17,7 @@ import com.teamsparker.android.util.FirebaseLogUtil.SCREEN_HABIT_ROOM
 import com.teamsparker.android.util.ext.setOnSingleClickListener
 import com.teamsparker.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.Serializable
 import kotlin.properties.Delegates
 
 @AndroidEntryPoint
@@ -168,7 +169,12 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
 
         lifeList.forEach {
             it.setOnSingleClickListener {
-                HabitTimeLineBottomSheet().show(supportFragmentManager, this.javaClass.name)
+                HabitTimeLineBottomSheet().apply {
+                    arguments = Bundle().apply {
+                        putSerializable(REFRESH_DATA, { refreshData() } as Serializable)
+                    }
+                    show(supportFragmentManager, this.javaClass.name)
+                }
                 if (habitViewModel.habitInfo.value?.isTimelineNew
                     ?: throw IllegalStateException("타임라인 클릭리스너 GA로그 관련오류")
                 ) FirebaseLogUtil.logClickEvent(CLICK_TIMELINE_NEW_HABIT_ROOM)
@@ -185,5 +191,9 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
     override fun onPause() {
         super.onPause()
         overridePendingTransition(0, 0)
+    }
+
+    companion object {
+        const val REFRESH_DATA = "REFRESH_DATA"
     }
 }

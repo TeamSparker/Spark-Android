@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teamsparker.android.R
 import com.teamsparker.android.databinding.BottomSheetHabitTimeLineBinding
+import com.teamsparker.android.ui.habit.HabitActivity.Companion.REFRESH_DATA
 import com.teamsparker.android.ui.habit.adapter.HabitTimeLineRecyclerViewAdapter
 import com.teamsparker.android.ui.habit.viewmodel.HabitViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,11 @@ class HabitTimeLineBottomSheet : BottomSheetDialogFragment() {
 
     private val habitViewModel by activityViewModels<HabitViewModel>()
     private lateinit var habitTimeLineRecyclerViewAdapter: HabitTimeLineRecyclerViewAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        refreshDataOnHabitActivity()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +55,11 @@ class HabitTimeLineBottomSheet : BottomSheetDialogFragment() {
             setupRatio(bottomSheetDialog)
         }
         return dialog
+    }
+
+    private fun refreshDataOnHabitActivity() {
+        val refreshDataOnHabitActivity = arguments?.getSerializable(REFRESH_DATA) as () -> Unit
+        refreshDataOnHabitActivity()
     }
 
     // 다이얼로그 높이 비율로 조정 코드
