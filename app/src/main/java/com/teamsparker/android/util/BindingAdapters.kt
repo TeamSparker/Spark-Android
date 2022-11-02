@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import android.net.Uri
 import android.text.InputFilter
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -12,7 +13,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.teamsparker.android.R
-import java.lang.IllegalArgumentException
+import kotlin.math.roundToInt
 
 object BindingAdapters {
     @JvmStatic
@@ -60,11 +61,9 @@ object BindingAdapters {
         }
     }
 
-
     @JvmStatic
     @BindingAdapter("setLeftBackground")
     fun setLeftBackground(imageview: ImageView, leftDay: Int?) {
-
         if (leftDay != null) {
             imageview.setImageResource(
                 when {
@@ -80,7 +79,6 @@ object BindingAdapters {
             )
         }
     }
-
 
     @JvmStatic
     @BindingAdapter("setLeftTicketColor")
@@ -170,7 +168,6 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setLeftTicketComment")
     fun setLeftTicketComment(textview: TextView, leftDay: Int?) {
-
         val context = textview.context
         if (leftDay != null) {
             textview.text = when {
@@ -328,7 +325,7 @@ object BindingAdapters {
         imageButton: ImageButton,
         status: String?,
         habitRestCount: Int?,
-        habitUserLeftDay: Int?,
+        habitUserLeftDay: Int?
     ) {
         if (status != null) {
             if (habitRestCount != -1) {
@@ -351,17 +348,16 @@ object BindingAdapters {
                         }
                     )
                     imageButton.isEnabled = (
-                            when (status) {
-                                "DONE", "REST" -> false
-                                "NONE", "CONSIDER" -> true
-                                else -> throw IllegalStateException("bindingAdapter setSendSparkImg error")
-                            }
-                            )
+                        when (status) {
+                            "DONE", "REST" -> false
+                            "NONE", "CONSIDER" -> true
+                            else -> throw IllegalStateException("bindingAdapter setSendSparkImg error")
+                        }
+                        )
                 }
             }
         }
     }
-
 
     @JvmStatic
     @BindingAdapter(value = ["certificationLeftDay", "certificationStatus"], requireAll = true)
@@ -379,12 +375,12 @@ object BindingAdapters {
                     }
                 )
                 button.isEnabled = (
-                        when (status) {
-                            "DONE", "REST" -> false
-                            "NONE", "CONSIDER" -> true
-                            else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
-                        }
-                        )
+                    when (status) {
+                        "DONE", "REST" -> false
+                        "NONE", "CONSIDER" -> true
+                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationButton error")
+                    }
+                    )
             }
         }
     }
@@ -397,13 +393,12 @@ object BindingAdapters {
                 imageview.visibility = View.GONE
             } else {
                 imageview.visibility = (
-                        when (status) {
-                            "DONE", "REST" -> View.GONE
-                            "NONE", "CONSIDER" -> View.VISIBLE
-                            else -> throw IllegalStateException("bindingAdapter setHabitCertificationVisibility error")
-                        }
-                        )
-
+                    when (status) {
+                        "DONE", "REST" -> View.GONE
+                        "NONE", "CONSIDER" -> View.VISIBLE
+                        else -> throw IllegalStateException("bindingAdapter setHabitCertificationVisibility error")
+                    }
+                    )
             }
         }
     }
@@ -411,7 +406,6 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setCardOutLineColor")
     fun setCardOutLineColor(view: View, leftDay: Int?) {
-
         if (leftDay != null) {
             view.setBackgroundResource(
                 when {
@@ -431,7 +425,6 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setCardInLineColor")
     fun setCardInLineColor(view: View, leftDay: Int?) {
-
         if (leftDay != null) {
             view.setBackgroundResource(
                 when {
@@ -451,7 +444,6 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setProgressingCardSparkFlake")
     fun setProgressingCardSparkFlake(imageview: ImageView, leftDay: Int?) {
-
         if (leftDay != null) {
             imageview.setBackgroundResource(
                 when {
@@ -471,7 +463,6 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setIncompleteCardSparkFlake")
     fun setIncompleteCardSparkFlake(imageview: ImageView, failDay: Int?) {
-
         if (failDay != null) {
             imageview.setBackgroundResource(
                 when {
@@ -515,7 +506,6 @@ object BindingAdapters {
                     .into(this)
             }
             "CONSIDER" -> {
-
             }
         }
     }
@@ -593,11 +583,11 @@ object BindingAdapters {
     @BindingAdapter("setIncompleteCardFailDay")
     fun TextView.setIncompleteCardFailDay(failDay: Int) {
         if (failDay == 1) {
-            this.text = "${failDay} Day"
+            this.text = "$failDay Day"
         } else if (failDay == 6) {
             this.text = "D-day"
         } else {
-            this.text = "${failDay} Days"
+            this.text = "$failDay Days"
         }
     }
 
@@ -652,5 +642,81 @@ object BindingAdapters {
             max = maxLength + text.length - text.codePointCount(0, text.length)
         }
         editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(max))
+    }
+
+    @JvmStatic
+    @BindingAdapter("TimeLineProfileState", "ProfileVisibleMargin", "ProfileGoneMargin")
+    fun TextView.timeLimeProfileMargin(
+        timeLineProfileState: Boolean,
+        profileVisibleMargin: Int,
+        profileGoneMargin: Int
+    ) {
+        if (timeLineProfileState) {
+            val tempMargin = (profileVisibleMargin * resources.displayMetrics.density).roundToInt()
+            val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.topMargin = tempMargin
+            this.layoutParams = layoutParams
+        } else {
+            val tempMargin = (profileGoneMargin * resources.displayMetrics.density).roundToInt()
+            val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.topMargin = tempMargin
+            this.layoutParams = layoutParams
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setFlameRoadMapTitle")
+    fun setFlameRoadMapTitle(textview: TextView, level: Int?) {
+        when (level) {
+            1 -> textview.setText(R.string.flame_road_map_title_level_1)
+            2 -> textview.setText(R.string.flame_road_map_title_level_2)
+            3 -> textview.setText(R.string.flame_road_map_title_level_3)
+            4 -> textview.setText(R.string.flame_road_map_title_level_4)
+            5 -> textview.setText(R.string.flame_road_map_title_level_5)
+            6 -> textview.setText(R.string.flame_road_map_title_level_6)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setFlameRoadMapContnentDay", "setFlameRoadMapContnentLevel")
+    fun setFlameRoadMapContent(textview: TextView, leftDay: Int, level: Int?) {
+        when (level) {
+            1 -> textview.setText(R.string.flame_road_map_content_level_1)
+            2 -> {
+                if (leftDay <= 62) {
+                    textview.setText(R.string.flame_road_map_content_level_2)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_2)
+                }
+            }
+            3 -> {
+                if (leftDay <= 58) {
+                    textview.setText(R.string.flame_road_map_content_level_3)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_3)
+                }
+            }
+            4 -> {
+                if (leftDay <= 32) {
+                    textview.setText(R.string.flame_road_map_content_level_4)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_4)
+                }
+            }
+            5 -> {
+                if (leftDay <= 6) {
+                    textview.setText(R.string.flame_road_map_content_level_5)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_5)
+                }
+            }
+            6 -> {
+                if (leftDay == 0) {
+                    textview.setText(R.string.flame_road_map_content_level_6)
+                } else {
+                    textview.setText(R.string.flame_road_map_content_not_ready_level_6)
+                }
+            }
+        }
     }
 }

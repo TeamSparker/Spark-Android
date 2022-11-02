@@ -210,6 +210,7 @@
     <string name="habit_more_exit_room_dialog_content">아직 습관이 완료되지 않았어요.\n그래도 나가려면 ‘방 이름’을 입력해주세요.</string>
     <string name="habit_more_user_guide">습관방 이용 팁</string>
     <string name="habit_more_exit">방 나가기</string>
+    <string name="habit_more_flame_roadmap">불꽃 결정 레벨</string>
 
     <!-- HabitTodayBottomSheet -->
     <string name="habit_today_comment_top">오늘도 꺼지지 않는 스파크,</string>
@@ -393,6 +394,28 @@
     <!--HabitLifeLessDialogFragment-->
     <string name="habit_dialog_life_less_title">Oops...</string>
     <string name="habit_dialog_life_less_btn_checked">확인했어요</string>
+
+    <!--HabitTImeLineBottomSheet-->
+    <string name="habit_time_line_title">생명 타임라인</string>
+
+    <!--FlameRoadMapDialogFragment-->
+    <string name="flame_road_map_title_level_1">Level 1</string>
+    <string name="flame_road_map_title_level_2">Level 2</string>
+    <string name="flame_road_map_title_level_3">Level 3</string>
+    <string name="flame_road_map_title_level_4">Level 4</string>
+    <string name="flame_road_map_title_level_5">Level 5</string>
+    <string name="flame_road_map_title_level_6">Level 6</string>
+    <string name="flame_road_map_content_level_1">새로운 습관 시작!\n첫 번째 불꽃 결정을 얻었어요.</string>
+    <string name="flame_road_map_content_level_2">3일 동안 열심히 달렸네요!\n두 번째 불꽃 결정을 얻었어요.</string>
+    <string name="flame_road_map_content_level_3">7일 동안 열심히 달렸네요!\n세 번째 불꽃 결정을 얻었어요.</string>
+    <string name="flame_road_map_content_level_4">33일 동안 열심히 달렸네요!\n네 번째 불꽃 결정을 얻었어요.</string>
+    <string name="flame_road_map_content_level_5">마지막 7일 남았네요!\n다섯 번째 불꽃 결정을 얻었어요.</string>
+    <string name="flame_road_map_content_level_6">드디어 마지막 날이네요!\n여섯 번째 불꽃 결정을 얻었어요.</string>
+    <string name="flame_road_map_content_not_ready_level_2">3일을 달성하면 얻을 수 있어요!</string>
+    <string name="flame_road_map_content_not_ready_level_3">7일을 달성하면 얻을 수 있어요!</string>
+    <string name="flame_road_map_content_not_ready_level_4">33일을 달성하면 얻을 수 있어요!</string>
+    <string name="flame_road_map_content_not_ready_level_5">마지막 7일 남았을 때 얻을 수 있어요!</string>
+    <string name="flame_road_map_content_not_ready_level_6">마지막 날에 얻을 수 있어요!</string>
 
 </resources>
 
