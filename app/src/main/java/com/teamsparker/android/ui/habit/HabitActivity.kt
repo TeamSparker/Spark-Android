@@ -11,11 +11,12 @@ import com.teamsparker.android.ui.habit.adapter.HabitRecyclerViewAdapter
 import com.teamsparker.android.ui.habit.userguide.UserGuideFragmentDialog
 import com.teamsparker.android.ui.habit.viewmodel.HabitViewModel
 import com.teamsparker.android.util.FirebaseLogUtil
+import com.teamsparker.android.util.FirebaseLogUtil.CLICK_TIMELINE_NEW_HABIT_ROOM
+import com.teamsparker.android.util.FirebaseLogUtil.CLICK_TIMELINE_NONE_HABIT_ROOM
 import com.teamsparker.android.util.FirebaseLogUtil.SCREEN_HABIT_ROOM
 import com.teamsparker.android.util.ext.setOnSingleClickListener
 import com.teamsparker.android.util.initStatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.IllegalStateException
 import kotlin.properties.Delegates
 
 @AndroidEntryPoint
@@ -52,8 +53,13 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         habitViewModel.habitInfo.observe(this) {
             habitRecyclerViewAdapter.response = it
             binding.habitViewModel = habitViewModel
-            if(habitViewModel.habitInfo.value?.isTermNew ?: throw IllegalStateException("isTermNew 값 null로 옴")){
-                FlameRoadMapDialogFragment().show(supportFragmentManager, "FlameRoadMapDialogFragment")
+            if (habitViewModel.habitInfo.value?.isTermNew
+                ?: throw IllegalStateException("isTermNew 값 null로 옴")
+            ) {
+                FlameRoadMapDialogFragment().show(
+                    supportFragmentManager,
+                    "FlameRoadMapDialogFragment"
+                )
             }
 //            1.1.0에서 삭제 다른기능으로 대체
 //            initHabitLifeLessDialog()
@@ -163,6 +169,10 @@ class HabitActivity : BaseActivity<ActivityHabitBinding>(R.layout.activity_habit
         lifeList.forEach {
             it.setOnSingleClickListener {
                 HabitTimeLineBottomSheet().show(supportFragmentManager, this.javaClass.name)
+                if (habitViewModel.habitInfo.value?.isTimelineNew
+                    ?: throw IllegalStateException("타임라인 클릭리스너 GA로그 관련오류")
+                ) FirebaseLogUtil.logClickEvent(CLICK_TIMELINE_NEW_HABIT_ROOM)
+                else FirebaseLogUtil.logClickEvent(CLICK_TIMELINE_NONE_HABIT_ROOM)
             }
         }
     }

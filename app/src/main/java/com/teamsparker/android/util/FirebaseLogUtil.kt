@@ -32,9 +32,10 @@ object FirebaseLogUtil {
     const val CLICK_CONSIDER_HABIT_ROOM = "click_CONSIDER_habit_room"
     const val CLICK_HEART_FEED = "click_HEART_feed"
     const val CLICK_CARD_MY_ROOM = "click_CARD_my_room"
+    const val CLICK_TIMELINE_NEW_HABIT_ROOM = "click_TIMELINE_NEW_habit_room"
+    const val CLICK_TIMELINE_NONE_HABIT_ROOM = "click_TIMELINE_NONE_habit_room"
 
     private const val NOTIFICATION_OPEN = "notification_open_"
-
 
     fun logScreenEvent(screenClass: String, screenName: String) {
         Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
