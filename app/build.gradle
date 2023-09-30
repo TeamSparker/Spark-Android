@@ -12,12 +12,12 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.teamsparker.android"
         minSdk 26
-        targetSdk 31
+        targetSdk 33
         versionCode 5
         versionName "1.1.0"
 

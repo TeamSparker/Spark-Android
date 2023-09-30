@@ -79,14 +79,14 @@ class FeedAdapter(
                                 it.visibility = View.VISIBLE
                                 it.playAnimation()
                                 it.addAnimatorListener(object : Animator.AnimatorListener {
-                                    override fun onAnimationEnd(animation: Animator?) {
+                                    override fun onAnimationEnd(animation: Animator) {
                                         it.visibility = View.INVISIBLE
                                         binding.btnFeedHeart.isEnabled = true
                                     }
 
-                                    override fun onAnimationStart(animation: Animator?) {}
-                                    override fun onAnimationCancel(animation: Animator?) {}
-                                    override fun onAnimationRepeat(animation: Animator?) {}
+                                    override fun onAnimationStart(animation: Animator) {}
+                                    override fun onAnimationCancel(animation: Animator) {}
+                                    override fun onAnimationRepeat(animation: Animator) {}
 
                                 })
                             }
