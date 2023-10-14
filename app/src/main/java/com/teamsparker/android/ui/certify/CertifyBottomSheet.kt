@@ -105,11 +105,17 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initFromAlbumBtnClickListener() {
+        val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            android.Manifest.permission.READ_MEDIA_IMAGES
+        } else {
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        }
+
         binding.tvCertifyAlbum.setOnClickListener {
             when (PackageManager.PERMISSION_GRANTED) {
                 ContextCompat.checkSelfPermission(
                     requireContext(),
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    permission,
                 ),
                 -> {
                     fromAlbumActivityLauncher.launch(
@@ -122,7 +128,7 @@ class CertifyBottomSheet : BottomSheetDialogFragment() {
                 else -> {
                     ActivityCompat.requestPermissions(
                         requireActivity(),
-                        arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                        arrayOf(permission),
                         REQUEST_READ_STORAGE_PERMISSION
                     )
                 }
