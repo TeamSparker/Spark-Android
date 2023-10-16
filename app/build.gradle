@@ -8,17 +8,29 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.teamsparker.android"
         minSdk 26
-        targetSdk 31
+        targetSdk 33
         versionCode 5
         versionName "1.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+                "String",
+                "FACEBOOK_APP_ID",
+                properties.getProperty("FACEBOOK_APP_ID")
+        )
+
+        manifestPlaceholders["FACEBOOK_APP_ID"] =
+                properties.getProperty("FACEBOOK_APP_ID")
     }
 
     buildTypes {
@@ -122,4 +134,7 @@ dependencies {
 
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Facebook
+    implementation "com.facebook.android:facebook-android-sdk:[8,9)"
 }
