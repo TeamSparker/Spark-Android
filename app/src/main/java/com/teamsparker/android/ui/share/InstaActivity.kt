@@ -21,6 +21,7 @@ import com.teamsparker.android.ui.main.MainActivity
 import com.teamsparker.android.ui.main.MainActivity.Companion.FROM_WHERE
 import com.teamsparker.android.util.showToast
 import android.provider.MediaStore
+import com.teamsparker.android.BuildConfig
 import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
@@ -111,18 +112,15 @@ class InstaActivity : BaseActivity<ActivityInstaBinding>(R.layout.activity_insta
     }
 
     private fun shareInsta(uri: Uri) {
-
-        val sourceApplication = "com.spark.android"
-
         val intent = Intent("com.instagram.share.ADD_TO_STORY")
         intent.type = "image/jpeg"
-        intent.putExtra("source_application", sourceApplication)
+        intent.putExtra("com.facebook.platform.extra.APPLICATION_ID", BuildConfig.FACEBOOK_APP_ID)
+        intent.putExtra("interactive_asset_uri", uri)
         intent.putExtra("top_background_color", "#737376")
         intent.putExtra("bottom_background_color", "#737376")
-        intent.putExtra("interactive_asset_uri", uri)
 
         grantUriPermission(
-            "com.instagram.android",
+            "com.facebook.katana",
             uri,
             Intent.FLAG_GRANT_READ_URI_PERMISSION
         )

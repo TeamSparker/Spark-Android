@@ -113,7 +113,7 @@ object AnimationUtil {
         ObjectAnimator.ofFloat(constraintLayout, "translationY", 0f).apply {
             start()
             addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(animation)
                     ObjectAnimator.ofFloat(textviewTwo, View.ALPHA, 0f, 1f).apply {
                         duration = EDIT_TEXT_FOCUS_TRANSLATION
@@ -121,7 +121,7 @@ object AnimationUtil {
                     }
                     ObjectAnimator.ofFloat(textviewOne, View.ALPHA, 0f, 1f).apply {
                         addListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationStart(animation: Animator?) {
+                            override fun onAnimationStart(animation: Animator) {
                                 super.onAnimationStart(animation)
                                 textviewOne.visibility = View.VISIBLE
                                 textviewTwo.visibility = View.VISIBLE
@@ -152,12 +152,12 @@ object AnimationUtil {
         }
         ObjectAnimator.ofFloat(textviewOne, View.ALPHA, 1f, 0f).apply {
             addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(animation)
                     ObjectAnimator.ofFloat(constraintLayout, "translationY", -220f).apply {
                         start()
                         addListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator?) {
+                            override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
                                 textviewOne.visibility = View.GONE
                                 textviewTwo.visibility = View.GONE

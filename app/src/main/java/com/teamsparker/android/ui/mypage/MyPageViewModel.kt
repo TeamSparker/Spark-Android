@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.teamsparker.android.BuildConfig
 import com.teamsparker.android.data.remote.entity.response.ProfileResponse
 import com.teamsparker.android.data.remote.repository.AlarmSettingRepository
 import com.teamsparker.android.data.remote.repository.AuthRepository
@@ -20,6 +21,8 @@ class MyPageViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val alarmSettingRepository: AlarmSettingRepository
 ) : ViewModel() {
+    val appVersion = BuildConfig.VERSION_NAME
+
     private val _profileData = MutableLiveData<ProfileResponse>()
     val profileData: LiveData<ProfileResponse> = _profileData
 

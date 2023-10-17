@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.teamsparker.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" android:minSdkVersion="33" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+
+    <!-- API 33 이상부터 광고 ID 선언해야하지만 사용하지 않아서 아래와 같이 권한 추가 -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
 
     <uses-feature
         android:name="android.hardware.camera2"
@@ -25,6 +32,13 @@
         android:roundIcon="@mipmap/ic_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SparkAndroid">
+
+        <!-- API 33 이상부터 광고 ID 선언해야하지만 사용하지 않아서 아래와 같이 권한 추가 -->
+        <meta-data
+            android:name="google_analytics_adid_collection_enabled"
+            android:value="false" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="${FACEBOOK_APP_ID}"/>
+
         <activity
             android:name="com.teamsparker.android.ui.habit.HabitSendSparkActivity"
             android:exported="false"
